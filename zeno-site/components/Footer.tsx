@@ -76,9 +76,17 @@ export default function Footer() {
           <p className="text-[0.75rem] text-ink-faint">
             © {year} Zeno · zenoaihome.com
           </p>
-          <p className="text-[0.75rem] text-ink-faint">
-            内容持续更新，欢迎关注公众号 Zeno AI装修笔记
-          </p>
+          <div className="flex items-center gap-4">
+            <p className="text-[0.75rem] text-ink-faint">
+              内容持续更新，欢迎关注公众号 Zeno AI装修笔记
+            </p>
+            <a
+              href="/tools/md2wechat"
+              className="text-[0.75rem] text-ink-faint hover:text-ink-muted transition-colors"
+            >
+              排版工具
+            </a>
+          </div>
         </div>
 
       </div>
