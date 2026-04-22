@@ -13,12 +13,6 @@ import Image from 'next/image'
 import { resources } from '@/data/resources'
 import type { ResourceAccessLevel } from '@/data/resources'
 import { auth } from '@/auth'
-import {
-  canAccessResource,
-  getAccessLabel,
-  getAccessLevelStyle,
-  getAccessButtonLabel,
-} from '@/lib/permissions'
 import PageHero from '@/components/PageHero'
 import Container from '@/components/Container'
 import CTA from '@/components/CTA'
@@ -36,8 +30,7 @@ const tagColors: Record<string, string> = {
 }
 
 export default async function ResourcesPage() {
-  const session = await auth()
-  const user = session?.user ?? null
+  await auth()  // 保留 auth 调用，未来扩展权限时使用
 
   return (
     <>
@@ -65,10 +58,6 @@ export default async function ResourcesPage() {
         <div className="space-y-8">
           {resources.map((resource) => {
             const level: ResourceAccessLevel = resource.accessLevel ?? 'login'
-            const canAccess = canAccessResource(user, { accessLevel: level })
-            const accessLabel = getAccessLabel(level)
-            const accessStyle = getAccessLevelStyle(level)
-            const buttonLabel = getAccessButtonLabel(user, { accessLevel: level })
 
             if (level === 'admin') return null
 
