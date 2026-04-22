@@ -1,5 +1,4 @@
 ﻿import Link from 'next/link'
-import { CTAGroup } from '@/components/CTA'
 import ArticleCard from '@/components/ArticleCard'
 import Container from '@/components/Container'
 import { getRecentArticles } from '@/data/articles'
@@ -27,26 +26,38 @@ export default function HomePage() {
   return (
     <>
       {/* ───────────────── Hero ───────────────── */}
-      <section className="py-14 sm:py-18 border-b border-border">
-        <Container size="content">
-          <p className="page-label mb-4">赞诺 · Zeno</p>
-          <h1 className="hero-title mb-5 max-w-2xl">
+      <section className="py-12 sm:py-16 border-b border-border">
+        <Container size="reading">
+          <p className="text-[0.65rem] text-red-500 mb-2">【视觉回滚测试：2026-04-22】</p>
+          <p className="text-[0.7rem] font-semibold tracking-[0.1em] uppercase text-stone mb-5">Zeno</p>
+          <h1 className="text-[1.625rem] sm:text-[1.875rem] md:text-[2.25rem] font-semibold leading-[1.3] tracking-[-0.02em] text-ink mb-5 max-w-xl">
             从装修出发，<br />
-            聊居住、美学、人性、成长<br className="hidden sm:block" />
-            与 AI 时代的长期主义。
+            聊居住、美学、人性、成长与 AI 时代的长期主义。
           </h1>
-          <p className="text-[0.9375rem] sm:text-base text-ink-muted leading-[1.85] max-w-[560px] mb-8">
+          <p className="text-[0.9375rem] text-ink-muted leading-[1.85] max-w-lg mb-8">
             我是 Zeno。做装修，盯过工地，也在持续学习 AI 和技术。
-            这里不只谈房子怎么装，也谈人怎么判断、怎么成长、
-            怎么在变化越来越快的时代里活得更清醒。
+            这里不只谈房子怎么装，也谈人怎么判断、怎么成长、怎么在变化越来越快的时代里活得更清醒。
           </p>
-          <CTAGroup
-            items={[
-              { href: '/blog',      label: '看最新文章', variant: 'primary'   },
-              { href: '/about',     label: '了解我是谁', variant: 'secondary' },
-              { href: '/resources', label: '领取资料',   variant: 'ghost'     },
-            ]}
-          />
+          <div className="flex flex-wrap gap-3 items-center">
+            <Link
+              href="/blog"
+              className="text-sm font-medium text-paper bg-stone px-4 py-2 hover:bg-stone/85 transition-colors"
+            >
+              看最新文章
+            </Link>
+            <Link
+              href="/about"
+              className="text-sm font-medium text-stone border border-stone/40 px-4 py-2 hover:bg-stone-pale transition-colors"
+            >
+              了解我是谁
+            </Link>
+            <Link
+              href="/resources"
+              className="text-sm text-stone underline underline-offset-4 decoration-stone/30 hover:decoration-stone transition-colors"
+            >
+              领取资料
+            </Link>
+          </div>
         </Container>
       </section>
 
