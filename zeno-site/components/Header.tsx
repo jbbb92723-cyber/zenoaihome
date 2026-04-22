@@ -11,9 +11,24 @@ const navLinks = [
   { href: '/topics',    label: '专题' },
   { href: '/resources', label: '资料库' },
   { href: '/services',  label: '服务' },
+  { href: '/tools/md2wechat', label: '排版工具' },
   { href: '/contact',   label: '联系' },
-  { href: '/tools/md2wechat', label: '排版' },
 ]
+
+function LanguageSwitcher() {
+  const pathname = usePathname()
+  const isEn = pathname.startsWith('/en')
+  const targetHref = isEn ? pathname.replace(/^\/en/, '') || '/' : `/en${pathname === '/' ? '' : pathname}`
+
+  return (
+    <Link
+      href={targetHref}
+      className="text-[0.75rem] text-ink-faint hover:text-ink-muted transition-colors"
+    >
+      {isEn ? '中文' : 'EN'}
+    </Link>
+  )
+}
 
 export default function Header() {
   const pathname = usePathname()
@@ -28,11 +43,11 @@ export default function Header() {
             href="/"
             className="text-ink font-semibold text-[0.9375rem] tracking-tight hover:text-stone transition-colors"
           >
-            Zeno 赞诺
+            Zeno 赞诺
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center gap-7">
+          <nav className="hidden md:flex items-center gap-6">
             {navLinks.map((link) => {
               const isActive =
                 link.href === '/'
@@ -52,17 +67,20 @@ export default function Header() {
                 </Link>
               )
             })}
-            {/* 账号入口 */}
+
+            {/* 语言切换 */}
+            <LanguageSwitcher />
+
+            {/* 登录入口 */}
             <Link
-              href="/account"
+              href="/login"
               className={`text-[0.8125rem] transition-colors ${
-                pathname.startsWith('/account') || pathname === '/login'
+                pathname === '/login' || pathname.startsWith('/account')
                   ? 'text-stone font-semibold'
                   : 'text-ink-muted hover:text-ink'
               }`}
-              aria-label="用户中心"
             >
-              账号
+              登录
             </Link>
           </nav>
 
@@ -114,18 +132,21 @@ export default function Header() {
                 </Link>
               )
             })}
-            {/* 移动端账号入口 */}
-            <Link
-              href="/account"
-              onClick={() => setMenuOpen(false)}
-              className={`py-3 text-sm transition-colors ${
-                pathname.startsWith('/account') || pathname === '/login'
-                  ? 'text-stone font-semibold'
-                  : 'text-ink-muted hover:text-ink'
-              }`}
-            >
-              账号 / 登录
-            </Link>
+            {/* 语言切换 + 登录 */}
+            <div className="flex items-center justify-between py-3">
+              <Link
+                href="/login"
+                onClick={() => setMenuOpen(false)}
+                className={`text-sm transition-colors ${
+                  pathname === '/login' || pathname.startsWith('/account')
+                    ? 'text-stone font-semibold'
+                    : 'text-ink-muted hover:text-ink'
+                }`}
+              >
+                登录
+              </Link>
+              <LanguageSwitcher />
+            </div>
           </nav>
         </div>
       )}

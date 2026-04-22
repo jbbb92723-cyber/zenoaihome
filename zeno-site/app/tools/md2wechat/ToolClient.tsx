@@ -308,11 +308,11 @@ export default function Md2WechatToolClient({
         </div>
       </div>
 
-      {/* 管理员区 */}
-      {isAdmin ? (
+      {/* 管理员操作按钮区（不再重复管理员整体说明，由 page.tsx 提供） */}
+      {isAdmin && (
         <div className="border-t border-border pt-8">
           <p className="text-[0.65rem] text-ink-faint uppercase tracking-widest font-semibold mb-6">
-            管理员功能
+            管理员操作
           </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -377,23 +377,7 @@ export default function Md2WechatToolClient({
             </div>
           </div>
         </div>
-      ) : (
-        <div className="border-t border-border pt-6">
-          <p className="text-xs text-ink-faint">
-            AI 配图与推送公众号草稿箱为管理员功能，公开内容的排版和复制不受限制。
-          </p>
-        </div>
       )}
-
-      {/* 配置检查入口 */}
-      <div className="pt-4 border-t border-border">
-        <a
-          href="/tools/md2wechat/status"
-          className="text-xs text-ink-faint hover:text-ink-muted transition-colors underline underline-offset-2"
-        >
-          配置状态检查 →
-        </a>
-      </div>
     </div>
   )
 }

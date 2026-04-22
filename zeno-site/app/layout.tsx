@@ -19,8 +19,8 @@ const notoSansSC = Noto_Sans_SC({
 
 export const metadata: Metadata = {
   title: {
-    default: 'Zeno — 从装修出发，聊居住、美学、人性与长期主义',
-    template: '%s · Zeno',
+    default: 'Zeno 赞诺｜Zeno AI Home — 从装修出发，聊居住、美学、人性与长期主义',
+    template: '%s · Zeno 赞诺',
   },
   description:
     '我是 Zeno。做过装修，盯过工地，也在持续学习 AI。这里从装修出发，聊居住、美学、人性、成长与 AI 时代的长期主义。',
@@ -30,14 +30,14 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'zh_CN',
     url: 'https://zenoaihome.com',
-    siteName: 'Zeno',
-    title: 'Zeno — 从装修出发，聊居住、美学、人性与长期主义',
+    siteName: 'Zeno 赞诺',
+    title: 'Zeno 赞诺 — 从装修出发，聊居住、美学、人性与长期主义',
     description:
       '我是 Zeno。做过装修，盯过工地，也在持续学习 AI。这里从装修出发，聊居住、美学、人性、成长与 AI 时代的长期主义。',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Zeno — 从装修出发，聊居住、美学、人性与长期主义',
+    title: 'Zeno 赞诺 — 从装修出发，聊居住、美学、人性与长期主义',
     description:
       '从装修出发，聊居住、美学、人性、成长与 AI 时代的长期主义。',
   },
