@@ -190,8 +190,10 @@ export default async function ResourcesPage() {
         <div className="mt-14 pt-8 border-t border-border flex flex-wrap gap-3">
           <p className="w-full text-sm text-ink-muted mb-2">
             资料是辅助，不替代你的现场判断。先用一遍，再回来看对应文章，会更有感觉。
+            如果需要更具体的帮助，可以看服务页。
           </p>
-          <CTA href="/blog" label="回去看文章" variant="secondary" />
+          <CTA href="/services" label="查看服务" variant="secondary" />
+          <CTA href="/blog" label="看文章" variant="ghost" />
           <CTA href="/topics" label="看专题" variant="ghost" />
         </div>
 
