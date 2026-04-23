@@ -36,8 +36,8 @@ export default async function ResourcesPage() {
     <>
       <PageHero
         label="资料库"
-        title="拿来就能用的工具"
-        subtitle="我只放自己用过、在真实场景里验证过的内容。先拿当前最痛的问题对应的资料，不要追求一次全拿。"
+        title="解决具体问题的工具"
+        subtitle="这不是一个下载站。每份资料都对应一个具体的装修或内容场景，我只放自己用过、在真实项目里验证过的内容。先找当前最痛的问题，拿对应的资料来用。"
         size="content"
       />
 

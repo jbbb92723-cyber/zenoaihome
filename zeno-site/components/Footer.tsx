@@ -7,6 +7,7 @@ const navLinks = [
   { href: '/topics', label: '专题' },
   { href: '/resources', label: '资料库' },
   { href: '/services', label: '服务' },
+  { href: '/tools/md2wechat', label: '排版工具' },
   { href: '/contact', label: '联系' },
 ]
 
@@ -23,7 +24,7 @@ export default function Footer() {
           {/* 品牌 + 定位 */}
           <div className="sm:col-span-1">
             <Link href="/" className="text-ink font-semibold text-[0.9375rem] hover:text-stone transition-colors">
-              Zeno · 赞诺
+              Zeno 赞诺
             </Link>
             <p className="mt-3 text-[0.8125rem] text-ink-muted leading-relaxed max-w-[220px]">
               从装修出发，聊居住、美学、人性、成长与 AI 时代的长期主义。
@@ -74,19 +75,11 @@ export default function Footer() {
         {/* 版权栏 */}
         <div className="mt-10 pt-6 border-t border-border flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
           <p className="text-[0.75rem] text-ink-faint">
-            © {year} Zeno · zenoaihome.com
+            © {year} Zeno 赞诺 · zenoaihome.com
           </p>
-          <div className="flex items-center gap-4">
-            <p className="text-[0.75rem] text-ink-faint">
-              内容持续更新，欢迎关注公众号 Zeno AI装修笔记
-            </p>
-            <a
-              href="/tools/md2wechat"
-              className="text-[0.75rem] text-ink-faint hover:text-ink-muted transition-colors"
-            >
-              排版工具
-            </a>
-          </div>
+          <p className="text-[0.75rem] text-ink-faint">
+            内容持续更新，欢迎关注公众号 Zeno AI装修笔记
+          </p>
         </div>
 
       </div>
