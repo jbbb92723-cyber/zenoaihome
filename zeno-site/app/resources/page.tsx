@@ -44,6 +44,25 @@ export default async function ResourcesPage() {
 
       <Container size="content" className="py-section">
 
+        {/* Prompt Playground 体验入口 */}
+        <div className="mb-10 border border-stone/30 bg-stone/5 p-5">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+            <div>
+              <p className="text-xs text-stone font-semibold uppercase tracking-widest mb-1">可体验工具</p>
+              <h2 className="text-base font-semibold text-ink">AI 提示词体验场</h2>
+              <p className="text-sm text-ink-muted mt-1 max-w-md">
+                选场景、填情况、一键生成可直接用的提示词。5 个真实场景覆盖写作、装修沟通、报价分析、选题、AI 升级。不需要登录，即开即用。
+              </p>
+            </div>
+            <Link
+              href="/tools/prompts"
+              className="text-sm font-medium text-paper bg-stone px-4 py-2 hover:bg-stone/85 transition-colors whitespace-nowrap self-start sm:self-center"
+            >
+              立即体验 →
+            </Link>
+          </div>
+        </div>
+
         {/* 领取说明 */}
         <div className="mb-12 p-5 border border-border bg-surface-warm">
           <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-2">

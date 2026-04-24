@@ -22,6 +22,52 @@ const enNavLinks = [
   { href: '/en/topics', label: 'Topics' },
 ]
 
+// 明确的路由映射（CN → EN，以及 EN → CN）
+// 凡是没有对应页的，做兜底跳转
+const CN_TO_EN: Record<string, string> = {
+  '/':                 '/en',
+  '/about':            '/en/about',
+  '/blog':             '/en/articles',
+  '/topics':           '/en/topics',
+  '/resources':        '/en/tools',
+  '/services':         '/en/about',
+  '/contact':          '/en/about',
+  '/tools/md2wechat':  '/en/tools',
+  '/login':            '/login',
+}
+
+const EN_TO_CN: Record<string, string> = {
+  '/en':           '/',
+  '/en/about':     '/about',
+  '/en/articles':  '/blog',
+  '/en/topics':    '/topics',
+  '/en/tools':     '/resources',
+  '/en/tools/prompts': '/tools/md2wechat',
+}
+
+function getLangHref(pathname: string, isEn: boolean): string {
+  if (isEn) {
+    // EN → CN
+    if (EN_TO_CN[pathname]) return EN_TO_CN[pathname]
+    // 对于动态路由（如 /en/articles/slug），兜底到 /blog
+    if (pathname.startsWith('/en/articles/')) return '/blog'
+    // 去掉 /en 前缀，若有对应中文页则跳转
+    const cnPath = pathname.replace(/^\/en/, '') || '/'
+    // 如果是已知中文路由，直接跳
+    const knownCnPaths = ['/', '/about', '/blog', '/topics', '/resources', '/services', '/contact', '/tools/md2wechat']
+    if (knownCnPaths.includes(cnPath)) return cnPath
+    // 否则兜底到首页
+    return '/'
+  } else {
+    // CN → EN
+    if (CN_TO_EN[pathname]) return CN_TO_EN[pathname]
+    // 对于动态路由（如 /blog/slug），兜底到 /en/articles
+    if (pathname.startsWith('/blog/')) return '/en/articles'
+    // 其他未知路由兜底到 /en
+    return '/en'
+  }
+}
+
 export default function Header() {
   const pathname = usePathname()
   const [menuOpen, setMenuOpen] = useState(false)
@@ -32,7 +78,7 @@ export default function Header() {
   const logoHref = isEn ? '/en' : '/'
   const loginLabel = isEn ? 'Log in' : '登录'
   const langLabel = isEn ? '中文' : 'EN'
-  const langHref = isEn ? pathname.replace(/^\/en/, '') || '/' : `/en${pathname === '/' ? '' : pathname}`
+  const langHref = getLangHref(pathname, isEn)
 
   const isActive = (href: string) => {
     if (isEn) {

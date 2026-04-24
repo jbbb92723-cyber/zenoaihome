@@ -23,8 +23,8 @@ const writingAreas = [
 const tools = [
   {
     title: 'Prompt Playground',
-    desc: 'A practical prompt utility for creators and traditional industry practitioners.',
-    href: '/en/tools',
+    desc: 'Practical prompt templates for creators and traditional industry practitioners.',
+    href: '/en/tools/prompts',
     status: 'available',
   },
   {

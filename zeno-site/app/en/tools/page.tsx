@@ -14,7 +14,7 @@ const tools = [
     description:
       'A practical prompt utility for real work scenarios — especially for creators and traditional industry practitioners who want to use AI without hype.',
     status: 'available' as const,
-    href: '/tools/md2wechat',
+    href: '/en/tools/prompts',
     cta: 'Try the prompt playground',
   },
   {
