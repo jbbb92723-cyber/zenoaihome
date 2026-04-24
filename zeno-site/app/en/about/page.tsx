@@ -11,32 +11,32 @@ const sections = [
   {
     title: 'Who I am',
     content:
-      "I\u2019m Zeno \u2014 a renovation practitioner based in Nanning, China. I\u2019ve spent over 16 years on job sites, managing projects, reading blueprints, and solving problems that don\u2019t fit neatly into textbooks.",
+      "I\u2019m Zeno \u2014 a renovation practitioner based in Nanning, China. I\u2019ve spent over 16 years on job sites, managing projects, reading blueprints, and solving problems that don\u2019t fit neatly into textbooks. I\u2019m not an influencer or a media company. I\u2019m one person building a long-term writing practice.",
   },
   {
-    title: 'From renovation sites to broader life observations',
+    title: 'From renovation sites to broader life questions',
     content:
-      "Renovation taught me to see things as they are \u2014 not as they\u2019re marketed. A home is not a showroom. A budget is not a wish list. Over time, I started writing about what I noticed: how people make decisions, how aesthetics shape living, and how long-term thinking applies to more than just buildings.",
+      "Renovation taught me to see things as they are \u2014 not as they\u2019re marketed. A home is not a showroom. A budget is not a wish list. Over time, I started writing about what I noticed: how people make decisions under pressure, how aesthetics shape daily living, and how long-term thinking applies to more than just buildings. The job site turned out to be a surprisingly good classroom for life.",
   },
   {
     title: 'Why I write beyond renovation',
     content:
-      "Because the patterns I see on job sites appear everywhere \u2014 in business, in technology adoption, in how people handle uncertainty. Writing helps me think clearly, and sharing those observations connects me with others who think similarly.",
+      "Because the patterns I see on job sites appear everywhere \u2014 in business, in technology adoption, in how people handle uncertainty. Writing helps me think clearly, and sharing those observations connects me with others who think similarly. I\u2019m not trying to build a content empire. I\u2019m trying to say what I honestly think, and see if it resonates.",
   },
   {
     title: 'What I believe',
     content:
-      "Long-term thinking is not patience \u2014 it\u2019s a strategy. Real aesthetics come from restraint, not decoration. AI should serve practitioners, not replace their judgment. Good writing comes from lived experience, not templates.",
+      "Long-term thinking is not patience \u2014 it\u2019s a strategy. Real aesthetics come from restraint, not decoration. AI should serve practitioners, not replace their judgment. Good writing comes from lived experience, not templates. A home should be built for how you actually live, not for how it photographs.",
   },
   {
     title: "What I don\u2019t believe in",
     content:
-      "Quick fixes. Viral-first content strategies. Gatekeeping knowledge behind unnecessary paywalls. Pretending AI will solve everything. Treating people as traffic.",
+      "Quick fixes. Viral-first content strategies. Gatekeeping knowledge behind unnecessary paywalls. Pretending AI will solve everything. Treating people as traffic. Motivational slogans disguised as wisdom. Fake case studies. Copying whatever is trending.",
   },
   {
     title: 'Current focus',
     content:
-      "Building this site as a long-term writing home. Exploring how AI tools can genuinely help traditional industry professionals. Writing in both Chinese and English to connect with a broader audience.",
+      "Building this site as a long-term writing home. Exploring how AI tools can genuinely help traditional industry professionals. Developing practical tools (prompt utilities, checklists, budget planners). Writing in both Chinese and English to connect with a broader audience. The Chinese site has 50+ in-depth articles; the English section is growing selectively.",
   },
 ]
 
@@ -66,16 +66,35 @@ export default function EnAboutPage() {
           <section className="pt-8 border-t border-border">
             <h2 className="text-base font-semibold text-ink mb-3">Contact</h2>
             <p className="text-sm text-ink-muted leading-relaxed mb-4">
-              The best way to reach me is through the{' '}
+              For international readers, the best way to reach me is by email.
+              For Chinese-speaking readers, visit the{' '}
               <Link href="/contact" className="text-stone hover:underline underline-offset-2">
                 contact page
               </Link>{' '}
-              on the Chinese site. I read every message, though I may not reply to everything.
+              on the Chinese site for WeChat and other options.
             </p>
-            <p className="text-sm text-ink-muted">
-              Email: 1603165918@qq.com
-            </p>
+            <ul className="space-y-2 text-sm text-ink-muted">
+              <li>Email: 1603165918@qq.com</li>
+              <li>YouTube: [To be added]</li>
+              <li>X (Twitter): [To be added]</li>
+            </ul>
           </section>
+
+          {/* CTAs */}
+          <div className="pt-8 border-t border-border flex flex-wrap gap-3">
+            <Link
+              href="/en/tools"
+              className="text-sm font-medium text-paper bg-stone px-4 py-2 hover:bg-stone/85 transition-colors"
+            >
+              Explore tools
+            </Link>
+            <Link
+              href="/en/articles"
+              className="text-sm font-medium text-stone border border-stone/40 px-4 py-2 hover:bg-stone-pale transition-colors"
+            >
+              Read selected essays
+            </Link>
+          </div>
         </div>
       </Container>
     </>

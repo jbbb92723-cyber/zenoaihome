@@ -10,5 +10,5 @@ export const metadata: Metadata = {
 }
 
 export default function EnLayout({ children }: { children: React.ReactNode }) {
-  return <>{children}</>
+  return <div lang="en">{children}</div>
 }

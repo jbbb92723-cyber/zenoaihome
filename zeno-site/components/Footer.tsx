@@ -1,6 +1,9 @@
-import Link from 'next/link'
+'use client'
 
-const navLinks = [
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+
+const cnNavLinks = [
   { href: '/', label: '首页' },
   { href: '/about', label: '关于我' },
   { href: '/blog', label: '文章' },
@@ -11,8 +14,19 @@ const navLinks = [
   { href: '/contact', label: '联系' },
 ]
 
+const enNavLinks = [
+  { href: '/en', label: 'Home' },
+  { href: '/en/about', label: 'About' },
+  { href: '/en/tools', label: 'Tools' },
+  { href: '/en/topics', label: 'Topics' },
+]
+
 export default function Footer() {
   const year = new Date().getFullYear()
+  const pathname = usePathname()
+  const isEn = pathname.startsWith('/en')
+
+  const navLinks = isEn ? enNavLinks : cnNavLinks
 
   return (
     <footer className="border-t border-border mt-20">
@@ -23,18 +37,20 @@ export default function Footer() {
 
           {/* 品牌 + 定位 */}
           <div className="sm:col-span-1">
-            <Link href="/" className="text-ink font-semibold text-[0.9375rem] hover:text-stone transition-colors">
-              Zeno 赞诺
+            <Link href={isEn ? '/en' : '/'} className="text-ink font-semibold text-[0.9375rem] hover:text-stone transition-colors">
+              {isEn ? 'Zeno' : 'Zeno 赞诺'}
             </Link>
             <p className="mt-3 text-[0.8125rem] text-ink-muted leading-relaxed max-w-[220px]">
-              从装修出发，聊居住、美学、人性、成长与 AI 时代的长期主义。
+              {isEn
+                ? 'From renovation sites to real living, human judgment, and AI-enabled growth.'
+                : '从装修出发，聊居住、美学、人性、成长与 AI 时代的长期主义。'}
             </p>
           </div>
 
           {/* 导航 */}
           <div>
             <p className="text-[0.65rem] text-ink-faint font-semibold uppercase tracking-widest mb-4">
-              导航
+              {isEn ? 'Navigate' : '导航'}
             </p>
             <nav className="flex flex-col gap-2.5">
               {navLinks.map((link) => (
@@ -52,22 +68,39 @@ export default function Footer() {
           {/* 联系方式 */}
           <div>
             <p className="text-[0.65rem] text-ink-faint font-semibold uppercase tracking-widest mb-4">
-              联系方式
+              {isEn ? 'Contact' : '联系方式'}
             </p>
-            <ul className="space-y-3">
-              <li>
-                <p className="text-[0.65rem] text-ink-faint uppercase tracking-widest mb-0.5">公众号</p>
-                <p className="text-[0.8125rem] text-ink">Zeno AI装修笔记</p>
-              </li>
-              <li>
-                <p className="text-[0.65rem] text-ink-faint uppercase tracking-widest mb-0.5">微信</p>
-                <p className="text-[0.8125rem] text-ink">zanxiansheng2025</p>
-              </li>
-              <li>
-                <p className="text-[0.65rem] text-ink-faint uppercase tracking-widest mb-0.5">邮箱</p>
-                <p className="text-[0.8125rem] text-ink">1603165918@qq.com</p>
-              </li>
-            </ul>
+            {isEn ? (
+              <ul className="space-y-3">
+                <li>
+                  <p className="text-[0.65rem] text-ink-faint uppercase tracking-widest mb-0.5">Email</p>
+                  <p className="text-[0.8125rem] text-ink">1603165918@qq.com</p>
+                </li>
+                <li>
+                  <p className="text-[0.65rem] text-ink-faint uppercase tracking-widest mb-0.5">YouTube</p>
+                  <p className="text-[0.8125rem] text-ink-muted">[To be added]</p>
+                </li>
+                <li>
+                  <p className="text-[0.65rem] text-ink-faint uppercase tracking-widest mb-0.5">X (Twitter)</p>
+                  <p className="text-[0.8125rem] text-ink-muted">[To be added]</p>
+                </li>
+              </ul>
+            ) : (
+              <ul className="space-y-3">
+                <li>
+                  <p className="text-[0.65rem] text-ink-faint uppercase tracking-widest mb-0.5">公众号</p>
+                  <p className="text-[0.8125rem] text-ink">Zeno AI装修笔记</p>
+                </li>
+                <li>
+                  <p className="text-[0.65rem] text-ink-faint uppercase tracking-widest mb-0.5">微信</p>
+                  <p className="text-[0.8125rem] text-ink">zanxiansheng2025</p>
+                </li>
+                <li>
+                  <p className="text-[0.65rem] text-ink-faint uppercase tracking-widest mb-0.5">邮箱</p>
+                  <p className="text-[0.8125rem] text-ink">1603165918@qq.com</p>
+                </li>
+              </ul>
+            )}
           </div>
 
         </div>
@@ -75,10 +108,12 @@ export default function Footer() {
         {/* 版权栏 */}
         <div className="mt-10 pt-6 border-t border-border flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
           <p className="text-[0.75rem] text-ink-faint">
-            © {year} Zeno 赞诺 · zenoaihome.com
+            © {year} {isEn ? 'Zeno' : 'Zeno 赞诺'} · zenoaihome.com
           </p>
           <p className="text-[0.75rem] text-ink-faint">
-            内容持续更新，欢迎关注公众号 Zeno AI装修笔记
+            {isEn
+              ? 'Content updated regularly. Quality over quantity.'
+              : '内容持续更新，欢迎关注公众号 Zeno AI装修笔记'}
           </p>
         </div>
 
