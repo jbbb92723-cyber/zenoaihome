@@ -5,6 +5,8 @@ import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import '@/styles/globals.css'
 
+// Build trigger: 2026-04-24 env vars update
+
 const inter = Inter({
   subsets: ['latin'],
   variable: '--font-inter',
