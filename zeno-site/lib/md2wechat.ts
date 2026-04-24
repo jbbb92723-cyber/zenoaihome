@@ -80,8 +80,9 @@ function getWechatHeaders(): Record<string, string> {
 export async function convertMarkdownToWechat(params: ConvertParams): Promise<ConvertResult> {
   const baseUrl  = getBaseUrl()
   const apiKey   = getApiKey()
+  const endpoint = process.env.MD2WECHAT_CONVERT_ENDPOINT || '/api/v1/convert'
 
-  const res = await fetch(`${baseUrl}/api/v1/convert`, {
+  const res = await fetch(`${baseUrl}${endpoint}`, {
     method:  'POST',
     headers: {
       'Content-Type':      'application/json',
@@ -125,8 +126,9 @@ export async function createWechatDraft(params: DraftParams): Promise<DraftResul
   const baseUrl = getBaseUrl()
   const apiKey  = getApiKey()
   const wechat  = getWechatHeaders()
+  const endpoint = process.env.MD2WECHAT_DRAFT_ENDPOINT || '/article-draft'
 
-  const res = await fetch(`${baseUrl}/article-draft`, {
+  const res = await fetch(`${baseUrl}${endpoint}`, {
     method:  'POST',
     headers: {
       'Content-Type':      'application/json',

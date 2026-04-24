@@ -24,6 +24,9 @@ export default async function StatusPage() {
     md2wechat: {
       baseUrl: !!process.env.MD2WECHAT_BASE_URL,
       apiKey:  !!process.env.MD2WECHAT_API_KEY,
+      convertEndpoint: process.env.MD2WECHAT_CONVERT_ENDPOINT || '/api/v1/convert',
+      draftEndpoint:   process.env.MD2WECHAT_DRAFT_ENDPOINT || '/article-draft',
+      uploadEndpoint:  process.env.MD2WECHAT_UPLOAD_ENDPOINT || '未配置',
       ready:   !!(process.env.MD2WECHAT_BASE_URL && process.env.MD2WECHAT_API_KEY),
     },
     volcengine: {

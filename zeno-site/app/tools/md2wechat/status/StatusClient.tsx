@@ -9,6 +9,9 @@ interface ConfigState {
   md2wechat: {
     baseUrl: boolean
     apiKey: boolean
+    convertEndpoint: string
+    draftEndpoint: string
+    uploadEndpoint: string
     ready: boolean
   }
   volcengine: {
@@ -161,6 +164,9 @@ export default function StatusClient({ config, isAdmin }: Props) {
         <div className="px-5 py-2">
           <Row label="MD2WECHAT_BASE_URL" ok={config.md2wechat.baseUrl} />
           <Row label="MD2WECHAT_API_KEY" ok={config.md2wechat.apiKey} />
+          <ValueRow label="Convert Endpoint" value={config.md2wechat.convertEndpoint} />
+          <ValueRow label="Draft Endpoint" value={config.md2wechat.draftEndpoint} />
+          <ValueRow label="Upload Endpoint" value={config.md2wechat.uploadEndpoint} />
         </div>
         <div className="px-5 py-4 border-t border-border space-y-2">
           <button
