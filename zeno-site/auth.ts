@@ -91,13 +91,14 @@ const authConfig: NextAuthConfig = {
      * jwt 回调：在 JWT 中存储用户角色和 id
      * 第一阶段从 token.sub 读取，后续可以查询数据库补充 role
      */
-    async jwt({ token, user }) {
+    async jwt({ token, user, account }) {
       if (user) {
         token.id = user.id
-        // TODO（第二阶段）：从数据库 profiles 表查询 role
-        // const profile = await db.profiles.findUnique({ where: { id: user.id } })
-        // token.role = profile?.role ?? 'user'
         token.role = 'user' // 默认角色
+      }
+      // 首次登录时存储 provider，后续刷新 token 时 account 为 null
+      if (account?.provider) {
+        token.provider = account.provider
       }
       return token
     },
@@ -109,6 +110,7 @@ const authConfig: NextAuthConfig = {
       if (token) {
         session.user.id = token.id as string
         session.user.role = token.role as string
+        session.user.provider = (token.provider as string) ?? ''
       }
       return session
     },
@@ -149,6 +151,7 @@ declare module 'next-auth' {
     user: {
       id: string
       role: string
+      provider?: string
       name?: string | null
       email?: string | null
       image?: string | null

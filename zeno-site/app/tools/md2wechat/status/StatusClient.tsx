@@ -29,6 +29,10 @@ interface ConfigState {
   }
   admin: {
     emailsConfigured: boolean
+    userIdsConfigured: boolean
+    isLoggedIn: boolean
+    currentEmail: string
+    currentUserId: string
     isCurrentUserAdmin: boolean
     ready: boolean
   }
@@ -272,20 +276,64 @@ export default function StatusClient({ config, isAdmin }: Props) {
       <section className="border border-border">
         <div className="flex items-center justify-between px-5 py-4 border-b border-border bg-surface-warm">
           <h2 className="text-sm font-semibold text-ink">管理员权限</h2>
-          <StatusBadge ok={config.admin.ready} />
+          <StatusBadge ok={config.admin.isCurrentUserAdmin} />
         </div>
         <div className="px-5 py-2">
-          <Row label="ADMIN_EMAILS 已配置" ok={config.admin.emailsConfigured} />
-          <Row label="当前用户识别为管理员" ok={config.admin.isCurrentUserAdmin} />
+          <Row label="ADMIN_EMAILS" ok={config.admin.emailsConfigured} />
+          <Row label="ADMIN_USER_IDS" ok={config.admin.userIdsConfigured} />
         </div>
-        {!config.admin.isCurrentUserAdmin && (
+        <div className="px-5 py-3 border-t border-border space-y-0">
+          <div className="flex items-center justify-between py-2.5 border-b border-border">
+            <p className="text-sm text-ink-muted font-mono text-[0.8125rem]">当前登录状态</p>
+            <span className={`text-[0.65rem] font-semibold uppercase tracking-wider px-2 py-0.5 border ${
+              config.admin.isLoggedIn
+                ? 'text-green-700 border-green-200 bg-green-50'
+                : 'text-ink-faint border-border bg-surface'
+            }`}>
+              {config.admin.isLoggedIn ? '已登录' : '未登录'}
+            </span>
+          </div>
+          {config.admin.isLoggedIn && (
+            <>
+              <div className="flex items-center justify-between py-2.5 border-b border-border gap-2">
+                <p className="text-sm text-ink-muted font-mono text-[0.8125rem] shrink-0">当前登录邮箱</p>
+                <p className="text-xs font-mono text-ink break-all text-right">
+                  {config.admin.currentEmail || '（未获取到）'}
+                </p>
+              </div>
+              <div className="flex items-center justify-between py-2.5 border-b border-border gap-2">
+                <p className="text-sm text-ink-muted font-mono text-[0.8125rem] shrink-0">当前用户 ID</p>
+                <p className="text-xs font-mono text-ink break-all text-right">
+                  {config.admin.currentUserId || '（未获取到）'}
+                </p>
+              </div>
+            </>
+          )}
+          <div className="flex items-center justify-between py-2.5">
+            <p className="text-sm text-ink-muted font-mono text-[0.8125rem]">当前用户是否管理员</p>
+            <span className={`text-[0.65rem] font-semibold uppercase tracking-wider px-2 py-0.5 border ${
+              config.admin.isCurrentUserAdmin
+                ? 'text-green-700 border-green-200 bg-green-50'
+                : 'text-amber-700 border-amber-200 bg-amber-50'
+            }`}>
+              {config.admin.isCurrentUserAdmin ? '是' : '否'}
+            </span>
+          </div>
+        </div>
+        {!config.admin.isLoggedIn ? (
           <div className="px-5 py-4 border-t border-border">
             <p className="text-xs text-ink-faint leading-relaxed">
-              管理员功能需要登录 ADMIN_EMAILS 中配置的邮箱账号。
-              未登录或邮箱未在列表中时，管理员区域不可见。
+              请先登录，然后刷新此页面。登录后会显示当前邮箱和用户 ID，
+              方便你填入 <span className="font-mono">ADMIN_EMAILS</span> 或 <span className="font-mono">ADMIN_USER_IDS</span>。
             </p>
           </div>
-        )}
+        ) : !config.admin.isCurrentUserAdmin ? (
+          <div className="px-5 py-4 border-t border-border">
+            <p className="text-xs text-ink-faint leading-relaxed">
+              当前用户不是管理员。请将上方邮箱或用户 ID 填入 Vercel 环境变量后 Redeploy。
+            </p>
+          </div>
+        ) : null}
       </section>
 
       {/* 返回链接 */}

@@ -1,14 +1,17 @@
 /**
  * app/account/page.tsx
  *
- * 个人中心 — 未登录引导登录，已登录显示用户信息
+ * 个人中心 — 最小可用版
+ * 显示登录身份信息，方便配置 ADMIN_EMAILS / ADMIN_USER_IDS
  */
 
 import type { Metadata } from 'next'
 import { auth, signOut } from '@/auth'
+import { isAdminUser } from '@/lib/admin'
 import Link from 'next/link'
 import Avatar from '@/components/Avatar'
 import Container from '@/components/Container'
+import CopyButton from '@/components/CopyButton'
 
 export const metadata: Metadata = {
   title: '个人中心',
@@ -46,23 +49,7 @@ export default async function AccountPage() {
   }
 
   const user = session.user
-
-  const roleLabels: Record<string, string> = {
-    user:     '已注册',
-    member:   '免费会员',
-    customer: '付费会员',
-    admin:    '管理员',
-    visitor:  '未登录',
-  }
-  const roleLabel = roleLabels[user.role ?? 'user'] ?? '已注册'
-
-  const roleStyles: Record<string, string> = {
-    user:     'text-ink-muted',
-    member:   'text-amber-700',
-    customer: 'text-purple-700',
-    admin:    'text-stone font-semibold',
-  }
-  const roleStyle = roleStyles[user.role ?? 'user'] ?? 'text-ink-muted'
+  const isAdmin = await isAdminUser()
 
   return (
     <Container size="content" className="py-section">
@@ -74,9 +61,9 @@ export default async function AccountPage() {
           <h1 className="text-2xl font-semibold text-ink tracking-tight">个人中心</h1>
         </div>
 
-        {/* 用户信息卡片 */}
+        {/* 基本信息卡片 */}
         <div className="border border-border bg-surface p-6 mb-8">
-          <div className="flex items-start gap-4">
+          <div className="flex items-start gap-4 mb-6">
             <Avatar
               src={user.image ?? ''}
               alt={user.name ?? 'User'}
@@ -87,17 +74,69 @@ export default async function AccountPage() {
               <p className="text-base font-semibold text-ink leading-tight">
                 {user.name ?? '用户'}
               </p>
-              <p className="text-sm text-ink-muted mt-0.5 truncate">
-                {user.email ?? ''}
-              </p>
-              <p className={`text-xs mt-2 ${roleStyle}`}>
-                {roleLabel}
+              <p className="text-sm text-ink-muted mt-1">
+                {isAdmin ? (
+                  <span className="text-stone font-semibold">管理员</span>
+                ) : (
+                  <span className="text-ink-faint">已登录</span>
+                )}
               </p>
             </div>
           </div>
+
+          {/* 详细信息表 */}
+          <div className="space-y-0 border border-border">
+            {/* 当前登录邮箱 */}
+            <div className="flex items-center justify-between px-4 py-3 border-b border-border">
+              <p className="text-xs text-ink-faint w-24 shrink-0">登录邮箱</p>
+              <div className="flex items-center gap-2 min-w-0 flex-1 justify-end">
+                <p className="text-sm text-ink font-mono break-all text-right">
+                  {user.email ?? '—'}
+                </p>
+                {user.email && <CopyButton text={user.email} />}
+              </div>
+            </div>
+
+            {/* 用户 ID */}
+            <div className="flex items-center justify-between px-4 py-3 border-b border-border">
+              <p className="text-xs text-ink-faint w-24 shrink-0">用户 ID</p>
+              <div className="flex items-center gap-2 min-w-0 flex-1 justify-end">
+                <p className="text-sm text-ink font-mono break-all text-right">
+                  {user.id ?? '—'}
+                </p>
+                {user.id && <CopyButton text={user.id} />}
+              </div>
+            </div>
+
+            {/* 登录方式 */}
+            <div className="flex items-center justify-between px-4 py-3 border-b border-border">
+              <p className="text-xs text-ink-faint w-24 shrink-0">登录方式</p>
+              <p className="text-sm text-ink-muted">
+                {user.provider ? user.provider : 'OAuth'}
+              </p>
+            </div>
+
+            {/* 是否管理员 */}
+            <div className="flex items-center justify-between px-4 py-3">
+              <p className="text-xs text-ink-faint w-24 shrink-0">管理员</p>
+              <p className={`text-sm font-medium ${isAdmin ? 'text-stone' : 'text-ink-faint'}`}>
+                {isAdmin ? '是' : '否'}
+              </p>
+            </div>
+          </div>
+
+          {/* 管理员配置提示 */}
+          {!isAdmin && (
+            <p className="text-xs text-ink-faint mt-4 leading-relaxed">
+              如需开启管理员权限，请将上方邮箱或用户 ID 填入 Vercel 环境变量{' '}
+              <span className="font-mono">ADMIN_EMAILS</span> 或{' '}
+              <span className="font-mono">ADMIN_USER_IDS</span>，
+              然后 Redeploy。
+            </p>
+          )}
         </div>
 
-        {/* 功能入口 */}
+        {/* 功能入口（占位） */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
           <div className="border border-border bg-surface p-5">
             <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-2">
@@ -125,7 +164,7 @@ export default async function AccountPage() {
               登录方式
             </p>
             <p className="text-sm text-ink-muted">
-              {user.email ? '邮箱 / OAuth' : '待接入'}
+              {user.provider ? user.provider : 'IDC Flare / OAuth'}
             </p>
           </div>
         </div>

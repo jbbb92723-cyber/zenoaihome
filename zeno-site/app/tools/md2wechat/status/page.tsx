@@ -7,6 +7,7 @@
  */
 
 import type { Metadata } from 'next'
+import { auth } from '@/auth'
 import { isAdminUser } from '@/lib/admin'
 import Container from '@/components/Container'
 import StatusClient from './StatusClient'
@@ -17,7 +18,7 @@ export const metadata: Metadata = {
 }
 
 export default async function StatusPage() {
-  const admin = await isAdminUser()
+  const [session, admin] = await Promise.all([auth(), isAdminUser()])
 
   // 只传递安全信息到客户端，不传递任何密钥
   const config = {
@@ -44,8 +45,13 @@ export default async function StatusPage() {
     },
     admin: {
       emailsConfigured:    !!process.env.ADMIN_EMAILS,
+      userIdsConfigured:   !!process.env.ADMIN_USER_IDS,
+      isLoggedIn:          !!session?.user,
+      // 当前用户自己的邮箱和 ID，不是密钥，可以显示用于排查
+      currentEmail:        session?.user?.email ?? '',
+      currentUserId:       session?.user?.id ?? '',
       isCurrentUserAdmin:  admin,
-      ready:               !!process.env.ADMIN_EMAILS,
+      ready:               !!(process.env.ADMIN_EMAILS || process.env.ADMIN_USER_IDS),
     },
   }
 
