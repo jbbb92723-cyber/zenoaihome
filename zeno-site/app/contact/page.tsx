@@ -28,7 +28,7 @@ const contactChannels = [
     id: 'email',
     title: '邮箱',
     desc: '适合内容合作、长篇问题讨论，或希望保留完整对话记录的交流场景。',
-    value: '1603165918@qq.com',
+    value: 'zenoaihome@qq.com',
     tag: '合作',
   },
 ]

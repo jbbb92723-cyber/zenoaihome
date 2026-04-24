@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { useSession } from 'next-auth/react'
 import Link from 'next/link'
 import Container from '@/components/Container'
+import PasswordInput from '@/components/PasswordInput'
 
 export default function SecurityPage() {
   const { data: session } = useSession()
@@ -147,24 +148,20 @@ export default function SecurityPage() {
 
           <div>
             <label className="block text-sm text-ink-muted mb-1.5">新密码</label>
-            <input
-              type="password"
+            <PasswordInput
               value={password}
               onChange={e => setPassword(e.target.value)}
               required
-              className="w-full text-sm text-ink bg-surface border border-border px-3 py-2 placeholder:text-ink-faint focus:outline-none focus:border-stone transition-colors"
               placeholder="至少 8 位，包含字母和数字"
             />
           </div>
 
           <div>
             <label className="block text-sm text-ink-muted mb-1.5">确认新密码</label>
-            <input
-              type="password"
+            <PasswordInput
               value={confirm}
               onChange={e => setConfirm(e.target.value)}
               required
-              className="w-full text-sm text-ink bg-surface border border-border px-3 py-2 placeholder:text-ink-faint focus:outline-none focus:border-stone transition-colors"
             />
           </div>
 

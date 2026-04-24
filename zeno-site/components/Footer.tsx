@@ -74,7 +74,7 @@ export default function Footer() {
               <ul className="space-y-3">
                 <li>
                   <p className="text-[0.65rem] text-ink-faint uppercase tracking-widest mb-0.5">Email</p>
-                  <p className="text-[0.8125rem] text-ink">1603165918@qq.com</p>
+                  <p className="text-[0.8125rem] text-ink">zenoaihome@qq.com</p>
                 </li>
                 <li>
                   <p className="text-[0.65rem] text-ink-faint uppercase tracking-widest mb-0.5">YouTube</p>
@@ -97,7 +97,7 @@ export default function Footer() {
                 </li>
                 <li>
                   <p className="text-[0.65rem] text-ink-faint uppercase tracking-widest mb-0.5">邮箱</p>
-                  <p className="text-[0.8125rem] text-ink">1603165918@qq.com</p>
+                  <p className="text-[0.8125rem] text-ink">zenoaihome@qq.com</p>
                 </li>
               </ul>
             )}

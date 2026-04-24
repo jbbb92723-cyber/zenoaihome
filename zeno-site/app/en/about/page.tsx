@@ -74,7 +74,7 @@ export default function EnAboutPage() {
               on the Chinese site for WeChat and other options.
             </p>
             <ul className="space-y-2 text-sm text-ink-muted">
-              <li>Email: 1603165918@qq.com</li>
+              <li>Email: zenoaihome@qq.com</li>
               <li>YouTube: [To be added]</li>
               <li>X (Twitter): [To be added]</li>
             </ul>

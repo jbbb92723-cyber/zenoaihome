@@ -5,6 +5,7 @@ import { signIn } from 'next-auth/react'
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
 import Container from '@/components/Container'
+import PasswordInput from '@/components/PasswordInput'
 
 function LoginForm() {
   const searchParams = useSearchParams()
@@ -71,12 +72,10 @@ function LoginForm() {
           </div>
           <div>
             <label className="block text-sm text-ink-muted mb-1.5">密码</label>
-            <input
-              type="password"
+            <PasswordInput
               value={password}
               onChange={e => setPassword(e.target.value)}
               required
-              className="w-full text-sm text-ink bg-surface border border-border px-3 py-2 placeholder:text-ink-faint focus:outline-none focus:border-stone transition-colors"
               placeholder="至少 8 位，包含字母和数字"
             />
           </div>

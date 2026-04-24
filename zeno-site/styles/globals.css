@@ -203,3 +203,32 @@ img {
 .card-hover:hover {
   border-color: #C4A882;
 }
+
+/* ─────────────────────────────────────────
+   英文长文 prose 排版
+───────────────────────────────────────── */
+.prose-zeno {
+  color: var(--color-ink);
+  font-size: 1rem;
+  line-height: 1.85;
+  max-width: 68ch;
+}
+.prose-zeno p {
+  margin-bottom: 1.6em;
+  color: var(--color-ink-muted, var(--color-ink));
+}
+.prose-zeno p:last-child {
+  margin-bottom: 0;
+}
+.prose-zeno h2 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--color-ink);
+  margin-top: 2.5em;
+  margin-bottom: 0.75em;
+}
+.prose-zeno a {
+  color: var(--color-stone);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
