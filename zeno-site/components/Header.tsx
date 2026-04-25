@@ -5,27 +5,25 @@ import { usePathname } from 'next/navigation'
 import { useState } from 'react'
 import ThemeToggle from '@/components/ThemeToggle'
 
-// 中文导航：三条主线通过锚点/参数区分，避免同一页面
+// 中文导航：四条主线 + 资料库 / 服务 / 关于
 const cnNavLinks = [
   { href: '/',                          label: '首页' },
   { href: '/topics#shi-zhu-pai-zhuangxiu', label: '真实居住' },
-  { href: '/topics#chuantong-hangyeren-zenme-yong-ai', label: 'AI 生产力' },
-  { href: '/blog',                      label: '行业拆解' },
+  { href: '/topics#chuantong-hangyeren-zenme-yong-ai', label: 'AI 实践' },
+  { href: '/blog',                      label: '行业观察' },
   { href: '/resources',                 label: '资料库' },
   { href: '/services',                  label: '服务' },
-  { href: '/tools/md2wechat',           label: '创作工作台' },
   { href: '/about',                     label: '关于 Zeno' },
 ]
 
 // 英文导航：与中文语义一一对应
 const enNavLinks = [
   { href: '/en',            label: 'Home' },
-  { href: '/en/topics#living-renovation', label: 'Real-Life Living' },
-  { href: '/en/topics#ai-upgrade',        label: 'AI Productivity' },
-  { href: '/en/blog',       label: 'Industry Notes' },
+  { href: '/en/topics#living-renovation', label: 'Livable Design' },
+  { href: '/en/topics#ai-upgrade',        label: 'AI in Practice' },
+  { href: '/en/blog',       label: 'Industry Insights' },
   { href: '/en/resources',  label: 'Resources' },
   { href: '/en/services',   label: 'Services' },
-  { href: '/en/tools',      label: 'Creator Workspace' },
   { href: '/en/about',      label: 'About' },
 ]
 

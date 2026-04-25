@@ -6,23 +6,21 @@ import { usePathname } from 'next/navigation'
 const cnNavLinks = [
   { href: '/',                label: '首页' },
   { href: '/topics',          label: '真实居住' },
-  { href: '/topics',          label: 'AI 生产力' },
-  { href: '/blog',            label: '行业拆解' },
+  { href: '/topics',          label: 'AI 实践' },
+  { href: '/blog',            label: '行业观察' },
   { href: '/resources',       label: '资料库' },
   { href: '/services',        label: '服务' },
-  { href: '/tools/md2wechat', label: '创作工作台' },
   { href: '/about',           label: '关于 Zeno' },
   { href: '/contact',         label: '联系' },
 ]
 
 const enNavLinks = [
   { href: '/en',            label: 'Home' },
-  { href: '/en/topics',     label: 'Real-Life Living' },
-  { href: '/en/topics',     label: 'AI Productivity' },
-  { href: '/en/blog',       label: 'Industry Notes' },
+  { href: '/en/topics',     label: 'Livable Design' },
+  { href: '/en/topics',     label: 'AI in Practice' },
+  { href: '/en/blog',       label: 'Industry Insights' },
   { href: '/en/resources',  label: 'Resources' },
   { href: '/en/services',   label: 'Services' },
-  { href: '/en/tools',      label: 'Creator Workspace' },
   { href: '/en/about',      label: 'About' },
 ]
 
@@ -51,8 +49,8 @@ export default function Footer() {
             </Link>
             <p className="mt-3 text-[0.8125rem] text-ink-muted leading-relaxed max-w-[220px]">
               {isEn
-                ? 'From renovation sites to AI-rebuilt trust, judgment, and efficiency in traditional industries.'
-                : '从装修现场出发，用 AI 重建传统行业的判断力、效率和信任。'}
+                ? 'From renovation sites to real-world clarity — rebuilding trust, efficiency, and judgment in traditional industries with AI.'
+                : '从装修现场出发，用清醒和工具，重建传统行业的判断力、效率和信任。'}
             </p>
           </div>
 

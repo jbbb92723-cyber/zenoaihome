@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 const topics = [
   {
-    title: 'Real Living & Renovation',
+    title: 'Livable Design & Renovation',
     description:
       'What renovation actually teaches you about decision-making, budgets, and living with imperfection. Based on 16+ years of on-site experience.',
     explores:

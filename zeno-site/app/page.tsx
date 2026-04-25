@@ -1,41 +1,40 @@
 import Link from 'next/link'
 import ArticleCard from '@/components/ArticleCard'
 import Container from '@/components/Container'
+import HeroTagline from '@/components/HeroTagline'
 import { getRecentArticles } from '@/data/articles'
-import { topics } from '@/data/topics'
 
-// 三条主线：真实居住 / AI 生产力 / 行业拆解
+// 四条主线：真实居住 / AI 实践 / 行业观察 / 一人公司
 const pillars = [
   {
     label: '真实居住',
     title: '让真实生活更顺手',
-    desc: '装修不是把房子装漂亮，而是让真实生活更顺手。从预算、材料、报价到长期居住，我更关心那些会影响你十年的判断。',
-    href: '/topics',
+    desc: '从预算、材料、报价到长期居住，我更关心那些会影响你十年的判断。',
+    href: '/topics#shi-zhu-pai-zhuangxiu',
     cta: '看真实居住专题',
   },
   {
-    label: 'AI 生产力',
+    label: 'AI 实践',
     title: '把经验变成可复用的系统',
-    desc: 'AI 不是用来制造噱头，而是用来整理经验、降低沟通成本、提高决策效率。我把传统行业里散落的经验，变成可复用的工作流、清单和内容资产。',
-    href: '/topics',
-    cta: '了解 AI 生产力',
+    desc: '不是追热点，而是用 AI 工具和编程把散落的经验整理成工作流、清单和内容资产。',
+    href: '/topics#chuantong-hangyeren-zenme-yong-ai',
+    cta: '了解 AI 实践',
   },
   {
-    label: '行业拆解',
+    label: '行业观察',
     title: '拆开信息差，找到更好的做法',
-    desc: '传统行业最大的问题不是没有人努力，而是信息差太大、流程不透明、信任成本太高。我想用真实经验和长期主义，拆开这些问题，并找到更好的做法。',
+    desc: '信息差太大、流程不透明、信任成本太高——用真实经验和长期主义拆开这些问题。',
     href: '/blog',
-    cta: '看行业拆解文章',
+    cta: '看行业观察文章',
+  },
+  {
+    label: '一人公司',
+    title: '一个人也能建起可持续的事业',
+    desc: '个人 IP、内容资产、数字化工作流、全域布局——用最少人力建立长期复利。',
+    href: '/topics#changqi-zhuyi-shenghuo',
+    cta: '了解一人公司',
   },
 ]
-
-const topicAccents: Record<string, string> = {
-  'shi-zhu-pai-zhuangxiu':              'border-l-topic1',
-  'cong-gongdi-kan-shijie':             'border-l-topic2',
-  'changqi-zhuyi-shenghuo':             'border-l-topic3',
-  'chuantong-hangyeren-zenme-yong-ai':  'border-l-topic4',
-  'meixue-yu-shenghuo':                 'border-l-topic5',
-}
 
 export default function HomePage() {
   const recentArticles = getRecentArticles(3)
@@ -48,18 +47,22 @@ export default function HomePage() {
           <p className="text-[0.7rem] font-semibold tracking-[0.1em] uppercase text-stone mb-5">Zeno · 赞诺</p>
           <h1 className="text-[1.625rem] sm:text-[1.875rem] md:text-[2.25rem] font-semibold leading-[1.3] tracking-[-0.02em] text-ink mb-5 max-w-xl">
             从装修现场出发，<br />
-            用 AI 重建传统行业的判断力。
+            用清醒和工具，重建一个行业的信任。
           </h1>
-          <p className="text-[0.9375rem] text-ink-muted leading-[1.85] max-w-lg mb-8">
-            我长期在真实工地、客户沟通和传统行业一线工作。
-            这里不只讲装修，也讲预算、信息差、行业规则、AI 工具和一人公司的长期生产力。
+          <p className="text-[0.9375rem] text-ink-muted leading-[1.85] max-w-lg mb-3">
+            我在真实工地、客户沟通和传统行业一线工作了 16 年。
+            这里记录我如何用 AI 整理经验、降低信息差，
+            以及如何以一个人的方式，把这些事做成可持续的系统。
+          </p>
+          <p className="text-sm text-stone/80 italic mb-8 h-6">
+            <HeroTagline />
           </p>
           <div className="flex flex-wrap gap-3 items-center">
             <Link
               href="/blog"
               className="text-sm font-medium text-paper bg-stone px-5 py-2.5 hover:bg-stone/85 transition-colors"
             >
-              看 Zeno 方法
+              看 Zeno 写了什么
             </Link>
             <Link
               href="/resources"
@@ -67,25 +70,19 @@ export default function HomePage() {
             >
               领取装修资料
             </Link>
-            <Link
-              href="/topics"
-              className="text-sm text-stone underline underline-offset-4 decoration-stone/30 hover:decoration-stone transition-colors"
-            >
-              了解 AI 内容系统
-            </Link>
           </div>
         </Container>
       </section>
 
-      {/* ───── 三条主线：真实居住 / AI 生产力 / 行业拆解 ───── */}
+      {/* ───── 四条主线 ───── */}
       <section className="py-16 sm:py-20 border-b border-border">
         <Container>
           <div className="mb-10">
-            <p className="page-label mb-3">三条主线</p>
+            <p className="page-label mb-3">四条主线</p>
             <h2 className="section-heading">装修是入口，不是终局</h2>
             <p className="text-sm text-ink-muted mt-2">每条线都从真实经验出发，指向同一个目标——降低信息差，提高判断效率。</p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {pillars.map((p) => (
               <Link
                 key={p.label}
@@ -100,6 +97,26 @@ export default function HomePage() {
                 </span>
               </Link>
             ))}
+          </div>
+        </Container>
+      </section>
+
+      {/* ───── 为什么从装修出发 ───── */}
+      <section className="py-16 sm:py-20 bg-surface-warm border-b border-border">
+        <Container size="content">
+          <p className="page-label mb-3">为什么从装修出发</p>
+          <h2 className="section-heading mb-5">装修行业是我的现实支点</h2>
+          <div className="space-y-4 text-base text-ink leading-[1.85]">
+            <p>
+              一个谈 AI、谈一人公司、谈长期主义的人，为什么入口是装修行业？
+            </p>
+            <p>
+              因为这是我真正待了 16 年的地方。我盯过工地、审过报价、处理过无数客户分歧。
+              传统行业的信息差、信任崩塌和低效协作，我不是旁观者——我是亲历者。
+            </p>
+            <p className="text-ink-muted text-sm">
+              所有方法论如果不从真实场景出发，都是空话。装修行业只是起点，但它让每一句话都有地基。
+            </p>
           </div>
         </Container>
       </section>
@@ -125,31 +142,25 @@ export default function HomePage() {
         </Container>
       </section>
 
-      {/* ───── 重点专题 ───── */}
-      <section className="py-16 sm:py-20 bg-surface-warm border-b border-border">
-        <Container>
-          <div className="mb-10">
-            <p className="page-label mb-3">专题</p>
-            <h2 className="section-heading">连续问题的连续回答</h2>
-            <p className="text-sm text-ink-muted mt-2">如果你不想碎片化阅读，从专题开始。</p>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-            {topics.map((topic) => (
-              <Link
-                key={topic.id}
-                href={`/topics#${topic.slug}`}
-                className={`group block p-5 bg-surface border border-border border-l-4 ${topicAccents[topic.slug] ?? 'border-l-stone'} card-hover`}
-              >
-                <h3 className="text-sm font-semibold text-ink group-hover:text-stone transition-colors leading-snug">
-                  {topic.title}
-                </h3>
-                <p className="text-xs text-ink-muted mt-2 leading-relaxed">{topic.tagline}</p>
-              </Link>
-            ))}
+      {/* ───── 为什么认真用 AI ───── */}
+      <section className="py-16 sm:py-20 border-b border-border">
+        <Container size="content">
+          <p className="page-label mb-3">为什么认真用 AI</p>
+          <h2 className="section-heading mb-5">AI 不是噱头，是让经验走得更远的杠杆</h2>
+          <div className="space-y-4 text-base text-ink leading-[1.85]">
+            <p>
+              我不是技术出身的人。我从装修现场、客户沟通、报价审核和项目管理里走出来。
+              传统行业真正痛的不是"不努力"，而是信息太散、沟通太慢、经验太难沉淀。
+            </p>
+            <p>
+              所以我用 AI 编程、大模型工具和自动化工作流，不是为了炫技，
+              而是把客户问题、报价判断、施工经验、内容创作和服务流程，
+              整理成普通人也能使用的系统。
+            </p>
           </div>
           <div className="mt-6">
-            <Link href="/topics" className="text-sm text-stone hover:underline underline-offset-2">
-              查看全部专题 →
+            <Link href="/topics#chuantong-hangyeren-zenme-yong-ai" className="text-sm text-stone hover:underline underline-offset-2">
+              看 AI 实践专题 →
             </Link>
           </div>
         </Container>

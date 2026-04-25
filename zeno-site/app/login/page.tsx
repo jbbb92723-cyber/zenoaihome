@@ -83,13 +83,9 @@ function LoginForm() {
 
   return (
     <Container size="content" className="py-section">
-      <div className="max-w-[28rem] mx-auto">
-        <div className="mb-10">
-          <p className="page-label mb-3">登录</p>
-          <h1 className="text-2xl font-semibold text-ink tracking-tight">登录 Zeno 赞诺</h1>
-          <p className="text-sm text-ink-muted mt-3 leading-relaxed">
-            登录后可以领取资料、发表评论。公开内容不需要登录。
-          </p>
+      <div className="max-w-[24rem] mx-auto">
+        <div className="mb-10 text-center">
+          <h1 className="text-xl font-semibold text-ink tracking-tight">登录</h1>
         </div>
 
         {error && (
@@ -98,48 +94,11 @@ function LoginForm() {
           </div>
         )}
 
-        {/* noValidate：禁用浏览器原生弹窗，由 JS 统一处理 */}
-        <form onSubmit={handleCredentials} noValidate className="space-y-4 mb-6">
-          <div>
-            <label className="block text-sm text-ink-muted mb-1.5">邮箱</label>
-            <input
-              type="email"
-              value={email}
-              onChange={e => setEmail(e.target.value)}
-              className="w-full text-sm text-ink bg-surface border border-border px-3 py-2 placeholder:text-ink-faint focus:outline-none focus:border-stone transition-colors"
-              placeholder="your@email.com"
-              autoComplete="email"
-            />
-          </div>
-          <div>
-            <label className="block text-sm text-ink-muted mb-1.5">密码</label>
-            <PasswordInput
-              value={password}
-              onChange={e => setPassword(e.target.value)}
-              placeholder="至少 8 位，包含字母和数字"
-            />
-          </div>
-          <button
-            type="submit"
-            disabled={loading}
-            className="w-full text-sm font-medium text-white bg-stone px-4 py-2.5 hover:bg-stone/85 disabled:opacity-50 transition-colors"
-          >
-            {loading ? '登录中...' : '登录'}
-          </button>
-        </form>
-
-        {/* 分隔线 */}
-        <div className="flex items-center gap-3 mb-6">
-          <div className="flex-1 h-px bg-border" />
-          <span className="text-xs text-ink-faint">或</span>
-          <div className="flex-1 h-px bg-border" />
-        </div>
-
-        {/* Google 登录 */}
+        {/* Google 登录 — 主要入口 */}
         <button
           onClick={handleGoogle}
           disabled={googleLoading}
-          className="w-full flex items-center justify-center gap-2 text-sm font-medium text-ink border border-border px-4 py-2.5 hover:bg-surface-warm disabled:opacity-50 transition-colors"
+          className="w-full flex items-center justify-center gap-2 text-sm font-medium text-ink border border-border px-4 py-2.5 hover:bg-surface-warm disabled:opacity-50 transition-colors mb-6"
         >
           {googleLoading ? (
             <svg className="w-4 h-4 animate-spin" viewBox="0 0 24 24" fill="none">
@@ -157,25 +116,51 @@ function LoginForm() {
           {googleLoading ? '跳转中...' : '使用 Google 登录'}
         </button>
 
-        {/* 底部链接 */}
-        <div className="mt-6 space-y-1.5 text-center">
-          <p className="text-sm text-ink-muted">
-            还没有账号？{' '}
-            <Link href="/register" className="text-stone hover:underline underline-offset-2">
-              注册
-            </Link>
-          </p>
-          <p className="text-sm text-ink-muted">
-            <Link href="/reset-password" className="text-stone hover:underline underline-offset-2">
-              忘记密码？
-            </Link>
-          </p>
+        {/* 分隔线 */}
+        <div className="flex items-center gap-3 mb-6">
+          <div className="flex-1 h-px bg-border" />
+          <span className="text-xs text-ink-faint">或使用邮箱</span>
+          <div className="flex-1 h-px bg-border" />
         </div>
 
-        <div className="mt-8 pt-5 border-t border-border">
-          <p className="text-xs text-ink-faint leading-relaxed text-center">
-            公开内容不需要登录。登录只是为了资料领取、评论等增强功能。
-          </p>
+        {/* 邮箱密码表单 */}
+        <form onSubmit={handleCredentials} noValidate className="space-y-4 mb-6">
+          <div>
+            <label className="block text-xs text-ink-muted mb-1.5">邮箱</label>
+            <input
+              type="email"
+              value={email}
+              onChange={e => setEmail(e.target.value)}
+              className="w-full text-sm text-ink bg-surface border border-border px-3 py-2 placeholder:text-ink-faint focus:outline-none focus:border-stone transition-colors"
+              placeholder="your@email.com"
+              autoComplete="email"
+            />
+          </div>
+          <div>
+            <label className="block text-xs text-ink-muted mb-1.5">密码</label>
+            <PasswordInput
+              value={password}
+              onChange={e => setPassword(e.target.value)}
+              placeholder="输入密码"
+            />
+          </div>
+          <button
+            type="submit"
+            disabled={loading}
+            className="w-full text-sm font-medium text-white bg-stone px-4 py-2.5 hover:bg-stone/85 disabled:opacity-50 transition-colors"
+          >
+            {loading ? '登录中...' : '登录'}
+          </button>
+        </form>
+
+        <div className="text-center">
+          <Link href="/register" className="text-xs text-ink-faint hover:text-stone transition-colors">
+            注册新账号
+          </Link>
+          <span className="text-xs text-ink-faint mx-2">·</span>
+          <Link href="/reset-password" className="text-xs text-ink-faint hover:text-stone transition-colors">
+            忘记密码
+          </Link>
         </div>
       </div>
     </Container>

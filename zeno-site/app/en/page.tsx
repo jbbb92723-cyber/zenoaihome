@@ -6,15 +6,15 @@ import { getRecentLocalizedArticles } from '@/lib/i18n'
 import ArticleCardEn from './ArticleCardEn'
 
 export const metadata: Metadata = {
-  title: 'Zeno — From Renovation Sites to Real Living',
+  title: 'Zeno — From Renovation Sites to Real-World Clarity',
   description:
-    "I'm Zeno — 16 years in home renovation, now writing about livable design, human judgment, and building a thoughtful life in the age of AI.",
+    "I'm Zeno — 16 years in home renovation, now writing about livable design, human judgment, and building a sustainable one-person business in the age of AI.",
   openGraph: {
     type: 'website',
     locale: 'en',
     url: 'https://zenoaihome.com/en',
     siteName: 'Zeno',
-    title: 'Zeno — From Renovation Sites to Real Living',
+    title: 'Zeno — From Renovation Sites to Real-World Clarity',
     description: 'From renovation sites to real living — on design, human nature, growth, and long-term thinking in the age of AI.',
   },
   alternates: {

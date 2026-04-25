@@ -27,7 +27,7 @@ const en = {
   // ── Home ──────────────────────────────────
   home: {
     heroLabel: 'Zeno',
-    heroTitle: 'From renovation sites\nto real living.',
+    heroTitle: 'From renovation sites\nto real-world clarity.',
     heroDesc: "I'm Zeno — 16 years in home renovation, now writing about livable design, human judgment, and building a thoughtful life in the age of AI. Not just how to renovate, but how to think clearly when the stakes are real.",
     ctaBlog: 'Read the blog',
     ctaAbout: 'About me',
@@ -67,16 +67,16 @@ const en = {
 
   // ── Writing areas ─────────────────────────
   writingAreas: [
-    { title: 'Livable Renovation', desc: 'Budgets, materials, contractors, and the judgment calls that actually matter when you live in the result.' },
+    { title: 'Livable Design', desc: 'Budgets, materials, contractors, and the judgment calls that actually matter when you live in the result.' },
     { title: 'Design & Daily Life', desc: 'Aesthetics that serve real routines — not photo ops, but spaces that let you breathe.' },
     { title: 'Human Nature & Judgment', desc: 'What renovation sites reveal about trust, communication, and how people handle pressure.' },
     { title: 'Growth & Long-Term Thinking', desc: 'Choosing durability over impulse — in renovations, careers, and life decisions.' },
-    { title: 'AI for Real-World Practitioners', desc: 'How traditional industry professionals can build content systems, tools, and digital leverage.' },
+    { title: 'AI in Practice', desc: 'How traditional industry professionals can build content systems, tools, and digital leverage.' },
   ],
 
   // ── Categories ────────────────────────────
   categories: {
-    '居住与装修': 'Livable Renovation',
+    '居住与装修': 'Livable Design',
     '美学与生活': 'Design & Daily Life',
     '人性与判断': 'Human Nature & Judgment',
     '成长与长期主义': 'Growth & Long-Term Thinking',
