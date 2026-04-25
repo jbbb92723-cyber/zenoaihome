@@ -65,7 +65,7 @@ export default function RootLayout({
     <html lang="zh-CN" className={`${inter.variable} ${notoSansSC.variable}`} suppressHydrationWarning>
       <body className="bg-canvas text-ink font-sans antialiased">
         <SessionProvider>
-          <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
+          <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false} themes={['light', 'eye', 'dark']}>
             <Header />
             <main className="min-h-[calc(100vh-56px)]">{children}</main>
             <Footer />

@@ -2,27 +2,7 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-
-const cnNavLinks = [
-  { href: '/',                label: '首页' },
-  { href: '/topics',          label: '真实居住' },
-  { href: '/topics',          label: 'AI 实践' },
-  { href: '/blog',            label: '行业观察' },
-  { href: '/resources',       label: '资料库' },
-  { href: '/services',        label: '服务' },
-  { href: '/about',           label: '关于 Zeno' },
-  { href: '/contact',         label: '联系' },
-]
-
-const enNavLinks = [
-  { href: '/en',            label: 'Home' },
-  { href: '/en/topics',     label: 'Livable Design' },
-  { href: '/en/topics',     label: 'AI in Practice' },
-  { href: '/en/blog',       label: 'Industry Insights' },
-  { href: '/en/resources',  label: 'Resources' },
-  { href: '/en/services',   label: 'Services' },
-  { href: '/en/about',      label: 'About' },
-]
+import { mainNav, contactNav } from '@/lib/navigation'
 
 export default function Footer() {
   const year = new Date().getFullYear()
@@ -33,7 +13,8 @@ export default function Footer() {
 
   const isEn = pathname.startsWith('/en')
 
-  const navLinks = isEn ? enNavLinks : cnNavLinks
+  const navLinks = mainNav.map((item) => ({ key: item.key, ...(isEn ? item.en : item.zh) }))
+  const contact = isEn ? contactNav.en : contactNav.zh
 
   return (
     <footer className="border-t border-border mt-20">
@@ -62,13 +43,20 @@ export default function Footer() {
             <nav className="flex flex-col gap-2.5">
               {navLinks.map((link) => (
                 <Link
-                  key={link.href}
+                  key={link.key}
                   href={link.href}
                   className="text-[0.8125rem] text-ink-muted hover:text-ink transition-colors"
                 >
                   {link.label}
                 </Link>
               ))}
+              {/* 联系入口仅在 Footer 出现 */}
+              <Link
+                href={contact.href}
+                className="text-[0.8125rem] text-ink-muted hover:text-ink transition-colors"
+              >
+                {contact.label}
+              </Link>
             </nav>
           </div>
 

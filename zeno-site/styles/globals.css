@@ -36,6 +36,18 @@
   --color-border:      #3A3530;
 }
 
+/* 护眼主题 — 暖色背景，降低蓝光，不过黄 */
+.eye {
+  --color-canvas:      #F2EDE0;
+  --color-surface:     #FAF7F0;
+  --color-surface-warm:#EDE8DC;
+  --color-ink:         #3A3428;
+  --color-ink-muted:   #7A7060;
+  --color-ink-faint:   #A89D88;
+  --color-stone:       #9C7E56;
+  --color-border:      #D6CEBC;
+}
+
 /* ─────────────────────────────────────────
    全局基础样式
 ───────────────────────────────────────── */

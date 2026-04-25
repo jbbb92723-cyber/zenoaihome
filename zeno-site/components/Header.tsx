@@ -4,79 +4,8 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useState } from 'react'
 import ThemeToggle from '@/components/ThemeToggle'
-
-// 中文导航：四条主线 + 资料库 / 服务 / 关于
-const cnNavLinks = [
-  { href: '/',                          label: '首页' },
-  { href: '/topics#shi-zhu-pai-zhuangxiu', label: '真实居住' },
-  { href: '/topics#chuantong-hangyeren-zenme-yong-ai', label: 'AI 实践' },
-  { href: '/blog',                      label: '行业观察' },
-  { href: '/resources',                 label: '资料库' },
-  { href: '/services',                  label: '服务' },
-  { href: '/about',                     label: '关于 Zeno' },
-]
-
-// 英文导航：与中文语义一一对应
-const enNavLinks = [
-  { href: '/en',            label: 'Home' },
-  { href: '/en/topics#living-renovation', label: 'Livable Design' },
-  { href: '/en/topics#ai-upgrade',        label: 'AI in Practice' },
-  { href: '/en/blog',       label: 'Industry Insights' },
-  { href: '/en/resources',  label: 'Resources' },
-  { href: '/en/services',   label: 'Services' },
-  { href: '/en/about',      label: 'About' },
-]
-
-// 明确的路由映射（CN → EN，以及 EN → CN）
-// 凡是没有对应页的，做兜底跳转
-const CN_TO_EN: Record<string, string> = {
-  '/':                 '/en',
-  '/about':            '/en/about',
-  '/blog':             '/en/blog',
-  '/topics':           '/en/topics',
-  '/resources':        '/en/resources',
-  '/services':         '/en/services',
-  '/contact':          '/en/about',
-  '/tools/md2wechat':  '/en/tools',
-  '/login':            '/en/login',
-  '/register':         '/en/register',
-}
-
-const EN_TO_CN: Record<string, string> = {
-  '/en':            '/',
-  '/en/about':      '/about',
-  '/en/blog':       '/blog',
-  '/en/topics':     '/topics',
-  '/en/resources':  '/resources',
-  '/en/services':   '/services',
-  '/en/tools':      '/tools/md2wechat',
-  '/en/login':      '/login',
-  '/en/register':   '/register',
-}
-
-function getLangHref(pathname: string, isEn: boolean): string {
-  if (isEn) {
-    // EN → CN
-    if (EN_TO_CN[pathname]) return EN_TO_CN[pathname]
-    // 对于动态路由（如 /en/articles/slug），兜底到 /blog
-    if (pathname.startsWith('/en/blog/')) return '/blog'
-    if (pathname.startsWith('/en/articles/')) return '/blog'
-    // 去掉 /en 前缀，若有对应中文页则跳转
-    const cnPath = pathname.replace(/^\/en/, '') || '/'
-    // 如果是已知中文路由，直接跳
-    const knownCnPaths = ['/', '/about', '/blog', '/topics', '/resources', '/services', '/contact', '/tools/md2wechat']
-    if (knownCnPaths.includes(cnPath)) return cnPath
-    // 否则兜底到首页
-    return '/'
-  } else {
-    // CN → EN
-    if (CN_TO_EN[pathname]) return CN_TO_EN[pathname]
-    // 对于动态路由（如 /blog/slug），兜底到 /en/articles
-    if (pathname.startsWith('/blog/')) return '/en/blog'
-    // 其他未知路由兜底到 /en
-    return '/en'
-  }
-}
+import LanguageToggle from '@/components/LanguageToggle'
+import { mainNav } from '@/lib/navigation'
 
 export default function Header() {
   const pathname = usePathname()
@@ -87,13 +16,11 @@ export default function Header() {
 
   const isEn = pathname.startsWith('/en')
 
-  const navLinks = isEn ? enNavLinks : cnNavLinks
+  const navLinks = mainNav.map((item) => ({ key: item.key, ...(isEn ? item.en : item.zh) }))
   const logoText = isEn ? 'Zeno' : '赞诺 Zeno'
   const logoHref = isEn ? '/en' : '/'
   const loginLabel = isEn ? 'Log in' : '登录'
-  const loginHref  = isEn ? '/en/login' : '/login'
-  const langLabel = isEn ? '中文' : 'EN'
-  const langHref = getLangHref(pathname, isEn)
+  const loginHref = isEn ? '/en/login' : '/login'
 
   const isActive = (href: string) => {
     // 去掉锚点和查询参数后匹配路径
@@ -116,13 +43,13 @@ export default function Header() {
             {logoText}
           </Link>
 
-          {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center gap-6">
+          {/* Desktop Nav — lg 断点防止中等屏幕拥挤 */}
+          <nav className="hidden lg:flex items-center gap-5">
             {navLinks.map((link) => (
               <Link
-                key={link.href}
+                key={link.key}
                 href={link.href}
-                className={`text-[0.8125rem] transition-colors ${
+                className={`text-[0.8125rem] whitespace-nowrap transition-colors ${
                   isActive(link.href)
                     ? 'text-stone font-semibold'
                     : 'text-ink-muted hover:text-ink'
@@ -133,12 +60,7 @@ export default function Header() {
             ))}
 
             {/* 语言切换 */}
-            <Link
-              href={langHref}
-              className="text-[0.75rem] text-ink-faint hover:text-ink-muted transition-colors"
-            >
-              {langLabel}
-            </Link>
+            <LanguageToggle />
 
             {/* 主题切换 */}
             <ThemeToggle />
@@ -159,7 +81,7 @@ export default function Header() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className="md:hidden flex flex-col justify-center items-center w-8 h-8 gap-[5px]"
+            className="lg:hidden flex flex-col justify-center items-center w-8 h-8 gap-[5px]"
             aria-label={menuOpen ? '关闭菜单' : '打开菜单'}
             aria-expanded={menuOpen}
           >
@@ -184,11 +106,11 @@ export default function Header() {
 
       {/* Mobile Menu */}
       {menuOpen && (
-        <div className="md:hidden border-t border-border bg-canvas">
+        <div className="lg:hidden border-t border-border bg-canvas">
           <nav className="max-w-6xl mx-auto px-5 py-3 flex flex-col">
             {navLinks.map((link) => (
               <Link
-                key={link.href}
+                key={link.key}
                 href={link.href}
                 onClick={() => setMenuOpen(false)}
                 className={`py-3 text-sm border-b border-border last:border-0 transition-colors ${
@@ -198,7 +120,7 @@ export default function Header() {
                 {link.label}
               </Link>
             ))}
-            {/* 语言切换 + 登录 */}
+            {/* 底部控制栏：登录 + 语言 + 主题 */}
             <div className="flex items-center justify-between py-3">
               <Link
                 href={loginHref}
@@ -211,12 +133,10 @@ export default function Header() {
               >
                 {loginLabel}
               </Link>
-              <Link
-                href={langHref}
-                className="text-[0.75rem] text-ink-faint hover:text-ink-muted transition-colors"
-              >
-                {langLabel}
-              </Link>
+              <div className="flex items-center gap-2">
+                <LanguageToggle />
+                <ThemeToggle />
+              </div>
             </div>
           </nav>
         </div>

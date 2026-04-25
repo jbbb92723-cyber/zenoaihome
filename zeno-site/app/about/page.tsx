@@ -35,8 +35,8 @@ export default function AboutPage() {
     <>
       <PageHero
         label="关于我"
-        title="我是 Zeno。"
-        subtitle="从工地出发，用清醒和工具重建一个行业的信任。"
+        title="我是 Zeno"
+        subtitle="从装修现场出发，重新理解传统行业的效率、信任和判断力。"
       />
 
       <Container size="content" className="py-14 sm:py-16">
