@@ -223,6 +223,12 @@ export default function HomePage() {
                 了解更多关于 Zeno →
               </Link>
               <Link
+                href="/blog/zeno-from-renovation-to-opc"
+                className="text-sm text-ink-muted hover:text-stone transition-colors"
+              >
+                从装修到一人公司 →
+              </Link>
+              <Link
                 href="/services"
                 className="text-sm text-ink-muted hover:text-stone transition-colors"
               >

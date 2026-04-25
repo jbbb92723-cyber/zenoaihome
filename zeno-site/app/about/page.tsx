@@ -1,4 +1,5 @@
 ﻿import type { Metadata } from 'next'
+import Link from 'next/link'
 import PageHero from '@/components/PageHero'
 import Container from '@/components/Container'
 import CTA from '@/components/CTA'
@@ -6,7 +7,7 @@ import CTA from '@/components/CTA'
 export const metadata: Metadata = {
   title: '关于我',
   description:
-    '我是 Zeno。做过装修，盯过工地，处理过无数报价纠纷和客户分歧。用斯多葛式清醒、审美秩序和 AI 工具，帮助人在真实生活里做出更清醒、更耐久的选择。',
+    '我是 Zeno。装修行业 16 年，从工地现场走出来。现在用 AI 工具和长期主义，把真实经验变成可持续的内容、资料和系统。',
 }
 
 const believes = [
@@ -26,7 +27,7 @@ const doingNow = [
   '持续更新文章和专题内容。',
   '沉淀装修与居住相关的实用资料。',
   '把 AI 工作流用于内容生产与知识整理。',
-  '打磨一个「可长期复利」的个人内容系统。',
+  '搭建一人公司系统——让内容、资料、服务和工具形成可持续循环。',
 ]
 
 export default function AboutPage() {
@@ -35,27 +36,34 @@ export default function AboutPage() {
       <PageHero
         label="关于我"
         title="我是 Zeno。"
-        subtitle="从工地出发的现实派生活建造者。这不是一份履历，而是你判断这个人是否值得长期关注的页面。"
+        subtitle="从工地出发，用清醒和工具重建一个行业的信任。"
       />
 
       <Container size="content" className="py-14 sm:py-16">
-        {/* ── 我是谁 ── */}
+        {/* ── 我是谁（精简版） ── */}
         <section className="mb-12">
           <h2 className="section-heading mb-5">我是谁</h2>
           <p className="text-base text-ink leading-[1.85]">
-            我是 Zeno。
-            做过装修，盯过工地，处理过无数报价纠纷和客户分歧。
-            这 16 年教会我一件事：大多数坏结果，不是运气问题，是决策顺序的问题。
+            装修行业 16 年。跑过工地、盯过施工、审过无数报价单、处理过数不清的客户分歧。
+            这些年教会我一件事：传统行业最大的消耗不在技术，在信息差、在信任成本、在好经验没有被系统化。
           </p>
           <p className="text-base text-ink leading-[1.85] mt-4">
-            我从工地现场走来，见过预算失控的全过程，也见过一份清晰的报价单如何让人少踩多少坑。
-            这些经历让我能从「用的人」的角度，而不是从「卖的人」的角度，讲清楚装修和真实居住这件事。
+            我不是技术出身，也不是只讲概念的 AI 博主。
+            我从真实现场走出来，现在认真学 AI 编程、用大模型工具和自动化工作流，
+            把 16 年积累的判断和方法，整理成可复用的内容、资料和服务。
           </p>
           <p className="text-base text-ink leading-[1.85] mt-4">
-            现在我用内容系统，把这些积累整理成真正能帮到人的判断和资产。
-            同时认真学 AI，不是为了跟风，而是让经验沉淀得更系统、传播得更远。
-            不卖焦虑，不卖风格，只谈真实。
+            Zeno 这个名字来自斯多葛哲学——提醒我在混乱中保持清醒，在压力下做对的事。
+            装修是支点，AI 是工具，传统行业是战场，长期主义是底盘。
           </p>
+          <div className="mt-5">
+            <Link
+              href="/blog/zeno-from-renovation-to-opc"
+              className="text-sm text-stone hover:underline underline-offset-2"
+            >
+              阅读完整文章：从装修现场到一人公司 →
+            </Link>
+          </div>
         </section>
 
         {/* ── 为什么用 AI ── */}
