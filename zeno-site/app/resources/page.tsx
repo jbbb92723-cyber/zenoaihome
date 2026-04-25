@@ -171,12 +171,11 @@ export default async function ResourcesPage() {
                   <p className="text-sm text-ink-muted">{resource.howToGet}</p>
                 </div>
                 <div className="shrink-0">
-                  <Link
-                    href="/contact"
-                    className="inline-block text-sm text-stone hover:underline underline-offset-2 decoration-stone-light"
-                  >
-                    领取 →
-                  </Link>
+                  {/* 改了什么：“领取”不再跳 /contact，直接显示公众号关键词 */}
+                  {/* 为什么改：跳转 contact 路径断裂，用户迷路 */}
+                  <span className="text-xs text-stone">
+                    公众号回复关键词领取
+                  </span>
                 </div>
               </div>
 

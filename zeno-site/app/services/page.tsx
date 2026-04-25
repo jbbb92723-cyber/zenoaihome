@@ -192,6 +192,18 @@ export default function ServicesPage() {
           <CTA href="/contact" label="查看联系方式" variant="secondary" />
         </div>
 
+        {/* 改了什么：新增"不确定"降级引导 */}
+        {/* 为什么改：直接上 ¥399/699 门槛高，给用户一个免费起点 */}
+        <div className="mt-6 border border-border bg-surface-warm p-6 sm:p-8 flex flex-col sm:flex-row items-start sm:items-center gap-5 justify-between">
+          <div>
+            <p className="text-sm font-medium text-ink">还没想好？先从免费资料开始。</p>
+            <p className="text-xs text-ink-muted mt-1 max-w-md">
+              装修预算模板、报价审核清单、验收清单都可以免费领取。先用资料建立判断，再决定是否需要服务。
+            </p>
+          </div>
+          <CTA href="/resources" label="去资料库" variant="secondary" />
+        </div>
+
         {/* 关联内容入口 */}
         <div className="mt-10">
           <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-4">

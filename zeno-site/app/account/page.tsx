@@ -6,7 +6,7 @@ import Avatar from '@/components/Avatar'
 import Container from '@/components/Container'
 
 export const metadata: Metadata = {
-  title: '用户资产中心',
+  title: '我的账号',
   robots: { index: false },
 }
 
@@ -26,8 +26,8 @@ export default async function AccountPage() {
       <Container size="content" className="py-section">
         <div className="max-w-md mx-auto">
           <div className="mb-10">
-            <p className="page-label mb-3">用户资产中心</p>
-            <h1 className="text-2xl font-semibold text-ink tracking-tight">个人中心</h1>
+          <p className="page-label mb-3">我的账号</p>
+          <h1 className="text-2xl font-semibold text-ink tracking-tight">请先登录</h1>
           </div>
           <p className="text-sm text-ink-muted leading-relaxed mb-4">
             请先登录，公开内容不需要登录即可阅读。
@@ -73,7 +73,7 @@ export default async function AccountPage() {
 
         <div>
           <p className="page-label mb-3">个人中心</p>
-          <h1 className="text-2xl font-semibold text-ink tracking-tight">用户资产中心</h1>
+          <h1 className="text-2xl font-semibold text-ink tracking-tight">我的账号</h1>
         </div>
 
         {/* ── 1. 用户卡片 ───────────────────────────────────── */}

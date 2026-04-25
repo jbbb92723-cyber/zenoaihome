@@ -197,11 +197,14 @@ img {
 /* ─────────────────────────────────────────
    卡片 hover 过渡
 ───────────────────────────────────────── */
+/* 改了什么：卡片 hover 加 translateY 微移 */
+/* 为什么改：微交互提升质感，不夸张 */
 .card-hover {
-  transition: border-color 0.15s ease;
+  transition: border-color 0.15s ease, transform 0.15s ease;
 }
 .card-hover:hover {
   border-color: #C4A882;
+  transform: translateY(-1px);
 }
 
 /* ─────────────────────────────────────────

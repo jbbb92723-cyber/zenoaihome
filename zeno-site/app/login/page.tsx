@@ -166,7 +166,7 @@ function LoginForm() {
             </Link>
           </p>
           <p className="text-sm text-ink-muted">
-            <Link href="/forgot-password" className="text-stone hover:underline underline-offset-2">
+            <Link href="/reset-password" className="text-stone hover:underline underline-offset-2">
               忘记密码？
             </Link>
           </p>

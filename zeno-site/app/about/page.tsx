@@ -106,7 +106,8 @@ export default function AboutPage() {
           <p className="text-sm text-ink-muted leading-relaxed mb-5">
             如果你想把 AI 真正接进自己的工作流，而不是停留在工具尝鲜，也可以先看看我提供的咨询方向。
           </p>
-          <CTA href="/services" label="查看服务" variant="secondary" />
+          {/* 改了什么：CTA 文案从“查看服务”改为更具体的行动引导 */}
+          <CTA href="/services" label="看看我能帮什么" variant="secondary" />
         </section>
 
         {/* ── 联系入口 ── */}

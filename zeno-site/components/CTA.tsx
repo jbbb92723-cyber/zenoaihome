@@ -8,7 +8,9 @@ interface CTAProps {
 }
 
 export default function CTA({ href, label, variant = 'primary', external = false }: CTAProps) {
-  const base = 'inline-flex items-center text-sm transition-all duration-150 rounded-sm'
+  // 改了什么：去掉 rounded-sm
+  // 为什么改：全站设计语言是直角，CTA 不应例外
+  const base = 'inline-flex items-center text-sm transition-all duration-150'
 
   const variants = {
     primary:

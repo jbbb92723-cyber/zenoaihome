@@ -77,19 +77,13 @@ export default function Footer() {
             <p className="text-[0.65rem] text-ink-faint font-semibold uppercase tracking-widest mb-4">
               {isEn ? 'Contact' : '联系方式'}
             </p>
+            {/* 改了什么：去掉 [To be added] 占位 */}
+            {/* 为什么改：暴露空白降低信任 */}
             {isEn ? (
               <ul className="space-y-3">
                 <li>
                   <p className="text-[0.65rem] text-ink-faint uppercase tracking-widest mb-0.5">Email</p>
                   <p className="text-[0.8125rem] text-ink">zenoaihome@qq.com</p>
-                </li>
-                <li>
-                  <p className="text-[0.65rem] text-ink-faint uppercase tracking-widest mb-0.5">YouTube</p>
-                  <p className="text-[0.8125rem] text-ink-muted">[To be added]</p>
-                </li>
-                <li>
-                  <p className="text-[0.65rem] text-ink-faint uppercase tracking-widest mb-0.5">X (Twitter)</p>
-                  <p className="text-[0.8125rem] text-ink-muted">[To be added]</p>
                 </li>
               </ul>
             ) : (

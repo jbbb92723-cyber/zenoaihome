@@ -26,16 +26,18 @@ export default function HomePage() {
   return (
     <>
       {/* ───────────────── Hero ───────────────── */}
+      {/* 改了什么：精练副标题，强化 3 秒理解；“领取资料”升级为 secondary 按钮 */}
+      {/* 为什么改：旧版副标题信息量过大，领取资料是高转化入口但视觉权重太低 */}
       <section className="py-12 sm:py-16 border-b border-border">
         <Container size="reading">
           <p className="text-[0.7rem] font-semibold tracking-[0.1em] uppercase text-stone mb-5">Zeno</p>
           <h1 className="text-[1.625rem] sm:text-[1.875rem] md:text-[2.25rem] font-semibold leading-[1.3] tracking-[-0.02em] text-ink mb-5 max-w-xl">
-            从装修出发，<br />
-            聊居住、美学、人性、成长与 AI 时代的长期主义。
+            装修不只是装房子。<br />
+            它是一场关于判断力的练习。
           </h1>
           <p className="text-[0.9375rem] text-ink-muted leading-[1.85] max-w-lg mb-8">
-            我是 Zeno。做装修，盯过工地，也在持续学习 AI 和技术。
-            这里不只谈房子怎么装，也谈人怎么判断、怎么成长、怎么在变化越来越快的时代里活得更清醒。
+            我是 Zeno。做装修 16 年，盯过工地，处理过无数报价纠纷。
+            这里写装修、居住、选择和长期主义——帮你在复杂问题前少走弯路。
           </p>
           <div className="flex flex-wrap gap-3 items-center">
             <Link
@@ -45,20 +47,20 @@ export default function HomePage() {
               看最新文章
             </Link>
             <Link
-              href="/about"
+              href="/resources"
               className="text-sm font-medium text-stone border border-stone/40 px-4 py-2 hover:bg-stone-pale transition-colors"
+            >
+              领取免费资料
+            </Link>
+            <Link
+              href="/about"
+              className="text-sm text-stone underline underline-offset-4 decoration-stone/30 hover:decoration-stone transition-colors"
             >
               了解我是谁
             </Link>
-            <Link
-              href="/resources"
-              className="text-sm text-stone underline underline-offset-4 decoration-stone/30 hover:decoration-stone transition-colors"
-            >
-              领取资料
-            </Link>
           </div>
           <p className="text-xs text-ink-muted mt-5">
-            如果你已经有具体问题，或想让我直接帮你判断，可以
+            已有具体问题？可以直接
             <Link href="/services" className="text-stone hover:underline underline-offset-2 decoration-stone/40 ml-0.5">查看服务</Link>。
           </p>
         </Container>
@@ -67,9 +69,11 @@ export default function HomePage() {
       {/* ───────────────── 我主要写什么 ───────────────── */}
       <section className="py-16 sm:py-20 border-b border-border">
         <Container>
+          {/* 改了什么：标题从“我主要写什么”改为“我能帮你什么” */}
+          {/* 为什么改：用户关心“你能帮我什么”，不是“你写什么” */}
           <div className="mb-10">
             <p className="page-label mb-3">内容方向</p>
-            <h2 className="section-heading">我主要写什么</h2>
+            <h2 className="section-heading">我能帮你什么</h2>
             <p className="text-sm text-ink-muted mt-2">五个方向，都从真实经历出发。</p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -145,9 +149,11 @@ export default function HomePage() {
       {/* ───────────────── 资料库入口 ───────────────── */}
       <section className="py-16 sm:py-20 border-b border-border">
         <Container size="content">
+          {/* 改了什么：“拿来就能用的工具”→“装修实用资料” */}
+          {/* 为什么改：原文案“工具”和“资料”混淆，统一为资料 */}
           <div className="mb-8">
             <p className="page-label mb-3">实用资料</p>
-            <h2 className="section-heading">拿来就能用的工具</h2>
+            <h2 className="section-heading">装修实用资料</h2>
             <p className="text-sm text-ink-muted mt-2">我只放自己用过或验证过的内容。</p>
           </div>
           <div className="space-y-3">
@@ -180,19 +186,30 @@ export default function HomePage() {
       </section>
 
       {/* ───────────────── 关于我（简） ───────────────── */}
+      {/* 改了什么：文案更聚焦，加"查看服务"二级入口 */}
       <section className="py-16 sm:py-20">
         <Container size="content">
           <div className="border border-border bg-surface p-7 sm:p-9">
-            <p className="text-base text-ink-muted leading-relaxed mb-6">
+            <p className="text-base text-ink-muted leading-relaxed mb-4">
               我不是来做一个"标准官网"的。我更在意的是，把一线经验和长期思考讲清楚，帮你在复杂问题前少走弯路。
+            </p>
+            <p className="text-sm text-ink-muted leading-relaxed mb-6">
               如果你也关心居住品质、判断力、人与工具的关系，我们大概率会聊得来。
             </p>
-            <Link
-              href="/about"
-              className="text-sm text-stone hover:underline underline-offset-2 decoration-stone-light"
-            >
-              了解更多关于我 →
-            </Link>
+            <div className="flex flex-wrap gap-3">
+              <Link
+                href="/about"
+                className="text-sm text-stone hover:underline underline-offset-2 decoration-stone-light"
+              >
+                了解更多关于我 →
+              </Link>
+              <Link
+                href="/services"
+                className="text-sm text-ink-muted hover:text-stone transition-colors"
+              >
+                查看服务
+              </Link>
+            </div>
           </div>
         </Container>
       </section>

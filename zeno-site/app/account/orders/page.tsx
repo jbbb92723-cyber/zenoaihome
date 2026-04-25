@@ -41,24 +41,18 @@ export default async function AccountOrdersPage() {
           </p>
         </div>
 
-        {/* 空状态 */}
+        {/* 空状态 — 不暴露技术进度，只呈现当前可用状态 */}
         <div className="border border-border bg-surface p-10 text-center">
-          <p className="text-sm font-medium text-ink mb-2">暂无订单</p>
+          <p className="text-sm font-medium text-ink mb-2">暂无订单记录</p>
           <p className="text-xs text-ink-faint leading-relaxed max-w-xs mx-auto">
-            付费内容和会员订阅功能正在建设中。
-            开放后你的所有购买记录将在这里显示。
+            你的购买记录和服务订单会在这里显示。
           </p>
-        </div>
-
-        {/* 系统说明 */}
-        <div className="mt-8 px-4 py-4 border border-border bg-surface-warm">
-          <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-2">
-            关于支付系统
-          </p>
-          <p className="text-xs text-ink-muted leading-relaxed">
-            支付系统后续接入。第二阶段将支持微信支付、支付宝和 Stripe，
-            用于购买付费资料和开通会员。当前阶段免费资料通过公众号领取。
-          </p>
+          <Link
+            href="/services"
+            className="inline-block mt-5 text-xs text-stone border border-stone/30 px-4 py-2 hover:bg-stone-pale/50 transition-colors"
+          >
+            了解服务 →
+          </Link>
         </div>
 
       </div>
