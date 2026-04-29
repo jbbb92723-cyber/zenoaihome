@@ -7,7 +7,7 @@ import CTA from '@/components/CTA'
 export const metadata: Metadata = {
   title: '关于我',
   description:
-    '我是 Zeno。装修行业 16 年，从工地现场走出来。现在用 AI 工具和长期主义，把真实经验变成可持续的内容、资料和系统。',
+    '我是 Zeno。装修行业 16 年，从工地现场走出来。现在用 AI、开发、内容和产品化能力，把真实经验逐步沉淀成可复用、可交易、可持续的个人资产。',
 }
 
 const believes = [
@@ -25,9 +25,9 @@ const dontDo = [
 
 const doingNow = [
   '持续更新文章和专题内容。',
-  '沉淀装修与居住相关的实用资料。',
-  '把 AI 工作流用于内容生产与知识整理。',
-  '搭建一人公司系统——让内容、资料、服务和工具形成可持续循环。',
+  '沉淀装修与居住相关的实用资料和在线工具。',
+  '把 AI 工作流用于内容生产、工具开发与知识整理。',
+  '搭建一人公司系统——让内容、资料、工具、服务和数字产品形成可持续循环。',
 ]
 
 export default function AboutPage() {
@@ -36,7 +36,7 @@ export default function AboutPage() {
       <PageHero
         label="关于我"
         title="我是 Zeno"
-        subtitle="从装修现场出发，重新理解传统行业的效率、信任和判断力。"
+        subtitle="从装修现场出发，用 AI、产品和内容，逐步搭建更自由的个人事业系统。"
       />
 
       <Container size="content" className="py-14 sm:py-16">
@@ -48,13 +48,17 @@ export default function AboutPage() {
             这些年教会我一件事：传统行业最大的消耗不在技术，在信息差、在信任成本、在好经验没有被系统化。
           </p>
           <p className="text-base text-ink leading-[1.85] mt-4">
-            我不是技术出身，也不是只讲概念的 AI 博主。
-            我从真实现场走出来，现在认真学 AI 编程、用大模型工具和自动化工作流，
-            把 16 年积累的判断和方法，整理成可复用的内容、资料和服务。
+            我不想把自己固定成某一种身份。装修只是我最熟悉的起点。
+            我现在更关心的是：一个普通传统行业从业者，能不能借助 AI、开发、内容和产品化能力，
+            逐步摆脱重交付，建立更自由、更有创造力的事业系统。
+          </p>
+          <p className="text-base text-ink leading-[1.85] mt-4">
+            所以这个网站不是装修公司官网，也不是单纯的个人博客。
+            它是我把经验变成工具、把内容变成资产、把服务变成产品的长期实验场。
           </p>
           <p className="text-base text-ink leading-[1.85] mt-4">
             Zeno 这个名字来自斯多葛哲学——提醒我在混乱中保持清醒，在压力下做对的事。
-            装修是支点，AI 是工具，传统行业是战场，长期主义是底盘。
+            装修是支点，AI 是工具，产品化是方向，自由度是目标。
           </p>
           <div className="mt-5">
             <Link
@@ -70,13 +74,12 @@ export default function AboutPage() {
         <section className="mb-12">
           <h2 className="section-heading mb-5">为什么用 AI</h2>
           <p className="text-base text-ink leading-[1.85]">
-            我不是技术出身的人，也不是只会讲概念的 AI 博主。
-            我从装修现场、客户沟通、报价审核和项目管理里走出来，
+            我不是技术出身的人。我从装修现场、客户沟通、报价审核和项目管理里走出来，
             知道传统行业真正痛的不是"不努力"，而是信息太散、沟通太慢、经验太难沉淀。
           </p>
           <p className="text-base text-ink leading-[1.85] mt-4">
             所以我用 AI 做的不是炫技，而是把客户问题、报价判断、施工经验、内容创作和服务流程，
-            整理成普通人也能使用的系统。
+            整理成可复用、可交易的工具和产品。AI 是让经验走得更远的工具，不是目的本身。
           </p>
         </section>
 

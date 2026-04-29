@@ -30,8 +30,8 @@ export default function Footer() {
             </Link>
             <p className="mt-3 text-[0.8125rem] text-ink-muted leading-relaxed max-w-[220px]">
               {isEn
-                ? 'From renovation sites to real-world clarity — rebuilding trust, efficiency, and judgment in traditional industries with AI.'
-                : '从装修现场出发，用清醒和工具，重建传统行业的判断力、效率和信任。'}
+                ? 'From a familiar industry, building a freer personal business system with AI, products, and content.'
+                : '从熟悉的行业出发，用 AI、产品和内容，搭建更自由的个人事业系统。'}
             </p>
           </div>
 
@@ -102,7 +102,7 @@ export default function Footer() {
           <p className="text-[0.75rem] text-ink-faint">
             {isEn
               ? 'Content updated regularly. Quality over quantity.'
-              : '内容持续更新，欢迎关注公众号 Zeno AI装修笔记'}
+              : '内容持续更新，把经验变成工具，把内容变成资产。'}
           </p>
         </div>
 

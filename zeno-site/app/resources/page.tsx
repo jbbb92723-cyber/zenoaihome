@@ -18,9 +18,9 @@ import Container from '@/components/Container'
 import CTA from '@/components/CTA'
 
 export const metadata: Metadata = {
-  title: '资料库',
+  title: '工具与资料库',
   description:
-    '可直接使用的装修与内容工作流工具，包括装修预算模板、报价审核清单、验收清单、实住派自查表和 AI 提示词包，均可免费领取。',
+    '把经验产品化的第一批资产——免费工具、免费资料、数字产品。包括 AI 提示词体验场、Markdown 微信排版工具、装修预算模板、报价审核清单等。',
 }
 
 const tagColors: Record<string, string> = {
@@ -35,42 +35,77 @@ export default async function ResourcesPage() {
   return (
     <>
       <PageHero
-        label="资料库"
-        title="解决具体问题的工具"
-        subtitle="这不是一个下载站。每份资料都对应一个具体的装修或内容场景，我只放自己用过、在真实项目里验证过的内容。先找当前最痛的问题，拿对应的资料来用。"
+        label="工具与资料"
+        title="把经验产品化的第一批资产"
+        subtitle="资料库不是下载站，而是 Zeno 把经验产品化的第一批资产。每份资料都对应一个具体场景，每个工具都解决一个真实问题。"
         size="content"
       />
 
 
       <Container size="content" className="py-section">
 
-        {/* Prompt Playground 体验入口 */}
-        <div className="mb-10 border border-stone/30 bg-stone/5 p-5">
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-            <div>
-              <p className="text-xs text-stone font-semibold uppercase tracking-widest mb-1">可体验工具</p>
-              <h2 className="text-base font-semibold text-ink">AI 提示词体验场</h2>
-              <p className="text-sm text-ink-muted mt-1 max-w-md">
-                选场景、填情况、一键生成可直接用的提示词。5 个真实场景覆盖写作、装修沟通、报价分析、选题、AI 升级。不需要登录，即开即用。
-              </p>
+        {/* ───── 免费工具 ───── */}
+        <div className="mb-6">
+          <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-2">免费工具</p>
+          <h2 className="text-lg font-semibold text-ink">在线工具</h2>
+          <p className="text-sm text-ink-muted mt-1">即开即用，不需要登录。</p>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-12">
+          {/* AI 提示词体验场 */}
+          <Link
+            href="/tools/prompts"
+            className="group border border-stone/30 bg-stone/5 p-5 hover:bg-stone/10 transition-colors"
+          >
+            <p className="text-sm font-semibold text-ink group-hover:text-stone transition-colors">
+              AI 提示词体验场
+            </p>
+            <p className="text-xs text-ink-muted mt-1.5 leading-relaxed">
+              选场景、填情况、一键生成可直接用的提示词。覆盖写作、装修沟通、报价分析、选题、AI 升级。
+            </p>
+          </Link>
+
+          {/* Markdown 微信排版工具 */}
+          <Link
+            href="/tools/md2wechat"
+            className="group border border-stone/30 bg-stone/5 p-5 hover:bg-stone/10 transition-colors"
+          >
+            <p className="text-sm font-semibold text-ink group-hover:text-stone transition-colors">
+              Markdown 微信排版工具
+            </p>
+            <p className="text-xs text-ink-muted mt-1.5 leading-relaxed">
+              把 Markdown 文稿一键转成微信公众号排版，可以直接复制 HTML 粘贴到公众号后台。
+            </p>
+          </Link>
+
+          {/* 装修预算风险自测 — 即将开放 */}
+          <div className="border border-border bg-surface p-5 opacity-75">
+            <div className="flex items-center gap-2 mb-1.5">
+              <p className="text-sm font-semibold text-ink">装修预算风险自测</p>
+              <span className="text-[0.65rem] text-stone border border-stone/30 px-2 py-0.5 uppercase tracking-wider">即将开放</span>
             </div>
-            <Link
-              href="/tools/prompts"
-              className="text-sm font-medium text-paper bg-stone px-4 py-2 hover:bg-stone/85 transition-colors whitespace-nowrap self-start sm:self-center"
-            >
-              立即体验 →
-            </Link>
+            <p className="text-xs text-ink-muted leading-relaxed">
+              回答几个问题，快速判断你的装修预算是否存在超支风险。
+            </p>
+          </div>
+
+          {/* 报价单风险自查 — 即将开放 */}
+          <div className="border border-border bg-surface p-5 opacity-75">
+            <div className="flex items-center gap-2 mb-1.5">
+              <p className="text-sm font-semibold text-ink">报价单风险自查</p>
+              <span className="text-[0.65rem] text-stone border border-stone/30 px-2 py-0.5 uppercase tracking-wider">即将开放</span>
+            </div>
+            <p className="text-xs text-ink-muted leading-relaxed">
+              对照清单检查你的装修报价单，发现常见模糊项和风险项。
+            </p>
           </div>
         </div>
 
-        {/* 领取说明 */}
-        <div className="mb-12 p-5 border border-border bg-surface-warm">
-          <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-2">
-            如何领取
-          </p>
-          <p className="text-sm text-ink-muted leading-relaxed">
-            关注公众号「Zeno AI装修笔记」，回复对应关键词即可获取。
-          </p>
+        {/* ───── 免费资料 ───── */}
+        <div className="mb-6">
+          <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-2">免费资料</p>
+          <h2 className="text-lg font-semibold text-ink">可直接使用的资料</h2>
+          <p className="text-sm text-ink-muted mt-1">关注公众号「Zeno AI装修笔记」，回复对应关键词即可获取。</p>
         </div>
 
         {/* 资料卡片列表 */}
@@ -204,10 +239,35 @@ export default async function ResourcesPage() {
           })}
         </div>
 
-        {/* 工具入口 */}
+        {/* ───── 付费资料 / 即将开放 ───── */}
+        <div className="mt-12 pt-8 border-t border-border">
+          <div className="mb-6">
+            <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-2">付费资料 / 即将开放</p>
+            <h2 className="text-lg font-semibold text-ink">数字产品</h2>
+            <p className="text-sm text-ink-muted mt-1">把深度经验打包成可直接使用的工具包和系统模板。</p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {[
+              { title: '装修前 12 张避坑表', desc: '覆盖预算、合同、报价、材料、水电、验收等 12 个关键节点，每张一页，逐项自查。' },
+              { title: 'AI 内容工作流提示词包 Pro', desc: '从选题、写作、排版到多平台分发，一套完整的 AI 辅助内容生产系统提示词。' },
+              { title: '传统行业 AI 内容系统模板', desc: '帮传统行业从业者搭建自己的内容生产系统，从 0 到持续输出。' },
+              { title: '一人公司启动清单', desc: '从定位、内容、工具、服务到变现，一个人启动事业的完整检查清单。' },
+            ].map((item) => (
+              <div key={item.title} className="border border-border bg-surface p-5 opacity-75">
+                <div className="flex items-center gap-2 mb-1.5">
+                  <p className="text-sm font-semibold text-ink">{item.title}</p>
+                  <span className="text-[0.65rem] text-stone border border-stone/30 px-2 py-0.5 uppercase tracking-wider">即将开放</span>
+                </div>
+                <p className="text-xs text-ink-muted leading-relaxed">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* 在线工具入口 */}
         <div className="mt-12 pt-8 border-t border-border">
           <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-5">
-            在线工具
+            更多在线工具
           </p>
           <Link
             href="/tools/md2wechat"

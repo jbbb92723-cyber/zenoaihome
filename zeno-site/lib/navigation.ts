@@ -19,9 +19,9 @@ export const mainNav: NavItem[] = [
     en: { label: 'Home', href: '/en' },
   },
   {
-    key: 'living',
-    zh: { label: '真实居住', href: '/topics#shi-zhu-pai-zhuangxiu' },
-    en: { label: 'Livable Design', href: '/en/topics#living-renovation' },
+    key: 'now',
+    zh: { label: '正在做', href: '/#now' },
+    en: { label: 'Now', href: '/en#now' },
   },
   {
     key: 'ai',
@@ -29,18 +29,18 @@ export const mainNav: NavItem[] = [
     en: { label: 'AI in Practice', href: '/en/topics#ai-upgrade' },
   },
   {
-    key: 'industry',
-    zh: { label: '行业观察', href: '/blog' },
-    en: { label: 'Industry Insights', href: '/en/blog' },
+    key: 'resources',
+    zh: { label: '工具与资料', href: '/resources' },
+    en: { label: 'Tools & Resources', href: '/en/resources' },
   },
   {
-    key: 'resources',
-    zh: { label: '资料库', href: '/resources' },
-    en: { label: 'Resources', href: '/en/resources' },
+    key: 'living',
+    zh: { label: '真实居住', href: '/topics#shi-zhu-pai-zhuangxiu' },
+    en: { label: 'Livable Design', href: '/en/topics#living-renovation' },
   },
   {
     key: 'services',
-    zh: { label: '服务', href: '/services' },
+    zh: { label: '服务与合作', href: '/services' },
     en: { label: 'Services', href: '/en/services' },
   },
   {

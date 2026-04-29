@@ -22,27 +22,27 @@ const notoSansSC = Noto_Sans_SC({
 
 export const metadata: Metadata = {
   title: {
-    default: 'Zeno 赞诺｜Zeno AI Home — 从装修出发，聊居住、美学、人性与长期主义',
+    default: 'Zeno 赞诺｜Zeno AI Home — 从熟悉行业出发，用 AI、产品和内容搭建个人事业系统',
     template: '%s · Zeno 赞诺',
   },
   description:
-    '我是 Zeno。做过装修，盯过工地，也在持续学习 AI。这里从装修出发，聊居住、美学、人性、成长与 AI 时代的长期主义。',
-  keywords: ['装修', '居住', '审美', '长期主义', 'AI', '工地', '人性'],
+    '我是 Zeno。装修行业 16 年，现在用 AI、开发、内容和产品化能力，把真实经验逐步沉淀成可复用、可交易、可持续的个人资产。',
+  keywords: ['装修', '居住', 'AI 实践', '一人公司', '数字产品', '工具', '内容资产', '长期主义'],
   authors: [{ name: 'Zeno' }],
   openGraph: {
     type: 'website',
     locale: 'zh_CN',
     url: 'https://zenoaihome.com',
     siteName: 'Zeno 赞诺',
-    title: 'Zeno 赞诺 — 从装修出发，聊居住、美学、人性与长期主义',
+    title: 'Zeno 赞诺 — 从熟悉行业出发，用 AI、产品和内容搭建个人事业系统',
     description:
-      '我是 Zeno。做过装修，盯过工地，也在持续学习 AI。这里从装修出发，聊居住、美学、人性、成长与 AI 时代的长期主义。',
+      '我是 Zeno。装修行业 16 年，现在用 AI、开发、内容和产品化能力，把真实经验逐步沉淀成可复用、可交易、可持续的个人资产。',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Zeno 赞诺 — 从装修出发，聊居住、美学、人性与长期主义',
+    title: 'Zeno 赞诺 — 从熟悉行业出发，用 AI、产品和内容搭建个人事业系统',
     description:
-      '从装修出发，聊居住、美学、人性、成长与 AI 时代的长期主义。',
+      '装修是入口，不是终局。用 AI、内容、工具和产品化，搭建更自由的个人事业系统。',
   },
   robots: {
     index: true,

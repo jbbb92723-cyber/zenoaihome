@@ -3,10 +3,10 @@
 import { useState, useEffect } from 'react'
 
 const taglines = [
-  '在混乱中保持清醒，在现场中找到秩序。',
-  '看清真相，然后持续做对的事。',
+  '把经验变成工具，把内容变成资产。',
   '装修是入口，不是终局。',
-  '降低信息差，重建信任。',
+  '先从真实问题开始，再让系统放大效率。',
+  '用更少人力，建立更自由的事业。',
 ]
 
 export default function HeroTagline() {
