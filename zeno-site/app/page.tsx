@@ -4,14 +4,17 @@ import Container from '@/components/Container'
 import HeroTagline from '@/components/HeroTagline'
 import { getArticleBySlug } from '@/data/articles'
 
-// 首页手动推荐文章（覆盖五个栏目方向）
+// 首页手动推荐文章（覆盖五大板块，按方向编排，不按时间排序）
+// 顺序：一人公司 → 一人公司 → AI 实践 → 一人公司 → 工具与产品 → 真实居住 → 真实居住 → 判断与生活
 const featuredSlugs = [
-  'zeno-from-renovation-to-opc',
-  '01-wo-wei-shenme-bu-xiang-zhi-zuo-jiaoren-zhuangxiu',
-  '04-wei-shenme-wo-kaishi-renzheng-xue-ai',
-  'article-05-09',
-  'zhuangxiu-yusuan-weishenme-zongchao',
-  '05-changqi-zhuyi-bushi-rennai',
+  '01-wo-wei-shenme-bu-xiang-zhi-zuo-jiaoren-zhuangxiu', // 我为什么不想只做一个教人装修的人
+  'zeno-from-renovation-to-opc',                          // 从装修现场到一人公司
+  '04-wei-shenme-wo-kaishi-renzheng-xue-ai',              // 为什么我开始认真学 AI
+  'article-05-09',                                        // 网站母站：为什么你需要一个自己的阵地
+  'article-05-02',                                        // 内容资产，才是传统行业人的第二生产线
+  'zhuangxiu-yusuan-weishenme-zongchao',                  // 装修预算为什么总超？
+  'baojia-dan-zenme-kan',                                 // 报价单真正该怎么看
+  '05-changqi-zhuyi-bushi-rennai',                        // 长期主义不是忍耐
 ]
 
 // 四条主线：真实居住 / AI 实践 / 工具与产品 / 一人公司实验

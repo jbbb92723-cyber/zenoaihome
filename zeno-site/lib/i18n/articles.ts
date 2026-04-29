@@ -40,7 +40,7 @@ const translations: ArticleTranslation[] = [
       slug: 'why-i-dont-just-teach-renovation',
       title: "Why I Don't Just Teach People How to Renovate",
       excerpt: "After years in renovation, I've become certain: if I only talk about how to fix up a house, I'd be cutting away everything that actually matters. Renovation is the entry point — but judgment, trade-offs, and how you want to live are the real conversation.",
-      category: 'Growth & Long-Term Thinking',
+      category: 'One-Person Company',
       tags: ['renovation', 'content creation', 'personal growth', 'AI', 'long-term thinking'],
       coverAlt: 'Why I Don\'t Just Teach People How to Renovate — cover image',
       content: `I'm not just a renovation guy.
@@ -76,7 +76,7 @@ If you came here just looking for a "how to avoid renovation mistakes" checklist
       slug: 'your-home-is-not-a-showroom',
       title: 'Your Home Is Not a Showroom',
       excerpt: "Showroom aesthetics satisfy instantly — you see a photo and think 'I could have this too.' But real life doesn't follow camera angles. The real beauty of a home often comes from 'I don't have to fight my environment here.'",
-      category: 'Livable Renovation',
+      category: 'Real Living',
       tags: ['living', 'aesthetics', 'renovation', 'livable design', 'real home'],
       coverAlt: 'Your Home Is Not a Showroom — cover image',
       content: `In my years doing renovation, I've heard many versions of "the ideal home": clean, premium, Instagram-ready, impressive to guests.
@@ -116,7 +116,7 @@ If you're making choices right now, try replacing "how do I want this home to lo
       slug: 'long-term-thinking-is-not-endurance',
       title: "Long-Term Thinking Isn't About Endurance",
       excerpt: "When most people hear 'long-term thinking,' they picture grinding it out. But real long-term thinking isn't endurance — it's design. Making today's choices in ways that don't mortgage tomorrow.",
-      category: 'Growth & Long-Term Thinking',
+      category: 'Judgment & Life',
       tags: ['long-term thinking', 'growth', 'judgment', 'aesthetics', 'pace'],
       coverAlt: "Long-Term Thinking Isn't About Endurance — cover image",
       content: `When most people hear "long-term thinking," the first image that comes to mind is grinding it out. As if gritting your teeth, suppressing your feelings, and delaying gratification is what makes it long-term.
@@ -175,7 +175,7 @@ If you're looking for your own long-term rhythm, start with one small action: wr
       slug: 'why-i-started-taking-ai-seriously',
       title: 'Why I Started Taking AI Seriously',
       excerpt: "I was skeptical of AI at first. What changed my mind wasn't the hype — it was the pain of spending most of my time on moving and repeating information instead of thinking and creating.",
-      category: 'AI for Practitioners',
+      category: 'AI in Practice',
       tags: ['AI', 'workflow', 'efficiency', 'traditional industry', 'tools'],
       coverAlt: 'Why I Started Taking AI Seriously — cover image',
       content: `When I first encountered AI, I was skeptical.

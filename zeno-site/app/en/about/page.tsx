@@ -11,7 +11,7 @@ const sections = [
   {
     title: 'Who I am',
     content:
-      "I\u2019m Zeno \u2014 a renovation practitioner based in Nanning, China. I\u2019ve spent over 16 years on job sites, managing projects, reading blueprints, and solving problems that don\u2019t fit neatly into textbooks. I\u2019m not an influencer or a media company. I\u2019m one person building a long-term writing practice.",
+      "I\u2019m Zeno (Zàn Nuò \u8d5e\u8bfa in Chinese) \u2014 a renovation practitioner based in Nanning, China. I\u2019ve spent over 16 years on job sites, managing projects, reading blueprints, and solving problems that don\u2019t fit neatly into textbooks. I\u2019m not an influencer or a media company. I\u2019m one person building a long-term writing practice.",
   },
   {
     title: 'From renovation sites to broader life questions',
