@@ -37,7 +37,7 @@ export default async function ResourcesPage() {
       <PageHero
         label="工具与资料"
         title="把经验产品化的第一批资产"
-        subtitle="资料库不是下载站，而是 Zeno 把经验产品化的第一批资产。每份资料都对应一个具体场景，每个工具都解决一个真实问题。"
+        subtitle="资料库不是下载站，而是 Zeno 把经验产品化的第一批资产。从预算表、报价清单，到提示词、工作流和在线工具，这里会逐步沉淀可复用的内容产品。"
         size="content"
       />
 

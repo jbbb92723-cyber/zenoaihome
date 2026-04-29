@@ -23,7 +23,7 @@ export default function BlogPage() {
       <PageHero
         label="文章"
         title="我写的东西"
-        subtitle="从装修出发，写居住、美学、人性、成长与 AI。优先放能代表判断力的文章，不按流量排序。"
+        subtitle="从真实居住出发，记录 AI 实践、工具产品、一人公司和判断系统。这里不是普通博客，而是 Zeno 把经验沉淀成资产的内容入口。"
       />
 
       <Container size="content" className="py-12 sm:py-16">

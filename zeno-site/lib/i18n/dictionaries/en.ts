@@ -67,20 +67,20 @@ const en = {
 
   // ── Writing areas ─────────────────────────
   writingAreas: [
-    { title: 'Livable Design', desc: 'Budgets, materials, contractors, and the judgment calls that actually matter when you live in the result.' },
-    { title: 'Design & Daily Life', desc: 'Aesthetics that serve real routines — not photo ops, but spaces that let you breathe.' },
-    { title: 'Human Nature & Judgment', desc: 'What renovation sites reveal about trust, communication, and how people handle pressure.' },
-    { title: 'Growth & Long-Term Thinking', desc: 'Choosing durability over impulse — in renovations, careers, and life decisions.' },
-    { title: 'AI in Practice', desc: 'How traditional industry professionals can build content systems, tools, and digital leverage.' },
+    { title: 'Real Living', desc: 'Budgets, materials, contractors, and the judgment calls that actually matter when you live in the result.' },
+    { title: 'AI in Practice', desc: 'How traditional industry professionals build content systems, tools, and digital leverage with AI.' },
+    { title: 'Tools & Products', desc: 'Turning experience into reusable, tradeable assets — content systems, templates, and digital products.' },
+    { title: 'One-Person Company', desc: 'Building a lighter, freer business with AI, development, content, and automation.' },
+    { title: 'Judgment & Life', desc: 'Staying clear-headed under pressure — on job sites, in business, and in daily decisions.' },
   ],
 
   // ── Categories ────────────────────────────
   categories: {
-    '居住与装修': 'Livable Design',
-    '美学与生活': 'Design & Daily Life',
-    '人性与判断': 'Human Nature & Judgment',
-    '成长与长期主义': 'Growth & Long-Term Thinking',
-    'AI 与新生产力': 'AI for Practitioners',
+    '真实居住': 'Real Living',
+    'AI 实践': 'AI in Practice',
+    '工具与产品': 'Tools & Products',
+    '一人公司': 'One-Person Company',
+    '判断与生活': 'Judgment & Life',
   } as Record<string, string>,
 
   // ── Footer ────────────────────────────────

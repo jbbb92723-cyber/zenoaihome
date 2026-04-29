@@ -9,15 +9,15 @@ import CTA from '@/components/CTA'
 export const metadata: Metadata = {
   title: '专题',
   description:
-    '专题不是标签集合，而是"一个连续问题的连续回答"。实住派装修、从工地看世界、长期主义生活、传统行业人如何用 AI 升级自己。',
+    '从真实居住出发，记录 AI 实践、工具产品化、一人公司实验和判断系统。五个专题，五条从经验到资产的路径。',
 }
 
 const topicAccents: Record<string, string> = {
   'shi-zhu-pai-zhuangxiu':            '#8B7355',
-  'cong-gongdi-kan-shijie':           '#6B7A5E',
-  'changqi-zhuyi-shenghuo':           '#5B6E8A',
   'chuantong-hangyeren-zenme-yong-ai':'#7A6B8A',
   'meixue-yu-shenghuo':               '#8A6B5B',
+  'changqi-zhuyi-shenghuo':           '#5B6E8A',
+  'cong-gongdi-kan-shijie':           '#6B7A5E',
 }
 
 export default function TopicsPage() {
@@ -40,15 +40,15 @@ export default function TopicsPage() {
           <div className="space-y-1.5 text-sm text-ink-muted">
             <p>
               <span className="text-stone font-medium">新读者</span>
-              　先看「实住派装修」和「从工地看世界」
+              　先看「真实居住」，从装修入口建立信任
             </p>
             <p>
-              <span className="text-stone font-medium">想做自我升级</span>
-              　再看「长期主义生活」
+              <span className="text-stone font-medium">想用 AI</span>
+              　再看「AI 实践」和「工具与产品」
             </p>
             <p>
-              <span className="text-stone font-medium">想把工具落地</span>
-              　最后看「传统行业人如何用 AI 升级自己」
+              <span className="text-stone font-medium">想做自己的事</span>
+              　看「一人公司」和「判断与生活」
             </p>
           </div>
         </div>

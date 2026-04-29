@@ -2,7 +2,17 @@ import Link from 'next/link'
 import ArticleCard from '@/components/ArticleCard'
 import Container from '@/components/Container'
 import HeroTagline from '@/components/HeroTagline'
-import { getRecentArticles } from '@/data/articles'
+import { getArticleBySlug } from '@/data/articles'
+
+// 首页手动推荐文章（覆盖五个栏目方向）
+const featuredSlugs = [
+  'zeno-from-renovation-to-opc',
+  '01-wo-wei-shenme-bu-xiang-zhi-zuo-jiaoren-zhuangxiu',
+  '04-wei-shenme-wo-kaishi-renzheng-xue-ai',
+  'article-05-09',
+  'zhuangxiu-yusuan-weishenme-zongchao',
+  '05-changqi-zhuyi-bushi-rennai',
+]
 
 // 四条主线：真实居住 / AI 实践 / 工具与产品 / 一人公司实验
 const pillars = [
@@ -57,7 +67,9 @@ const nowProjects = [
 ]
 
 export default function HomePage() {
-  const recentArticles = getRecentArticles(3)
+  const recentArticles = featuredSlugs
+    .map((slug) => getArticleBySlug(slug))
+    .filter((a): a is NonNullable<typeof a> => Boolean(a))
 
   return (
     <>
@@ -169,9 +181,9 @@ export default function HomePage() {
         <Container size="content">
           <div className="flex items-end justify-between mb-10">
             <div>
-              <p className="page-label mb-3">最近写的</p>
-              <h2 className="section-heading">优先放能代表判断力的文章</h2>
-              <p className="text-sm text-ink-muted mt-2">不按流量排序。</p>
+              <p className="page-label mb-3">推荐阅读</p>
+              <h2 className="section-heading">从这几篇开始了解 Zeno</h2>
+              <p className="text-sm text-ink-muted mt-2">覆盖五个方向，不按流量排序。</p>
             </div>
             <Link href="/blog" className="text-sm text-stone hover:underline underline-offset-2 shrink-0 ml-4 pb-1">
               全部 →

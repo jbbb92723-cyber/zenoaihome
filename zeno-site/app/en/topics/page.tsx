@@ -5,12 +5,12 @@ import Link from 'next/link'
 export const metadata: Metadata = {
   title: 'Topics',
   description:
-    'Explore topics: real living & renovation, aesthetics & daily life, human judgment, and AI for traditional industry people.',
+    'Five topics: real living, AI in practice, tools & products, one-person company, and judgment & life.',
 }
 
 const topics = [
   {
-    title: 'Livable Design & Renovation',
+    title: 'Real Living',
     description:
       'What renovation actually teaches you about decision-making, budgets, and living with imperfection. Based on 16+ years of on-site experience.',
     explores:
@@ -19,31 +19,40 @@ const topics = [
     slug: 'living-renovation',
   },
   {
-    title: 'Aesthetics & Daily Life',
-    description:
-      'How restraint, proportion, and everyday choices shape the way a home feels — beyond trends and decorating tips.',
-    explores:
-      'Why lighting is the most underrated design element. The case against "Instagram-style" decoration. How material choices affect daily living. What a home looks like after five years — not just on day one.',
-    relatedEntry: 'Start with: aesthetics is not taste, it\'s judgment →',
-    slug: 'aesthetics',
-  },
-  {
-    title: 'Human Judgment',
-    description:
-      'Patterns in how people make decisions — on job sites, in business, and in life. Observations from the field, not from textbooks.',
-    explores:
-      'Why people lose their judgment during renovation. The three psychological traps homeowners fall into. Why trusting your instinct is dangerous in unfamiliar territory. The "responsibility vacuum" in renovation projects.',
-    relatedEntry: 'Start with: why people lose judgment during renovation →',
-    slug: 'judgment',
-  },
-  {
-    title: 'AI for Traditional Industry People',
+    title: 'AI in Practice',
     description:
       'How practitioners in hands-on industries can genuinely benefit from AI — without hype, without replacing judgment, and without pretending it solves everything.',
     explores:
       'What AI actually helped me do (and what it didn\'t). How to keep your voice when writing with AI. Why prompts are workflows, not magic spells. The three levels of individual productivity upgrade.',
     relatedEntry: 'Start with: what AI did and didn\'t do for me →',
     slug: 'ai-upgrade',
+  },
+  {
+    title: 'Tools & Products',
+    description:
+      'Turning personal experience into reusable, tradeable assets — content systems, digital products, online tools, and templates.',
+    explores:
+      'Why content is your second production line. How to build a personal content system. Why you need your own website, not just social media. Turning experience into a moat, not a burden.',
+    relatedEntry: 'Start with: content assets as your second production line →',
+    slug: 'tools-products',
+  },
+  {
+    title: 'One-Person Company',
+    description:
+      'An ongoing experiment: can someone from a traditional industry build a lighter, freer business using AI, development, content, and automation?',
+    explores:
+      'From renovation sites to a one-person company. Why I don\'t want to just teach renovation. Compounding is about direction, not speed. The relationship between stability, freedom, and building systems.',
+    relatedEntry: 'Start with: from renovation to one-person company →',
+    slug: 'one-person-company',
+  },
+  {
+    title: 'Judgment & Life',
+    description:
+      'Patterns in how people make decisions — on job sites, in business, and in life. Observations from the field, not from textbooks.',
+    explores:
+      'Why people lose their judgment during renovation. Long-term thinking is not patience. The cost and reward of a low-noise life. Restraint as a form of priority-setting, not sacrifice.',
+    relatedEntry: 'Start with: seeing the world from a job site →',
+    slug: 'judgment',
   },
 ]
 
@@ -57,7 +66,7 @@ export default function EnTopicsPage() {
           </p>
           <h1 className="text-2xl font-semibold text-ink tracking-tight">Explore Topics</h1>
           <p className="text-base text-ink-muted leading-[1.7] mt-4 max-w-2xl">
-            Four areas I write about — each rooted in lived experience rather than abstract
+            Five areas I write about — each rooted in lived experience rather than abstract
             theory.
           </p>
         </Container>

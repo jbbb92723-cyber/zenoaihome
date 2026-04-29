@@ -175,7 +175,7 @@ export default async function ArticlePage({ params }: Props) {
       {/* 按分类显示不同 CTA */}
       <section className="bg-stone-pale/30 border-y border-border py-10">
         <div className="max-w-reading mx-auto px-5 sm:px-8">
-          {article.category === '居住与装修' ? (
+          {article.category === '真实居住' ? (
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 justify-between">
               <div>
                 <p className="text-sm font-medium text-ink">如果你手里已经有报价单，想少走弯路</p>
@@ -186,7 +186,7 @@ export default async function ArticlePage({ params }: Props) {
                 <CTA href="/resources" label="先去资料库看看" variant="ghost" />
               </div>
             </div>
-          ) : article.category === 'AI 与新生产力' ? (
+          ) : article.category === 'AI 实践' || article.category === '工具与产品' ? (
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 justify-between">
               <div>
                 <p className="text-sm font-medium text-ink">如果你想把 AI 真正接进自己的工作流</p>
