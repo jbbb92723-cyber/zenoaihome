@@ -2,6 +2,9 @@ import { redirect } from 'next/navigation'
 import { isAdminUser } from '@/lib/admin'
 import AdminSidebar from '@/components/admin/AdminSidebar'
 
+// 强制所有 admin protected 页面为动态渲染，构建时不预渲染（不访问数据库）
+export const dynamic = 'force-dynamic'
+
 export default async function AdminProtectedLayout({
   children,
 }: {
