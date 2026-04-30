@@ -35,43 +35,53 @@ export type NoteDetail = NoteListItem & {
 
 /** 获取所有公开笔记，按时间降序 */
 export async function getPublicNotes(): Promise<NoteListItem[]> {
-  return prisma.note.findMany({
-    where: { visibility: 'PUBLIC' },
-    select: {
-      id: true,
-      title: true,
-      slug: true,
-      excerpt: true,
-      category: true,
-      tags: true,
-      visibility: true,
-      featured: true,
-      createdAt: true,
-      updatedAt: true,
-    },
-    orderBy: { createdAt: 'desc' },
-  })
+  try {
+    return await prisma.note.findMany({
+      where: { visibility: 'PUBLIC' },
+      select: {
+        id: true,
+        title: true,
+        slug: true,
+        excerpt: true,
+        category: true,
+        tags: true,
+        visibility: true,
+        featured: true,
+        createdAt: true,
+        updatedAt: true,
+      },
+      orderBy: { createdAt: 'desc' },
+    })
+  } catch (err) {
+    console.error('[notes] getPublicNotes error:', err)
+    return []
+  }
 }
 
 /** 获取最新 N 条公开笔记（首页展示用） */
 export async function getLatestPublicNotes(limit = 3): Promise<NoteListItem[]> {
-  return prisma.note.findMany({
-    where: { visibility: 'PUBLIC' },
-    select: {
-      id: true,
-      title: true,
-      slug: true,
-      excerpt: true,
-      category: true,
-      tags: true,
-      visibility: true,
-      featured: true,
-      createdAt: true,
-      updatedAt: true,
-    },
-    orderBy: { createdAt: 'desc' },
-    take: limit,
-  })
+  try {
+    return await prisma.note.findMany({
+      where: { visibility: 'PUBLIC' },
+      select: {
+        id: true,
+        title: true,
+        slug: true,
+        excerpt: true,
+        category: true,
+        tags: true,
+        visibility: true,
+        featured: true,
+        createdAt: true,
+        updatedAt: true,
+      },
+      orderBy: { createdAt: 'desc' },
+      take: limit,
+    })
+  } catch (err) {
+    console.error('[notes] getLatestPublicNotes error:', err)
+    return []
+  }
 }
 
 /**
@@ -80,37 +90,50 @@ export async function getLatestPublicNotes(limit = 3): Promise<NoteListItem[]> {
  * 前台路由据此 404，绝不泄露 PRIVATE/DRAFT 内容。
  */
 export async function getPublicNoteBySlug(slug: string): Promise<NoteDetail | null> {
-  const note = await prisma.note.findUnique({
-    where: { slug },
-  })
-  if (!note || note.visibility !== 'PUBLIC') return null
-  return note
+  try {
+    const note = await prisma.note.findUnique({ where: { slug } })
+    if (!note || note.visibility !== 'PUBLIC') return null
+    return note
+  } catch (err) {
+    console.error('[notes] getPublicNoteBySlug error:', err)
+    return null
+  }
 }
 
 // ─── 后台查询（管理员专用，调用前须验证身份） ────────────────
 
 /** 获取全部笔记（包含 PUBLIC / PRIVATE / DRAFT） */
 export async function getAdminNotes(): Promise<NoteListItem[]> {
-  return prisma.note.findMany({
-    select: {
-      id: true,
-      title: true,
-      slug: true,
-      excerpt: true,
-      category: true,
-      tags: true,
-      visibility: true,
-      featured: true,
-      createdAt: true,
-      updatedAt: true,
-    },
-    orderBy: { createdAt: 'desc' },
-  })
+  try {
+    return await prisma.note.findMany({
+      select: {
+        id: true,
+        title: true,
+        slug: true,
+        excerpt: true,
+        category: true,
+        tags: true,
+        visibility: true,
+        featured: true,
+        createdAt: true,
+        updatedAt: true,
+      },
+      orderBy: { createdAt: 'desc' },
+    })
+  } catch (err) {
+    console.error('[notes] getAdminNotes error:', err)
+    return []
+  }
 }
 
 /** 根据 id 获取笔记详情（后台编辑用） */
 export async function getAdminNoteById(id: string): Promise<NoteDetail | null> {
-  return prisma.note.findUnique({ where: { id } })
+  try {
+    return await prisma.note.findUnique({ where: { id } })
+  } catch (err) {
+    console.error('[notes] getAdminNoteById error:', err)
+    return null
+  }
 }
 
 // ─── 默认分类列表 ─────────────────────────────────────────────

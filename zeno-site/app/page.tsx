@@ -71,6 +71,10 @@ const nowProjects = [
   },
 ]
 
+// 首页包含数据库查询（最近思考模块），必须动态渲染
+// 若设为 static，Vercel 构建时会在构建环境尝试连接数据库，可能因网络限制失败
+export const dynamic = 'force-dynamic'
+
 // 首页需要查询数据库，必须是 async server component
 export default async function HomePage() {
   const recentArticles = featuredSlugs
