@@ -1,8 +1,10 @@
 import Link from 'next/link'
 import ArticleCard from '@/components/ArticleCard'
+import NoteCard from '@/components/NoteCard'
 import Container from '@/components/Container'
 import HeroTagline from '@/components/HeroTagline'
 import { getArticleBySlug } from '@/data/articles'
+import { getLatestPublicNotes } from '@/lib/notes'
 
 // 首页手动推荐文章（覆盖五大板块，按方向编排，不按时间排序）
 // 顺序：一人公司 → 一人公司 → AI 实践 → 一人公司 → 工具与产品 → 真实居住 → 真实居住 → 判断与生活
@@ -69,10 +71,14 @@ const nowProjects = [
   },
 ]
 
-export default function HomePage() {
+// 首页需要查询数据库，必须是 async server component
+export default async function HomePage() {
   const recentArticles = featuredSlugs
     .map((slug) => getArticleBySlug(slug))
     .filter((a): a is NonNullable<typeof a> => Boolean(a))
+
+  // 最近 3 条公开笔记，数据库查询失败时降级为空数组（不影响首页其他内容）
+  const recentNotes = await getLatestPublicNotes(3).catch(() => [])
 
   return (
     <>
@@ -199,6 +205,28 @@ export default function HomePage() {
           </div>
         </Container>
       </section>
+
+      {/* ───── 最近思考 ───── */}
+      {recentNotes.length > 0 && (
+        <section className="py-16 sm:py-20 border-b border-border">
+          <Container size="content">
+            <div className="flex items-end justify-between mb-10">
+              <div>
+                <p className="page-label mb-3">最近思考</p>
+                <h2 className="section-heading">一些还在生长中的判断、方法论和现场笔记</h2>
+              </div>
+              <Link href="/notes" className="text-sm text-stone hover:underline underline-offset-2 shrink-0 ml-4 pb-1">
+                全部 →
+              </Link>
+            </div>
+            <div>
+              {recentNotes.map((note) => (
+                <NoteCard key={note.id} note={note} />
+              ))}
+            </div>
+          </Container>
+        </section>
+      )}
 
       {/* ───── 为什么认真用 AI ───── */}
       <section className="py-16 sm:py-20 border-b border-border">
