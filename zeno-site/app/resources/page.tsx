@@ -22,9 +22,9 @@ import SectionHeader from '@/components/SectionHeader'
 import CTA from '@/components/CTA'
 
 export const metadata: Metadata = {
-  title: '工具与资料库',
+  title: '装修判断工具库 — 按你的装修阶段，找到对的工具',
   description:
-    '资料库不是下载站，而是 Zeno 把经验产品化的第一批资产。从预算表、报价清单，到提示词、工作流和在线工具，这里会逐步沉淀可复用的内容产品。',
+    '不是下载站，是帮你做出更清醒装修决策的判断工具库。按装修前判断、装修中落地、真实居住选择、AI 辅助四个阶段组织，每个工具都解决一个具体问题。',
 }
 
 const tagColors: Record<string, string> = {
@@ -32,37 +32,6 @@ const tagColors: Record<string, string> = {
   居住: 'bg-stone-pale/60 text-stone border border-stone/20',
   AI:   'bg-[#EAE8F0] text-[#5B4E8A] border border-[#5B4E8A]/20',
 }
-
-const lowTierProducts = [
-  {
-    title: '装修报价避坑完整指南',
-    desc: '签合同前的对照检查 PDF。覆盖报价漏项、模糊描述、增项陷阱、合同条款、水电报价六张核心检查表。',
-    href: '/pricing/baojia-guide',
-    price: '¥39',
-    ready: true,
-  },
-  {
-    title: 'AI 内容工作流提示词包 Pro',
-    desc: '从选题、写作、排版到多平台分发，一套完整的 AI 辅助内容生产系统提示词。',
-    href: '#',
-    price: '即将定价',
-    ready: false,
-  },
-  {
-    title: '传统行业 AI 内容系统模板',
-    desc: '帮传统行业从业者搭建自己的内容生产系统，从 0 到持续输出。',
-    href: '#',
-    price: '即将定价',
-    ready: false,
-  },
-  {
-    title: '一人公司启动清单',
-    desc: '从定位、内容、工具、服务到变现，一个人启动事业的完整检查清单。',
-    href: '#',
-    price: '即将定价',
-    ready: false,
-  },
-]
 
 const serviceEntries = [
   {
@@ -88,66 +57,51 @@ export default async function ResourcesPage() {
   return (
     <>
       <PageHero
-        label="工具与资料"
-        title="把经验产品化的第一批资产"
-        subtitle="资料库不是下载站，而是 Zeno 把经验产品化的第一批资产。从预算表、报价清单，到提示词、工作流和在线工具，这里会逐步沉淀可复用的内容产品。"
+        label="判断工具库"
+        title="签合同前，先帮自己做一次风险体检"
+        subtitle="按你的装修阶段，找到对应的判断工具。每一个都来自 16 年一线经验，不是拼凑内容。"
         size="content"
       />
 
       <Container size="content" className="py-section">
 
-        {/* 路径示意 */}
-        <div className="mb-12 border-l-2 border-stone-light pl-4">
-          <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-2">
-            使用顺序
-          </p>
-          <p className="text-sm text-ink-muted leading-relaxed">
-            免费工具 / 资料 → 低价数字产品 → 一对一服务。
-            建议先用免费的建立判断，再决定是否需要更深入的合作。
-          </p>
+        {/* 阶段导航 */}
+        <div className="mb-12 flex flex-wrap gap-3">
+          <a href="#zhuangxiu-qian" className="text-xs font-medium text-stone border border-stone/30 px-3 py-1.5 hover:bg-stone-pale transition-colors">① 装修前判断</a>
+          <a href="#zhuangxiu-zhong" className="text-xs font-medium text-stone border border-stone/30 px-3 py-1.5 hover:bg-stone-pale transition-colors">② 装修中落地</a>
+          <a href="#zhenshi-juzhu" className="text-xs font-medium text-stone border border-stone/30 px-3 py-1.5 hover:bg-stone-pale transition-colors">③ 真实居住选择</a>
+          <a href="#ai-fuzhu" className="text-xs font-medium text-stone border border-stone/30 px-3 py-1.5 hover:bg-stone-pale transition-colors">④ AI 辅助装修</a>
         </div>
 
-        {/* ───── 第一层：免费工具 ───── */}
-        <section className="mb-16">
+        {/* ───── 阶段一：装修前判断 ───── */}
+        <section id="zhuangxiu-qian" className="mb-16 scroll-mt-20">
           <SectionHeader
-            label="第一层"
-            title="免费工具"
-            subtitle="即开即用，不需要登录。每一个工具都在解决一个具体问题。"
+            label="阶段一"
+            title="装修前判断 — 签合同之前的风险排查"
+            subtitle="预算怎么定、报价单怎么看、合同怎么签——在花钱之前，先把判断力建立起来。"
           />
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <Link
-              href="/tools/prompts"
+              href="/pricing/baojia-guide"
               className="group sm:col-span-2 border border-stone/30 bg-stone/5 p-6 sm:p-7 hover:bg-stone/10 transition-colors"
             >
               <div className="flex items-start justify-between gap-4">
                 <div>
-                  <p className="text-[0.65rem] font-semibold uppercase tracking-widest text-stone mb-2">核心推荐</p>
+                  <p className="text-[0.65rem] font-semibold uppercase tracking-widest text-stone mb-2">核心推荐 · 最多人领取</p>
                   <p className="text-base font-semibold text-ink group-hover:text-stone transition-colors">
-                    AI 提示词体验场
+                    《装修报价避坑完整指南》
                   </p>
                   <p className="text-sm text-ink-muted mt-2 leading-relaxed max-w-lg">
-                    选场景、填情况、一键生成可直接用的提示词。覆盖写作、装修沟通、报价分析、选题、AI 升级。不需要懂 AI，只需要知道你要解决什么问题。
+                    覆盖报价漏项、模糊描述、增项陷阱、合同条款、水电报价六张核心检查表。签合同之前看一遍，可能帮你省下几万块。
                   </p>
+                  <p className="text-xs text-stone font-medium mt-3">¥39 · 立即查看 →</p>
                 </div>
                 <span className="text-stone text-xl shrink-0 mt-1 group-hover:translate-x-1 transition-transform">→</span>
               </div>
             </Link>
 
-            <Link
-              href="/tools/md2wechat"
-              className="group border border-border bg-surface p-5 sm:p-6 card-hover"
-            >
-              <p className="text-sm font-semibold text-ink group-hover:text-stone transition-colors">
-                Markdown 微信排版工具
-              </p>
-              <p className="text-xs text-ink-muted mt-1.5 leading-relaxed">
-                把 Markdown 文稿一键转成微信公众号排版，可直接复制 HTML 粘贴到公众号后台。
-              </p>
-              <p className="text-xs text-stone mt-3">立即使用 →</p>
-            </Link>
-
-            <div className="border border-border bg-surface p-5 sm:p-6 opacity-75">
+            <div className="border border-border bg-surface p-5 sm:p-6">
               <div className="flex items-center gap-2 mb-1.5">
                 <p className="text-sm font-semibold text-ink">装修预算风险自测</p>
                 <span className="text-[0.65rem] text-stone border border-stone/30 px-2 py-0.5 uppercase tracking-wider">即将开放</span>
@@ -155,26 +109,55 @@ export default async function ResourcesPage() {
               <p className="text-xs text-ink-muted leading-relaxed">
                 回答几个问题，快速判断你的装修预算是否存在超支风险。
               </p>
+              <p className="text-xs text-ink-faint mt-2">免费</p>
             </div>
 
-            <div className="border border-border bg-surface p-5 sm:p-6 opacity-75">
+            <div className="border border-border bg-surface p-5 sm:p-6">
               <div className="flex items-center gap-2 mb-1.5">
-                <p className="text-sm font-semibold text-ink">报价单风险自查</p>
+                <p className="text-sm font-semibold text-ink">报价单风险自查清单</p>
                 <span className="text-[0.65rem] text-stone border border-stone/30 px-2 py-0.5 uppercase tracking-wider">即将开放</span>
               </div>
               <p className="text-xs text-ink-muted leading-relaxed">
-                对照清单检查你的装修报价单，发现常见模糊项和风险项。
+                对照清单检查报价单，发现常见模糊项和风险项。
               </p>
+              <p className="text-xs text-ink-faint mt-2">免费</p>
             </div>
           </div>
         </section>
 
-        {/* ───── 第二层：免费资料 ───── */}
-        <section className="mb-16">
+        {/* ───── 阶段二：装修中落地 ───── */}
+        <section id="zhuangxiu-zhong" className="mb-16 scroll-mt-20">
           <SectionHeader
-            label="第二层"
-            title="免费资料"
-            subtitle="关注公众号「Zeno AI装修笔记」回复对应关键词领取。真实经验整理，不是拼凑内容。"
+            label="阶段二"
+            title="装修中落地 — 施工过程的质量保障"
+            subtitle="工地开工之后，用这些工具确保关键节点不出问题。"
+          />
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="border border-border bg-surface p-5 sm:p-6">
+              <p className="text-sm font-semibold text-ink">装修验收清单</p>
+              <p className="text-xs text-ink-muted mt-1.5 leading-relaxed">
+                从水电隐蔽工程到竣工交付，每个施工节点的验收要点。
+              </p>
+              <p className="text-xs text-ink-faint mt-2">公众号回复「验收」领取</p>
+            </div>
+
+            <div className="border border-border bg-surface p-5 sm:p-6">
+              <p className="text-sm font-semibold text-ink">装修预算模板</p>
+              <p className="text-xs text-ink-muted mt-1.5 leading-relaxed">
+                把"感觉花钱"变成"有结构地花钱"。帮你按分类控制每一笔支出。
+              </p>
+              <p className="text-xs text-ink-faint mt-2">公众号回复「预算」领取</p>
+            </div>
+          </div>
+        </section>
+
+        {/* ───── 阶段三：真实居住选择 ───── */}
+        <section id="zhenshi-juzhu" className="mb-16 scroll-mt-20">
+          <SectionHeader
+            label="阶段三"
+            title="真实居住选择 — 住进去之后的判断"
+            subtitle="装修不是终点，住得舒服才是。这些资料帮你做出更适合真实生活的选择。"
           />
 
           <div className="space-y-8">
@@ -262,58 +245,64 @@ export default async function ResourcesPage() {
           </div>
         </section>
 
-        {/* ───── 第三层：低价产品（即将开放） ───── */}
-        <section className="mb-16">
+        {/* ───── 阶段四：AI 辅助装修 ───── */}
+        <section id="ai-fuzhu" className="mb-16 scroll-mt-20">
           <SectionHeader
-            label="第三层"
-            title="低价产品｜即将开放"
-            subtitle="把深度经验打包成可直接使用的工具包和系统模板。每一份都经过实战验证。"
+            label="阶段四"
+            title="AI 辅助装修 — 让 AI 帮你做判断"
+            subtitle="不需要懂 AI，只需要知道你要解决什么问题。提示词帮你分析报价、生成沟通话术、整理选材方案。"
           />
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {lowTierProducts.map((p) =>
-              p.ready ? (
-                <Link
-                  key={p.title}
-                  href={p.href}
-                  className="group border border-stone/30 bg-stone/5 p-5 hover:bg-stone/10 transition-colors block"
-                >
-                  <div className="flex items-center gap-2 mb-1.5 flex-wrap">
-                    <p className="text-sm font-semibold text-ink group-hover:text-stone transition-colors">
-                      {p.title}
-                    </p>
-                    <span className="text-[0.65rem] text-stone border border-stone/30 px-2 py-0.5 uppercase tracking-wider">
-                      预告页
-                    </span>
-                  </div>
-                  <p className="text-xs text-ink-muted leading-relaxed mb-2">{p.desc}</p>
-                  <p className="text-xs text-stone font-medium">{p.price}</p>
-                </Link>
-              ) : (
-                <div
-                  key={p.title}
-                  className="border border-border bg-surface p-5 opacity-75 block"
-                >
-                  <div className="flex items-center gap-2 mb-1.5 flex-wrap">
-                    <p className="text-sm font-semibold text-ink">{p.title}</p>
-                    <span className="text-[0.65rem] text-stone border border-stone/30 px-2 py-0.5 uppercase tracking-wider">
-                      即将开放
-                    </span>
-                  </div>
-                  <p className="text-xs text-ink-muted leading-relaxed mb-2">{p.desc}</p>
-                  <p className="text-xs text-ink-faint">{p.price}</p>
+            <Link
+              href="/tools/prompts"
+              className="group sm:col-span-2 border border-stone/30 bg-stone/5 p-6 sm:p-7 hover:bg-stone/10 transition-colors"
+            >
+              <div className="flex items-start justify-between gap-4">
+                <div>
+                  <p className="text-[0.65rem] font-semibold uppercase tracking-widest text-stone mb-2">核心推荐</p>
+                  <p className="text-base font-semibold text-ink group-hover:text-stone transition-colors">
+                    AI 提示词体验场
+                  </p>
+                  <p className="text-sm text-ink-muted mt-2 leading-relaxed max-w-lg">
+                    选场景、填情况、一键生成可直接用的提示词。覆盖报价分析、施工沟通、选材方案、装修预算——不需要懂 AI，只需要知道你要解决什么问题。
+                  </p>
                 </div>
-              )
-            )}
+                <span className="text-stone text-xl shrink-0 mt-1 group-hover:translate-x-1 transition-transform">→</span>
+              </div>
+            </Link>
+
+            <Link
+              href="/tools/md2wechat"
+              className="group border border-border bg-surface p-5 sm:p-6 card-hover"
+            >
+              <p className="text-sm font-semibold text-ink group-hover:text-stone transition-colors">
+                Markdown 微信排版工具
+              </p>
+              <p className="text-xs text-ink-muted mt-1.5 leading-relaxed">
+                把 Markdown 文稿一键转成微信公众号排版，可直接复制粘贴。
+              </p>
+              <p className="text-xs text-stone mt-3">立即使用 →</p>
+            </Link>
+
+            <div className="border border-border bg-surface p-5 sm:p-6">
+              <div className="flex items-center gap-2 mb-1.5">
+                <p className="text-sm font-semibold text-ink">AI 内容工作流提示词包 Pro</p>
+                <span className="text-[0.65rem] text-stone border border-stone/30 px-2 py-0.5 uppercase tracking-wider">即将定价</span>
+              </div>
+              <p className="text-xs text-ink-muted leading-relaxed">
+                从选题、写作、排版到多平台分发，一套完整的 AI 辅助内容生产系统提示词。
+              </p>
+            </div>
           </div>
         </section>
 
-        {/* ───── 第四层：服务入口 ───── */}
+        {/* ───── 需要更深入帮助？ ───── */}
         <section className="mb-12">
           <SectionHeader
-            label="第四层"
-            title="服务入口"
-            subtitle="资料和工具不够时，可以直接和我合作。真人判断，不是模板回复。"
+            label="需要更深入的帮助"
+            title="工具不够时，可以直接找我"
+            subtitle="先用免费工具建立判断，再决定是否需要更深入的合作。"
           />
 
           <div className="space-y-3">
@@ -334,13 +323,15 @@ export default async function ResourcesPage() {
         </section>
 
         {/* 底部 CTA */}
-        <div className="pt-8 border-t border-border flex flex-wrap gap-3">
-          <p className="w-full text-sm text-ink-muted mb-2">
-            资料是辅助，不替代你的现场判断。先用一遍，再回来看对应文章，会更有感觉。
+        <div className="pt-8 border-t border-border">
+          <p className="text-sm text-ink-muted mb-4">
+            工具是辅助，不替代你的现场判断。先用一遍，再回来看对应文章，会更有感觉。
           </p>
-          <CTA href="/services" label="查看服务" variant="secondary" />
-          <CTA href="/blog" label="看文章" variant="ghost" />
-          <CTA href="/topics" label="看专题" variant="ghost" />
+          <div className="flex flex-wrap gap-3">
+            <CTA href="/pricing/baojia-guide" label="领取报价避坑指南" variant="primary" />
+            <CTA href="/services" label="查看服务" variant="secondary" />
+            <CTA href="/blog" label="看文章" variant="ghost" />
+          </div>
         </div>
 
       </Container>

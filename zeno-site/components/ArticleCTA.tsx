@@ -15,48 +15,48 @@ type CTAConfig = {
 
 const ctaByCategory: Record<string, CTAConfig> = {
   真实居住: {
-    title: '装修前，先看懂预算和报价',
+    title: '签合同前，先看懂你的报价单',
     description:
-      '如果你正在准备装修，先从预算、报价和合同风险开始，把最容易失控的地方看清楚。',
+      '装修最容易踩坑的地方，不是选错材料，而是报价单里藏的模糊项和增项陷阱。用检查表逐项对照，10 分钟可能帮你省下几万块。',
     buttons: [
-      { label: '领取报价审核清单', href: '/resources', variant: 'primary' },
-      { label: '查看报价诊断服务', href: '/services', variant: 'secondary' },
+      { label: '领取《报价避坑指南》', href: '/pricing/baojia-guide', variant: 'primary' },
+      { label: '下载报价审核清单', href: '/resources#zhuangxiu-qian', variant: 'secondary' },
     ],
   },
   'AI 实践': {
-    title: '把 AI 接进真实工作流',
+    title: '用 AI 帮你做装修判断',
     description:
-      '我会持续整理自己正在使用的 AI 提示词、内容流程和工具实践。',
+      'AI 提示词包覆盖报价分析、施工沟通、选材方案生成——不需要懂 AI，只需要知道你要解决什么问题。',
     buttons: [
-      { label: '体验 AI 提示词场', href: '/resources', variant: 'primary' },
-      { label: '查看 AI 工作流咨询', href: '/services', variant: 'secondary' },
+      { label: '免费体验 AI 提示词包', href: '/tools/prompts', variant: 'primary' },
+      { label: '查看 AI 工作流服务', href: '/services#ai-neirong-xitong-zixun', variant: 'secondary' },
     ],
   },
   工具与产品: {
-    title: '把经验变成可复用工具',
+    title: '装修判断工具，免费用',
     description:
-      '这里会逐步沉淀模板、清单、提示词和数字产品，不只是文章。',
+      '预算模板、报价清单、验收清单、AI 提示词——把判断力变成可操作的工具。',
     buttons: [
       { label: '进入工具与资料库', href: '/resources', variant: 'primary' },
-      { label: '查看服务与合作', href: '/services', variant: 'secondary' },
+      { label: '查看报价避坑指南', href: '/pricing/baojia-guide', variant: 'secondary' },
     ],
   },
   一人公司: {
-    title: '从重交付，走向轻系统',
+    title: '想了解 Zeno 怎么做一人公司？',
     description:
-      '我正在记录如何用网站、内容、AI、产品和自动化，搭建更自由的个人事业系统。',
+      '从装修现场到线上系统，记录一个传统行业人如何用 AI、内容和产品化摆脱重交付。',
     buttons: [
-      { label: '查看服务与合作', href: '/services', variant: 'primary' },
-      { label: '了解 Zeno', href: '/about', variant: 'secondary' },
+      { label: '了解 Zeno', href: '/about', variant: 'primary' },
+      { label: '查看服务与合作', href: '/services', variant: 'secondary' },
     ],
   },
   判断与生活: {
-    title: '在复杂现实里，保持清醒判断',
+    title: '装修前，先建立判断力',
     description:
-      '这些文章不急着成交，它们记录的是判断力、克制、长期选择和真实生活。',
+      '看懂报价、控住预算、识别风险——这些判断力比选哪个品牌的瓷砖重要一百倍。',
     buttons: [
-      { label: '了解 Zeno', href: '/about', variant: 'primary' },
-      { label: '进入文章列表', href: '/blog', variant: 'secondary' },
+      { label: '领取《报价避坑指南》', href: '/pricing/baojia-guide', variant: 'primary' },
+      { label: '预算风险自测', href: '/resources#zhuangxiu-qian', variant: 'secondary' },
     ],
   },
 }

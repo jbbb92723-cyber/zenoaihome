@@ -62,13 +62,24 @@ export default function ServicesPage() {
   return (
     <>
       <PageHero
-        label="服务与合作"
-        title="不是卖套餐，是帮你做更清醒的判断。"
-        subtitle="无论是 AI 工作流落地、内容系统搭建，还是装修决策，我更关心的是：信息是否透明，判断是否清楚，长期是否值得。"
+        label="服务"
+        title="工具不够用时，可以找我。"
+        subtitle="你可能已经用过报价清单、预算模板或 AI 提示词包。如果判断还不够清晰，或者需要针对你具体情况的分析，这里是下一步。"
         size="content"
       />
 
       <Container size="content" className="py-section">
+
+        {/* 信任承接 */}
+        <div className="mb-12 border border-border bg-surface-warm p-6 sm:p-8">
+          <p className="text-sm text-ink leading-relaxed mb-2">
+            <strong>服务不是起点，是你用完工具之后的选择。</strong>
+          </p>
+          <p className="text-sm text-ink-muted leading-relaxed">
+            我的服务分四层：轻咨询（一次对话帮你做判断）→ 深度顾问（持续陪跑）→ 本地装修（限南宁）→ AI 工作流（帮你落地）。
+            先用免费工具建立判断，再决定是否需要更深入的合作。
+          </p>
+        </div>
 
         {/* ───── A. 轻交付咨询 ───── */}
         <div className="mb-6">
@@ -338,12 +349,12 @@ export default function ServicesPage() {
 
         <div className="mt-6 border border-border bg-surface-warm p-6 sm:p-8 flex flex-col sm:flex-row items-start sm:items-center gap-5 justify-between">
           <div>
-            <p className="text-sm font-medium text-ink">还没想好？先从免费工具和资料开始。</p>
+            <p className="text-sm font-medium text-ink">还没想好？先从判断工具开始。</p>
             <p className="text-xs text-ink-muted mt-1 max-w-md">
-              装修预算模板、报价审核清单、AI 提示词体验场都可以免费使用。先建立判断，再决定是否需要服务。
+              报价避坑指南、预算风险自测、报价审核清单都可以免费使用。先建立判断，再决定是否需要服务。
             </p>
           </div>
-          <CTA href="/resources" label="去工具与资料库" variant="secondary" />
+          <CTA href="/pricing/baojia-guide" label="领取报价避坑指南" variant="primary" />
         </div>
 
         {/* 关联内容入口 */}

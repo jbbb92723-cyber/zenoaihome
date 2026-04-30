@@ -96,74 +96,62 @@ export default async function HomePage() {
 
   return (
     <>
-      {/* ───── Hero：战略定位表达 ───── */}
+      {/* ───── Hero：价值主张 + 转化入口 ───── */}
       <section className="py-14 sm:py-20 border-b border-border">
         <Container size="content">
           <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-8 md:gap-12">
-            {/* 左侧：核心叙事 */}
+            {/* 左侧：用户价值主张 */}
             <div className="flex-1 max-w-xl">
-              <p className="text-[0.7rem] font-semibold tracking-[0.1em] uppercase text-stone mb-5">Zeno · 赞诺</p>
+              <p className="text-[0.7rem] font-semibold tracking-[0.1em] uppercase text-stone mb-5">Zeno · 赞诺 — 16 年装修一线经验</p>
               <h1 className="text-[1.625rem] sm:text-[1.875rem] md:text-[2.25rem] font-semibold leading-[1.3] tracking-[-0.02em] text-ink mb-5">
-                从熟悉的行业出发，<br />
-                用 AI、产品和内容，搭建更自由的个人事业系统。
+                帮你看懂报价、预算、材料和工地，<br />
+                做出更清醒的装修决策。
               </h1>
               <p className="text-[0.9375rem] text-ink-muted leading-[1.85] mb-3">
-                装修是我进入 AI 时代的现实入口。
-                我正在把一线经验、内容创作、工具开发和数字产品，逐步沉淀成可复用、可交易、可持续的个人资产。
+                装修市场信息不透明，报价单陷阱多，预算容易失控。
+                我把 16 年审报价、盯工地、处理预算超支的经验，整理成你签合同前就能用的判断工具。
               </p>
               <p className="text-sm text-ink-muted/80 leading-relaxed mb-3">
-                不追概念，不做空谈。先从真实问题开始，把经验变成工具，把内容变成资产，把服务变成系统。
+                不是装修公司，不卖建材，不赚你一分差价。只提供判断力。
               </p>
               <p className="text-sm text-stone/80 italic mb-8 h-6">
                 <HeroTagline />
               </p>
               <div className="flex flex-wrap gap-3 items-center">
                 <Link
-                  href="#now"
+                  href="/pricing/baojia-guide"
                   className="text-sm font-medium text-paper bg-stone px-5 py-2.5 hover:bg-stone/85 transition-colors"
                 >
-                  看我正在做什么
+                  领取《报价避坑指南》
                 </Link>
                 <Link
-                  href="/resources"
+                  href="/resources#zhuangxiu-qian"
                   className="text-sm font-medium text-stone border border-stone/40 px-5 py-2.5 hover:bg-stone-pale transition-colors"
                 >
-                  进入工具与资料库
+                  预算风险自测
                 </Link>
               </div>
             </div>
 
-            {/* 右侧：人格化信息卡片 */}
-            <div className="shrink-0 w-full md:w-[260px] border border-border bg-surface p-6">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-12 h-12 bg-stone-pale flex items-center justify-center text-stone font-semibold text-lg">
-                  Z
+            {/* 右侧：信任凭证卡片 */}
+            <div className="shrink-0 w-full md:w-[280px] border border-border bg-surface p-6">
+              <p className="text-[0.65rem] font-semibold uppercase tracking-widest text-stone mb-4">为什么相信 Zeno</p>
+              <div className="space-y-3 mb-4">
+                <div className="flex items-center gap-3 bg-surface-warm px-4 py-3">
+                  <p className="text-xl font-semibold text-stone shrink-0">16年</p>
+                  <p className="text-xs text-ink-muted">装修全流程实战，审过上千份报价单</p>
                 </div>
-                <div>
-                  <p className="text-sm font-semibold text-ink">Zeno · 赞诺</p>
-                  <p className="text-xs text-ink-muted">现实派生活建造者</p>
+                <div className="flex items-center gap-3 bg-surface-warm px-4 py-3">
+                  <p className="text-xl font-semibold text-stone shrink-0">真实</p>
+                  <p className="text-xs text-ink-muted">不编案例，不造数据，只说自己验证过的</p>
                 </div>
-              </div>
-              <div className="grid grid-cols-2 gap-3 mb-4">
-                <div className="bg-surface-warm px-3 py-2">
-                  <p className="text-lg font-semibold text-stone">16</p>
-                  <p className="text-[0.65rem] text-ink-muted">年行业经验</p>
-                </div>
-                <div className="bg-surface-warm px-3 py-2">
-                  <p className="text-lg font-semibold text-stone">30+</p>
-                  <p className="text-[0.65rem] text-ink-muted">篇深度文章</p>
-                </div>
-                <div className="bg-surface-warm px-3 py-2">
-                  <p className="text-lg font-semibold text-stone">5</p>
-                  <p className="text-[0.65rem] text-ink-muted">大内容板块</p>
-                </div>
-                <div className="bg-surface-warm px-3 py-2">
-                  <p className="text-lg font-semibold text-stone">∞</p>
-                  <p className="text-[0.65rem] text-ink-muted">长期主义</p>
+                <div className="flex items-center gap-3 bg-surface-warm px-4 py-3">
+                  <p className="text-xl font-semibold text-stone shrink-0">AI+</p>
+                  <p className="text-xs text-ink-muted">用 AI 系统化经验，让判断更准更快</p>
                 </div>
               </div>
               <p className="text-xs text-ink-muted leading-relaxed">
-                从工地和客户沟通中走出来，现在用 AI 和产品化能力，把经验做成可复用的资产。
+                从工地走出来的人，帮你少踩一些本可避免的坑。
               </p>
             </div>
           </div>
@@ -373,32 +361,86 @@ export default async function HomePage() {
         </Container>
       </section>
 
-      {/* ───── 工具与资料入口 ───── */}
+      {/* ───── 装修判断工具（转化中枢入口） ───── */}
       <section className="py-16 sm:py-20 border-b border-border">
         <Container size="content">
           <SectionHeader
-            label="工具与资料"
-            title="把经验产品化的第一批资产"
-            subtitle="我只放自己用过或验证过的内容。每一个工具都在解决一个具体问题。"
+            label="判断工具"
+            title="签合同前，先用这些帮自己做一次体检"
+            subtitle="每一个工具都针对装修过程中最容易踩坑、最容易花冤枉钱的环节。"
           />
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            {[
-              { label: '装修预算模板', desc: '把"感觉花钱"变成"有结构地花钱"', icon: '📊' },
-              { label: '报价审核清单', desc: '识别报价单里的常见模糊项和风险项', icon: '✓' },
-              { label: 'AI 内容工作流提示词包', desc: '先建立方法，再让工具放大效率', icon: '⚡' },
-            ].map((item) => (
-              <Link
-                key={item.label}
-                href="/resources"
-                className="group border border-border bg-surface p-5 card-hover"
-              >
-                <div className="text-2xl mb-3 opacity-60">{item.icon}</div>
-                <p className="text-sm font-semibold text-ink group-hover:text-stone transition-colors">
-                  {item.label}
-                </p>
-                <p className="text-xs text-ink-muted mt-1.5 leading-relaxed">{item.desc}</p>
-              </Link>
-            ))}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {/* 明星产品：报价避坑指南 */}
+            <Link
+              href="/pricing/baojia-guide"
+              className="group sm:col-span-2 border border-stone/30 bg-stone/5 p-7 sm:p-9 hover:bg-stone/10 transition-colors"
+            >
+              <div className="flex items-start justify-between gap-4">
+                <div>
+                  <p className="text-[0.65rem] font-semibold uppercase tracking-widest text-stone mb-2">核心推荐 · 最多人领取</p>
+                  <p className="text-lg font-semibold text-ink group-hover:text-stone transition-colors">
+                    《装修报价避坑完整指南》
+                  </p>
+                  <p className="text-sm text-ink-muted mt-2 leading-relaxed max-w-lg">
+                    覆盖报价漏项、模糊描述、增项陷阱、合同条款、水电报价六张核心检查表。
+                    签合同之前看一遍，可能帮你省下几万块。
+                  </p>
+                </div>
+                <span className="text-stone text-xl shrink-0 mt-1 group-hover:translate-x-1 transition-transform">→</span>
+              </div>
+            </Link>
+
+            <Link
+              href="/resources#zhuangxiu-qian"
+              className="group border border-border bg-surface p-5 sm:p-6 card-hover"
+            >
+              <p className="text-sm font-semibold text-ink group-hover:text-stone transition-colors">
+                📊 装修预算风险自测
+              </p>
+              <p className="text-xs text-ink-muted mt-1.5 leading-relaxed">
+                回答几个问题，快速判断预算是否存在超支风险。
+              </p>
+              <p className="text-xs text-stone mt-3">开始测试 →</p>
+            </Link>
+
+            <Link
+              href="/resources#zhuangxiu-qian"
+              className="group border border-border bg-surface p-5 sm:p-6 card-hover"
+            >
+              <p className="text-sm font-semibold text-ink group-hover:text-stone transition-colors">
+                ✓ 报价单审核清单
+              </p>
+              <p className="text-xs text-ink-muted mt-1.5 leading-relaxed">
+                逐项检查报价单，发现常见模糊项和风险项。
+              </p>
+              <p className="text-xs text-stone mt-3">免费下载 →</p>
+            </Link>
+
+            <Link
+              href="/resources#zhuangxiu-zhong"
+              className="group border border-border bg-surface p-5 sm:p-6 card-hover"
+            >
+              <p className="text-sm font-semibold text-ink group-hover:text-stone transition-colors">
+                📋 装修验收清单
+              </p>
+              <p className="text-xs text-ink-muted mt-1.5 leading-relaxed">
+                从水电隐蔽工程到竣工交付，每个节点逐项验收。
+              </p>
+              <p className="text-xs text-stone mt-3">免费下载 →</p>
+            </Link>
+
+            <Link
+              href="/tools/prompts"
+              className="group border border-border bg-surface p-5 sm:p-6 card-hover"
+            >
+              <p className="text-sm font-semibold text-ink group-hover:text-stone transition-colors">
+                ⚡ AI 装修提示词包
+              </p>
+              <p className="text-xs text-ink-muted mt-1.5 leading-relaxed">
+                用 AI 分析报价单、生成施工沟通话术、整理选材方案。
+              </p>
+              <p className="text-xs text-stone mt-3">免费体验 →</p>
+            </Link>
           </div>
           <div className="mt-6">
             <Link href="/resources" className="text-sm text-stone hover:underline underline-offset-2">
@@ -446,14 +488,14 @@ export default async function HomePage() {
         </Container>
       </section>
 
-      {/* ───── 底部问题收集 CTA ───── */}
+      {/* ───── 底部转化 CTA ───── */}
       <CTASection
-        title="你现在最困惑的一个问题是什么？"
-        description="无论是装修决策、AI 工具选择，还是一人公司的起步，欢迎告诉我。真实的问题会变成未来的内容。"
+        title="装修前最该做的一件事：看懂你的报价单"
+        description="签合同之前，花 10 分钟对照检查表过一遍报价单。这可能是整个装修过程中性价比最高的 10 分钟。"
         actions={[
-          { label: '联系 Zeno', href: '/contact', variant: 'primary' },
-          { label: '看服务与合作', href: '/services', variant: 'secondary' },
-          { label: '先看文章', href: '/blog', variant: 'ghost' },
+          { label: '领取报价避坑指南', href: '/pricing/baojia-guide', variant: 'primary' },
+          { label: '预算风险自测', href: '/resources#zhuangxiu-qian', variant: 'secondary' },
+          { label: '了解服务', href: '/services', variant: 'ghost' },
         ]}
         bg="warm"
       />
