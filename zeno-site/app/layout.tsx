@@ -5,6 +5,8 @@ import { ThemeProvider } from '@/components/ThemeProvider'
 import { SessionProvider } from 'next-auth/react'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
+import SearchDialog from '@/components/SearchDialog'
+import AIChatWidget from '@/components/AIChatWidget'
 import '@/styles/globals.css'
 
 const inter = Inter({
@@ -69,6 +71,8 @@ export default function RootLayout({
             <Header />
             <main className="min-h-[calc(100vh-56px)]">{children}</main>
             <Footer />
+            <SearchDialog />
+            <AIChatWidget />
           </ThemeProvider>
         </SessionProvider>
         <Analytics />

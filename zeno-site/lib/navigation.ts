@@ -46,7 +46,7 @@ export const mainNav: NavItem[] = [
   {
     key: 'notes',
     zh: { label: '札记', href: '/notes' },
-    en: { label: 'Notes', href: '/notes' },
+    en: { label: 'Notes', href: '/en/notes' },
   },
   {
     key: 'about',
@@ -72,7 +72,7 @@ const CN_TO_EN: Record<string, string> = {
   '/resources':  '/en/resources',
   '/services':   '/en/services',
   '/contact':    '/en/about',
-  '/notes':      '/notes',
+  '/notes':      '/en/notes',
   '/login':      '/en/login',
   '/register':   '/en/register',
 }
@@ -84,6 +84,7 @@ const EN_TO_CN: Record<string, string> = {
   '/en/topics':     '/topics',
   '/en/resources':  '/resources',
   '/en/services':   '/services',
+  '/en/notes':      '/notes',
   '/en/login':      '/login',
   '/en/register':   '/register',
 }
