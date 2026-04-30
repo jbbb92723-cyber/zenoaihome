@@ -17,11 +17,13 @@ export const dynamic = 'force-dynamic'
 export default async function NotesPage({
   searchParams,
 }: {
-  searchParams: { category?: string }
+  // Next.js 15: searchParams 是 Promise，必须 await
+  searchParams: Promise<{ category?: string }>
 }) {
+  const { category } = await searchParams
   const notes = await getPublicNotes()
 
-  const activeCategory = searchParams.category ?? '全部'
+  const activeCategory = category ?? '全部'
   const filtered =
     activeCategory === '全部'
       ? notes

@@ -9,11 +9,13 @@ export const metadata: Metadata = { title: '编辑笔记 · Admin' }
 export const dynamic = 'force-dynamic'
 
 interface Props {
-  params: { id: string }
+  // Next.js 15: params 是 Promise，必须 await
+  params: Promise<{ id: string }>
 }
 
 export default async function AdminNoteEditPage({ params }: Props) {
-  const note = await getAdminNoteById(params.id)
+  const { id } = await params
+  const note = await getAdminNoteById(id)
   if (!note) notFound()
 
   return (

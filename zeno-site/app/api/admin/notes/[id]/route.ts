@@ -12,7 +12,8 @@ import type { NoteVisibility } from '@prisma/client'
 export const dynamic = 'force-dynamic'
 
 interface Ctx {
-  params: { id: string }
+  // Next.js 15: route handler params 是 Promise，必须 await
+  params: Promise<{ id: string }>
 }
 
 // ─── GET /api/admin/notes/[id] ───────────────────────────────
@@ -21,7 +22,8 @@ export async function GET(_req: Request, { params }: Ctx) {
     return NextResponse.json({ error: '未授权' }, { status: 401 })
   }
 
-  const note = await prisma.note.findUnique({ where: { id: params.id } })
+  const { id } = await params
+  const note = await prisma.note.findUnique({ where: { id } })
   if (!note) return NextResponse.json({ error: '笔记不存在' }, { status: 404 })
 
   return NextResponse.json(note)
@@ -45,9 +47,10 @@ export async function PUT(req: Request, { params }: Ctx) {
   const validVisibilities: NoteVisibility[] = ['PUBLIC', 'PRIVATE', 'DRAFT']
   const vis: NoteVisibility = validVisibilities.includes(visibility) ? visibility : 'DRAFT'
 
+  const { id } = await params
   try {
     const note = await prisma.note.update({
-      where: { id: params.id },
+      where: { id },
       data: {
         title: String(title).trim(),
         slug: String(slug).trim().toLowerCase(),
@@ -88,8 +91,9 @@ export async function DELETE(_req: Request, { params }: Ctx) {
     return NextResponse.json({ error: '未授权' }, { status: 401 })
   }
 
+  const { id } = await params
   try {
-    await prisma.note.delete({ where: { id: params.id } })
+    await prisma.note.delete({ where: { id } })
     return NextResponse.json({ message: '已删除' })
   } catch (err: unknown) {
     if (

@@ -8,12 +8,14 @@ import CopyLinkButton from '@/components/CopyLinkButton'
 import { getPublicNoteBySlug } from '@/lib/notes'
 
 interface Props {
-  params: { slug: string }
+  // Next.js 15: params 是 Promise，必须 await
+  params: Promise<{ slug: string }>
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params
   // 只为 PUBLIC 笔记生成 metadata，其余返回空对象（不泄露 PRIVATE/DRAFT 标题）
-  const note = await getPublicNoteBySlug(params.slug)
+  const note = await getPublicNoteBySlug(slug)
   if (!note) return {}
   return {
     title: `${note.title} · 思考札记 · Zeno`,
@@ -32,8 +34,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function NoteDetailPage({ params }: Props) {
+  const { slug } = await params
   // getPublicNoteBySlug 已对 PRIVATE/DRAFT 返回 null，保证前台不泄露内容
-  const note = await getPublicNoteBySlug(params.slug)
+  const note = await getPublicNoteBySlug(slug)
   if (!note) notFound()
 
   const formattedDate = new Date(note.createdAt).toLocaleDateString('zh-CN', {
