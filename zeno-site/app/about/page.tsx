@@ -45,20 +45,19 @@ export default function AboutPage() {
           <h2 className="section-heading mb-5">我是谁</h2>
           <p className="text-base text-ink leading-[1.85]">
             装修行业 16 年。跑过工地、盯过施工、审过无数报价单、处理过数不清的客户分歧。
-            这些年教会我一件事：传统行业最大的消耗不在技术，在信息差、在信任成本、在好经验没有被系统化。
+            这些年教会我一件事：传统行业最大的消耗不在技术，在信息差、在信任成本、在好经验没被记下来。
           </p>
           <p className="text-base text-ink leading-[1.85] mt-4">
-            我不想把自己固定成某一种身份。装修只是我最熟悉的起点。
-            我现在更关心的是：一个普通传统行业从业者，能不能借助 AI、开发、内容和产品化能力，
-            逐步摆脱重交付，建立更自由、更有创造力的事业系统。
+            我现在做的事，其实只有一个意图：帮装修这个行业变得更透明一点，
+            帮普通人在装修这件事上少踩点坑、少花点冤柉钱、住得更舒展。
           </p>
           <p className="text-base text-ink leading-[1.85] mt-4">
-            所以这个网站不是装修公司官网，也不是单纯的个人博客。
-            它是我把经验变成工具、把内容变成资产、把服务变成产品的长期实验场。
+            这个网站不是装修公司官网，也不是单纯的博客。
+            它更像是我把过去 16 年攒下的判断一件一件做成你能直接用的东西的地方——
+            一篇文章、一张表、一个工具、一次咨询。
           </p>
           <p className="text-base text-ink leading-[1.85] mt-4">
-            Zeno 这个名字来自斯多葛哲学——提醒我在混乱中保持清醒，在压力下做对的事。
-            装修是支点，AI 是工具，产品化是方向，自由度是目标。
+            Zeno 这个名字来自芝诺。提醒我两件事：少做几件事；把要做的那件做到底。
           </p>
           <div className="mt-5">
             <Link
@@ -131,8 +130,8 @@ export default function AboutPage() {
           <p className="text-sm text-ink-muted leading-relaxed mb-5">
             如果你想把 AI 真正接进自己的工作流，而不是停留在工具尝鲜，也可以先看看我提供的咨询方向。
           </p>
-          {/* 改了什么：CTA 文案从“查看服务”改为更具体的行动引导 */}
-          <CTA href="/services" label="看看我能帮什么" variant="secondary" />
+          {/* 改了什么：CTA 文案从“看看我能帮什么”改成更具体的行动引导 */}
+          <CTA href="/services" label="直接看我现在能帮的三件事" variant="secondary" />
         </section>
 
         {/* ── 联系入口 ── */}

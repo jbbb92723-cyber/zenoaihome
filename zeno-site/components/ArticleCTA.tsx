@@ -3,72 +3,52 @@ import Link from 'next/link'
 /**
  * 文章底部 CTA 组件
  *
- * 根据 article.category 显示不同 CTA。
- * 设计原则：克制、不像硬广，与全站直角设计语言一致，移动端友好。
+ * 设计原则：
+ * - 一篇文章只给"一个主动作 + 一个文字链"。多按钮稀释注意力。
+ * - 把原来 5 套按分类的版本收成 2 套：装修类 / AI·一人公司类。
+ *   入参仍然是 article.category，避免改动调用方。
+ * - 文案严格遵循 Zeno 文字心率规则：动词、不夸张、不说教。
  */
 
 type CTAConfig = {
   title: string
   description: string
-  buttons: { label: string; href: string; variant?: 'primary' | 'secondary' }[]
+  /** 主按钮 */
+  primary: { label: string; href: string }
+  /** 次链接（文字链，不是按钮） */
+  secondary: { label: string; href: string }
 }
 
-const ctaByCategory: Record<string, CTAConfig> = {
-  真实居住: {
-    title: '签合同前，先看懂你的报价单',
-    description:
-      '装修最容易踩坑的地方，不是选错材料，而是报价单里藏的模糊项和增项陷阱。用检查表逐项对照，10 分钟可能帮你省下几万块。',
-    buttons: [
-      { label: '领取《报价避坑指南》', href: '/pricing/baojia-guide', variant: 'primary' },
-      { label: '下载报价审核清单', href: '/resources#zhuangxiu-qian', variant: 'secondary' },
-    ],
-  },
-  'AI 实践': {
-    title: '用 AI 帮你做装修判断',
-    description:
-      'AI 提示词包覆盖报价分析、施工沟通、选材方案生成——不需要懂 AI，只需要知道你要解决什么问题。',
-    buttons: [
-      { label: '免费体验 AI 提示词包', href: '/tools/prompts', variant: 'primary' },
-      { label: '查看 AI 工作流服务', href: '/services#ai-neirong-xitong-zixun', variant: 'secondary' },
-    ],
-  },
-  工具与产品: {
-    title: '装修判断工具，免费用',
-    description:
-      '预算模板、报价清单、验收清单、AI 提示词——把判断力变成可操作的工具。',
-    buttons: [
-      { label: '进入工具与资料库', href: '/resources', variant: 'primary' },
-      { label: '查看报价避坑指南', href: '/pricing/baojia-guide', variant: 'secondary' },
-    ],
-  },
-  一人公司: {
-    title: '想了解 Zeno 怎么做一人公司？',
-    description:
-      '从装修现场到线上系统，记录一个传统行业人如何用 AI、内容和产品化摆脱重交付。',
-    buttons: [
-      { label: '了解 Zeno', href: '/about', variant: 'primary' },
-      { label: '查看服务与合作', href: '/services', variant: 'secondary' },
-    ],
-  },
-  判断与生活: {
-    title: '装修前，先建立判断力',
-    description:
-      '看懂报价、控住预算、识别风险——这些判断力比选哪个品牌的瓷砖重要一百倍。',
-    buttons: [
-      { label: '领取《报价避坑指南》', href: '/pricing/baojia-guide', variant: 'primary' },
-      { label: '预算风险自测', href: '/resources#zhuangxiu-qian', variant: 'secondary' },
-    ],
-  },
+// 装修相关分类（包含真实居住、工具、判断与生活）
+const RENO_CTA: CTAConfig = {
+  title: '你这篇看完了，下一步可以——',
+  description:
+    '把你手里的那张报价单（或者你正在算的预算表）发我看看。我会告诉你最该担心的一两个地方，不收费。',
+  primary: { label: '把材料发我看', href: '/contact' },
+  secondary: { label: '或者先做一次 10 分钟自测', href: '/tools/budget-risk' },
 }
 
-const fallback: CTAConfig = ctaByCategory['判断与生活']
+// AI / 一人公司相关分类
+const AI_CTA: CTAConfig = {
+  title: '如果你也想这样用 AI——',
+  description:
+    '我把现在自己每天在用的提示词放在这里，可以直接拿去改成你的版本。',
+  primary: { label: '进入提示词体验场', href: '/tools/prompts' },
+  secondary: { label: '或者看看这套系统是怎么搭起来的', href: '/blog/zeno-from-renovation-to-opc' },
+}
+
+// 分类映射：哪些归装修、哪些归 AI / 一人公司
+function pickCTA(category: string): CTAConfig {
+  if (category === 'AI 实践' || category === '一人公司') return AI_CTA
+  return RENO_CTA
+}
 
 interface Props {
   category: string
 }
 
 export default function ArticleCTA({ category }: Props) {
-  const cfg = ctaByCategory[category] ?? fallback
+  const cfg = pickCTA(category)
 
   return (
     <section
@@ -84,20 +64,19 @@ export default function ArticleCTA({ category }: Props) {
       <p className="text-sm text-ink-muted leading-relaxed mb-5 max-w-prose">
         {cfg.description}
       </p>
-      <div className="flex flex-wrap gap-3">
-        {cfg.buttons.map((btn) => (
-          <Link
-            key={btn.href + btn.label}
-            href={btn.href}
-            className={
-              btn.variant === 'primary'
-                ? 'inline-flex items-center text-sm font-medium bg-stone text-white px-4 py-2 hover:bg-stone/85 transition-colors'
-                : 'inline-flex items-center text-sm font-medium text-stone border border-stone/40 px-4 py-2 hover:bg-stone-pale transition-colors'
-            }
-          >
-            {btn.label} <span className="ml-1.5">→</span>
-          </Link>
-        ))}
+      <div className="flex flex-wrap items-center gap-x-5 gap-y-3">
+        <Link
+          href={cfg.primary.href}
+          className="inline-flex items-center text-sm font-medium bg-stone text-paper px-4 py-2 hover:bg-stone/85 transition-colors"
+        >
+          {cfg.primary.label} <span className="ml-1.5">→</span>
+        </Link>
+        <Link
+          href={cfg.secondary.href}
+          className="text-sm text-stone hover:underline underline-offset-2"
+        >
+          {cfg.secondary.label} →
+        </Link>
       </div>
     </section>
   )

@@ -58,8 +58,8 @@ export default async function ResourcesPage() {
     <>
       <PageHero
         label="判断工具库"
-        title="签合同前，先帮自己做一次风险体检"
-        subtitle="按你的装修阶段，找到对应的判断工具。每一个都来自 16 年一线经验，不是拼凑内容。"
+        title="装修工具，按阶段分好的"
+        subtitle="每个工具都来自一次真实的项目。挑你正在面对的那个用，10 分钟之内就能用上。"
         size="content"
       />
 
@@ -77,51 +77,49 @@ export default async function ResourcesPage() {
         <section id="zhuangxiu-qian" className="mb-16 scroll-mt-20">
           <SectionHeader
             label="阶段一"
-            title="装修前判断 — 签合同之前的风险排查"
-            subtitle="预算怎么定、报价单怎么看、合同怎么签——在花钱之前，先把判断力建立起来。"
+            title="还没签合同的时候"
+            subtitle="这一阶段最大的浪费不是钱，是时间——对着一份你看不懂的报价单纠结两个礼拜。下面两个工具帮你压到一晚上。"
           />
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {/* 全新上线：预算风险自测（免费） */}
             <Link
-              href="/pricing/baojia-guide"
+              href="/tools/budget-risk"
               className="group sm:col-span-2 border border-stone/30 bg-stone/5 p-6 sm:p-7 hover:bg-stone/10 transition-colors"
             >
               <div className="flex items-start justify-between gap-4">
                 <div>
-                  <p className="text-[0.65rem] font-semibold uppercase tracking-widest text-stone mb-2">核心推荐 · 最多人领取</p>
+                  <p className="text-[0.65rem] font-semibold uppercase tracking-widest text-stone mb-2">免费 · 10 分钟 · 不需注册</p>
                   <p className="text-base font-semibold text-ink group-hover:text-stone transition-colors">
-                    《装修报价避坑完整指南》
+                    装修预算风险自测
                   </p>
                   <p className="text-sm text-ink-muted mt-2 leading-relaxed max-w-lg">
-                    覆盖报价漏项、模糊描述、增项陷阱、合同条款、水电报价六张核心检查表。签合同之前看一遍，可能帮你省下几万块。
+                    回答 10 个问题，看看你这次装修最可能在哪里超支。题目都来自我审过的上千份真实报价。
                   </p>
-                  <p className="text-xs text-stone font-medium mt-3">¥39 · 立即查看 →</p>
+                  <p className="text-xs text-stone font-medium mt-3">开始自测 →</p>
                 </div>
                 <span className="text-stone text-xl shrink-0 mt-1 group-hover:translate-x-1 transition-transform">→</span>
               </div>
             </Link>
 
-            <div className="border border-border bg-surface p-5 sm:p-6">
-              <div className="flex items-center gap-2 mb-1.5">
-                <p className="text-sm font-semibold text-ink">装修预算风险自测</p>
-                <span className="text-[0.65rem] text-stone border border-stone/30 px-2 py-0.5 uppercase tracking-wider">即将开放</span>
+            {/* 报价避坑指南（付费） */}
+            <Link
+              href="/pricing/baojia-guide"
+              className="group sm:col-span-2 border border-border bg-surface p-6 sm:p-7 hover:bg-surface-warm transition-colors"
+            >
+              <div className="flex items-start justify-between gap-4">
+                <div>
+                  <p className="text-[0.65rem] font-semibold uppercase tracking-widest text-stone mb-2">付费 · ¥39 · 6 张检查表</p>
+                  <p className="text-base font-semibold text-ink group-hover:text-stone transition-colors">
+                    《装修报价避坑完整指南》
+                  </p>
+                  <p className="text-sm text-ink-muted mt-2 leading-relaxed max-w-lg">
+                    覆盖报价漏项、模糊描述、增项、合同、水电报价六张检查表。签合同前对照看一遍。
+                  </p>
+                  <p className="text-xs text-stone font-medium mt-3">看详情 →</p>
+                </div>
               </div>
-              <p className="text-xs text-ink-muted leading-relaxed">
-                回答几个问题，快速判断你的装修预算是否存在超支风险。
-              </p>
-              <p className="text-xs text-ink-faint mt-2">免费</p>
-            </div>
-
-            <div className="border border-border bg-surface p-5 sm:p-6">
-              <div className="flex items-center gap-2 mb-1.5">
-                <p className="text-sm font-semibold text-ink">报价单风险自查清单</p>
-                <span className="text-[0.65rem] text-stone border border-stone/30 px-2 py-0.5 uppercase tracking-wider">即将开放</span>
-              </div>
-              <p className="text-xs text-ink-muted leading-relaxed">
-                对照清单检查报价单，发现常见模糊项和风险项。
-              </p>
-              <p className="text-xs text-ink-faint mt-2">免费</p>
-            </div>
+            </Link>
           </div>
         </section>
 

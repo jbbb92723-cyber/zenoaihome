@@ -64,7 +64,7 @@ export default function ServicesPage() {
       <PageHero
         label="服务"
         title="工具不够用时，可以找我。"
-        subtitle="你可能已经用过报价清单、预算模板或 AI 提示词包。如果判断还不够清晰，或者需要针对你具体情况的分析，这里是下一步。"
+        subtitle="你也许已经看完了报价指南、做过预算自测。如果做完之后还是拿不准，把材料发我，我用我的方式看一遍——能帮就直接说，帮不上也直接说。"
         size="content"
       />
 
@@ -73,11 +73,26 @@ export default function ServicesPage() {
         {/* 信任承接 */}
         <div className="mb-12 border border-border bg-surface-warm p-6 sm:p-8">
           <p className="text-sm text-ink leading-relaxed mb-2">
-            <strong>服务不是起点，是你用完工具之后的选择。</strong>
+            <strong>我只做三件事：帮你看报价单、帮你做预算结构、帮你把 AI 接进现有工作。</strong>
           </p>
           <p className="text-sm text-ink-muted leading-relaxed">
-            我的服务分四层：轻咨询（一次对话帮你做判断）→ 深度顾问（持续陪跑）→ 本地装修（限南宁）→ AI 工作流（帮你落地）。
-            先用免费工具建立判断，再决定是否需要更深入的合作。
+            这三件之外，网站上的文章和工具对你大概率更有用——不用付费。
+          </p>
+        </div>
+
+        {/* 如何开始：三件小事，尽量降低启动阈 */}
+        <div className="mb-14 border-l-2 border-stone-light pl-5">
+          <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-3">如何找我</p>
+          <p className="text-sm text-ink leading-[1.85] mb-3">
+            不用预约，也不用问“在不在”。直接微信发我三样东西就行：
+          </p>
+          <ul className="text-sm text-ink-muted leading-relaxed space-y-1.5 mb-3">
+            <li>1. 你在哪个城市；</li>
+            <li>2. 目前手头的报价 / 方案 / 预算（截图就行）；</li>
+            <li>3. 你最拿不准的那一个问题。</li>
+          </ul>
+          <p className="text-sm text-ink-muted leading-relaxed">
+            我看完会告诉你能不能帮，能帮就报价，不能帮就说哪里有更合适的资源。
           </p>
         </div>
 

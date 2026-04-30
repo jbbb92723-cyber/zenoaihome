@@ -8,18 +8,19 @@ interface Message {
   content: string
 }
 
+// 建议问题：尽量贴近用户实际会问的，不用营销化措辞
 const SUGGESTIONS_ZH = [
-  '装修预算怎么控制？',
-  '报价单怎么看？',
-  '你提供什么服务？',
-  '怎么用 AI 辅助装修决策？',
+  '我的报价单要怎么看出有没有坑？',
+  '装修预算 buffer 一般留多少？',
+  '水电"按实际发生计算"是不是坑？',
+  'Zeno 现在能帮我做什么？',
 ]
 
 const SUGGESTIONS_EN = [
-  'How do I control renovation budget?',
-  'What services do you offer?',
-  'How to use AI in renovation?',
-  'Tell me about your tools.',
+  'How do I spot risks in my renovation quote?',
+  'How much buffer should I keep in the budget?',
+  'What can Zeno actually help me with?',
+  'Where do I start with AI in my work?',
 ]
 
 export default function AIChatWidget() {
@@ -54,10 +55,12 @@ export default function AIChatWidget() {
     setLoading(true)
 
     try {
+      // 把最近的对话历史一起传给后端，让 LLM 有上下文
+      const history = messages.map((m) => ({ role: m.role, content: m.content }))
       const res = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: msg, locale: isEn ? 'en' : 'zh' }),
+        body: JSON.stringify({ message: msg, locale: isEn ? 'en' : 'zh', history }),
       })
 
       if (res.ok) {
@@ -106,9 +109,9 @@ export default function AIChatWidget() {
             <div className="flex items-center gap-2">
               <div className="w-6 h-6 bg-stone-pale flex items-center justify-center text-stone text-xs font-semibold">Z</div>
               <div>
-                <p className="text-xs font-semibold text-ink">Zeno AI</p>
+                <p className="text-xs font-semibold text-ink">Zeno AI 助手</p>
                 <p className="text-[0.6rem] text-ink-faint">
-                  {isEn ? 'Ask about renovation, AI, or services' : '问装修、AI、服务相关问题'}
+                  {isEn ? 'Built to help, not to upsell' : '帮你看清，不是推你买东西'}
                 </p>
               </div>
             </div>
@@ -127,8 +130,10 @@ export default function AIChatWidget() {
           <div className="flex-1 overflow-y-auto px-4 py-4 space-y-3">
             {messages.length === 0 && (
               <div className="space-y-3">
-                <p className="text-xs text-ink-muted text-center mb-4">
-                  {isEn ? 'Hi! Ask me anything about renovation, AI, or my services.' : '你好！可以问我装修、AI 或服务相关的问题。'}
+                <p className="text-xs text-ink-muted leading-relaxed mb-4">
+                  {isEn
+                    ? 'I am the AI assistant on Zeno\'s site. I will not pretend to be Zeno, and I will not push you to buy. Ask me about renovation quotes, budgets, AI use, or what is on this site.'
+                    : '我是 Zeno 网站的 AI 助手，不会冒充 Zeno 本人，也不会推你买东西。可以问我报价、预算、AI 使用或网站上的内容。'}
                 </p>
                 <div className="space-y-2">
                   {suggestions.map((s) => (
