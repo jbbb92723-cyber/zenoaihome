@@ -68,7 +68,7 @@ const lowTierProducts = [
   {
     title: 'Renovation Quote Pitfall Guide',
     desc: 'A line-by-line PDF reviewed against six core checklists: missing items, vague descriptions, add-on traps, contract clauses, and electrical/plumbing pricing.',
-    price: '¥29-49',
+    price: '¥39',
     href: '/en/pricing/baojia-guide',
     ready: true,
   },

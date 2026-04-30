@@ -37,7 +37,7 @@ const lowTierProducts = [
     title: '装修报价避坑完整指南',
     desc: '签合同前的对照检查 PDF。覆盖报价漏项、模糊描述、增项陷阱、合同条款、水电报价六张核心检查表。',
     href: '/pricing/baojia-guide',
-    price: '¥29-49',
+    price: '¥39',
     ready: true,
   },
   {

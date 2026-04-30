@@ -16,7 +16,7 @@ const painPoints = [
   '拿到报价单一头雾水，不知道该先看哪里、问什么',
   '知道大概率有坑，但不确定坑在哪一行',
   '看过零散的避坑文章，但没有可以直接对照检查的工具',
-  '不想花 ¥699 做一对一审核，但需要一份能落地的清单',
+  '不想花 ¥699 做一对一审核，但需要一份 ¥39 就能落地的清单',
 ]
 
 const willGet = [
@@ -24,7 +24,7 @@ const willGet = [
   '六张核心检查表（PDF 表格 + 可填写版）',
   '三类常见陷阱的识别方法 + 应对话术',
   '合同关键条款查漏清单',
-  '升级到报价审核服务的优先通道',
+  '升级到报价审核服务的优先通道（含 ¥100 抵扣券）',
 ]
 
 const tableOfContents = [
@@ -80,7 +80,7 @@ export default function BaojiaGuidePage() {
             即将开放
           </span>
           <p className="text-sm text-ink-muted">
-            预计定价 ¥29-49 · 数字产品 · 一次购买，小版本更新免费
+            定价 ¥39 · 数字产品 · 一次购买，小版本更新免费
           </p>
         </div>
 
@@ -187,10 +187,10 @@ export default function BaojiaGuidePage() {
         {/* 即将开放提示 + 下一步引导 */}
         <section className="border border-stone/30 bg-stone/5 p-7 sm:p-9">
           <p className="text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-stone mb-3">即将开放</p>
-          <h2 className="text-lg font-semibold text-ink mb-3">还在做最后校对，预计 5 月内开放购买</h2>
+          <h2 className="text-lg font-semibold text-ink mb-3">定价 ¥39，预计 5 月内开放购买</h2>
           <p className="text-sm text-ink-muted leading-relaxed mb-6 max-w-prose">
             如果你手里已经有报价单、不想等，可以先用免费的报价审核清单做一次自查；
-            或者直接看报价诊断服务，让我帮你看一遍。
+            或者直接看报价诊断服务（购买指南可抵扣 ¥100），让我帮你看一遍。
           </p>
           <div className="flex flex-wrap gap-3">
             <Link
@@ -210,8 +210,10 @@ export default function BaojiaGuidePage() {
 
         {/* 售后说明 */}
         <section className="border-t border-border pt-8 text-xs text-ink-muted leading-relaxed space-y-1.5">
-          <p>· 数字产品，售出后不支持退款</p>
+          <p>· 定价 ¥39，数字产品，售出后不支持退款</p>
           <p>· 一次购买，后续小版本更新免费</p>
+          <p>· 购买后附赠报价诊断服务 ¥100 抵扣券</p>
+          <p>· 购买后添加 Zeno 微信，获取后续更新 + 答疑通道</p>
           <p>· 个人使用授权，不可二次分发</p>
         </section>
 
