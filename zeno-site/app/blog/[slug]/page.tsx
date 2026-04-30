@@ -164,6 +164,12 @@ export default async function ArticlePage({ params }: Props) {
             去资料库
           </Link>
           <Link
+            href="/notes"
+            className="text-xs text-ink-muted border border-border px-3 py-1.5 hover:border-stone hover:text-stone transition-colors"
+          >
+            看思考札记
+          </Link>
+          <Link
             href="/contact"
             className="text-xs text-ink-muted border border-border px-3 py-1.5 hover:border-stone hover:text-stone transition-colors"
           >
@@ -177,9 +183,40 @@ export default async function ArticlePage({ params }: Props) {
         <ArticleCTA category={article.category} />
       </div>
 
+      {/* ───── 下一步行动 ───── */}
+      <section className="max-w-reading mx-auto px-5 sm:px-8 py-10">
+        <p className="text-xs text-stone font-medium uppercase tracking-widest mb-5">读完这篇，你还可以</p>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <Link
+            href="/resources"
+            className="group border border-border bg-surface p-4 card-hover"
+          >
+            <p className="text-[0.65rem] font-semibold uppercase tracking-widest text-ink-faint mb-1">工具</p>
+            <p className="text-sm font-medium text-ink group-hover:text-stone transition-colors">去资料库找工具</p>
+            <p className="text-xs text-ink-muted mt-1">预算表、清单、提示词包</p>
+          </Link>
+          <Link
+            href="/notes"
+            className="group border border-border bg-surface p-4 card-hover"
+          >
+            <p className="text-[0.65rem] font-semibold uppercase tracking-widest text-ink-faint mb-1">思考</p>
+            <p className="text-sm font-medium text-ink group-hover:text-stone transition-colors">看相关札记</p>
+            <p className="text-xs text-ink-muted mt-1">更短、更直接的判断</p>
+          </Link>
+          <Link
+            href="/contact"
+            className="group border border-border bg-surface p-4 card-hover"
+          >
+            <p className="text-[0.65rem] font-semibold uppercase tracking-widest text-ink-faint mb-1">提问</p>
+            <p className="text-sm font-medium text-ink group-hover:text-stone transition-colors">把你的问题告诉我</p>
+            <p className="text-xs text-ink-muted mt-1">真实问题会变成内容</p>
+          </Link>
+        </div>
+      </section>
+
       {/* 相关文章 */}
       {suggested.length > 0 && (
-        <section className="max-w-reading mx-auto px-5 sm:px-8 py-12">
+        <section className="max-w-reading mx-auto px-5 sm:px-8 py-12 border-t border-border">
           <p className="text-xs text-stone font-medium uppercase tracking-widest mb-6">继续阅读</p>
           {suggested.map((a) => (
             <ArticleCard key={a.id} article={a} variant="compact" />

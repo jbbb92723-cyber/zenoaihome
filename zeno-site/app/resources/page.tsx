@@ -18,6 +18,7 @@ import type { ResourceAccessLevel } from '@/data/resources'
 import { auth } from '@/auth'
 import PageHero from '@/components/PageHero'
 import Container from '@/components/Container'
+import SectionHeader from '@/components/SectionHeader'
 import CTA from '@/components/CTA'
 
 export const metadata: Metadata = {
@@ -108,28 +109,34 @@ export default async function ResourcesPage() {
 
         {/* ───── 第一层：免费工具 ───── */}
         <section className="mb-16">
-          <header className="mb-6">
-            <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-2">第一层</p>
-            <h2 className="text-lg font-semibold text-ink">免费工具</h2>
-            <p className="text-sm text-ink-muted mt-1">即开即用，不需要登录。</p>
-          </header>
+          <SectionHeader
+            label="第一层"
+            title="免费工具"
+            subtitle="即开即用，不需要登录。每一个工具都在解决一个具体问题。"
+          />
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <Link
               href="/tools/prompts"
-              className="group border border-stone/30 bg-stone/5 p-5 hover:bg-stone/10 transition-colors"
+              className="group sm:col-span-2 border border-stone/30 bg-stone/5 p-6 sm:p-7 hover:bg-stone/10 transition-colors"
             >
-              <p className="text-sm font-semibold text-ink group-hover:text-stone transition-colors">
-                AI 提示词体验场
-              </p>
-              <p className="text-xs text-ink-muted mt-1.5 leading-relaxed">
-                选场景、填情况、一键生成可直接用的提示词。覆盖写作、装修沟通、报价分析、选题、AI 升级。
-              </p>
+              <div className="flex items-start justify-between gap-4">
+                <div>
+                  <p className="text-[0.65rem] font-semibold uppercase tracking-widest text-stone mb-2">核心推荐</p>
+                  <p className="text-base font-semibold text-ink group-hover:text-stone transition-colors">
+                    AI 提示词体验场
+                  </p>
+                  <p className="text-sm text-ink-muted mt-2 leading-relaxed max-w-lg">
+                    选场景、填情况、一键生成可直接用的提示词。覆盖写作、装修沟通、报价分析、选题、AI 升级。不需要懂 AI，只需要知道你要解决什么问题。
+                  </p>
+                </div>
+                <span className="text-stone text-xl shrink-0 mt-1 group-hover:translate-x-1 transition-transform">→</span>
+              </div>
             </Link>
 
             <Link
               href="/tools/md2wechat"
-              className="group border border-stone/30 bg-stone/5 p-5 hover:bg-stone/10 transition-colors"
+              className="group border border-border bg-surface p-5 sm:p-6 card-hover"
             >
               <p className="text-sm font-semibold text-ink group-hover:text-stone transition-colors">
                 Markdown 微信排版工具
@@ -137,9 +144,10 @@ export default async function ResourcesPage() {
               <p className="text-xs text-ink-muted mt-1.5 leading-relaxed">
                 把 Markdown 文稿一键转成微信公众号排版，可直接复制 HTML 粘贴到公众号后台。
               </p>
+              <p className="text-xs text-stone mt-3">立即使用 →</p>
             </Link>
 
-            <div className="border border-border bg-surface p-5 opacity-75">
+            <div className="border border-border bg-surface p-5 sm:p-6 opacity-75">
               <div className="flex items-center gap-2 mb-1.5">
                 <p className="text-sm font-semibold text-ink">装修预算风险自测</p>
                 <span className="text-[0.65rem] text-stone border border-stone/30 px-2 py-0.5 uppercase tracking-wider">即将开放</span>
@@ -149,7 +157,7 @@ export default async function ResourcesPage() {
               </p>
             </div>
 
-            <div className="border border-border bg-surface p-5 opacity-75">
+            <div className="border border-border bg-surface p-5 sm:p-6 opacity-75">
               <div className="flex items-center gap-2 mb-1.5">
                 <p className="text-sm font-semibold text-ink">报价单风险自查</p>
                 <span className="text-[0.65rem] text-stone border border-stone/30 px-2 py-0.5 uppercase tracking-wider">即将开放</span>
@@ -163,11 +171,11 @@ export default async function ResourcesPage() {
 
         {/* ───── 第二层：免费资料 ───── */}
         <section className="mb-16">
-          <header className="mb-6">
-            <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-2">第二层</p>
-            <h2 className="text-lg font-semibold text-ink">免费资料</h2>
-            <p className="text-sm text-ink-muted mt-1">关注公众号「Zeno AI装修笔记」回复对应关键词领取。</p>
-          </header>
+          <SectionHeader
+            label="第二层"
+            title="免费资料"
+            subtitle="关注公众号「Zeno AI装修笔记」回复对应关键词领取。真实经验整理，不是拼凑内容。"
+          />
 
           <div className="space-y-8">
             {resources.map((resource) => {
@@ -256,11 +264,11 @@ export default async function ResourcesPage() {
 
         {/* ───── 第三层：低价产品（即将开放） ───── */}
         <section className="mb-16">
-          <header className="mb-6">
-            <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-2">第三层</p>
-            <h2 className="text-lg font-semibold text-ink">低价产品｜即将开放</h2>
-            <p className="text-sm text-ink-muted mt-1">把深度经验打包成可直接使用的工具包和系统模板。</p>
-          </header>
+          <SectionHeader
+            label="第三层"
+            title="低价产品｜即将开放"
+            subtitle="把深度经验打包成可直接使用的工具包和系统模板。每一份都经过实战验证。"
+          />
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {lowTierProducts.map((p) =>
@@ -302,11 +310,11 @@ export default async function ResourcesPage() {
 
         {/* ───── 第四层：服务入口 ───── */}
         <section className="mb-12">
-          <header className="mb-6">
-            <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-2">第四层</p>
-            <h2 className="text-lg font-semibold text-ink">服务入口</h2>
-            <p className="text-sm text-ink-muted mt-1">资料和工具不够时，可以直接和我合作。</p>
-          </header>
+          <SectionHeader
+            label="第四层"
+            title="服务入口"
+            subtitle="资料和工具不够时，可以直接和我合作。真人判断，不是模板回复。"
+          />
 
           <div className="space-y-3">
             {serviceEntries.map((s) => (
