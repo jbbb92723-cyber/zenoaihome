@@ -19,7 +19,6 @@ import bcrypt from 'bcryptjs'
 
 const authConfig: NextAuthConfig = {
   adapter: PrismaAdapter(prisma),
-  trustHost: true,
 
   providers: [
     // ─── 邮箱 + 密码 ────────────────────────────────────────
