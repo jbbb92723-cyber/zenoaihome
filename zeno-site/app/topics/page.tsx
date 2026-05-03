@@ -7,9 +7,9 @@ import Container from '@/components/Container'
 import CTA from '@/components/CTA'
 
 export const metadata: Metadata = {
-  title: '专题',
+  title: '按问题看 5 个长期专题',
   description:
-    '从真实居住出发，记录 AI 实践、工具产品化、一人公司实验和判断系统。五个专题，五条从经验到资产的路径。',
+    '如果你不想碎片化阅读，就按问题进入这 5 个长期专题：真实居住、AI 工作流、美学与生活、长期主义和工地观察。',
 }
 
 const topicAccents: Record<string, string> = {
@@ -24,9 +24,9 @@ export default function TopicsPage() {
   return (
     <>
       <PageHero
-        label="专题"
-        title="连续问题的连续回答"
-        subtitle="专题不是标签堆叠，而是围绕一个长期问题，把文章串成可持续阅读的路径。如果你不想碎片化阅读，从专题开始。"
+        label="问题专题"
+        title="按问题看这 5 个长期专题"
+        subtitle="如果你不想在文章列表里碎片化跳转，就从专题开始。这里不是标签堆叠，而是把同一类长期问题串成可持续阅读的路径。"
         size="content"
       />
 

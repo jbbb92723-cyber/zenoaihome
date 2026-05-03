@@ -10,6 +10,7 @@ import { getAlternateSlug } from '@/lib/i18n'
 import ArticleCard from '@/components/ArticleCard'
 import CopyLinkButton from '@/components/CopyLinkButton'
 import ArticleCTA from '@/components/ArticleCTA'
+import StructuredData from '@/components/StructuredData'
 
 interface Props {
   params: { slug: string }
@@ -49,6 +50,13 @@ export default async function ArticlePage({ params }: Props) {
   const article = getArticleBySlug(params.slug)
   if (!article) notFound()
 
+  const articleUrl = `https://zenoaihome.com/blog/${article.slug}`
+  const articleImage = article.coverImage
+    ? article.coverImage.startsWith('http')
+      ? article.coverImage
+      : `https://zenoaihome.com${article.coverImage}`
+    : undefined
+
   const formattedDate = new Date(article.date).toLocaleDateString('zh-CN', {
     year: 'numeric',
     month: 'long',
@@ -66,6 +74,31 @@ export default async function ArticlePage({ params }: Props) {
 
   return (
     <>
+      <StructuredData
+        data={{
+          '@context': 'https://schema.org',
+          '@type': 'Article',
+          headline: article.title,
+          description: article.excerpt,
+          datePublished: article.date,
+          dateModified: article.date,
+          inLanguage: 'zh-CN',
+          url: articleUrl,
+          author: {
+            '@type': 'Person',
+            name: 'Zeno',
+            url: 'https://zenoaihome.com/about',
+          },
+          publisher: {
+            '@type': 'Person',
+            name: 'Zeno',
+            url: 'https://zenoaihome.com/about',
+          },
+          image: articleImage ? [articleImage] : undefined,
+          keywords: article.tags.join(', '),
+        }}
+      />
+
       {/* 文章头部 */}
       <article className="max-w-reading mx-auto px-5 sm:px-8 pt-12 pb-16">
         {/* 面包屑 */}
@@ -158,22 +191,22 @@ export default async function ArticlePage({ params }: Props) {
         <div className="mt-10 pt-6 border-t border-border flex flex-wrap gap-3">
           <CopyLinkButton />
           <Link
-            href="/resources"
+            href="/tools"
             className="text-xs text-ink-muted border border-border px-3 py-1.5 hover:border-stone hover:text-stone transition-colors"
           >
-            去资料库
+            按问题找工具
           </Link>
           <Link
-            href="/notes"
+            href="/cases"
             className="text-xs text-ink-muted border border-border px-3 py-1.5 hover:border-stone hover:text-stone transition-colors"
           >
-            看思考札记
+            看案例复盘
           </Link>
           <Link
-            href="/contact"
+            href="/services"
             className="text-xs text-ink-muted border border-border px-3 py-1.5 hover:border-stone hover:text-stone transition-colors"
           >
-            联系 Zeno
+            看服务边界
           </Link>
         </div>
       </article>
@@ -188,28 +221,28 @@ export default async function ArticlePage({ params }: Props) {
         <p className="text-xs text-stone font-medium uppercase tracking-widest mb-5">读完这篇，你还可以</p>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
           <Link
-            href="/resources"
+            href="/tools"
             className="group border border-border bg-surface p-4 card-hover"
           >
             <p className="text-[0.65rem] font-semibold uppercase tracking-widest text-ink-faint mb-1">工具</p>
-            <p className="text-sm font-medium text-ink group-hover:text-stone transition-colors">去资料库找工具</p>
-            <p className="text-xs text-ink-muted mt-1">预算表、清单、提示词包</p>
+            <p className="text-sm font-medium text-ink group-hover:text-stone transition-colors">按问题找工具</p>
+            <p className="text-xs text-ink-muted mt-1">先选你当前问题，再进资料库</p>
           </Link>
           <Link
-            href="/notes"
+            href="/start"
             className="group border border-border bg-surface p-4 card-hover"
           >
-            <p className="text-[0.65rem] font-semibold uppercase tracking-widest text-ink-faint mb-1">思考</p>
-            <p className="text-sm font-medium text-ink group-hover:text-stone transition-colors">看相关札记</p>
-            <p className="text-xs text-ink-muted mt-1">更短、更直接的判断</p>
+            <p className="text-[0.65rem] font-semibold uppercase tracking-widest text-ink-faint mb-1">路径</p>
+            <p className="text-sm font-medium text-ink group-hover:text-stone transition-colors">回到从这里开始</p>
+            <p className="text-xs text-ink-muted mt-1">重新选一条更适合你的路</p>
           </Link>
           <Link
-            href="/contact"
+            href="/services"
             className="group border border-border bg-surface p-4 card-hover"
           >
-            <p className="text-[0.65rem] font-semibold uppercase tracking-widest text-ink-faint mb-1">提问</p>
-            <p className="text-sm font-medium text-ink group-hover:text-stone transition-colors">把你的问题告诉我</p>
-            <p className="text-xs text-ink-muted mt-1">真实问题会变成内容</p>
+            <p className="text-[0.65rem] font-semibold uppercase tracking-widest text-ink-faint mb-1">服务</p>
+            <p className="text-sm font-medium text-ink group-hover:text-stone transition-colors">先看服务边界</p>
+            <p className="text-xs text-ink-muted mt-1">确认这是不是该找我的阶段</p>
           </Link>
         </div>
       </section>

@@ -4,11 +4,15 @@ import { services } from '@/data/services'
 import PageHero from '@/components/PageHero'
 import Container from '@/components/Container'
 import CTA from '@/components/CTA'
+import StructuredData from '@/components/StructuredData'
 
 export const metadata: Metadata = {
-  title: '服务与合作 — 不是卖套餐，是帮你做更清醒的判断',
+  title: '找我帮你看',
   description:
-    '赞诺提供 AI 内容系统咨询、个人网站规划、AI 工作流咨询、数字产品设计咨询，以及装修报价审核、预算咨询和真实居住派装修服务。同时开放合作方向。',
+    '先自己判断，工具不够用时再找我。这里放的是报价审核、预算咨询、真实居住派装修服务、AI 内容系统咨询，以及当前开放的合作方向。',
+  alternates: {
+    canonical: 'https://zenoaihome.com/services',
+  },
 }
 
 const serviceRelatedArticles: Record<string, { label: string; href: string }[]> = {
@@ -55,28 +59,88 @@ const industryExtras = [
   },
 ]
 
+const selfServeLinks = [
+  {
+    label: '先做免费自测',
+    title: '预算风险自测',
+    desc: '10 分钟先判断你主要是哪类风险。',
+    href: '/tools/budget-risk',
+  },
+  {
+    label: '先拿清单',
+    title: '报价审核清单',
+    desc: '先自己把模糊项和漏项筛一轮。',
+    href: '/resources#baojia-shenhe-qingdan',
+  },
+  {
+    label: '先看低价资料',
+    title: '39 元报价避坑指南',
+    desc: '如果你还想先自己过一遍，这份最合适。',
+    href: '/pricing/baojia-guide',
+  },
+  {
+    label: '还没确定路径',
+    title: '回到从这里开始',
+    desc: '先选你当下最像的那个问题，再决定要不要找我。',
+    href: '/start',
+  },
+]
+
 export default function ServicesPage() {
   const renovationServices = services.filter((s) => renovationSlugs.includes(s.slug))
   const industryServices = services.filter((s) => industrySlugs.includes(s.slug))
 
   return (
     <>
+      <StructuredData
+        data={{
+          '@context': 'https://schema.org',
+          '@type': 'CollectionPage',
+          name: '找我帮你看',
+          url: 'https://zenoaihome.com/services',
+          description: '先自己判断，工具不够用时再找我。',
+          inLanguage: 'zh-CN',
+          hasPart: services.map((service) => ({
+            '@type': 'Service',
+            name: service.title,
+            description: service.description,
+            offers: {
+              '@type': 'Offer',
+              priceCurrency: 'CNY',
+              price: service.price,
+            },
+            url: `https://zenoaihome.com/services#${service.slug}`,
+          })),
+        }}
+      />
+
       <PageHero
-        label="服务"
-        title="工具不够用时，可以找我。"
-        subtitle="你也许已经看完了报价指南、做过预算自测。如果做完之后还是拿不准，把材料发我，我用我的方式看一遍——能帮就直接说，帮不上也直接说。"
+        label="找我帮你看"
+        title="先自己判断，工具不够时再找我。"
+        subtitle="如果你已经看过文章、做过自测、用过清单，还是拿不准，那就把材料发我。我会告诉你最该先看的地方，也会直接说清楚我能帮什么、不能帮什么。"
+        note="不需要先预约。先看下面的自助入口和服务边界，确认适合再联系。"
         size="content"
       />
 
       <Container size="content" className="py-section">
+        <section className="mb-12 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
+          {selfServeLinks.map((item) => (
+            <Link key={item.title} href={item.href} className="group border border-border bg-surface p-5 card-hover flex flex-col">
+              <p className="text-[0.65rem] font-semibold uppercase tracking-widest text-stone mb-3">{item.label}</p>
+              <h2 className="text-sm font-semibold text-ink group-hover:text-stone transition-colors mb-2">{item.title}</h2>
+              <p className="text-xs text-ink-muted leading-relaxed flex-1">{item.desc}</p>
+              <span className="text-xs text-stone mt-4 group-hover:underline underline-offset-2">先走这一步 →</span>
+            </Link>
+          ))}
+        </section>
 
         {/* 信任承接 */}
         <div className="mb-12 border border-border bg-surface-warm p-6 sm:p-8">
           <p className="text-sm text-ink leading-relaxed mb-2">
-            <strong>我只做三件事：帮你看报价单、帮你做预算结构、帮你把 AI 接进现有工作。</strong>
+            <strong>我只接我能真正帮到的服务：报价判断、预算结构、真实居住决策，以及把 AI 接进真实工作。</strong>
           </p>
           <p className="text-sm text-ink-muted leading-relaxed">
-            这三件之外，网站上的文章和工具对你大概率更有用——不用付费。
+            如果你当前更适合自助判断，网站上的文章、工具和资料对你大概率更有用，不需要急着付费。
           </p>
         </div>
 
@@ -106,7 +170,7 @@ export default function ServicesPage() {
         {/* 已有完整数据的服务 */}
         <div className="space-y-10">
           {industryServices.map((service, index) => (
-            <div key={service.id} className="border border-border overflow-hidden">
+            <div key={service.id} id={service.slug} className="border border-border overflow-hidden scroll-mt-20">
               <div className="px-6 py-5 border-b border-border bg-surface-warm flex items-start justify-between gap-4">
                 <div className="flex items-start gap-3 min-w-0">
                   <span className="text-stone/30 text-xs font-mono shrink-0 mt-[3px]">
@@ -191,7 +255,7 @@ export default function ServicesPage() {
 
         <div className="space-y-10">
           {renovationServices.map((service, index) => (
-            <div key={service.id} className="border border-border overflow-hidden">
+            <div key={service.id} id={service.slug} className="border border-border overflow-hidden scroll-mt-20">
 
               {/* 卡片头部 */}
               <div className="px-6 py-5 border-b border-border bg-surface-warm flex items-start justify-between gap-4">
@@ -369,7 +433,7 @@ export default function ServicesPage() {
               报价避坑指南、预算风险自测、报价审核清单都可以免费使用。先建立判断，再决定是否需要服务。
             </p>
           </div>
-          <CTA href="/pricing/baojia-guide" label="领取报价避坑指南" variant="primary" />
+          <CTA href="/tools" label="按问题找工具" variant="primary" />
         </div>
 
         {/* 关联内容入口 */}

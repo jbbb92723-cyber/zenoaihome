@@ -7,6 +7,7 @@ import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import SearchDialog from '@/components/SearchDialog'
 import AIChatWidget from '@/components/AIChatWidget'
+import HashScrollHandler from '@/components/HashScrollHandler'
 import '@/styles/globals.css'
 
 const inter = Inter({
@@ -68,6 +69,7 @@ export default function RootLayout({
       <body className="bg-canvas text-ink font-sans antialiased">
         <SessionProvider>
           <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false} themes={['light', 'eye', 'dark']}>
+            <HashScrollHandler />
             <Header />
             <main className="min-h-[calc(100vh-56px)]">{children}</main>
             <Footer />

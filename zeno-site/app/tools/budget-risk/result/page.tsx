@@ -66,6 +66,17 @@ export default async function BudgetRiskResultPage({ searchParams }: Props) {
 
   const { levels, dominant } = scoreAnswers(answers)
   const dims = (['R1', 'R2', 'R3', 'R4'] as const)
+  const serviceCTA = dominant === 'R1' || dominant === 'R2'
+    ? {
+        href: '/services#baojia-shenhe',
+        title: '把报价和预算发我，我帮你看一遍',
+        description: '如果你主要是漏项或增项风险，先把当前报价单和最担心的那一个问题发过来。',
+      }
+    : {
+        href: '/services#yusuan-zixun',
+        title: '把剩余预算结构发我，我帮你理一遍',
+        description: '如果你主要是失控或时机风险，现在更重要的是把剩下的钱按结构理清。',
+      }
 
   return (
     <>
@@ -137,15 +148,15 @@ export default async function BudgetRiskResultPage({ searchParams }: Props) {
             </Link>
 
             <Link
-              href="/contact"
+              href={serviceCTA.href}
               className="group flex items-start justify-between gap-4 border border-border bg-surface p-5 hover:bg-surface-warm transition-colors"
             >
               <div>
                 <p className="text-sm font-semibold text-ink group-hover:text-stone transition-colors">
-                  把材料发我，我帮你看一遍
+                  {serviceCTA.title}
                 </p>
                 <p className="text-xs text-ink-muted mt-1.5 leading-relaxed">
-                  微信发我三样东西：你在哪个城市、目前的报价 / 预算（截图就行）、你最拿不准的一个问题。
+                  {serviceCTA.description}
                 </p>
               </div>
               <span className="text-stone shrink-0 mt-0.5 group-hover:translate-x-1 transition-transform">→</span>
@@ -162,11 +173,11 @@ export default async function BudgetRiskResultPage({ searchParams }: Props) {
                   装修预算为什么总超？
                 </Link>
                 <Link
-                  href="/blog/baojia-dan-zenme-kan"
+                  href="/cases"
                   className="flex items-center gap-2 text-sm text-ink-muted hover:text-stone transition-colors"
                 >
                   <span className="text-stone/60">→</span>
-                  报价单真正该怎么看
+                  先看案例复盘
                 </Link>
               </div>
             </div>

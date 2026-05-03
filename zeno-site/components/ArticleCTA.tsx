@@ -23,8 +23,8 @@ type CTAConfig = {
 const RENO_CTA: CTAConfig = {
   title: '你这篇看完了，下一步可以——',
   description:
-    '把你手里的那张报价单（或者你正在算的预算表）发我看看。我会告诉你最该担心的一两个地方，不收费。',
-  primary: { label: '把材料发我看', href: '/contact' },
+    '先看清我能帮你判断什么、不能帮什么。工具不够用时，再决定要不要把材料交给我。',
+  primary: { label: '先看服务边界', href: '/services' },
   secondary: { label: '或者先做一次 10 分钟自测', href: '/tools/budget-risk' },
 }
 
@@ -34,7 +34,7 @@ const AI_CTA: CTAConfig = {
   description:
     '我把现在自己每天在用的提示词放在这里，可以直接拿去改成你的版本。',
   primary: { label: '进入提示词体验场', href: '/tools/prompts' },
-  secondary: { label: '或者看看这套系统是怎么搭起来的', href: '/blog/zeno-from-renovation-to-opc' },
+  secondary: { label: '或者先看 AI 内容系统咨询', href: '/services#ai-neirong-xitong-zixun' },
 }
 
 // 分类映射：哪些归装修、哪些归 AI / 一人公司

@@ -14,24 +14,14 @@ export interface NavItem {
 /** 主导航（Header + Footer 均使用） */
 export const mainNav: NavItem[] = [
   {
-    key: 'home',
-    zh: { label: '首页', href: '/' },
-    en: { label: 'Home', href: '/en' },
+    key: 'start',
+    zh: { label: '从这里开始', href: '/start' },
+    en: { label: 'Start Here', href: '/en' },
   },
   {
-    key: 'now',
-    zh: { label: '正在做', href: '/#now' },
-    en: { label: 'Now', href: '/en#now' },
-  },
-  {
-    key: 'ai',
-    zh: { label: 'AI 实践', href: '/topics#chuantong-hangyeren-zenme-yong-ai' },
-    en: { label: 'AI in Practice', href: '/en/topics#ai-upgrade' },
-  },
-  {
-    key: 'resources',
-    zh: { label: '工具与资料', href: '/resources' },
-    en: { label: 'Tools & Resources', href: '/en/resources' },
+    key: 'tools',
+    zh: { label: '按问题找工具', href: '/tools' },
+    en: { label: 'Tools', href: '/en/tools' },
   },
   {
     key: 'living',
@@ -39,14 +29,19 @@ export const mainNav: NavItem[] = [
     en: { label: 'Livable Design', href: '/en/topics#living-renovation' },
   },
   {
-    key: 'services',
-    zh: { label: '服务与合作', href: '/services' },
-    en: { label: 'Services', href: '/en/services' },
+    key: 'ai',
+    zh: { label: 'AI 工作流', href: '/topics#chuantong-hangyeren-zenme-yong-ai' },
+    en: { label: 'AI Workflows', href: '/en/topics#ai-upgrade' },
   },
   {
-    key: 'notes',
-    zh: { label: '札记', href: '/notes' },
-    en: { label: 'Notes', href: '/en/notes' },
+    key: 'cases',
+    zh: { label: '案例复盘', href: '/cases' },
+    en: { label: 'Field Notes', href: '/en/blog' },
+  },
+  {
+    key: 'services',
+    zh: { label: '找我帮你看', href: '/services' },
+    en: { label: 'Work with Zeno', href: '/en/services' },
   },
   {
     key: 'about',
@@ -66,8 +61,11 @@ export const contactNav: NavItem = {
 
 const CN_TO_EN: Record<string, string> = {
   '/':           '/en',
+  '/start':      '/en',
   '/about':      '/en/about',
   '/blog':       '/en/blog',
+  '/cases':      '/en/blog',
+  '/tools':      '/en/tools',
   '/topics':     '/en/topics',
   '/resources':  '/en/resources',
   '/services':   '/en/services',
@@ -81,6 +79,7 @@ const EN_TO_CN: Record<string, string> = {
   '/en':            '/',
   '/en/about':      '/about',
   '/en/blog':       '/blog',
+  '/en/tools':      '/tools',
   '/en/topics':     '/topics',
   '/en/resources':  '/resources',
   '/en/services':   '/services',
@@ -100,7 +99,7 @@ export function getLangHref(pathname: string, isEn: boolean): string {
     if (pathname.startsWith('/en/blog/')) return '/blog'
     if (pathname.startsWith('/en/articles/')) return '/blog'
     const cnPath = pathname.replace(/^\/en/, '') || '/'
-    const knownCn = ['/', '/about', '/blog', '/topics', '/resources', '/services', '/contact', '/login', '/register']
+    const knownCn = ['/', '/start', '/about', '/blog', '/cases', '/tools', '/topics', '/resources', '/services', '/contact', '/login', '/register']
     if (knownCn.includes(cnPath)) return cnPath
     return '/'
   } else {
