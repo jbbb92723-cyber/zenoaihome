@@ -42,7 +42,20 @@ const problemCards = [
   },
 ]
 
-const heroSignals = ['16 年装修现场经验', '文章 / 清单 / 工具 / 咨询', '先看证据，不先听口号']
+const heroMetrics = [
+  {
+    value: '16',
+    label: '年现场经验',
+  },
+  {
+    value: '4',
+    label: '个主问题入口',
+  },
+  {
+    value: '3',
+    label: '种第一步抓手',
+  },
+]
 
 const grabberCards = [
   {
@@ -210,12 +223,13 @@ export default function HomePage() {
 
       <section className="relative overflow-hidden border-b border-border bg-gradient-to-b from-surface-warm via-surface to-surface py-14 sm:py-20">
         <div className="pointer-events-none absolute inset-x-0 top-0 h-24 bg-[linear-gradient(90deg,rgba(191,165,137,0.12),rgba(191,165,137,0))]" />
+        <div className="pointer-events-none absolute inset-y-0 left-[8%] hidden w-px bg-border/70 lg:block" />
         <div className="pointer-events-none absolute right-0 top-10 hidden h-48 w-48 rounded-full bg-stone-pale/50 blur-3xl lg:block" />
         <Container size="layout">
           <div className="relative grid grid-cols-1 gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-start">
             <div>
               <p className="text-[0.7rem] font-semibold tracking-[0.1em] uppercase text-stone mb-5">ZenoAIHome</p>
-              <h1 className="text-[1.75rem] sm:text-[2rem] md:text-[2.5rem] font-semibold leading-[1.22] tracking-[-0.02em] text-ink mb-5 max-w-3xl">
+              <h1 className="hero-title mb-5 max-w-3xl">
                 报价单看不清，预算总怕超，
                 <br className="hidden sm:block" />
                 合同和施工节点不知道盯哪儿，这里先帮你把问题看清。
@@ -229,38 +243,40 @@ export default function HomePage() {
               <p className="text-sm text-ink-faint leading-relaxed max-w-2xl mb-8">
                 不同城市价格不同，不同预算档位、工艺做法、现场条件和合同约定也不同。这里先帮你把风险重心找出来，不给你一句万能答案。
               </p>
-              <div className="flex flex-wrap gap-2 mb-8">
-                {heroSignals.map((item) => (
-                  <span
-                    key={item}
-                    className="inline-flex items-center border border-border bg-surface px-3 py-1.5 text-[0.7rem] font-medium tracking-[0.04em] text-ink-muted"
-                  >
-                    {item}
-                  </span>
-                ))}
-              </div>
               <div className="flex flex-wrap gap-3">
                 <CTA href="/start" label="按问题进入" variant="primary" />
                 <CTA href="/tools/budget-risk" label="先做预算风险自测" variant="secondary" />
+              </div>
+              <div className="mt-8 grid grid-cols-3 gap-3 max-w-2xl">
+                {heroMetrics.map((item) => (
+                  <div key={item.label} className="border border-border bg-surface/90 px-4 py-4 shadow-[0_8px_24px_rgba(30,25,20,0.04)]">
+                    <p className="text-[1.45rem] font-semibold leading-none text-ink mb-2">{item.value}</p>
+                    <p className="text-[0.72rem] font-medium tracking-[0.05em] text-ink-muted">{item.label}</p>
+                  </div>
+                ))}
               </div>
             </div>
 
             <div className="border border-border bg-surface shadow-[0_16px_40px_rgba(30,25,20,0.06)] overflow-hidden">
               <div className="border-b border-border bg-surface-warm px-6 py-5">
                 <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-2">先别急着全站乱看</p>
-                <h2 className="text-lg font-semibold text-ink">四个主入口，先对上你眼前的问题</h2>
+                <h2 className="text-lg font-semibold text-ink">先对上你手里最急的那类问题</h2>
               </div>
               <div className="p-6">
-                <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                <p className="text-[0.7rem] font-semibold uppercase tracking-[0.08em] text-stone mb-4">先看证据，不先听口号</p>
+                <div className="space-y-3">
                   {problemCards.map((item, index) => (
-                    <Link key={item.title} href={item.href} className="group border border-border bg-surface-warm p-4 transition-colors hover:bg-stone-pale/30">
-                      <p className="text-[0.65rem] font-semibold uppercase tracking-widest text-stone mb-2">0{index + 1} · {item.label}</p>
-                      <p className="text-sm font-semibold text-ink mb-2 group-hover:text-stone transition-colors">{item.title}</p>
-                      <p className="text-sm text-ink-muted leading-relaxed">{item.description}</p>
+                    <Link key={item.title} href={item.href} className="group flex items-start gap-4 border-b border-border pb-3 last:border-b-0 last:pb-0">
+                      <span className="text-[0.78rem] font-semibold tracking-[0.08em] text-stone">0{index + 1}</span>
+                      <div className="flex-1">
+                        <p className="text-[0.65rem] font-semibold uppercase tracking-widest text-ink-faint mb-1">{item.label}</p>
+                        <p className="text-sm font-semibold text-ink mb-1 group-hover:text-stone transition-colors">{item.title}</p>
+                        <p className="text-sm text-ink-muted leading-relaxed">{item.description}</p>
+                      </div>
                     </Link>
                   ))}
                 </div>
-                <div className="mt-4 border border-dashed border-border px-4 py-3">
+                <div className="mt-5 border border-dashed border-border bg-surface-warm/80 px-4 py-4">
                   <p className="text-xs font-semibold uppercase tracking-widest text-ink-faint mb-2">居住场景补充</p>
                   <p className="text-sm text-ink-muted leading-relaxed">
                     住进去怕不顺手，就回到家里真正怎么住：做饭频率、收纳习惯、老人小孩、居家办公，通常比风格词更早决定结果。
@@ -274,34 +290,46 @@ export default function HomePage() {
 
       <section id="pathways" className="border-b border-border py-16 sm:py-20 scroll-mt-20">
         <Container size="layout">
-          <div className="mb-10 max-w-3xl">
-            <p className="page-label mb-3">按问题进入</p>
-            <h2 className="section-heading">别把所有问题混在一起。装修最怕的不是麻烦，是顺序乱了。</h2>
-            <p className="text-sm text-ink-muted mt-2 leading-relaxed">
-              你先认清自己卡的是哪一类问题，后面每一步才不会白花钱。
-            </p>
-          </div>
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4">
-            {problemCards.map((item) => (
-              <Link
-                key={item.title}
-                href={item.href}
-                className="group border border-border bg-surface p-5 card-hover flex flex-col"
-              >
-                <p className="text-[0.65rem] font-semibold uppercase tracking-widest text-stone mb-3">{item.label}</p>
-                <h3 className="text-base font-semibold text-ink mb-3 leading-snug group-hover:text-stone transition-colors">
-                  {item.title}
-                </h3>
-                <p className="text-sm text-ink-muted leading-relaxed flex-1">{item.description}</p>
-                <span className="text-xs text-stone mt-5">进入对应入口 →</span>
-              </Link>
-            ))}
-          </div>
-          <div className="mt-4 border border-dashed border-border bg-surface-warm px-5 py-4">
-            <p className="text-xs font-semibold uppercase tracking-widest text-ink-faint mb-2">第五类问题</p>
-            <p className="text-sm text-ink-muted leading-relaxed">
-              如果你担心的是住进去以后不顺手，就先回到居住场景：家里真正怎么住、入住后的使用习惯、做饭和收纳频率、老人小孩和居家办公怎么分配。
-            </p>
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-[0.38fr_0.62fr] lg:items-start">
+            <div>
+              <p className="page-label mb-3">按问题进入</p>
+              <h2 className="section-heading">别把所有问题混在一起。装修最怕的不是麻烦，是顺序乱了。</h2>
+              <p className="text-sm text-ink-muted mt-3 leading-relaxed">
+                你先认清自己卡的是哪一类问题，后面每一步才不会白花钱。
+              </p>
+              <div className="mt-6 border-l-2 border-stone pl-4">
+                <p className="text-sm text-ink leading-relaxed">
+                  报价贵不贵不是第一问题，有没有说清才是。预算超不超，也常常不是钱不够，而是顺序先乱了。
+                </p>
+              </div>
+            </div>
+            <div>
+              <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-2">
+                {problemCards.map((item, index) => (
+                  <Link
+                    key={item.title}
+                    href={item.href}
+                    className={`group border border-border bg-surface p-5 card-hover flex flex-col shadow-[0_10px_28px_rgba(30,25,20,0.03)] ${index === 0 ? 'md:-translate-y-2' : ''}`}
+                  >
+                    <div className="flex items-start justify-between gap-3 mb-3">
+                      <p className="text-[0.65rem] font-semibold uppercase tracking-widest text-stone">{item.label}</p>
+                      <span className="text-[0.7rem] font-semibold tracking-[0.08em] text-ink-faint">0{index + 1}</span>
+                    </div>
+                    <h3 className="text-base font-semibold text-ink mb-3 leading-snug group-hover:text-stone transition-colors">
+                      {item.title}
+                    </h3>
+                    <p className="text-sm text-ink-muted leading-relaxed flex-1">{item.description}</p>
+                    <span className="text-xs text-stone mt-5">进入对应入口 →</span>
+                  </Link>
+                ))}
+              </div>
+              <div className="mt-4 border border-dashed border-border bg-surface-warm px-5 py-4">
+                <p className="text-xs font-semibold uppercase tracking-widest text-ink-faint mb-2">第五类问题</p>
+                <p className="text-sm text-ink-muted leading-relaxed">
+                  如果你担心的是住进去以后不顺手，就先回到居住场景：家里真正怎么住、入住后的使用习惯、做饭和收纳频率、老人小孩和居家办公怎么分配。
+                </p>
+              </div>
+            </div>
           </div>
         </Container>
       </section>
@@ -316,9 +344,16 @@ export default function HomePage() {
             </p>
           </div>
           <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
-            {grabberCards.map((item) => (
-              <Link key={item.title} href={item.href} className="group border border-border bg-surface p-6 sm:p-7 card-hover">
-                <p className="text-[0.65rem] font-semibold uppercase tracking-widest text-stone mb-3">{item.label}</p>
+            {grabberCards.map((item, index) => (
+              <Link
+                key={item.title}
+                href={item.href}
+                className={`group border border-border bg-surface p-6 sm:p-7 card-hover shadow-[0_12px_32px_rgba(30,25,20,0.04)] ${index === 1 ? 'lg:translate-y-4' : ''} ${index === 2 ? 'lg:translate-y-8' : ''}`}
+              >
+                <div className="flex items-center justify-between gap-3 mb-3">
+                  <p className="text-[0.65rem] font-semibold uppercase tracking-widest text-stone">{item.label}</p>
+                  <span className="text-[0.72rem] font-semibold tracking-[0.08em] text-ink-faint">0{index + 1}</span>
+                </div>
                 <h3 className="text-xl font-semibold text-ink mb-3 leading-snug group-hover:text-stone transition-colors">
                   {item.title}
                 </h3>
@@ -339,19 +374,22 @@ export default function HomePage() {
               不是网上整合，也不是标准装修公司话术。这里先把最容易出事的地方指出来，再告诉你下一步怎么接上。
             </p>
           </div>
+          <div className="mb-6 border border-border bg-surface-warm p-6 sm:p-7 shadow-[0_12px_28px_rgba(30,25,20,0.03)]">
+            <p className="text-[0.72rem] font-semibold uppercase tracking-[0.08em] text-stone mb-3">现场判断卡</p>
+            <p className="text-base text-ink leading-relaxed">
+              这些判断来自真实现场：报价单里一行没写清的另计项，预算表里那笔没单独留出来的预备金，合同里一句以后最容易扯皮的话，水电、防水、泥工、吊顶、竣工验收每个节点该怎么留证。
+            </p>
+          </div>
           <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
             {proofCards.map((item) => (
-              <Link key={item.title} href={item.href} className="group border border-border bg-surface p-6 card-hover">
+              <Link key={item.title} href={item.href} className="group border border-border bg-surface p-6 card-hover shadow-[0_10px_24px_rgba(30,25,20,0.03)]">
                 <h3 className="text-base font-semibold text-ink mb-3 group-hover:text-stone transition-colors">{item.title}</h3>
                 <p className="text-sm text-ink-muted leading-relaxed">{item.description}</p>
                 <span className="text-xs text-stone mt-5 inline-block">看对应内容 →</span>
               </Link>
             ))}
           </div>
-          <div className="mt-8 max-w-4xl border border-border bg-surface-warm p-6 sm:p-7">
-            <p className="text-base text-ink leading-relaxed mb-3">
-              这些判断来自真实现场：报价单里一行没写清的另计项，预算表里那笔没单独留出来的预备金，合同里一句以后最容易扯皮的话，水电、防水、泥工、吊顶、竣工验收每个节点该怎么留证。
-            </p>
+          <div className="mt-8 max-w-4xl border-l-2 border-stone pl-5">
             <p className="text-sm text-ink-muted leading-relaxed">
               我不会给你一句万能答案。不同城市、不同预算、不同工艺、不同合同约定，判断都会变。但我会先把最容易出事的地方指出来，让你少走弯路。
             </p>
@@ -369,8 +407,11 @@ export default function HomePage() {
             </p>
           </div>
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
-            {productStages.map((item) => (
-              <div key={item.title} className="border border-border bg-surface p-5 flex flex-col">
+            {productStages.map((item, index) => (
+              <div
+                key={item.title}
+                className={`border p-5 flex flex-col shadow-[0_10px_24px_rgba(30,25,20,0.03)] ${item.status ? 'border-dashed border-stone bg-surface-warm/80' : 'border-border bg-surface'} ${index === 0 || index === 1 ? 'lg:-translate-y-1' : ''}`}
+              >
                 <div className="flex items-start justify-between gap-3 mb-3">
                   <p className="text-[0.65rem] font-semibold uppercase tracking-widest text-stone">{item.label}</p>
                   {item.status ? (
@@ -411,7 +452,7 @@ export default function HomePage() {
             </div>
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               {secondaryTracks.map((item) => (
-                <Link key={item.title} href={item.href} className="group border border-border bg-surface p-6 card-hover">
+                <Link key={item.title} href={item.href} className="group border border-border bg-surface p-6 card-hover shadow-[0_10px_24px_rgba(30,25,20,0.03)]">
                   <p className="text-[0.65rem] font-semibold uppercase tracking-widest text-stone mb-3">{item.label}</p>
                   <h3 className="text-lg font-semibold text-ink mb-3 leading-snug group-hover:text-stone transition-colors">
                     {item.title}
@@ -445,35 +486,44 @@ export default function HomePage() {
       </section>
 
       <section className="py-16 sm:py-20">
-        <Container size="content">
-          <div className="mb-10 max-w-3xl">
-            <p className="page-label mb-3">FAQ</p>
-            <h2 className="section-heading">你在首页最容易卡住的，是这几件事。</h2>
-            <p className="text-sm text-ink-muted mt-2 leading-relaxed">
-              把问题先讲透，后面走文章、工具还是服务都更稳。
-            </p>
-          </div>
-          <div className="space-y-4">
-            {faqItems.map((item) => (
-              <div key={item.question} className="border border-border bg-surface p-6">
-                <h3 className="text-base font-semibold text-ink mb-3">{item.question}</h3>
-                <p className="text-sm text-ink-muted leading-relaxed">{item.answer}</p>
+        <Container size="layout">
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-[0.62fr_0.38fr] lg:items-start">
+            <div>
+              <div className="mb-10 max-w-3xl">
+                <p className="page-label mb-3">FAQ</p>
+                <h2 className="section-heading">你在首页最容易卡住的，是这几件事。</h2>
+                <p className="text-sm text-ink-muted mt-2 leading-relaxed">
+                  把问题先讲透，后面走文章、工具还是服务都更稳。
+                </p>
               </div>
-            ))}
-          </div>
-          <div className="border border-border bg-surface-warm p-7 sm:p-9 mt-8">
-            <p className="page-label mb-3">下一步行动</p>
-            <h2 className="section-heading mb-4">你现在最该做的，不是把所有东西都看一遍。</h2>
-            <p className="text-base text-ink leading-relaxed mb-4">
-              先确认自己在哪个阶段，再走一步。还没分清问题，就先回问题入口；已经乱成一团，就先做自测；手里已有材料，再去看服务路径。
-            </p>
-            <p className="text-sm text-ink-muted leading-relaxed mb-6">
-              这里不是把所有资料摊给你自己猜，而是先帮你找入口。
-            </p>
-            <div className="flex flex-wrap gap-3">
-              <CTA href="/start" label="回问题入口" variant="primary" />
-              <CTA href="/tools/budget-risk" label="先做预算风险自测" variant="secondary" />
-              <CTA href="/services/renovation" label="看装修判断服务" variant="ghost" />
+              <div className="space-y-4">
+                {faqItems.map((item, index) => (
+                  <div key={item.question} className="border border-border bg-surface p-6 shadow-[0_10px_24px_rgba(30,25,20,0.03)]">
+                    <div className="flex items-start gap-4">
+                      <span className="text-[0.7rem] font-semibold tracking-[0.08em] text-stone">0{index + 1}</span>
+                      <div>
+                        <h3 className="text-base font-semibold text-ink mb-3">{item.question}</h3>
+                        <p className="text-sm text-ink-muted leading-relaxed">{item.answer}</p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="border border-border bg-surface-warm p-7 sm:p-9 shadow-[0_16px_36px_rgba(30,25,20,0.05)] lg:sticky lg:top-24">
+              <p className="page-label mb-3">下一步行动</p>
+              <h2 className="section-heading mb-4">你现在最该做的，不是把所有东西都看一遍。</h2>
+              <p className="text-base text-ink leading-relaxed mb-4">
+                先确认自己在哪个阶段，再走一步。还没分清问题，就先回问题入口；已经乱成一团，就先做自测；手里已有材料，再去看服务路径。
+              </p>
+              <p className="text-sm text-ink-muted leading-relaxed mb-6">
+                这里不是把所有资料摊给你自己猜，而是先帮你找入口。
+              </p>
+              <div className="space-y-3">
+                <CTA href="/start" label="回问题入口" variant="primary" />
+                <CTA href="/tools/budget-risk" label="先做预算风险自测" variant="secondary" />
+                <CTA href="/services/renovation" label="看装修判断服务" variant="ghost" />
+              </div>
             </div>
           </div>
         </Container>
