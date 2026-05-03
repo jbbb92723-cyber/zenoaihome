@@ -36,6 +36,42 @@ const faqs = [
   },
 ]
 
+const manifestoIndustries = [
+  '装修',
+  '设计',
+  '教育培训',
+  '咨询服务',
+  '实体门店',
+  '本地生活',
+  '家政维修',
+  '财税法务',
+  '健康管理',
+  '制造加工',
+]
+
+const manifestoAssets = [
+  '客户反复问过的问题',
+  '你现场处理过的麻烦',
+  '你总结出来的流程',
+  '你踩过的坑和避坑经验',
+  '你写过的方案、报价和交付说明',
+  '你反复打磨过的沟通话术',
+  '那些真正解决过问题的案例',
+]
+
+const manifestoParagraphs = [
+  'AI 一人公司，不是让你从零编一个副业项目。',
+  '真正适合普通人的路径，不是追热点、搬项目、天天换工具，而是从自己已经做过的行业、见过的客户、处理过的问题开始。',
+  '只要你真正服务过客户、解决过问题，手里就已经有一批很宝贵的资产。过去，这些经验大多只能靠嘴讲，靠熟人介绍，靠一单一单服务客户。',
+  '现在，你可以借助 AI，把它们整理成文章、图文、短视频脚本、课程、清单、咨询服务、行业资料包和工具产品。',
+  '但这件事的重点，不是 AI 有多神。重点是你有没有真实经验，能不能把问题讲清楚，能不能持续整理，能不能把每一次服务都变成下一次可复用的资产。',
+  '你不能控制平台算法，不能控制风口变化，也不能控制别人怎么包装。但你可以控制自己的经验整理、内容输出、服务流程、产品打磨和长期复盘。',
+  'AI 一人公司，不是逃离原来的行业，而是把你在行业里积累的判断力，重新变成自己的长期资产。',
+  '这套课程，就是讲清楚一个普通行业人，如何从真实经验出发，借助 AI 搭建自己的内容系统、产品系统和服务系统。',
+  '不是一夜暴富，不是风口投机，不是凭空造项目。',
+  '而是把你已经做过的事，重新整理一遍；把你真正懂的问题，讲给更多需要的人听；把过去靠时间换钱的经验，慢慢沉淀成一间属于自己的 AI 一人公司。',
+]
+
 export default function AIWorkflowPage() {
   if (!aiService) return null
 
@@ -75,6 +111,48 @@ export default function AIWorkflowPage() {
       />
 
       <Container size="content" className="py-section">
+        <section className="mb-14 border border-border bg-surface overflow-hidden">
+          <div className="border-b border-border bg-surface-warm px-6 py-5 sm:px-8">
+            <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-2">AI 一人公司</p>
+            <h2 className="text-xl font-semibold text-ink">核心宣言</h2>
+            <p className="text-sm text-ink-muted leading-relaxed mt-3 max-w-3xl">
+              这不是一份教你追风口的承诺书，而是一条更慢、更稳、也更适合普通行业人的路径说明。
+            </p>
+          </div>
+
+          <div className="px-6 py-6 sm:px-8 sm:py-8">
+            <div className="flex flex-wrap gap-2 mb-6">
+              {manifestoIndustries.map((industry) => (
+                <span key={industry} className="border border-border bg-surface-warm px-3 py-1 text-xs text-ink-muted">
+                  {industry}
+                </span>
+              ))}
+            </div>
+
+            <div className="space-y-4 max-w-3xl">
+              {manifestoParagraphs.map((paragraph, index) => (
+                <p
+                  key={paragraph}
+                  className={index === 0 ? 'text-lg font-semibold leading-8 text-ink' : 'text-sm leading-8 text-ink-muted'}
+                >
+                  {paragraph}
+                </p>
+              ))}
+            </div>
+
+            <div className="mt-8 border-l-2 border-stone/40 pl-5">
+              <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-3">你手里已经有的资产</p>
+              <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+                {manifestoAssets.map((item) => (
+                  <p key={item} className="text-sm leading-7 text-ink">
+                    {item}
+                  </p>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
         <section className="mb-14 grid grid-cols-1 lg:grid-cols-[1.05fr_0.95fr] gap-6 items-start">
           <div className="border border-border bg-surface overflow-hidden">
             <div className="relative aspect-[16/10] border-b border-border bg-[#F1EDF8]">
