@@ -3,11 +3,63 @@
 import { useTheme } from 'next-themes'
 import { useEffect, useState } from 'react'
 
-const THEMES = [
-  { key: 'light', label: '亮', title: '亮色模式' },
-  { key: 'eye',   label: '护', title: '护眼模式' },
-  { key: 'dark',  label: '暗', title: '暗色模式' },
-] as const
+/**
+ * 主题切换按钮
+ *
+ * 设计：单按钮循环 light → eye → dark，配对应图标。
+ * 与 LanguageToggle 视觉对齐。
+ */
+
+const ORDER = ['light', 'eye', 'dark'] as const
+type ThemeKey = (typeof ORDER)[number]
+
+const META: Record<ThemeKey, { label: string; nextTitle: string }> = {
+  light: { label: '亮', nextTitle: '切换到护眼模式' },
+  eye:   { label: '护', nextTitle: '切换到暗色模式' },
+  dark:  { label: '暗', nextTitle: '切换到亮色模式' },
+}
+
+function getNext(current: ThemeKey): ThemeKey {
+  const idx = ORDER.indexOf(current)
+  return ORDER[(idx + 1) % ORDER.length]
+}
+
+function Icon({ theme }: { theme: ThemeKey }) {
+  const common = {
+    viewBox: '0 0 24 24',
+    fill: 'none',
+    stroke: 'currentColor',
+    strokeWidth: 1.6,
+    strokeLinecap: 'round' as const,
+    strokeLinejoin: 'round' as const,
+    className: 'w-3.5 h-3.5',
+    'aria-hidden': true,
+  }
+
+  if (theme === 'light') {
+    return (
+      <svg {...common}>
+        <circle cx="12" cy="12" r="4" />
+        <path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+      </svg>
+    )
+  }
+
+  if (theme === 'dark') {
+    return (
+      <svg {...common}>
+        <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z" />
+      </svg>
+    )
+  }
+
+  return (
+    <svg {...common}>
+      <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z" />
+      <circle cx="12" cy="12" r="2.5" />
+    </svg>
+  )
+}
 
 export default function ThemeToggle() {
   const { theme, setTheme } = useTheme()
@@ -16,30 +68,25 @@ export default function ThemeToggle() {
   useEffect(() => setMounted(true), [])
 
   if (!mounted) {
-    return <div className="w-[4.5rem] h-5" aria-hidden />
+    return <div className="w-[3.5rem] h-7" aria-hidden />
   }
 
+  const current = ((ORDER as readonly string[]).includes(theme ?? '')
+    ? theme
+    : 'light') as ThemeKey
+  const next = getNext(current)
+  const meta = META[current]
+
   return (
-    <div
-      className="flex items-center border border-border rounded-sm overflow-hidden text-[0.6875rem] font-medium leading-none"
-      role="group"
-      aria-label="切换主题"
+    <button
+      type="button"
+      onClick={() => setTheme(next)}
+      title={meta.nextTitle}
+      aria-label={meta.nextTitle}
+      className="group inline-flex items-center gap-1.5 h-7 px-2.5 border border-border rounded-full text-[0.6875rem] font-medium text-ink-muted hover:text-ink hover:border-stone/50 transition-all duration-150"
     >
-      {THEMES.map((t) => (
-        <button
-          key={t.key}
-          onClick={() => setTheme(t.key)}
-          title={t.title}
-          aria-pressed={theme === t.key}
-          className={`px-2 py-0.5 transition-colors ${
-            theme === t.key
-              ? 'bg-surface-warm text-ink cursor-default'
-              : 'text-ink-faint hover:text-ink'
-          }`}
-        >
-          {t.label}
-        </button>
-      ))}
-    </div>
+      <Icon theme={current} />
+      <span className="leading-none">{meta.label}</span>
+    </button>
   )
 }

@@ -344,6 +344,35 @@ model Checkin {
   @@map("checkins")
 }
 
+// ─── 思考札记 ─────────────────────────────────────────────────
+// visibility 控制前台展示权限：
+//   PUBLIC  → 前台可见
+//   PRIVATE → 仅管理员登录后可见
+//   DRAFT   → 仅后台可见，前台完全屏蔽
+enum NoteVisibility {
+  PUBLIC
+  PRIVATE
+  DRAFT
+}
+
+model Note {
+  id          String         @id @default(cuid())
+  title       String
+  slug        String         @unique
+  excerpt     String?
+  content     String
+  category    String?
+  tags        String[]
+  visibility  NoteVisibility @default(DRAFT)
+  featured    Boolean        @default(false)
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+
+  @@index([visibility])
+  @@index([createdAt])
+  @@map("notes")
+}
+
 // ─── 后台操作日志 ─────────────────────────────────────────────
 model AdminLog {
   id        String   @id @default(cuid())

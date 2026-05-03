@@ -14,14 +14,14 @@ export interface NavItem {
 /** 主导航（Header + Footer 均使用） */
 export const mainNav: NavItem[] = [
   {
-    key: 'home',
-    zh: { label: '首页', href: '/' },
-    en: { label: 'Home', href: '/en' },
+    key: 'start',
+    zh: { label: '从这里开始', href: '/start' },
+    en: { label: 'Start Here', href: '/en' },
   },
   {
-    key: 'pathways',
-    zh: { label: '按问题进入', href: '/start' },
-    en: { label: 'Paths', href: '/en' },
+    key: 'tools',
+    zh: { label: '按问题找工具', href: '/tools' },
+    en: { label: 'Tools', href: '/en/tools' },
   },
   {
     key: 'resources',
@@ -64,8 +64,9 @@ const CN_TO_EN: Record<string, string> = {
   '/start':      '/en',
   '/about':      '/en/about',
   '/blog':       '/en/blog',
-  '/topics':     '/en/topics',
+  '/cases':      '/en/blog',
   '/tools':      '/en/tools',
+  '/topics':     '/en/topics',
   '/tools/prompts': '/en/tools/prompts',
   '/tools/budget-risk': '/en/tools',
   '/tools/budget-risk/result': '/en/tools',
@@ -74,6 +75,7 @@ const CN_TO_EN: Record<string, string> = {
   '/services/renovation': '/en/services',
   '/services/ai-workflow': '/en/services',
   '/contact':    '/en/about',
+  '/notes':      '/en/notes',
   '/login':      '/en/login',
   '/register':   '/en/register',
 }
@@ -87,6 +89,7 @@ const EN_TO_CN: Record<string, string> = {
   '/en/topics':     '/topics',
   '/en/resources':  '/resources',
   '/en/services':   '/services',
+  '/en/notes':      '/notes',
   '/en/login':      '/login',
   '/en/register':   '/register',
 }
@@ -102,7 +105,7 @@ export function getLangHref(pathname: string, isEn: boolean): string {
     if (pathname.startsWith('/en/blog/')) return '/blog'
     if (pathname.startsWith('/en/articles/')) return '/blog'
     const cnPath = pathname.replace(/^\/en/, '') || '/'
-    const knownCn = ['/', '/start', '/about', '/blog', '/topics', '/tools', '/tools/prompts', '/tools/budget-risk', '/resources', '/services', '/contact', '/login', '/register']
+    const knownCn = ['/', '/start', '/about', '/blog', '/cases', '/tools', '/tools/prompts', '/tools/budget-risk', '/topics', '/resources', '/services', '/contact', '/login', '/register']
     if (knownCn.includes(cnPath)) return cnPath
     return '/'
   } else {

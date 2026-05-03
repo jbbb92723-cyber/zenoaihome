@@ -1,0 +1,108 @@
+import type { Metadata } from 'next'
+import Link from 'next/link'
+import Container from '@/components/Container'
+import NoteCard from '@/components/NoteCard'
+import PageHero from '@/components/PageHero'
+import SectionHeader from '@/components/SectionHeader'
+import { getPublicNotes, NOTE_CATEGORIES } from '@/lib/notes'
+
+export const metadata: Metadata = {
+  title: '思考札记 · 思想资产库',
+  description:
+    '记录我在装修、AI、商业、学习和长期主义中的真实思考。不是正式文章，而是正在生长中的方法论、判断和现场笔记——带着现场温度的真实输出。',
+}
+
+// 强制动态渲染，内容来自数据库，不应构建时缓存
+export const dynamic = 'force-dynamic'
+
+export default async function NotesPage({
+  searchParams,
+}: {
+  // Next.js 15: searchParams 是 Promise，必须 await
+  searchParams: Promise<{ category?: string }>
+}) {
+  const { category } = await searchParams
+  const notes = await getPublicNotes()
+
+  const activeCategory = category ?? '全部'
+  const filtered =
+    activeCategory === '全部'
+      ? notes
+      : notes.filter((n) => n.category === activeCategory)
+
+  const allCategories = ['全部', ...NOTE_CATEGORIES]
+
+  return (
+    <>
+      <PageHero
+        label="思想资产库"
+        title="正在生长的判断和方法论"
+        subtitle="这里不是正式文章库，而是我在装修现场、AI 实践、商业思考和日常观察中，真正打动过我的想法和笔记。有些会长成文章，有些永远只是一颗种子。"
+      />
+
+      <Container size="content" className="py-12 sm:py-16">
+        {/* 精选思考（前 3 篇） */}
+        {activeCategory === '全部' && filtered.length >= 3 && (
+          <div className="mb-12 pb-10 border-b border-border">
+            <SectionHeader
+              label="精选"
+              title="值得反复读的几篇"
+            />
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              {filtered.slice(0, 3).map((note) => (
+                <Link
+                  key={note.id}
+                  href={`/notes/${note.slug}`}
+                  className="group border border-stone/20 bg-stone/5 p-5 card-hover flex flex-col"
+                >
+                  {note.category && (
+                    <span className="text-[0.65rem] font-semibold uppercase tracking-widest text-stone mb-2">
+                      {note.category}
+                    </span>
+                  )}
+                  <h3 className="text-sm font-semibold text-ink group-hover:text-stone transition-colors leading-snug mb-2">
+                    {note.title}
+                  </h3>
+                  {note.excerpt && (
+                    <p className="text-xs text-ink-muted leading-relaxed flex-1 line-clamp-3">
+                      {note.excerpt}
+                    </p>
+                  )}
+                </Link>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* 分类筛选 */}
+        <div className="flex flex-wrap gap-2 mb-10">
+          {allCategories.map((cat) => (
+            <Link
+              key={cat}
+              href={cat === '全部' ? '/notes' : `/notes?category=${encodeURIComponent(cat)}`}
+              className={`text-sm px-4 py-1.5 border transition-colors ${
+                activeCategory === cat
+                  ? 'border-stone bg-stone text-white'
+                  : 'border-border text-ink-muted hover:border-stone hover:text-stone'
+              }`}
+            >
+              {cat}
+            </Link>
+          ))}
+        </div>
+
+        {/* 笔记列表 */}
+        <div>
+          <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-6">
+            {activeCategory === '全部' ? '全部札记' : activeCategory}（{filtered.length} 篇）
+          </p>
+          {filtered.length === 0 ? (
+            <p className="text-sm text-ink-muted py-8">该分类暂无内容。</p>
+          ) : (
+            filtered.map((note) => <NoteCard key={note.id} note={note} />)
+          )}
+        </div>
+      </Container>
+    </>
+  )
+}

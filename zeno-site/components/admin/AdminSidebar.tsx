@@ -13,6 +13,7 @@ const NAV = [
     { href: '/admin/orders',  label: '订单管理' },
   ]},
   { group: '内容与服务', items: [
+    { href: '/admin/notes',             label: '思考札记' },
     { href: '/admin/services',          label: '服务申请' },
     { href: '/admin/resources/claims',  label: '资料领取' },
   ]},

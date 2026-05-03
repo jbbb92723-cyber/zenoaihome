@@ -9,7 +9,8 @@ import { articles, getArticleBySlug, getRecentArticles } from '@/data/articles'
 import { getAlternateSlug } from '@/lib/i18n'
 import ArticleCard from '@/components/ArticleCard'
 import CopyLinkButton from '@/components/CopyLinkButton'
-import CTA from '@/components/CTA'
+import ArticleCTA from '@/components/ArticleCTA'
+import StructuredData from '@/components/StructuredData'
 
 interface Props {
   params: { slug: string }
@@ -49,6 +50,13 @@ export default async function ArticlePage({ params }: Props) {
   const article = getArticleBySlug(params.slug)
   if (!article) notFound()
 
+  const articleUrl = `https://zenoaihome.com/blog/${article.slug}`
+  const articleImage = article.coverImage
+    ? article.coverImage.startsWith('http')
+      ? article.coverImage
+      : `https://zenoaihome.com${article.coverImage}`
+    : undefined
+
   const formattedDate = new Date(article.date).toLocaleDateString('zh-CN', {
     year: 'numeric',
     month: 'long',
@@ -66,6 +74,31 @@ export default async function ArticlePage({ params }: Props) {
 
   return (
     <>
+      <StructuredData
+        data={{
+          '@context': 'https://schema.org',
+          '@type': 'Article',
+          headline: article.title,
+          description: article.excerpt,
+          datePublished: article.date,
+          dateModified: article.date,
+          inLanguage: 'zh-CN',
+          url: articleUrl,
+          author: {
+            '@type': 'Person',
+            name: 'Zeno',
+            url: 'https://zenoaihome.com/about',
+          },
+          publisher: {
+            '@type': 'Person',
+            name: 'Zeno',
+            url: 'https://zenoaihome.com/about',
+          },
+          image: articleImage ? [articleImage] : undefined,
+          keywords: article.tags.join(', '),
+        }}
+      />
+
       {/* 文章头部 */}
       <article className="max-w-reading mx-auto px-5 sm:px-8 pt-12 pb-16">
         {/* 面包屑 */}
@@ -158,63 +191,65 @@ export default async function ArticlePage({ params }: Props) {
         <div className="mt-10 pt-6 border-t border-border flex flex-wrap gap-3">
           <CopyLinkButton />
           <Link
-            href="/resources"
+            href="/tools"
             className="text-xs text-ink-muted border border-border px-3 py-1.5 hover:border-stone hover:text-stone transition-colors"
           >
-            去资料库
+            按问题找工具
           </Link>
           <Link
-            href="/contact"
+            href="/cases"
             className="text-xs text-ink-muted border border-border px-3 py-1.5 hover:border-stone hover:text-stone transition-colors"
           >
-            联系 Zeno
+            看案例复盘
+          </Link>
+          <Link
+            href="/services"
+            className="text-xs text-ink-muted border border-border px-3 py-1.5 hover:border-stone hover:text-stone transition-colors"
+          >
+            看服务边界
           </Link>
         </div>
       </article>
 
       {/* 按分类显示不同 CTA */}
-      <section className="bg-stone-pale/30 border-y border-border py-10">
-        <div className="max-w-reading mx-auto px-5 sm:px-8">
-          {article.category === '居住与装修' ? (
-            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 justify-between">
-              <div>
-                <p className="text-sm font-medium text-ink">如果你手里已经有报价单，想少走弯路</p>
-                <p className="text-xs text-ink-muted mt-1">可以直接查看报价审核服务，也可以先看资料建立判断。</p>
-              </div>
-              <div className="flex flex-wrap gap-3">
-                <CTA href="/services" label="查看报价审核服务" variant="secondary" />
-                <CTA href="/resources" label="先去资料库看看" variant="ghost" />
-              </div>
-            </div>
-          ) : article.category === 'AI 与新生产力' ? (
-            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 justify-between">
-              <div>
-                <p className="text-sm font-medium text-ink">如果你想把 AI 真正接进自己的工作流</p>
-                <p className="text-xs text-ink-muted mt-1">而不是只看工具介绍，可以了解 AI 内容系统咨询。</p>
-              </div>
-              <div className="flex flex-wrap gap-3">
-                <CTA href="/services" label="查看 AI 咨询服务" variant="secondary" />
-                <CTA href="/tools/prompts" label="先看资料和工具" variant="ghost" />
-              </div>
-            </div>
-          ) : (
-            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 justify-between">
-              <div>
-                <p className="text-sm font-medium text-ink">有相关的实用资料</p>
-                <p className="text-xs text-ink-muted mt-1">装修清单、预算模板、AI 提示词包，可免费领取。</p>
-              </div>
-              <div className="flex flex-wrap gap-3">
-                <CTA href="/resources" label="去资料库看看" variant="secondary" />
-                <CTA href="/services" label="了解我提供的服务" variant="ghost" />
-              </div>
-            </div>
-          )}
+      <div className="max-w-reading mx-auto px-5 sm:px-8">
+        <ArticleCTA category={article.category} />
+      </div>
+
+      {/* ───── 下一步行动 ───── */}
+      <section className="max-w-reading mx-auto px-5 sm:px-8 py-10">
+        <p className="text-xs text-stone font-medium uppercase tracking-widest mb-5">读完这篇，你还可以</p>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <Link
+            href="/tools"
+            className="group border border-border bg-surface p-4 card-hover"
+          >
+            <p className="text-[0.65rem] font-semibold uppercase tracking-widest text-ink-faint mb-1">工具</p>
+            <p className="text-sm font-medium text-ink group-hover:text-stone transition-colors">按问题找工具</p>
+            <p className="text-xs text-ink-muted mt-1">先选你当前问题，再进资料库</p>
+          </Link>
+          <Link
+            href="/start"
+            className="group border border-border bg-surface p-4 card-hover"
+          >
+            <p className="text-[0.65rem] font-semibold uppercase tracking-widest text-ink-faint mb-1">路径</p>
+            <p className="text-sm font-medium text-ink group-hover:text-stone transition-colors">回到从这里开始</p>
+            <p className="text-xs text-ink-muted mt-1">重新选一条更适合你的路</p>
+          </Link>
+          <Link
+            href="/services"
+            className="group border border-border bg-surface p-4 card-hover"
+          >
+            <p className="text-[0.65rem] font-semibold uppercase tracking-widest text-ink-faint mb-1">服务</p>
+            <p className="text-sm font-medium text-ink group-hover:text-stone transition-colors">先看服务边界</p>
+            <p className="text-xs text-ink-muted mt-1">确认这是不是该找我的阶段</p>
+          </Link>
         </div>
       </section>
 
       {/* 相关文章 */}
       {suggested.length > 0 && (
-        <section className="max-w-reading mx-auto px-5 sm:px-8 py-12">
+        <section className="max-w-reading mx-auto px-5 sm:px-8 py-12 border-t border-border">
           <p className="text-xs text-stone font-medium uppercase tracking-widest mb-6">继续阅读</p>
           {suggested.map((a) => (
             <ArticleCard key={a.id} article={a} variant="compact" />

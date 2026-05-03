@@ -6,7 +6,7 @@ import PageHero from '@/components/PageHero'
 export const metadata: Metadata = {
   title: 'Services — Zeno',
   description:
-    'Zeno helps clients make clearer renovation decisions and build AI-assisted content systems for traditional industries.',
+    "What I sell isn't renovation services — it's clearer judgment. Renovation, AI, and content systems are three surfaces of the same underlying work: helping you make sharper decisions in noisy environments.",
   alternates: {
     canonical: 'https://zenoaihome.com/en/services',
     languages: {
@@ -16,23 +16,37 @@ export const metadata: Metadata = {
   },
 }
 
-const services = [
+const lightConsulting = [
   {
-    title: 'Renovation Budget Review',
-    desc: 'A line-by-line review of your renovation budget to identify hidden risks, inflated items, and missing contingencies.',
+    title: 'Renovation Quote Review',
+    desc: 'A line-by-line review of your renovation quote to identify hidden risks, inflated items, and missing contingencies before you sign.',
+    price: '¥699 / quote',
   },
   {
-    title: 'Quotation Review',
-    desc: 'Compare contractor quotes against industry benchmarks. Spot scope gaps, vague line items, and payment structure issues.',
+    title: 'Renovation Budget Consulting',
+    desc: 'Build a structured budget framework before you start. Clarify what to prioritize, where to leave flexibility, and where the typical overruns hide.',
+    price: '¥399 / session',
   },
   {
-    title: 'Real-Life Renovation Consulting',
-    desc: 'One-on-one sessions focused on practical decisions: layout trade-offs, material selection, contractor communication, and timeline planning.',
+    title: 'AI + Content System Consulting',
+    desc: 'A practical AI integration path designed for your specific industry context — covering workflow design and prompt frameworks tailored to your scenario.',
+    price: '¥1,999 / session',
   },
+]
+
+const deepService = [
   {
-    title: 'AI Content System Consulting',
-    desc: 'Help traditional industry practitioners build structured content workflows using AI — from experience capture to publishing.',
+    title: 'Real-Living Renovation Service',
+    desc: 'Designed from how a family actually lives — not from reference photos. Limited to projects in Nanning, China. I take only projects I think are a fit.',
+    price: 'From ¥9,800',
   },
+]
+
+const partnerships = [
+  'Content system buildouts for traditional industries',
+  'AI workflow consulting for small teams / companies',
+  'Personal website + brand system co-build',
+  'Co-creation on content and digital products',
 ]
 
 export default function EnServicesPage() {
@@ -40,24 +54,76 @@ export default function EnServicesPage() {
     <>
       <PageHero
         label="Services"
-        title="Services"
-        subtitle="Zeno helps clients make clearer renovation decisions and build AI-assisted content systems for traditional industries."
+        title="Three Surfaces, One Underlying Work"
+        subtitle="What I sell isn't renovation services — it's clearer judgment. Renovation, AI, and content systems are three surfaces of the same underlying work."
       />
 
-      <Container size="content" className="py-12 sm:py-16">
-        <div className="grid gap-6 sm:grid-cols-2">
-          {services.map((s) => (
-            <div
-              key={s.title}
-              className="border border-border p-6 hover:border-stone/40 transition-colors"
-            >
-              <h3 className="text-[0.9375rem] font-semibold text-ink mb-2">{s.title}</h3>
-              <p className="text-sm text-ink-muted leading-relaxed">{s.desc}</p>
-            </div>
-          ))}
+      <Container size="content" className="py-12 sm:py-16 space-y-16">
+
+        <div className="border-l-2 border-stone-light pl-4">
+          <p className="text-sm text-ink-muted leading-relaxed">
+            Light consulting is remote and quick. Deep service is limited and on the ground.
+            Partnerships are open conversations — reach out if there's a real fit.
+          </p>
         </div>
 
-        <div className="mt-10 flex flex-wrap gap-3">
+        {/* Light consulting */}
+        <section>
+          <header className="mb-6">
+            <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-2">Light Consulting</p>
+            <h2 className="text-lg font-semibold text-ink">Remote, fast, one specific problem at a time</h2>
+          </header>
+          <div className="space-y-4">
+            {lightConsulting.map((s) => (
+              <div key={s.title} className="border border-border p-5 hover:border-stone/40 transition-colors">
+                <div className="flex items-start justify-between gap-4 flex-wrap mb-2">
+                  <p className="text-sm font-semibold text-ink">{s.title}</p>
+                  <p className="text-xs text-stone font-medium">{s.price}</p>
+                </div>
+                <p className="text-sm text-ink-muted leading-relaxed">{s.desc}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Deep service */}
+        <section>
+          <header className="mb-6">
+            <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-2">Deep Service</p>
+            <h2 className="text-lg font-semibold text-ink">Limited capacity, on-the-ground</h2>
+          </header>
+          <div className="space-y-4">
+            {deepService.map((s) => (
+              <div key={s.title} className="border border-border p-5 hover:border-stone/40 transition-colors">
+                <div className="flex items-start justify-between gap-4 flex-wrap mb-2">
+                  <p className="text-sm font-semibold text-ink">{s.title}</p>
+                  <p className="text-xs text-stone font-medium">{s.price}</p>
+                </div>
+                <p className="text-sm text-ink-muted leading-relaxed">{s.desc}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Partnerships */}
+        <section>
+          <header className="mb-6">
+            <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-2">Partnerships</p>
+            <h2 className="text-lg font-semibold text-ink">Open directions I'm exploring</h2>
+            <p className="text-sm text-ink-muted mt-1">If you have a matching need, let's talk.</p>
+          </header>
+          <ul className="space-y-2.5">
+            {partnerships.map((p) => (
+              <li key={p} className="flex items-start gap-3 text-sm text-ink leading-relaxed">
+                <span className="text-stone shrink-0 mt-1">·</span>
+                <span>{p}</span>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        {/* Contact */}
+        <div className="pt-8 border-t border-border flex flex-wrap gap-3">
           <Link
             href="mailto:zenoaihome@qq.com"
             className="text-sm font-medium text-paper bg-stone px-5 py-2.5 hover:bg-stone/85 transition-colors"

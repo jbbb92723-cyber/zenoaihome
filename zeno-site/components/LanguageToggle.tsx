@@ -5,45 +5,41 @@ import { usePathname } from 'next/navigation'
 import { getLangHref } from '@/lib/navigation'
 
 /**
- * 语言切换分段按钮：[中文 | EN]
- * 当前语言高亮，另一语言为可点击链接。
+ * 语言切换按钮
+ *
+ * 设计：单按钮 toggle，点击直接切到对方语言。
+ * 视觉：地球图标 + 目标语言短标识，与 ThemeToggle 视觉对齐。
  */
 export default function LanguageToggle() {
   const pathname = usePathname()
   const isEn = pathname.startsWith('/en')
   const langHref = getLangHref(pathname, isEn)
-
-  const activeClass = 'px-2 py-0.5 bg-surface-warm text-ink cursor-default select-none'
-  const inactiveClass = 'px-2 py-0.5 text-ink-faint hover:text-ink transition-colors'
+  const targetLabel = isEn ? '中文' : 'EN'
+  const ariaLabel = isEn ? '切换到中文' : 'Switch to English'
 
   return (
-    <div
-      className="flex items-center border border-border rounded-sm overflow-hidden text-[0.6875rem] font-medium leading-none"
-      aria-label="语言切换"
+    <Link
+      href={langHref}
+      aria-label={ariaLabel}
+      title={ariaLabel}
+      className="group inline-flex items-center gap-1.5 h-7 px-2.5 border border-border rounded-full text-[0.6875rem] font-medium text-ink-muted hover:text-ink hover:border-stone/50 transition-all duration-150"
     >
-      {/* 中文 */}
-      {isEn ? (
-        <Link href={langHref} className={inactiveClass}>
-          中文
-        </Link>
-      ) : (
-        <span className={activeClass} aria-current="true">
-          中文
-        </span>
-      )}
-
-      <span className="w-px self-stretch bg-border" aria-hidden="true" />
-
-      {/* EN */}
-      {isEn ? (
-        <span className={activeClass} aria-current="true">
-          EN
-        </span>
-      ) : (
-        <Link href={langHref} className={inactiveClass}>
-          EN
-        </Link>
-      )}
-    </div>
+      <svg
+        viewBox="0 0 24 24"
+        className="w-3.5 h-3.5"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        aria-hidden="true"
+      >
+        <circle cx="12" cy="12" r="9" />
+        <path d="M3 12h18" />
+        <path d="M12 3a13.5 13.5 0 0 1 0 18" />
+        <path d="M12 3a13.5 13.5 0 0 0 0 18" />
+      </svg>
+      <span className="leading-none">{targetLabel}</span>
+    </Link>
   )
 }

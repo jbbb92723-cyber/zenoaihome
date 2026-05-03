@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation'
 import { useState } from 'react'
 import ThemeToggle from '@/components/ThemeToggle'
 import LanguageToggle from '@/components/LanguageToggle'
+import { SearchTrigger } from '@/components/SearchDialog'
 import { mainNav } from '@/lib/navigation'
 
 export default function Header() {
@@ -61,6 +62,9 @@ export default function Header() {
 
             {/* 语言切换 */}
             <LanguageToggle />
+
+            {/* 搜索 */}
+            <SearchTrigger />
 
             {/* 主题切换 */}
             <ThemeToggle />

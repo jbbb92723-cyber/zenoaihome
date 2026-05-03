@@ -5,28 +5,51 @@ import { getArticleBySlug } from '@/data/articles'
 import PageHero from '@/components/PageHero'
 import Container from '@/components/Container'
 import CTA from '@/components/CTA'
+import StructuredData from '@/components/StructuredData'
 
 export const metadata: Metadata = {
-  title: '专题',
+  title: '按问题看 5 个长期专题',
   description:
-    '专题不是标签集合，而是"一个连续问题的连续回答"。实住派装修、从工地看世界、长期主义生活、传统行业人如何用 AI 升级自己。',
+    '如果你不想碎片化阅读，就按问题进入这 5 个长期专题：真实居住、AI 工作流、美学与生活、长期主义和工地观察。',
 }
 
 const topicAccents: Record<string, string> = {
   'shi-zhu-pai-zhuangxiu':            '#8B7355',
-  'cong-gongdi-kan-shijie':           '#6B7A5E',
-  'changqi-zhuyi-shenghuo':           '#5B6E8A',
   'chuantong-hangyeren-zenme-yong-ai':'#7A6B8A',
   'meixue-yu-shenghuo':               '#8A6B5B',
+  'changqi-zhuyi-shenghuo':           '#5B6E8A',
+  'cong-gongdi-kan-shijie':           '#6B7A5E',
 }
 
 export default function TopicsPage() {
   return (
     <>
+      <StructuredData
+        data={{
+          '@context': 'https://schema.org',
+          '@type': 'CollectionPage',
+          name: '按问题看 5 个长期专题',
+          url: 'https://zenoaihome.com/topics',
+          description:
+            '如果你不想碎片化阅读，就按问题进入这 5 个长期专题：真实居住、AI 工作流、工具与产品、一人公司和判断与生活。',
+          inLanguage: 'zh-CN',
+          mainEntity: {
+            '@type': 'ItemList',
+            itemListElement: topics.map((topic, index) => ({
+              '@type': 'ListItem',
+              position: index + 1,
+              name: topic.title,
+              description: topic.coreQuestion,
+              url: `https://zenoaihome.com/topics#${topic.slug}`,
+            })),
+          },
+        }}
+      />
+
       <PageHero
-        label="专题"
-        title="连续问题的连续回答"
-        subtitle="专题不是标签堆叠，而是围绕一个长期问题，把文章串成可持续阅读的路径。如果你不想碎片化阅读，从专题开始。"
+        label="问题专题"
+        title="按问题看这 5 个长期专题"
+        subtitle="如果你不想在文章列表里碎片化跳转，就从专题开始。这里不是标签堆叠，而是把同一类长期问题串成可持续阅读的路径。"
         size="content"
       />
 
@@ -40,15 +63,15 @@ export default function TopicsPage() {
           <div className="space-y-1.5 text-sm text-ink-muted">
             <p>
               <span className="text-stone font-medium">新读者</span>
-              　先看「实住派装修」和「从工地看世界」
+              　先看「真实居住」，从装修入口建立信任
             </p>
             <p>
-              <span className="text-stone font-medium">想做自我升级</span>
-              　再看「长期主义生活」
+              <span className="text-stone font-medium">想用 AI</span>
+              　再看「AI 实践」和「工具与产品」
             </p>
             <p>
-              <span className="text-stone font-medium">想把工具落地</span>
-              　最后看「传统行业人如何用 AI 升级自己」
+              <span className="text-stone font-medium">想做自己的事</span>
+              　看「一人公司」和「判断与生活」
             </p>
           </div>
         </div>
