@@ -22,9 +22,9 @@ import SectionHeader from '@/components/SectionHeader'
 import CTA from '@/components/CTA'
 
 export const metadata: Metadata = {
-  title: '装修判断工具库 — 按你的装修阶段，找到对的工具',
+  title: '按问题拿清单和资料，不用先翻栏目',
   description:
-    '不是下载站，是帮你做出更清醒装修决策的判断工具库。按装修前判断、装修中落地、真实居住选择、AI 辅助四个阶段组织，每个工具都解决一个具体问题。',
+    '先按问题拿清单和资料，再按阶段展开完整工具库。覆盖报价、预算、验收、真实居住和 AI 工作流。',
 }
 
 const tagColors: Record<string, string> = {
@@ -51,6 +51,44 @@ const serviceEntries = [
   },
 ]
 
+const problemEntryCards = [
+  {
+    title: '我正在看报价单',
+    description: '先拿清单把模糊项和漏项筛一轮，再决定要不要继续往下。',
+    primary: { label: '拿报价审核清单', href: '/resources#baojia-shenhe-qingdan' },
+    secondary: { label: '先做预算风险自测', href: '/tools/budget-risk' },
+    fallback: { label: '直接看报价审核服务 →', href: '/services#baojia-shenhe' },
+  },
+  {
+    title: '我怕装修超预算',
+    description: '先把钱按结构拆清，再谈哪些能省、哪些不能动。',
+    primary: { label: '拿装修预算模板', href: '/resources#zhuangxiu-yusuan-moban' },
+    secondary: { label: '先做预算风险自测', href: '/tools/budget-risk' },
+    fallback: { label: '直接看预算咨询 →', href: '/services#yusuan-zixun' },
+  },
+  {
+    title: '我已经开工，不知道怎么验收',
+    description: '先按施工节点把该看、该拍、该留证据的事情跑起来。',
+    primary: { label: '拿验收清单', href: '/resources#yanshou-qingdan' },
+    secondary: { label: '回到施工这条路', href: '/start#construction' },
+    fallback: { label: '先看服务边界 →', href: '/services' },
+  },
+  {
+    title: '我不想把家装成样板间',
+    description: '先把真实生活需求写清楚，再谈风格表达和预算分配。',
+    primary: { label: '拿实住派自查表', href: '/resources#shizhu-pai-zijian-biao' },
+    secondary: { label: '看真实居住专题', href: '/topics#shi-zhu-pai-zhuangxiu' },
+    fallback: { label: '看真实居住派装修服务 →', href: '/services#shi-zhu-pai-zhuangxiu' },
+  },
+  {
+    title: '我是传统行业人，想用 AI',
+    description: '先用真实任务试一轮，把经验和 AI 接上，再谈系统化。',
+    primary: { label: '拿 AI 工作流提示词包', href: '/resources#ai-neirong-gongzuoliu-tishici-bao' },
+    secondary: { label: '去提示词体验场', href: '/tools/prompts' },
+    fallback: { label: '看 AI 内容系统咨询 →', href: '/services#ai-neirong-xitong-zixun' },
+  },
+]
+
 export default async function ResourcesPage() {
   await auth()
 
@@ -58,19 +96,52 @@ export default async function ResourcesPage() {
     <>
       <PageHero
         label="判断工具库"
-        title="装修工具，按阶段分好的"
-        subtitle="每个工具都来自一次真实的项目。挑你正在面对的那个用，10 分钟之内就能用上。"
+        title="按问题拿清单和资料，不用先翻栏目"
+        subtitle="如果你已经知道自己卡在哪，就先点那一格。下面再按阶段展开完整工具库，方便你继续往下找。"
         size="content"
       />
 
       <Container size="content" className="py-section">
 
+        <section className="mb-14">
+          <SectionHeader
+            label="先按问题找"
+            title="你现在更像哪一种？"
+            subtitle="每一格都先给你一个资料入口，再给一条补充路径和一个更深入的出口。"
+          />
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+            {problemEntryCards.map((card) => (
+              <div key={card.title} className="border border-border bg-surface p-5 sm:p-6">
+                <h2 className="text-base font-semibold text-ink mb-2">{card.title}</h2>
+                <p className="text-sm text-ink-muted leading-relaxed mb-4">{card.description}</p>
+                <div className="space-y-2.5">
+                  <Link href={card.primary.href} className="block text-sm text-ink hover:text-stone transition-colors">
+                    {card.primary.label}
+                  </Link>
+                  <Link href={card.secondary.href} className="block text-sm text-ink-muted hover:text-stone transition-colors">
+                    {card.secondary.label}
+                  </Link>
+                  <Link href={card.fallback.href} className="block text-sm text-stone hover:underline underline-offset-2">
+                    {card.fallback.label}
+                  </Link>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
         {/* 阶段导航 */}
-        <div className="mb-12 flex flex-wrap gap-3">
-          <a href="#zhuangxiu-qian" className="text-xs font-medium text-stone border border-stone/30 px-3 py-1.5 hover:bg-stone-pale transition-colors">① 装修前判断</a>
-          <a href="#zhuangxiu-zhong" className="text-xs font-medium text-stone border border-stone/30 px-3 py-1.5 hover:bg-stone-pale transition-colors">② 装修中落地</a>
-          <a href="#zhenshi-juzhu" className="text-xs font-medium text-stone border border-stone/30 px-3 py-1.5 hover:bg-stone-pale transition-colors">③ 真实居住选择</a>
-          <a href="#ai-fuzhu" className="text-xs font-medium text-stone border border-stone/30 px-3 py-1.5 hover:bg-stone-pale transition-colors">④ AI 辅助装修</a>
+        <div className="mb-12">
+          <p className="text-xs font-semibold uppercase tracking-widest text-ink-faint mb-3">
+            如果你更习惯按阶段找
+          </p>
+          <div className="flex flex-wrap gap-3">
+            <a href="#zhuangxiu-qian" className="text-xs font-medium text-stone border border-stone/30 px-3 py-1.5 hover:bg-stone-pale transition-colors">① 装修前判断</a>
+            <a href="#zhuangxiu-zhong" className="text-xs font-medium text-stone border border-stone/30 px-3 py-1.5 hover:bg-stone-pale transition-colors">② 装修中落地</a>
+            <a href="#zhenshi-juzhu" className="text-xs font-medium text-stone border border-stone/30 px-3 py-1.5 hover:bg-stone-pale transition-colors">③ 真实居住选择</a>
+            <a href="#ai-fuzhu" className="text-xs font-medium text-stone border border-stone/30 px-3 py-1.5 hover:bg-stone-pale transition-colors">④ AI 辅助装修</a>
+          </div>
         </div>
 
         {/* ───── 阶段一：装修前判断 ───── */}

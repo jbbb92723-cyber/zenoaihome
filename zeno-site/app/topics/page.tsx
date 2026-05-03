@@ -5,6 +5,7 @@ import { getArticleBySlug } from '@/data/articles'
 import PageHero from '@/components/PageHero'
 import Container from '@/components/Container'
 import CTA from '@/components/CTA'
+import StructuredData from '@/components/StructuredData'
 
 export const metadata: Metadata = {
   title: '按问题看 5 个长期专题',
@@ -23,6 +24,28 @@ const topicAccents: Record<string, string> = {
 export default function TopicsPage() {
   return (
     <>
+      <StructuredData
+        data={{
+          '@context': 'https://schema.org',
+          '@type': 'CollectionPage',
+          name: '按问题看 5 个长期专题',
+          url: 'https://zenoaihome.com/topics',
+          description:
+            '如果你不想碎片化阅读，就按问题进入这 5 个长期专题：真实居住、AI 工作流、工具与产品、一人公司和判断与生活。',
+          inLanguage: 'zh-CN',
+          mainEntity: {
+            '@type': 'ItemList',
+            itemListElement: topics.map((topic, index) => ({
+              '@type': 'ListItem',
+              position: index + 1,
+              name: topic.title,
+              description: topic.coreQuestion,
+              url: `https://zenoaihome.com/topics#${topic.slug}`,
+            })),
+          },
+        }}
+      />
+
       <PageHero
         label="问题专题"
         title="按问题看这 5 个长期专题"
