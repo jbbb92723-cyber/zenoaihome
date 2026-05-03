@@ -1,26 +1,19 @@
-/**
- * app/resources/page.tsx
- *
- * 资料库页面（权限改造版）
- * - 每张资料卡片显示 accessLevel 标签
- * - 按钮根据权限状态变化
- * - 第一阶段：前端展示权限逻辑，不做真实下载
- */
-
 import type { Metadata } from 'next'
-import Link from 'next/link'
 import Image from 'next/image'
-import { resources } from '@/data/resources'
-import type { ResourceAccessLevel } from '@/data/resources'
-import { auth } from '@/auth'
+import Link from 'next/link'
+import { getResourceBySlug, resources, type Resource } from '@/data/resources'
 import PageHero from '@/components/PageHero'
 import Container from '@/components/Container'
 import CTA from '@/components/CTA'
+import StructuredData from '@/components/StructuredData'
 
 export const metadata: Metadata = {
-  title: '工具与资料库',
+  title: '资源页：按问题拿对应资料、清单和入口',
   description:
-    '把经验产品化的第一批资产——免费工具、免费资料、数字产品。包括 AI 提示词体验场、Markdown 微信排版工具、装修预算模板、报价审核清单等。',
+    '别再把所有资源摊开让你自己猜。这里按签约前、施工中、真实居住和传统行业 AI 四类问题给入口。',
+  alternates: {
+    canonical: 'https://zenoaihome.com/resources',
+  },
 }
 
 const tagColors: Record<string, string> = {
@@ -29,273 +22,383 @@ const tagColors: Record<string, string> = {
   AI:   'bg-[#EAE8F0] text-[#5B4E8A] border border-[#5B4E8A]/20',
 }
 
-export default async function ResourcesPage() {
-  await auth()  // 保留 auth 调用，未来扩展权限时使用
+type ActionItem = {
+  href: string
+  label: string
+  variant: 'primary' | 'secondary' | 'ghost'
+}
+
+const problemEntryCards = [
+  {
+    label: '签约前',
+    title: '报价和预算还没理顺，先从这里开始',
+    description: '如果你还没签合同，最重要的是先把报价风险和预算结构分开看。',
+    href: '#sign-before-contract',
+  },
+  {
+    label: '施工中',
+    title: '已经开工了，每个节点到底盯什么',
+    description: '验收不是竣工时一次性做的事，而是每个施工阶段都要有检查口。',
+    href: '#construction-checkpoints',
+  },
+  {
+    label: '真实居住',
+    title: '住进去后不顺手，回到需求本身',
+    description: '很多“风格问题”其实是需求没说清，或者顺序从一开始就反了。',
+    href: '#living-beyond-completion',
+  },
+  {
+    label: '传统行业 + AI',
+    title: '想用 AI，但不想先掉进工具堆',
+    description: '先拿一个真实任务来，再决定提示词、流程骨架和服务哪个更适合你。',
+    href: '#traditional-industry-ai',
+  },
+]
+
+const sampleMediaCards = [
+  {
+    title: '报价审核清单示意',
+    description: '你会先看到风险点长什么样，再决定要不要进入人工判断。',
+    href: '#baojia-shenhe-qingdan',
+    image: '/images/resources/quote-checklist-preview.svg',
+    imageAlt: '报价审核清单示意图',
+  },
+  {
+    title: '施工节点验收示意',
+    description: '不是“完工后统一看”，而是每个节点都有对应检查口。',
+    href: '#construction-checkpoints',
+    image: '/images/resources/acceptance-checkpoints.svg',
+    imageAlt: '施工节点验收示意图',
+  },
+  {
+    title: 'AI 工作流骨架示意',
+    description: '先拆任务，再接工具，而不是上来就问哪个 AI 最强。',
+    href: '#traditional-industry-ai',
+    image: '/images/resources/explainer-storyboard.svg',
+    imageAlt: 'AI 工作流骨架示意图',
+  },
+]
+
+const resourceFaqs = [
+  {
+    question: '为什么这里不再把全部资源一股脑渲染出来？',
+    answer:
+      '因为资源页不是仓库列表，而是分流页。你现在在哪个阶段、手里有什么材料，决定你应该先看哪一张清单、哪一个模板，而不是把所有下载项从头刷到尾。',
+  },
+  {
+    question: '真实居住为什么单独成一段？',
+    answer:
+      '因为真实居住不是装修的附属标签。它对应的是需求判断和生活方式排序，如果继续和全部资源混在一起，入口会失真。',
+  },
+  {
+    question: '传统行业人来这页，应该先拿资料还是先找服务？',
+    answer:
+      '如果你还没跑过真实任务，先用提示词体验场和工作流提示词包。如果你已经知道卡在哪个环节，再去看 AI 工作流咨询。',
+  },
+]
+
+const resourceActions: Record<string, ActionItem[]> = {
+  'zhuangxiu-yusuan-moban': [
+    { href: '/services/renovation#yusuan-zixun', label: '预算还是理不清，直接看预算咨询', variant: 'secondary' },
+    { href: '/blog/zhuangxiu-yusuan-weishenme-zongchao', label: '先看预算为什么总超', variant: 'ghost' },
+  ],
+  'baojia-shenhe-qingdan': [
+    { href: '/services/renovation#baojia-shenhe', label: '已经临近签约，直接看报价审核', variant: 'secondary' },
+    { href: '/blog/03-cong-gongdi-kan-shijie', label: '先看工地里的判断逻辑', variant: 'ghost' },
+  ],
+  'yanshou-qingdan': [
+    { href: '/blog/03-cong-gongdi-kan-shijie', label: '先看工地节点为什么会出问题', variant: 'secondary' },
+    { href: '/services/renovation', label: '需要有人帮你判断时机，再看装修服务', variant: 'ghost' },
+  ],
+  'shizhu-pai-zijian-biao': [
+    { href: '/services/renovation#shi-zhu-pai-zhuangxiu', label: '需求没理顺，直接看真实居住服务', variant: 'secondary' },
+    { href: '/blog/02-jia-bu-shi-yangban-jian', label: '先看家不是样板间', variant: 'ghost' },
+  ],
+  'ai-neirong-gongzuoliu-tishici-bao': [
+    { href: '/services/ai-workflow', label: '已经有真实场景，直接看 AI 工作流咨询', variant: 'secondary' },
+    { href: '/tools/prompts', label: '先去提示词体验场跑一轮', variant: 'ghost' },
+  ],
+}
+
+function ResourceDetailCard({ resource }: { resource: Resource }) {
+  const actions = resourceActions[resource.slug] ?? []
 
   return (
-    <>
-      <PageHero
-        label="工具与资料"
-        title="把经验产品化的第一批资产"
-        subtitle="资料库不是下载站，而是 Zeno 把经验产品化的第一批资产。每份资料都对应一个具体场景，每个工具都解决一个真实问题。"
-        size="content"
-      />
-
-
-      <Container size="content" className="py-section">
-
-        {/* ───── 免费工具 ───── */}
-        <div className="mb-6">
-          <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-2">免费工具</p>
-          <h2 className="text-lg font-semibold text-ink">在线工具</h2>
-          <p className="text-sm text-ink-muted mt-1">即开即用，不需要登录。</p>
+    <article id={resource.slug} className="border border-border bg-surface scroll-mt-24 overflow-hidden">
+      <div className="grid grid-cols-1 lg:grid-cols-[0.92fr_1.08fr]">
+        <div className="relative aspect-[16/10] border-b border-border lg:border-b-0 lg:border-r border-border bg-stone-pale/20">
+          {resource.previewImage ? (
+            <Image
+              src={resource.previewImage}
+              alt={resource.previewAlt || resource.title}
+              fill
+              className="object-cover"
+              sizes="(max-width: 1024px) 100vw, 360px"
+            />
+          ) : null}
         </div>
+        <div className="p-6 sm:p-7">
+          <div className="flex items-center gap-2 mb-3 flex-wrap">
+            <span className={`text-xs px-2 py-0.5 font-medium ${tagColors[resource.tag] ?? 'bg-stone-pale text-stone border border-stone/20'}`}>
+              {resource.tag}
+            </span>
+            <span className="text-xs text-ink-faint uppercase tracking-widest">对应一个具体问题</span>
+          </div>
+          <h3 className="text-xl font-semibold text-ink mb-2 leading-snug">{resource.title}</h3>
+          <p className="text-sm text-stone mb-4">{resource.subtitle}</p>
+          <p className="text-sm text-ink-muted leading-relaxed mb-5">{resource.description}</p>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-12">
-          {/* AI 提示词体验场 */}
-          <Link
-            href="/tools/prompts"
-            className="group border border-stone/30 bg-stone/5 p-5 hover:bg-stone/10 transition-colors"
-          >
-            <p className="text-sm font-semibold text-ink group-hover:text-stone transition-colors">
-              AI 提示词体验场
-            </p>
-            <p className="text-xs text-ink-muted mt-1.5 leading-relaxed">
-              选场景、填情况、一键生成可直接用的提示词。覆盖写作、装修沟通、报价分析、选题、AI 升级。
-            </p>
-          </Link>
-
-          {/* Markdown 微信排版工具 */}
-          <Link
-            href="/tools/md2wechat"
-            className="group border border-stone/30 bg-stone/5 p-5 hover:bg-stone/10 transition-colors"
-          >
-            <p className="text-sm font-semibold text-ink group-hover:text-stone transition-colors">
-              Markdown 微信排版工具
-            </p>
-            <p className="text-xs text-ink-muted mt-1.5 leading-relaxed">
-              把 Markdown 文稿一键转成微信公众号排版，可以直接复制 HTML 粘贴到公众号后台。
-            </p>
-          </Link>
-
-          {/* 装修预算风险自测 — 即将开放 */}
-          <div className="border border-border bg-surface p-5 opacity-75">
-            <div className="flex items-center gap-2 mb-1.5">
-              <p className="text-sm font-semibold text-ink">装修预算风险自测</p>
-              <span className="text-[0.65rem] text-stone border border-stone/30 px-2 py-0.5 uppercase tracking-wider">即将开放</span>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-5">
+            <div>
+              <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-2">适合谁</p>
+              <p className="text-sm text-ink leading-relaxed">{resource.forWho}</p>
             </div>
-            <p className="text-xs text-ink-muted leading-relaxed">
-              回答几个问题，快速判断你的装修预算是否存在超支风险。
-            </p>
+            <div>
+              <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-2">它解决什么</p>
+              <p className="text-sm text-ink leading-relaxed">{resource.solves}</p>
+            </div>
           </div>
 
-          {/* 报价单风险自查 — 即将开放 */}
-          <div className="border border-border bg-surface p-5 opacity-75">
-            <div className="flex items-center gap-2 mb-1.5">
-              <p className="text-sm font-semibold text-ink">报价单风险自查</p>
-              <span className="text-[0.65rem] text-stone border border-stone/30 px-2 py-0.5 uppercase tracking-wider">即将开放</span>
-            </div>
-            <p className="text-xs text-ink-muted leading-relaxed">
-              对照清单检查你的装修报价单，发现常见模糊项和风险项。
-            </p>
+          <div className="mb-5">
+            <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-3">怎么用</p>
+            <ol className="space-y-2">
+              {resource.howToUse.map((step, index) => (
+                <li key={step} className="flex items-start gap-2">
+                  <span className="text-stone text-xs font-semibold shrink-0 mt-0.5 w-4">{index + 1}.</span>
+                  <span className="text-sm text-ink-muted leading-relaxed">{step}</span>
+                </li>
+              ))}
+            </ol>
           </div>
-        </div>
 
-        {/* ───── 免费资料 ───── */}
-        <div className="mb-6">
-          <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-2">免费资料</p>
-          <h2 className="text-lg font-semibold text-ink">可直接使用的资料</h2>
-          <p className="text-sm text-ink-muted mt-1">关注公众号「Zeno AI装修笔记」，回复对应关键词即可获取。</p>
-        </div>
-
-        {/* 资料卡片列表 */}
-        <div className="space-y-8">
-          {resources.map((resource) => {
-            const level: ResourceAccessLevel = resource.accessLevel ?? 'login'
-
-            if (level === 'admin') return null
-
-            return (
-            <div
-              key={resource.id}
-              id={resource.slug}
-              className="border border-border overflow-hidden scroll-mt-20"
-            >
-              {/* 卡片头部 */}
-              <div className="px-6 py-5 border-b border-border bg-surface-warm flex items-start justify-between gap-4">
-                <div className="min-w-0">
-                  <div className="flex items-center gap-2 mb-2 flex-wrap">
-                    <span
-                      className={`text-xs px-2 py-0.5 font-medium ${
-                        tagColors[resource.tag] ?? 'bg-stone-pale text-stone border border-stone/20'
-                      }`}
-                    >
-                      {resource.tag}
-                    </span>
-                  </div>
-                  <h2 className="text-lg font-semibold text-ink leading-tight">{resource.title}</h2>
-                  <p className="text-sm text-stone mt-1">{resource.subtitle}</p>
-                </div>
-                {/* 预览图（有图才显示） */}
-                {resource.previewImage && resource.previewImage.length > 0 ? (
-                  <div className="relative shrink-0 w-20 h-14 overflow-hidden border border-border/60">
-                    <Image
-                      src={resource.previewImage}
-                      alt={resource.previewAlt || resource.title}
-                      fill
-                      className="object-cover"
-                      sizes="80px"
-                    />
-                  </div>
-                ) : (
-                  <span className="text-3xl text-stone/15 font-light shrink-0 leading-none select-none">↓</span>
-                )}
-              </div>
-
-              {/* 卡片内容 */}
-              <div className="px-6 py-6 space-y-5">
-                <p className="text-sm text-ink-muted leading-relaxed">{resource.description}</p>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                  <div>
-                    <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-2">
-                      适合谁
-                    </p>
-                    <p className="text-sm text-ink leading-relaxed">{resource.forWho}</p>
-                  </div>
-                  <div>
-                    <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-2">
-                      解决什么问题
-                    </p>
-                    <p className="text-sm text-ink leading-relaxed">{resource.solves}</p>
-                  </div>
-                </div>
-
-                {/* 怎么用 */}
-                <div>
-                  <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-3">
-                    怎么用
-                  </p>
-                  <ol className="space-y-1.5">
-                    {resource.howToUse.map((step, i) => (
-                      <li key={i} className="flex items-start gap-2">
-                        <span className="text-stone text-xs font-semibold shrink-0 mt-0.5 w-4">
-                          {i + 1}.
-                        </span>
-                        <span className="text-sm text-ink-muted leading-relaxed">{step}</span>
-                      </li>
-                    ))}
-                  </ol>
-                </div>
-
-                {/* 注意事项 */}
-                <div className="bg-surface-warm border border-border px-4 py-3">
-                  <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-1">
-                    注意事项
-                  </p>
-                  <p className="text-xs text-ink-muted leading-relaxed">{resource.caveats}</p>
-                </div>
-              </div>
-
-              {/* 卡片底部：领取方式 */}
-              <div className="px-6 py-4 border-t border-border bg-stone-pale/20 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                <div>
-                  <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-1">
-                    领取方式
-                  </p>
-                  <p className="text-sm text-ink-muted">{resource.howToGet}</p>
-                </div>
-                <div className="shrink-0">
-                  {/* 改了什么：“领取”不再跳 /contact，直接显示公众号关键词 */}
-                  {/* 为什么改：跳转 contact 路径断裂，用户迷路 */}
-                  <span className="text-xs text-stone">
-                    公众号回复关键词领取
-                  </span>
-                </div>
-              </div>
-
-              {/* 服务 cross-sell：仅装修类资料显示 */}
-              {(resource.slug === 'baojia-shenhe-qingdan' ||
-                resource.slug === 'zhuangxiu-yusuan-moban' ||
-                resource.slug === 'shizhu-pai-zijian-biao') && (
-                <div className="px-6 py-3.5 border-t border-border bg-surface-warm/50">
-                  <p className="text-xs text-ink-muted leading-relaxed">
-                    {resource.slug === 'baojia-shenhe-qingdan'
-                      ? '如果你手里已经有报价单，想让人直接帮你看，审核服务会比清单更直接。'
-                      : resource.slug === 'zhuangxiu-yusuan-moban'
-                      ? '如果你的预算已经理不清了，具体的判断通常比再看一份模板更有效。'
-                      : '先用资料建立判断，再决定是否需要我直接帮你看。'}
-                    <Link
-                      href="/services"
-                      className="text-stone hover:underline underline-offset-2 decoration-stone/40 ml-1"
-                    >
-                      查看服务 →
-                    </Link>
-                  </p>
-                </div>
-              )}
-            </div>
-            )
-          })}
-        </div>
-
-        {/* ───── 付费资料 / 即将开放 ───── */}
-        <div className="mt-12 pt-8 border-t border-border">
-          <div className="mb-6">
-            <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-2">付费资料 / 即将开放</p>
-            <h2 className="text-lg font-semibold text-ink">数字产品</h2>
-            <p className="text-sm text-ink-muted mt-1">把深度经验打包成可直接使用的工具包和系统模板。</p>
+          <div className="border border-border bg-surface-warm px-4 py-3 mb-5">
+            <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-1">领取方式</p>
+            <p className="text-sm text-ink-muted leading-relaxed">{resource.howToGet}</p>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {[
-              { title: '装修前 12 张避坑表', desc: '覆盖预算、合同、报价、材料、水电、验收等 12 个关键节点，每张一页，逐项自查。' },
-              { title: 'AI 内容工作流提示词包 Pro', desc: '从选题、写作、排版到多平台分发，一套完整的 AI 辅助内容生产系统提示词。' },
-              { title: '传统行业 AI 内容系统模板', desc: '帮传统行业从业者搭建自己的内容生产系统，从 0 到持续输出。' },
-              { title: '一人公司启动清单', desc: '从定位、内容、工具、服务到变现，一个人启动事业的完整检查清单。' },
-            ].map((item) => (
-              <div key={item.title} className="border border-border bg-surface p-5 opacity-75">
-                <div className="flex items-center gap-2 mb-1.5">
-                  <p className="text-sm font-semibold text-ink">{item.title}</p>
-                  <span className="text-[0.65rem] text-stone border border-stone/30 px-2 py-0.5 uppercase tracking-wider">即将开放</span>
-                </div>
-                <p className="text-xs text-ink-muted leading-relaxed">{item.desc}</p>
-              </div>
+
+          <div className="border-t border-border pt-4 flex flex-wrap gap-3 items-center">
+            {actions.map((action) => (
+              <CTA key={action.label} href={action.href} label={action.label} variant={action.variant} />
             ))}
           </div>
         </div>
+      </div>
+    </article>
+  )
+}
 
-        {/* 在线工具入口 */}
-        <div className="mt-12 pt-8 border-t border-border">
-          <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-5">
-            更多在线工具
-          </p>
-          <Link
-            href="/tools/md2wechat"
-            className="group flex items-start justify-between gap-4 border border-border bg-surface p-5 hover:bg-surface-warm transition-colors"
-          >
-            <div>
-              <p className="text-sm font-semibold text-ink group-hover:text-stone transition-colors">
-                Markdown 微信排版工具
+export default function ResourcesPage() {
+  const preContractResources = ['baojia-shenhe-qingdan', 'zhuangxiu-yusuan-moban']
+    .map((slug) => getResourceBySlug(slug))
+    .filter((resource): resource is Resource => Boolean(resource))
+
+  const acceptanceResource = getResourceBySlug('yanshou-qingdan')
+  const livingResource = getResourceBySlug('shizhu-pai-zijian-biao')
+  const aiResource = getResourceBySlug('ai-neirong-gongzuoliu-tishici-bao')
+
+  return (
+    <>
+      <StructuredData
+        data={[
+          {
+            '@context': 'https://schema.org',
+            '@type': 'CollectionPage',
+            name: '资源页',
+            url: 'https://zenoaihome.com/resources',
+            description: '按问题分流的资料与工具入口页。',
+            inLanguage: 'zh-CN',
+            hasPart: resources.map((resource) => ({
+              '@type': 'CreativeWork',
+              name: resource.title,
+              description: resource.description,
+            })),
+          },
+          {
+            '@context': 'https://schema.org',
+            '@type': 'ItemList',
+            name: '资源页问题入口',
+            itemListElement: problemEntryCards.map((item, index) => ({
+              '@type': 'ListItem',
+              position: index + 1,
+              name: item.title,
+              url: `https://zenoaihome.com/resources${item.href}`,
+            })),
+          },
+          {
+            '@context': 'https://schema.org',
+            '@type': 'FAQPage',
+            mainEntity: resourceFaqs.map((item) => ({
+              '@type': 'Question',
+              name: item.question,
+              acceptedAnswer: {
+                '@type': 'Answer',
+                text: item.answer,
+              },
+            })),
+          },
+        ]}
+      />
+
+      <PageHero
+        label="资源页"
+        title="按你现在的问题，拿对应的清单、模板和入口"
+        subtitle="这页不再把所有资源摊开给你自己猜。先分清你是签约前、施工中、真实居住，还是传统行业里想把 AI 接进工作，再看对应入口。"
+        note="资料是辅助判断，不是代替判断。真正有效的顺序，是先找到问题，再拿对一张清单或一个模板。"
+        size="content"
+      />
+
+      <Container size="content" className="py-section">
+        <section className="mb-14">
+          <div className="mb-6">
+            <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-2">先看可验证样例</p>
+            <h2 className="text-lg font-semibold text-ink">你会先看到什么</h2>
+          </div>
+          <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
+            {sampleMediaCards.map((item) => (
+              <Link key={item.title} href={item.href} className="group border border-border bg-surface overflow-hidden card-hover">
+                <div className="relative aspect-[16/10] border-b border-border bg-stone-pale/20">
+                  <Image
+                    src={item.image}
+                    alt={item.imageAlt}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 1024px) 100vw, 320px"
+                  />
+                </div>
+                <div className="p-5">
+                  <h3 className="text-base font-semibold text-ink mb-2 group-hover:text-stone transition-colors">{item.title}</h3>
+                  <p className="text-sm text-ink-muted leading-relaxed">{item.description}</p>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </section>
+
+        <section className="mb-14">
+          <div className="mb-6">
+            <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-2">按问题走</p>
+            <h2 className="text-lg font-semibold text-ink">先确认你在哪个阶段</h2>
+          </div>
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            {problemEntryCards.map((item) => (
+              <Link key={item.title} href={item.href} className="group border border-border bg-surface p-5 card-hover">
+                <p className="text-[0.65rem] font-semibold uppercase tracking-widest text-stone mb-3">{item.label}</p>
+                <h3 className="text-base font-semibold text-ink mb-2 group-hover:text-stone transition-colors">{item.title}</h3>
+                <p className="text-sm text-ink-muted leading-relaxed">{item.description}</p>
+              </Link>
+            ))}
+          </div>
+        </section>
+
+        <section id="sign-before-contract" className="mb-14 scroll-mt-24">
+          <div className="mb-6 max-w-2xl">
+            <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-2">阶段一</p>
+            <h2 className="text-lg font-semibold text-ink">还没签合同，先看什么？</h2>
+            <p className="text-sm text-ink-muted mt-2 leading-relaxed">
+              先分成两件事看。报价风险是报价风险，预算结构是预算结构。混在一起，问题只会越看越乱。
+            </p>
+          </div>
+          <div className="space-y-6">
+            {preContractResources.map((resource) => (
+              <ResourceDetailCard key={resource.id} resource={resource} />
+            ))}
+          </div>
+        </section>
+
+        <section id="construction-checkpoints" className="mb-14 scroll-mt-24">
+          <div className="mb-6 max-w-2xl">
+            <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-2">阶段二</p>
+            <h2 className="text-lg font-semibold text-ink">已经开工了，先盯哪几个节点？</h2>
+            <p className="text-sm text-ink-muted mt-2 leading-relaxed">
+              这里不再放静态说明块。你现在就能点进去拿验收清单，也能先看一篇工地观察文章，把“为什么要现在看”理解清楚。
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 mb-6">
+            <Link href="#yanshou-qingdan" className="group border border-border bg-surface p-5 card-hover">
+              <p className="text-[0.65rem] font-semibold uppercase tracking-widest text-stone mb-3">明确入口一</p>
+              <h3 className="text-base font-semibold text-ink mb-2 group-hover:text-stone transition-colors">直接拿施工节点验收清单</h3>
+              <p className="text-sm text-ink-muted leading-relaxed">适合已经进入水电、泥工、木作、油漆任一阶段的人。每个节点都该当场留证据。</p>
+            </Link>
+            <Link href="/blog/03-cong-gongdi-kan-shijie" className="group border border-border bg-surface p-5 card-hover">
+              <p className="text-[0.65rem] font-semibold uppercase tracking-widest text-stone mb-3">明确入口二</p>
+              <h3 className="text-base font-semibold text-ink mb-2 group-hover:text-stone transition-colors">先看工地里的判断逻辑</h3>
+              <p className="text-sm text-ink-muted leading-relaxed">如果你还不明白为什么节点要前置检查，先看这篇，再回头用清单会更有感觉。</p>
+            </Link>
+          </div>
+
+          {acceptanceResource ? <ResourceDetailCard resource={acceptanceResource} /> : null}
+        </section>
+
+        <section id="living-beyond-completion" className="mb-14 scroll-mt-24">
+          <div className="mb-6 max-w-2xl">
+            <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-2">阶段三</p>
+            <h2 className="text-lg font-semibold text-ink">已经开始想“住进去到底顺不顺手”</h2>
+            <p className="text-sm text-ink-muted mt-2 leading-relaxed">
+              这一段只保留真实居住相关内容，不再把全部资源都堆进来。因为这里讨论的是需求、生活习惯和长期使用，不是所有下载项的大杂烩。
+            </p>
+          </div>
+          <div className="space-y-6">
+            {livingResource ? <ResourceDetailCard resource={livingResource} /> : null}
+            <div className="border border-border bg-surface-warm p-6 sm:p-7">
+              <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-2">继续往前</p>
+              <h3 className="text-base font-semibold text-ink mb-2">如果你发现问题不是“不会装”，而是“需求顺序反了”</h3>
+              <p className="text-sm text-ink-muted leading-relaxed mb-4">
+                先看真实居住相关文章，再决定要不要进入装修判断服务。很多风格争论，本质上都是生活方式排序没说清。
               </p>
-              <p className="text-xs text-ink-muted mt-1.5 leading-relaxed">
-                把 Markdown 文稿一键转成微信公众号排版，可以直接复制 HTML 粘贴到公众号后台。免费使用，无需登录。
-              </p>
+              <div className="flex flex-wrap gap-3">
+                <CTA href="/blog/02-jia-bu-shi-yangban-jian" label="先看家不是样板间" variant="secondary" />
+                <CTA href="/services/renovation#shi-zhu-pai-zhuangxiu" label="直接看真实居住服务" variant="ghost" />
+              </div>
             </div>
-            <span className="text-stone text-sm shrink-0 mt-0.5">→</span>
-          </Link>
-        </div>
+          </div>
+        </section>
 
-        {/* 底部 CTA */}
-        <div className="mt-14 pt-8 border-t border-border flex flex-wrap gap-3">
-          <p className="w-full text-sm text-ink-muted mb-2">
-            资料是辅助，不替代你的现场判断。先用一遍，再回来看对应文章，会更有感觉。
-            如果需要更具体的帮助，可以看服务页。
+        <section id="traditional-industry-ai" className="mb-14 scroll-mt-24">
+          <div className="mb-6 max-w-2xl">
+            <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-2">阶段四</p>
+            <h2 className="text-lg font-semibold text-ink">传统行业人，怎么先把 AI 接进真实工作？</h2>
+            <p className="text-sm text-ink-muted mt-2 leading-relaxed">
+              先跑一个真实场景，再决定用工具、拿提示词包还是做咨询。不要一上来就把自己扔进一堆产品对比里。
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 mb-6">
+            <Link href="/tools/prompts" className="group border border-border bg-surface p-5 card-hover">
+              <p className="text-[0.65rem] font-semibold uppercase tracking-widest text-stone mb-3">先跑一轮</p>
+              <h3 className="text-base font-semibold text-ink mb-2 group-hover:text-stone transition-colors">AI 提示词体验场</h3>
+              <p className="text-sm text-ink-muted leading-relaxed">适合还在试探阶段的人。先拿一个真实任务试，不要先讨论抽象方法论。</p>
+            </Link>
+            <Link href="/services/ai-workflow" className="group border border-border bg-surface p-5 card-hover">
+              <p className="text-[0.65rem] font-semibold uppercase tracking-widest text-stone mb-3">准备好了再进</p>
+              <h3 className="text-base font-semibold text-ink mb-2 group-hover:text-stone transition-colors">AI 工作流咨询</h3>
+              <p className="text-sm text-ink-muted leading-relaxed">适合已经知道自己卡在内容、沟通、整理或轻交付某一环的人。</p>
+            </Link>
+          </div>
+
+          {aiResource ? <ResourceDetailCard resource={aiResource} /> : null}
+        </section>
+
+        <section className="border border-border bg-surface-warm p-6 sm:p-8 mb-14">
+          <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-3">常见问题</p>
+          <div className="space-y-5">
+            {resourceFaqs.map((item) => (
+              <div key={item.question}>
+                <h2 className="text-base font-semibold text-ink mb-2">{item.question}</h2>
+                <p className="text-sm text-ink-muted leading-relaxed">{item.answer}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <div className="pt-8 border-t border-border flex flex-wrap gap-3">
+          <p className="w-full text-sm text-ink-muted mb-2 leading-relaxed">
+            如果你已经知道自己属于哪类问题，就别继续横向刷完整页了。直接进对应资料、文章或服务，效率更高。
           </p>
-          <CTA href="/services" label="查看服务" variant="secondary" />
-          <CTA href="/blog" label="看文章" variant="ghost" />
+          <CTA href="/services" label="看总服务页" variant="secondary" />
           <CTA href="/topics" label="看专题" variant="ghost" />
+          <CTA href="/blog" label="看文章" variant="ghost" />
         </div>
-
       </Container>
     </>
   )

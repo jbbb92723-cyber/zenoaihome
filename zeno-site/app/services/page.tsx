@@ -1,36 +1,42 @@
 ﻿import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 import { services } from '@/data/services'
 import PageHero from '@/components/PageHero'
 import Container from '@/components/Container'
 import CTA from '@/components/CTA'
+import ServiceCard from '@/components/ServiceCard'
+import StructuredData from '@/components/StructuredData'
 
 export const metadata: Metadata = {
-  title: '服务与合作 — 不是卖套餐，是帮你做更清醒的判断',
+  title: '找我帮你看',
   description:
-    '赞诺提供 AI 内容系统咨询、个人网站规划、AI 工作流咨询、数字产品设计咨询，以及装修报价审核、预算咨询和真实居住派装修服务。同时开放合作方向。',
+    '总服务页先帮你分清两类需求：装修判断服务，还是 AI 工作流咨询。先选入口，再看具体服务边界。',
+  alternates: {
+    canonical: 'https://zenoaihome.com/services',
+  },
 }
 
 const serviceRelatedArticles: Record<string, { label: string; href: string }[]> = {
   'baojia-shenhe': [
-    { label: '报价单真正该怎么看', href: '/blog/baojia-dan-zenme-kan' },
     { label: '装修预算为什么总超？', href: '/blog/zhuangxiu-yusuan-weishenme-zongchao' },
-    { label: '便宜的报价，往往是最贵的选择', href: '/blog/article-03-04' },
+    { label: '家不是样板间', href: '/blog/02-jia-bu-shi-yangban-jian' },
+    { label: '从工地看世界', href: '/blog/03-cong-gongdi-kan-shijie' },
   ],
   'yusuan-zixun': [
     { label: '装修预算为什么总超？', href: '/blog/zhuangxiu-yusuan-weishenme-zongchao' },
-    { label: '水电工程为什么总是超预算', href: '/blog/shuidian-gongcheng-zongchao-yusuan' },
-    { label: '装修完最后悔的五件事', href: '/blog/zhuangxiu-hou-hue-de-wu-jian' },
+    { label: '从工地看世界', href: '/blog/03-cong-gongdi-kan-shijie' },
+    { label: '长期主义不是忍耐', href: '/blog/05-changqi-zhuyi-bushi-rennai' },
   ],
   'shi-zhu-pai-zhuangxiu': [
     { label: '家不是样板间', href: '/blog/02-jia-bu-shi-yangban-jian' },
-    { label: '实住派装修，究竟反对什么', href: '/blog/article-01-03' },
-    { label: '真正耐住十年的装修，优先级是什么', href: '/blog/article-01-07' },
+    { label: '我为什么不想只做一个教人装修的人', href: '/blog/01-wo-wei-shenme-bu-xiang-zhi-zuo-jiaoren-zhuangxiu' },
+    { label: '长期主义不是忍耐', href: '/blog/05-changqi-zhuyi-bushi-rennai' },
   ],
   'ai-neirong-xitong-zixun': [
-    { label: '为什么传统行业人必须认真学 AI', href: '/blog/article-05-01' },
-    { label: '内容资产，才是传统行业人的第二生产线', href: '/blog/article-05-02' },
-    { label: '我的内容系统是怎么建起来的', href: '/blog/neirong-xitong-jianqi' },
+    { label: '为什么我开始认真学 AI', href: '/blog/04-wei-shenme-wo-kaishi-renzheng-xue-ai' },
+    { label: '我为什么不想只做一个教人装修的人', href: '/blog/01-wo-wei-shenme-bu-xiang-zhi-zuo-jiaoren-zhuangxiu' },
+    { label: '先看 AI 实践专题', href: '/topics#chuantong-hangyeren-zenme-yong-ai' },
   ],
 }
 
@@ -55,243 +61,173 @@ const industryExtras = [
   },
 ]
 
+const splitCards = [
+  {
+    label: '装修判断服务',
+    title: '报价、预算和真实居住，先分清你是哪类问题',
+    description: '给普通装修业主的入口。先判断，再决定要不要把材料发我。',
+    href: '/services/renovation',
+    image: '/images/services/renovation-judgment-proof.svg',
+  },
+  {
+    label: 'AI 工作流咨询',
+    title: '先跑通一个真实场景，再决定要不要搭系统',
+    description: '给传统行业从业者的入口。不是追工具，而是把已有工作接进 AI。',
+    href: '/services/ai-workflow',
+    image: '/images/services/ai-workflow-proof.svg',
+  },
+]
+
+const serviceFaqs = [
+  {
+    question: '为什么总服务页要先分两条入口？',
+    answer:
+      '因为装修判断和 AI 工作流不是一类问题，读者的目标、材料准备和咨询时机都不同。先分入口，后面每一页的路径才不会混。',
+  },
+  {
+    question: '什么时候更适合先用工具和资料，而不是直接找我？',
+    answer:
+      '如果你还在摸清问题阶段，或者手里没有具体材料，先用资源页把问题缩小，再拿清单和模板，通常比直接咨询更划算。',
+  },
+  {
+    question: '这个页最想帮你避免什么？',
+    answer:
+      '避免一上来就把装修业主送进 AI 服务，也避免把传统行业人直接送到泛泛的“服务与合作”页面里。',
+  },
+]
+
 export default function ServicesPage() {
   const renovationServices = services.filter((s) => renovationSlugs.includes(s.slug))
   const industryServices = services.filter((s) => industrySlugs.includes(s.slug))
 
   return (
     <>
+      <StructuredData
+        data={[
+          {
+            '@context': 'https://schema.org',
+            '@type': 'CollectionPage',
+            name: '找我帮你看',
+            url: 'https://zenoaihome.com/services',
+            description: '先分清你是装修判断，还是 AI 工作流需求。',
+            inLanguage: 'zh-CN',
+            hasPart: services.map((service) => ({
+              '@type': 'Service',
+              name: service.title,
+              description: service.description,
+              offers: {
+                '@type': 'Offer',
+                priceCurrency: 'CNY',
+                price: service.price,
+              },
+              url: `https://zenoaihome.com/services#${service.slug}`,
+            })),
+          },
+          {
+            '@context': 'https://schema.org',
+            '@type': 'FAQPage',
+            mainEntity: serviceFaqs.map((item) => ({
+              '@type': 'Question',
+              name: item.question,
+              acceptedAnswer: {
+                '@type': 'Answer',
+                text: item.answer,
+              },
+            })),
+          },
+        ]}
+      />
+
       <PageHero
-        label="服务与合作"
-        title="不是卖套餐，是帮你做更清醒的判断。"
-        subtitle="无论是 AI 工作流落地、内容系统搭建，还是装修决策，我更关心的是：信息是否透明，判断是否清楚，长期是否值得。"
+        label="找我帮你看"
+        title="先选你是哪一类需求"
+        subtitle="这个总服务页先做一件事：把装修判断和 AI 工作流分开。先选入口，再看具体服务边界，不要一上来就走错页。"
+        note="如果你只是想先自己判断，先去工具页和资料页，不急着付费。"
         size="content"
       />
 
       <Container size="content" className="py-section">
 
-        {/* ───── A. 轻交付咨询 ───── */}
-        <div className="mb-6">
-          <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-2">A</p>
-          <h2 className="text-lg font-semibold text-ink">轻交付咨询</h2>
-          <p className="text-sm text-ink-muted mt-1">帮你把经验、判断和流程，整理成可复用的内容资产和工作系统。</p>
-        </div>
-
-        {/* 已有完整数据的服务 */}
-        <div className="space-y-10">
-          {industryServices.map((service, index) => (
-            <div key={service.id} className="border border-border overflow-hidden">
-              <div className="px-6 py-5 border-b border-border bg-surface-warm flex items-start justify-between gap-4">
-                <div className="flex items-start gap-3 min-w-0">
-                  <span className="text-stone/30 text-xs font-mono shrink-0 mt-[3px]">
-                    {String(index + 1).padStart(2, '0')}
-                  </span>
-                  <div className="min-w-0">
-                    <h2 className="text-lg font-semibold text-ink leading-tight">{service.title}</h2>
-                    <p className="text-sm text-stone mt-1">{service.tagline}</p>
-                  </div>
-                </div>
-                <span className="shrink-0 self-start border border-stone/30 text-stone text-xs px-3 py-1 font-medium whitespace-nowrap">
-                  {service.price}
-                </span>
+        <section className="mb-14 grid grid-cols-1 lg:grid-cols-2 gap-5">
+          {splitCards.map((card) => (
+            <div key={card.label} className="border border-border bg-surface overflow-hidden">
+              <div className="relative aspect-[16/10] border-b border-border bg-stone-pale/30">
+                <Image
+                  src={card.image}
+                  alt={card.title}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 520px"
+                />
               </div>
-              <div className="px-6 py-6 space-y-6">
-                <p className="text-sm text-ink leading-relaxed">{service.description}</p>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  <div>
-                    <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-3">适合谁</p>
-                    <ul className="space-y-2">
-                      {service.forWho.map((item) => (
-                        <li key={item} className="flex items-start gap-2">
-                          <span className="text-stone text-xs shrink-0 mt-1">+</span>
-                          <span className="text-sm text-ink leading-relaxed">{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  <div>
-                    <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-3">不适合谁</p>
-                    <ul className="space-y-2">
-                      {service.notForWho.map((item) => (
-                        <li key={item} className="flex items-start gap-2">
-                          <span className="text-ink-muted text-xs shrink-0 mt-1">—</span>
-                          <span className="text-sm text-ink-muted leading-relaxed">{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-                <div>
-                  <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-3">交付结果</p>
-                  <ul className="space-y-2">
-                    {service.iDeliver.map((item) => (
-                      <li key={item} className="flex items-start gap-2">
-                        <span className="text-stone text-xs shrink-0 mt-1">·</span>
-                        <span className="text-sm text-ink leading-relaxed">{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <div className="border-l-2 border-stone-light pl-4">
-                  <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-1.5">服务边界</p>
-                  <p className="text-sm text-ink-muted leading-relaxed">{service.boundary}</p>
-                </div>
-              </div>
-              <div className="px-6 py-4 border-t border-border bg-stone-pale/20">
-                <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-1.5">咨询方式</p>
-                <p className="text-sm text-ink-muted leading-relaxed">{service.contactNote}</p>
+              <div className="p-6 sm:p-7">
+                <p className="text-[0.65rem] font-semibold uppercase tracking-widest text-stone mb-3">{card.label}</p>
+                <h2 className="text-lg font-semibold text-ink mb-3">{card.title}</h2>
+                <p className="text-sm text-ink-muted leading-relaxed mb-5">{card.description}</p>
+                <CTA href={card.href} label="进入这条入口" variant="primary" />
               </div>
             </div>
           ))}
+        </section>
+
+        <section className="mb-14 border border-border bg-surface-warm p-6 sm:p-8">
+          <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-3">可验证的证据</p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {[
+              ['服务范围', '报价审核、预算结构、真实居住判断、AI 工作流拆解。'],
+              ['工作方式', '先看材料，再给书面建议，不做空口安慰。'],
+              ['交付样例', '风险说明、修改建议、流程骨架、提示词框架。'],
+              ['哪些不做', '不代砍价、不代施工、不承诺一键自动化。'],
+            ].map(([title, desc]) => (
+              <div key={title} className="border border-border bg-surface p-5">
+                <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-2">{title}</p>
+                <p className="text-sm text-ink leading-relaxed">{desc}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* ───── A. 装修相关咨询 ───── */}
+        <div className="mb-6">
+          <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-2">A</p>
+          <h2 className="text-lg font-semibold text-ink">装修判断服务</h2>
+          <p className="text-sm text-ink-muted mt-1">先处理普通装修业主最常见的三类问题：报价、预算和真实居住选择。</p>
         </div>
 
-        {/* 即将推出的轻交付咨询 */}
+        <div className="space-y-10">
+          {renovationServices.map((service, index) => (
+            <ServiceCard
+              key={service.id}
+              service={service}
+              index={index}
+              relatedArticles={serviceRelatedArticles[service.slug]}
+            />
+          ))}
+        </div>
+
+        <div className="mt-16 mb-6">
+          <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-2">B</p>
+          <h2 className="text-lg font-semibold text-ink">AI 工作流与内容系统</h2>
+          <p className="text-sm text-ink-muted mt-1">先处理传统行业人最常见的问题：怎么把一个真实场景接进 AI，而不是一直停在演示层。</p>
+        </div>
+
+        <div className="space-y-10">
+          {industryServices.map((service, index) => (
+            <ServiceCard
+              key={service.id}
+              service={service}
+              index={index}
+              relatedArticles={serviceRelatedArticles[service.slug]}
+            />
+          ))}
+        </div>
+
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6">
           {industryExtras.map((item) => (
             <div key={item.title} className="border border-border bg-surface p-6">
               <h3 className="text-sm font-semibold text-ink mb-3">{item.title}</h3>
               <p className="text-xs text-ink-muted leading-relaxed mb-4">{item.desc}</p>
-              <span className="text-[0.65rem] text-stone border border-stone/30 px-2 py-0.5 uppercase tracking-wider">即将开放</span>
-            </div>
-          ))}
-        </div>
-
-        {/* ───── B. 装修相关咨询 ───── */}
-        <div className="mt-16 mb-6">
-          <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-2">B</p>
-          <h2 className="text-lg font-semibold text-ink">装修相关咨询</h2>
-          <p className="text-sm text-ink-muted mt-1">帮你看清报价、控住预算、做出更值得的决定。</p>
-        </div>
-
-        <div className="space-y-10">
-          {renovationServices.map((service, index) => (
-            <div key={service.id} className="border border-border overflow-hidden">
-
-              {/* 卡片头部 */}
-              <div className="px-6 py-5 border-b border-border bg-surface-warm flex items-start justify-between gap-4">
-                <div className="flex items-start gap-3 min-w-0">
-                  <span className="text-stone/30 text-xs font-mono shrink-0 mt-[3px]">
-                    {String(index + 1).padStart(2, '0')}
-                  </span>
-                  <div className="min-w-0">
-                    <h2 className="text-lg font-semibold text-ink leading-tight">{service.title}</h2>
-                    <p className="text-sm text-stone mt-1">{service.tagline}</p>
-                  </div>
-                </div>
-                <span className="shrink-0 self-start border border-stone/30 text-stone text-xs px-3 py-1 font-medium whitespace-nowrap">
-                  {service.price}
-                </span>
-              </div>
-
-              {/* 卡片正文 */}
-              <div className="px-6 py-6 space-y-6">
-
-                <p className="text-sm text-ink leading-relaxed">{service.description}</p>
-
-                {/* 适合谁 / 不适合谁 */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  <div>
-                    <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-3">
-                      适合谁
-                    </p>
-                    <ul className="space-y-2">
-                      {service.forWho.map((item) => (
-                        <li key={item} className="flex items-start gap-2">
-                          <span className="text-stone text-xs shrink-0 mt-1">+</span>
-                          <span className="text-sm text-ink leading-relaxed">{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  <div>
-                    <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-3">
-                      不适合谁
-                    </p>
-                    <ul className="space-y-2">
-                      {service.notForWho.map((item) => (
-                        <li key={item} className="flex items-start gap-2">
-                          <span className="text-ink-muted text-xs shrink-0 mt-1">—</span>
-                          <span className="text-sm text-ink-muted leading-relaxed">{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-
-                {/* 我会帮你看 */}
-                {service.checks && service.checks.length > 0 && (
-                  <div>
-                    <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-3">
-                      我会帮你看
-                    </p>
-                    <ul className="space-y-2">
-                      {service.checks.map((item) => (
-                        <li key={item} className="flex items-start gap-2">
-                          <span className="text-stone text-xs shrink-0 mt-1">·</span>
-                          <span className="text-sm text-ink leading-relaxed">{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-
-                {/* 交付结果 */}
-                <div>
-                  <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-3">
-                    交付结果
-                  </p>
-                  <ul className="space-y-2">
-                    {service.iDeliver.map((item) => (
-                      <li key={item} className="flex items-start gap-2">
-                        <span className="text-stone text-xs shrink-0 mt-1">·</span>
-                        <span className="text-sm text-ink leading-relaxed">{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                {/* 服务边界 */}
-                <div className="border-l-2 border-stone-light pl-4">
-                  <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-1.5">
-                    服务边界
-                  </p>
-                  <p className="text-sm text-ink-muted leading-relaxed">{service.boundary}</p>
-                </div>
-
-              </div>
-
-              {/* 卡片底部：咨询方式 */}
-              <div className="px-6 py-4 border-t border-border bg-stone-pale/20">
-                <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-1.5">
-                  咨询方式
-                </p>
-                <p className="text-sm text-ink-muted leading-relaxed">{service.contactNote}</p>
-              </div>
-
-              {/* 相关文章 */}
-              {serviceRelatedArticles[service.slug] && (
-                <div className="px-6 py-4 border-t border-border">
-                  <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-1">
-                    先了解判断逻辑
-                  </p>
-                  <p className="text-xs text-ink-muted mb-3">
-                    如果你想先了解我的判断方式，再决定是否需要这项服务，可以先读这几篇：
-                  </p>
-                  <div className="space-y-1.5">
-                    {serviceRelatedArticles[service.slug].map((item) => (
-                      <Link
-                        key={item.href}
-                        href={item.href}
-                        className="flex items-center gap-2 text-sm text-ink-muted hover:text-stone transition-colors"
-                      >
-                        <span className="text-stone/60">→</span>
-                        {item.label}
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-              )}
-
+              <span className="text-[0.65rem] text-stone border border-stone/30 px-2 py-0.5 uppercase tracking-wider">下一阶段</span>
             </div>
           ))}
         </div>
@@ -349,22 +285,14 @@ export default function ServicesPage() {
         {/* 关联内容入口 */}
         <div className="mt-10">
           <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-4">
-            更多参考
+            常见问题
           </p>
-          <div className="space-y-2">
-            {[
-              { label: '所有文章', href: '/blog' },
-              { label: '工具与资料库', href: '/resources' },
-              { label: 'AI 提示词体验场', href: '/tools/prompts' },
-            ].map((item) => (
-              <Link
-                key={item.label}
-                href={item.href}
-                className="flex items-center gap-2 text-sm text-ink-muted hover:text-stone transition-colors"
-              >
-                <span className="text-stone">→</span>
-                {item.label}
-              </Link>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+            {serviceFaqs.map((item) => (
+              <div key={item.question} className="border border-border bg-surface p-5">
+                <h2 className="text-sm font-semibold text-ink mb-2">{item.question}</h2>
+                <p className="text-xs text-ink-muted leading-relaxed">{item.answer}</p>
+              </div>
             ))}
           </div>
         </div>

@@ -68,6 +68,8 @@ const authConfig: NextAuthConfig = {
     maxAge: 30 * 24 * 60 * 60,
   },
 
+  trustHost: true,
+
   pages: {
     signIn: '/login',
     error:  '/login',
