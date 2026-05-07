@@ -42,22 +42,22 @@ const pathCards: Array<{
   {
     number: '01',
     icon: FileText,
-    title: '报价与预算判断',
-    body: '看清价格构成，识别漏项、模糊项和后期容易增项的地方。',
+    title: '看清报价和预算',
+    body: '不急着谈贵不贵，先知道钱花在哪、哪些没写、后面哪里容易加钱。',
     href: '/services/renovation#baojia-shenhe',
   },
   {
     number: '02',
     icon: HardHat,
-    title: '施工与验收判断',
-    body: '了解施工流程、工艺边界和关键节点，不把问题拖到竣工后。',
+    title: '守住施工和验收',
+    body: '关键节点先确认，变更要留痕，不把所有问题都拖到竣工以后。',
     href: '/resources#construction-checkpoints',
   },
   {
     number: '03',
     icon: HouseLine,
-    title: '真实居住与长期选择',
-    body: '从真实生活出发，看清哪些选择会影响长期使用，而不只看效果图。',
+    title: '回到真实居住',
+    body: '风格最后要落到做饭、收纳、清洁、作息和十年后的使用感里。',
     href: '/topics#shi-zhu-pai-zhuangxiu',
   },
 ]
@@ -70,32 +70,32 @@ const problemCards: Array<{
 }> = [
   {
     icon: MagnifyingGlass,
-    title: '正在看报价单，不知道贵不贵',
-    body: '担心被坑，也想知道报价是不是合理、透明、可追问。',
+    title: '报价看不懂，但快要签了',
+    body: '总价能看见，漏项、单价、工艺和增项边界还没看清。',
     href: '/services/renovation#baojia-shenhe',
   },
   {
     icon: Calculator,
-    title: '预算越算越乱，怕后期增项',
-    body: '总价看着差不多，但中途可能不断加钱。',
+    title: '预算有数，但越算越乱',
+    body: '钱不是不够，而是还没拆成底线、弹性和可以缓一缓的选择。',
     href: '/tools/budget-risk',
   },
   {
     icon: Notebook,
-    title: '合同快签了，担心条款没写清',
-    body: '怕有隐藏条款、模糊表述，后面扯皮没有凭据。',
+    title: '合同快签，担心话没写死',
+    body: '口头说得都好，真正能保护你的只有写清楚的条款和确认方式。',
     href: '/resources#sign-before-contract',
   },
   {
     icon: HardHat,
-    title: '已经开工了，不知道哪些节点要验收',
-    body: '担心施工质量，也不清楚该怎么盯进度和留证。',
+    title: '已经开工，现场全靠感觉盯',
+    body: '节点、照片、变更和验收没有节奏，问题容易堆到最后。',
     href: '/resources#construction-checkpoints',
   },
   {
     icon: HouseLine,
-    title: '不想装成样板间，想按真实生活做选择',
-    body: '希望空间好用、耐看、长期住着舒服。',
+    title: '不想只为效果图买单',
+    body: '好看要回到真实生活里，经得起做饭、收纳、清洁和十年使用。',
     href: '/blog/02-jia-bu-shi-yangban-jian',
   },
 ]
@@ -106,12 +106,12 @@ const frameworkSteps: Array<{
   title: string
   body: string
 }> = [
-  { number: '01', icon: FileText, title: '看报价', body: '先看漏项、模糊项和异常单价。' },
-  { number: '02', icon: Calculator, title: '控预算', body: '预算不是总价表，而是决策边界。' },
-  { number: '03', icon: Notebook, title: '定合同', body: '把容易扯皮的地方提前写清楚。' },
-  { number: '04', icon: ClipboardText, title: '盯节点', body: '不要等完工后才发现问题。' },
-  { number: '05', icon: MagnifyingGlass, title: '做验收', body: '照片、清单、标准，缺一不可。' },
-  { number: '06', icon: HouseLine, title: '真实居住', body: '最终不是为了好看，而是为了长期舒服。' },
+  { number: '01', icon: FileText, title: '看报价', body: '先问清楚钱花在哪，哪些还没写。' },
+  { number: '02', icon: Calculator, title: '拆预算', body: '把总价拆成底线、弹性和缓冲。' },
+  { number: '03', icon: Notebook, title: '定合同', body: '把口头承诺变成能追溯的文字。' },
+  { number: '04', icon: ClipboardText, title: '盯节点', body: '在关键节点确认，不等完工补救。' },
+  { number: '05', icon: MagnifyingGlass, title: '做验收', body: '用照片、清单和标准留下依据。' },
+  { number: '06', icon: HouseLine, title: '回到居住', body: '所有选择最终都要服务真实生活。' },
 ]
 
 const toolCards: Array<{
@@ -124,29 +124,29 @@ const toolCards: Array<{
   {
     icon: ShieldCheck,
     title: '预算风险自测',
-    body: '10 分钟识别你的预算可能存在哪些超支风险。',
-    action: '开始自测',
+    body: '先分清你当前最大的风险，是报价、预算、流程，还是需求顺序。',
+    action: '做一次自测',
     href: '/tools/budget-risk',
   },
   {
     icon: FileText,
     title: '报价审核清单',
-    body: '按漏项、单价、工艺和增项边界逐项检查。',
-    action: '查看清单',
+    body: '按漏项、单价、工艺和增项边界，把报价先过一轮。',
+    action: '拿清单自查',
     href: '/resources#baojia-shenhe-qingdan',
   },
   {
     icon: ClipboardText,
     title: '验收节点清单',
-    body: '按施工节点自查关键验收事项，不把问题留到最后。',
-    action: '查看节点',
+    body: '把每个施工节点该看什么、该拍什么、该确认什么列出来。',
+    action: '看节点清单',
     href: '/resources#construction-checkpoints',
   },
   {
     icon: Notebook,
     title: '装修准备表',
-    body: '从设计到入住，先把必须准备的资料和问题列出来。',
-    action: '查看准备表',
+    body: '把家庭需求、预算边界和签约前问题先写清楚。',
+    action: '做准备清单',
     href: '/resources#living-needs-map',
   },
 ]
@@ -155,33 +155,33 @@ const serviceCards = [
   {
     icon: FileText,
     title: '报价单审核',
-    body: '识别漏项、异常单价、模糊工艺和后期增项风险。',
-    bullets: ['识别漏项', '异常单价', '模糊工艺', '增项风险'],
+    body: '签约前，把漏项、异常单价、模糊工艺和增项口子先看出来。',
+    bullets: ['漏项和模糊项', '异常单价', '工艺边界', '追问清单'],
     price: '¥699 / 份',
     href: '/services/renovation#baojia-shenhe',
   },
   {
     icon: Calculator,
     title: '预算结构诊断',
-    body: '帮你看清预算是否合理，哪些地方该花，哪些地方容易被带偏。',
-    bullets: ['预算是否合理', '哪些地方该花', '哪些地方能缓', '哪些选择会超支'],
+    body: '开工前，把总预算拆成底线、弹性、缓冲和容易失控的选择。',
+    bullets: ['预算结构', '优先级', '缓冲空间', '超支风险'],
     price: '¥1299 / 次起',
     href: '/services/renovation#yusuan-zixun',
   },
   {
     icon: Sparkle,
     title: 'AI 工作流整理',
-    body: '帮传统行业从业者把经验沉淀为内容、工具和流程。',
-    bullets: ['个人经验沉淀', '内容与工具梳理', '工作流整理'],
+    body: '给传统行业人，把真实经验、客户问题和内容流程接进 AI。',
+    bullets: ['真实场景', '内容流程', '提示词骨架'],
     price: '¥1999 / 起',
     href: '/services/ai-workflow',
   },
 ]
 
 const trustItems: Array<{ icon: IconComponent; title: string; body: string }> = [
-  { icon: ShieldCheck, title: '不卖材料', body: '不靠材料差价和返点赚钱。' },
-  { icon: Wrench, title: '16 年现场经验', body: '从报价、施工到验收都见过真实问题。' },
-  { icon: UsersThree, title: '站在业主这一边', body: '不替施工方说话，也不替你冲动决定。' },
+  { icon: ShieldCheck, title: '不卖材料', body: '判断不靠材料差价和返点。' },
+  { icon: Wrench, title: '先看材料', body: '没有具体材料，不做空泛建议。' },
+  { icon: UsersThree, title: '说清边界', body: '能帮什么、不能帮什么先讲明白。' },
 ]
 
 function ActionLink({ href, children, variant = 'primary' }: ActionLinkProps) {
@@ -223,32 +223,32 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
           <div className="flex max-w-3xl flex-col justify-center">
             <p className="mb-7 flex items-center gap-3 text-sm font-medium text-[#a65a2c]">
               <span className="h-px w-6 bg-[#d96f38]" />
-              真实问题，先于任何包装
+              从工地现场出发的装修判断力系统
             </p>
             <h1 className="max-w-4xl text-[clamp(2.75rem,5vw,5.25rem)] font-semibold leading-[1.08] tracking-normal text-[#24211e]">
-              先别急着找人装修，先把报价、预算和验收的判断逻辑捋顺。
+              先别急着装修，先把判断力建立起来。
             </h1>
             <p className="mt-7 max-w-2xl text-base leading-8 text-[#5f5952] sm:text-lg">
-              Zeno 深耕装修行业 16 年，不推材料，不拿返点。这里帮你看清报价里的坑、预算的偏差、合同的盲区、施工过程中的不确定性，以及真实居住后的长期体验。把复杂的问题讲清楚，把判断权交还给你。
+              我做了 16 年装修，见过太多问题不是因为业主不懂生活，而是签字前没人把报价、预算、合同、施工和验收讲清楚。这里不卖材料，不拿返点，只帮你在做决定前多一点清醒。
             </p>
 
             <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <ActionLink href="/services/renovation#baojia-shenhe">
                 <UploadSimple size={18} aria-hidden />
-                发报价单给我判断风险
+                我手里有报价，想先看风险
               </ActionLink>
               <ActionLink href="/start" variant="secondary">
-                从装修判断入口开始
+                我还没开始，先建立判断
               </ActionLink>
             </div>
             <div className="mt-6">
               <ActionLink href="/services/ai-workflow" variant="text">
-                我是传统行业人，想看 AI 工作流
+                我是传统行业人，想把 AI 用进工作
               </ActionLink>
             </div>
 
             <div className="mt-10 grid max-w-3xl grid-cols-2 gap-px border border-[#e8ddd1] bg-[#e8ddd1] sm:grid-cols-4">
-              {['不卖材料\n不拿返点', '16 年\n行业沉淀', '只讲事实\n不讲故事', '站在业主视角\n做判断'].map((item) => {
+              {['不卖材料\n不拿返点', '16 年\n工地现场', '先讲边界\n再给建议', '站在业主\n这一边'].map((item) => {
                 const [title, body] = item.split('\n')
                 return (
                   <div key={item} className="bg-white/76 px-4 py-4">
@@ -294,9 +294,9 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
           <div className="mx-auto max-w-3xl text-center">
             <p className="text-sm font-medium text-[#a65a2c]">02</p>
             <h2 className="mt-3 text-[clamp(2rem,4vw,3.8rem)] font-semibold leading-tight tracking-normal text-[#25221f]">
-              你现在卡在哪？
+              大多数装修后悔，开头都不是同一个问题。
             </h2>
-            <p className="mt-4 text-base leading-8 text-[#756c63]">找到你的问题，走对应的判断路径。</p>
+            <p className="mt-4 text-base leading-8 text-[#756c63]">你不用把整站看完，先认出自己现在最像哪一种情况。</p>
           </div>
 
           <div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5">
@@ -314,7 +314,7 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
                   <h3 className="mt-7 text-xl font-semibold leading-8 text-[#2c2824]">{card.title}</h3>
                   <p className="mt-5 text-sm leading-7 text-[#6f675f]">{card.body}</p>
                   <span className="mt-auto inline-flex items-center gap-2 border border-[#e6d9cc] px-4 py-2 text-sm font-medium text-[#7b4b2b]">
-                    查看判断路径
+                    看这一类问题
                     <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" aria-hidden />
                   </span>
                 </Link>
@@ -329,13 +329,13 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
           <div className="mx-auto max-w-4xl text-center">
             <p className="flex items-center justify-center gap-4 text-sm font-medium tracking-[0.18em] text-[#a65a2c]">
               <span className="h-px w-28 bg-[#dfc5ac]" />
-              PATH 03
+              03 / 判断框架
               <span className="h-px w-28 bg-[#dfc5ac]" />
             </p>
             <h2 className="mt-6 text-[clamp(2.6rem,5vw,5rem)] font-semibold leading-tight tracking-normal text-[#25221f]">
-              Zeno 的装修判断框架
+              装修不是一次审美选择，而是一串要负责任的判断。
             </h2>
-            <p className="mt-4 text-base leading-8 text-[#686159]">一套帮你少踩坑、少超支、少扯皮的底层逻辑。</p>
+            <p className="mt-4 text-base leading-8 text-[#686159]">先按这个顺序看，很多看起来复杂的问题会变得可追问、可核对、可决定。</p>
           </div>
 
           <div className="mt-14 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-6 lg:gap-4">
@@ -368,11 +368,11 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
       <section className="border-b border-[#e7ded3] py-20 sm:py-24">
         <div className="mx-auto max-w-[1240px] px-5 sm:px-8 lg:px-12">
           <div className="mx-auto max-w-4xl text-center">
-            <p className="text-sm font-medium tracking-[0.18em] text-[#a65a2c]">04</p>
+            <p className="text-sm font-medium tracking-[0.18em] text-[#a65a2c]">04 / 自助判断</p>
             <h2 className="mt-5 text-[clamp(2rem,4.4vw,4.25rem)] font-semibold leading-tight tracking-normal text-[#25221f]">
-              把复杂装修问题，拆成可以检查的清单和工具
+              能先自己看清的，就不要急着付费。
             </h2>
-            <p className="mt-4 text-base leading-8 text-[#6f675f]">先用工具和清单自查，再决定要不要继续找师傅、找设计或找我判断。</p>
+            <p className="mt-4 text-base leading-8 text-[#6f675f]">工具和清单不是为了让你变成专家，而是让你带着更清楚的问题去沟通。</p>
           </div>
 
           <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -398,7 +398,7 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
 
           <div className="mt-10 text-center">
             <ActionLink href="/resources" variant="text">
-              查看全部工具与清单
+              进入工具与资料库
             </ActionLink>
           </div>
         </div>
@@ -413,12 +413,12 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
           aria-hidden
         />
         <div className="relative mx-auto max-w-[1320px] px-5 sm:px-8 lg:px-12">
-          <p className="text-sm font-semibold text-[#8b4d27]">05 / 服务转化区</p>
+          <p className="text-sm font-semibold text-[#8b4d27]">05 / 人工判断</p>
           <div className="mt-8 text-center">
             <h2 className="text-[clamp(2rem,4.2vw,4.1rem)] font-semibold leading-tight tracking-normal text-[#25221f]">
-              工具看不明白的地方，可以找我帮你判断
+              工具看不明白的地方，再找我判断。
             </h2>
-            <p className="mt-4 text-base leading-8 text-[#6f675f]">只做三件事：帮你判断、帮你理清思路、把 AI 用起来的工作整理清楚。</p>
+            <p className="mt-4 text-base leading-8 text-[#6f675f]">我只接能看清材料、能说清边界的事。不替你冲动决定，也不把不确定性包装成催单理由。</p>
           </div>
 
           <div className="mt-12 grid grid-cols-1 gap-6 lg:grid-cols-3">
@@ -451,7 +451,7 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
                   <div className="mt-auto flex items-end justify-between gap-4 pt-8">
                     <p className={`${fontClassName} text-3xl font-medium text-[#8b4d27]`}>{card.price}</p>
                     <span className="inline-flex items-center gap-2 bg-[#9a5424] px-5 py-2 text-sm font-medium text-white">
-                      了解详情
+                      看服务边界
                       <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" aria-hidden />
                     </span>
                   </div>
@@ -489,15 +489,15 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
           <div className="max-w-2xl">
             <p className="text-sm font-medium tracking-[0.18em] text-[#a65a2c]">06</p>
             <h2 className="mt-5 text-[clamp(2.5rem,5vw,4.75rem)] font-semibold leading-tight tracking-normal text-[#25221f]">
-              关于 Zeno
+              我的经验，应该变成你做决定前的清醒。
             </h2>
             <div className="mt-7 space-y-5 text-base leading-9 text-[#504a44]">
-              <p>做了 16 年装修，我见过太多业主不是因为不舍得花钱吃亏，而是因为看不懂报价、问不清边界、签合同时没把关键问题写清楚。</p>
-              <p>我不想把经验只留在工地和朋友圈，所以把它整理成文章、清单、工具和服务。希望更多人在装修前，先建立判断力。</p>
+              <p>我做装修 16 年，见过很多后悔不是来自审美，而是来自签约前没问清、预算里没留边界、施工中没有留痕。</p>
+              <p>我不需要把自己包装成什么都懂的人。这个网站只是把我在现场见过的真实问题，整理成普通业主能读、能查、能用的判断工具。</p>
             </div>
 
             <div className="mt-10 grid grid-cols-1 gap-px border border-[#e6d9cc] bg-[#e6d9cc] sm:grid-cols-3">
-              {['16 年\n现场经验', '不卖材料\n不拿返点', '只站业主\n这一边'].map((item) => {
+              {['16 年\n现场经验', '不卖材料\n不拿返点', '先讲边界\n再做判断'].map((item) => {
                 const [title, body] = item.split('\n')
                 return (
                   <div key={item} className="bg-[#fbf8f4] px-5 py-5">
@@ -509,12 +509,12 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
             </div>
 
             <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-              <ActionLink href="/about">了解我的故事</ActionLink>
-              <ActionLink href="/blog" variant="secondary">看我的长期记录</ActionLink>
+              <ActionLink href="/about">了解 Zeno</ActionLink>
+              <ActionLink href="/blog" variant="secondary">看长期记录</ActionLink>
             </div>
 
             <p className="mt-8 border-t border-[#e6d9cc] pt-6 text-sm leading-7 text-[#716961]">
-              感谢每一位愿意先把问题讲清楚的人。装修这件事，不该只靠运气。
+              愿你在装修前，多一点清醒，少一点事后才懂。
             </p>
           </div>
         </div>

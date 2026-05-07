@@ -12,7 +12,7 @@ const outfit = Outfit({
 export const metadata: Metadata = {
   title: '先别急着装修，先建立判断力 | ZenoAIHome',
   description:
-    'ZenoAIHome 是从 16 年装修现场经验长出来的装修判断力系统，帮普通业主在找装修、看报价、做预算、签合同、盯施工和验收前先看清风险。',
+    'ZenoAIHome 是从 16 年装修现场经验长出来的装修判断力系统，帮普通业主在看报价、做预算、签合同、盯施工和验收前，先把该问清的问题问清楚。',
   alternates: {
     canonical: 'https://zenoaihome.com/',
   },
@@ -28,7 +28,7 @@ export default function HomePage() {
           name: 'ZenoAIHome',
           url: 'https://zenoaihome.com/',
           description:
-            '先别急着装修，先建立判断力。从报价、预算、合同、施工、验收和真实居住出发，帮普通业主少踩坑、少超支、少扯皮。',
+            '先别急着装修，先建立判断力。从报价、预算、合同、施工、验收和真实居住出发，帮普通业主在做决定前更清醒。',
           inLanguage: 'zh-CN',
         }}
       />
