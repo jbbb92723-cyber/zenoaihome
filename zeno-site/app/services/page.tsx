@@ -9,9 +9,9 @@ import ServiceCard from '@/components/ServiceCard'
 import StructuredData from '@/components/StructuredData'
 
 export const metadata: Metadata = {
-  title: '找我帮你看',
+  title: '工具看不明白的地方，可以找我帮你判断',
   description:
-    '总服务页先帮你分清两类需求：装修判断服务，还是 AI 工作流咨询。先选入口，再看具体服务边界。',
+    'ZenoAIHome 服务页。先分清你需要的是装修报价、预算和真实居住判断，还是传统行业 AI 工作流整理，再看具体边界和价格。',
   alternates: {
     canonical: 'https://zenoaihome.com/services',
   },
@@ -64,14 +64,14 @@ const industryExtras = [
 const splitCards = [
   {
     label: '装修判断服务',
-    title: '报价、预算和真实居住，先分清你是哪类问题',
-    description: '给普通装修业主的入口。先判断，再决定要不要把材料发我。',
+    title: '报价、预算和真实居住，先分清你要判断什么',
+    description: '给普通装修业主的入口。先看清问题，再决定要不要把材料发我。',
     href: '/services/renovation',
     image: '/images/services/renovation-judgment-proof.svg',
   },
   {
     label: 'AI 工作流咨询',
-    title: '先跑通一个真实场景，再决定要不要搭系统',
+    title: '先跑通一个真实场景，再决定要不要整理系统',
     description: '给传统行业从业者的入口。不是追工具，而是把已有工作接进 AI。',
     href: '/services/ai-workflow',
     image: '/images/services/ai-workflow-proof.svg',
@@ -87,7 +87,7 @@ const serviceFaqs = [
   {
     question: '什么时候更适合先用工具和资料，而不是直接找我？',
     answer:
-      '如果你还在摸清问题阶段，或者手里没有具体材料，先用资源页把问题缩小，再拿清单和模板，通常比直接咨询更划算。',
+      '如果你还在摸清问题阶段，或者手里没有具体材料，先用工具和资料把问题缩小，再拿清单和模板，通常比直接咨询更划算。',
   },
   {
     question: '这个页最想帮你避免什么？',
@@ -107,7 +107,7 @@ export default function ServicesPage() {
           {
             '@context': 'https://schema.org',
             '@type': 'CollectionPage',
-            name: '找我帮你看',
+            name: '找我帮你判断',
             url: 'https://zenoaihome.com/services',
             description: '先分清你是装修判断，还是 AI 工作流需求。',
             inLanguage: 'zh-CN',
@@ -139,9 +139,9 @@ export default function ServicesPage() {
       />
 
       <PageHero
-        label="找我帮你看"
-        title="先选你是哪一类需求"
-        subtitle="这个总服务页先做一件事：把装修判断和 AI 工作流分开。先选入口，再看具体服务边界，不要一上来就走错页。"
+        label="找我帮你判断"
+        title="工具看不明白的地方，可以找我帮你判断"
+        subtitle="这里不做泛泛咨询。先分清你要判断的是报价、预算、真实居住，还是传统行业 AI 工作流，再看具体服务边界。"
         note="如果你只是想先自己判断，先去工具页和资料页，不急着付费。"
         size="content"
       />
@@ -164,7 +164,7 @@ export default function ServicesPage() {
                 <p className="text-[0.65rem] font-semibold uppercase tracking-widest text-stone mb-3">{card.label}</p>
                 <h2 className="text-lg font-semibold text-ink mb-3">{card.title}</h2>
                 <p className="text-sm text-ink-muted leading-relaxed mb-5">{card.description}</p>
-                <CTA href={card.href} label="进入这条入口" variant="primary" />
+                <CTA href={card.href} label="进入对应入口" variant="primary" />
               </div>
             </div>
           ))}
@@ -174,7 +174,7 @@ export default function ServicesPage() {
           <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-3">可验证的证据</p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {[
-              ['服务范围', '报价审核、预算结构、真实居住判断、AI 工作流拆解。'],
+              ['服务范围', '报价审核、预算结构诊断、真实居住判断、AI 工作流整理。'],
               ['工作方式', '先看材料，再给书面建议，不做空口安慰。'],
               ['交付样例', '风险说明、修改建议、流程骨架、提示词框架。'],
               ['哪些不做', '不代砍价、不代施工、不承诺一键自动化。'],
@@ -191,7 +191,7 @@ export default function ServicesPage() {
         <div className="mb-6">
           <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-2">A</p>
           <h2 className="text-lg font-semibold text-ink">装修判断服务</h2>
-          <p className="text-sm text-ink-muted mt-1">先处理普通装修业主最常见的三类问题：报价、预算和真实居住选择。</p>
+          <p className="text-sm text-ink-muted mt-1">先处理普通装修业主最常见的三类问题：报价、预算结构和真实居住选择。</p>
         </div>
 
         <div className="space-y-10">
@@ -267,7 +267,7 @@ export default function ServicesPage() {
           </p>
           <p className="text-sm text-ink-muted leading-relaxed mb-6">
             如果你的需求不在范围内，或读完之后觉得匹配度不高，不用勉强——文章和资料库对你可能更有用。
-            如果读完觉得「好像说的就是我的问题」，可以发一条简短的背景说明，我会评估是否能帮到你。
+            如果读完觉得“好像说的就是我的问题”，可以发一条简短的背景说明，我会评估是否能帮到你。
           </p>
           <CTA href="/contact" label="查看联系方式" variant="secondary" />
         </div>

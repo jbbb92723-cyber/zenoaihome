@@ -1,463 +1,523 @@
-'use client'
+"use client"
 
-import { useRef } from 'react'
 import Link from 'next/link'
-import { ArrowRight, ArrowUpRight, HouseLine, Sparkle, Wrench } from '@phosphor-icons/react'
-import { useGSAP } from '@gsap/react'
-import gsap from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import CTA from '@/components/CTA'
-import Container from '@/components/Container'
+import {
+  ArrowRight,
+  Calculator,
+  CheckCircle,
+  ClipboardText,
+  FileText,
+  HardHat,
+  HouseLine,
+  MagnifyingGlass,
+  Notebook,
+  ShieldCheck,
+  Sparkle,
+  UploadSimple,
+  UsersThree,
+  Wrench,
+} from '@phosphor-icons/react'
 
-gsap.registerPlugin(ScrollTrigger, useGSAP)
+type IconComponent = typeof FileText
 
-type HeroFrame = {
-  title: string
-  caption: string
-  image: string
+type ActionLinkProps = {
+  href: string
+  children: React.ReactNode
+  variant?: 'primary' | 'secondary' | 'text'
 }
 
-type BentoCard = {
-  eyebrow: string
+const heroImage =
+  'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1800&q=80'
+
+const studioImage =
+  'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1600&q=80'
+
+const pathCards: Array<{
+  number: string
+  icon: IconComponent
   title: string
   body: string
-  image: string
-  className: string
-}
-
-const heroFrames: HeroFrame[] = [
+  href: string
+}> = [
   {
-    title: '报价不是一张总价表，而是一连串会在施工里反扑你的决定。',
-    caption: '把预算、漏项、工艺顺序和沟通节点拆开看，业主才不会一路被推着走。',
-    image: 'https://picsum.photos/seed/zeno-estimate/1200/900',
+    number: '01',
+    icon: FileText,
+    title: '报价与预算判断',
+    body: '看清价格构成，识别漏项、模糊项和后期容易增项的地方。',
+    href: '/services/renovation#baojia-shenhe',
   },
   {
-    title: '经验不是讲给熟人听完就结束，它可以被整理成长期资产。',
-    caption: '文章、工具、课程与咨询，不是平行赛道，而是同一套判断力的不同出口。',
-    image: 'https://picsum.photos/seed/zeno-system/1200/900',
-  },
-]
-
-const interestCards: BentoCard[] = [
-  {
-    eyebrow: 'For Homeowners',
-    title: '先拆预算，再决定要不要签。',
-    body: '把报价结构、变更风险和验收节点放进同一张判断面板里，看清真正会超支的地方。',
-    image: 'https://picsum.photos/seed/zeno-budget/1200/900',
-    className: 'md:col-span-2 md:row-span-2',
+    number: '02',
+    icon: HardHat,
+    title: '施工与验收判断',
+    body: '了解施工流程、工艺边界和关键节点，不把问题拖到竣工后。',
+    href: '/resources#construction-checkpoints',
   },
   {
-    eyebrow: 'For Builders',
-    title: '把做过的事，变成可复用系统。',
-    body: '内容、工具和服务不是重新发明自己，而是把原有经验重新包装成更长的时间线。',
-    image: 'https://picsum.photos/seed/zeno-builder/900/900',
-    className: 'md:col-span-1 md:row-span-1',
-  },
-  {
-    eyebrow: 'Knowledge',
-    title: '先看三类高损耗问题。',
-    body: '报价漏项、验收失焦、合同模糊，是普通业主最容易用时间和钱交学费的入口。',
-    image: 'https://picsum.photos/seed/zeno-knowledge/900/900',
-    className: 'md:col-span-1 md:row-span-1',
-  },
-  {
-    eyebrow: 'Assets',
-    title: '内容不是流量堆叠，而是判断的索引。',
-    body: '真实案例、工具页、课程和服务页应该互相咬合，而不是一页页孤立堆着。',
-    image: 'https://picsum.photos/seed/zeno-assets/900/900',
-    className: 'md:col-span-1 md:row-span-1',
-  },
-  {
-    eyebrow: 'AI Scope',
-    title: 'AI 负责整理，现场判断仍然归你。',
-    body: '它擅长压缩信息、对比版本、整理问题，但不能替代你签字前的边界判断。',
-    image: 'https://picsum.photos/seed/zeno-ai-scope/900/900',
-    className: 'md:col-span-1 md:row-span-1',
+    number: '03',
+    icon: HouseLine,
+    title: '真实居住与长期选择',
+    body: '从真实生活出发，看清哪些选择会影响长期使用，而不只看效果图。',
+    href: '/topics#shi-zhu-pai-zhuangxiu',
   },
 ]
 
-const accordions = [
+const problemCards: Array<{
+  icon: IconComponent
+  title: string
+  body: string
+  href: string
+}> = [
   {
-    title: '装修判断入口',
-    description: '预算、报价、合同、验收，先从高损耗决策切进去。',
-    href: '/start',
-    image: 'https://picsum.photos/seed/zeno-entry-home/800/1100',
+    icon: MagnifyingGlass,
+    title: '正在看报价单，不知道贵不贵',
+    body: '担心被坑，也想知道报价是不是合理、透明、可追问。',
+    href: '/services/renovation#baojia-shenhe',
   },
   {
-    title: 'AI 一人公司入口',
-    description: '从已有经验开始做内容、工具、课程与服务。',
-    href: '/services/ai-workflow',
-    image: 'https://picsum.photos/seed/zeno-entry-ai/800/1100',
-  },
-  {
-    title: '预算风险工具',
-    description: '先用一个工具看清你当前最容易踩的坑。',
+    icon: Calculator,
+    title: '预算越算越乱，怕后期增项',
+    body: '总价看着差不多，但中途可能不断加钱。',
     href: '/tools/budget-risk',
-    image: 'https://picsum.photos/seed/zeno-entry-tool/800/1100',
-  },
-]
-
-const marqueeItems = [
-  '报价结构',
-  '预算顺序',
-  '节点留证',
-  '验收清单',
-  'AI 工作流',
-  '内容系统',
-  '服务产品化',
-]
-
-const scrollCards = [
-  {
-    title: '你不是缺信息，是缺能压住信息的判断框架。',
-    body: '装修里最常见的问题，不是搜不到答案，而是答案太碎、顺序太乱、责任不清。',
-    image: 'https://picsum.photos/seed/zeno-scroll-1/1200/900',
   },
   {
-    title: '把真实问题做成内容，核心不是表达，而是取舍。',
-    body: '哪些经验值得保留，哪些判断该产品化，哪些内容只适合面对面讲清，这决定了长期资产的质量。',
-    image: 'https://picsum.photos/seed/zeno-scroll-2/1200/900',
+    icon: Notebook,
+    title: '合同快签了，担心条款没写清',
+    body: '怕有隐藏条款、模糊表述，后面扯皮没有凭据。',
+    href: '/resources#sign-before-contract',
   },
   {
-    title: 'AI 的价值，在于让你更快抵达高质量问题。',
-    body: '它可以帮你缩短准备时间，但不能替你承担专业责任，也不能替你做最终签字。',
-    image: 'https://picsum.photos/seed/zeno-scroll-3/1200/900',
-  },
-]
-
-const articleLinks = [
-  {
-    title: '装修预算为什么总超',
-    href: '/blog/zhuangxiu-yusuan-weishenme-zongchao',
+    icon: HardHat,
+    title: '已经开工了，不知道哪些节点要验收',
+    body: '担心施工质量，也不清楚该怎么盯进度和留证。',
+    href: '/resources#construction-checkpoints',
   },
   {
-    title: '家不是样板间',
+    icon: HouseLine,
+    title: '不想装成样板间，想按真实生活做选择',
+    body: '希望空间好用、耐看、长期住着舒服。',
     href: '/blog/02-jia-bu-shi-yangban-jian',
   },
+]
+
+const frameworkSteps: Array<{
+  number: string
+  icon: IconComponent
+  title: string
+  body: string
+}> = [
+  { number: '01', icon: FileText, title: '看报价', body: '先看漏项、模糊项和异常单价。' },
+  { number: '02', icon: Calculator, title: '控预算', body: '预算不是总价表，而是决策边界。' },
+  { number: '03', icon: Notebook, title: '定合同', body: '把容易扯皮的地方提前写清楚。' },
+  { number: '04', icon: ClipboardText, title: '盯节点', body: '不要等完工后才发现问题。' },
+  { number: '05', icon: MagnifyingGlass, title: '做验收', body: '照片、清单、标准，缺一不可。' },
+  { number: '06', icon: HouseLine, title: '真实居住', body: '最终不是为了好看，而是为了长期舒服。' },
+]
+
+const toolCards: Array<{
+  icon: IconComponent
+  title: string
+  body: string
+  action: string
+  href: string
+}> = [
   {
-    title: '为什么我开始认真学 AI',
-    href: '/blog/04-wei-shenme-wo-kaishi-renzhen-xue-ai',
+    icon: ShieldCheck,
+    title: '预算风险自测',
+    body: '10 分钟识别你的预算可能存在哪些超支风险。',
+    action: '开始自测',
+    href: '/tools/budget-risk',
+  },
+  {
+    icon: FileText,
+    title: '报价审核清单',
+    body: '按漏项、单价、工艺和增项边界逐项检查。',
+    action: '查看清单',
+    href: '/resources#baojia-shenhe-qingdan',
+  },
+  {
+    icon: ClipboardText,
+    title: '验收节点清单',
+    body: '按施工节点自查关键验收事项，不把问题留到最后。',
+    action: '查看节点',
+    href: '/resources#construction-checkpoints',
+  },
+  {
+    icon: Notebook,
+    title: '装修准备表',
+    body: '从设计到入住，先把必须准备的资料和问题列出来。',
+    action: '查看准备表',
+    href: '/resources#living-needs-map',
   },
 ]
+
+const serviceCards = [
+  {
+    icon: FileText,
+    title: '报价单审核',
+    body: '识别漏项、异常单价、模糊工艺和后期增项风险。',
+    bullets: ['识别漏项', '异常单价', '模糊工艺', '增项风险'],
+    price: '¥699 / 份',
+    href: '/services/renovation#baojia-shenhe',
+  },
+  {
+    icon: Calculator,
+    title: '预算结构诊断',
+    body: '帮你看清预算是否合理，哪些地方该花，哪些地方容易被带偏。',
+    bullets: ['预算是否合理', '哪些地方该花', '哪些地方能缓', '哪些选择会超支'],
+    price: '¥1299 / 次起',
+    href: '/services/renovation#yusuan-zixun',
+  },
+  {
+    icon: Sparkle,
+    title: 'AI 工作流整理',
+    body: '帮传统行业从业者把经验沉淀为内容、工具和流程。',
+    bullets: ['个人经验沉淀', '内容与工具梳理', '工作流整理'],
+    price: '¥1999 / 起',
+    href: '/services/ai-workflow',
+  },
+]
+
+const trustItems: Array<{ icon: IconComponent; title: string; body: string }> = [
+  { icon: ShieldCheck, title: '不卖材料', body: '不靠材料差价和返点赚钱。' },
+  { icon: Wrench, title: '16 年现场经验', body: '从报价、施工到验收都见过真实问题。' },
+  { icon: UsersThree, title: '站在业主这一边', body: '不替施工方说话，也不替你冲动决定。' },
+]
+
+function ActionLink({ href, children, variant = 'primary' }: ActionLinkProps) {
+  const className = {
+    primary:
+      'inline-flex min-h-12 items-center justify-center gap-2 bg-[#9a5424] px-5 py-3 text-sm font-medium text-white transition-colors hover:bg-[#7f421a]',
+    secondary:
+      'inline-flex min-h-12 items-center justify-center gap-2 border border-[#cdbfaf] bg-white/70 px-5 py-3 text-sm font-medium text-[#5f3b24] transition-colors hover:bg-white',
+    text:
+      'inline-flex items-center gap-2 text-sm font-medium text-[#7b4b2b] transition-colors hover:text-[#4b2b18]',
+  }[variant]
+
+  return (
+    <Link href={href} className={className}>
+      {children}
+      <ArrowRight size={17} aria-hidden />
+    </Link>
+  )
+}
 
 type Props = {
   fontClassName: string
 }
 
 export default function HomePageGptSkill({ fontClassName }: Props) {
-  const rootRef = useRef<HTMLElement | null>(null)
-  const marqueeTrackRef = useRef<HTMLDivElement | null>(null)
-  const pinWrapRef = useRef<HTMLDivElement | null>(null)
-  const pinTitleRef = useRef<HTMLDivElement | null>(null)
-  const pinCardsRef = useRef<HTMLDivElement | null>(null)
-  const textRevealRef = useRef<HTMLParagraphElement | null>(null)
-
-  useGSAP(
-    () => {
-      if (marqueeTrackRef.current) {
-        gsap.to(marqueeTrackRef.current, {
-          xPercent: -50,
-          duration: 24,
-          ease: 'none',
-          repeat: -1,
-        })
-      }
-
-      const cards = pinCardsRef.current?.querySelectorAll<HTMLElement>('[data-scroll-card]')
-      const words = textRevealRef.current?.querySelectorAll<HTMLSpanElement>('[data-word]')
-
-      if (pinWrapRef.current && pinTitleRef.current && pinCardsRef.current && cards && cards.length > 0) {
-        cards.forEach((card, index) => {
-          gsap.set(card, {
-            y: index * 64,
-            scale: 0.88 + index * 0.04,
-            opacity: index === 0 ? 1 : 0.4,
-          })
-        })
-
-        cards.forEach((card, index) => {
-          gsap.to(card, {
-            y: 0,
-            scale: 1,
-            opacity: 1,
-            ease: 'none',
-            scrollTrigger: {
-              trigger: card,
-              start: 'top 85%',
-              end: 'top 15%',
-              scrub: true,
-            },
-          })
-        })
-
-        ScrollTrigger.create({
-          trigger: pinWrapRef.current,
-          start: 'top top+=96',
-          end: 'bottom bottom-=96',
-          pin: pinTitleRef.current,
-        })
-      }
-
-      if (words && words.length > 0) {
-        gsap.fromTo(
-          words,
-          { opacity: 0.14 },
-          {
-            opacity: 1,
-            stagger: 0.08,
-            ease: 'none',
-            scrollTrigger: {
-              trigger: textRevealRef.current,
-              start: 'top 80%',
-              end: 'bottom 35%',
-              scrub: true,
-            },
-          },
-        )
-      }
-    },
-    { scope: rootRef },
-  )
-
   return (
-    <main ref={rootRef} className={`w-full max-w-full overflow-x-hidden bg-[#f6f1ea] text-[#16120f] ${fontClassName}`}>
-      <section className="relative isolate overflow-hidden border-b border-black/10 bg-[#17120f] text-[#f7f1e8]">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(196,152,98,0.26),_transparent_42%),radial-gradient(circle_at_bottom_right,_rgba(112,82,52,0.38),_transparent_36%)]" />
-        <div className="absolute inset-0 opacity-40 [background-image:linear-gradient(rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.04)_1px,transparent_1px)] [background-size:72px_72px]" />
+    <main className="bg-[#fbf8f4] text-[#272421]">
+      <section className="relative isolate overflow-hidden border-b border-[#e7ded3]">
+        <div
+          className="absolute inset-y-0 right-0 hidden w-[56%] bg-cover bg-center opacity-80 lg:block"
+          style={{
+            backgroundImage: `linear-gradient(90deg, rgba(251,248,244,0.98) 0%, rgba(251,248,244,0.72) 36%, rgba(251,248,244,0.1) 100%), url(${heroImage})`,
+          }}
+          aria-hidden
+        />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.72),rgba(247,241,234,0.82))]" aria-hidden />
 
-        <Container size="layout">
-          <div className="relative grid min-h-[100dvh] grid-cols-1 gap-16 py-10 md:py-16 lg:grid-cols-[minmax(0,1.05fr)_minmax(420px,0.95fr)] lg:items-center lg:gap-10 lg:py-20">
-            <div className="max-w-5xl py-8 lg:py-16">
-              <div className="mb-10 flex items-center justify-between border-b border-white/10 pb-5 text-[0.74rem] uppercase tracking-[0.22em] text-white/55">
-                <span>ZenoAIHome</span>
-                <span className="hidden sm:block">Renovation Judgment x AI Asset Systems</span>
-              </div>
-
-              <p className="max-w-2xl text-[0.78rem] uppercase tracking-[0.26em] text-[#cfad84]">真实问题，先于任何包装</p>
-              <h1 className="mt-6 max-w-5xl text-[clamp(3.15rem,5vw,5.4rem)] font-semibold leading-[0.95] tracking-[-0.055em] text-[#fffaf2]">
-                从工地现场到
-                <span
-                  className="mx-3 inline-block h-[0.82em] w-28 rounded-full align-[-0.12em] bg-cover bg-center grayscale contrast-125 md:w-40"
-                  style={{ backgroundImage: `url(${heroFrames[0].image})` }}
-                />
-                内容系统，
-                <br />
-                先把判断力做成你自己的长期资产。
-              </h1>
-              <p className="mt-8 max-w-3xl text-base leading-8 text-white/72 md:text-lg">
-                ZenoAIHome 不卖“懂一点就上手”的幻觉。这里一边帮业主看清报价、预算、合同和验收，
-                一边示范一个传统行业人怎样把真实经验接进 AI、内容、工具和服务。
-              </p>
-
-              <div className="mt-10 flex flex-wrap gap-4">
-                <CTA href="/start" label="我是装修业主，先看判断入口" variant="primary" />
-                <CTA href="/services/ai-workflow" label="我是行业从业者，进入 AI 一人公司入口" variant="secondary" />
-              </div>
-
-              <div className="mt-12 flex flex-wrap gap-x-8 gap-y-3 text-sm text-white/58">
-                <span className="inline-flex items-center gap-2"><HouseLine size={18} weight="duotone" />预算与验收</span>
-                <span className="inline-flex items-center gap-2"><Wrench size={18} weight="duotone" />经验与系统</span>
-                <span className="inline-flex items-center gap-2"><Sparkle size={18} weight="duotone" />AI 与产品化</span>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-2 gap-4 sm:gap-5">
-              {heroFrames.map((frame, index) => (
-                <article
-                  key={frame.title}
-                  className={`group relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/6 p-5 shadow-[0_24px_80px_rgba(0,0,0,0.28)] backdrop-blur-sm transition-transform duration-700 ease-out hover:-translate-y-1 ${index === 0 ? 'mt-8' : 'md:mt-28'}`}
-                >
-                  <div
-                    className="absolute inset-0 bg-cover bg-center opacity-70 grayscale contrast-125 transition-transform duration-700 ease-out group-hover:scale-105"
-                    style={{ backgroundImage: `linear-gradient(180deg, rgba(12,10,9,0.08), rgba(12,10,9,0.76)), url(${frame.image})` }}
-                  />
-                  <div className="relative flex min-h-[25rem] flex-col justify-end">
-                    <p className="max-w-xs text-[0.74rem] uppercase tracking-[0.22em] text-[#f1d4ae]">Scene 0{index + 1}</p>
-                    <h2 className="mt-3 text-2xl font-semibold leading-[1.05] tracking-[-0.04em] text-[#fffaf2]">{frame.title}</h2>
-                    <p className="mt-4 text-sm leading-7 text-white/72">{frame.caption}</p>
-                  </div>
-                </article>
-              ))}
-            </div>
-          </div>
-        </Container>
-      </section>
-
-      <section className="border-b border-black/10 py-32 md:py-40 lg:py-48">
-        <Container size="layout">
-          <div className="mb-16 max-w-4xl">
-            <h2 className="max-w-4xl text-[clamp(2.7rem,4.6vw,4.8rem)] font-semibold leading-[0.98] tracking-[-0.05em] text-[#19120d]">
-              一个首页，两个入口，但底层只做同一件事：
-              <span
-                className="mx-3 inline-block h-[0.8em] w-24 rounded-full align-[-0.12em] bg-cover bg-center grayscale contrast-125 md:w-36"
-                style={{ backgroundImage: `url(${heroFrames[1].image})` }}
-              />
-              把混乱的问题压成清晰判断。
-            </h2>
-            <p className="mt-6 max-w-3xl text-lg leading-8 text-black/62">
-              这里不做散乱链接墙。首页的兴趣区被收成一块密集而无空洞的判断面板，让人一眼看出应该往哪条路径走。
+        <div className="relative mx-auto grid min-h-[calc(100vh-3.5rem)] max-w-[1440px] grid-cols-1 gap-10 px-5 py-14 sm:px-8 lg:grid-cols-[minmax(0,0.95fr)_minmax(560px,1.05fr)] lg:px-12 lg:py-16">
+          <div className="flex max-w-3xl flex-col justify-center">
+            <p className="mb-7 flex items-center gap-3 text-sm font-medium text-[#a65a2c]">
+              <span className="h-px w-6 bg-[#d96f38]" />
+              真实问题，先于任何包装
             </p>
-          </div>
+            <h1 className="max-w-4xl text-[clamp(2.75rem,5vw,5.25rem)] font-semibold leading-[1.08] tracking-normal text-[#24211e]">
+              先别急着找人装修，先把报价、预算和验收的判断逻辑捋顺。
+            </h1>
+            <p className="mt-7 max-w-2xl text-base leading-8 text-[#5f5952] sm:text-lg">
+              Zeno 深耕装修行业 16 年，不推材料，不拿返点。这里帮你看清报价里的坑、预算的偏差、合同的盲区、施工过程中的不确定性，以及真实居住后的长期体验。把复杂的问题讲清楚，把判断权交还给你。
+            </p>
 
-          <div className="grid grid-cols-1 grid-flow-dense gap-5 md:grid-cols-4 md:auto-rows-[15rem]">
-            {interestCards.map((card) => (
-              <article
-                key={card.title}
-                className={`group relative overflow-hidden rounded-[2rem] border border-black/10 bg-white p-6 shadow-[0_24px_60px_rgba(30,18,8,0.08)] transition-transform duration-700 ease-out hover:-translate-y-1 ${card.className}`}
-              >
-                <div
-                  className="absolute inset-0 bg-cover bg-center opacity-80 grayscale contrast-125 transition-transform duration-700 ease-out group-hover:scale-105"
-                  style={{ backgroundImage: `linear-gradient(180deg, rgba(246,241,234,0.16), rgba(16,12,9,0.72)), url(${card.image})` }}
-                />
-                <div className="relative flex h-full flex-col justify-between">
-                  <p className="text-[0.74rem] uppercase tracking-[0.2em] text-white/70">{card.eyebrow}</p>
-                  <div>
-                    <h3 className="max-w-[16ch] text-[1.6rem] font-semibold leading-[1.05] tracking-[-0.04em] text-[#fff8f0]">{card.title}</h3>
-                    <p className="mt-4 max-w-md text-sm leading-7 text-white/70">{card.body}</p>
+            <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+              <ActionLink href="/services/renovation#baojia-shenhe">
+                <UploadSimple size={18} aria-hidden />
+                发报价单给我判断风险
+              </ActionLink>
+              <ActionLink href="/start" variant="secondary">
+                从装修判断入口开始
+              </ActionLink>
+            </div>
+            <div className="mt-6">
+              <ActionLink href="/services/ai-workflow" variant="text">
+                我是传统行业人，想看 AI 工作流
+              </ActionLink>
+            </div>
+
+            <div className="mt-10 grid max-w-3xl grid-cols-2 gap-px border border-[#e8ddd1] bg-[#e8ddd1] sm:grid-cols-4">
+              {['不卖材料\n不拿返点', '16 年\n行业沉淀', '只讲事实\n不讲故事', '站在业主视角\n做判断'].map((item) => {
+                const [title, body] = item.split('\n')
+                return (
+                  <div key={item} className="bg-white/76 px-4 py-4">
+                    <p className="text-sm font-semibold leading-5 text-[#3a332e]">{title}</p>
+                    <p className="mt-1 text-xs leading-5 text-[#7c7168]">{body}</p>
                   </div>
-                </div>
-              </article>
-            ))}
-          </div>
-
-          <div className="mt-12 overflow-hidden rounded-full border border-black/10 bg-white py-4 shadow-[0_10px_30px_rgba(15,10,8,0.05)]">
-            <div ref={marqueeTrackRef} className="flex min-w-max gap-8 px-6 text-[0.8rem] uppercase tracking-[0.22em] text-black/52 will-change-transform">
-              {[...marqueeItems, ...marqueeItems].map((item, index) => (
-                <span key={`${item}-${index}`} className="inline-flex items-center gap-3 whitespace-nowrap">
-                  <span className="h-1.5 w-1.5 rounded-full bg-[#8e5e33]" />
-                  {item}
-                </span>
-              ))}
+                )
+              })}
             </div>
           </div>
-        </Container>
+
+          <div className="grid content-center gap-4 lg:grid-cols-3 lg:pl-2">
+            {pathCards.map((card) => {
+              const Icon = card.icon
+              return (
+                <Link
+                  key={card.number}
+                  href={card.href}
+                  className="group flex min-h-[22rem] flex-col justify-between border border-white/70 bg-white/74 p-7 shadow-[0_22px_70px_rgba(80,55,32,0.10)] backdrop-blur-sm transition-transform hover:-translate-y-1"
+                >
+                  <div>
+                    <div className="flex items-start justify-between gap-4">
+                      <span className={`${fontClassName} text-5xl font-light leading-none text-[#9a5424]`}>
+                        {card.number}
+                      </span>
+                      <span className="flex h-11 w-11 items-center justify-center bg-[#f4eee7] text-[#a15b2f]">
+                        <Icon size={22} weight="duotone" aria-hidden />
+                      </span>
+                    </div>
+                    <h2 className="mt-10 text-2xl font-semibold leading-snug text-[#2a2520]">{card.title}</h2>
+                    <p className="mt-5 text-sm leading-7 text-[#665f58]">{card.body}</p>
+                  </div>
+                  <ArrowRight className="mt-8 text-[#9a5424] transition-transform group-hover:translate-x-1" size={22} aria-hidden />
+                </Link>
+              )
+            })}
+          </div>
+        </div>
       </section>
 
-      <section className="border-b border-black/10 bg-[#efe8df] py-32 md:py-40 lg:py-48">
-        <Container size="layout">
-          <div className="flex flex-col gap-5 md:flex-row">
-            {accordions.map((item, index) => (
-              <Link
-                key={item.title}
-                href={item.href}
-                className="group relative min-h-[32rem] overflow-hidden rounded-[2.4rem] border border-black/10 bg-black/80 px-6 py-8 text-[#f8f2e8] transition-[flex,transform] duration-700 ease-out md:min-h-[38rem] md:flex-1 md:hover:flex-[1.3]"
-              >
-                <div
-                  className="absolute inset-0 bg-cover bg-center grayscale contrast-125 transition-transform duration-700 ease-out group-hover:scale-105"
-                  style={{ backgroundImage: `linear-gradient(180deg, rgba(12,10,9,0.16), rgba(12,10,9,0.82)), url(${item.image})` }}
-                />
-                <div className="relative flex h-full flex-col justify-between">
-                  <div className="text-[0.75rem] uppercase tracking-[0.22em] text-[#d9bc97]">Path 0{index + 1}</div>
-                  <div>
-                    <h3 className="max-w-[10ch] text-[2rem] font-semibold leading-[0.98] tracking-[-0.04em] text-[#fffaf2]">{item.title}</h3>
-                    <p className="mt-4 max-w-xs text-sm leading-7 text-white/68">{item.description}</p>
-                    <span className="mt-8 inline-flex items-center gap-2 text-sm font-medium text-[#f2d7b2]">
-                      进入路径
-                      <ArrowUpRight size={18} />
+      <section className="border-b border-[#e7ded3] py-20 sm:py-24">
+        <div className="mx-auto max-w-[1320px] px-5 sm:px-8 lg:px-12">
+          <div className="mx-auto max-w-3xl text-center">
+            <p className="text-sm font-medium text-[#a65a2c]">02</p>
+            <h2 className="mt-3 text-[clamp(2rem,4vw,3.8rem)] font-semibold leading-tight tracking-normal text-[#25221f]">
+              你现在卡在哪？
+            </h2>
+            <p className="mt-4 text-base leading-8 text-[#756c63]">找到你的问题，走对应的判断路径。</p>
+          </div>
+
+          <div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5">
+            {problemCards.map((card) => {
+              const Icon = card.icon
+              return (
+                <Link
+                  key={card.title}
+                  href={card.href}
+                  className="group flex min-h-[20rem] flex-col items-center border border-[#e4d8cb] bg-white px-6 py-8 text-center shadow-[0_18px_60px_rgba(67,45,26,0.06)] transition-transform hover:-translate-y-1"
+                >
+                  <span className="flex h-16 w-16 items-center justify-center border border-[#c09a77] text-[#a15b2f]">
+                    <Icon size={34} weight="duotone" aria-hidden />
+                  </span>
+                  <h3 className="mt-7 text-xl font-semibold leading-8 text-[#2c2824]">{card.title}</h3>
+                  <p className="mt-5 text-sm leading-7 text-[#6f675f]">{card.body}</p>
+                  <span className="mt-auto inline-flex items-center gap-2 border border-[#e6d9cc] px-4 py-2 text-sm font-medium text-[#7b4b2b]">
+                    查看判断路径
+                    <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" aria-hidden />
+                  </span>
+                </Link>
+              )
+            })}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-b border-[#e7ded3] bg-white py-20 sm:py-24">
+        <div className="mx-auto max-w-[1320px] px-5 sm:px-8 lg:px-12">
+          <div className="mx-auto max-w-4xl text-center">
+            <p className="flex items-center justify-center gap-4 text-sm font-medium tracking-[0.18em] text-[#a65a2c]">
+              <span className="h-px w-28 bg-[#dfc5ac]" />
+              PATH 03
+              <span className="h-px w-28 bg-[#dfc5ac]" />
+            </p>
+            <h2 className="mt-6 text-[clamp(2.6rem,5vw,5rem)] font-semibold leading-tight tracking-normal text-[#25221f]">
+              Zeno 的装修判断框架
+            </h2>
+            <p className="mt-4 text-base leading-8 text-[#686159]">一套帮你少踩坑、少超支、少扯皮的底层逻辑。</p>
+          </div>
+
+          <div className="mt-14 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-6 lg:gap-4">
+            {frameworkSteps.map((step, index) => {
+              const Icon = step.icon
+              return (
+                <div key={step.number} className="relative text-center">
+                  {index < frameworkSteps.length - 1 && (
+                    <ArrowRight
+                      size={22}
+                      className="absolute right-[-1.15rem] top-12 hidden text-[#b9875d] lg:block"
+                      aria-hidden
+                    />
+                  )}
+                  <div className="mx-auto flex h-28 w-28 items-center justify-center border border-[#ead9c7] bg-[#fbf8f4]">
+                    <Icon size={42} weight="duotone" className="text-[#a15b2f]" aria-hidden />
+                  </div>
+                  <span className={`${fontClassName} -mt-4 inline-flex h-9 min-w-9 items-center justify-center bg-[#b48d67] px-3 text-sm font-semibold text-white`}>
+                    {step.number}
+                  </span>
+                  <h3 className="mt-6 text-xl font-semibold text-[#2c2824]">{step.title}</h3>
+                  <p className="mx-auto mt-3 max-w-[11rem] text-sm leading-7 text-[#6f675f]">{step.body}</p>
+                </div>
+              )
+            })}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-b border-[#e7ded3] py-20 sm:py-24">
+        <div className="mx-auto max-w-[1240px] px-5 sm:px-8 lg:px-12">
+          <div className="mx-auto max-w-4xl text-center">
+            <p className="text-sm font-medium tracking-[0.18em] text-[#a65a2c]">04</p>
+            <h2 className="mt-5 text-[clamp(2rem,4.4vw,4.25rem)] font-semibold leading-tight tracking-normal text-[#25221f]">
+              把复杂装修问题，拆成可以检查的清单和工具
+            </h2>
+            <p className="mt-4 text-base leading-8 text-[#6f675f]">先用工具和清单自查，再决定要不要继续找师傅、找设计或找我判断。</p>
+          </div>
+
+          <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {toolCards.map((card) => {
+              const Icon = card.icon
+              return (
+                <Link
+                  key={card.title}
+                  href={card.href}
+                  className="group flex min-h-[19rem] flex-col items-center border border-[#e4d8cb] bg-white px-7 py-9 text-center shadow-[0_18px_60px_rgba(67,45,26,0.07)] transition-transform hover:-translate-y-1"
+                >
+                  <Icon size={52} weight="duotone" className="text-[#a15b2f]" aria-hidden />
+                  <h3 className="mt-8 text-2xl font-semibold text-[#2b2723]">{card.title}</h3>
+                  <p className="mt-4 text-sm leading-7 text-[#6f675f]">{card.body}</p>
+                  <span className="mt-auto inline-flex items-center gap-2 border border-[#e6d9cc] px-5 py-2 text-sm font-medium text-[#7b4b2b]">
+                    {card.action}
+                    <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" aria-hidden />
+                  </span>
+                </Link>
+              )
+            })}
+          </div>
+
+          <div className="mt-10 text-center">
+            <ActionLink href="/resources" variant="text">
+              查看全部工具与清单
+            </ActionLink>
+          </div>
+        </div>
+      </section>
+
+      <section className="relative isolate overflow-hidden border-b border-[#e7ded3] bg-white py-20 sm:py-24">
+        <div
+          className="absolute inset-y-0 right-0 hidden w-[38%] bg-cover bg-center opacity-45 lg:block"
+          style={{
+            backgroundImage: `linear-gradient(90deg, rgba(255,255,255,0.96), rgba(255,255,255,0.36)), url(${heroImage})`,
+          }}
+          aria-hidden
+        />
+        <div className="relative mx-auto max-w-[1320px] px-5 sm:px-8 lg:px-12">
+          <p className="text-sm font-semibold text-[#8b4d27]">05 / 服务转化区</p>
+          <div className="mt-8 text-center">
+            <h2 className="text-[clamp(2rem,4.2vw,4.1rem)] font-semibold leading-tight tracking-normal text-[#25221f]">
+              工具看不明白的地方，可以找我帮你判断
+            </h2>
+            <p className="mt-4 text-base leading-8 text-[#6f675f]">只做三件事：帮你判断、帮你理清思路、把 AI 用起来的工作整理清楚。</p>
+          </div>
+
+          <div className="mt-12 grid grid-cols-1 gap-6 lg:grid-cols-3">
+            {serviceCards.map((card) => {
+              const Icon = card.icon
+              return (
+                <Link
+                  key={card.title}
+                  href={card.href}
+                  className="group flex min-h-[24rem] flex-col border border-[#e4d8cb] bg-white/90 p-8 shadow-[0_18px_70px_rgba(67,45,26,0.08)] transition-transform hover:-translate-y-1"
+                >
+                  <div className="flex items-start gap-5">
+                    <span className="flex h-16 w-16 shrink-0 items-center justify-center border border-[#ead9c7] bg-[#fbf8f4] text-[#a15b2f]">
+                      <Icon size={34} weight="duotone" aria-hidden />
+                    </span>
+                    <div>
+                      <h3 className="text-2xl font-semibold leading-snug text-[#2b2723]">{card.title}</h3>
+                      <p className="mt-3 text-sm leading-7 text-[#6f675f]">{card.body}</p>
+                    </div>
+                  </div>
+                  <div className="my-7 h-px bg-[#e6d9cc]" />
+                  <ul className="space-y-3">
+                    {card.bullets.map((item) => (
+                      <li key={item} className="flex items-center gap-3 text-sm text-[#514b45]">
+                        <CheckCircle size={18} weight="duotone" className="text-[#a15b2f]" aria-hidden />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="mt-auto flex items-end justify-between gap-4 pt-8">
+                    <p className={`${fontClassName} text-3xl font-medium text-[#8b4d27]`}>{card.price}</p>
+                    <span className="inline-flex items-center gap-2 bg-[#9a5424] px-5 py-2 text-sm font-medium text-white">
+                      了解详情
+                      <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" aria-hidden />
                     </span>
                   </div>
-                </div>
-              </Link>
-            ))}
+                </Link>
+              )
+            })}
           </div>
-        </Container>
-      </section>
 
-      <section ref={pinWrapRef} className="border-b border-black/10 bg-[#16110f] py-32 text-[#f7f1e9] md:py-40 lg:py-48">
-        <Container size="layout">
-          <div className="grid grid-cols-1 gap-12 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)] lg:gap-10">
-            <div ref={pinTitleRef} className="h-fit lg:pr-12">
-              <p className="text-[0.76rem] uppercase tracking-[0.24em] text-[#d6b792]">Scroll Study</p>
-              <h2 className="mt-6 max-w-xl text-[clamp(2.8rem,4.4vw,4.9rem)] font-semibold leading-[0.96] tracking-[-0.05em] text-[#fff8f1]">
-                先把视线钉住，再看问题一层层往上堆。
-              </h2>
-              <p className="mt-6 max-w-xl text-base leading-8 text-white/66">
-                这一段按 gpt-skill 的 Desire 区处理。标题固定，内容上移，卡片在滚动里逐渐放大、变亮，让“问题如何压缩成判断”不是一句标语，而是一个被看见的过程。
-              </p>
-            </div>
-
-            <div ref={pinCardsRef} className="relative min-h-[120vh] space-y-10">
-              {scrollCards.map((card, index) => (
-                <article
-                  key={card.title}
-                  data-scroll-card
-                  className="sticky top-24 overflow-hidden rounded-[2.25rem] border border-white/10 bg-white/8 p-5 shadow-[0_24px_70px_rgba(0,0,0,0.28)] backdrop-blur-sm"
-                  style={{ zIndex: scrollCards.length - index }}
-                >
-                  <div className="grid grid-cols-1 gap-6 md:grid-cols-[0.94fr_1.06fr] md:items-end">
-                    <div className="overflow-hidden rounded-[1.8rem]">
-                      <div
-                        className="aspect-[4/5] w-full bg-cover bg-center grayscale contrast-125 transition-transform duration-700 ease-out hover:scale-105"
-                        style={{ backgroundImage: `url(${card.image})` }}
-                      />
-                    </div>
-                    <div className="pb-2 md:pr-4">
-                      <p className="text-[0.74rem] uppercase tracking-[0.22em] text-[#d4b28a]">Frame 0{index + 1}</p>
-                      <h3 className="mt-4 max-w-[14ch] text-[2rem] font-semibold leading-[1.02] tracking-[-0.04em] text-[#fff8f1]">{card.title}</h3>
-                      <p className="mt-5 max-w-lg text-sm leading-8 text-white/68">{card.body}</p>
-                    </div>
+          <div className="mt-8 grid grid-cols-1 border border-[#e8ddd1] bg-white/82 sm:grid-cols-3">
+            {trustItems.map((item) => {
+              const Icon = item.icon
+              return (
+                <div key={item.title} className="flex items-center gap-4 border-b border-[#e8ddd1] px-6 py-5 last:border-b-0 sm:border-b-0 sm:border-r sm:last:border-r-0">
+                  <Icon size={32} weight="duotone" className="shrink-0 text-[#8b4d27]" aria-hidden />
+                  <div>
+                    <p className="font-semibold text-[#2b2723]">{item.title}</p>
+                    <p className="text-sm leading-6 text-[#716961]">{item.body}</p>
                   </div>
-                </article>
-              ))}
-            </div>
+                </div>
+              )
+            })}
           </div>
-        </Container>
+        </div>
       </section>
 
-      <section className="border-b border-black/10 py-32 md:py-40 lg:py-48">
-        <Container size="content">
-          <div className="mx-auto max-w-4xl text-center">
-            <p className="text-[0.76rem] uppercase tracking-[0.24em] text-black/42">Scrub Text</p>
-            <p
-              ref={textRevealRef}
-              className="mt-8 text-[clamp(1.8rem,3vw,3rem)] font-medium leading-[1.55] tracking-[-0.03em] text-black/95"
-            >
-              {'装修不是靠多看几篇攻略就能放心开工，AI 一人公司也不是换几个工具就自动成立。真正有用的路径，是把你已经见过的真实问题、已经做过的判断、已经服务过的人，重新整理成能被重复调用的系统。'
-                .split('')
-                .map((word, index) => (
-                  <span key={`${word}-${index}`} data-word>
-                    {word}
-                  </span>
-                ))}
+      <section className="grid min-h-[calc(100vh-3.5rem)] grid-cols-1 border-b border-[#e7ded3] bg-white lg:grid-cols-[0.52fr_0.48fr]">
+        <div
+          className="min-h-[24rem] bg-cover bg-center lg:min-h-full"
+          style={{
+            backgroundImage: `linear-gradient(90deg, rgba(24,20,17,0.62), rgba(24,20,17,0.12)), url(${studioImage})`,
+          }}
+          aria-hidden
+        />
+        <div className="flex items-center px-5 py-16 sm:px-10 lg:px-16">
+          <div className="max-w-2xl">
+            <p className="text-sm font-medium tracking-[0.18em] text-[#a65a2c]">06</p>
+            <h2 className="mt-5 text-[clamp(2.5rem,5vw,4.75rem)] font-semibold leading-tight tracking-normal text-[#25221f]">
+              关于 Zeno
+            </h2>
+            <div className="mt-7 space-y-5 text-base leading-9 text-[#504a44]">
+              <p>做了 16 年装修，我见过太多业主不是因为不舍得花钱吃亏，而是因为看不懂报价、问不清边界、签合同时没把关键问题写清楚。</p>
+              <p>我不想把经验只留在工地和朋友圈，所以把它整理成文章、清单、工具和服务。希望更多人在装修前，先建立判断力。</p>
+            </div>
+
+            <div className="mt-10 grid grid-cols-1 gap-px border border-[#e6d9cc] bg-[#e6d9cc] sm:grid-cols-3">
+              {['16 年\n现场经验', '不卖材料\n不拿返点', '只站业主\n这一边'].map((item) => {
+                const [title, body] = item.split('\n')
+                return (
+                  <div key={item} className="bg-[#fbf8f4] px-5 py-5">
+                    <p className={`${fontClassName} text-3xl font-medium text-[#8b4d27]`}>{title}</p>
+                    <p className="mt-1 text-sm text-[#6f675f]">{body}</p>
+                  </div>
+                )
+              })}
+            </div>
+
+            <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+              <ActionLink href="/about">了解我的故事</ActionLink>
+              <ActionLink href="/blog" variant="secondary">看我的长期记录</ActionLink>
+            </div>
+
+            <p className="mt-8 border-t border-[#e6d9cc] pt-6 text-sm leading-7 text-[#716961]">
+              感谢每一位愿意先把问题讲清楚的人。装修这件事，不该只靠运气。
             </p>
           </div>
-        </Container>
-      </section>
-
-      <section className="py-32 md:py-40 lg:py-48">
-        <Container size="layout">
-          <div className="grid grid-cols-1 gap-12 lg:grid-cols-[minmax(0,1.15fr)_minmax(360px,0.85fr)] lg:items-end">
-            <div>
-              <p className="text-[0.76rem] uppercase tracking-[0.24em] text-black/42">Next Step</p>
-              <h2 className="mt-6 max-w-4xl text-[clamp(3rem,4.8vw,5rem)] font-semibold leading-[0.95] tracking-[-0.055em] text-[#18120f]">
-                选一个入口，别再把所有问题都堆到同一个下午里处理。
-              </h2>
-              <p className="mt-6 max-w-3xl text-lg leading-8 text-black/62">
-                业主先去判断入口，行业从业者先去 AI 工作流服务页。如果你还在观望，先看三篇最能代表这个站判断方式的文章。
-              </p>
-            </div>
-
-            <div className="rounded-[2.2rem] border border-black/10 bg-white p-7 shadow-[0_20px_50px_rgba(22,15,10,0.08)]">
-              <div className="space-y-4">
-                {articleLinks.map((item) => (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className="group flex items-center justify-between rounded-[1.35rem] border border-black/10 px-5 py-4 transition-colors duration-300 hover:bg-[#1a1410] hover:text-[#f7f1e8]"
-                  >
-                    <span className="text-base font-medium tracking-[-0.02em]">{item.title}</span>
-                    <ArrowRight size={18} className="transition-transform duration-300 group-hover:translate-x-1" />
-                  </Link>
-                ))}
-              </div>
-
-              <div className="mt-8 flex flex-wrap gap-4">
-                <CTA href="/start" label="进入首页主入口" variant="primary" />
-                <CTA href="/services/ai-workflow" label="查看 AI 服务页" variant="ghost" />
-              </div>
-            </div>
-          </div>
-        </Container>
+        </div>
       </section>
     </main>
   )

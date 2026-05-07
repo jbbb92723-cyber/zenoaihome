@@ -15,12 +15,17 @@ export interface NavItem {
 export const mainNav: NavItem[] = [
   {
     key: 'start',
-    zh: { label: '从这里开始', href: '/start' },
+    zh: { label: '装修判断入口', href: '/start' },
     en: { label: 'Start Here', href: '/en' },
   },
   {
+    key: 'quote',
+    zh: { label: '报价审核工具', href: '/resources#baojia-shenhe-qingdan' },
+    en: { label: 'Quote Check', href: '/en/resources' },
+  },
+  {
     key: 'tools',
-    zh: { label: '按问题找工具', href: '/tools' },
+    zh: { label: '找问题工具', href: '/tools' },
     en: { label: 'Tools', href: '/en/tools' },
   },
   {
@@ -29,8 +34,8 @@ export const mainNav: NavItem[] = [
     en: { label: 'Tools & Resources', href: '/en/resources' },
   },
   {
-    key: 'living',
-    zh: { label: '真实居住', href: '/topics#shi-zhu-pai-zhuangxiu' },
+    key: 'cases',
+    zh: { label: '真实工地', href: '/cases' },
     en: { label: 'Livable Design', href: '/en/topics#living-renovation' },
   },
   {
@@ -40,7 +45,7 @@ export const mainNav: NavItem[] = [
   },
   {
     key: 'services',
-    zh: { label: '找我帮你看', href: '/services' },
+    zh: { label: '找我咨询', href: '/services' },
     en: { label: 'Work with Zeno', href: '/en/services' },
   },
   {

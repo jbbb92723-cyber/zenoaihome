@@ -121,7 +121,7 @@ export const riskSummaries: Record<RiskKey, RiskSummary> = {
     firstStep: '先把预算做成结构图，再看哪些是底线、哪些是弹性、哪些纯粹是想要。',
     resource: { label: '先拿装修预算模板', href: '/resources#zhuangxiu-yusuan-moban' },
     article: { label: '先看预算为什么总超', href: '/blog/zhuangxiu-yusuan-weishenme-zongchao' },
-    service: { label: '直接看装修预算咨询', href: '/services/renovation#yusuan-zixun' },
+    service: { label: '直接看预算结构诊断', href: '/services/renovation#yusuan-zixun' },
   },
   R3: {
     key: 'R3',

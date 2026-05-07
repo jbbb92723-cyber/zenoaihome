@@ -9,9 +9,9 @@ import StructuredData from '@/components/StructuredData'
 import { services } from '@/data/services'
 
 export const metadata: Metadata = {
-  title: '装修判断服务：报价、预算和真实居住怎么选',
+  title: '装修判断服务：报价、预算结构和真实居住怎么选',
   description:
-    '针对普通装修业主的判断服务入口。先分清你是报价风险、预算失控，还是居住需求没厘清，再决定要不要找 Zeno。',
+    '针对普通装修业主的判断服务入口。先分清你是报价风险、预算结构失控，还是居住需求没厘清，再决定要不要找 Zeno。',
   alternates: {
     canonical: 'https://zenoaihome.com/services/renovation',
   },
@@ -41,9 +41,9 @@ const faqs = [
       '当你已经临近签约、对比了几轮仍分不出风险差异，或者你已经发现问题但不知道该怎么追问时，直接进入人工判断会更省时间。',
   },
   {
-    question: '预算咨询和报价审核有什么区别？',
+    question: '预算结构诊断和报价审核有什么区别？',
     answer:
-      '报价审核是在你拿到具体报价单之后，帮你看漏项、模糊项和风险边界。预算咨询是在报价前或报价混乱时，先把钱按结构拆清。',
+      '报价审核是在你拿到具体报价单之后，帮你看漏项、模糊项和风险边界。预算结构诊断是在报价前或报价混乱时，先把钱按结构拆清。',
   },
   {
     question: '真实居住派装修服务适合什么人？',
@@ -112,7 +112,7 @@ export default function RenovationServicesPage() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {[
-              ['服务范围', '报价审核、预算结构、真实居住判断。'],
+              ['服务范围', '报价审核、预算结构诊断、真实居住判断。'],
               ['交付方式', '微信沟通 + 书面建议，不做模糊口头答复。'],
               ['你先准备', '城市、材料、报价或预算截图，越具体越快。'],
               ['明确不做', '不代砍价、不代施工、不接品牌推荐单。'],
@@ -167,7 +167,7 @@ export default function RenovationServicesPage() {
             </p>
             <div className="flex flex-wrap gap-3">
               <CTA href="/services/renovation#baojia-shenhe" label="直接看报价审核" variant="primary" />
-              <CTA href="/services/renovation#yusuan-zixun" label="直接看预算咨询" variant="secondary" />
+              <CTA href="/services/renovation#yusuan-zixun" label="直接看预算诊断" variant="secondary" />
               <CTA href="/start" label="回问题入口页" variant="ghost" />
             </div>
           </div>

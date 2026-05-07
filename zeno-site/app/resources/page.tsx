@@ -36,14 +36,14 @@ const tagColors: Record<string, string> = {
 
 const serviceEntries = [
   {
-    title: '装修报价诊断',
-    desc: '拿到报价单不知道哪里有坑？签合同前我帮你做一次专业审查。',
-    href: '/services#baojia-shenhe',
+    title: '装修报价单审核',
+    desc: '拿到报价单不知道哪里有坑？签合同前我帮你先把风险和追问点看出来。',
+    href: '/services/renovation#baojia-shenhe',
   },
   {
     title: 'AI 工作流咨询',
     desc: '针对你的具体行业场景，设计可落地的 AI 切入路径，而不是通用建议。',
-    href: '/services#ai-neirong-xitong-zixun',
+    href: '/services/ai-workflow#ai-neirong-xitong-zixun',
   },
   {
     title: '个人网站 / 内容系统咨询',
@@ -58,14 +58,14 @@ const problemEntryCards = [
     description: '先拿清单把模糊项和漏项筛一轮，再决定要不要继续往下。',
     primary: { label: '拿报价审核清单', href: '/resources#baojia-shenhe-qingdan' },
     secondary: { label: '先做预算风险自测', href: '/tools/budget-risk' },
-    fallback: { label: '直接看报价审核服务 →', href: '/services#baojia-shenhe' },
+    fallback: { label: '直接看报价审核服务 →', href: '/services/renovation#baojia-shenhe' },
   },
   {
     title: '我怕装修超预算',
     description: '先把钱按结构拆清，再谈哪些能省、哪些不能动。',
     primary: { label: '拿装修预算模板', href: '/resources#zhuangxiu-yusuan-moban' },
     secondary: { label: '先做预算风险自测', href: '/tools/budget-risk' },
-    fallback: { label: '直接看预算咨询 →', href: '/services#yusuan-zixun' },
+    fallback: { label: '直接看预算诊断 →', href: '/services/renovation#yusuan-zixun' },
   },
   {
     title: '我已经开工，不知道怎么验收',
@@ -79,14 +79,14 @@ const problemEntryCards = [
     description: '先把真实生活需求写清楚，再谈风格表达和预算分配。',
     primary: { label: '拿实住派自查表', href: '/resources#shizhu-pai-zijian-biao' },
     secondary: { label: '看真实居住专题', href: '/topics#shi-zhu-pai-zhuangxiu' },
-    fallback: { label: '看真实居住派装修服务 →', href: '/services#shi-zhu-pai-zhuangxiu' },
+    fallback: { label: '看真实居住派装修服务 →', href: '/services/renovation#shi-zhu-pai-zhuangxiu' },
   },
   {
     title: '我是传统行业人，想用 AI',
     description: '先用真实任务试一轮，把经验和 AI 接上，再谈系统化。',
     primary: { label: '拿 AI 工作流提示词包', href: '/resources#ai-neirong-gongzuoliu-tishici-bao' },
     secondary: { label: '去提示词体验场', href: '/tools/prompts' },
-    fallback: { label: '看 AI 内容系统咨询 →', href: '/services#ai-neirong-xitong-zixun' },
+    fallback: { label: '看 AI 工作流咨询 →', href: '/services/ai-workflow#ai-neirong-xitong-zixun' },
   },
 ]
 
