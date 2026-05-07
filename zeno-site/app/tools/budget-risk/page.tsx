@@ -1,117 +1,86 @@
-'use client'
-
-/**
- * 装修预算风险自测 — 入口表单页
- *
- * 设计取舍：
- * 1. 不强制留资。做完直接出结果，邮箱留资降级为结果页可选动作。
- * 2. 答案通过 URL query string 传到结果页，使结果页可分享、可收藏，也方便用户对照修改。
- * 3. 客户端组件 + useState，10 题不需要 react-hook-form。
- */
-
-import { useMemo, useState } from 'react'
-import { useRouter } from 'next/navigation'
+import type { Metadata } from 'next'
 import Container from '@/components/Container'
+import CTA from '@/components/CTA'
 import PageHero from '@/components/PageHero'
-import QuestionCard from '@/components/budget-risk/QuestionCard'
-import { questions } from './questions'
+import StructuredData from '@/components/StructuredData'
+import BudgetRiskQuiz from '@/components/budget-risk/BudgetRiskQuiz'
 
-type AnswerMap = Record<string, string | string[]>
+export const metadata: Metadata = {
+  title: '装修预算风险自测',
+  description:
+    '用 8 个问题先分清你当前更大的风险是报价、预算结构、施工流程，还是需求顺序本身。',
+  alternates: {
+    canonical: 'https://zenoaihome.com/tools/budget-risk',
+  },
+}
 
-export default function BudgetRiskPage() {
-  const router = useRouter()
-  const [answers, setAnswers] = useState<AnswerMap>({})
-
-  const answeredCount = useMemo(() => {
-    return questions.filter((q) => {
-      const a = answers[q.id]
-      if (!a) return false
-      return Array.isArray(a) ? a.length > 0 : Boolean(a)
-    }).length
-  }, [answers])
-
-  const allAnswered = answeredCount === questions.length
-
-  function handleSubmit() {
-    // 把答案编码进 URL query string
-    // 多选用逗号拼接，单选直接写
-    const params = new URLSearchParams()
-    for (const q of questions) {
-      const a = answers[q.id]
-      if (!a) continue
-      params.set(q.id, Array.isArray(a) ? a.join(',') : a)
-    }
-    router.push(`/tools/budget-risk/result?${params.toString()}`)
-  }
-
+export default function BudgetRiskToolPage() {
   return (
     <>
+      <StructuredData
+        data={[
+          {
+            '@context': 'https://schema.org',
+            '@type': 'WebPage',
+            name: '装修预算风险自测',
+            url: 'https://zenoaihome.com/tools/budget-risk',
+            description: '用 8 个问题缩小装修预算与判断风险。',
+            inLanguage: 'zh-CN',
+          },
+          {
+            '@context': 'https://schema.org',
+            '@type': 'FAQPage',
+            mainEntity: [
+              {
+                '@type': 'Question',
+                name: '这个工具能替代人工判断吗？',
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: '不能。它只负责先分清哪类风险更值得先处理，不替代你后续对报价、预算或方案的真实判断。',
+                },
+              },
+              {
+                '@type': 'Question',
+                name: '适合什么时候做？',
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: '最适合在签约前、预算还没理顺，或者你已经感觉哪里不对但说不清问题到底在哪个层面的时候做。',
+                },
+              },
+            ],
+          },
+        ]}
+      />
+
       <PageHero
-        label="判断工具"
-        title="装修预算，10 分钟体检"
-        subtitle="10 个问题，看看你这次装修最可能在哪里超支。不收集联系方式，不强制注册——做完直接出结果。"
+        label="工具"
+        title="装修预算风险自测"
+        subtitle="如果你现在已经感觉哪里不对，但说不清是报价、预算、流程还是需求顺序的问题，先用这 8 个问题把风险缩小。"
+        note="结果页会告诉你先该看哪类资源、文章或服务，而不是给你一个虚假的“总分”。"
         size="content"
       />
 
       <Container size="content" className="py-section">
-        {/* 信任前置：告诉用户这表是怎么来的 */}
-        <div className="mb-10 border-l-2 border-stone-light pl-4">
-          <p className="text-sm text-ink leading-relaxed">
-            这份自测来自我审过的上千份真实报价。我把"事后才看出问题"的那些点，提前做成了你现在就能回答的问题。
-          </p>
-          <p className="text-xs text-ink-muted leading-relaxed mt-2">
-            ——Zeno，装修 16 年
-          </p>
-        </div>
-
-        {/* 极简进度条：只是一根细线 */}
-        <div className="mb-8">
-          <div className="flex items-center justify-between text-[0.65rem] text-ink-faint uppercase tracking-widest mb-2">
-            <span>已回答</span>
-            <span>{answeredCount} / {questions.length}</span>
-          </div>
-          <div className="h-px bg-border relative">
-            <div
-              className="absolute left-0 top-0 h-px bg-stone transition-all"
-              style={{ width: `${(answeredCount / questions.length) * 100}%` }}
-            />
-          </div>
-        </div>
-
-        <div className="space-y-6">
-          {questions.map((q, i) => (
-            <QuestionCard
-              key={q.id}
-              question={q}
-              index={i + 1}
-              total={questions.length}
-              value={answers[q.id]}
-              onChange={(v) => setAnswers((prev) => ({ ...prev, [q.id]: v }))}
-            />
-          ))}
-        </div>
-
-        {/* 提交区 */}
-        <div className="mt-10 border-t border-border pt-8">
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-            <div>
-              <p className="text-sm text-ink">
-                {allAnswered
-                  ? '十题都答完了，可以看结果了。'
-                  : '建议把十题都答完——任何一题空着，结果都会偏。'}
-              </p>
-              <p className="text-xs text-ink-muted mt-1">
-                结果页只在你的浏览器里生成，不会上传任何答案。
-              </p>
+        <section className="mb-10 grid grid-cols-1 sm:grid-cols-3 gap-4">
+          {[
+            ['先分类型', '不是看你“危不危险”，而是看你更像卡在哪一类问题。'],
+            ['先做缩小', '工具的价值是先缩小问题范围，方便你后面少走弯路。'],
+            ['再进资源或服务', '结果出来后，你会拿到对应资源入口和更合适的下一步。'],
+          ].map(([title, description]) => (
+            <div key={title} className="border border-border bg-surface p-5">
+              <p className="text-sm font-semibold text-ink mb-2">{title}</p>
+              <p className="text-xs text-ink-muted leading-relaxed">{description}</p>
             </div>
-            <button
-              type="button"
-              onClick={handleSubmit}
-              disabled={answeredCount === 0}
-              className="shrink-0 text-sm font-medium text-paper bg-stone px-6 py-3 hover:bg-stone/85 transition-colors disabled:bg-ink-faint disabled:cursor-not-allowed"
-            >
-              看看我的预算风险 →
-            </button>
+          ))}
+        </section>
+
+        <BudgetRiskQuiz />
+
+        <div className="mt-12 border border-border bg-surface-warm p-6 sm:p-8">
+          <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-3">还不想做自测？</p>
+          <div className="flex flex-wrap gap-3">
+            <CTA href="/resources#sign-before-contract" label="先去签约前入口" variant="secondary" />
+            <CTA href="/services/renovation" label="直接看装修服务边界" variant="ghost" />
           </div>
         </div>
       </Container>

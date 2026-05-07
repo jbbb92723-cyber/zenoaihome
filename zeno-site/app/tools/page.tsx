@@ -5,64 +5,33 @@ import CTA from '@/components/CTA'
 import PageHero from '@/components/PageHero'
 import StructuredData from '@/components/StructuredData'
 
-type ToolRoute = {
-  slug: string
-  title: string
-  problem: string
-  primary: { label: string; href: string }
-  secondary: { label: string; href: string }
-  fallback: { label: string; href: string }
-}
-
 export const metadata: Metadata = {
-  title: '按问题找工具，不用先研究栏目',
+  title: '工具页',
   description:
-    '从报价单、预算、施工验收到真实居住和 AI 工作流，按你当前的问题找到最合适的工具、清单和资料。',
+    '先用工具把问题缩小，再决定要不要拿资料或进入服务。这里放的是已经能直接用的中文工具入口。',
   alternates: {
     canonical: 'https://zenoaihome.com/tools',
   },
 }
 
-const toolRoutes: ToolRoute[] = [
+const tools = [
   {
-    slug: 'quote',
-    title: '我正在看报价单',
-    problem: '先把没写清楚的地方标出来，再决定签不签。',
-    primary: { label: '预算风险自测', href: '/tools/budget-risk' },
-    secondary: { label: '报价审核清单', href: '/resources#baojia-shenhe-qingdan' },
-    fallback: { label: '报价单审核服务', href: '/services#baojia-shenhe' },
+    title: '装修预算风险自测',
+    description: '用 8 个问题先分清你当前更像是报价风险、预算结构风险、施工流程风险，还是真实居住需求没厘清。',
+    href: '/tools/budget-risk',
+    cta: '开始自测',
   },
   {
-    slug: 'budget',
-    title: '我怕装修超预算',
-    problem: '先判断你最容易失控的是哪一块，再谈要不要缩减。',
-    primary: { label: '预算风险自测', href: '/tools/budget-risk' },
-    secondary: { label: '装修预算模板', href: '/resources#zhuangxiu-yusuan-moban' },
-    fallback: { label: '装修预算咨询', href: '/services#yusuan-zixun' },
+    title: 'AI 提示词体验场',
+    description: '给真实工作场景生成可以直接用的提示词。适合传统行业人先跑一个任务，而不是先听抽象概念。',
+    href: '/tools/prompts',
+    cta: '去体验场',
   },
   {
-    slug: 'construction',
-    title: '我已经开工，不知道怎么验收',
-    problem: '节点验收比竣工总验更关键，先把该拍和该记的跑起来。',
-    primary: { label: '验收清单', href: '/resources#yanshou-qingdan' },
-    secondary: { label: '施工判断专题', href: '/topics#shi-zhu-pai-zhuangxiu' },
-    fallback: { label: '先看服务边界', href: '/services' },
-  },
-  {
-    slug: 'living',
-    title: '我不想把家装成样板间',
-    problem: '先把真实生活需求写清，再谈风格参考和预算分配。',
-    primary: { label: '实住派自查表', href: '/resources#shizhu-pai-zijian-biao' },
-    secondary: { label: '真实居住专题', href: '/topics#shi-zhu-pai-zhuangxiu' },
-    fallback: { label: '真实居住派装修服务', href: '/services#shi-zhu-pai-zhuangxiu' },
-  },
-  {
-    slug: 'ai',
-    title: '我是传统行业人，想用 AI',
-    problem: '先把一个真实任务跑通，再谈系统化和资产化。',
-    primary: { label: 'AI 提示词体验场', href: '/tools/prompts' },
-    secondary: { label: 'AI 工作流提示词包', href: '/resources#ai-neirong-gongzuoliu-tishici-bao' },
-    fallback: { label: 'AI 内容系统咨询', href: '/services#ai-neirong-xitong-zixun' },
+    title: 'Markdown 微信排版工具',
+    description: '把 Markdown 文稿转成微信公众号可直接粘贴的排版结果。适合写作和发布这一段工作流。',
+    href: '/tools/md2wechat',
+    cta: '打开工具',
   },
 ]
 
@@ -70,64 +39,62 @@ export default function ToolsPage() {
   return (
     <>
       <StructuredData
-        data={{
-          '@context': 'https://schema.org',
-          '@type': 'CollectionPage',
-          name: '按问题找工具',
-          url: 'https://zenoaihome.com/tools',
-          description: '按问题组织的工具、清单和资料入口页。',
-          inLanguage: 'zh-CN',
-        }}
+        data={[
+          {
+            '@context': 'https://schema.org',
+            '@type': 'CollectionPage',
+            name: '工具页',
+            url: 'https://zenoaihome.com/tools',
+            description: '可直接使用的工具入口。',
+            inLanguage: 'zh-CN',
+          },
+          {
+            '@context': 'https://schema.org',
+            '@type': 'ItemList',
+            name: '工具列表',
+            itemListElement: tools.map((tool, index) => ({
+              '@type': 'ListItem',
+              position: index + 1,
+              name: tool.title,
+              url: `https://zenoaihome.com${tool.href}`,
+            })),
+          },
+        ]}
       />
 
       <PageHero
-        label="工具总入口"
-        title="按问题找工具，不用先研究栏目"
-        subtitle="你现在卡在哪，就先从那一格开始。这里不按站长栏目分，而是按你眼下要解决的问题分。"
-        note="先用工具和清单建立判断，再决定要不要买资料、要不要找我。"
+        label="工具页"
+        title="先把问题缩小，再决定下一步"
+        subtitle="我放在这里的工具，不是为了看起来多，而是为了先把一个真实问题压缩到能被判断、能被执行的程度。"
+        note="工具不替代判断，只负责先减少混乱。"
         size="content"
       />
 
       <Container size="content" className="py-section">
-        <div className="grid gap-5 lg:grid-cols-2">
-          {toolRoutes.map((route) => (
-            <section key={route.slug} id={route.slug} className="border border-border bg-surface overflow-hidden scroll-mt-20">
-              <div className="border-b border-border bg-surface-warm px-6 py-5">
-                <h2 className="text-lg font-semibold text-ink mb-2">{route.title}</h2>
-                <p className="text-sm text-ink-muted leading-relaxed">{route.problem}</p>
+        <div className="space-y-6">
+          {tools.map((tool) => (
+            <div key={tool.title} className="border border-border bg-surface p-6 flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+              <div className="flex-1">
+                <h2 className="text-base font-semibold text-ink mb-2">{tool.title}</h2>
+                <p className="text-sm text-ink-muted leading-relaxed max-w-xl">{tool.description}</p>
               </div>
-              <div className="px-6 py-6 space-y-4">
-                <div>
-                  <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-2">先做这个</p>
-                  <CTA href={route.primary.href} label={route.primary.label} variant="primary" />
-                </div>
-                <div>
-                  <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-2">再补这一份</p>
-                  <CTA href={route.secondary.href} label={route.secondary.label} variant="secondary" />
-                </div>
-                <div>
-                  <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-2">工具还不够时</p>
-                  <Link href={route.fallback.href} className="text-sm text-stone hover:underline underline-offset-2">
-                    {route.fallback.label} →
-                  </Link>
-                </div>
-              </div>
-            </section>
+              <Link href={tool.href} className="text-sm font-medium text-paper bg-stone px-4 py-2 hover:bg-stone/85 transition-colors whitespace-nowrap self-start">
+                {tool.cta}
+              </Link>
+            </div>
           ))}
         </div>
 
-        <section className="mt-14 border border-border bg-surface-warm p-6 sm:p-8">
-          <p className="page-label mb-3">继续往下</p>
-          <h2 className="section-heading mb-3">想看更完整的工具和资料，再进资料库</h2>
-          <p className="text-sm text-ink-muted leading-relaxed max-w-2xl mb-5">
-            这个页面先帮你决定“先点哪里”。如果你已经知道自己要找预算模板、验收清单、实住自查表或 AI 工作流包，可以直接进入完整资料库。
+        <div className="mt-12 border border-border bg-surface-warm p-6 sm:p-8">
+          <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-3">下一步</p>
+          <p className="text-sm text-ink-muted leading-relaxed mb-5">
+            如果工具已经帮你把问题缩到足够具体，就去资源页拿对应清单；如果已经缩到“我知道问题在哪，但需要人直接判断”，再进入服务页。
           </p>
           <div className="flex flex-wrap gap-3">
-            <CTA href="/resources" label="进入完整资料库" variant="primary" />
-            <CTA href="/start" label="回到从这里开始" variant="secondary" />
-            <CTA href="/cases" label="看案例复盘" variant="ghost" />
+            <CTA href="/resources" label="去资源页" variant="secondary" />
+            <CTA href="/services" label="去服务页" variant="ghost" />
           </div>
-        </section>
+        </div>
       </Container>
     </>
   )

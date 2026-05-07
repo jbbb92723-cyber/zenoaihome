@@ -1,48 +1,38 @@
-/**
- * 结果页：单个维度的卡片
- *
- * 输入：维度 label、等级 low/mid/high、一句话解释、是否高亮（主导维度）
- * 输出：直角卡片，等级用颜色而非数字表达
- */
+import type { RiskSummary } from '@/data/budget-risk'
 
-import type { RiskLevel } from '@/app/tools/budget-risk/scoring'
-
-interface Props {
-  label: string
-  level: RiskLevel
-  description: string
-  emphasized?: boolean
+interface RiskDimensionCardProps {
+  summary: RiskSummary
+  score: number
+  maxScore: number
+  isDominant?: boolean
 }
 
-const LEVEL_LABEL: Record<RiskLevel, string> = {
-  low: '低',
-  mid: '中',
-  high: '高',
-}
+export default function RiskDimensionCard({
+  summary,
+  score,
+  maxScore,
+  isDominant = false,
+}: RiskDimensionCardProps) {
+  const ratio = maxScore > 0 ? Math.min(score / maxScore, 1) : 0
 
-const LEVEL_COLOR: Record<RiskLevel, string> = {
-  // 用克制的色阶，不用红黄绿这种警告色
-  low: 'text-ink-muted border-border',
-  mid: 'text-stone border-stone/40',
-  high: 'text-stone border-stone bg-stone/5',
-}
-
-export default function RiskDimensionCard({ label, level, description, emphasized }: Props) {
   return (
-    <div
-      className={`border p-5 sm:p-6 ${LEVEL_COLOR[level]} ${
-        emphasized ? 'sm:col-span-2' : ''
-      }`}
-    >
-      <div className="flex items-baseline justify-between gap-3 mb-2">
-        <p className="text-sm font-semibold text-ink">{label}</p>
-        <p className={`text-[0.65rem] uppercase tracking-widest ${
-          level === 'high' ? 'text-stone font-semibold' : 'text-ink-faint'
-        }`}>
-          {LEVEL_LABEL[level]}
-        </p>
+    <article className={`border p-5 ${isDominant ? 'border-stone bg-stone/5' : 'border-border bg-surface'}`}>
+      <div className="flex items-start justify-between gap-4 mb-4">
+        <div>
+          <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-2">{summary.name}</p>
+          <h2 className="text-base font-semibold text-ink">{summary.shortName}</h2>
+        </div>
+        <div className="text-right shrink-0">
+          <p className="text-lg font-semibold text-ink">{score}</p>
+          <p className="text-xs text-ink-faint">/ {maxScore}</p>
+        </div>
       </div>
-      <p className="text-sm text-ink-muted leading-relaxed">{description}</p>
-    </div>
+
+      <div className="h-2 bg-stone-pale mb-4 overflow-hidden">
+        <div className="h-full bg-stone" style={{ width: `${ratio * 100}%` }} />
+      </div>
+
+      <p className="text-sm text-ink-muted leading-relaxed">{summary.description}</p>
+    </article>
   )
 }

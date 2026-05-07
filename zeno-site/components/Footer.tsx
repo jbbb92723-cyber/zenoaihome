@@ -26,12 +26,12 @@ export default function Footer() {
           {/* 品牌 + 定位 */}
           <div className="sm:col-span-1">
             <Link href={isEn ? '/en' : '/'} className="text-ink font-semibold text-[0.9375rem] hover:text-stone transition-colors">
-              {isEn ? 'Zeno' : '赞诺 Zeno'}
+              {isEn ? 'ZenoAIHome' : 'ZenoAIHome'}
             </Link>
             <p className="mt-3 text-[0.8125rem] text-ink-muted leading-relaxed max-w-[220px]">
               {isEn
                 ? 'From a familiar industry, building a freer personal business system with AI, products, and content.'
-                : '从熟悉的行业出发，用 AI、产品和内容，搭建更自由的个人事业系统。'}
+                : '从 16 年装修现场出发，把报价、预算、合同、施工、验收和真实居住讲明白。'}
             </p>
           </div>
 
@@ -97,12 +97,12 @@ export default function Footer() {
         {/* 版权栏 */}
         <div className="mt-10 pt-6 border-t border-border flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
           <p className="text-[0.75rem] text-ink-faint">
-            © {year} {isEn ? 'Zeno AI Home' : '赞诺 Zeno'} · zenoaihome.com
+            © {year} ZenoAIHome · zenoaihome.com
           </p>
           <p className="text-[0.75rem] text-ink-faint">
             {isEn
               ? 'Content updated regularly. Quality over quantity.'
-              : '内容持续更新，把经验变成工具，把内容变成资产。'}
+              : '先建立判断力，再做装修决定。'}
           </p>
         </div>
 

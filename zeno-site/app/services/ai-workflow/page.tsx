@@ -1,9 +1,9 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
-import Link from 'next/link'
 import Container from '@/components/Container'
 import CTA from '@/components/CTA'
 import PageHero from '@/components/PageHero'
+import ServiceCard from '@/components/ServiceCard'
 import StructuredData from '@/components/StructuredData'
 import { services } from '@/data/services'
 
@@ -77,7 +77,6 @@ const relatedArticles = [
   { label: '我为什么不想只做一个教人装修的人', href: '/blog/01-wo-wei-shenme-bu-xiang-zhi-zuo-jiaoren-zhuangxiu' },
   { label: '先看 AI 实践专题', href: '/topics#chuantong-hangyeren-zenme-yong-ai' },
 ]
-
 export default function AIWorkflowPage() {
   if (!aiService) return null
 
@@ -203,83 +202,11 @@ export default function AIWorkflowPage() {
           </div>
         </section>
 
-        <section id={aiService.slug} className="mb-14 border border-border overflow-hidden scroll-mt-20">
-          <div className="px-6 py-5 border-b border-border bg-surface-warm flex items-start justify-between gap-4">
-            <div className="min-w-0">
-              <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-2">咨询卡</p>
-              <h2 className="text-lg font-semibold text-ink leading-tight">{aiService.title}</h2>
-              <p className="text-sm text-stone mt-1">{aiService.tagline}</p>
-            </div>
-            <span className="shrink-0 self-start border border-stone/30 text-stone text-xs px-3 py-1 font-medium whitespace-nowrap">
-              {aiService.price}
-            </span>
-          </div>
-
-          <div className="px-6 py-6 space-y-6 bg-surface">
-            <p className="text-sm text-ink leading-relaxed">{aiService.description}</p>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              <div>
-                <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-3">适合谁</p>
-                <ul className="space-y-2">
-                  {aiService.forWho.map((item) => (
-                    <li key={item} className="flex items-start gap-2">
-                      <span className="text-stone text-xs shrink-0 mt-1">+</span>
-                      <span className="text-sm text-ink leading-relaxed">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div>
-                <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-3">你需要提供</p>
-                <ul className="space-y-2">
-                  {aiService.youProvide.map((item) => (
-                    <li key={item} className="flex items-start gap-2">
-                      <span className="text-ink-muted text-xs shrink-0 mt-1">·</span>
-                      <span className="text-sm text-ink-muted leading-relaxed">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-
-            <div>
-              <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-3">交付结果</p>
-              <ul className="space-y-2">
-                {aiService.iDeliver.map((item) => (
-                  <li key={item} className="flex items-start gap-2">
-                    <span className="text-stone text-xs shrink-0 mt-1">·</span>
-                    <span className="text-sm text-ink leading-relaxed">{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="border-l-2 border-stone/40 pl-4">
-              <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-2">服务边界</p>
-              <p className="text-sm text-ink-muted leading-relaxed">{aiService.boundary}</p>
-            </div>
-
-            <div className="pt-4 border-t border-border grid grid-cols-1 gap-4 sm:grid-cols-[1fr_auto] sm:items-end">
-              <div>
-                <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-2">延伸阅读</p>
-                <div className="flex flex-wrap gap-3">
-                  {relatedArticles.map((item) => (
-                    <Link key={item.href} href={item.href} className="text-sm text-stone hover:underline underline-offset-2">
-                      {item.label}
-                    </Link>
-                  ))}
-                </div>
-              </div>
-
-              <div className="sm:text-right">
-                <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-2">咨询方式</p>
-                <p className="text-sm text-ink-muted leading-relaxed max-w-md">{aiService.contactNote}</p>
-              </div>
-            </div>
-          </div>
-        </section>
+        <ServiceCard
+          service={aiService}
+          index={0}
+          relatedArticles={relatedArticles}
+        />
 
         <section className="mt-14 grid grid-cols-1 lg:grid-cols-[1fr_0.95fr] gap-6">
           <div className="border border-border bg-surface p-6 sm:p-8">

@@ -1,15 +1,17 @@
 ﻿import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 import { services } from '@/data/services'
 import PageHero from '@/components/PageHero'
 import Container from '@/components/Container'
 import CTA from '@/components/CTA'
+import ServiceCard from '@/components/ServiceCard'
 import StructuredData from '@/components/StructuredData'
 
 export const metadata: Metadata = {
-  title: '找我帮你看',
+  title: '工具看不明白的地方，可以找我帮你判断',
   description:
-    '先自己判断，工具不够用时再找我。这里放的是报价审核、预算咨询、真实居住派装修服务、AI 内容系统咨询，以及当前开放的合作方向。',
+    'ZenoAIHome 服务页。先分清你需要的是装修报价、预算和真实居住判断，还是传统行业 AI 工作流整理，再看具体边界和价格。',
   alternates: {
     canonical: 'https://zenoaihome.com/services',
   },
@@ -17,24 +19,24 @@ export const metadata: Metadata = {
 
 const serviceRelatedArticles: Record<string, { label: string; href: string }[]> = {
   'baojia-shenhe': [
-    { label: '报价单真正该怎么看', href: '/blog/baojia-dan-zenme-kan' },
     { label: '装修预算为什么总超？', href: '/blog/zhuangxiu-yusuan-weishenme-zongchao' },
-    { label: '便宜的报价，往往是最贵的选择', href: '/blog/article-03-04' },
+    { label: '家不是样板间', href: '/blog/02-jia-bu-shi-yangban-jian' },
+    { label: '从工地看世界', href: '/blog/03-cong-gongdi-kan-shijie' },
   ],
   'yusuan-zixun': [
     { label: '装修预算为什么总超？', href: '/blog/zhuangxiu-yusuan-weishenme-zongchao' },
-    { label: '水电工程为什么总是超预算', href: '/blog/shuidian-gongcheng-zongchao-yusuan' },
-    { label: '装修完最后悔的五件事', href: '/blog/zhuangxiu-hou-hue-de-wu-jian' },
+    { label: '从工地看世界', href: '/blog/03-cong-gongdi-kan-shijie' },
+    { label: '长期主义不是忍耐', href: '/blog/05-changqi-zhuyi-bushi-rennai' },
   ],
   'shi-zhu-pai-zhuangxiu': [
     { label: '家不是样板间', href: '/blog/02-jia-bu-shi-yangban-jian' },
-    { label: '实住派装修，究竟反对什么', href: '/blog/article-01-03' },
-    { label: '真正耐住十年的装修，优先级是什么', href: '/blog/article-01-07' },
+    { label: '我为什么不想只做一个教人装修的人', href: '/blog/01-wo-wei-shenme-bu-xiang-zhi-zuo-jiaoren-zhuangxiu' },
+    { label: '长期主义不是忍耐', href: '/blog/05-changqi-zhuyi-bushi-rennai' },
   ],
   'ai-neirong-xitong-zixun': [
-    { label: '为什么传统行业人必须认真学 AI', href: '/blog/article-05-01' },
-    { label: '内容资产，才是传统行业人的第二生产线', href: '/blog/article-05-02' },
-    { label: '我的内容系统是怎么建起来的', href: '/blog/neirong-xitong-jianqi' },
+    { label: '为什么我开始认真学 AI', href: '/blog/04-wei-shenme-wo-kaishi-renzheng-xue-ai' },
+    { label: '我为什么不想只做一个教人装修的人', href: '/blog/01-wo-wei-shenme-bu-xiang-zhi-zuo-jiaoren-zhuangxiu' },
+    { label: '先看 AI 实践专题', href: '/topics#chuantong-hangyeren-zenme-yong-ai' },
   ],
 }
 
@@ -59,30 +61,38 @@ const industryExtras = [
   },
 ]
 
-const selfServeLinks = [
+const splitCards = [
   {
-    label: '先做免费自测',
-    title: '预算风险自测',
-    desc: '10 分钟先判断你主要是哪类风险。',
-    href: '/tools/budget-risk',
+    label: '装修判断服务',
+    title: '报价、预算和真实居住，先分清你要判断什么',
+    description: '给普通装修业主的入口。先看清问题，再决定要不要把材料发我。',
+    href: '/services/renovation',
+    image: '/images/services/renovation-judgment-proof.svg',
   },
   {
-    label: '先拿清单',
-    title: '报价审核清单',
-    desc: '先自己把模糊项和漏项筛一轮。',
-    href: '/resources#baojia-shenhe-qingdan',
+    label: 'AI 工作流咨询',
+    title: '先跑通一个真实场景，再决定要不要整理系统',
+    description: '给传统行业从业者的入口。不是追工具，而是把已有工作接进 AI。',
+    href: '/services/ai-workflow',
+    image: '/images/services/ai-workflow-proof.svg',
+  },
+]
+
+const serviceFaqs = [
+  {
+    question: '为什么总服务页要先分两条入口？',
+    answer:
+      '因为装修判断和 AI 工作流不是一类问题，读者的目标、材料准备和咨询时机都不同。先分入口，后面每一页的路径才不会混。',
   },
   {
-    label: '先看低价资料',
-    title: '39 元报价避坑指南',
-    desc: '如果你还想先自己过一遍，这份最合适。',
-    href: '/pricing/baojia-guide',
+    question: '什么时候更适合先用工具和资料，而不是直接找我？',
+    answer:
+      '如果你还在摸清问题阶段，或者手里没有具体材料，先用工具和资料把问题缩小，再拿清单和模板，通常比直接咨询更划算。',
   },
   {
-    label: '还没确定路径',
-    title: '回到从这里开始',
-    desc: '先选你当下最像的那个问题，再决定要不要找我。',
-    href: '/start',
+    question: '这个页最想帮你避免什么？',
+    answer:
+      '避免一上来就把装修业主送进 AI 服务，也避免把传统行业人直接送到泛泛的“服务与合作”页面里。',
   },
 ]
 
@@ -93,295 +103,131 @@ export default function ServicesPage() {
   return (
     <>
       <StructuredData
-        data={{
-          '@context': 'https://schema.org',
-          '@type': 'CollectionPage',
-          name: '找我帮你看',
-          url: 'https://zenoaihome.com/services',
-          description: '先自己判断，工具不够用时再找我。',
-          inLanguage: 'zh-CN',
-          hasPart: services.map((service) => ({
-            '@type': 'Service',
-            name: service.title,
-            description: service.description,
-            offers: {
-              '@type': 'Offer',
-              priceCurrency: 'CNY',
-              price: service.price,
-            },
-            url: `https://zenoaihome.com/services#${service.slug}`,
-          })),
-        }}
+        data={[
+          {
+            '@context': 'https://schema.org',
+            '@type': 'CollectionPage',
+            name: '找我帮你判断',
+            url: 'https://zenoaihome.com/services',
+            description: '先分清你是装修判断，还是 AI 工作流需求。',
+            inLanguage: 'zh-CN',
+            hasPart: services.map((service) => ({
+              '@type': 'Service',
+              name: service.title,
+              description: service.description,
+              offers: {
+                '@type': 'Offer',
+                priceCurrency: 'CNY',
+                price: service.price,
+              },
+              url: `https://zenoaihome.com/services#${service.slug}`,
+            })),
+          },
+          {
+            '@context': 'https://schema.org',
+            '@type': 'FAQPage',
+            mainEntity: serviceFaqs.map((item) => ({
+              '@type': 'Question',
+              name: item.question,
+              acceptedAnswer: {
+                '@type': 'Answer',
+                text: item.answer,
+              },
+            })),
+          },
+        ]}
       />
 
       <PageHero
-        label="找我帮你看"
-        title="找我帮你看"
-        subtitle="先自己判断，工具不够时再找我。如果你已经看过文章、做过自测、用过清单，还是拿不准，那就把材料发我。我会告诉你最该先看的地方，也会直接说清楚我能帮什么、不能帮什么。"
-        note="不需要先预约。先看下面的自助入口和服务边界，确认适合再联系。"
+        label="找我帮你判断"
+        title="工具看不明白的地方，可以找我帮你判断"
+        subtitle="这里不做泛泛咨询。先分清你要判断的是报价、预算、真实居住，还是传统行业 AI 工作流，再看具体服务边界。"
+        note="如果你只是想先自己判断，先去工具页和资料页，不急着付费。"
         size="content"
       />
 
       <Container size="content" className="py-section">
-        <section className="mb-12 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
-          {selfServeLinks.map((item) => (
-            <Link key={item.title} href={item.href} className="group border border-border bg-surface p-5 card-hover flex flex-col">
-              <p className="text-[0.65rem] font-semibold uppercase tracking-widest text-stone mb-3">{item.label}</p>
-              <h2 className="text-sm font-semibold text-ink group-hover:text-stone transition-colors mb-2">{item.title}</h2>
-              <p className="text-xs text-ink-muted leading-relaxed flex-1">{item.desc}</p>
-              <span className="text-xs text-stone mt-4 group-hover:underline underline-offset-2">先走这一步 →</span>
-            </Link>
-          ))}
-        </section>
 
-        {/* 信任承接 */}
-        <div className="mb-12 border border-border bg-surface-warm p-6 sm:p-8">
-          <p className="text-sm text-ink leading-relaxed mb-2">
-            <strong>我只接我能真正帮到的服务：报价判断、预算结构、真实居住决策，以及把 AI 接进真实工作。</strong>
-          </p>
-          <p className="text-sm text-ink-muted leading-relaxed">
-            如果你当前更适合自助判断，网站上的文章、工具和资料对你大概率更有用，不需要急着付费。
-          </p>
-        </div>
-
-        {/* 如何开始：三件小事，尽量降低启动阈 */}
-        <div className="mb-14 border-l-2 border-stone-light pl-5">
-          <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-3">如何找我</p>
-          <p className="text-sm text-ink leading-[1.85] mb-3">
-            不用预约，也不用问“在不在”。直接微信发我三样东西就行：
-          </p>
-          <ul className="text-sm text-ink-muted leading-relaxed space-y-1.5 mb-3">
-            <li>1. 你在哪个城市；</li>
-            <li>2. 目前手头的报价 / 方案 / 预算（截图就行）；</li>
-            <li>3. 你最拿不准的那一个问题。</li>
-          </ul>
-          <p className="text-sm text-ink-muted leading-relaxed">
-            我看完会告诉你能不能帮，能帮就报价，不能帮就说哪里有更合适的资源。
-          </p>
-        </div>
-
-        {/* ───── A. 轻交付咨询 ───── */}
-        <div className="mb-6">
-          <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-2">A</p>
-          <h2 className="text-lg font-semibold text-ink">轻交付咨询</h2>
-          <p className="text-sm text-ink-muted mt-1">帮你把经验、判断和流程，整理成可复用的内容资产和工作系统。</p>
-        </div>
-
-        {/* 已有完整数据的服务 */}
-        <div className="space-y-10">
-          {industryServices.map((service, index) => (
-            <div key={service.id} id={service.slug} className="border border-border overflow-hidden scroll-mt-20">
-              <div className="px-6 py-5 border-b border-border bg-surface-warm flex items-start justify-between gap-4">
-                <div className="flex items-start gap-3 min-w-0">
-                  <span className="text-stone/30 text-xs font-mono shrink-0 mt-[3px]">
-                    {String(index + 1).padStart(2, '0')}
-                  </span>
-                  <div className="min-w-0">
-                    <h2 className="text-lg font-semibold text-ink leading-tight">{service.title}</h2>
-                    <p className="text-sm text-stone mt-1">{service.tagline}</p>
-                  </div>
-                </div>
-                <span className="shrink-0 self-start border border-stone/30 text-stone text-xs px-3 py-1 font-medium whitespace-nowrap">
-                  {service.price}
-                </span>
+        <section className="mb-14 grid grid-cols-1 lg:grid-cols-2 gap-5">
+          {splitCards.map((card) => (
+            <div key={card.label} className="border border-border bg-surface overflow-hidden">
+              <div className="relative aspect-[16/10] border-b border-border bg-stone-pale/30">
+                <Image
+                  src={card.image}
+                  alt={card.title}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 520px"
+                />
               </div>
-              <div className="px-6 py-6 space-y-6">
-                <p className="text-sm text-ink leading-relaxed">{service.description}</p>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  <div>
-                    <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-3">适合谁</p>
-                    <ul className="space-y-2">
-                      {service.forWho.map((item) => (
-                        <li key={item} className="flex items-start gap-2">
-                          <span className="text-stone text-xs shrink-0 mt-1">+</span>
-                          <span className="text-sm text-ink leading-relaxed">{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  <div>
-                    <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-3">不适合谁</p>
-                    <ul className="space-y-2">
-                      {service.notForWho.map((item) => (
-                        <li key={item} className="flex items-start gap-2">
-                          <span className="text-ink-muted text-xs shrink-0 mt-1">—</span>
-                          <span className="text-sm text-ink-muted leading-relaxed">{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-                <div>
-                  <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-3">交付结果</p>
-                  <ul className="space-y-2">
-                    {service.iDeliver.map((item) => (
-                      <li key={item} className="flex items-start gap-2">
-                        <span className="text-stone text-xs shrink-0 mt-1">·</span>
-                        <span className="text-sm text-ink leading-relaxed">{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <div className="border-l-2 border-stone-light pl-4">
-                  <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-1.5">服务边界</p>
-                  <p className="text-sm text-ink-muted leading-relaxed">{service.boundary}</p>
-                </div>
-              </div>
-              <div className="px-6 py-4 border-t border-border bg-stone-pale/20">
-                <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-1.5">咨询方式</p>
-                <p className="text-sm text-ink-muted leading-relaxed">{service.contactNote}</p>
+              <div className="p-6 sm:p-7">
+                <p className="text-[0.65rem] font-semibold uppercase tracking-widest text-stone mb-3">{card.label}</p>
+                <h2 className="text-lg font-semibold text-ink mb-3">{card.title}</h2>
+                <p className="text-sm text-ink-muted leading-relaxed mb-5">{card.description}</p>
+                <CTA href={card.href} label="进入对应入口" variant="primary" />
               </div>
             </div>
           ))}
+        </section>
+
+        <section className="mb-14 border border-border bg-surface-warm p-6 sm:p-8">
+          <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-3">可验证的证据</p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {[
+              ['服务范围', '报价审核、预算结构诊断、真实居住判断、AI 工作流整理。'],
+              ['工作方式', '先看材料，再给书面建议，不做空口安慰。'],
+              ['交付样例', '风险说明、修改建议、流程骨架、提示词框架。'],
+              ['哪些不做', '不代砍价、不代施工、不承诺一键自动化。'],
+            ].map(([title, desc]) => (
+              <div key={title} className="border border-border bg-surface p-5">
+                <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-2">{title}</p>
+                <p className="text-sm text-ink leading-relaxed">{desc}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* ───── A. 装修相关咨询 ───── */}
+        <div className="mb-6">
+          <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-2">A</p>
+          <h2 className="text-lg font-semibold text-ink">装修判断服务</h2>
+          <p className="text-sm text-ink-muted mt-1">先处理普通装修业主最常见的三类问题：报价、预算结构和真实居住选择。</p>
         </div>
 
-        {/* 即将推出的轻交付咨询 */}
+        <div className="space-y-10">
+          {renovationServices.map((service, index) => (
+            <ServiceCard
+              key={service.id}
+              service={service}
+              index={index}
+              relatedArticles={serviceRelatedArticles[service.slug]}
+            />
+          ))}
+        </div>
+
+        <div className="mt-16 mb-6">
+          <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-2">B</p>
+          <h2 className="text-lg font-semibold text-ink">AI 工作流与内容系统</h2>
+          <p className="text-sm text-ink-muted mt-1">先处理传统行业人最常见的问题：怎么把一个真实场景接进 AI，而不是一直停在演示层。</p>
+        </div>
+
+        <div className="space-y-10">
+          {industryServices.map((service, index) => (
+            <ServiceCard
+              key={service.id}
+              service={service}
+              index={index}
+              relatedArticles={serviceRelatedArticles[service.slug]}
+            />
+          ))}
+        </div>
+
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6">
           {industryExtras.map((item) => (
             <div key={item.title} className="border border-border bg-surface p-6">
               <h3 className="text-sm font-semibold text-ink mb-3">{item.title}</h3>
               <p className="text-xs text-ink-muted leading-relaxed mb-4">{item.desc}</p>
-              <span className="text-[0.65rem] text-stone border border-stone/30 px-2 py-0.5 uppercase tracking-wider">即将开放</span>
-            </div>
-          ))}
-        </div>
-
-        {/* ───── B. 装修相关咨询 ───── */}
-        <div className="mt-16 mb-6">
-          <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-2">B</p>
-          <h2 className="text-lg font-semibold text-ink">装修相关咨询</h2>
-          <p className="text-sm text-ink-muted mt-1">帮你看清报价、控住预算、做出更值得的决定。</p>
-        </div>
-
-        <div className="space-y-10">
-          {renovationServices.map((service, index) => (
-            <div key={service.id} id={service.slug} className="border border-border overflow-hidden scroll-mt-20">
-
-              {/* 卡片头部 */}
-              <div className="px-6 py-5 border-b border-border bg-surface-warm flex items-start justify-between gap-4">
-                <div className="flex items-start gap-3 min-w-0">
-                  <span className="text-stone/30 text-xs font-mono shrink-0 mt-[3px]">
-                    {String(index + 1).padStart(2, '0')}
-                  </span>
-                  <div className="min-w-0">
-                    <h2 className="text-lg font-semibold text-ink leading-tight">{service.title}</h2>
-                    <p className="text-sm text-stone mt-1">{service.tagline}</p>
-                  </div>
-                </div>
-                <span className="shrink-0 self-start border border-stone/30 text-stone text-xs px-3 py-1 font-medium whitespace-nowrap">
-                  {service.price}
-                </span>
-              </div>
-
-              {/* 卡片正文 */}
-              <div className="px-6 py-6 space-y-6">
-
-                <p className="text-sm text-ink leading-relaxed">{service.description}</p>
-
-                {/* 适合谁 / 不适合谁 */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  <div>
-                    <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-3">
-                      适合谁
-                    </p>
-                    <ul className="space-y-2">
-                      {service.forWho.map((item) => (
-                        <li key={item} className="flex items-start gap-2">
-                          <span className="text-stone text-xs shrink-0 mt-1">+</span>
-                          <span className="text-sm text-ink leading-relaxed">{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  <div>
-                    <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-3">
-                      不适合谁
-                    </p>
-                    <ul className="space-y-2">
-                      {service.notForWho.map((item) => (
-                        <li key={item} className="flex items-start gap-2">
-                          <span className="text-ink-muted text-xs shrink-0 mt-1">—</span>
-                          <span className="text-sm text-ink-muted leading-relaxed">{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-
-                {/* 我会帮你看 */}
-                {service.checks && service.checks.length > 0 && (
-                  <div>
-                    <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-3">
-                      我会帮你看
-                    </p>
-                    <ul className="space-y-2">
-                      {service.checks.map((item) => (
-                        <li key={item} className="flex items-start gap-2">
-                          <span className="text-stone text-xs shrink-0 mt-1">·</span>
-                          <span className="text-sm text-ink leading-relaxed">{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-
-                {/* 交付结果 */}
-                <div>
-                  <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-3">
-                    交付结果
-                  </p>
-                  <ul className="space-y-2">
-                    {service.iDeliver.map((item) => (
-                      <li key={item} className="flex items-start gap-2">
-                        <span className="text-stone text-xs shrink-0 mt-1">·</span>
-                        <span className="text-sm text-ink leading-relaxed">{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                {/* 服务边界 */}
-                <div className="border-l-2 border-stone-light pl-4">
-                  <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-1.5">
-                    服务边界
-                  </p>
-                  <p className="text-sm text-ink-muted leading-relaxed">{service.boundary}</p>
-                </div>
-
-              </div>
-
-              {/* 卡片底部：咨询方式 */}
-              <div className="px-6 py-4 border-t border-border bg-stone-pale/20">
-                <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-1.5">
-                  咨询方式
-                </p>
-                <p className="text-sm text-ink-muted leading-relaxed">{service.contactNote}</p>
-              </div>
-
-              {/* 相关文章 */}
-              {serviceRelatedArticles[service.slug] && (
-                <div className="px-6 py-4 border-t border-border">
-                  <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-1">
-                    先了解判断逻辑
-                  </p>
-                  <p className="text-xs text-ink-muted mb-3">
-                    如果你想先了解我的判断方式，再决定是否需要这项服务，可以先读这几篇：
-                  </p>
-                  <div className="space-y-1.5">
-                    {serviceRelatedArticles[service.slug].map((item) => (
-                      <Link
-                        key={item.href}
-                        href={item.href}
-                        className="flex items-center gap-2 text-sm text-ink-muted hover:text-stone transition-colors"
-                      >
-                        <span className="text-stone/60">→</span>
-                        {item.label}
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-              )}
-
+              <span className="text-[0.65rem] text-stone border border-stone/30 px-2 py-0.5 uppercase tracking-wider">下一阶段</span>
             </div>
           ))}
         </div>
@@ -421,40 +267,32 @@ export default function ServicesPage() {
           </p>
           <p className="text-sm text-ink-muted leading-relaxed mb-6">
             如果你的需求不在范围内，或读完之后觉得匹配度不高，不用勉强——文章和资料库对你可能更有用。
-            如果读完觉得「好像说的就是我的问题」，可以发一条简短的背景说明，我会评估是否能帮到你。
+            如果读完觉得“好像说的就是我的问题”，可以发一条简短的背景说明，我会评估是否能帮到你。
           </p>
           <CTA href="/contact" label="查看联系方式" variant="secondary" />
         </div>
 
         <div className="mt-6 border border-border bg-surface-warm p-6 sm:p-8 flex flex-col sm:flex-row items-start sm:items-center gap-5 justify-between">
           <div>
-            <p className="text-sm font-medium text-ink">还没想好？先从判断工具开始。</p>
+            <p className="text-sm font-medium text-ink">还没想好？先从免费工具和资料开始。</p>
             <p className="text-xs text-ink-muted mt-1 max-w-md">
-              报价避坑指南、预算风险自测、报价审核清单都可以免费使用。先建立判断，再决定是否需要服务。
+              装修预算模板、报价审核清单、AI 提示词体验场都可以免费使用。先建立判断，再决定是否需要服务。
             </p>
           </div>
-          <CTA href="/tools" label="按问题找工具" variant="primary" />
+          <CTA href="/resources" label="去工具与资料库" variant="secondary" />
         </div>
 
         {/* 关联内容入口 */}
         <div className="mt-10">
           <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-4">
-            更多参考
+            常见问题
           </p>
-          <div className="space-y-2">
-            {[
-              { label: '所有文章', href: '/blog' },
-              { label: '工具与资料库', href: '/resources' },
-              { label: 'AI 提示词体验场', href: '/tools/prompts' },
-            ].map((item) => (
-              <Link
-                key={item.label}
-                href={item.href}
-                className="flex items-center gap-2 text-sm text-ink-muted hover:text-stone transition-colors"
-              >
-                <span className="text-stone">→</span>
-                {item.label}
-              </Link>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+            {serviceFaqs.map((item) => (
+              <div key={item.question} className="border border-border bg-surface p-5">
+                <h2 className="text-sm font-semibold text-ink mb-2">{item.question}</h2>
+                <p className="text-xs text-ink-muted leading-relaxed">{item.answer}</p>
+              </div>
             ))}
           </div>
         </div>

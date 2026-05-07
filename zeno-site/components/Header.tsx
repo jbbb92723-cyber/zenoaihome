@@ -18,7 +18,7 @@ export default function Header() {
   const isEn = pathname.startsWith('/en')
 
   const navLinks = mainNav.map((item) => ({ key: item.key, ...(isEn ? item.en : item.zh) }))
-  const logoText = isEn ? 'Zeno' : '赞诺 Zeno'
+  const logoText = isEn ? 'ZenoAIHome' : 'ZenoAIHome'
   const logoHref = isEn ? '/en' : '/'
   const loginLabel = isEn ? 'Log in' : '登录'
   const loginHref = isEn ? '/en/login' : '/login'

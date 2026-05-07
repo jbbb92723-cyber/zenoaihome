@@ -11,20 +11,21 @@
  */
 
 import type { Metadata } from 'next'
-import Link from 'next/link'
 import Image from 'next/image'
-import { resources } from '@/data/resources'
-import type { ResourceAccessLevel } from '@/data/resources'
-import { auth } from '@/auth'
+import Link from 'next/link'
+import { resources, type Resource, type ResourceAccessLevel } from '@/data/resources'
 import PageHero from '@/components/PageHero'
 import Container from '@/components/Container'
 import SectionHeader from '@/components/SectionHeader'
 import CTA from '@/components/CTA'
 
 export const metadata: Metadata = {
-  title: '按问题拿清单和资料，不用先翻栏目',
+  title: '按问题拿清单和资料，不用先翻栏目 | ZenoAIHome',
   description:
     '先按问题拿清单和资料，再按阶段展开完整工具库。覆盖报价、预算、验收、真实居住和 AI 工作流。',
+  alternates: {
+    canonical: 'https://zenoaihome.com/resources',
+  },
 }
 
 const tagColors: Record<string, string> = {
@@ -35,14 +36,14 @@ const tagColors: Record<string, string> = {
 
 const serviceEntries = [
   {
-    title: '装修报价诊断',
-    desc: '拿到报价单不知道哪里有坑？签合同前我帮你做一次专业审查。',
-    href: '/services#baojia-shenhe',
+    title: '装修报价单审核',
+    desc: '拿到报价单不知道哪里有坑？签合同前我帮你先把风险和追问点看出来。',
+    href: '/services/renovation#baojia-shenhe',
   },
   {
     title: 'AI 工作流咨询',
     desc: '针对你的具体行业场景，设计可落地的 AI 切入路径，而不是通用建议。',
-    href: '/services#ai-neirong-xitong-zixun',
+    href: '/services/ai-workflow#ai-neirong-xitong-zixun',
   },
   {
     title: '个人网站 / 内容系统咨询',
@@ -57,14 +58,14 @@ const problemEntryCards = [
     description: '先拿清单把模糊项和漏项筛一轮，再决定要不要继续往下。',
     primary: { label: '拿报价审核清单', href: '/resources#baojia-shenhe-qingdan' },
     secondary: { label: '先做预算风险自测', href: '/tools/budget-risk' },
-    fallback: { label: '直接看报价审核服务 →', href: '/services#baojia-shenhe' },
+    fallback: { label: '直接看报价审核服务 →', href: '/services/renovation#baojia-shenhe' },
   },
   {
     title: '我怕装修超预算',
     description: '先把钱按结构拆清，再谈哪些能省、哪些不能动。',
     primary: { label: '拿装修预算模板', href: '/resources#zhuangxiu-yusuan-moban' },
     secondary: { label: '先做预算风险自测', href: '/tools/budget-risk' },
-    fallback: { label: '直接看预算咨询 →', href: '/services#yusuan-zixun' },
+    fallback: { label: '直接看预算诊断 →', href: '/services/renovation#yusuan-zixun' },
   },
   {
     title: '我已经开工，不知道怎么验收',
@@ -78,20 +79,18 @@ const problemEntryCards = [
     description: '先把真实生活需求写清楚，再谈风格表达和预算分配。',
     primary: { label: '拿实住派自查表', href: '/resources#shizhu-pai-zijian-biao' },
     secondary: { label: '看真实居住专题', href: '/topics#shi-zhu-pai-zhuangxiu' },
-    fallback: { label: '看真实居住派装修服务 →', href: '/services#shi-zhu-pai-zhuangxiu' },
+    fallback: { label: '看真实居住派装修服务 →', href: '/services/renovation#shi-zhu-pai-zhuangxiu' },
   },
   {
     title: '我是传统行业人，想用 AI',
     description: '先用真实任务试一轮，把经验和 AI 接上，再谈系统化。',
     primary: { label: '拿 AI 工作流提示词包', href: '/resources#ai-neirong-gongzuoliu-tishici-bao' },
     secondary: { label: '去提示词体验场', href: '/tools/prompts' },
-    fallback: { label: '看 AI 内容系统咨询 →', href: '/services#ai-neirong-xitong-zixun' },
+    fallback: { label: '看 AI 工作流咨询 →', href: '/services/ai-workflow#ai-neirong-xitong-zixun' },
   },
 ]
 
-export default async function ResourcesPage() {
-  await auth()
-
+export default function ResourcesPage() {
   return (
     <>
       <PageHero
@@ -153,7 +152,6 @@ export default async function ResourcesPage() {
           />
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {/* 全新上线：预算风险自测（免费） */}
             <Link
               href="/tools/budget-risk"
               className="group sm:col-span-2 border border-stone/30 bg-stone/5 p-6 sm:p-7 hover:bg-stone/10 transition-colors"
@@ -173,7 +171,6 @@ export default async function ResourcesPage() {
               </div>
             </Link>
 
-            {/* 报价避坑指南（付费） */}
             <Link
               href="/pricing/baojia-guide"
               className="group sm:col-span-2 border border-border bg-surface p-6 sm:p-7 hover:bg-surface-warm transition-colors"
@@ -402,7 +399,6 @@ export default async function ResourcesPage() {
             <CTA href="/blog" label="看文章" variant="ghost" />
           </div>
         </div>
-
       </Container>
     </>
   )

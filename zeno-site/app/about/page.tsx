@@ -7,7 +7,7 @@ import CTA from '@/components/CTA'
 export const metadata: Metadata = {
   title: '关于我',
   description:
-    '我是 Zeno。装修行业 16 年，从工地现场走出来。现在用 AI、开发、内容和产品化能力，把真实经验逐步沉淀成可复用、可交易、可持续的个人资产。',
+    '我是 Zeno。装修行业 16 年，从工地现场走出来。现在把报价、预算、施工、验收和真实居住里的判断，整理成文章、清单、工具和服务。',
 }
 
 const believes = [
@@ -36,7 +36,7 @@ export default function AboutPage() {
       <PageHero
         label="关于我"
         title="我是 Zeno"
-        subtitle="从装修现场出发，用 AI、产品和内容，逐步搭建更自由的个人事业系统。"
+        subtitle="从装修现场出发，把普通业主真正会遇到的报价、预算、合同、施工和验收问题讲清楚。"
       />
 
       <Container size="content" className="py-14 sm:py-16">
@@ -49,11 +49,11 @@ export default function AboutPage() {
           </p>
           <p className="text-base text-ink leading-[1.85] mt-4">
             我现在做的事，其实只有一个意图：帮装修这个行业变得更透明一点，
-            帮普通人在装修这件事上少踩点坑、少花点冤柉钱、住得更舒展。
+            帮普通人在装修这件事上少踩点坑、少花点冤枉钱、住得更舒展。
           </p>
           <p className="text-base text-ink leading-[1.85] mt-4">
             这个网站不是装修公司官网，也不是单纯的博客。
-            它更像是我把过去 16 年攒下的判断一件一件做成你能直接用的东西的地方——
+            它更像是我把过去 16 年攒下的现场判断，一件一件做成你能直接用的东西的地方——
             一篇文章、一张表、一个工具、一次咨询。
           </p>
           <p className="text-base text-ink leading-[1.85] mt-4">
@@ -131,7 +131,7 @@ export default function AboutPage() {
             如果你想把 AI 真正接进自己的工作流，而不是停留在工具尝鲜，也可以先看看我提供的咨询方向。
           </p>
           {/* 改了什么：CTA 文案从“看看我能帮什么”改成更具体的行动引导 */}
-          <CTA href="/services" label="直接看我现在能帮的三件事" variant="secondary" />
+          <CTA href="/services" label="直接看我现在能帮你判断什么" variant="secondary" />
         </section>
 
         {/* ── 联系入口 ── */}

@@ -15,32 +15,37 @@ export interface NavItem {
 export const mainNav: NavItem[] = [
   {
     key: 'start',
-    zh: { label: '从这里开始', href: '/start' },
+    zh: { label: '装修判断入口', href: '/start' },
     en: { label: 'Start Here', href: '/en' },
   },
   {
+    key: 'quote',
+    zh: { label: '报价审核工具', href: '/resources#baojia-shenhe-qingdan' },
+    en: { label: 'Quote Check', href: '/en/resources' },
+  },
+  {
     key: 'tools',
-    zh: { label: '按问题找工具', href: '/tools' },
+    zh: { label: '找问题工具', href: '/tools' },
     en: { label: 'Tools', href: '/en/tools' },
   },
   {
-    key: 'living',
-    zh: { label: '真实居住', href: '/topics#shi-zhu-pai-zhuangxiu' },
+    key: 'resources',
+    zh: { label: '工具与资料', href: '/resources' },
+    en: { label: 'Tools & Resources', href: '/en/resources' },
+  },
+  {
+    key: 'cases',
+    zh: { label: '真实工地', href: '/cases' },
     en: { label: 'Livable Design', href: '/en/topics#living-renovation' },
   },
   {
     key: 'ai',
-    zh: { label: 'AI 工作流', href: '/topics#chuantong-hangyeren-zenme-yong-ai' },
-    en: { label: 'AI Workflows', href: '/en/topics#ai-upgrade' },
-  },
-  {
-    key: 'cases',
-    zh: { label: '案例复盘', href: '/cases' },
-    en: { label: 'Field Notes', href: '/en/blog' },
+    zh: { label: 'AI 工作流', href: '/services/ai-workflow' },
+    en: { label: 'AI Workflows', href: '/en/services' },
   },
   {
     key: 'services',
-    zh: { label: '找我帮你看', href: '/services' },
+    zh: { label: '找我咨询', href: '/services' },
     en: { label: 'Work with Zeno', href: '/en/services' },
   },
   {
@@ -67,8 +72,13 @@ const CN_TO_EN: Record<string, string> = {
   '/cases':      '/en/blog',
   '/tools':      '/en/tools',
   '/topics':     '/en/topics',
+  '/tools/prompts': '/en/tools/prompts',
+  '/tools/budget-risk': '/en/tools',
+  '/tools/budget-risk/result': '/en/tools',
   '/resources':  '/en/resources',
   '/services':   '/en/services',
+  '/services/renovation': '/en/services',
+  '/services/ai-workflow': '/en/services',
   '/contact':    '/en/about',
   '/notes':      '/en/notes',
   '/login':      '/en/login',
@@ -80,6 +90,7 @@ const EN_TO_CN: Record<string, string> = {
   '/en/about':      '/about',
   '/en/blog':       '/blog',
   '/en/tools':      '/tools',
+  '/en/tools/prompts': '/tools/prompts',
   '/en/topics':     '/topics',
   '/en/resources':  '/resources',
   '/en/services':   '/services',
@@ -99,12 +110,14 @@ export function getLangHref(pathname: string, isEn: boolean): string {
     if (pathname.startsWith('/en/blog/')) return '/blog'
     if (pathname.startsWith('/en/articles/')) return '/blog'
     const cnPath = pathname.replace(/^\/en/, '') || '/'
-    const knownCn = ['/', '/start', '/about', '/blog', '/cases', '/tools', '/topics', '/resources', '/services', '/contact', '/login', '/register']
+    const knownCn = ['/', '/start', '/about', '/blog', '/cases', '/tools', '/tools/prompts', '/tools/budget-risk', '/topics', '/resources', '/services', '/contact', '/login', '/register']
     if (knownCn.includes(cnPath)) return cnPath
     return '/'
   } else {
     if (CN_TO_EN[pathname]) return CN_TO_EN[pathname]
     if (pathname.startsWith('/blog/')) return '/en/blog'
+    if (pathname.startsWith('/services/')) return '/en/services'
+    if (pathname.startsWith('/tools/')) return pathname === '/tools/prompts' ? '/en/tools/prompts' : '/en/tools'
     return '/en'
   }
 }

@@ -19,7 +19,6 @@ import bcrypt from 'bcryptjs'
 
 const authConfig: NextAuthConfig = {
   adapter: PrismaAdapter(prisma),
-  trustHost: true,
 
   providers: [
     // ─── 邮箱 + 密码 ────────────────────────────────────────
@@ -68,6 +67,8 @@ const authConfig: NextAuthConfig = {
     strategy: 'jwt',
     maxAge: 30 * 24 * 60 * 60,
   },
+
+  trustHost: true,
 
   pages: {
     signIn: '/login',
