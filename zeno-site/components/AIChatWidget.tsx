@@ -88,16 +88,17 @@ export default function AIChatWidget() {
 
   return (
     <>
-      {/* Floating button */}
+      {/* Floating button — 带文字标签 */}
       {!open && (
         <button
           onClick={() => setOpen(true)}
-          className="fixed bottom-6 right-6 z-40 w-12 h-12 bg-stone text-paper flex items-center justify-center shadow-lg hover:bg-stone/90 transition-colors"
-          aria-label={isEn ? 'Ask Zeno AI' : '问问 Zeno AI'}
+          className="fixed bottom-6 right-6 z-40 flex items-center gap-2 px-4 h-11 bg-stone text-paper shadow-lg hover:bg-stone/90 transition-colors text-sm font-medium"
+          aria-label={isEn ? 'Ask Zeno AI' : '问 Zeno'}
         >
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
           </svg>
+          <span>{isEn ? 'Ask Zeno' : '问 Zeno'}</span>
         </button>
       )}
 
@@ -109,9 +110,9 @@ export default function AIChatWidget() {
             <div className="flex items-center gap-2">
               <div className="w-6 h-6 bg-stone-pale flex items-center justify-center text-stone text-xs font-semibold">Z</div>
               <div>
-                <p className="text-xs font-semibold text-ink">Zeno AI 助手</p>
+                <p className="text-xs font-semibold text-ink">问 Zeno</p>
                 <p className="text-[0.6rem] text-ink-faint">
-                  {isEn ? 'Built to help, not to upsell' : '帮你看清，不是推你买东西'}
+                  {isEn ? 'Ask about renovation judgment' : '关于装修判断的问题'}
                 </p>
               </div>
             </div>
