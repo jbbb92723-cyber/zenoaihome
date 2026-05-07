@@ -47,6 +47,7 @@ export default function QuoteCheckClient() {
   const [fileName, setFileName] = useState('')
   const [showResult, setShowResult] = useState(false)
   const [copied, setCopied] = useState(false)
+  const [copiedQuestions, setCopiedQuestions] = useState(false)
 
   useEffect(() => {
     try {
@@ -98,6 +99,15 @@ export default function QuoteCheckClient() {
     setTimeout(() => setCopied(false), 1600)
   }
 
+  async function copyQuestionList() {
+    const text = riskItems.length === 0
+      ? '这份报价的关键边界已经相对清楚。下一步重点核对合同条款、付款节点和验收标准。'
+      : riskItems.map((item, index) => `${index + 1}. ${item.question}`).join('\n')
+    await navigator.clipboard.writeText(text)
+    setCopiedQuestions(true)
+    setTimeout(() => setCopiedQuestions(false), 1600)
+  }
+
   return (
     <main className="bg-canvas min-h-screen">
       <section className="border-b border-border bg-surface-warm">
@@ -107,7 +117,7 @@ export default function QuoteCheckClient() {
             报价单别急着签，先做一轮风险初筛。
           </h1>
           <p className="mt-5 max-w-2xl text-base leading-relaxed text-ink-muted sm:text-lg">
-            这个工具不替你凭空判断价格贵不贵，而是先帮你看清：哪些地方没写清、哪些边界容易变成增项、下一步该问什么。
+            先不判断贵不贵，先判断能不能签：有没有漏项、有没有模糊工艺、有没有增项口子、钱有没有跑在工程前面。
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <a href="#quote-form" className="inline-flex h-11 items-center bg-stone px-5 text-sm font-semibold text-white hover:bg-stone/90">
@@ -125,7 +135,7 @@ export default function QuoteCheckClient() {
           <div className="border border-border bg-surface p-5">
             <h2 className="text-lg font-semibold text-ink">1. 上传或记录你的报价材料</h2>
             <p className="mt-2 text-sm leading-relaxed text-ink-muted">
-              当前版本用于网页端初筛和风险记录。文件会停留在你的浏览器里，不会上传到服务器。
+              文件只作为你本地对照材料，不上传服务器。真正要判断，还是看报价内容有没有写清楚。
             </p>
             <label className="mt-5 flex cursor-pointer flex-col items-center justify-center border border-dashed border-border bg-canvas px-5 py-8 text-center hover:border-stone">
               <input
@@ -227,6 +237,9 @@ export default function QuoteCheckClient() {
                 <div className="mt-6 flex flex-wrap gap-3">
                   <button type="button" onClick={copyResultLink} className="inline-flex h-10 items-center bg-stone px-4 text-sm font-semibold text-white hover:bg-stone/90">
                     {copied ? '已复制' : '保存结果链接'}
+                  </button>
+                  <button type="button" onClick={copyQuestionList} className="inline-flex h-10 items-center border border-stone px-4 text-sm font-semibold text-stone hover:bg-stone-pale">
+                    {copiedQuestions ? '已复制追问' : '复制追问清单'}
                   </button>
                   <Link href="/services#service-form" className="inline-flex h-10 items-center border border-border px-4 text-sm font-semibold text-ink hover:border-stone">
                     提交人工判断

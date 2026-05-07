@@ -30,6 +30,7 @@ export default function BudgetRiskQuiz() {
 
   const answeredCount = Object.keys(answers).length
   const isComplete = answeredCount === budgetRiskQuestions.length
+  const progress = Math.round((answeredCount / budgetRiskQuestions.length) * 100)
 
   const handleAnswerChange = (questionId: string, value: number) => {
     setAnswers((current) => ({
@@ -60,8 +61,21 @@ export default function BudgetRiskQuiz() {
 
   return (
     <div className="space-y-8">
+      <div className="sticky top-16 z-20 border border-border bg-canvas/95 p-4 shadow-[0_14px_36px_rgba(42,39,35,0.06)] backdrop-blur">
+        <div className="flex items-center justify-between gap-4">
+          <div>
+            <p className="text-sm font-semibold text-ink">预算风险自测进度</p>
+            <p className="mt-1 text-xs text-ink-muted">已完成 {answeredCount} / {budgetRiskQuestions.length}，系统会自动保存。</p>
+          </div>
+          <span className="text-sm font-semibold text-stone">{progress}%</span>
+        </div>
+        <div className="mt-3 h-1.5 bg-stone-pale">
+          <div className="h-full bg-stone transition-all duration-200" style={{ width: `${progress}%` }} />
+        </div>
+      </div>
+
       {budgetRiskQuestions.map((question, index) => (
-        <section key={question.id} className="border border-border bg-surface p-6 sm:p-7">
+        <section key={question.id} className="border border-border bg-surface p-6 transition-all duration-150 hover:border-stone/50 sm:p-7">
           <div className="mb-5">
             <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-2">
               问题 {index + 1}
@@ -78,10 +92,10 @@ export default function BudgetRiskQuiz() {
                   key={option.value}
                   type="button"
                   onClick={() => handleAnswerChange(question.id, option.value)}
-                  className={`w-full text-left border px-4 py-3 transition-colors ${
+                  className={`w-full text-left border px-4 py-3 transition-all duration-150 ${
                     isActive
-                      ? 'border-stone bg-stone/5'
-                      : 'border-border bg-surface hover:border-stone/40 hover:bg-surface-warm'
+                      ? 'border-stone bg-stone/5 shadow-[0_10px_24px_rgba(42,39,35,0.06)]'
+                      : 'border-border bg-surface hover:-translate-y-px hover:border-stone/40 hover:bg-surface-warm'
                   }`}
                 >
                   <span className="block text-sm font-medium text-ink">{option.label}</span>

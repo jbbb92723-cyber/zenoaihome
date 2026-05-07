@@ -13,11 +13,11 @@ interface SearchResult {
 }
 
 const recommendedZh: SearchResult[] = [
+  { title: 'AI 升级装修行业', href: '/ai', type: 'page', excerpt: '从装修现场经验出发，探索 AI 工具、方法论和数字产品。' },
   { title: '报价单怎么看', href: '/tools/quote-check', type: 'tool', excerpt: '先上传报价单，做一轮风险类型初筛。' },
   { title: '预算为什么总超', href: '/blog/zhuangxiu-yusuan-weishenme-zongchao', type: 'article', excerpt: '先看超支背后的顺序问题。' },
   { title: '节点验收', href: '/resources#construction-checkpoints', type: 'checklist', excerpt: '每个节点该看什么、该拍什么、该确认什么。' },
   { title: '家不是样板间', href: '/blog/02-jia-bu-shi-yangban-jian', type: 'article', excerpt: '从真实居住倒推装修选择。' },
-  { title: 'AI 工作流', href: '/services/ai-workflow', type: 'service', excerpt: '把传统行业经验接进 AI。' },
 ]
 
 const recommendedEn: SearchResult[] = [
@@ -216,6 +216,9 @@ export default function SearchDialog() {
               </button>
               <button type="button" onClick={() => handleSelect({ title: '预算风险自测', href: '/tools/budget-risk', type: 'tool' })} className="block w-full text-left text-ink-muted hover:text-ink">
                 {isEn ? 'Budget risk quiz' : '做预算风险自测'}
+              </button>
+              <button type="button" onClick={() => handleSelect({ title: 'AI 升级', href: '/ai', type: 'page' })} className="block w-full text-left text-ink-muted hover:text-ink">
+                {isEn ? 'AI upgrade route' : '看 AI 升级路线'}
               </button>
               <button type="button" onClick={() => handleSelect({ title: '服务提交', href: '/services#service-form', type: 'service' })} className="block w-full text-left text-ink-muted hover:text-ink">
                 {isEn ? 'Submit service request' : '提交服务需求'}

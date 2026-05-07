@@ -1,12 +1,15 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { auth } from '@/auth'
 import Container from '@/components/Container'
 import PageHero from '@/components/PageHero'
+import { formatYuan, getProductById } from '@/data/products'
+import PurchaseButton from '../PurchaseButton'
 
 export const metadata: Metadata = {
-  title: '装修报价避坑完整指南｜即将开放',
+  title: '装修报价避坑完整指南',
   description:
-    '拿到报价单后，逐行对照检查。六张核心清单，把签合同前 30 分钟该看的事写清楚。本产品即将开放，欢迎先了解内容。',
+    '拿到报价单后，逐行对照检查。六张核心清单，把签合同前 30 分钟该看的事写清楚。',
   alternates: {
     canonical: 'https://zenoaihome.com/pricing/baojia-guide',
   },
@@ -62,11 +65,14 @@ const notForWho = [
   '期望"读完就能省一半钱"的人——这份指南帮你避坑，不替你砍价',
 ]
 
-export default function BaojiaGuidePage() {
+export default async function BaojiaGuidePage() {
+  const session = await auth()
+  const product = getProductById('quote-guide-pack')
+
   return (
     <>
       <PageHero
-        label="低价产品｜即将开放"
+        label="低价产品"
         title="装修报价避坑完整指南"
         subtitle="拿到报价单后，逐行对照检查。六张核心清单，把签合同前 30 分钟该看的事写清楚。"
         size="content"
@@ -77,10 +83,10 @@ export default function BaojiaGuidePage() {
         {/* Hero 状态条 */}
         <div className="flex flex-wrap items-center gap-3 border border-stone/30 bg-stone/5 px-5 py-4">
           <span className="text-[0.65rem] text-stone border border-stone/40 px-2 py-0.5 uppercase tracking-wider">
-            即将开放
+            已开放
           </span>
           <p className="text-sm text-ink-muted">
-            定价 ¥39 · 数字产品 · 一次购买，小版本更新免费
+            定价 {product ? formatYuan(product.price) : '¥39'} · 数字产品 · 一次购买，小版本更新免费
           </p>
         </div>
 
@@ -184,26 +190,32 @@ export default function BaojiaGuidePage() {
           </div>
         </section>
 
-        {/* 即将开放提示 + 下一步引导 */}
+        {/* 购买 + 下一步引导 */}
         <section className="border border-stone/30 bg-stone/5 p-7 sm:p-9">
-          <p className="text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-stone mb-3">即将开放</p>
-          <h2 className="text-lg font-semibold text-ink mb-3">定价 ¥39，预计 5 月内开放购买</h2>
+          <p className="text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-stone mb-3">购买入口</p>
+          <h2 className="text-lg font-semibold text-ink mb-3">定价 {product ? formatYuan(product.price) : '¥39'}，适合签约前自己先过一遍</h2>
           <p className="text-sm text-ink-muted leading-relaxed mb-6 max-w-prose">
-            如果你手里已经有报价单、不想等，可以先用免费的报价审核清单做一次自查；
-            或者直接看报价诊断服务（购买指南可抵扣 ¥100），让我帮你看一遍。
+            如果你手里已经有报价单，先用指南和清单自己过一遍；如果仍然看不明白，再升级到报价审核服务。
           </p>
-          <div className="flex flex-wrap gap-3">
+          <div className="grid gap-3 sm:grid-cols-[minmax(0,18rem)_auto_auto] sm:items-center">
+            {product && (
+              <PurchaseButton
+                productId={product.id}
+                label={`购买 ${product.name}`}
+                isLoggedIn={!!session?.user}
+              />
+            )}
             <Link
-              href="/resources"
-              className="inline-flex items-center text-sm font-medium bg-stone text-white px-4 py-2 hover:bg-stone/85 transition-colors"
-            >
-              先领取报价审核清单 →
-            </Link>
-            <Link
-              href="/services"
+              href="/tools/quote-check"
               className="inline-flex items-center text-sm font-medium text-stone border border-stone/40 px-4 py-2 hover:bg-stone-pale transition-colors"
             >
-              查看报价诊断服务 →
+              先用报价初筛 →
+            </Link>
+            <Link
+              href="/services/renovation#baojia-shenhe"
+              className="inline-flex items-center text-sm font-medium text-stone border border-stone/40 px-4 py-2 hover:bg-stone-pale transition-colors"
+            >
+              查看人工审核 →
             </Link>
           </div>
         </section>
@@ -212,7 +224,7 @@ export default function BaojiaGuidePage() {
         <section className="border-t border-border pt-8 text-xs text-ink-muted leading-relaxed space-y-1.5">
           <p>· 定价 ¥39，数字产品，售出后不支持退款</p>
           <p>· 一次购买，后续小版本更新免费</p>
-          <p>· 购买后附赠报价诊断服务 ¥100 抵扣券</p>
+          <p>· 购买后可在用户中心看到领取记录</p>
           <p>· 购买后添加 Zeno 微信，获取后续更新 + 答疑通道</p>
           <p>· 个人使用授权，不可二次分发</p>
         </section>

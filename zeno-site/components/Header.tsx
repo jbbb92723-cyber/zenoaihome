@@ -29,7 +29,7 @@ type LocalizedPrimary = {
 }
 
 function triggerSearch() {
-  document.dispatchEvent(new KeyboardEvent('keydown', { key: 'k', metaKey: true }))
+  document.dispatchEvent(new KeyboardEvent('keydown', { key: 'k', ctrlKey: true, metaKey: true }))
 }
 
 function SearchIcon() {
@@ -107,7 +107,7 @@ export default function Header() {
 
   return (
     <header
-      className={`sticky top-0 z-40 border-b border-border bg-canvas/90 backdrop-blur-md transition-all duration-200 ${
+      className={`sticky top-0 z-[60] border-b border-border bg-canvas/95 backdrop-blur-md transition-all duration-200 ${
         scrolled ? 'shadow-[0_10px_30px_rgba(42,39,35,0.05)]' : 'shadow-none'
       }`}
     >
@@ -131,27 +131,28 @@ export default function Header() {
                 <Link
                   href={item.href}
                   onFocus={() => item.groups && setActiveMenu(item.key)}
-                  className={`inline-flex items-center gap-1 px-3 py-2 text-[0.8125rem] transition-colors ${
+                  className={`group/nav relative inline-flex items-center gap-1 px-3 py-2 text-[0.8125rem] transition-colors ${
                     isActive(item.href)
                       ? 'text-stone font-semibold'
                       : 'text-ink-muted hover:text-ink'
                   }`}
                 >
-                  {item.label}
+                  <span>{item.label}</span>
                   {item.groups && (
-                    <svg className="h-3 w-3 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
+                    <svg className={`h-3 w-3 opacity-50 transition-transform duration-200 ${activeMenu === item.key ? 'rotate-180' : 'group-hover/nav:translate-y-0.5'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                     </svg>
                   )}
+                  <span className={`absolute bottom-0 left-3 right-3 h-px origin-left bg-stone transition-transform duration-200 ${isActive(item.href) || activeMenu === item.key ? 'scale-x-100' : 'scale-x-0 group-hover/nav:scale-x-100'}`} />
                 </Link>
 
                 {item.groups && activeMenu === item.key && (
                   <div
-                    className="absolute left-1/2 top-full z-50 w-[min(920px,calc(100vw-3rem))] -translate-x-1/2 pt-3 animate-menu-in"
+                    className={`fixed left-1/2 z-[70] w-[min(1120px,calc(100vw-3rem))] -translate-x-1/2 pt-3 animate-menu-in ${scrolled ? 'top-14' : 'top-16'}`}
                     onMouseEnter={() => handleMenuEnter(item.key)}
                     onMouseLeave={handleMenuLeave}
                   >
-                    <div className="border border-border bg-canvas/98 p-5 shadow-[0_28px_80px_rgba(42,39,35,0.12)] backdrop-blur-md">
+                    <div className="border border-border bg-canvas p-6 shadow-[0_30px_90px_rgba(42,39,35,0.22)] ring-1 ring-white/60">
                       <div className="mb-4 flex items-center justify-between border-b border-border pb-4">
                         <div>
                           <p className="text-xs font-semibold uppercase tracking-widest text-stone">{item.label}</p>
@@ -164,17 +165,17 @@ export default function Header() {
                         </Link>
                       </div>
 
-                      <div className={`grid gap-4 ${item.groups.length >= 4 ? 'grid-cols-4' : 'grid-cols-3'}`}>
+                      <div className="grid grid-cols-[repeat(auto-fit,minmax(190px,1fr))] gap-5">
                         {item.groups.map((group) => (
                           <div key={group.key} className="min-w-0">
                             <p className="text-sm font-semibold text-ink">{group.label}</p>
-                            {group.desc && <p className="mt-1 min-h-9 text-xs leading-relaxed text-ink-muted">{group.desc}</p>}
+                            {group.desc && <p className="mt-1 text-xs leading-relaxed text-ink-muted">{group.desc}</p>}
                             <div className="mt-3 space-y-1">
                               {group.items.map((leaf) => (
                                 <Link
                                   key={leaf.key}
                                   href={leaf.href}
-                                  className="group block border border-transparent px-3 py-2 transition-all duration-150 hover:-translate-y-px hover:border-border hover:bg-surface-warm"
+                                  className="group block border border-transparent bg-transparent px-3 py-2 transition-all duration-150 hover:-translate-y-px hover:border-border hover:bg-surface-warm hover:shadow-[0_10px_24px_rgba(42,39,35,0.06)]"
                                 >
                                   <span className="block text-sm font-medium text-ink group-hover:text-stone">{leaf.label}</span>
                                   {leaf.desc && <span className="mt-0.5 block text-xs leading-relaxed text-ink-muted">{leaf.desc}</span>}

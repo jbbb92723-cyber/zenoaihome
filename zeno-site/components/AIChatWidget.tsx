@@ -11,6 +11,15 @@ interface Message {
 
 const quickEntriesZh = [
   {
+    label: '我想用 AI 升级装修业务',
+    prompt: '我想探索传统装修行业怎么用 AI 升级，请先帮我分流：哪些工作流最值得先改，哪些工具适合试，第一步怎么落地？',
+    links: [
+      { label: 'AI 升级路线', href: '/ai' },
+      { label: 'AI 提示词工具', href: '/tools/prompts' },
+      { label: 'AI 工作流咨询', href: '/services/ai-workflow' },
+    ],
+  },
+  {
     label: '我在看报价单',
     prompt: '我正在看装修报价单，请先帮我分流：我应该先看哪些风险、用哪个工具、拿哪份清单、什么时候需要人工审核？',
     links: [
@@ -146,18 +155,23 @@ export default function AIChatWidget() {
         <button
           type="button"
           onClick={() => setOpen(true)}
-          className="fixed bottom-5 right-5 z-40 inline-flex h-12 items-center gap-2 bg-stone/95 px-5 text-sm font-semibold text-white shadow-[0_18px_42px_rgba(42,39,35,0.12)] backdrop-blur-sm transition-all duration-150 hover:-translate-y-px hover:bg-stone sm:bottom-6 sm:right-6 animate-zeno-pulse-once"
+          className="fixed bottom-5 right-5 z-[75] inline-flex min-h-16 items-center gap-3 border border-white/25 bg-stone px-5 py-3 text-left text-white shadow-[0_24px_70px_rgba(42,39,35,0.30)] transition-all duration-200 hover:-translate-y-1 hover:bg-stone/95 hover:shadow-[0_28px_86px_rgba(42,39,35,0.36)] sm:bottom-7 sm:right-7 sm:min-h-[4.5rem] sm:px-6 animate-zeno-pulse-once"
           aria-label={isEn ? 'Ask Zeno' : '问 Zeno'}
         >
-          <svg className="h-4 w-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
+          <span className="flex h-10 w-10 shrink-0 items-center justify-center bg-white/12 ring-1 ring-white/20">
+            <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-          </svg>
-          <span>{isEn ? 'Ask Zeno' : '问 Zeno'}</span>
+            </svg>
+          </span>
+          <span>
+            <span className="block text-base font-semibold leading-none sm:text-lg">{isEn ? 'Ask Zeno' : '问 Zeno'}</span>
+            <span className="mt-1 block text-xs font-medium text-white/75">{isEn ? 'AI renovation routing' : 'AI 装修判断助手'}</span>
+          </span>
         </button>
       )}
 
       {open && (
-        <div className="fixed bottom-4 right-4 z-50 flex h-[min(620px,calc(100vh-2rem))] w-[min(420px,calc(100vw-2rem))] flex-col border border-border bg-canvas shadow-[0_24px_80px_rgba(42,39,35,0.16)] animate-surface-in sm:bottom-6 sm:right-6">
+        <div className="fixed bottom-4 right-4 z-[80] flex h-[min(680px,calc(100vh-2rem))] w-[min(460px,calc(100vw-2rem))] flex-col border border-border bg-canvas shadow-[0_28px_90px_rgba(42,39,35,0.26)] animate-surface-in sm:bottom-6 sm:right-6">
           <div className="flex shrink-0 items-center justify-between border-b border-border bg-surface-warm px-4 py-3">
             <div className="flex items-center gap-3">
               <div className="flex h-8 w-8 items-center justify-center bg-stone-pale text-xs font-semibold text-stone">Z</div>
@@ -181,7 +195,7 @@ export default function AIChatWidget() {
                 <p className="text-sm leading-relaxed text-ink-muted">
                   {isEn
                     ? 'Choose the closest situation. I will route you to the right article, tool, checklist or service.'
-                    : '先选最接近你当前处境的一项。我会把你导向对应文章、工具、清单或服务，而不是陪你闲聊。'}
+                    : '先选最接近你当前处境的一项。我会把你导向对应文章、工具、清单、AI 方法或服务。'}
                 </p>
 
                 <div className="mt-4 grid gap-3">

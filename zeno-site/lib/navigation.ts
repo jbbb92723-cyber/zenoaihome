@@ -148,6 +148,43 @@ export const primaryNav: PrimaryNavItem[] = [
     ],
   },
   {
+    key: 'ai-upgrade',
+    zh: { label: 'AI 升级', href: '/ai' },
+    en: { label: 'AI Upgrade', href: '/en' },
+    groups: [
+      {
+        key: 'ai-tools',
+        zh: { label: 'AI 工具', desc: '先用真实任务跑起来' },
+        en: { label: 'AI Tools', desc: 'Start from real tasks' },
+        items: [
+          { key: 'ai-hub', zh: { label: 'AI 升级路线', href: '/ai', desc: '传统装修经验如何接入 AI' }, en: { label: 'AI Upgrade Route', href: '/en', desc: 'How field work meets AI' } },
+          { key: 'prompt-lab', zh: { label: 'AI 场景生成器', href: '/tools/prompts', desc: '报价、客户、施工、内容一键生成提示词' }, en: { label: 'Prompt Lab', href: '/en/tools/prompts', desc: 'Generate prompts from scenarios' } },
+          { key: 'quote-ai', zh: { label: '报价初筛工具', href: '/tools/quote-check', desc: '把报价判断变成可复用流程' }, en: { label: 'Quote Screening', href: '/en/tools', desc: 'Reusable quote screening' } },
+        ],
+      },
+      {
+        key: 'ai-methods',
+        zh: { label: '方法论', desc: '不追工具，先重排流程' },
+        en: { label: 'Methods', desc: 'Workflow before tools' },
+        items: [
+          { key: 'ai-article', zh: { label: '为什么我开始认真学 AI', href: '/blog/04-wei-shenme-wo-kaishi-renzheng-xue-ai', desc: '从现场经验进入 AI' }, en: { label: 'Why I Started Learning AI', href: '/en/articles/why-i-started-learning-ai' } },
+          { key: 'content-system', zh: { label: '内容资产 SOP', href: '/resources#ai-neirong-gongzuoliu-tishici-bao', desc: '把经验变成可复用提示词' }, en: { label: 'Content System', href: '/en/resources' } },
+          { key: 'ai-workflow-service', zh: { label: 'AI 工作流咨询', href: '/services/ai-workflow', desc: '适合传统行业人做系统化' }, en: { label: 'AI Workflow Consulting', href: '/en/services' } },
+        ],
+      },
+      {
+        key: 'ai-notes',
+        zh: { label: '经验心得', desc: '工具体验、日常思考和复盘' },
+        en: { label: 'Notes', desc: 'Experiments and reflections' },
+        items: [
+          { key: 'blog-ai', zh: { label: 'AI 实践文章', href: '/blog#ai', desc: '长期记录' }, en: { label: 'AI Writing', href: '/en/blog' } },
+          { key: 'notes-ai', zh: { label: '思考札记', href: '/notes', desc: '日常观察与方法沉淀' }, en: { label: 'Notes', href: '/en/notes' } },
+          { key: 'pricing-ai-course', zh: { label: 'AI 小课与产品', href: '/pricing#ai-workflow-course', desc: '低价产品和课程入口' }, en: { label: 'AI Products', href: '/en/pricing/baojia-guide' } },
+        ],
+      },
+    ],
+  },
+  {
     key: 'services',
     zh: { label: '服务', href: '/services' },
     en: { label: 'Services', href: '/en/services' },
@@ -224,6 +261,7 @@ export const mainNav: NavItem[] = [
   { key: 'home', zh: { label: '首页', href: '/' }, en: { label: 'Home', href: '/en' } },
   { key: 'start', zh: { label: '装修判断入口', href: '/start' }, en: { label: 'Start Here', href: '/en' } },
   { key: 'tools', zh: { label: '工具与资料', href: '/tools' }, en: { label: 'Tools', href: '/en/tools' } },
+  { key: 'ai-upgrade', zh: { label: 'AI 升级', href: '/ai' }, en: { label: 'AI Upgrade', href: '/en' } },
   { key: 'resources', zh: { label: '资料库', href: '/resources' }, en: { label: 'Resources', href: '/en/resources' } },
   { key: 'services', zh: { label: '服务', href: '/services' }, en: { label: 'Services', href: '/en/services' } },
   { key: 'blog', zh: { label: '长期记录', href: '/blog' }, en: { label: 'Writing', href: '/en/blog' } },
@@ -245,6 +283,7 @@ const CN_TO_EN: Record<string, string> = {
   '/about':      '/en/about',
   '/blog':       '/en/blog',
   '/cases':      '/en/blog',
+  '/ai':         '/en',
   '/tools':      '/en/tools',
   '/topics':     '/en/topics',
   '/tools/prompts': '/en/tools/prompts',
@@ -286,7 +325,7 @@ export function getLangHref(pathname: string, isEn: boolean): string {
     if (pathname.startsWith('/en/blog/')) return '/blog'
     if (pathname.startsWith('/en/articles/')) return '/blog'
     const cnPath = pathname.replace(/^\/en/, '') || '/'
-    const knownCn = ['/', '/start', '/about', '/blog', '/cases', '/tools', '/tools/prompts', '/tools/quote-check', '/tools/budget-risk', '/topics', '/resources', '/services', '/contact', '/login', '/register']
+    const knownCn = ['/', '/start', '/about', '/blog', '/cases', '/ai', '/tools', '/tools/prompts', '/tools/quote-check', '/tools/budget-risk', '/topics', '/resources', '/services', '/contact', '/login', '/register']
     if (knownCn.includes(cnPath)) return cnPath
     return '/'
   } else {

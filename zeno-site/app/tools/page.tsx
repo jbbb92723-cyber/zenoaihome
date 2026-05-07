@@ -6,74 +6,75 @@ import PageHero from '@/components/PageHero'
 import StructuredData from '@/components/StructuredData'
 
 export const metadata: Metadata = {
-  title: '工具页',
+  title: '工具工作台',
   description:
-    '先用工具把问题缩小，再决定要不要拿资料或进入服务。这里放的是已经能直接用的中文工具入口。',
+    'ZenoAIHome 工具工作台：报价初筛、预算风险自测、AI 场景生成器、公众号排版工作台。',
   alternates: {
     canonical: 'https://zenoaihome.com/tools',
   },
 }
 
-const tools = [
+const toolGroups = [
   {
-    title: '报价初筛工具',
-    category: '签约前',
-    status: '已上线',
-    price: '免费',
-    persona: '手上已有报价单，但看不清风险的人。',
-    description: '上传材料留在浏览器本地，对照报价单勾选关键边界，生成风险类型、追问话术和下一步入口。',
-    href: '/tools/quote-check',
-    cta: '上传报价单',
-    next: [
-      { label: '报价审核清单', href: '/resources#baojia-shenhe-qingdan' },
-      { label: '报价单审核服务', href: '/services/renovation#baojia-shenhe' },
+    title: '装修判断工具',
+    desc: '给正在装修或准备装修的人，先把风险缩小到能行动。',
+    tools: [
+      {
+        title: '报价初筛工具',
+        status: '已上线',
+        price: '免费',
+        time: '8-15 分钟',
+        job: '拿到报价单后，先找出漏项、模糊项、增项口子和付款风险。',
+        output: '风险等级、追问清单、下一步服务入口。',
+        href: '/tools/quote-check',
+        cta: '上传报价单',
+      },
+      {
+        title: '预算风险自测',
+        status: '已上线',
+        price: '免费',
+        time: '5-8 分钟',
+        job: '预算越算越乱时，先分清是报价问题、结构问题、流程问题还是需求问题。',
+        output: '四类风险排序、对应资源、文章和服务建议。',
+        href: '/tools/budget-risk',
+        cta: '开始自测',
+      },
     ],
   },
   {
-    title: '装修预算风险自测',
-    category: '预算结构',
-    status: '已上线',
-    price: '免费',
-    persona: '预算有上限，但不知道钱该怎么分的人。',
-    description: '用 8 个问题先分清你当前更像是报价风险、预算结构风险、施工流程风险，还是真实居住需求没厘清。',
-    href: '/tools/budget-risk',
-    cta: '开始自测',
-    next: [
-      { label: '预算模板', href: '/resources#zhuangxiu-yusuan-moban' },
-      { label: '预算结构诊断', href: '/services/renovation#yusuan-zixun' },
-    ],
-  },
-  {
-    title: 'AI 提示词体验场',
-    category: 'AI 工作流',
-    status: '已上线',
-    price: '免费',
-    persona: '有真实任务，不想先陷进工具堆的人。',
-    description: '给真实工作场景生成可以直接用的提示词。适合传统行业人先跑一个任务，而不是先听抽象概念。',
-    href: '/tools/prompts',
-    cta: '去体验场',
-    next: [
-      { label: 'AI 工作流文章', href: '/blog/04-wei-shenme-wo-kaishi-renzheng-xue-ai' },
-      { label: 'AI 工作流咨询', href: '/services/ai-workflow' },
-    ],
-  },
-  {
-    title: 'Markdown 微信排版工具',
-    category: '内容发布',
-    status: '已上线',
-    price: '免费',
-    persona: '需要把文章稳定发布到公众号的人。',
-    description: '把 Markdown 文稿转成微信公众号可直接粘贴的排版结果。适合写作和发布这一段工作流。',
-    href: '/tools/md2wechat',
-    cta: '打开工具',
-    next: [
-      { label: '内容资产 SOP', href: '/resources#content-system-sop' },
-      { label: '关于 Zeno', href: '/about' },
+    title: 'AI 赋能工具',
+    desc: '给传统装修从业者和内容创作者，把真实经验接进 AI。',
+    tools: [
+      {
+        title: 'AI 场景生成器',
+        status: '已上线',
+        price: '免费',
+        time: '3-10 分钟',
+        job: '把报价追问、客户沟通、施工留痕、内容选题变成可复制提示词。',
+        output: '可直接复制到 Claude / ChatGPT 的提示词和执行清单。',
+        href: '/tools/prompts',
+        cta: '生成提示词',
+      },
+      {
+        title: '创作工作台',
+        status: '已上线',
+        price: '免费',
+        time: '按文章长度',
+        job: '把 Markdown 文章转成公众号可用排版，服务内容资产沉淀。',
+        output: '可复制粘贴的公众号排版结果。',
+        href: '/tools/md2wechat',
+        cta: '打开工作台',
+      },
     ],
   },
 ]
 
-const categories = ['全部', '签约前', '预算结构', 'AI 工作流', '内容发布']
+const routes = [
+  ['手上有报价单', '先走报价初筛', '/tools/quote-check'],
+  ['怕预算失控', '先做预算自测', '/tools/budget-risk'],
+  ['想用 AI 提效', '先生成一个场景提示词', '/tools/prompts'],
+  ['要发公众号', '进创作工作台', '/tools/md2wechat'],
+]
 
 export default function ToolsPage() {
   return (
@@ -83,16 +84,16 @@ export default function ToolsPage() {
           {
             '@context': 'https://schema.org',
             '@type': 'CollectionPage',
-            name: '工具页',
+            name: '工具工作台',
             url: 'https://zenoaihome.com/tools',
-            description: '可直接使用的工具入口。',
+            description: '可直接使用的装修判断和 AI 赋能工具入口。',
             inLanguage: 'zh-CN',
           },
           {
             '@context': 'https://schema.org',
             '@type': 'ItemList',
             name: '工具列表',
-            itemListElement: tools.map((tool, index) => ({
+            itemListElement: toolGroups.flatMap((group) => group.tools).map((tool, index) => ({
               '@type': 'ListItem',
               position: index + 1,
               name: tool.title,
@@ -103,67 +104,70 @@ export default function ToolsPage() {
       />
 
       <PageHero
-        label="工具页"
-        title="先把问题缩小，再决定下一步"
-        subtitle="工具不负责制造更多页面，它只做一件事：把一个真实问题压缩到能被判断、能被执行。"
-        note="如果工具已经让你看清问题，就去拿对应清单；如果工具看不明白的地方，可以找我帮你判断。"
+        label="工具工作台"
+        title="不要先逛工具，先选你现在要解决的问题"
+        subtitle="这里的工具只服务两件事：一是帮业主建立装修判断力，二是帮传统装修从业者把经验接进 AI。每个工具都必须给你一个可带走的结果。"
+        note="工具之后才是清单、文章、课程或服务。路径清楚，交付才有意义。"
         size="content"
       />
 
       <Container size="content" className="py-section">
-        <div className="mb-7 flex flex-wrap gap-2">
-          {categories.map((category) => (
-            <span key={category} className="border border-border bg-surface px-3 py-1.5 text-xs font-semibold text-ink-muted">
-              {category}
-            </span>
+        <section className="mb-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          {routes.map(([situation, action, href]) => (
+            <Link key={situation} href={href} className="group border border-border bg-surface p-5 transition-all duration-150 hover:-translate-y-1 hover:border-stone hover:bg-surface-warm hover:shadow-[0_16px_40px_rgba(42,39,35,0.08)]">
+              <p className="text-xs font-semibold uppercase tracking-widest text-stone">{situation}</p>
+              <p className="mt-3 text-sm font-semibold leading-snug text-ink group-hover:text-stone">{action}</p>
+            </Link>
           ))}
-        </div>
+        </section>
 
-        <div className="grid gap-5">
-          {tools.map((tool) => (
-            <article key={tool.title} className="border border-border bg-surface p-6">
-              <div className="flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between">
-                <div className="max-w-2xl">
-                  <div className="flex flex-wrap gap-2 text-[0.7rem] font-semibold uppercase tracking-widest">
-                    <span className="text-stone">{tool.category}</span>
-                    <span className="text-ink-faint">{tool.status}</span>
-                    <span className="text-ink-faint">{tool.price}</span>
-                  </div>
-                  <h2 className="mt-3 text-lg font-semibold text-ink">{tool.title}</h2>
-                  <p className="mt-2 text-sm leading-relaxed text-ink-muted">{tool.description}</p>
-                  <p className="mt-4 text-sm leading-relaxed text-ink-muted">
-                    <span className="font-semibold text-ink">适合谁：</span>{tool.persona}
-                  </p>
-                </div>
-
-                <div className="shrink-0">
-                  <Link href={tool.href} className="inline-flex h-10 items-center bg-stone px-4 text-sm font-medium text-paper transition-colors hover:bg-stone/85">
-                    {tool.cta}
-                  </Link>
-                </div>
+        <div className="space-y-12">
+          {toolGroups.map((group) => (
+            <section key={group.title}>
+              <div className="mb-5">
+                <p className="text-xs font-semibold uppercase tracking-widest text-stone">{group.title}</p>
+                <p className="mt-2 text-sm leading-relaxed text-ink-muted">{group.desc}</p>
               </div>
 
-              <div className="mt-5 border-t border-border pt-4">
-                <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-ink-faint">工具之后</p>
-                <div className="flex flex-wrap gap-3">
-                  {tool.next.map((item) => (
-                    <Link key={item.href + item.label} href={item.href} className="text-sm font-medium text-stone underline decoration-stone-light underline-offset-4 hover:decoration-stone">
-                      {item.label}
+              <div className="grid gap-5 lg:grid-cols-2">
+                {group.tools.map((tool) => (
+                  <article key={tool.title} className="border border-border bg-surface p-6 transition-all duration-150 hover:border-stone/70 hover:shadow-[0_18px_46px_rgba(42,39,35,0.07)]">
+                    <div className="flex flex-wrap gap-2 text-[0.68rem] font-semibold uppercase tracking-widest">
+                      <span className="text-stone">{tool.status}</span>
+                      <span className="text-ink-faint">{tool.price}</span>
+                      <span className="text-ink-faint">{tool.time}</span>
+                    </div>
+                    <h2 className="mt-3 text-lg font-semibold text-ink">{tool.title}</h2>
+                    <dl className="mt-4 grid gap-4 text-sm">
+                      <div>
+                        <dt className="font-semibold text-ink">解决什么</dt>
+                        <dd className="mt-1 leading-relaxed text-ink-muted">{tool.job}</dd>
+                      </div>
+                      <div>
+                        <dt className="font-semibold text-ink">你会得到什么</dt>
+                        <dd className="mt-1 leading-relaxed text-ink-muted">{tool.output}</dd>
+                      </div>
+                    </dl>
+                    <Link href={tool.href} className="mt-6 inline-flex h-10 items-center bg-stone px-4 text-sm font-semibold text-white transition-colors hover:bg-stone/90">
+                      {tool.cta}
                     </Link>
-                  ))}
-                </div>
+                  </article>
+                ))}
               </div>
-            </article>
+            </section>
           ))}
         </div>
 
-        <div className="mt-12 border border-border bg-surface-warm p-6 sm:p-8">
-          <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-3">下一步</p>
-          <p className="text-sm text-ink-muted leading-relaxed mb-5">
-            工具负责第一轮判断，资源负责把判断落实成清单和模板；服务只在问题已经足够具体，但你还需要人直接判断时再进入。
-          </p>
+        <div className="mt-14 grid gap-5 border border-border bg-surface-warm p-6 sm:p-8 lg:grid-cols-[1fr_auto] lg:items-center">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-widest text-stone">下一步</p>
+            <p className="mt-3 text-sm leading-relaxed text-ink-muted">
+              如果工具已经帮你得到结果，下一步不是继续乱看，而是按结果进入清单、课程或服务。工具看不明白的地方，可以找我帮你判断。
+            </p>
+          </div>
           <div className="flex flex-wrap gap-3">
-            <CTA href="/resources" label="去资源页" variant="secondary" />
+            <CTA href="/resources" label="去资料库" variant="secondary" />
+            <CTA href="/pricing" label="看课程和数字产品" variant="ghost" />
             <CTA href="/services#service-form" label="提交服务需求" variant="ghost" />
           </div>
         </div>

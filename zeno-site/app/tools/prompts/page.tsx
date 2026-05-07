@@ -1,232 +1,230 @@
 'use client'
 
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
+import Link from 'next/link'
 import Container from '@/components/Container'
 
-const scenarios = [
+type ScenarioId = 'quote' | 'client' | 'site' | 'content' | 'workflow'
+
+interface Scenario {
+  id: ScenarioId
+  label: string
+  job: string
+  bestFor: string
+  output: string
+  placeholder: string
+  steps: string[]
+}
+
+const scenarios: Scenario[] = [
   {
-    id: 'wechat',
-    label: '写公众号文章',
-    icon: '✍️',
-    description: '写一篇有观点、有结构的公众号长文',
-    prompt: (topic: string) => `你是一位有 16 年装修行业经验的内容创作者，擅长把真实经历转化成有判断力的文章。
-
-请帮我围绕这个主题写一篇公众号文章：
-${topic ? `主题：${topic}` : '[请在上方输入你的主题]'}
-
-要求：
-1. 开头不用"在这个……"、"随着……"等套话，直接切入真实情境或观点
-2. 有具体的经历细节，不要空泛说教
-3. 主体结构清晰（2-3个层次）
-4. 结尾有收拢感，但不要硬煽情
-5. 全文 800-1200 字，口语化但不失判断力
-6. 避免 AI 腔，不用"值得注意的是"、"不可否认"等过渡词
-
-请先给出文章大纲，再写正文。`,
+    id: 'quote',
+    label: '报价追问',
+    job: '把一份看不懂的报价，变成可追问、可比较、可留痕的问题清单。',
+    bestFor: '业主、设计师、项目经理、装修顾问。',
+    output: '报价风险、追问话术、下一步材料清单。',
+    placeholder: '例如：南宁 108 平，半包报价 12.8 万，水电按实结算，柜子另算，报价里辅材品牌没写清。',
+    steps: ['粘贴报价关键信息', '让 AI 先找模糊项', '让 AI 生成追问清单', '你用现场经验判断哪些必须写进合同'],
   },
   {
-    id: 'renovation',
-    label: '做装修沟通',
-    icon: '🏠',
-    description: '梳理装修需求、准备沟通框架',
-    prompt: (topic: string) => `你是一位专业的装修顾问，帮助业主理清需求并准备好与施工方的沟通。
-
-我的情况：
-${topic ? topic : '[请描述你的装修情况，比如：新房 90 平、预算 15 万、想做北欧风]'}
-
-请帮我：
-1. 梳理我的核心需求清单（按优先级排列）
-2. 列出与施工方沟通时必须确认的关键问题（至少 5 条）
-3. 给出 3 个容易忽略的风险点，以及预防方法
-4. 提供一个简短的"开口白"，帮助我在第一次见面时问到关键信息
-
-格式简洁，直接可用，不要废话。`,
+    id: 'client',
+    label: '客户沟通',
+    job: '把客户零散表达，整理成需求优先级、风险提醒和下一次沟通提纲。',
+    bestFor: '装修从业者、设计师、销售和顾问。',
+    output: '客户画像、需求排序、沟通问题、成交风险。',
+    placeholder: '例如：客户夫妻意见不一致，女方想要奶油风，男方担心预算，家里有两个孩子，需要大量收纳。',
+    steps: ['记录客户原话', '拆分显性需求和隐性担心', '生成下一次沟通问题', '把确认结果写成项目备忘'],
   },
   {
-    id: 'budget',
-    label: '做报价分析',
-    icon: '📊',
-    description: '分析装修报价单，识别漏项和风险',
-    prompt: (topic: string) => `你是一位有丰富经验的装修从业者，帮我分析报价单。
-
-${topic ? `报价单信息：${topic}` : '[请粘贴你的报价单关键内容，或描述你收到的报价情况]'}
-
-请从以下角度分析：
-1. **完整性检查**：有没有明显漏项（防水、基础处理、辅材等）
-2. **价格合理性**：哪些项目价格偏高或偏低，需要追问
-3. **风险项**：哪些描述模糊可能导致后期增项
-4. **建议问题清单**：我应该反问施工方的 5 个关键问题
-5. **总体判断**：这份报价整体是否值得继续谈
-
-请用直接、专业的语气，不要回避风险，帮我看清真实情况。`,
+    id: 'site',
+    label: '施工留痕',
+    job: '把当天工地情况整理成节点记录、问题清单和整改沟通话术。',
+    bestFor: '已经开工的业主、项目经理、监理。',
+    output: '施工节点记录、照片清单、整改话术。',
+    placeholder: '例如：今天水电开槽结束，厨房有一处横槽，卫生间防水还没做，现场说周五验收。',
+    steps: ['写下当天节点', '列出需要拍照的位置', '生成整改确认话术', '把结果发到项目群留痕'],
   },
   {
-    id: 'topics',
-    label: '做内容选题',
-    icon: '💡',
-    description: '生成有价值的内容选题和角度',
-    prompt: (topic: string) => `你是一位内容策略顾问，帮助传统行业从业者生成有价值的内容选题。
-
-我的背景：
-${topic ? topic : '[请描述你的行业背景，比如：装修行业 10 年，主要做住宅改造]'}
-
-请帮我生成 10 个内容选题，要求：
-1. 有真实痛点，不是泛泛的行业科普
-2. 有判断和立场，不是中立的"两面说"
-3. 适合写成 800-1500 字的深度文章
-4. 标题要有冲突感或反常识感，能引发点击
-5. 覆盖不同角度：避坑类、观点类、方法类、案例类
-
-每个选题给出：
-- 标题
-- 核心观点一句话
-- 适合切入的角度（从什么经历出发）`,
+    id: 'content',
+    label: '内容选题',
+    job: '把真实现场经验转成有观点、有判断、有转化路径的内容选题。',
+    bestFor: '传统行业内容创作者、装修博主、个人品牌。',
+    output: '选题、标题、结构、案例切入点、CTA。',
+    placeholder: '例如：最近很多客户都问为什么同样 100 平报价差几万，我想写一篇不标题党的文章。',
+    steps: ['输入真实观察', '生成反常识角度', '挑一个最有判断力的标题', '按文章结构写成长期资产'],
   },
   {
-    id: 'ai-upgrade',
-    label: '传统行业 AI 升级',
-    icon: '🤖',
-    description: '找到你行业中 AI 真正能用的场景',
-    prompt: (topic: string) => `你是一位专注于帮助传统行业从业者真正用好 AI 的顾问（不卖焦虑、不神化工具）。
-
-我的情况：
-${topic ? topic : '[请描述你的行业和当前的工作方式，比如：建材销售，每天大量客户咨询]'}
-
-请帮我：
-1. **找出 3 个最适合用 AI 提效的场景**（必须是你行业里真实存在的重复劳动）
-2. **给出每个场景的具体操作方式**（用什么工具，怎么写提示词，大概节省多少时间）
-3. **指出 2 个看起来能用但其实用不上的场景**（避免踩坑）
-4. **建议第一步从哪里开始**（最容易落地、风险最小的一个）
-
-请实事求是，不要夸大 AI 的能力，也不要假装它没用。`,
+    id: 'workflow',
+    label: 'AI 工作流',
+    job: '找出传统装修业务里最适合 AI 先介入的一个重复任务。',
+    bestFor: '传统行业老板、装修公司、个人咨询业务。',
+    output: 'AI 切入点、输入模板、提示词、人工校准点。',
+    placeholder: '例如：我每天要回复很多客户问题，还要整理报价和发朋友圈，不知道哪个环节先用 AI。',
+    steps: ['列出每天重复任务', '筛选高频低风险任务', '设计输入模板', '做一版提示词并持续迭代'],
   },
 ]
 
+function buildPrompt(scenario: Scenario, context: string, desiredOutput: string) {
+  const contextText = context.trim() || '[在这里补充你的真实情况、材料或客户原话]'
+  const outputText = desiredOutput.trim() || scenario.output
+
+  return `你是一位懂装修现场、客户沟通和 AI 工作流的顾问。你的任务不是写漂亮废话，而是把真实情况拆成可判断、可执行、可复用的步骤。
+
+当前场景：${scenario.label}
+要解决的问题：${scenario.job}
+我的真实情况：
+${contextText}
+
+我希望得到的结果：${outputText}
+
+请按下面结构输出：
+1. 先判断：这个问题真正卡在哪里，不要泛泛而谈。
+2. 风险拆解：列出 3-5 个最需要先确认的风险点。
+3. 关键追问：给出可以直接复制给客户、施工方或团队的追问话术。
+4. 执行步骤：告诉我下一步先做什么、再做什么、最后留下什么记录。
+5. 人工校准点：哪些地方不能交给 AI，需要我用现场经验或商业判断来定。
+6. 可复用模板：把这次处理方式整理成下次还能用的模板。
+
+要求：
+- 语言直接，少用形容词。
+- 不要编造数据、案例和承诺。
+- 不要把 AI 神化，也不要假装 AI 没用。
+- 输出必须能被我今天拿去执行。`
+}
+
 export default function PromptPlayground() {
-  const [activeScenario, setActiveScenario] = useState(scenarios[0])
-  const [userInput, setUserInput] = useState('')
+  const [activeId, setActiveId] = useState<ScenarioId>('quote')
+  const [context, setContext] = useState('')
+  const [desiredOutput, setDesiredOutput] = useState('')
   const [copied, setCopied] = useState(false)
 
-  const generatedPrompt = activeScenario.prompt(userInput)
+  const activeScenario = scenarios.find((scenario) => scenario.id === activeId) ?? scenarios[0]
+  const generatedPrompt = useMemo(
+    () => buildPrompt(activeScenario, context, desiredOutput),
+    [activeScenario, context, desiredOutput]
+  )
 
-  const handleCopy = () => {
+  function copyPrompt() {
     navigator.clipboard.writeText(generatedPrompt).then(() => {
       setCopied(true)
-      setTimeout(() => setCopied(false), 2000)
+      setTimeout(() => setCopied(false), 1600)
     })
   }
 
   return (
-    <div className="min-h-screen">
-      {/* Header */}
-      <div className="border-b border-border py-10 sm:py-12">
+    <main className="min-h-screen bg-canvas">
+      <div className="border-b border-border bg-surface-warm py-12 sm:py-16">
         <Container size="content">
-          <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-3">工具</p>
-          <h1 className="text-2xl font-semibold text-ink tracking-tight">AI 提示词体验场</h1>
-          <p className="text-sm text-ink-muted mt-3 max-w-xl leading-relaxed">
-            选择场景，输入你的具体情况，一键生成可直接用于 Claude / ChatGPT 的高质量提示词。不需要登录，不调用 AI 模型，纯本地生成。
+          <p className="text-xs font-semibold uppercase tracking-widest text-stone">AI Tool</p>
+          <h1 className="mt-4 max-w-3xl text-3xl font-semibold tracking-tight text-ink sm:text-5xl">
+            AI 场景生成器：把装修经验变成可执行提示词
+          </h1>
+          <p className="mt-5 max-w-2xl text-base leading-relaxed text-ink-muted">
+            选一个真实场景，填入你的材料，生成一段能直接复制到 Claude / ChatGPT 的提示词。目标不是炫技，而是让 AI 帮你做报价追问、客户沟通、施工留痕、内容选题和工作流拆解。
           </p>
         </Container>
       </div>
 
-      <Container size="content" className="py-10 sm:py-14">
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.5fr] gap-8">
-          {/* 左栏：场景选择 + 输入 */}
-          <div className="space-y-6">
-            {/* 场景选择 */}
+      <Container size="wide" className="py-10 sm:py-14">
+        <div className="grid gap-8 lg:grid-cols-[0.34fr_0.66fr]">
+          <aside className="space-y-5 lg:sticky lg:top-24 lg:self-start">
             <div>
-              <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-3">选择场景</p>
-              <div className="space-y-2">
-                {scenarios.map((s) => (
-                  <button
-                    key={s.id}
-                    onClick={() => { setActiveScenario(s); setUserInput('') }}
-                    className={`w-full text-left px-4 py-3 border transition-colors ${
-                      activeScenario.id === s.id
-                        ? 'border-stone bg-stone/5 text-stone'
-                        : 'border-border text-ink-muted hover:border-stone/50 hover:text-ink'
-                    }`}
-                  >
-                    <span className="mr-2">{s.icon}</span>
-                    <span className="text-sm font-medium">{s.label}</span>
-                    <p className={`text-xs mt-1 ${activeScenario.id === s.id ? 'text-stone/70' : 'text-ink-faint'}`}>
-                      {s.description}
-                    </p>
-                  </button>
-                ))}
+              <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-ink-faint">选择场景</p>
+              <div className="grid gap-2">
+                {scenarios.map((scenario) => {
+                  const active = scenario.id === activeId
+                  return (
+                    <button
+                      key={scenario.id}
+                      type="button"
+                      onClick={() => { setActiveId(scenario.id); setContext(''); setDesiredOutput('') }}
+                      className={`border px-4 py-3 text-left transition-all duration-150 ${
+                        active
+                          ? 'border-stone bg-surface-warm shadow-[0_12px_28px_rgba(42,39,35,0.06)]'
+                          : 'border-border bg-surface hover:border-stone/50 hover:bg-surface-warm'
+                      }`}
+                    >
+                      <span className="block text-sm font-semibold text-ink">{scenario.label}</span>
+                      <span className="mt-1 block text-xs leading-relaxed text-ink-muted">{scenario.job}</span>
+                    </button>
+                  )
+                })}
               </div>
             </div>
 
-            {/* 用户输入 */}
-            <div>
-              <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-2">补充你的具体情况（可选）</p>
-              <textarea
-                value={userInput}
-                onChange={(e) => setUserInput(e.target.value)}
-                placeholder="输入你的具体情况，让提示词更精准……"
-                rows={4}
-                className="w-full border border-border bg-surface text-sm text-ink placeholder:text-ink-faint px-3 py-2.5 resize-none focus:outline-none focus:border-stone transition-colors"
-              />
-              <p className="text-xs text-ink-faint mt-1">
-                不填也可以——生成的提示词里有占位说明，你复制后自己补充也行。
-              </p>
+            <div className="border border-border bg-surface p-5">
+              <p className="text-xs font-semibold uppercase tracking-widest text-stone">这个场景适合</p>
+              <p className="mt-3 text-sm leading-relaxed text-ink-muted">{activeScenario.bestFor}</p>
+              <p className="mt-5 text-xs font-semibold uppercase tracking-widest text-stone">执行顺序</p>
+              <ol className="mt-3 space-y-2">
+                {activeScenario.steps.map((step, index) => (
+                  <li key={step} className="flex gap-2 text-sm leading-relaxed text-ink-muted">
+                    <span className="shrink-0 text-stone">{index + 1}.</span>
+                    <span>{step}</span>
+                  </li>
+                ))}
+              </ol>
             </div>
-          </div>
+          </aside>
 
-          {/* 右栏：生成结果 */}
-          <div className="flex flex-col">
-            <div className="flex items-center justify-between mb-2">
-              <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest">生成的提示词</p>
-              <button
-                onClick={handleCopy}
-                className={`text-xs font-medium px-3 py-1.5 border transition-colors ${
-                  copied
-                    ? 'border-green-500 text-green-600 bg-green-50'
-                    : 'border-stone text-stone hover:bg-stone hover:text-white'
-                }`}
-              >
-                {copied ? '已复制 ✓' : '一键复制'}
-              </button>
+          <section className="grid gap-6">
+            <div className="grid gap-4 border border-border bg-surface p-5 sm:p-6">
+              <label className="text-sm font-semibold text-ink">
+                你的真实情况
+                <textarea
+                  value={context}
+                  onChange={(event) => setContext(event.target.value)}
+                  placeholder={activeScenario.placeholder}
+                  className="mt-2 min-h-32 w-full resize-none border border-border bg-canvas px-3 py-3 text-sm leading-relaxed text-ink outline-none placeholder:text-ink-faint focus:border-stone"
+                />
+              </label>
+              <label className="text-sm font-semibold text-ink">
+                希望 AI 输出什么
+                <input
+                  value={desiredOutput}
+                  onChange={(event) => setDesiredOutput(event.target.value)}
+                  placeholder={activeScenario.output}
+                  className="mt-2 w-full border border-border bg-canvas px-3 py-3 text-sm text-ink outline-none placeholder:text-ink-faint focus:border-stone"
+                />
+              </label>
             </div>
 
-            <div className="flex-1 border border-border bg-surface p-4 overflow-auto">
-              <pre className="text-sm text-ink leading-relaxed whitespace-pre-wrap font-sans">
+            <div className="border border-border bg-surface">
+              <div className="flex items-center justify-between gap-4 border-b border-border bg-surface-warm px-5 py-4">
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-widest text-stone">Generated Prompt</p>
+                  <p className="mt-1 text-xs text-ink-muted">复制到 Claude / ChatGPT，再用你的现场经验校准。</p>
+                </div>
+                <button
+                  type="button"
+                  onClick={copyPrompt}
+                  className="inline-flex h-9 shrink-0 items-center bg-stone px-4 text-xs font-semibold text-white hover:bg-stone/90"
+                >
+                  {copied ? '已复制' : '复制提示词'}
+                </button>
+              </div>
+              <pre className="max-h-[560px] overflow-auto whitespace-pre-wrap p-5 font-sans text-sm leading-relaxed text-ink">
                 {generatedPrompt}
               </pre>
             </div>
 
-            <div className="mt-4 p-4 border border-border bg-surface-warm">
-              <p className="text-xs text-ink-muted leading-relaxed">
-                <span className="font-semibold text-ink">怎么用：</span>
-                复制上面的提示词，直接粘贴到{' '}
-                <a href="https://claude.ai" target="_blank" rel="noopener noreferrer" className="text-stone hover:underline underline-offset-2">Claude</a>
-                {' '}或{' '}
-                <a href="https://chatgpt.com" target="_blank" rel="noopener noreferrer" className="text-stone hover:underline underline-offset-2">ChatGPT</a>
-                {' '}中即可。这些提示词经过真实场景测试，可以直接用，也可以根据你的情况修改。
-              </p>
+            <div className="grid gap-4 md:grid-cols-3">
+              <Link href="/ai" className="border border-border bg-surface p-5 hover:border-stone">
+                <p className="text-sm font-semibold text-ink">看 AI 升级路线</p>
+                <p className="mt-2 text-xs leading-relaxed text-ink-muted">从工具试用走向方法、服务和产品化。</p>
+              </Link>
+              <Link href="/pricing#ai-workflow-course" className="border border-border bg-surface p-5 hover:border-stone">
+                <p className="text-sm font-semibold text-ink">AI 工作流小课</p>
+                <p className="mt-2 text-xs leading-relaxed text-ink-muted">适合想系统学一遍的人。</p>
+              </Link>
+              <Link href="/services/ai-workflow" className="border border-border bg-surface p-5 hover:border-stone">
+                <p className="text-sm font-semibold text-ink">AI 工作流咨询</p>
+                <p className="mt-2 text-xs leading-relaxed text-ink-muted">工具跑不通时，再进入人工拆解。</p>
+              </Link>
             </div>
-          </div>
-        </div>
-
-        {/* 底部说明 */}
-        <div className="mt-12 pt-8 border-t border-border">
-          <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-3">关于这个工具</p>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm text-ink-muted">
-            <div>
-              <p className="font-medium text-ink mb-1">不调用 AI 模型</p>
-              <p>提示词在本地直接生成，不消耗 API，速度即时。</p>
-            </div>
-            <div>
-              <p className="font-medium text-ink mb-1">不需要登录</p>
-              <p>直接用，没有账号要求，不收集你的输入内容。</p>
-            </div>
-            <div>
-              <p className="font-medium text-ink mb-1">经过真实测试</p>
-              <p>所有模板来自 Zeno 实际工作流，不是从网上收集的范例。</p>
-            </div>
-          </div>
+          </section>
         </div>
       </Container>
-    </div>
+    </main>
   )
 }
