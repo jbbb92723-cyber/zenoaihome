@@ -37,7 +37,7 @@ export const resources: Resource[] = [
       '标记"已确认"和"待定"项，清楚看到缺口',
       '每次报价变动后更新，保留版本对比',
     ],
-    howToGet: '关注公众号「Zeno AI装修笔记」，回复"预算模板"即可获取。',
+    howToGet: '登录后可在网页端领取，领取记录会进入用户中心。',
     caveats:
       '模板是框架，不是报价标准。实际费用因地区、工人和材料差异较大，模板帮你看清结构，不替你做决策。',
     relatedArticleSlugs: ['02-jia-bu-shi-yangban-jian'],
@@ -61,7 +61,7 @@ export const resources: Resource[] = [
       '列出需要向设计师/施工方确认的问题清单',
       '对比不同报价时，用同一清单框架评估',
     ],
-    howToGet: '关注公众号「Zeno AI装修笔记」，回复"报价审核"即可获取。',
+    howToGet: '登录后可在网页端领取，领取记录会进入用户中心。',
     caveats:
       '清单覆盖常见风险点，不代表全部情况。不同城市、不同工艺有差异，建议结合本地实际使用。',
     relatedArticleSlugs: ['02-jia-bu-shi-yangban-jian', '03-cong-gongdi-kan-shijie'],
@@ -85,7 +85,7 @@ export const resources: Resource[] = [
       '确认合格后再允许进入下一施工环节',
       '发现问题时，明确书面记录和整改时限',
     ],
-    howToGet: '关注公众号「Zeno AI装修笔记」，回复"验收清单"即可获取。',
+    howToGet: '登录后可在网页端领取，领取记录会进入用户中心。',
     caveats:
       '验收清单是辅助工具，不替代专业监理。对复杂项目或大面积施工，建议同时引入第三方验收。',
     relatedArticleSlugs: ['03-cong-gongdi-kan-shijie'],
@@ -109,7 +109,7 @@ export const resources: Resource[] = [
       '拿着自查表和设计师对齐需求',
       '方案修改时，回头检查是否偏离了自查结论',
     ],
-    howToGet: '关注公众号「Zeno AI装修笔记」，回复"实住自查"即可获取。',
+    howToGet: '登录后可在网页端领取，领取记录会进入用户中心。',
     caveats:
       '这份清单帮你厘清需求，不帮你做具体工艺决策。需求清晰后，再和专业人士讨论实现方式。',
     relatedArticleSlugs: ['02-jia-bu-shi-yangban-jian', '01-wo-wei-shenme-bu-xiang-zhi-zuo-jiaoren-zhuangxiu'],
@@ -133,7 +133,7 @@ export const resources: Resource[] = [
       '把 AI 输出作为草稿，不直接使用',
       '根据自己的判断修改，保留你的语气和立场',
     ],
-    howToGet: '关注公众号「Zeno AI装修笔记」，回复"提示词包"即可获取。',
+    howToGet: '登录后可在网页端领取，领取记录会进入用户中心。',
     caveats:
       '提示词是框架，不是魔法。最终让内容有价值的，还是你的真实经历和判断。工具放大的是你，不是它自己。',
     relatedArticleSlugs: ['04-wei-shenme-wo-kaishi-renzheng-xue-ai', '01-wo-wei-shenme-bu-xiang-zhi-zuo-jiaoren-zhuangxiu'],

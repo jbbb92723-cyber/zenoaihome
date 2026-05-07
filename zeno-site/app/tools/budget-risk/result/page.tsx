@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Container from '@/components/Container'
+import CopyLinkButton from '@/components/CopyLinkButton'
 import CTA from '@/components/CTA'
 import PageHero from '@/components/PageHero'
 import StructuredData from '@/components/StructuredData'
@@ -98,6 +99,7 @@ export default function BudgetRiskResultPage({
                 <CTA href={dominantSummary.resource.href} label={dominantSummary.resource.label} variant="primary" />
                 <CTA href={dominantSummary.service.href} label={dominantSummary.service.label} variant="secondary" />
                 <CTA href={dominantSummary.article.href} label={dominantSummary.article.label} variant="ghost" />
+                <CopyLinkButton label="保存结果链接" />
               </div>
             </section>
 

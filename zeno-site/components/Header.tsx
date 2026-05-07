@@ -2,118 +2,188 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { useState, useRef, useEffect } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import ThemeToggle from '@/components/ThemeToggle'
 import LanguageToggle from '@/components/LanguageToggle'
 import { primaryNav } from '@/lib/navigation'
 
-/* ─── 搜索触发（派发 Ctrl+K 打开 SearchDialog） ─── */
+type LocalizedLeaf = {
+  key: string
+  label: string
+  href: string
+  desc?: string
+}
+
+type LocalizedGroup = {
+  key: string
+  label: string
+  desc?: string
+  items: LocalizedLeaf[]
+}
+
+type LocalizedPrimary = {
+  key: string
+  label: string
+  href: string
+  groups?: LocalizedGroup[]
+}
+
 function triggerSearch() {
   document.dispatchEvent(new KeyboardEvent('keydown', { key: 'k', metaKey: true }))
+}
+
+function SearchIcon() {
+  return (
+    <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+    </svg>
+  )
 }
 
 export default function Header() {
   const pathname = usePathname()
   const [menuOpen, setMenuOpen] = useState(false)
   const [activeMenu, setActiveMenu] = useState<string | null>(null)
+  const [scrolled, setScrolled] = useState(false)
   const closeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
-  // 管理后台使用独立布局，隐藏全站导航
   if (pathname.startsWith('/admin')) return null
 
   const isEn = pathname.startsWith('/en')
   const logoHref = isEn ? '/en' : '/'
   const loginLabel = isEn ? 'Log in' : '登录'
   const loginHref = isEn ? '/en/login' : '/login'
+  const uploadHref = isEn ? '/en/tools' : '/tools/quote-check'
+  const uploadLabel = isEn ? 'Upload Quote' : '上传报价单'
 
-  /* 桌面 mega menu 鼠标交互 */
-  const handleMenuEnter = (key: string) => {
-    if (closeTimerRef.current) clearTimeout(closeTimerRef.current)
-    setActiveMenu(key)
-  }
-  const handleMenuLeave = () => {
-    closeTimerRef.current = setTimeout(() => setActiveMenu(null), 150)
-  }
+  const navItems = useMemo<LocalizedPrimary[]>(() => primaryNav.map((item) => ({
+    key: item.key,
+    label: isEn ? item.en.label : item.zh.label,
+    href: isEn ? item.en.href : item.zh.href,
+    groups: item.groups?.map((group) => ({
+      key: group.key,
+      label: isEn ? group.en.label : group.zh.label,
+      desc: isEn ? group.en.desc : group.zh.desc,
+      items: group.items.map((leaf) => ({
+        key: leaf.key,
+        label: isEn ? leaf.en.label : leaf.zh.label,
+        href: isEn ? leaf.en.href : leaf.zh.href,
+        desc: isEn ? leaf.en.desc : leaf.zh.desc,
+      })),
+    })),
+  })), [isEn])
 
-  /* 路由变化时关闭菜单 */
-  useEffect(() => { setMenuOpen(false); setActiveMenu(null) }, [pathname])
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 8)
+    handleScroll()
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
-  /* 移动端 body scroll lock */
+  useEffect(() => {
+    setMenuOpen(false)
+    setActiveMenu(null)
+  }, [pathname])
+
   useEffect(() => {
     document.body.style.overflow = menuOpen ? 'hidden' : ''
     return () => { document.body.style.overflow = '' }
   }, [menuOpen])
 
-  const navItems = primaryNav.map((item) => ({
-    ...item,
-    label: isEn ? item.en.label : item.zh.label,
-    href: isEn ? item.en.href : item.zh.href,
-    children: item.children?.map((c) => ({
-      ...c,
-      label: isEn ? c.en.label : c.zh.label,
-      href: isEn ? c.en.href : c.zh.href,
-      desc: isEn ? c.en.desc : c.zh.desc,
-    })),
-  }))
+  const handleMenuEnter = (key: string) => {
+    if (closeTimerRef.current) clearTimeout(closeTimerRef.current)
+    setActiveMenu(key)
+  }
+
+  const handleMenuLeave = () => {
+    closeTimerRef.current = setTimeout(() => setActiveMenu(null), 140)
+  }
+
+  const isActive = (href: string) => {
+    const base = href.split('#')[0]
+    if (base === '/' || base === '/en') return pathname === base
+    return pathname.startsWith(base)
+  }
 
   return (
-    <header className="sticky top-0 z-40 bg-canvas/95 backdrop-blur-sm border-b border-border">
-      <div className="max-w-6xl mx-auto px-5 sm:px-8 lg:px-10">
-        <div className="flex items-center justify-between h-14">
-
-          {/* Logo */}
+    <header
+      className={`sticky top-0 z-40 border-b border-border bg-canvas/90 backdrop-blur-md transition-all duration-200 ${
+        scrolled ? 'shadow-[0_10px_30px_rgba(42,39,35,0.05)]' : 'shadow-none'
+      }`}
+    >
+      <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
+        <div className={`flex items-center justify-between transition-all duration-200 ${scrolled ? 'h-14' : 'h-16'}`}>
           <Link
             href={logoHref}
-            className="text-ink font-semibold text-[0.9375rem] tracking-tight hover:text-stone transition-colors shrink-0"
+            className="shrink-0 text-[0.9375rem] font-semibold tracking-tight text-ink transition-colors hover:text-stone"
           >
             ZenoAIHome
           </Link>
 
-          {/* ─── Desktop Nav with Mega Menu ─── */}
-          <nav className="hidden lg:flex items-center gap-1">
+          <nav className="hidden items-center gap-1 lg:flex" aria-label={isEn ? 'Primary navigation' : '主导航'}>
             {navItems.map((item) => (
               <div
                 key={item.key}
                 className="relative"
-                onMouseEnter={() => item.children && handleMenuEnter(item.key)}
+                onMouseEnter={() => item.groups && handleMenuEnter(item.key)}
                 onMouseLeave={handleMenuLeave}
               >
                 <Link
                   href={item.href}
-                  className={`px-3 py-2 text-[0.8125rem] whitespace-nowrap transition-colors rounded-sm ${
-                    pathname.startsWith(item.href.split('#')[0]) && item.href !== '/' && item.href !== '/en'
+                  onFocus={() => item.groups && setActiveMenu(item.key)}
+                  className={`inline-flex items-center gap-1 px-3 py-2 text-[0.8125rem] transition-colors ${
+                    isActive(item.href)
                       ? 'text-stone font-semibold'
-                      : 'text-ink-muted hover:text-ink hover:bg-surface-warm/50'
+                      : 'text-ink-muted hover:text-ink'
                   }`}
                 >
                   {item.label}
-                  {item.children && (
-                    <svg className="inline-block w-3 h-3 ml-0.5 -mt-px opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  {item.groups && (
+                    <svg className="h-3 w-3 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                     </svg>
                   )}
                 </Link>
 
-                {/* Mega Menu Panel */}
-                {item.children && activeMenu === item.key && (
+                {item.groups && activeMenu === item.key && (
                   <div
-                    className="absolute top-full left-0 pt-2 z-50"
+                    className="absolute left-1/2 top-full z-50 w-[min(920px,calc(100vw-3rem))] -translate-x-1/2 pt-3 animate-menu-in"
                     onMouseEnter={() => handleMenuEnter(item.key)}
                     onMouseLeave={handleMenuLeave}
                   >
-                    <div className="w-[320px] bg-canvas border border-border shadow-lg p-4 space-y-1">
-                      {item.children.map((child) => (
-                        <Link
-                          key={child.key}
-                          href={child.href}
-                          className="block px-3 py-2.5 rounded-sm hover:bg-surface-warm/60 transition-colors group"
-                        >
-                          <span className="text-sm text-ink group-hover:text-stone font-medium">{child.label}</span>
-                          {child.desc && (
-                            <span className="block text-xs text-ink-muted mt-0.5">{child.desc}</span>
-                          )}
+                    <div className="border border-border bg-canvas/98 p-5 shadow-[0_28px_80px_rgba(42,39,35,0.12)] backdrop-blur-md">
+                      <div className="mb-4 flex items-center justify-between border-b border-border pb-4">
+                        <div>
+                          <p className="text-xs font-semibold uppercase tracking-widest text-stone">{item.label}</p>
+                          <p className="mt-1 text-xs text-ink-muted">
+                            {isEn ? 'Choose the stage before choosing the page.' : '先选问题阶段，再进入对应工具、资料或服务。'}
+                          </p>
+                        </div>
+                        <Link href={item.href} className="text-xs font-medium text-stone hover:text-ink">
+                          {isEn ? 'Overview ->' : '看概览 ->'}
                         </Link>
-                      ))}
+                      </div>
+
+                      <div className={`grid gap-4 ${item.groups.length >= 4 ? 'grid-cols-4' : 'grid-cols-3'}`}>
+                        {item.groups.map((group) => (
+                          <div key={group.key} className="min-w-0">
+                            <p className="text-sm font-semibold text-ink">{group.label}</p>
+                            {group.desc && <p className="mt-1 min-h-9 text-xs leading-relaxed text-ink-muted">{group.desc}</p>}
+                            <div className="mt-3 space-y-1">
+                              {group.items.map((leaf) => (
+                                <Link
+                                  key={leaf.key}
+                                  href={leaf.href}
+                                  className="group block border border-transparent px-3 py-2 transition-all duration-150 hover:-translate-y-px hover:border-border hover:bg-surface-warm"
+                                >
+                                  <span className="block text-sm font-medium text-ink group-hover:text-stone">{leaf.label}</span>
+                                  {leaf.desc && <span className="mt-0.5 block text-xs leading-relaxed text-ink-muted">{leaf.desc}</span>}
+                                </Link>
+                              ))}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
                     </div>
                   </div>
                 )}
@@ -121,80 +191,71 @@ export default function Header() {
             ))}
           </nav>
 
-          {/* ─── Desktop Utilities ─── */}
-          <div className="hidden lg:flex items-center gap-2">
-            {/* Search icon */}
+          <div className="hidden items-center gap-2 lg:flex">
             <button
+              type="button"
               onClick={triggerSearch}
-              className="p-2 text-ink-muted hover:text-ink transition-colors"
-              aria-label={isEn ? 'Search' : '搜索'}
+              className="inline-flex h-9 w-9 items-center justify-center text-ink-muted transition-colors hover:text-ink"
+              aria-label={isEn ? 'Open search' : '打开搜索'}
             >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-              </svg>
+              <SearchIcon />
             </button>
-
             <LanguageToggle />
             <ThemeToggle />
-
-            <Link
-              href={loginHref}
-              className={`ml-1 px-3 py-1.5 text-[0.8125rem] border border-border rounded-sm transition-colors ${
-                pathname.startsWith('/account') || pathname === '/login' || pathname === '/en/login'
-                  ? 'text-stone border-stone/30 font-semibold'
-                  : 'text-ink-muted hover:text-ink hover:border-ink/20'
-              }`}
-            >
+            <Link href={loginHref} className="px-2 py-2 text-[0.8125rem] text-ink-muted transition-colors hover:text-ink">
               {loginLabel}
+            </Link>
+            <Link
+              href={uploadHref}
+              className="ml-1 inline-flex h-9 items-center bg-stone px-4 text-[0.8125rem] font-medium text-white transition-all duration-150 hover:-translate-y-px hover:bg-stone/90 hover:shadow-[0_12px_28px_rgba(139,115,85,0.20)]"
+            >
+              {uploadLabel}
             </Link>
           </div>
 
-          {/* ─── Mobile: Search + Hamburger ─── */}
-          <div className="flex lg:hidden items-center gap-1">
+          <div className="flex items-center gap-1 lg:hidden">
             <button
+              type="button"
               onClick={triggerSearch}
-              className="p-2 text-ink-muted hover:text-ink transition-colors"
-              aria-label={isEn ? 'Search' : '搜索'}
+              className="inline-flex h-9 w-9 items-center justify-center text-ink-muted transition-colors hover:text-ink"
+              aria-label={isEn ? 'Open search' : '打开搜索'}
             >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-              </svg>
+              <SearchIcon />
             </button>
-
             <button
-              onClick={() => setMenuOpen(!menuOpen)}
-              className="flex flex-col justify-center items-center w-8 h-8 gap-[5px]"
+              type="button"
+              onClick={() => setMenuOpen((value) => !value)}
+              className="flex h-9 w-9 flex-col items-center justify-center gap-[5px]"
               aria-label={menuOpen ? '关闭菜单' : '打开菜单'}
               aria-expanded={menuOpen}
             >
-              <span className={`block w-[18px] h-[1.5px] bg-ink transition-all duration-200 ${menuOpen ? 'rotate-45 translate-y-[6.5px]' : ''}`} />
-              <span className={`block w-[18px] h-[1.5px] bg-ink transition-all duration-150 ${menuOpen ? 'opacity-0' : ''}`} />
-              <span className={`block w-[18px] h-[1.5px] bg-ink transition-all duration-200 ${menuOpen ? '-rotate-45 -translate-y-[6.5px]' : ''}`} />
+              <span className={`block h-[1.5px] w-[18px] bg-ink transition-all duration-200 ${menuOpen ? 'translate-y-[6.5px] rotate-45' : ''}`} />
+              <span className={`block h-[1.5px] w-[18px] bg-ink transition-all duration-150 ${menuOpen ? 'opacity-0' : ''}`} />
+              <span className={`block h-[1.5px] w-[18px] bg-ink transition-all duration-200 ${menuOpen ? '-translate-y-[6.5px] -rotate-45' : ''}`} />
             </button>
           </div>
         </div>
       </div>
 
-      {/* ─── Mobile Full-screen Menu ─── */}
       {menuOpen && (
-        <div className="lg:hidden fixed inset-0 top-14 z-40 bg-canvas overflow-y-auto">
-          <nav className="max-w-6xl mx-auto px-5 py-4">
+        <div className="fixed inset-x-0 bottom-0 top-16 z-40 overflow-y-auto border-t border-border bg-canvas lg:hidden">
+          <nav className="mx-auto max-w-3xl px-5 py-5" aria-label={isEn ? 'Mobile navigation' : '移动端导航'}>
             {navItems.map((item) => (
-              <MobileNavGroup key={item.key} item={item} onNavigate={() => setMenuOpen(false)} />
+              <MobileNavGroup key={item.key} item={item} isEn={isEn} onNavigate={() => setMenuOpen(false)} />
             ))}
 
-            {/* Utilities */}
-            <div className="mt-6 pt-4 border-t border-border flex items-center justify-between">
-              <Link
-                href={loginHref}
-                onClick={() => setMenuOpen(false)}
-                className="text-sm text-ink-muted hover:text-ink transition-colors"
-              >
-                {loginLabel}
+            <div className="mt-6 grid gap-3 border-t border-border pt-5">
+              <Link href={uploadHref} onClick={() => setMenuOpen(false)} className="inline-flex h-11 items-center justify-center bg-stone px-4 text-sm font-medium text-white">
+                {uploadLabel}
               </Link>
-              <div className="flex items-center gap-2">
-                <LanguageToggle />
-                <ThemeToggle />
+              <div className="flex items-center justify-between">
+                <Link href={loginHref} onClick={() => setMenuOpen(false)} className="text-sm text-ink-muted hover:text-ink">
+                  {loginLabel}
+                </Link>
+                <div className="flex items-center gap-2">
+                  <LanguageToggle />
+                  <ThemeToggle />
+                </div>
               </div>
             </div>
           </nav>
@@ -204,23 +265,20 @@ export default function Header() {
   )
 }
 
-/* ─── Mobile collapsible nav group ─── */
 function MobileNavGroup({
   item,
+  isEn,
   onNavigate,
 }: {
-  item: { key: string; label: string; href: string; children?: { key: string; label: string; href: string; desc?: string }[] }
+  item: LocalizedPrimary
+  isEn: boolean
   onNavigate: () => void
 }) {
   const [expanded, setExpanded] = useState(false)
 
-  if (!item.children || item.children.length === 0) {
+  if (!item.groups) {
     return (
-      <Link
-        href={item.href}
-        onClick={onNavigate}
-        className="block py-3 text-sm text-ink border-b border-border"
-      >
+      <Link href={item.href} onClick={onNavigate} className="block border-b border-border py-4 text-sm font-medium text-ink">
         {item.label}
       </Link>
     )
@@ -229,37 +287,37 @@ function MobileNavGroup({
   return (
     <div className="border-b border-border">
       <button
-        onClick={() => setExpanded(!expanded)}
-        className="flex w-full items-center justify-between py-3 text-sm text-ink"
+        type="button"
+        onClick={() => setExpanded((value) => !value)}
+        className="flex w-full items-center justify-between py-4 text-left text-sm font-medium text-ink"
       >
         {item.label}
-        <svg
-          className={`w-3.5 h-3.5 text-ink-muted transition-transform ${expanded ? 'rotate-180' : ''}`}
-          fill="none" stroke="currentColor" viewBox="0 0 24 24"
-        >
+        <svg className={`h-3.5 w-3.5 text-ink-muted transition-transform ${expanded ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
         </svg>
       </button>
+
       {expanded && (
-        <div className="pb-3 pl-3 space-y-1">
-          <Link
-            href={item.href}
-            onClick={onNavigate}
-            className="block py-2 text-sm text-stone font-medium"
-          >
-            概览
+        <div className="pb-4">
+          <Link href={item.href} onClick={onNavigate} className="mb-3 block text-sm font-medium text-stone">
+            {isEn ? 'Overview' : '概览'}
           </Link>
-          {item.children.map((child) => (
-            <Link
-              key={child.key}
-              href={child.href}
-              onClick={onNavigate}
-              className="block py-2 text-sm text-ink-muted hover:text-ink"
-            >
-              {child.label}
-              {child.desc && <span className="block text-xs text-ink-faint mt-0.5">{child.desc}</span>}
-            </Link>
-          ))}
+          <div className="space-y-4">
+            {item.groups.map((group) => (
+              <div key={group.key} className="border-l border-border pl-4">
+                <p className="text-sm font-semibold text-ink">{group.label}</p>
+                {group.desc && <p className="mt-1 text-xs leading-relaxed text-ink-muted">{group.desc}</p>}
+                <div className="mt-2 grid gap-1">
+                  {group.items.map((leaf) => (
+                    <Link key={leaf.key} href={leaf.href} onClick={onNavigate} className="block py-1.5 text-sm text-ink-muted hover:text-ink">
+                      {leaf.label}
+                      {leaf.desc && <span className="block text-xs leading-relaxed text-ink-faint">{leaf.desc}</span>}
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       )}
     </div>

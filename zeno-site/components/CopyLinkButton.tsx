@@ -1,6 +1,10 @@
 'use client'
 
-export default function CopyLinkButton() {
+import { useState } from 'react'
+
+export default function CopyLinkButton({ label = '复制链接', copiedLabel = '已复制' }: { label?: string; copiedLabel?: string }) {
+  const [copied, setCopied] = useState(false)
+
   return (
     <button
       type="button"
@@ -8,10 +12,12 @@ export default function CopyLinkButton() {
       onClick={() => {
         if (typeof navigator !== 'undefined' && navigator.clipboard) {
           navigator.clipboard.writeText(window.location.href)
+          setCopied(true)
+          setTimeout(() => setCopied(false), 1500)
         }
       }}
     >
-      复制链接
+      {copied ? copiedLabel : label}
     </button>
   )
 }

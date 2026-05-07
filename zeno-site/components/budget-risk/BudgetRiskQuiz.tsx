@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import {
   answerOptions,
@@ -9,9 +9,24 @@ import {
   type BudgetRiskAnswers,
 } from '@/data/budget-risk'
 
+const storageKey = 'zeno.budget-risk.answers.v1'
+
 export default function BudgetRiskQuiz() {
   const router = useRouter()
   const [answers, setAnswers] = useState<BudgetRiskAnswers>({})
+
+  useEffect(() => {
+    try {
+      const saved = window.localStorage.getItem(storageKey)
+      if (saved) setAnswers(JSON.parse(saved))
+    } catch {
+      window.localStorage.removeItem(storageKey)
+    }
+  }, [])
+
+  useEffect(() => {
+    window.localStorage.setItem(storageKey, JSON.stringify(answers))
+  }, [answers])
 
   const answeredCount = Object.keys(answers).length
   const isComplete = answeredCount === budgetRiskQuestions.length
@@ -25,6 +40,7 @@ export default function BudgetRiskQuiz() {
 
   const handleReset = () => {
     setAnswers({})
+    window.localStorage.removeItem(storageKey)
   }
 
   const handleSubmit = () => {

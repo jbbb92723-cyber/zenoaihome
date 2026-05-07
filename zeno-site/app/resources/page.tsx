@@ -7,17 +7,18 @@
  * 3. 低价产品（即将开放）
  * 4. 服务入口
  *
- * 本轮不接支付、不做下载权限。先把"免费 → 低价 → 服务"的路径展示出来。
+ * 资源领取走网页端记录。文件直链/下载权限可在后台配置后继续接入。
  */
 
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
-import { resources, type Resource, type ResourceAccessLevel } from '@/data/resources'
+import { resources, type ResourceAccessLevel } from '@/data/resources'
 import PageHero from '@/components/PageHero'
 import Container from '@/components/Container'
 import SectionHeader from '@/components/SectionHeader'
 import CTA from '@/components/CTA'
+import ResourceClaimButton from '@/components/resources/ResourceClaimButton'
 
 export const metadata: Metadata = {
   title: '按问题拿清单和资料，不用先翻栏目 | ZenoAIHome',
@@ -153,6 +154,25 @@ export default function ResourcesPage() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <Link
+              href="/tools/quote-check"
+              className="group sm:col-span-2 border border-stone/30 bg-stone/5 p-6 sm:p-7 hover:bg-stone/10 transition-colors"
+            >
+              <div className="flex items-start justify-between gap-4">
+                <div>
+                  <p className="text-[0.65rem] font-semibold uppercase tracking-widest text-stone mb-2">免费 · 网页端 · 报价初筛</p>
+                  <p className="text-base font-semibold text-ink group-hover:text-stone transition-colors">
+                    报价初筛工具
+                  </p>
+                  <p className="text-sm text-ink-muted mt-2 leading-relaxed max-w-lg">
+                    上传材料留在浏览器本地，对照报价单勾选关键边界，生成风险类型和追问话术。
+                  </p>
+                  <p className="text-xs text-stone font-medium mt-3">上传报价单 →</p>
+                </div>
+                <span className="text-stone text-xl shrink-0 mt-1 group-hover:translate-x-1 transition-transform">→</span>
+              </div>
+            </Link>
+
+            <Link
               href="/tools/budget-risk"
               className="group sm:col-span-2 border border-stone/30 bg-stone/5 p-6 sm:p-7 hover:bg-stone/10 transition-colors"
             >
@@ -205,7 +225,7 @@ export default function ResourcesPage() {
               <p className="text-xs text-ink-muted mt-1.5 leading-relaxed">
                 从水电隐蔽工程到竣工交付，每个施工节点的验收要点。
               </p>
-              <p className="text-xs text-ink-faint mt-2">公众号回复「验收」领取</p>
+              <p className="text-xs text-ink-faint mt-2">登录后网页端领取，用户中心保留记录</p>
             </div>
 
             <div className="border border-border bg-surface p-5 sm:p-6">
@@ -213,7 +233,7 @@ export default function ResourcesPage() {
               <p className="text-xs text-ink-muted mt-1.5 leading-relaxed">
                 把"感觉花钱"变成"有结构地花钱"。帮你按分类控制每一笔支出。
               </p>
-              <p className="text-xs text-ink-faint mt-2">公众号回复「预算」领取</p>
+              <p className="text-xs text-ink-faint mt-2">登录后网页端领取，用户中心保留记录</p>
             </div>
           </div>
         </section>
@@ -303,7 +323,7 @@ export default function ResourcesPage() {
                       <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-1">领取方式</p>
                       <p className="text-sm text-ink-muted">{resource.howToGet}</p>
                     </div>
-                    <span className="text-xs text-stone shrink-0">公众号回复关键词领取</span>
+                    <ResourceClaimButton resourceId={resource.slug} resourceTitle={resource.title} />
                   </div>
                 </div>
               )

@@ -1,6 +1,7 @@
 'use client'
 
-import { useState, useRef, useEffect } from 'react'
+import Link from 'next/link'
+import { useEffect, useRef, useState } from 'react'
 import { usePathname } from 'next/navigation'
 
 interface Message {
@@ -8,19 +9,80 @@ interface Message {
   content: string
 }
 
-// 建议问题：尽量贴近用户实际会问的，不用营销化措辞
-const SUGGESTIONS_ZH = [
-  '我的报价单要怎么看出有没有坑？',
-  '装修预算 buffer 一般留多少？',
-  '水电"按实际发生计算"是不是坑？',
-  'Zeno 现在能帮我做什么？',
+const quickEntriesZh = [
+  {
+    label: '我在看报价单',
+    prompt: '我正在看装修报价单，请先帮我分流：我应该先看哪些风险、用哪个工具、拿哪份清单、什么时候需要人工审核？',
+    links: [
+      { label: '报价初筛工具', href: '/tools/quote-check' },
+      { label: '报价审核清单', href: '/resources#baojia-shenhe-qingdan' },
+      { label: '报价单审核服务', href: '/services/renovation#baojia-shenhe' },
+    ],
+  },
+  {
+    label: '我怕超预算',
+    prompt: '我担心装修超预算，请先帮我判断应该从预算结构、报价漏项、施工流程还是需求顺序开始查。',
+    links: [
+      { label: '预算风险自测', href: '/tools/budget-risk' },
+      { label: '预算模板', href: '/resources#zhuangxiu-yusuan-moban' },
+      { label: '预算结构诊断', href: '/services/renovation#yusuan-zixun' },
+    ],
+  },
+  {
+    label: '我已经开工了',
+    prompt: '我已经开工了，请帮我按施工节点分流：现在该看什么、拍什么、确认什么，哪些问题需要留痕。',
+    links: [
+      { label: '节点验收入口', href: '/resources#construction-checkpoints' },
+      { label: '验收清单', href: '/resources#yanshou-qingdan' },
+      { label: '从工地看世界', href: '/blog/03-cong-gongdi-kan-shijie' },
+    ],
+  },
+  {
+    label: '我想按真实居住做选择',
+    prompt: '我不想只按效果图装修，请帮我从家庭成员、做饭、收纳、清洁和长期使用角度分流下一步。',
+    links: [
+      { label: '家不是样板间', href: '/blog/02-jia-bu-shi-yangban-jian' },
+      { label: '实住派自查表', href: '/resources#shizhu-pai-zijian-biao' },
+      { label: '真实居住服务', href: '/services/renovation#shi-zhu-pai-zhuangxiu' },
+    ],
+  },
 ]
 
-const SUGGESTIONS_EN = [
-  'How do I spot risks in my renovation quote?',
-  'How much buffer should I keep in the budget?',
-  'What can Zeno actually help me with?',
-  'Where do I start with AI in my work?',
+const quickEntriesEn = [
+  {
+    label: 'I am checking a quote',
+    prompt: 'I am checking a renovation quote. Help me route to the right risks, tools, checklists and service if needed.',
+    links: [
+      { label: 'Tools', href: '/en/tools' },
+      { label: 'Resources', href: '/en/resources' },
+      { label: 'Services', href: '/en/services' },
+    ],
+  },
+  {
+    label: 'I worry about budget overrun',
+    prompt: 'I worry about budget overrun. Help me identify whether it is a quote, budget structure, process or needs issue.',
+    links: [
+      { label: 'Tools', href: '/en/tools' },
+      { label: 'Resources', href: '/en/resources' },
+      { label: 'Services', href: '/en/services' },
+    ],
+  },
+  {
+    label: 'The project has started',
+    prompt: 'My renovation has started. Help me route by construction checkpoints and evidence keeping.',
+    links: [
+      { label: 'Resources', href: '/en/resources' },
+      { label: 'Writing', href: '/en/blog' },
+    ],
+  },
+  {
+    label: 'I design for real living',
+    prompt: 'I want to design from real living, not just showroom images. Help me route next steps.',
+    links: [
+      { label: 'Article', href: '/en/articles/home-is-not-a-showroom' },
+      { label: 'Resources', href: '/en/resources' },
+    ],
+  },
 ]
 
 export default function AIChatWidget() {
@@ -32,17 +94,12 @@ export default function AIChatWidget() {
   const pathname = usePathname()
 
   const isEn = pathname.startsWith('/en')
-  const suggestions = isEn ? SUGGESTIONS_EN : SUGGESTIONS_ZH
+  const quickEntries = isEn ? quickEntriesEn : quickEntriesZh
 
-  // Hide on admin pages
   if (pathname.startsWith('/admin')) return null
 
-  function scrollToBottom() {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
-  }
-
   useEffect(() => {
-    scrollToBottom()
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
   }, [messages])
 
   async function handleSend(text?: string) {
@@ -50,36 +107,33 @@ export default function AIChatWidget() {
     if (!msg) return
 
     const userMessage: Message = { role: 'user', content: msg }
-    setMessages((prev) => [...prev, userMessage])
+    setMessages((previous) => [...previous, userMessage])
     setInput('')
     setLoading(true)
 
     try {
-      // 把最近的对话历史一起传给后端，让 LLM 有上下文
-      const history = messages.map((m) => ({ role: m.role, content: m.content }))
-      const res = await fetch('/api/chat', {
+      const history = messages.map((message) => ({ role: message.role, content: message.content }))
+      const response = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ message: msg, locale: isEn ? 'en' : 'zh', history }),
       })
 
-      if (res.ok) {
-        const data = await res.json()
-        setMessages((prev) => [...prev, { role: 'assistant', content: data.reply }])
+      if (response.ok) {
+        const data = await response.json()
+        setMessages((previous) => [...previous, { role: 'assistant', content: data.reply }])
       } else {
-        setMessages((prev) => [...prev, {
+        setMessages((previous) => [...previous, {
           role: 'assistant',
           content: isEn
-            ? 'Sorry, I couldn\'t process that. Please try again or contact Zeno directly.'
-            : '抱歉，暂时无法回复。你可以直接联系 Zeno，或稍后再试。',
+            ? 'I could not process that. You can still use the route links above.'
+            : '暂时无法回复。你可以先用上面的分流入口继续往下走。',
         }])
       }
     } catch {
-      setMessages((prev) => [...prev, {
+      setMessages((previous) => [...previous, {
         role: 'assistant',
-        content: isEn
-          ? 'Network error. Please try again.'
-          : '网络错误，请稍后重试。',
+        content: isEn ? 'Network error. Please try again.' : '网络错误，请稍后重试。',
       }])
     } finally {
       setLoading(false)
@@ -88,115 +142,107 @@ export default function AIChatWidget() {
 
   return (
     <>
-      {/* Floating button — 带文字标签 */}
       {!open && (
         <button
+          type="button"
           onClick={() => setOpen(true)}
-          className="fixed bottom-6 right-6 z-40 flex items-center gap-2 px-4 h-11 bg-stone text-paper shadow-lg hover:bg-stone/90 transition-colors text-sm font-medium"
-          aria-label={isEn ? 'Ask Zeno AI' : '问 Zeno'}
+          className="fixed bottom-5 right-5 z-40 inline-flex h-12 items-center gap-2 bg-stone/95 px-5 text-sm font-semibold text-white shadow-[0_18px_42px_rgba(42,39,35,0.12)] backdrop-blur-sm transition-all duration-150 hover:-translate-y-px hover:bg-stone sm:bottom-6 sm:right-6 animate-zeno-pulse-once"
+          aria-label={isEn ? 'Ask Zeno' : '问 Zeno'}
         >
-          <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="h-4 w-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
           </svg>
           <span>{isEn ? 'Ask Zeno' : '问 Zeno'}</span>
         </button>
       )}
 
-      {/* Chat panel */}
       {open && (
-        <div className="fixed bottom-6 right-6 z-50 w-[360px] max-w-[calc(100vw-2rem)] h-[500px] max-h-[calc(100vh-6rem)] bg-canvas border border-border shadow-xl flex flex-col">
-          {/* Header */}
-          <div className="flex items-center justify-between px-4 py-3 border-b border-border bg-surface shrink-0">
-            <div className="flex items-center gap-2">
-              <div className="w-6 h-6 bg-stone-pale flex items-center justify-center text-stone text-xs font-semibold">Z</div>
+        <div className="fixed bottom-4 right-4 z-50 flex h-[min(620px,calc(100vh-2rem))] w-[min(420px,calc(100vw-2rem))] flex-col border border-border bg-canvas shadow-[0_24px_80px_rgba(42,39,35,0.16)] animate-surface-in sm:bottom-6 sm:right-6">
+          <div className="flex shrink-0 items-center justify-between border-b border-border bg-surface-warm px-4 py-3">
+            <div className="flex items-center gap-3">
+              <div className="flex h-8 w-8 items-center justify-center bg-stone-pale text-xs font-semibold text-stone">Z</div>
               <div>
-                <p className="text-xs font-semibold text-ink">问 Zeno</p>
-                <p className="text-[0.6rem] text-ink-faint">
-                  {isEn ? 'Ask about renovation judgment' : '关于装修判断的问题'}
+                <p className="text-sm font-semibold text-ink">{isEn ? 'Ask Zeno' : '问 Zeno'}</p>
+                <p className="text-[0.7rem] text-ink-faint">
+                  {isEn ? 'Route the question first' : '先分流，再解决问题'}
                 </p>
               </div>
             </div>
-            <button
-              onClick={() => setOpen(false)}
-              className="text-ink-muted hover:text-ink transition-colors p-1"
-              aria-label="Close"
-            >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <button type="button" onClick={() => setOpen(false)} className="p-1 text-ink-muted transition-colors hover:text-ink" aria-label="Close">
+              <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
           </div>
 
-          {/* Messages */}
-          <div className="flex-1 overflow-y-auto px-4 py-4 space-y-3">
+          <div className="flex-1 overflow-y-auto px-4 py-4 space-y-4">
             {messages.length === 0 && (
-              <div className="space-y-3">
-                <p className="text-xs text-ink-muted leading-relaxed mb-4">
+              <div>
+                <p className="text-sm leading-relaxed text-ink-muted">
                   {isEn
-                    ? 'I am the AI assistant on Zeno\'s site. I will not pretend to be Zeno, and I will not push you to buy. Ask me about renovation quotes, budgets, AI use, or what is on this site.'
-                    : '我是 Zeno 网站的 AI 助手，不会冒充 Zeno 本人，也不会推你买东西。可以问我报价、预算、AI 使用或网站上的内容。'}
+                    ? 'Choose the closest situation. I will route you to the right article, tool, checklist or service.'
+                    : '先选最接近你当前处境的一项。我会把你导向对应文章、工具、清单或服务，而不是陪你闲聊。'}
                 </p>
-                <div className="space-y-2">
-                  {suggestions.map((s) => (
-                    <button
-                      key={s}
-                      onClick={() => handleSend(s)}
-                      className="w-full text-left text-xs text-ink-muted border border-border px-3 py-2 hover:border-stone hover:text-stone transition-colors"
-                    >
-                      {s}
-                    </button>
+
+                <div className="mt-4 grid gap-3">
+                  {quickEntries.map((entry) => (
+                    <div key={entry.label} className="border border-border bg-surface p-3">
+                      <button type="button" onClick={() => handleSend(entry.prompt)} className="block w-full text-left text-sm font-semibold text-ink hover:text-stone">
+                        {entry.label}
+                      </button>
+                      <div className="mt-2 flex flex-wrap gap-2">
+                        {entry.links.map((link) => (
+                          <Link key={link.href + link.label} href={link.href} className="text-xs text-stone underline decoration-stone-light underline-offset-2 hover:decoration-stone">
+                            {link.label}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
                   ))}
                 </div>
               </div>
             )}
 
-            {messages.map((msg, i) => (
-              <div key={i} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                <div className={`max-w-[80%] px-3 py-2 text-sm leading-relaxed ${
-                  msg.role === 'user'
-                    ? 'bg-stone text-paper'
-                    : 'bg-surface border border-border text-ink'
+            {messages.map((message, index) => (
+              <div key={index} className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}>
+                <div className={`max-w-[82%] px-3 py-2 text-sm leading-relaxed ${
+                  message.role === 'user'
+                    ? 'bg-stone text-white'
+                    : 'border border-border bg-surface text-ink'
                 }`}>
-                  {msg.content}
+                  {message.content}
                 </div>
               </div>
             ))}
 
             {loading && (
               <div className="flex justify-start">
-                <div className="bg-surface border border-border px-3 py-2 text-sm text-ink-muted">
-                  <span className="inline-flex gap-1">
-                    <span className="animate-bounce">·</span>
-                    <span className="animate-bounce" style={{ animationDelay: '0.1s' }}>·</span>
-                    <span className="animate-bounce" style={{ animationDelay: '0.2s' }}>·</span>
-                  </span>
+                <div className="border border-border bg-surface px-3 py-2 text-sm text-ink-muted">
+                  {isEn ? 'Thinking...' : '正在整理路径...'}
                 </div>
               </div>
             )}
             <div ref={messagesEndRef} />
           </div>
 
-          {/* Input */}
-          <div className="border-t border-border px-3 py-3 shrink-0">
+          <div className="shrink-0 border-t border-border px-3 py-3">
             <form
-              onSubmit={(e) => { e.preventDefault(); handleSend() }}
+              onSubmit={(event) => { event.preventDefault(); handleSend() }}
               className="flex items-center gap-2"
             >
               <input
                 value={input}
-                onChange={(e) => setInput(e.target.value)}
-                placeholder={isEn ? 'Type your question...' : '输入你的问题...'}
-                className="flex-1 bg-transparent text-sm text-ink placeholder-ink-faint outline-none"
+                onChange={(event) => setInput(event.target.value)}
+                placeholder={isEn ? 'Tell me where you are stuck...' : '告诉我你现在卡在哪'}
+                className="min-h-10 flex-1 bg-transparent px-2 text-sm text-ink outline-none placeholder:text-ink-faint"
                 disabled={loading}
               />
               <button
                 type="submit"
                 disabled={!input.trim() || loading}
-                className="text-stone hover:text-stone/80 disabled:text-ink-faint transition-colors"
+                className="inline-flex h-10 items-center bg-stone px-3 text-sm font-medium text-white transition-colors hover:bg-stone/90 disabled:bg-stone/35"
               >
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-                </svg>
+                {isEn ? 'Send' : '发送'}
               </button>
             </form>
           </div>

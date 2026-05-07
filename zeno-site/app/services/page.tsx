@@ -6,6 +6,7 @@ import PageHero from '@/components/PageHero'
 import Container from '@/components/Container'
 import CTA from '@/components/CTA'
 import ServiceCard from '@/components/ServiceCard'
+import ServiceRequestForm from '@/components/services/ServiceRequestForm'
 import StructuredData from '@/components/StructuredData'
 
 export const metadata: Metadata = {
@@ -231,6 +232,17 @@ export default function ServicesPage() {
             </div>
           ))}
         </div>
+
+        <section id="service-form" className="mt-16 scroll-mt-24">
+          <div className="mb-6">
+            <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-2">提交资料</p>
+            <h2 className="text-lg font-semibold text-ink">先把材料和问题说清楚，再决定是否适合进入服务</h2>
+            <p className="text-sm text-ink-muted mt-2 leading-relaxed max-w-2xl">
+              这里是站内服务申请入口。暂不做站内文件上传，你可以先放网盘链接、报价单说明或户型信息；提交后会进入你的用户记录。
+            </p>
+          </div>
+          <ServiceRequestForm services={services} />
+        </section>
 
         {/* ───── 装修服务限量说明 ───── */}
         {renovationServices

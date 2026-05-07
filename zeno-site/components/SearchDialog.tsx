@@ -1,14 +1,32 @@
 'use client'
 
-import { useState, useEffect, useRef, useCallback } from 'react'
-import { useRouter, usePathname } from 'next/navigation'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { usePathname, useRouter } from 'next/navigation'
+
+type SearchType = 'article' | 'note' | 'resource' | 'page' | 'tool' | 'checklist' | 'service'
 
 interface SearchResult {
   title: string
   href: string
-  type: 'article' | 'note' | 'resource' | 'page'
+  type: SearchType
   excerpt?: string
 }
+
+const recommendedZh: SearchResult[] = [
+  { title: '报价单怎么看', href: '/tools/quote-check', type: 'tool', excerpt: '先上传报价单，做一轮风险类型初筛。' },
+  { title: '预算为什么总超', href: '/blog/zhuangxiu-yusuan-weishenme-zongchao', type: 'article', excerpt: '先看超支背后的顺序问题。' },
+  { title: '节点验收', href: '/resources#construction-checkpoints', type: 'checklist', excerpt: '每个节点该看什么、该拍什么、该确认什么。' },
+  { title: '家不是样板间', href: '/blog/02-jia-bu-shi-yangban-jian', type: 'article', excerpt: '从真实居住倒推装修选择。' },
+  { title: 'AI 工作流', href: '/services/ai-workflow', type: 'service', excerpt: '把传统行业经验接进 AI。' },
+]
+
+const recommendedEn: SearchResult[] = [
+  { title: 'Quote review', href: '/en/tools', type: 'tool', excerpt: 'Start from quote risk screening.' },
+  { title: 'Budget risk', href: '/en/tools', type: 'tool', excerpt: 'Find where the budget gets unstable.' },
+  { title: 'Site checkpoints', href: '/en/resources', type: 'checklist', excerpt: 'What to check at each stage.' },
+  { title: 'Home is not a showroom', href: '/en/articles/home-is-not-a-showroom', type: 'article', excerpt: 'Design from real living.' },
+  { title: 'AI workflow', href: '/en/services', type: 'service', excerpt: 'Bring field experience into AI.' },
+]
 
 export default function SearchDialog() {
   const [open, setOpen] = useState(false)
@@ -21,54 +39,60 @@ export default function SearchDialog() {
   const pathname = usePathname()
 
   const isEn = pathname.startsWith('/en')
+  const recommended = isEn ? recommendedEn : recommendedZh
+  const visibleResults = query.trim() ? results : recommended
 
-  // Keyboard shortcut: Ctrl/Cmd + K
+  const typeLabels: Record<SearchType, string> = isEn
+    ? { article: 'Article', note: 'Note', resource: 'Resource', page: 'Page', tool: 'Tool', checklist: 'Checklist', service: 'Service' }
+    : { article: '文章', note: '札记', resource: '资料', page: '页面', tool: '工具', checklist: '清单', service: '服务' }
+
   useEffect(() => {
-    function handleKeyDown(e: KeyboardEvent) {
-      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
-        e.preventDefault()
+    function handleKeyDown(event: KeyboardEvent) {
+      if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'k') {
+        event.preventDefault()
         setOpen(true)
       }
-      if (e.key === 'Escape') {
-        setOpen(false)
-      }
+      if (event.key === 'Escape') setOpen(false)
     }
     document.addEventListener('keydown', handleKeyDown)
     return () => document.removeEventListener('keydown', handleKeyDown)
   }, [])
 
-  // Focus input when opened
   useEffect(() => {
     if (open) {
-      setTimeout(() => inputRef.current?.focus(), 100)
+      document.body.style.overflow = 'hidden'
+      setTimeout(() => inputRef.current?.focus(), 80)
     } else {
+      document.body.style.overflow = ''
       setQuery('')
       setResults([])
       setSelectedIndex(0)
     }
+    return () => { document.body.style.overflow = '' }
   }, [open])
 
-  // Search on query change (debounced)
   useEffect(() => {
     if (!query.trim()) {
       setResults([])
+      setSelectedIndex(0)
       return
     }
 
     const timer = setTimeout(async () => {
       setLoading(true)
       try {
-        const res = await fetch(`/api/search?q=${encodeURIComponent(query.trim())}`)
-        if (res.ok) {
-          const data = await res.json()
+        const response = await fetch(`/api/search?q=${encodeURIComponent(query.trim())}`)
+        if (response.ok) {
+          const data = await response.json()
           setResults(data.results ?? [])
+          setSelectedIndex(0)
         }
       } catch {
-        // Silent fail
+        setResults([])
       } finally {
         setLoading(false)
       }
-    }, 300)
+    }, 220)
 
     return () => clearTimeout(timer)
   }, [query])
@@ -78,125 +102,157 @@ export default function SearchDialog() {
     router.push(result.href)
   }, [router])
 
-  // Keyboard navigation
-  function handleKeyDown(e: React.KeyboardEvent) {
-    if (e.key === 'ArrowDown') {
-      e.preventDefault()
-      setSelectedIndex((i) => Math.min(i + 1, results.length - 1))
-    } else if (e.key === 'ArrowUp') {
-      e.preventDefault()
-      setSelectedIndex((i) => Math.max(i - 1, 0))
-    } else if (e.key === 'Enter' && results[selectedIndex]) {
-      handleSelect(results[selectedIndex])
+  const handleInputKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'ArrowDown') {
+      event.preventDefault()
+      setSelectedIndex((index) => Math.min(index + 1, visibleResults.length - 1))
+    } else if (event.key === 'ArrowUp') {
+      event.preventDefault()
+      setSelectedIndex((index) => Math.max(index - 1, 0))
+    } else if (event.key === 'Enter' && visibleResults[selectedIndex]) {
+      event.preventDefault()
+      handleSelect(visibleResults[selectedIndex])
     }
   }
 
-  const typeLabels: Record<string, string> = isEn
-    ? { article: 'Article', note: 'Note', resource: 'Resource', page: 'Page' }
-    : { article: '文章', note: '札记', resource: '资料', page: '页面' }
+  const shortcutLabel = useMemo(() => {
+    if (typeof navigator === 'undefined') return 'Ctrl K'
+    return navigator.platform.toLowerCase().includes('mac') ? 'Cmd K' : 'Ctrl K'
+  }, [])
 
   if (!open) return null
 
   return (
-    <div className="fixed inset-0 z-50 flex items-start justify-center pt-[15vh]">
-      {/* Backdrop */}
-      <div className="absolute inset-0 bg-ink/40 backdrop-blur-sm" onClick={() => setOpen(false)} />
+    <div className="fixed inset-0 z-50 bg-canvas/96 backdrop-blur-md animate-surface-in">
+      <button
+        type="button"
+        className="absolute inset-0 cursor-default"
+        onClick={() => setOpen(false)}
+        aria-label={isEn ? 'Close search' : '关闭搜索'}
+      />
 
-      {/* Dialog */}
-      <div className="relative w-full max-w-lg mx-4 bg-canvas border border-border shadow-xl">
-        {/* Input */}
-        <div className="flex items-center border-b border-border px-4 py-3">
-          <svg className="w-4 h-4 text-ink-muted shrink-0 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-          </svg>
-          <input
-            ref={inputRef}
-            value={query}
-            onChange={(e) => { setQuery(e.target.value); setSelectedIndex(0) }}
-            onKeyDown={handleKeyDown}
-            placeholder={isEn ? 'Search articles, notes, resources...' : '搜索文章、札记、资料...'}
-            className="flex-1 bg-transparent text-sm text-ink placeholder-ink-faint outline-none"
-          />
-          <kbd className="hidden sm:inline-flex text-[0.6rem] text-ink-faint border border-border px-1.5 py-0.5 ml-2">
+      <div className="relative mx-auto flex min-h-screen max-w-5xl flex-col px-5 py-8 sm:px-8 sm:py-12">
+        <div className="mb-8 flex items-center justify-between">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-widest text-stone">
+              {isEn ? 'Search ZenoAIHome' : '搜索 ZenoAIHome'}
+            </p>
+            <p className="mt-1 text-sm text-ink-muted">
+              {isEn ? 'Pages, tools, checklists, services and articles.' : '页面、工具、清单、服务和文章，从这里进入。'}
+            </p>
+          </div>
+          <button type="button" onClick={() => setOpen(false)} className="text-sm text-ink-muted hover:text-ink">
             ESC
-          </kbd>
+          </button>
         </div>
 
-        {/* Results */}
-        <div className="max-h-[360px] overflow-y-auto">
-          {loading && (
-            <div className="px-4 py-6 text-center text-sm text-ink-muted">
-              {isEn ? 'Searching...' : '搜索中...'}
-            </div>
-          )}
+        <div className="border-b border-border pb-5">
+          <div className="flex items-center gap-4">
+            <svg className="h-6 w-6 shrink-0 text-stone" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+            <input
+              ref={inputRef}
+              value={query}
+              onChange={(event) => setQuery(event.target.value)}
+              onKeyDown={handleInputKeyDown}
+              placeholder={isEn ? 'Search quote, budget, checklist, service...' : '搜索报价、预算、验收、服务...'}
+              className="w-full bg-transparent text-2xl font-medium text-ink outline-none placeholder:text-ink-faint sm:text-4xl"
+            />
+            <kbd className="hidden shrink-0 border border-border px-2 py-1 text-xs text-ink-faint sm:inline-flex">
+              {shortcutLabel}
+            </kbd>
+          </div>
+        </div>
 
-          {!loading && query && results.length === 0 && (
-            <div className="px-4 py-6 text-center text-sm text-ink-muted">
-              {isEn ? 'No results found.' : '没有找到相关内容。'}
+        <div className="mt-8 grid flex-1 grid-cols-1 gap-8 lg:grid-cols-[0.72fr_0.28fr]">
+          <section>
+            <div className="mb-4 flex items-center justify-between">
+              <h2 className="text-sm font-semibold text-ink">
+                {query.trim() ? (isEn ? 'Results' : '搜索结果') : (isEn ? 'Recommended' : '推荐入口')}
+              </h2>
+              {loading && <span className="text-xs text-ink-muted">{isEn ? 'Searching...' : '搜索中...'}</span>}
             </div>
-          )}
 
-          {!loading && results.length > 0 && (
-            <ul className="py-2">
-              {results.map((result, i) => (
-                <li key={result.href}>
-                  <button
-                    onClick={() => handleSelect(result)}
-                    className={`w-full text-left px-4 py-3 flex items-start gap-3 transition-colors ${
-                      i === selectedIndex ? 'bg-surface-warm' : 'hover:bg-surface-warm/50'
-                    }`}
-                  >
-                    <span className="text-[0.6rem] text-stone font-semibold uppercase tracking-widest mt-1 shrink-0 w-10">
-                      {typeLabels[result.type]}
-                    </span>
-                    <div className="min-w-0">
-                      <p className="text-sm font-medium text-ink truncate">{result.title}</p>
-                      {result.excerpt && (
-                        <p className="text-xs text-ink-muted mt-0.5 line-clamp-1">{result.excerpt}</p>
-                      )}
-                    </div>
-                  </button>
-                </li>
+            <div className="space-y-2">
+              {!loading && query.trim() && visibleResults.length === 0 && (
+                <div className="border border-border bg-surface p-6 text-sm text-ink-muted">
+                  {isEn ? 'No result found. Try quote, budget or service.' : '没有找到结果。可以试试“报价”“预算”“验收”“服务”。'}
+                </div>
+              )}
+
+              {visibleResults.map((result, index) => (
+                <button
+                  key={`${result.href}-${result.title}`}
+                  type="button"
+                  onClick={() => handleSelect(result)}
+                  onMouseEnter={() => setSelectedIndex(index)}
+                  className={`group flex w-full items-start gap-4 border px-4 py-4 text-left transition-all duration-150 ${
+                    index === selectedIndex
+                      ? 'border-stone bg-surface-warm shadow-[0_12px_30px_rgba(42,39,35,0.06)]'
+                      : 'border-border bg-surface hover:border-stone/40 hover:bg-surface-warm'
+                  }`}
+                >
+                  <span className="mt-0.5 min-w-14 text-[0.65rem] font-semibold uppercase tracking-widest text-stone">
+                    {typeLabels[result.type]}
+                  </span>
+                  <span className="min-w-0 flex-1">
+                    <span className="block text-base font-semibold text-ink group-hover:text-stone">{result.title}</span>
+                    {result.excerpt && <span className="mt-1 block text-sm leading-relaxed text-ink-muted">{result.excerpt}</span>}
+                  </span>
+                  <span className="mt-1 text-sm text-stone transition-transform group-hover:translate-x-1">-&gt;</span>
+                </button>
               ))}
-            </ul>
-          )}
-
-          {!query && (
-            <div className="px-4 py-6 text-center text-xs text-ink-faint">
-              {isEn ? 'Type to search across all content' : '输入关键词搜索全站内容'}
             </div>
-          )}
-        </div>
+          </section>
 
-        {/* Footer hint */}
-        <div className="border-t border-border px-4 py-2 flex items-center justify-between text-[0.6rem] text-ink-faint">
-          <span>↑↓ {isEn ? 'navigate' : '导航'}  ↵ {isEn ? 'select' : '选择'}</span>
-          <span>ESC {isEn ? 'close' : '关闭'}</span>
+          <aside className="border border-border bg-surface-warm p-5 self-start">
+            <p className="text-xs font-semibold uppercase tracking-widest text-stone">
+              {isEn ? 'Shortcut' : '快捷动作'}
+            </p>
+            <div className="mt-4 space-y-3 text-sm">
+              <button type="button" onClick={() => handleSelect({ title: '报价初筛工具', href: '/tools/quote-check', type: 'tool' })} className="block w-full text-left text-ink-muted hover:text-ink">
+                {isEn ? 'Upload a quote' : '上传报价单'}
+              </button>
+              <button type="button" onClick={() => handleSelect({ title: '预算风险自测', href: '/tools/budget-risk', type: 'tool' })} className="block w-full text-left text-ink-muted hover:text-ink">
+                {isEn ? 'Budget risk quiz' : '做预算风险自测'}
+              </button>
+              <button type="button" onClick={() => handleSelect({ title: '服务提交', href: '/services#service-form', type: 'service' })} className="block w-full text-left text-ink-muted hover:text-ink">
+                {isEn ? 'Submit service request' : '提交服务需求'}
+              </button>
+              <button type="button" onClick={() => handleSelect({ title: '资料库', href: '/resources', type: 'resource' })} className="block w-full text-left text-ink-muted hover:text-ink">
+                {isEn ? 'Open resources' : '打开资料库'}
+              </button>
+            </div>
+            <p className="mt-6 border-t border-border pt-4 text-xs leading-relaxed text-ink-muted">
+              {isEn ? 'Use arrow keys to move, Enter to open.' : '支持方向键选择，Enter 打开。'}
+            </p>
+          </aside>
         </div>
       </div>
     </div>
   )
 }
 
-/** Trigger button for Header */
 export function SearchTrigger() {
   const pathname = usePathname()
   const isEn = pathname.startsWith('/en')
 
-  function openSearch() {
-    document.dispatchEvent(new KeyboardEvent('keydown', { key: 'k', metaKey: true }))
+  function triggerSearch() {
+    document.dispatchEvent(new KeyboardEvent('keydown', { key: 'k', ctrlKey: true }))
   }
 
   return (
     <button
-      onClick={openSearch}
-      className="flex items-center gap-1.5 text-[0.8125rem] text-ink-muted hover:text-ink transition-colors"
+      type="button"
+      onClick={triggerSearch}
+      className="inline-flex items-center gap-1.5 text-[0.8125rem] text-ink-muted transition-colors hover:text-ink"
       aria-label={isEn ? 'Search' : '搜索'}
     >
-      <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <svg className="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
       </svg>
-      <span className="hidden sm:inline text-xs text-ink-faint">⌘K</span>
+      <span className="hidden text-xs text-ink-faint sm:inline">Cmd/Ctrl K</span>
     </button>
   )
 }
