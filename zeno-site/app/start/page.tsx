@@ -7,7 +7,7 @@ import StructuredData from '@/components/StructuredData'
 export const metadata: Metadata = {
   title: '从这里开始',
   description:
-    '如果你第一次来到站里，按你当前最具体的问题进入：报价、预算、施工、真实居住，或传统行业里的 AI 工作流。',
+    '如果你第一次来到站里，按你当前最具体的问题进入：报价、预算、施工、居住场景，或传统行业里的 AI 工作流。',
   alternates: {
     canonical: 'https://zenoaihome.com/start',
   },
@@ -50,21 +50,21 @@ const paths = [
     tool: { label: '施工节点入口', href: '/resources#construction-checkpoints' },
     checklist: { label: '留痕与验收清单', href: '/resources#yanshou-qingdan' },
     article: { label: '从工地看世界', href: '/blog/03-cong-gongdi-kan-shijie' },
-    service: { label: '真实居住派服务', href: '/services/renovation#shi-zhu-pai-zhuangxiu' },
+    service: { label: '提交现场判断', href: '/services#service-form' },
     serviceAdvice: '如果现场争议已经出现，先保留照片、聊天记录和节点确认，再判断是否需要介入。',
   },
   {
     id: 'living',
-    label: '真实居住',
+    label: '居住场景',
     title: '最怕的是住进去不顺手，而不是风格不够像',
     description: '先把家庭成员、作息、收纳、做饭、办公这些真实需求写清，再回头判断方案。',
     forWho: '适合不想只照搬效果图、希望房子长期好住的人。',
     time: '20-30 分钟写完第一轮真实需求。',
-    tool: { label: '真实居住自查表', href: '/resources#shizhu-pai-zijian-biao' },
+    tool: { label: '居住场景自查表', href: '/resources#shizhu-pai-zijian-biao' },
     checklist: { label: '入住前后复盘表', href: '/resources#living-beyond-completion' },
     article: { label: '家不是样板间', href: '/blog/02-jia-bu-shi-yangban-jian' },
-    service: { label: '真实居住派服务', href: '/services/renovation#shi-zhu-pai-zhuangxiu' },
-    serviceAdvice: '如果你在风格、预算和生活习惯之间摇摆，先用真实居住问题重排优先级。',
+    service: { label: '居住场景装修服务', href: '/services/renovation#shi-zhu-pai-zhuangxiu' },
+    serviceAdvice: '如果你在风格、预算和生活习惯之间摇摆，先用居住场景问题重排优先级。',
   },
   {
     id: 'ai',

@@ -81,12 +81,12 @@ export const primaryNav: PrimaryNavItem[] = [
       },
       {
         key: 'living',
-        zh: { label: '真实居住', desc: '不要只为效果图买单' },
+        zh: { label: '居住场景', desc: '先按家庭怎么住来判断' },
         en: { label: 'Real Living', desc: 'Do not design only for photos' },
         items: [
-          { key: 'home-not-showroom', zh: { label: '家不是样板间', href: '/blog/02-jia-bu-shi-yangban-jian', desc: '先看家里真正怎么住' }, en: { label: 'Home Is Not A Showroom', href: '/en/articles/home-is-not-a-showroom', desc: 'Design for actual living' } },
-          { key: 'living-check', zh: { label: '实住派自查表', href: '/resources#shizhu-pai-zijian-biao', desc: '家庭成员、做饭、收纳、清洁' }, en: { label: 'Living Checklist', href: '/en/resources', desc: 'Family, cooking, storage' } },
-          { key: 'living-service', zh: { label: '真实居住服务', href: '/services/renovation#shi-zhu-pai-zhuangxiu', desc: '南宁本地深度服务' }, en: { label: 'Real Living Service', href: '/en/services', desc: 'Deep service when fit' } },
+          { key: 'home-not-showroom', zh: { label: '家不是样板间', href: '/blog/02-jia-bu-shi-yangban-jian', desc: '先看家里到底怎么住' }, en: { label: 'Home Is Not A Showroom', href: '/en/articles/home-is-not-a-showroom', desc: 'Design for actual living' } },
+          { key: 'living-check', zh: { label: '居住场景自查表', href: '/resources#shizhu-pai-zijian-biao', desc: '家庭成员、做饭、收纳、清洁' }, en: { label: 'Living Checklist', href: '/en/resources', desc: 'Family, cooking, storage' } },
+          { key: 'living-service', zh: { label: '居住场景服务', href: '/services/renovation#shi-zhu-pai-zhuangxiu', desc: '南宁本地深度服务' }, en: { label: 'Real Living Service', href: '/en/services', desc: 'Deep service when fit' } },
         ],
       },
       {
@@ -136,7 +136,7 @@ export const primaryNav: PrimaryNavItem[] = [
           { key: 'quote-list', zh: { label: '报价审核清单', href: '/resources#baojia-shenhe-qingdan' }, en: { label: 'Quote Checklist', href: '/en/resources' } },
           { key: 'budget-template', zh: { label: '预算模板', href: '/resources#zhuangxiu-yusuan-moban' }, en: { label: 'Budget Template', href: '/en/resources' } },
           { key: 'handover-list', zh: { label: '验收清单', href: '/resources#yanshou-qingdan' }, en: { label: 'Handover Checklist', href: '/en/resources' } },
-          { key: 'living-list', zh: { label: '真实居住自查表', href: '/resources#shizhu-pai-zijian-biao' }, en: { label: 'Real Living Checklist', href: '/en/resources' } },
+          { key: 'living-list', zh: { label: '居住场景自查表', href: '/resources#shizhu-pai-zijian-biao' }, en: { label: 'Real Living Checklist', href: '/en/resources' } },
         ],
       },
       {
@@ -227,7 +227,7 @@ export const primaryNav: PrimaryNavItem[] = [
       },
       {
         key: 'living-service',
-        zh: { label: '真实居住派服务', desc: '适合南宁本地、重视长期使用的人' },
+        zh: { label: '居住场景装修服务', desc: '适合南宁本地、重视长期使用的人' },
         en: { label: 'Real Living Service', desc: 'For deep real-living projects' },
         items: [
           { key: 'living-fit', zh: { label: '适合谁', href: '/services/renovation#shi-zhu-pai-zhuangxiu' }, en: { label: 'Who it fits', href: '/en/services' } },

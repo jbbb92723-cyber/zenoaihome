@@ -47,12 +47,12 @@ const quickEntriesZh = [
     ],
   },
   {
-    label: '我想按真实居住做选择',
-    prompt: '我不想只按效果图装修，请帮我从家庭成员、做饭、收纳、清洁和长期使用角度分流下一步。',
+    label: '我想按居住场景做选择',
+    prompt: '我不想只按效果图装修，请帮我从家庭成员、做饭、收纳、清洁和长期使用这些居住场景分流下一步。',
     links: [
       { label: '家不是样板间', href: '/blog/02-jia-bu-shi-yangban-jian' },
-      { label: '实住派自查表', href: '/resources#shizhu-pai-zijian-biao' },
-      { label: '真实居住服务', href: '/services/renovation#shi-zhu-pai-zhuangxiu' },
+      { label: '居住场景自查表', href: '/resources#shizhu-pai-zijian-biao' },
+      { label: '居住场景服务', href: '/services/renovation#shi-zhu-pai-zhuangxiu' },
     ],
   },
 ]

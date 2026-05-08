@@ -56,7 +56,7 @@ const pathCards: Array<{
   {
     number: '03',
     icon: HouseLine,
-    title: '回到真实居住',
+    title: '回到居住场景',
     body: '风格最后要落到做饭、收纳、清洁、作息和十年后的使用感里。',
     href: '/topics#shi-zhu-pai-zhuangxiu',
   },
@@ -95,7 +95,7 @@ const problemCards: Array<{
   {
     icon: HouseLine,
     title: '不想只为效果图买单',
-    body: '好看要回到真实生活里，经得起做饭、收纳、清洁和十年使用。',
+    body: '好看要回到居住场景里，经得起做饭、收纳、清洁和十年使用。',
     href: '/blog/02-jia-bu-shi-yangban-jian',
   },
 ]

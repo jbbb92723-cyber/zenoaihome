@@ -139,13 +139,13 @@ export const riskSummaries: Record<RiskKey, RiskSummary> = {
     key: 'R4',
     name: '居住风险',
     shortName: '真实需求没厘清',
-    headline: '你现在最该先盯的，是需求是不是从真实居住出发。',
+    headline: '你现在最该先盯的，是需求是不是从居住场景出发。',
     description: '如果你现在主要靠网图、风格词或短期展示感做选择，住进去后的摩擦往往会在后面慢慢显现。',
     whyItMatters: '需求顺序一旦错了，后面的预算、材料和方案讨论都会被带偏。',
     firstStep: '先把家庭成员、作息、收纳、做饭、办公这些真实需求写出来，再回头看方案。',
-    resource: { label: '先拿实住派装修自查表', href: '/resources#living-beyond-completion' },
+    resource: { label: '先拿居住场景自查表', href: '/resources#living-beyond-completion' },
     article: { label: '先看家不是样板间', href: '/blog/02-jia-bu-shi-yangban-jian' },
-    service: { label: '直接看真实居住服务', href: '/services/renovation#shi-zhu-pai-zhuangxiu' },
+    service: { label: '直接看居住场景服务', href: '/services/renovation#shi-zhu-pai-zhuangxiu' },
   },
 }
 

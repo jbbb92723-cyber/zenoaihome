@@ -23,7 +23,7 @@ import ResourceClaimButton from '@/components/resources/ResourceClaimButton'
 export const metadata: Metadata = {
   title: '按问题拿清单和资料，不用先翻栏目 | ZenoAIHome',
   description:
-    '先按问题拿清单和资料，再按阶段展开完整工具库。覆盖报价、预算、验收、真实居住和 AI 工作流。',
+    '先按问题拿清单和资料，再按阶段展开完整工具库。覆盖报价、预算、验收、居住场景和 AI 工作流。',
   alternates: {
     canonical: 'https://zenoaihome.com/resources',
   },
@@ -78,9 +78,9 @@ const problemEntryCards = [
   {
     title: '我不想把家装成样板间',
     description: '先把真实生活需求写清楚，再谈风格表达和预算分配。',
-    primary: { label: '拿实住派自查表', href: '/resources#shizhu-pai-zijian-biao' },
-    secondary: { label: '看真实居住专题', href: '/topics#shi-zhu-pai-zhuangxiu' },
-    fallback: { label: '看真实居住派装修服务 →', href: '/services/renovation#shi-zhu-pai-zhuangxiu' },
+    primary: { label: '拿居住场景自查表', href: '/resources#shizhu-pai-zijian-biao' },
+    secondary: { label: '看居住场景专题', href: '/topics#shi-zhu-pai-zhuangxiu' },
+    fallback: { label: '看居住场景装修服务 →', href: '/services/renovation#shi-zhu-pai-zhuangxiu' },
   },
   {
     title: '我是传统行业人，想用 AI',
@@ -139,7 +139,7 @@ export default function ResourcesPage() {
           <div className="flex flex-wrap gap-3">
             <a href="#zhuangxiu-qian" className="text-xs font-medium text-stone border border-stone/30 px-3 py-1.5 hover:bg-stone-pale transition-colors">① 装修前判断</a>
             <a href="#zhuangxiu-zhong" className="text-xs font-medium text-stone border border-stone/30 px-3 py-1.5 hover:bg-stone-pale transition-colors">② 装修中落地</a>
-            <a href="#zhenshi-juzhu" className="text-xs font-medium text-stone border border-stone/30 px-3 py-1.5 hover:bg-stone-pale transition-colors">③ 真实居住选择</a>
+            <a href="#zhenshi-juzhu" className="text-xs font-medium text-stone border border-stone/30 px-3 py-1.5 hover:bg-stone-pale transition-colors">③ 居住场景</a>
             <a href="#ai-fuzhu" className="text-xs font-medium text-stone border border-stone/30 px-3 py-1.5 hover:bg-stone-pale transition-colors">④ AI 辅助装修</a>
           </div>
         </div>
@@ -242,7 +242,7 @@ export default function ResourcesPage() {
         <section id="zhenshi-juzhu" className="mb-16 scroll-mt-20">
           <SectionHeader
             label="阶段三"
-            title="真实居住选择 — 住进去之后的判断"
+            title="居住场景选择 — 住进去之后的判断"
             subtitle="装修不是终点，住得舒服才是。这些资料帮你做出更适合真实生活的选择。"
           />
 

@@ -10,6 +10,7 @@ export default function BlogPage() {
   const [activeCategory, setActiveCategory] = useState<string>('全部')
 
   const allCategories = ['全部', ...categories]
+  const getCategoryLabel = (category: string) => (category === '真实居住' ? '居住场景' : category)
 
   const filtered =
     activeCategory === '全部'
@@ -23,7 +24,7 @@ export default function BlogPage() {
       <PageHero
         label="文章"
         title="我写的东西"
-        subtitle="从真实居住出发，记录 AI 实践、工具产品、一人公司和判断系统。这里不是普通博客，而是 Zeno 把经验沉淀成资产的内容入口。"
+        subtitle="从居住场景出发，记录 AI 实践、工具产品、一人公司和判断系统。这里不是普通博客，而是 Zeno 把经验沉淀成资产的内容入口。"
       />
 
       <Container size="content" className="py-12 sm:py-16">
@@ -39,7 +40,7 @@ export default function BlogPage() {
                   : 'border-border text-ink-muted hover:border-stone hover:text-stone'
               }`}
             >
-              {cat}
+              {getCategoryLabel(cat)}
             </button>
           ))}
         </div>

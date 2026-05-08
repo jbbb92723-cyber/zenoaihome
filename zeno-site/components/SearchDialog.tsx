@@ -18,7 +18,7 @@ const recommendedZh: SearchResult[] = [
   { title: '预算怎么分', href: '/tools/budget-structure', type: 'tool', excerpt: '把总预算拆成能行动的结构。' },
   { title: '瓷砖用量怎么算', href: '/tools/tile-calculator', type: 'tool', excerpt: '估算片数、箱数和损耗。' },
   { title: '节点验收', href: '/tools/inspection-guide', type: 'tool', excerpt: '每个节点该看什么、该拍什么、该确认什么。' },
-  { title: '家不是样板间', href: '/blog/02-jia-bu-shi-yangban-jian', type: 'article', excerpt: '从真实居住倒推装修选择。' },
+  { title: '家不是样板间', href: '/blog/02-jia-bu-shi-yangban-jian', type: 'article', excerpt: '从居住场景倒推装修选择。' },
 ]
 
 const recommendedEn: SearchResult[] = [

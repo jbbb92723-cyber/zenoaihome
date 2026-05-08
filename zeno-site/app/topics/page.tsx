@@ -10,7 +10,7 @@ import StructuredData from '@/components/StructuredData'
 export const metadata: Metadata = {
   title: '按问题看 5 个长期专题',
   description:
-    '如果你不想碎片化阅读，就按问题进入这 5 个长期专题：真实居住、AI 工作流、美学与生活、长期主义和工地观察。',
+    '如果你不想碎片化阅读，就按问题进入这 5 个长期专题：居住场景、AI 工作流、美学与生活、长期主义和工地观察。',
 }
 
 const topicAccents: Record<string, string> = {
@@ -31,7 +31,7 @@ export default function TopicsPage() {
           name: '按问题看 5 个长期专题',
           url: 'https://zenoaihome.com/topics',
           description:
-            '如果你不想碎片化阅读，就按问题进入这 5 个长期专题：真实居住、AI 工作流、工具与产品、一人公司和判断与生活。',
+            '如果你不想碎片化阅读，就按问题进入这 5 个长期专题：居住场景、AI 工作流、工具与产品、一人公司和判断与生活。',
           inLanguage: 'zh-CN',
           mainEntity: {
             '@type': 'ItemList',
@@ -63,7 +63,7 @@ export default function TopicsPage() {
           <div className="space-y-1.5 text-sm text-ink-muted">
             <p>
               <span className="text-stone font-medium">新读者</span>
-              　先看「真实居住」，从装修入口建立信任
+              　先看「居住场景」，从装修入口建立信任
             </p>
             <p>
               <span className="text-stone font-medium">想用 AI</span>

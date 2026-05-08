@@ -7,7 +7,7 @@ import CTA from '@/components/CTA'
 export const metadata: Metadata = {
   title: '关于我',
   description:
-    '我是 Zeno。装修行业 16 年，从工地现场走出来。现在把报价、预算、施工、验收和真实居住里的判断，整理成文章、清单、工具和服务。',
+    '我是 Zeno。装修行业 16 年，从工地现场走出来。现在把报价、预算、施工、验收和居住场景里的判断，整理成文章、清单、工具和服务。',
 }
 
 const believes = [

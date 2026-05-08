@@ -10,7 +10,7 @@ import { parseScoreQuery, riskSummaries } from '@/data/budget-risk'
 export const metadata: Metadata = {
   title: '你的装修预算风险结果',
   description:
-    '根据预算风险自测结果，先分清你当前更值得先处理的是报价、预算、流程还是真实居住需求。',
+    '根据预算风险自测结果，先分清你当前更值得先处理的是报价、预算、流程还是居住场景需求。',
   alternates: {
     canonical: 'https://zenoaihome.com/tools/budget-risk/result',
   },

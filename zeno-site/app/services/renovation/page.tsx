@@ -9,9 +9,9 @@ import StructuredData from '@/components/StructuredData'
 import { services } from '@/data/services'
 
 export const metadata: Metadata = {
-  title: '装修判断服务：报价、预算结构和真实居住怎么选',
+  title: '装修判断服务：报价、预算结构和居住场景怎么选',
   description:
-    '针对普通装修业主的判断服务入口。先分清你是报价风险、预算结构失控，还是居住需求没厘清，再决定要不要找 Zeno。',
+    '针对普通装修业主的判断服务入口。先分清你是报价风险、预算结构失控，还是居住场景没厘清，再决定要不要找 Zeno。',
   alternates: {
     canonical: 'https://zenoaihome.com/services/renovation',
   },
@@ -46,9 +46,9 @@ const faqs = [
       '报价审核是在你拿到具体报价单之后，帮你看漏项、模糊项和风险边界。预算结构诊断是在报价前或报价混乱时，先把钱按结构拆清。',
   },
   {
-    question: '真实居住派装修服务适合什么人？',
+    question: '居住场景装修服务适合什么人？',
     answer:
-      '它更适合已经明确要从真实生活出发做决策、预算和城市范围也匹配的人，不适合只想照着网图快速还原的项目。',
+      '它更适合已经明确要从家庭生活场景出发做决策、预算和城市范围也匹配的人，不适合只想照着网图快速还原的项目。',
   },
 ]
 
@@ -64,7 +64,7 @@ export default function RenovationServicesPage() {
             '@type': 'CollectionPage',
             name: '装修判断服务',
             url: 'https://zenoaihome.com/services/renovation',
-            description: '先分清你是报价、预算还是真实居住的问题，再决定下一步。',
+            description: '先分清你是报价、预算还是居住场景的问题，再决定下一步。',
             inLanguage: 'zh-CN',
           },
           {
@@ -85,7 +85,7 @@ export default function RenovationServicesPage() {
       <PageHero
         label="装修判断服务"
         title="先判断，再决定这笔装修钱值不值得花"
-        subtitle="这条入口只给普通装修业主。先分清你现在是报价风险、预算结构问题，还是居住需求没厘清，再决定要不要找我。"
+        subtitle="这条入口只给普通装修业主。先分清你现在是报价风险、预算结构问题，还是居住场景没厘清，再决定要不要找我。"
         note="如果你只是想先自己判断，先拿清单和模板，把问题缩小到一张报价、一份预算或一个施工节点。"
         size="content"
       />
@@ -112,7 +112,7 @@ export default function RenovationServicesPage() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {[
-              ['服务范围', '报价审核、预算结构诊断、真实居住判断。'],
+              ['服务范围', '报价审核、预算结构诊断、居住场景判断。'],
               ['交付方式', '微信沟通 + 书面建议，不做模糊口头答复。'],
               ['你先准备', '城市、材料、报价或预算截图，越具体越快。'],
               ['明确不做', '不代砍价、不代施工、不接品牌推荐单。'],

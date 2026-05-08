@@ -28,7 +28,7 @@ export default function HomePage() {
           name: 'ZenoAIHome',
           url: 'https://zenoaihome.com/',
           description:
-            '先别急着装修，先建立判断力。从报价、预算、合同、施工、验收和真实居住出发，帮普通业主在做决定前更清醒。',
+            '先别急着装修，先建立判断力。从报价、预算、合同、施工、验收和居住场景出发，帮普通业主在做决定前更清醒。',
           inLanguage: 'zh-CN',
         }}
       />

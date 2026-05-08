@@ -12,7 +12,7 @@ import StructuredData from '@/components/StructuredData'
 export const metadata: Metadata = {
   title: '工具看不明白的地方，可以找我帮你判断',
   description:
-    'ZenoAIHome 服务页。先分清你需要的是装修报价、预算和真实居住判断，还是传统行业 AI 工作流整理，再看具体边界和价格。',
+    'ZenoAIHome 服务页。先分清你需要的是装修报价、预算和居住场景判断，还是传统行业 AI 工作流整理，再看具体边界和价格。',
   alternates: {
     canonical: 'https://zenoaihome.com/services',
   },
@@ -65,7 +65,7 @@ const industryExtras = [
 const splitCards = [
   {
     label: '装修判断服务',
-    title: '报价、预算和真实居住，先分清你要判断什么',
+    title: '报价、预算和居住场景，先分清你要判断什么',
     description: '给普通装修业主的入口。先看清问题，再决定要不要把材料发我。',
     href: '/services/renovation',
     image: '/images/services/renovation-judgment-proof.svg',
@@ -142,7 +142,7 @@ export default function ServicesPage() {
       <PageHero
         label="找我帮你判断"
         title="工具看不明白的地方，可以找我帮你判断"
-        subtitle="这里不做泛泛咨询。先分清你要判断的是报价、预算、真实居住，还是传统行业 AI 工作流，再看具体服务边界。"
+        subtitle="这里不做泛泛咨询。先分清你要判断的是报价、预算、居住场景，还是传统行业 AI 工作流，再看具体服务边界。"
         note="如果你只是想先自己判断，先去工具页和资料页，不急着付费。"
         size="content"
       />
@@ -175,7 +175,7 @@ export default function ServicesPage() {
           <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-3">可验证的证据</p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {[
-              ['服务范围', '报价审核、预算结构诊断、真实居住判断、AI 工作流整理。'],
+              ['服务范围', '报价审核、预算结构诊断、居住场景判断、AI 工作流整理。'],
               ['工作方式', '先看材料，再给书面建议，不做空口安慰。'],
               ['交付样例', '风险说明、修改建议、流程骨架、提示词框架。'],
               ['哪些不做', '不代砍价、不代施工、不承诺一键自动化。'],
@@ -192,7 +192,7 @@ export default function ServicesPage() {
         <div className="mb-6">
           <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-2">A</p>
           <h2 className="text-lg font-semibold text-ink">装修判断服务</h2>
-          <p className="text-sm text-ink-muted mt-1">先处理普通装修业主最常见的三类问题：报价、预算结构和真实居住选择。</p>
+          <p className="text-sm text-ink-muted mt-1">先处理普通装修业主最常见的三类问题：报价、预算结构和居住场景选择。</p>
         </div>
 
         <div className="space-y-10">
@@ -251,7 +251,7 @@ export default function ServicesPage() {
             <div key={service.id} className="mt-6 border border-stone/30 bg-stone/5 p-5">
               <p className="text-xs text-stone font-semibold uppercase tracking-widest mb-1">限量开放</p>
               <p className="text-sm text-ink-muted leading-relaxed">
-                真实居住派装修服务主要面向南宁本地和高度匹配用户。
+                居住场景装修服务主要面向南宁本地和高度匹配用户。
                 这不是未来规模化主线，而是基于真实项目经验的深度服务。
               </p>
             </div>
