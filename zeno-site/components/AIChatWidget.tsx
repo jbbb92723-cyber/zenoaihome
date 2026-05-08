@@ -4,9 +4,47 @@ import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
 import { usePathname } from 'next/navigation'
 
+type ChatActionKind = 'tool' | 'article' | 'resource' | 'service' | 'contact' | 'page'
+
+interface ChatAction {
+  label: string
+  href: string
+  kind: ChatActionKind
+}
+
 interface Message {
   role: 'user' | 'assistant'
   content: string
+  bullets?: string[]
+  actions?: ChatAction[]
+  followUps?: string[]
+}
+
+interface ChatResponse {
+  reply: string
+  bullets?: string[]
+  actions?: ChatAction[]
+  followUps?: string[]
+  source: 'llm' | 'fallback'
+}
+
+const actionKindLabels: Record<'zh' | 'en', Record<ChatActionKind, string>> = {
+  zh: {
+    tool: '工具',
+    article: '文章',
+    resource: '资料',
+    service: '服务',
+    contact: '联系',
+    page: '入口',
+  },
+  en: {
+    tool: 'Tool',
+    article: 'Article',
+    resource: 'Resource',
+    service: 'Service',
+    contact: 'Contact',
+    page: 'Page',
+  },
 }
 
 const quickEntriesZh = [
@@ -104,12 +142,18 @@ export default function AIChatWidget() {
 
   const isEn = pathname.startsWith('/en')
   const quickEntries = isEn ? quickEntriesEn : quickEntriesZh
+  const locale = isEn ? 'en' : 'zh'
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
-  }, [messages])
+  }, [messages, loading])
 
   if (pathname.startsWith('/admin')) return null
+
+  function resetConversation() {
+    setMessages([])
+    setInput('')
+  }
 
   async function handleSend(text?: string) {
     const msg = text ?? input.trim()
@@ -125,12 +169,18 @@ export default function AIChatWidget() {
       const response = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: msg, locale: isEn ? 'en' : 'zh', history }),
+        body: JSON.stringify({ message: msg, locale, history }),
       })
 
       if (response.ok) {
-        const data = await response.json()
-        setMessages((previous) => [...previous, { role: 'assistant', content: data.reply }])
+        const data: ChatResponse = await response.json()
+        setMessages((previous) => [...previous, {
+          role: 'assistant',
+          content: data.reply,
+          bullets: data.bullets,
+          actions: data.actions,
+          followUps: data.followUps,
+        }])
       } else {
         setMessages((previous) => [...previous, {
           role: 'assistant',
@@ -182,11 +232,22 @@ export default function AIChatWidget() {
                 </p>
               </div>
             </div>
-            <button type="button" onClick={() => setOpen(false)} className="p-1 text-ink-muted transition-colors hover:text-ink" aria-label="Close">
-              <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
+            <div className="flex items-center gap-2">
+              {messages.length > 0 && (
+                <button
+                  type="button"
+                  onClick={resetConversation}
+                  className="text-[0.7rem] font-medium text-ink-faint transition-colors hover:text-ink"
+                >
+                  {isEn ? 'New chat' : '重新开始'}
+                </button>
+              )}
+              <button type="button" onClick={() => setOpen(false)} className="p-1 text-ink-muted transition-colors hover:text-ink" aria-label="Close">
+                <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
           </div>
 
           <div className="flex-1 overflow-y-auto px-4 py-4 space-y-4">
@@ -197,6 +258,17 @@ export default function AIChatWidget() {
                     ? 'Choose the closest situation. I will route you to the right article, tool, checklist or service.'
                     : '先选最接近你当前处境的一项。我会把你导向对应文章、工具、清单、AI 方法或服务。'}
                 </p>
+
+                <div className="mt-3 border border-border bg-surface px-3 py-3">
+                  <p className="text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-ink-faint">
+                    {isEn ? 'You can also ask like this' : '也可以直接这样问'}
+                  </p>
+                  <p className="mt-2 text-sm leading-relaxed text-ink">
+                    {isEn
+                      ? '“89 sqm, budget 200k, half-package quote already at 160k. What should I check first?”'
+                      : '“套内 89 平，预算 20 万，半包报价已经 16 万了，我先看哪里？”'}
+                  </p>
+                </div>
 
                 <div className="mt-4 grid gap-3">
                   {quickEntries.map((entry) => (
@@ -219,12 +291,69 @@ export default function AIChatWidget() {
 
             {messages.map((message, index) => (
               <div key={index} className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                <div className={`max-w-[82%] px-3 py-2 text-sm leading-relaxed ${
+                <div className={`max-w-[88%] px-3 py-2 text-sm leading-relaxed ${
                   message.role === 'user'
                     ? 'bg-stone text-white'
-                    : 'border border-border bg-surface text-ink'
+                    : 'border border-border bg-surface text-ink shadow-[0_12px_30px_rgba(42,39,35,0.06)]'
                 }`}>
-                  {message.content}
+                  <div className="whitespace-pre-wrap">{message.content}</div>
+
+                  {message.role === 'assistant' && message.bullets && message.bullets.length > 0 && (
+                    <ul className="mt-3 space-y-2 border-t border-border/70 pt-3 text-[0.92rem] text-ink-muted">
+                      {message.bullets.map((bullet) => (
+                        <li key={bullet} className="flex gap-2">
+                          <span className="mt-[0.15rem] text-stone">•</span>
+                          <span>{bullet}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+
+                  {message.role === 'assistant' && message.actions && message.actions.length > 0 && (
+                    <div className="mt-3 border-t border-border/70 pt-3">
+                      <p className="mb-2 text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-ink-faint">
+                        {isEn ? 'Next step' : '下一步'}
+                      </p>
+                      <div className="grid gap-2">
+                        {message.actions.map((action) => (
+                          <Link
+                            key={`${action.href}-${action.label}`}
+                            href={action.href}
+                            className="group flex items-center justify-between border border-border bg-canvas px-3 py-2 transition-colors hover:border-stone hover:bg-stone-pale/45"
+                          >
+                            <div>
+                              <span className="block text-sm font-semibold text-ink group-hover:text-stone">{action.label}</span>
+                              <span className="mt-1 block text-[0.72rem] uppercase tracking-[0.16em] text-ink-faint">
+                                {actionKindLabels[locale][action.kind]}
+                              </span>
+                            </div>
+                            <span className="text-sm text-stone">→</span>
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {message.role === 'assistant' && message.followUps && message.followUps.length > 0 && (
+                    <div className="mt-3 border-t border-border/70 pt-3">
+                      <p className="mb-2 text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-ink-faint">
+                        {isEn ? 'Continue here' : '继续追问'}
+                      </p>
+                      <div className="flex flex-wrap gap-2">
+                        {message.followUps.map((followUp) => (
+                          <button
+                            key={followUp}
+                            type="button"
+                            onClick={() => handleSend(followUp)}
+                            disabled={loading}
+                            className="border border-border bg-canvas px-2.5 py-1.5 text-left text-xs text-ink-muted transition-colors hover:border-stone hover:text-stone disabled:cursor-not-allowed disabled:opacity-50"
+                          >
+                            {followUp}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
             ))}
@@ -247,7 +376,7 @@ export default function AIChatWidget() {
               <input
                 value={input}
                 onChange={(event) => setInput(event.target.value)}
-                placeholder={isEn ? 'Tell me where you are stuck...' : '告诉我你现在卡在哪'}
+                placeholder={isEn ? 'Tell me your stage, budget or quote...' : '直接说阶段、预算或你手上的报价单'}
                 className="min-h-10 flex-1 bg-transparent px-2 text-sm text-ink outline-none placeholder:text-ink-faint"
                 disabled={loading}
               />
@@ -259,6 +388,11 @@ export default function AIChatWidget() {
                 {isEn ? 'Send' : '发送'}
               </button>
             </form>
+            <p className="mt-2 text-[0.72rem] leading-relaxed text-ink-faint">
+              {isEn
+                ? 'This assistant helps you identify the right path first. For case-by-case judgment, use the contact page.'
+                : '这个助手先帮你分清路径，不替你直接拍板。涉及具体个案，再进入联系页。'}
+            </p>
           </div>
         </div>
       )}
