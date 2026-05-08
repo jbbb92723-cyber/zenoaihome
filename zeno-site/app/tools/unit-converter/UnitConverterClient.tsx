@@ -1,7 +1,9 @@
 'use client'
 
 import { useMemo, useState } from 'react'
+import ToolSeoAssetSection from '@/components/tools/ToolSeoAssetSection'
 import { BridgePanel, NumberInput, ResultPanel, ToolPageShell } from '@/components/tools/ToolPageShell'
+import { toolSeoAssets } from '@/data/toolSeoAssets'
 
 const modes = {
   area: { label: '面积换算', unit: '㎡', hint: '常用于墙面、地面、瓷砖、乳胶漆。' },
@@ -50,6 +52,7 @@ export default function UnitConverterClient() {
           { label: '乳胶漆计算器', href: '/tools/paint-calculator', desc: '墙面面积估算后，继续算漆量。' },
         ]} />
       </section>
+      <ToolSeoAssetSection asset={toolSeoAssets.unitConverter} />
     </ToolPageShell>
   )
 }

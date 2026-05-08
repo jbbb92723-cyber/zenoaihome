@@ -2,6 +2,8 @@
 
 import Link from 'next/link'
 import { useEffect, useMemo, useState } from 'react'
+import ToolSeoAssetSection from '@/components/tools/ToolSeoAssetSection'
+import { toolSeoAssets } from '@/data/toolSeoAssets'
 
 interface QuoteFormState {
   area: string
@@ -279,6 +281,7 @@ export default function QuoteCheckClient() {
           </div>
         </section>
       )}
+      <ToolSeoAssetSection asset={toolSeoAssets.quoteCheck} />
     </main>
   )
 }

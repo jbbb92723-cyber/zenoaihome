@@ -1,7 +1,9 @@
 'use client'
 
 import { useMemo, useState } from 'react'
+import ToolSeoAssetSection from '@/components/tools/ToolSeoAssetSection'
 import { BridgePanel, ResultPanel, ToolPageShell } from '@/components/tools/ToolPageShell'
+import { toolSeoAssets } from '@/data/toolSeoAssets'
 
 const stages = [
   {
@@ -130,6 +132,7 @@ export default function InspectionGuideClient() {
           { label: '资料库', href: '/resources', desc: '领取预算、报价和验收相关资料。' },
         ]} />
       </section>
+      <ToolSeoAssetSection asset={toolSeoAssets.inspectionGuide} />
     </ToolPageShell>
   )
 }

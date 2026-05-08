@@ -1,7 +1,9 @@
 'use client'
 
 import { useMemo, useState } from 'react'
+import ToolSeoAssetSection from '@/components/tools/ToolSeoAssetSection'
 import { BridgePanel, NumberInput, ResultPanel, ToolPageShell } from '@/components/tools/ToolPageShell'
+import { toolSeoAssets } from '@/data/toolSeoAssets'
 
 const plans = {
   balanced: { label: '均衡型', hard: 0.32, materials: 0.22, custom: 0.18, equipment: 0.12, soft: 0.08, buffer: 0.08 },
@@ -100,6 +102,7 @@ export default function BudgetStructureClient() {
           { label: '预算结构诊断', href: '/services/renovation#yusuan-zixun', desc: '预算越算越乱时，再进入人工判断。' },
         ]} />
       </section>
+      <ToolSeoAssetSection asset={toolSeoAssets.budgetStructure} />
     </ToolPageShell>
   )
 }

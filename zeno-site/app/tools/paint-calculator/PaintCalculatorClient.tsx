@@ -1,7 +1,9 @@
 'use client'
 
 import { useMemo, useState } from 'react'
+import ToolSeoAssetSection from '@/components/tools/ToolSeoAssetSection'
 import { BridgePanel, NumberInput, ResultPanel, ToolPageShell } from '@/components/tools/ToolPageShell'
+import { toolSeoAssets } from '@/data/toolSeoAssets'
 
 export default function PaintCalculatorClient() {
   const [wallArea, setWallArea] = useState('220')
@@ -63,6 +65,7 @@ export default function PaintCalculatorClient() {
           { label: '预算结构工具', href: '/tools/budget-structure', desc: '把油漆费用放回整体预算结构。' },
         ]} />
       </section>
+      <ToolSeoAssetSection asset={toolSeoAssets.paintCalculator} />
     </ToolPageShell>
   )
 }

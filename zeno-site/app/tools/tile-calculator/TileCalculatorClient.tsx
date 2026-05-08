@@ -1,7 +1,9 @@
 'use client'
 
 import { useMemo, useState } from 'react'
+import ToolSeoAssetSection from '@/components/tools/ToolSeoAssetSection'
 import { BridgePanel, NumberInput, ResultPanel, ToolPageShell } from '@/components/tools/ToolPageShell'
+import { toolSeoAssets } from '@/data/toolSeoAssets'
 
 const lossOptions = [
   { key: 'simple', label: '常规铺贴', loss: 0.08 },
@@ -67,6 +69,7 @@ export default function TileCalculatorClient() {
           { label: '验收节点向导', href: '/tools/inspection-guide', desc: '铺贴完成后按节点验收。' },
         ]} />
       </section>
+      <ToolSeoAssetSection asset={toolSeoAssets.tileCalculator} />
     </ToolPageShell>
   )
 }

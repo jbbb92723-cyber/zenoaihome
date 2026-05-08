@@ -179,6 +179,27 @@ export default function ToolsPage() {
           ))}
         </section>
 
+        <section className="mb-12 border border-border bg-surface-warm p-6 sm:p-8">
+          <div className="grid gap-6 lg:grid-cols-[0.38fr_0.62fr] lg:items-start">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-widest text-stone">为什么先做这 6 个工具</p>
+              <h2 className="mt-3 text-2xl font-semibold tracking-tight text-ink">全国各地价格不同，但判断问题的顺序相似。</h2>
+            </div>
+            <div className="grid gap-4 sm:grid-cols-3">
+              {[
+                ['先判断结构', '报价、预算、单位、数量和验收先被拆清楚，用户才不会被总价和效果图牵着走。'],
+                ['再承接服务', '工具只解决可标准化的问题，看不明白的地方再进入清单、文章、课程或人工判断。'],
+                ['未来可翻译', '这套链路不依赖单一城市，后续可以扩展到英文装修预算、材料计算和验收指南。'],
+              ].map(([title, body]) => (
+                <div key={title} className="border border-border bg-canvas p-5">
+                  <p className="text-sm font-semibold text-ink">{title}</p>
+                  <p className="mt-2 text-xs leading-relaxed text-ink-muted">{body}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         <div className="space-y-12">
           {toolGroups.map((group) => (
             <section key={group.title}>
