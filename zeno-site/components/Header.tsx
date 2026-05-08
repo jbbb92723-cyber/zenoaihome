@@ -107,7 +107,7 @@ export default function Header() {
 
   return (
     <header
-      className={`sticky top-0 z-[60] border-b border-border bg-canvas/95 backdrop-blur-md transition-all duration-200 ${
+      className={`sticky top-0 z-[90] border-b border-border bg-canvas transition-all duration-200 ${
         scrolled ? 'shadow-[0_10px_30px_rgba(42,39,35,0.05)]' : 'shadow-none'
       }`}
     >
@@ -147,12 +147,14 @@ export default function Header() {
                 </Link>
 
                 {item.groups && activeMenu === item.key && (
-                  <div
-                    className={`fixed left-1/2 z-[70] w-[min(1120px,calc(100vw-3rem))] -translate-x-1/2 pt-3 animate-menu-in ${scrolled ? 'top-14' : 'top-16'}`}
-                    onMouseEnter={() => handleMenuEnter(item.key)}
-                    onMouseLeave={handleMenuLeave}
-                  >
-                    <div className="border border-border bg-canvas p-6 shadow-[0_30px_90px_rgba(42,39,35,0.22)] ring-1 ring-white/60">
+                  <>
+                    <div className={`pointer-events-none fixed inset-x-0 bottom-0 z-[64] bg-canvas/90 backdrop-blur-[2px] ${scrolled ? 'top-14' : 'top-16'}`} />
+                    <div
+                      className={`fixed left-1/2 z-[70] w-[min(1120px,calc(100vw-3rem))] -translate-x-1/2 pt-3 animate-menu-in ${scrolled ? 'top-14' : 'top-16'}`}
+                      onMouseEnter={() => handleMenuEnter(item.key)}
+                      onMouseLeave={handleMenuLeave}
+                    >
+                    <div className="border border-border bg-canvas p-6 shadow-[0_30px_90px_rgba(42,39,35,0.24)] ring-1 ring-white/70">
                       <div className="mb-4 flex items-center justify-between border-b border-border pb-4">
                         <div>
                           <p className="text-xs font-semibold uppercase tracking-widest text-stone">{item.label}</p>
@@ -187,6 +189,7 @@ export default function Header() {
                       </div>
                     </div>
                   </div>
+                  </>
                 )}
               </div>
             ))}
@@ -239,7 +242,7 @@ export default function Header() {
       </div>
 
       {menuOpen && (
-        <div className="fixed inset-x-0 bottom-0 top-16 z-40 overflow-y-auto border-t border-border bg-canvas lg:hidden">
+        <div className="fixed inset-x-0 bottom-0 top-16 z-[95] overflow-y-auto border-t border-border bg-canvas shadow-[0_24px_80px_rgba(42,39,35,0.18)] lg:hidden">
           <nav className="mx-auto max-w-3xl px-5 py-5" aria-label={isEn ? 'Mobile navigation' : '移动端导航'}>
             {navItems.map((item) => (
               <MobileNavGroup key={item.key} item={item} isEn={isEn} onNavigate={() => setMenuOpen(false)} />

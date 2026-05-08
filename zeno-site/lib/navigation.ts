@@ -51,7 +51,7 @@ export const primaryNav: PrimaryNavItem[] = [
         zh: { label: '看报价', desc: '先看清有没有漏、有没有糊、后面会不会加钱' },
         en: { label: 'Quote', desc: 'Find gaps, vague scope and add-on risks' },
         items: [
-          { key: 'quote-tool', zh: { label: '报价初筛工具', href: '/tools/quote-check', desc: '上传报价单，先做一轮风险初筛' }, en: { label: 'Quote Screening Tool', href: '/en/tools', desc: 'Screen quote risks first' } },
+          { key: 'quote-tool', zh: { label: '报价初筛工具', href: '/tools/quote-check', desc: '不用先懂施工，先做一轮风险初筛' }, en: { label: 'Quote Screening Tool', href: '/en/tools', desc: 'Screen quote risks first' } },
           { key: 'quote-checklist', zh: { label: '报价审核清单', href: '/resources#baojia-shenhe-qingdan', desc: '按漏项、单价、工艺逐项核对' }, en: { label: 'Quote Checklist', href: '/en/resources', desc: 'Line-by-line checklist' } },
           { key: 'quote-guide', zh: { label: '报价避坑指南', href: '/pricing/baojia-guide', desc: '低价数字产品，签约前系统看一遍' }, en: { label: 'Quote Guide', href: '/en/pricing/baojia-guide', desc: 'A compact paid guide' } },
           { key: 'quote-service', zh: { label: '报价单审核服务', href: '/services/renovation#baojia-shenhe', desc: '看不明白时再进入人工审核' }, en: { label: 'Quote Audit Service', href: '/en/services', desc: 'Human review when needed' } },
@@ -62,6 +62,7 @@ export const primaryNav: PrimaryNavItem[] = [
         zh: { label: '控预算', desc: '把总价拆成底线、弹性和缓冲' },
         en: { label: 'Budget', desc: 'Split baseline, flex and buffer' },
         items: [
+          { key: 'budget-structure', zh: { label: '预算结构工具', href: '/tools/budget-structure', desc: '把总预算拆成硬装、主材、定制和缓冲' }, en: { label: 'Budget Structure Tool', href: '/en/tools', desc: 'Split budget into working buckets' } },
           { key: 'budget-risk', zh: { label: '预算风险自测', href: '/tools/budget-risk', desc: '先分清风险来自哪里' }, en: { label: 'Budget Risk Quiz', href: '/en/tools', desc: 'Find the risk source' } },
           { key: 'budget-template', zh: { label: '预算模板', href: '/resources#zhuangxiu-yusuan-moban', desc: '把预算按结构写下来' }, en: { label: 'Budget Template', href: '/en/resources', desc: 'Structure the budget' } },
           { key: 'budget-service', zh: { label: '预算结构诊断', href: '/services/renovation#yusuan-zixun', desc: '预算越算越乱时进入人工判断' }, en: { label: 'Budget Diagnosis', href: '/en/services', desc: 'Human budget diagnosis' } },
@@ -72,7 +73,8 @@ export const primaryNav: PrimaryNavItem[] = [
         zh: { label: '施工验收', desc: '关键节点要确认，现场变更要留痕' },
         en: { label: 'Build & Handover', desc: 'Check milestones and keep evidence' },
         items: [
-          { key: 'checkpoint-entry', zh: { label: '节点验收入口', href: '/resources#construction-checkpoints', desc: '水电、防水、泥工、木作、油漆' }, en: { label: 'Checkpoint Entry', href: '/en/resources', desc: 'Electrical, waterproofing, masonry...' } },
+          { key: 'inspection-guide', zh: { label: '验收节点向导', href: '/tools/inspection-guide', desc: '水电、防水、泥工、木作、油漆、竣工' }, en: { label: 'Inspection Guide', href: '/en/tools', desc: 'Stage-based inspection checklist' } },
+          { key: 'checkpoint-entry', zh: { label: '节点验收资料', href: '/resources#construction-checkpoints', desc: '把关键节点资料留档' }, en: { label: 'Checkpoint Entry', href: '/en/resources', desc: 'Electrical, waterproofing, masonry...' } },
           { key: 'evidence-list', zh: { label: '留痕清单', href: '/resources#yanshou-qingdan', desc: '该拍什么、该确认什么' }, en: { label: 'Evidence Checklist', href: '/en/resources', desc: 'What to record' } },
           { key: 'site-article', zh: { label: '施工阶段常见问题', href: '/blog/03-cong-gongdi-kan-shijie', desc: '从工地现场看责任和边界' }, en: { label: 'Site Issues', href: '/en/blog', desc: 'Responsibility and boundaries' } },
         ],
@@ -106,12 +108,24 @@ export const primaryNav: PrimaryNavItem[] = [
     groups: [
       {
         key: 'self-tests',
-        zh: { label: '自测工具', desc: '先把问题缩小' },
-        en: { label: 'Self Checks', desc: 'Narrow down the problem' },
+        zh: { label: '判断工具', desc: '报价、预算和验收先缩小风险' },
+        en: { label: 'Judgment Tools', desc: 'Narrow down quote, budget and handover risks' },
         items: [
-          { key: 'budget-risk', zh: { label: '预算风险自测', href: '/tools/budget-risk', desc: '已上线' }, en: { label: 'Budget Risk Quiz', href: '/en/tools', desc: 'Live' } },
           { key: 'quote-screening', zh: { label: '报价初筛工具', href: '/tools/quote-check', desc: '已上线：先做风险类型初筛' }, en: { label: 'Quote Screening', href: '/en/tools', desc: 'Live' } },
+          { key: 'budget-structure', zh: { label: '预算结构工具', href: '/tools/budget-structure', desc: '已上线：先拆清钱该怎么分' }, en: { label: 'Budget Structure', href: '/en/tools', desc: 'Live' } },
+          { key: 'inspection-guide', zh: { label: '验收节点向导', href: '/tools/inspection-guide', desc: '已上线：按节点生成清单' }, en: { label: 'Inspection Guide', href: '/en/tools', desc: 'Live' } },
+          { key: 'budget-risk', zh: { label: '预算风险自测', href: '/tools/budget-risk', desc: '补充诊断' }, en: { label: 'Budget Risk Quiz', href: '/en/tools', desc: 'Live' } },
           { key: 'needs-map', zh: { label: '需求梳理问卷', href: '/resources#shizhu-pai-zijian-biao', desc: '清单模式' }, en: { label: 'Needs Map', href: '/en/resources', desc: 'Checklist' } },
+        ],
+      },
+      {
+        key: 'calculators',
+        zh: { label: '计算工具', desc: '单位、瓷砖和乳胶漆先算一个范围' },
+        en: { label: 'Calculators', desc: 'Estimate units, tiles and paint' },
+        items: [
+          { key: 'unit-converter', zh: { label: '单位换算工具', href: '/tools/unit-converter', desc: '㎡、米、延米、坪、单方' }, en: { label: 'Unit Converter', href: '/en/tools', desc: 'Area, length and unit price' } },
+          { key: 'tile-calculator', zh: { label: '瓷砖计算器', href: '/tools/tile-calculator', desc: '估算片数、箱数和损耗' }, en: { label: 'Tile Calculator', href: '/en/tools', desc: 'Pieces, boxes and waste' } },
+          { key: 'paint-calculator', zh: { label: '乳胶漆计算器', href: '/tools/paint-calculator', desc: '估算底漆、面漆升数和桶数' }, en: { label: 'Paint Calculator', href: '/en/tools', desc: 'Primer and topcoat estimate' } },
         ],
       },
       {
@@ -288,8 +302,13 @@ const CN_TO_EN: Record<string, string> = {
   '/topics':     '/en/topics',
   '/tools/prompts': '/en/tools/prompts',
   '/tools/quote-check': '/en/tools',
+  '/tools/budget-structure': '/en/tools',
   '/tools/budget-risk': '/en/tools',
   '/tools/budget-risk/result': '/en/tools',
+  '/tools/unit-converter': '/en/tools',
+  '/tools/tile-calculator': '/en/tools',
+  '/tools/paint-calculator': '/en/tools',
+  '/tools/inspection-guide': '/en/tools',
   '/resources':  '/en/resources',
   '/services':   '/en/services',
   '/services/renovation': '/en/services',
@@ -325,7 +344,7 @@ export function getLangHref(pathname: string, isEn: boolean): string {
     if (pathname.startsWith('/en/blog/')) return '/blog'
     if (pathname.startsWith('/en/articles/')) return '/blog'
     const cnPath = pathname.replace(/^\/en/, '') || '/'
-    const knownCn = ['/', '/start', '/about', '/blog', '/cases', '/ai', '/tools', '/tools/prompts', '/tools/quote-check', '/tools/budget-risk', '/topics', '/resources', '/services', '/contact', '/login', '/register']
+    const knownCn = ['/', '/start', '/about', '/blog', '/cases', '/ai', '/tools', '/tools/prompts', '/tools/quote-check', '/tools/budget-structure', '/tools/budget-risk', '/tools/unit-converter', '/tools/tile-calculator', '/tools/paint-calculator', '/tools/inspection-guide', '/topics', '/resources', '/services', '/contact', '/login', '/register']
     if (knownCn.includes(cnPath)) return cnPath
     return '/'
   } else {

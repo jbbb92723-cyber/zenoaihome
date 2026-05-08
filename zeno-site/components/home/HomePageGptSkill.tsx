@@ -242,7 +242,7 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
               </ActionLink>
             </div>
             <div className="mt-6">
-              <ActionLink href="/services/ai-workflow" variant="text">
+              <ActionLink href="/ai" variant="text">
                 我是传统行业人，想把 AI 用进工作
               </ActionLink>
             </div>

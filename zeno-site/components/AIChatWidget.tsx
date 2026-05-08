@@ -32,18 +32,18 @@ const quickEntriesZh = [
     label: '我怕超预算',
     prompt: '我担心装修超预算，请先帮我判断应该从预算结构、报价漏项、施工流程还是需求顺序开始查。',
     links: [
+      { label: '预算结构工具', href: '/tools/budget-structure' },
       { label: '预算风险自测', href: '/tools/budget-risk' },
       { label: '预算模板', href: '/resources#zhuangxiu-yusuan-moban' },
-      { label: '预算结构诊断', href: '/services/renovation#yusuan-zixun' },
     ],
   },
   {
     label: '我已经开工了',
     prompt: '我已经开工了，请帮我按施工节点分流：现在该看什么、拍什么、确认什么，哪些问题需要留痕。',
     links: [
-      { label: '节点验收入口', href: '/resources#construction-checkpoints' },
+      { label: '验收节点向导', href: '/tools/inspection-guide' },
+      { label: '瓷砖计算器', href: '/tools/tile-calculator' },
       { label: '验收清单', href: '/resources#yanshou-qingdan' },
-      { label: '从工地看世界', href: '/blog/03-cong-gongdi-kan-shijie' },
     ],
   },
   {
@@ -105,11 +105,11 @@ export default function AIChatWidget() {
   const isEn = pathname.startsWith('/en')
   const quickEntries = isEn ? quickEntriesEn : quickEntriesZh
 
-  if (pathname.startsWith('/admin')) return null
-
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
   }, [messages])
+
+  if (pathname.startsWith('/admin')) return null
 
   async function handleSend(text?: string) {
     const msg = text ?? input.trim()

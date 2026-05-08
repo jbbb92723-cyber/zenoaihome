@@ -8,7 +8,7 @@ import StructuredData from '@/components/StructuredData'
 export const metadata: Metadata = {
   title: '工具工作台',
   description:
-    'ZenoAIHome 工具工作台：报价初筛、预算风险自测、AI 场景生成器、公众号排版工作台。',
+    'ZenoAIHome 工具工作台：报价初筛、预算结构、单位换算、瓷砖计算、乳胶漆计算、验收节点向导和 AI 场景生成器。',
   alternates: {
     canonical: 'https://zenoaihome.com/tools',
   },
@@ -16,8 +16,8 @@ export const metadata: Metadata = {
 
 const toolGroups = [
   {
-    title: '装修判断工具',
-    desc: '给正在装修或准备装修的人，先把风险缩小到能行动。',
+    title: '装修判断六件套',
+    desc: '给普通业主从报价、预算、数量到验收建立一条完整的网页端判断链路。',
     tools: [
       {
         title: '报价初筛工具',
@@ -27,14 +27,70 @@ const toolGroups = [
         job: '拿到报价单后，先找出漏项、模糊项、增项口子和付款风险。',
         output: '风险等级、追问清单、下一步服务入口。',
         href: '/tools/quote-check',
-        cta: '上传报价单',
+        cta: '开始初筛',
       },
+      {
+        title: '预算结构工具',
+        status: '已上线',
+        price: '免费',
+        time: '5-8 分钟',
+        job: '输入总预算和面积，把钱拆成硬装、主材、定制、设备、软装和缓冲。',
+        output: '预算结构、单方参考、可复制的分配清单。',
+        href: '/tools/budget-structure',
+        cta: '拆预算',
+      },
+      {
+        title: '单位换算工具',
+        status: '已上线',
+        price: '免费',
+        time: '1-3 分钟',
+        job: '看懂报价里的㎡、米、延米、坪和单方，减少被单位绕晕。',
+        output: '常用单位换算结果和报价理解提醒。',
+        href: '/tools/unit-converter',
+        cta: '换算单位',
+      },
+      {
+        title: '瓷砖计算器',
+        status: '已上线',
+        price: '免费',
+        time: '3-5 分钟',
+        job: '输入铺贴面积和瓷砖规格，估算片数、箱数和损耗。',
+        output: '建议购买片数、箱数、损耗说明。',
+        href: '/tools/tile-calculator',
+        cta: '算瓷砖',
+      },
+      {
+        title: '乳胶漆计算器',
+        status: '已上线',
+        price: '免费',
+        time: '3-5 分钟',
+        job: '输入墙面面积、涂布率和桶规格，估算底漆、面漆用量。',
+        output: '底漆/面漆升数、桶数和采购提醒。',
+        href: '/tools/paint-calculator',
+        cta: '算乳胶漆',
+      },
+      {
+        title: '验收节点向导',
+        status: '已上线',
+        price: '免费',
+        time: '5-10 分钟',
+        job: '按水电、防水、泥工、木作、油漆、安装和竣工生成验收清单。',
+        output: '检查项、拍照点、高风险信号、可复制清单。',
+        href: '/tools/inspection-guide',
+        cta: '生成清单',
+      },
+    ],
+  },
+  {
+    title: '诊断补充',
+    desc: '当你已经有初步结果，但还不知道风险来自哪里，再进入诊断型工具。',
+    tools: [
       {
         title: '预算风险自测',
         status: '已上线',
         price: '免费',
         time: '5-8 分钟',
-        job: '预算越算越乱时，先分清是报价问题、结构问题、流程问题还是需求问题。',
+        job: '预算越算越乱时，分清是报价、结构、流程还是需求问题。',
         output: '四类风险排序、对应资源、文章和服务建议。',
         href: '/tools/budget-risk',
         cta: '开始自测',
@@ -70,10 +126,12 @@ const toolGroups = [
 ]
 
 const routes = [
-  ['手上有报价单', '先走报价初筛', '/tools/quote-check'],
-  ['怕预算失控', '先做预算自测', '/tools/budget-risk'],
-  ['想用 AI 提效', '先生成一个场景提示词', '/tools/prompts'],
-  ['要发公众号', '进创作工作台', '/tools/md2wechat'],
+  ['手上有报价单', '先做报价初筛', '/tools/quote-check'],
+  ['怕预算失控', '先拆预算结构', '/tools/budget-structure'],
+  ['正在买材料', '先算数量和单位', '/tools/tile-calculator'],
+  ['准备验收', '生成节点清单', '/tools/inspection-guide'],
+  ['想用 AI 提效', '生成场景提示词', '/tools/prompts'],
+  ['要发公众号', '进入创作工作台', '/tools/md2wechat'],
 ]
 
 export default function ToolsPage() {
@@ -106,13 +164,13 @@ export default function ToolsPage() {
       <PageHero
         label="工具工作台"
         title="不要先逛工具，先选你现在要解决的问题"
-        subtitle="这里的工具只服务两件事：一是帮业主建立装修判断力，二是帮传统装修从业者把经验接进 AI。每个工具都必须给你一个可带走的结果。"
-        note="工具之后才是清单、文章、课程或服务。路径清楚，交付才有意义。"
+        subtitle="这里先把装修里的高频问题拆成 6 个能直接使用的工具：报价、预算、单位、瓷砖、乳胶漆和验收。AI 工具放在第二条线，服务传统行业人的升级。"
+        note="工具看不明白的地方，可以找我帮你判断。"
         size="content"
       />
 
       <Container size="content" className="py-section">
-        <section className="mb-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        <section className="mb-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {routes.map(([situation, action, href]) => (
             <Link key={situation} href={href} className="group border border-border bg-surface p-5 transition-all duration-150 hover:-translate-y-1 hover:border-stone hover:bg-surface-warm hover:shadow-[0_16px_40px_rgba(42,39,35,0.08)]">
               <p className="text-xs font-semibold uppercase tracking-widest text-stone">{situation}</p>
