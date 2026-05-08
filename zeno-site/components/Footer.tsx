@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { mainNav, contactNav } from '@/lib/navigation'
+import { mainNav } from '@/lib/navigation'
 
 export default function Footer() {
   const year = new Date().getFullYear()
@@ -14,7 +14,6 @@ export default function Footer() {
   const isEn = pathname.startsWith('/en')
 
   const navLinks = mainNav.map((item) => ({ key: item.key, ...(isEn ? item.en : item.zh) }))
-  const contact = isEn ? contactNav.en : contactNav.zh
 
   return (
     <footer className="border-t border-border mt-20">
@@ -50,13 +49,6 @@ export default function Footer() {
                   {link.label}
                 </Link>
               ))}
-              {/* 联系入口仅在 Footer 出现 */}
-              <Link
-                href={contact.href}
-                className="text-[0.8125rem] text-ink-muted hover:text-ink transition-colors"
-              >
-                {contact.label}
-              </Link>
             </nav>
           </div>
 

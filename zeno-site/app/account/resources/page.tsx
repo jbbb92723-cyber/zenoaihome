@@ -59,14 +59,14 @@ export default async function AccountResourcesPage() {
           <div className="border border-border bg-surface p-10 text-center">
             <p className="text-sm font-medium text-ink mb-2">你还没有领取资料</p>
             <p className="text-xs text-ink-faint leading-relaxed max-w-xs mx-auto mb-6">
-              你可以去资料库领取免费资料，或通过兑换码解锁会员专属内容。
+              你可以去资料页领取免费资料，或通过兑换码解锁会员专属内容。
             </p>
             <div className="flex justify-center gap-3">
               <Link
                 href="/resources"
                 className="text-sm text-white bg-stone px-4 py-2 hover:bg-stone/85 transition-colors"
               >
-                去资料库领取
+                去资料页领取
               </Link>
               <Link
                 href="/account/redeem"
@@ -110,7 +110,7 @@ export default async function AccountResourcesPage() {
         <div className="mt-8 flex justify-between items-center text-xs text-ink-faint">
           <span>共 {claims.length} 条记录</span>
           <Link href="/resources" className="hover:text-stone transition-colors">
-            去资料库看更多 →
+            去资料页看更多 →
           </Link>
         </div>
 

@@ -226,7 +226,7 @@ export default async function ArticlePage({ params }: Props) {
           >
             <p className="text-[0.65rem] font-semibold uppercase tracking-widest text-ink-faint mb-1">工具</p>
             <p className="text-sm font-medium text-ink group-hover:text-stone transition-colors">按问题找工具</p>
-            <p className="text-xs text-ink-muted mt-1">先选你当前问题，再进资料库</p>
+            <p className="text-xs text-ink-muted mt-1">先选你当前问题，再进资料页</p>
           </Link>
           <Link
             href="/start"

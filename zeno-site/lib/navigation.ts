@@ -271,23 +271,12 @@ export const primaryNav: PrimaryNavItem[] = [
 
 /* ─── 扁平化导航（Footer 使用） ─────────────────────── */
 
-export const mainNav: NavItem[] = [
-  { key: 'home', zh: { label: '首页', href: '/' }, en: { label: 'Home', href: '/en' } },
-  { key: 'start', zh: { label: '装修判断入口', href: '/start' }, en: { label: 'Start Here', href: '/en' } },
-  { key: 'tools', zh: { label: '工具与资料', href: '/tools' }, en: { label: 'Tools', href: '/en/tools' } },
-  { key: 'ai-upgrade', zh: { label: 'AI 升级', href: '/ai' }, en: { label: 'AI Upgrade', href: '/en' } },
-  { key: 'resources', zh: { label: '资料库', href: '/resources' }, en: { label: 'Resources', href: '/en/resources' } },
-  { key: 'services', zh: { label: '服务', href: '/services' }, en: { label: 'Services', href: '/en/services' } },
-  { key: 'blog', zh: { label: '长期记录', href: '/blog' }, en: { label: 'Writing', href: '/en/blog' } },
-  { key: 'about', zh: { label: '关于 Zeno', href: '/about' }, en: { label: 'About', href: '/en/about' } },
-]
-
-/** 仅 Footer 使用的联系入口 */
-export const contactNav: NavItem = {
-  key: 'contact',
-  zh: { label: '联系', href: '/contact' },
-  en: { label: 'Contact', href: '/en/about' },
-}
+// Footer 必须从 primaryNav 派生，避免和 Header 维护两套一级导航。
+export const mainNav: NavItem[] = primaryNav.map((item) => ({
+  key: item.key,
+  zh: { label: item.zh.label, href: item.zh.href },
+  en: { label: item.en.label, href: item.en.href },
+}))
 
 // ─── 路由映射（语言切换用） ───────────────────────────
 

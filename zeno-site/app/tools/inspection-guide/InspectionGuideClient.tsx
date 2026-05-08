@@ -129,7 +129,7 @@ export default function InspectionGuideClient() {
         <BridgePanel items={[
           { label: '报价初筛工具', href: '/tools/quote-check', desc: '验收前先确认合同里有没有验收标准。' },
           { label: '找 Zeno 判断现场问题', href: '/services#service-form', desc: '清单看完仍不确定，可以提交资料。' },
-          { label: '资料库', href: '/resources', desc: '领取预算、报价和验收相关资料。' },
+          { label: '资料与清单', href: '/resources', desc: '领取预算、报价和验收相关资料。' },
         ]} />
       </section>
       <ToolSeoAssetSection asset={toolSeoAssets.inspectionGuide} />

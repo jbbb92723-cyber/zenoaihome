@@ -76,10 +76,10 @@ export default function ContactPage() {
             <div className="border border-border p-5">
               <p className="text-sm font-semibold text-ink mb-2">你还在了解阶段</p>
               <p className="text-xs text-ink-muted leading-relaxed mb-4">
-                先建立基本判断，再决定下一步。资料库里有免费清单、模板和工具。
+                先建立基本判断，再决定下一步。资料页里有免费清单、模板和工具。
               </p>
               <Link href="/resources" className="text-sm text-stone hover:underline underline-offset-2 decoration-stone/40">
-                先看资料库 →
+                先看资料页 →
               </Link>
             </div>
             <div className="border border-border p-5">

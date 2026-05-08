@@ -278,7 +278,7 @@ export default function ServicesPage() {
             我不接所有咨询，只接我能真正帮到的。
           </p>
           <p className="text-sm text-ink-muted leading-relaxed mb-6">
-            如果你的需求不在范围内，或读完之后觉得匹配度不高，不用勉强——文章和资料库对你可能更有用。
+            如果你的需求不在范围内，或读完之后觉得匹配度不高，不用勉强——文章和资料页对你可能更有用。
             如果读完觉得“好像说的就是我的问题”，可以发一条简短的背景说明，我会评估是否能帮到你。
           </p>
           <CTA href="/contact" label="查看联系方式" variant="secondary" />
@@ -291,7 +291,7 @@ export default function ServicesPage() {
               装修预算模板、报价审核清单、AI 提示词体验场都可以免费使用。先建立判断，再决定是否需要服务。
             </p>
           </div>
-          <CTA href="/resources" label="去工具与资料库" variant="secondary" />
+          <CTA href="/resources" label="去资料与清单" variant="secondary" />
         </div>
 
         {/* 关联内容入口 */}

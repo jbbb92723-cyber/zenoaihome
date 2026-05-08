@@ -398,7 +398,7 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
 
           <div className="mt-10 text-center">
             <ActionLink href="/resources" variant="text">
-              进入工具与资料库
+              进入资料与清单
             </ActionLink>
           </div>
         </div>

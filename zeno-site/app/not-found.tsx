@@ -63,7 +63,7 @@ export default function NotFound() {
           这个页面还没有建好。
         </h1>
         <p className="text-sm text-ink-muted leading-relaxed mb-10">
-          你可以返回首页，或查看文章和资料库。
+          你可以返回首页，或查看文章和资料页。
         </p>
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
           <Link
@@ -82,7 +82,7 @@ export default function NotFound() {
             href="/resources"
             className="px-5 py-2.5 border border-border text-sm text-ink hover:bg-surface-warm transition-colors"
           >
-            查看资料库
+            查看资料页
           </Link>
         </div>
       </div>

@@ -227,8 +227,8 @@ export default function SearchDialog() {
               <button type="button" onClick={() => handleSelect({ title: '服务提交', href: '/services#service-form', type: 'service' })} className="block w-full text-left text-ink-muted hover:text-ink">
                 {isEn ? 'Submit service request' : '提交服务需求'}
               </button>
-              <button type="button" onClick={() => handleSelect({ title: '资料库', href: '/resources', type: 'resource' })} className="block w-full text-left text-ink-muted hover:text-ink">
-                {isEn ? 'Open resources' : '打开资料库'}
+              <button type="button" onClick={() => handleSelect({ title: '资料与清单', href: '/resources', type: 'resource' })} className="block w-full text-left text-ink-muted hover:text-ink">
+                {isEn ? 'Open resources' : '打开资料与清单'}
               </button>
             </div>
             <p className="mt-6 border-t border-border pt-4 text-xs leading-relaxed text-ink-muted">

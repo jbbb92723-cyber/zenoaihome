@@ -245,7 +245,7 @@ export default function ToolsPage() {
             </p>
           </div>
           <div className="flex flex-wrap gap-3">
-            <CTA href="/resources" label="去资料库" variant="secondary" />
+            <CTA href="/resources" label="去资料页" variant="secondary" />
             <CTA href="/pricing" label="看课程和数字产品" variant="ghost" />
             <CTA href="/services#service-form" label="提交服务需求" variant="ghost" />
           </div>

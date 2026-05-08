@@ -163,14 +163,14 @@ export default async function AccountPage() {
         <section className="border border-border bg-surface p-6">
           <div className="flex items-center justify-between mb-4">
             <p className="text-[0.65rem] text-ink-faint font-semibold uppercase tracking-widest">我的资料</p>
-            <Link href="/resources" className="text-xs text-stone hover:underline underline-offset-2">去资料库</Link>
+            <Link href="/resources" className="text-xs text-stone hover:underline underline-offset-2">去资料页</Link>
           </div>
 
           {resourceClaims.length === 0 ? (
             <div className="py-6 text-center">
               <p className="text-sm text-ink-muted mb-3">你还没有领取任何资料</p>
               <Link href="/resources" className="text-xs text-stone border border-stone/30 px-4 py-2 hover:bg-stone-pale/50 transition-colors">
-                去资料库领取
+                去资料页领取
               </Link>
             </div>
           ) : (

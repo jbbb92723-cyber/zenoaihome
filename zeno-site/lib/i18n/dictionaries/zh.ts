@@ -16,7 +16,7 @@ const zh = {
     about: '关于我',
     blog: '文章',
     topics: '专题',
-    resources: '资料库',
+    resources: '资料与清单',
     services: '服务',
     tools: '排版工具',
     contact: '联系',
