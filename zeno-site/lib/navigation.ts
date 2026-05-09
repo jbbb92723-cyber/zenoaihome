@@ -54,7 +54,8 @@ export const primaryNav: PrimaryNavItem[] = [
           { key: 'quote-tool', zh: { label: '报价初筛工具', href: '/tools/quote-check', desc: '不用先懂施工，先做一轮风险初筛' }, en: { label: 'Quote Screening Tool', href: '/en/tools', desc: 'Screen quote risks first' } },
           { key: 'quote-checklist', zh: { label: '报价审核清单', href: '/resources#baojia-shenhe-qingdan', desc: '按漏项、单价、工艺逐项核对' }, en: { label: 'Quote Checklist', href: '/en/resources', desc: 'Line-by-line checklist' } },
           { key: 'quote-guide', zh: { label: '报价避坑指南', href: '/pricing/baojia-guide', desc: '低价数字产品，签约前系统看一遍' }, en: { label: 'Quote Guide', href: '/en/pricing/baojia-guide', desc: 'A compact paid guide' } },
-          { key: 'quote-service', zh: { label: '报价单审核服务', href: '/services/renovation#baojia-shenhe', desc: '看不明白时再进入人工审核' }, en: { label: 'Quote Audit Service', href: '/en/services', desc: 'Human review when needed' } },
+          { key: 'sign-pack', zh: { label: '签约前决策包', href: '/services/renovation#qianyue-qian-juece-bao', desc: '报价、预算、合同一次看全' }, en: { label: 'Sign-before Decision Pack', href: '/en/services', desc: 'Review quote, budget and contract together' } },
+          { key: 'quote-service', zh: { label: '报价风险快审', href: '/services/renovation#baojia-shenhe', desc: '只看报价重点风险，适合快速判断' }, en: { label: 'Quote Quick Review', href: '/en/services', desc: 'Fast human review when needed' } },
         ],
       },
       {
@@ -205,13 +206,13 @@ export const primaryNav: PrimaryNavItem[] = [
     groups: [
       {
         key: 'quote-service',
-        zh: { label: '报价单审核', desc: '适合快签约但报价看不明白的人' },
-        en: { label: 'Quote Audit', desc: 'For unclear quotes before signing' },
+        zh: { label: '签约前判断', desc: '先分清是只看报价，还是一次看全' },
+        en: { label: 'Sign-before Judgment', desc: 'Choose between quick review and full pre-sign package' },
         items: [
-          { key: 'quote-fit', zh: { label: '适合谁', href: '/services/renovation#baojia-shenhe' }, en: { label: 'Who it fits', href: '/en/services' } },
-          { key: 'quote-deliver', zh: { label: '交付内容', href: '/services/renovation#baojia-shenhe' }, en: { label: 'Deliverables', href: '/en/services' } },
-          { key: 'quote-price', zh: { label: '价格与边界：¥699 / 份', href: '/services/renovation#baojia-shenhe' }, en: { label: 'Price & boundaries', href: '/en/services' } },
-          { key: 'quote-submit', zh: { label: '立即提交资料', href: '/services#service-form' }, en: { label: 'Submit materials', href: '/en/services' } },
+          { key: 'quote-fast', zh: { label: '报价风险快审', href: '/services/renovation#baojia-shenhe', desc: '¥699 / 份，只看报价重点风险' }, en: { label: 'Quote Quick Review', href: '/en/services', desc: 'Fast review of quote risks' } },
+          { key: 'decision-pack', zh: { label: '签约前决策包', href: '/services/renovation#qianyue-qian-juece-bao', desc: '¥1499 / 次，报价预算合同一起看' }, en: { label: 'Pre-sign Decision Pack', href: '/en/services', desc: 'Review quote, budget and contract together' } },
+          { key: 'quote-guide-entry', zh: { label: '先看 ¥39 指南', href: '/pricing/baojia-guide', desc: '先自己过一轮，再决定是否进入人工服务' }, en: { label: 'Start with the Guide', href: '/en/pricing/baojia-guide', desc: 'Self-check before human review' } },
+          { key: 'quote-submit', zh: { label: '提交服务资料', href: '/services#service-form', desc: '带着报价和合同材料再来' }, en: { label: 'Submit Materials', href: '/en/services', desc: 'Bring your documents first' } },
         ],
       },
       {
@@ -221,7 +222,7 @@ export const primaryNav: PrimaryNavItem[] = [
         items: [
           { key: 'budget-fit', zh: { label: '适合谁', href: '/services/renovation#yusuan-zixun' }, en: { label: 'Who it fits', href: '/en/services' } },
           { key: 'budget-deliver', zh: { label: '交付内容', href: '/services/renovation#yusuan-zixun' }, en: { label: 'Deliverables', href: '/en/services' } },
-          { key: 'budget-price', zh: { label: '价格与边界：¥1299 / 次起', href: '/services/renovation#yusuan-zixun' }, en: { label: 'Price & boundaries', href: '/en/services' } },
+          { key: 'budget-price', zh: { label: '价格与边界：¥399 / 次', href: '/services/renovation#yusuan-zixun' }, en: { label: 'Price & boundaries', href: '/en/services' } },
           { key: 'budget-submit', zh: { label: '立即提交资料', href: '/services#service-form' }, en: { label: 'Submit materials', href: '/en/services' } },
         ],
       },

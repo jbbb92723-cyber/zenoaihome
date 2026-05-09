@@ -37,19 +37,24 @@ const tagColors: Record<string, string> = {
 
 const serviceEntries = [
   {
-    title: '装修报价单审核',
-    desc: '拿到报价单不知道哪里有坑？签合同前我帮你先把风险和追问点看出来。',
+    title: '报价风险快审',
+    desc: '拿到报价单但还看不清重点风险时，用这项服务把最该追问的地方先挑出来。',
     href: '/services/renovation#baojia-shenhe',
+  },
+  {
+    title: '签约前决策包',
+    desc: '如果报价、预算、合同和付款节点一起乱，直接把签约前关键判断一次看全。',
+    href: '/services/renovation#qianyue-qian-juece-bao',
+  },
+  {
+    title: '预算结构诊断',
+    desc: '还没到逐行看报价，但钱已经越算越乱时，先把预算结构拆清。',
+    href: '/services/renovation#yusuan-zixun',
   },
   {
     title: 'AI 工作流咨询',
     desc: '针对你的具体行业场景，设计可落地的 AI 切入路径，而不是通用建议。',
-    href: '/services/ai-workflow#ai-neirong-xitong-zixun',
-  },
-  {
-    title: '个人网站 / 内容系统咨询',
-    desc: '帮你把零散内容沉淀成自己的阵地，从 0 搭建可持续的内容资产。',
-    href: '/services',
+    href: '/services/ai-workflow',
   },
 ]
 
@@ -58,8 +63,8 @@ const problemEntryCards = [
     title: '我正在看报价单',
     description: '先拿清单把模糊项和漏项筛一轮，再决定要不要继续往下。',
     primary: { label: '拿报价审核清单', href: '/resources#baojia-shenhe-qingdan' },
-    secondary: { label: '先做预算风险自测', href: '/tools/budget-risk' },
-    fallback: { label: '直接看报价审核服务 →', href: '/services/renovation#baojia-shenhe' },
+    secondary: { label: '看 ¥39 报价避坑指南', href: '/pricing/baojia-guide' },
+    fallback: { label: '直接看签约前决策包 →', href: '/services/renovation#qianyue-qian-juece-bao' },
   },
   {
     title: '我怕装修超预算',
@@ -87,7 +92,7 @@ const problemEntryCards = [
     description: '先用真实任务试一轮，把经验和 AI 接上，再谈系统化。',
     primary: { label: '拿 AI 工作流提示词包', href: '/resources#ai-neirong-gongzuoliu-tishici-bao' },
     secondary: { label: '去提示词体验场', href: '/tools/prompts' },
-    fallback: { label: '看 AI 工作流咨询 →', href: '/services/ai-workflow#ai-neirong-xitong-zixun' },
+    fallback: { label: '看 AI 工作流咨询 →', href: '/services/ai-workflow' },
   },
 ]
 
@@ -208,6 +213,18 @@ export default function ResourcesPage() {
                 </div>
               </div>
             </Link>
+          </div>
+
+          <div className="mt-5 border border-border bg-surface-warm p-5 sm:p-6">
+            <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-2">看完还不确定？</p>
+            <h3 className="text-base font-semibold text-ink mb-2">人工判断分两层，不要一上来就看最高客单</h3>
+            <p className="text-sm text-ink-muted leading-relaxed mb-4">
+              只是不确定报价重点风险，就进报价快审；如果报价、预算、合同和付款节点一起卡住，再进签约前决策包。
+            </p>
+            <div className="flex flex-wrap gap-3">
+              <CTA href="/services/renovation#baojia-shenhe" label="看报价风险快审" variant="secondary" />
+              <CTA href="/services/renovation#qianyue-qian-juece-bao" label="看签约前决策包" variant="primary" />
+            </div>
           </div>
         </section>
 

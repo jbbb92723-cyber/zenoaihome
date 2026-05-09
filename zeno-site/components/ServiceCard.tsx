@@ -124,7 +124,7 @@ export default function ServiceCard({ service, index, relatedArticles = [] }: Se
           <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-1.5">咨询方式</p>
           <p className="text-sm text-ink-muted leading-relaxed">{service.contactNote}</p>
           <Link
-            href="/services#service-form"
+            href={`/services?service=${service.slug}#service-form`}
             className="mt-3 inline-flex h-9 items-center bg-stone px-4 text-xs font-semibold text-white transition-colors hover:bg-stone/90"
           >
             立即提交资料

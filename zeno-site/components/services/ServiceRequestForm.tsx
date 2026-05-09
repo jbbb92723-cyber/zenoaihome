@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import type { Service } from '@/data/services'
 
 interface FormState {
@@ -16,7 +16,7 @@ interface FormState {
 }
 
 const emptyForm: FormState = {
-  serviceType: 'baojia-shenhe',
+  serviceType: 'qianyue-qian-juece-bao',
   name: '',
   phone: '',
   wechat: '',
@@ -30,6 +30,12 @@ export default function ServiceRequestForm({ services }: { services: Service[] }
   const [form, setForm] = useState<FormState>(emptyForm)
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'login' | 'error'>('idle')
   const [error, setError] = useState('')
+
+  useEffect(() => {
+    const serviceType = new URLSearchParams(window.location.search).get('service')
+    if (!serviceType || !services.some((service) => service.slug === serviceType)) return
+    setForm((previous) => ({ ...previous, serviceType }))
+  }, [services])
 
   function update(key: keyof FormState, value: string) {
     setForm((previous) => ({ ...previous, [key]: value }))
@@ -81,7 +87,7 @@ export default function ServiceRequestForm({ services }: { services: Service[] }
       }
 
       setStatus('success')
-      setForm(emptyForm)
+      setForm((previous) => ({ ...emptyForm, serviceType: previous.serviceType }))
     } catch {
       setStatus('error')
       setError('网络异常，请稍后再试。')

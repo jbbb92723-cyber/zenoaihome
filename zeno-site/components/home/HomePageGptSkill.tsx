@@ -44,7 +44,7 @@ const pathCards: Array<{
     icon: FileText,
     title: '看清报价和预算',
     body: '不急着谈贵不贵，先知道钱花在哪、哪些没写、后面哪里容易加钱。',
-    href: '/services/renovation#baojia-shenhe',
+    href: '/services/renovation',
   },
   {
     number: '02',
@@ -84,7 +84,7 @@ const problemCards: Array<{
     icon: Notebook,
     title: '合同快签，担心话没写死',
     body: '口头说得都好，真正能保护你的只有写清楚的条款和确认方式。',
-    href: '/resources#sign-before-contract',
+    href: '/services/renovation#qianyue-qian-juece-bao',
   },
   {
     icon: HardHat,
@@ -144,17 +144,17 @@ const toolCards: Array<{
   },
   {
     icon: Notebook,
-    title: '装修准备表',
-    body: '把家庭需求、预算边界和签约前问题先写清楚。',
-    action: '做准备清单',
-    href: '/resources#living-needs-map',
+    title: '报价避坑指南',
+    body: '用一份低价数字产品，把报价、预算、合同和增项先系统串起来。',
+    action: '看 ¥39 指南',
+    href: '/pricing/baojia-guide',
   },
 ]
 
 const serviceCards = [
   {
     icon: FileText,
-    title: '报价单审核',
+    title: '报价风险快审',
     body: '签约前，把漏项、异常单价、模糊工艺和增项口子先看出来。',
     bullets: ['漏项和模糊项', '异常单价', '工艺边界', '追问清单'],
     price: '¥699 / 份',
@@ -162,19 +162,19 @@ const serviceCards = [
   },
   {
     icon: Calculator,
-    title: '预算结构诊断',
-    body: '开工前，把总预算拆成底线、弹性、缓冲和容易失控的选择。',
-    bullets: ['预算结构', '优先级', '缓冲空间', '超支风险'],
-    price: '¥1299 / 次起',
-    href: '/services/renovation#yusuan-zixun',
+    title: '签约前决策包',
+    body: '如果报价、预算、合同和付款节点一起乱，用这一项一次看全。',
+    bullets: ['报价 + 预算 + 合同', '关键追问顺序', '付款节点边界', '一次讲清'],
+    price: '¥1499 / 次',
+    href: '/services/renovation#qianyue-qian-juece-bao',
   },
   {
     icon: Sparkle,
-    title: 'AI 工作流整理',
-    body: '给传统行业人，把真实经验、客户问题和内容流程接进 AI。',
-    bullets: ['真实场景', '内容流程', '提示词骨架'],
-    price: '¥1999 / 起',
-    href: '/services/ai-workflow',
+    title: '预算结构诊断',
+    body: '如果你还没到逐行看报价，但钱已经越算越乱，先把预算结构拆清。',
+    bullets: ['预算结构', '优先级', '缓冲空间'],
+    price: '¥399 / 次',
+    href: '/services/renovation#yusuan-zixun',
   },
 ]
 

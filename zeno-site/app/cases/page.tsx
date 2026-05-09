@@ -28,8 +28,8 @@ const caseGroups: CaseGroup[] = [
     title: '报价与签约复盘',
     intro: '先看一份报价是怎么被拆开、怎么识别风险、为什么低价不一定更划算。',
     articleSlugs: ['baojia-dan-zenme-kan', 'article-03-04', 'article-03-02'],
-    tool: { label: '先做预算风险自测', href: '/tools/budget-risk' },
-    service: { label: '报价单审核服务', href: '/services/renovation#baojia-shenhe' },
+    tool: { label: '先看报价避坑指南', href: '/pricing/baojia-guide' },
+    service: { label: '签约前决策包', href: '/services/renovation#qianyue-qian-juece-bao' },
   },
   {
     title: '预算与施工复盘',
@@ -43,7 +43,7 @@ const caseGroups: CaseGroup[] = [
     intro: '先看一个传统行业人怎么把经验拆成流程，再让 AI 放大，而不是先追工具。',
     articleSlugs: ['04-wei-shenme-wo-kaishi-renzheng-xue-ai', 'article-05-06', 'neirong-xitong-jianqi'],
     tool: { label: '去提示词体验场', href: '/tools/prompts' },
-    service: { label: 'AI 工作流咨询', href: '/services/ai-workflow#ai-neirong-xitong-zixun' },
+    service: { label: 'AI 工作流咨询', href: '/services/ai-workflow' },
   },
 ]
 

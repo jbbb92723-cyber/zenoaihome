@@ -109,7 +109,7 @@ export const riskSummaries: Record<RiskKey, RiskSummary> = {
     firstStep: '先把报价里的模糊项、漏项和追问清单列出来，再决定谈不谈价格。',
     resource: { label: '先拿报价审核清单', href: '/resources#baojia-shenhe-qingdan' },
     article: { label: '先看装修预算为什么总超', href: '/blog/zhuangxiu-yusuan-weishenme-zongchao' },
-    service: { label: '直接看报价单审核服务', href: '/services/renovation#baojia-shenhe' },
+    service: { label: '直接看报价风险快审', href: '/services/renovation#baojia-shenhe' },
   },
   R2: {
     key: 'R2',

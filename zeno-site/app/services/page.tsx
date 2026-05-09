@@ -1,7 +1,7 @@
 ﻿import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
-import { services } from '@/data/services'
+import { getServiceBySlug, services } from '@/data/services'
 import PageHero from '@/components/PageHero'
 import Container from '@/components/Container'
 import CTA from '@/components/CTA'
@@ -12,7 +12,7 @@ import StructuredData from '@/components/StructuredData'
 export const metadata: Metadata = {
   title: '工具看不明白的地方，可以找我帮你判断',
   description:
-    'ZenoAIHome 服务页。先分清你需要的是装修报价、预算和居住场景判断，还是传统行业 AI 工作流整理，再看具体边界和价格。',
+    'ZenoAIHome 服务页。当前主线先看装修签约前判断：免费资料、低价指南、报价快审和签约前决策包。AI 工作流咨询单独走另一条线。',
   alternates: {
     canonical: 'https://zenoaihome.com/services',
   },
@@ -23,6 +23,11 @@ const serviceRelatedArticles: Record<string, { label: string; href: string }[]> 
     { label: '装修预算为什么总超？', href: '/blog/zhuangxiu-yusuan-weishenme-zongchao' },
     { label: '家不是样板间', href: '/blog/02-jia-bu-shi-yangban-jian' },
     { label: '从工地看世界', href: '/blog/03-cong-gongdi-kan-shijie' },
+  ],
+  'qianyue-qian-juece-bao': [
+    { label: '装修预算为什么总超？', href: '/blog/zhuangxiu-yusuan-weishenme-zongchao' },
+    { label: '报价避坑完整指南', href: '/pricing/baojia-guide' },
+    { label: '家不是样板间', href: '/blog/02-jia-bu-shi-yangban-jian' },
   ],
   'yusuan-zixun': [
     { label: '装修预算为什么总超？', href: '/blog/zhuangxiu-yusuan-weishenme-zongchao' },
@@ -42,9 +47,36 @@ const serviceRelatedArticles: Record<string, { label: string; href: string }[]> 
 }
 
 // 装修用户服务 slugs
-const renovationSlugs = ['baojia-shenhe', 'yusuan-zixun', 'shi-zhu-pai-zhuangxiu']
+const renovationSlugs = ['baojia-shenhe', 'qianyue-qian-juece-bao', 'yusuan-zixun', 'shi-zhu-pai-zhuangxiu']
 // AI / 传统行业服务 slugs
 const industrySlugs = ['ai-neirong-xitong-zixun']
+
+const judgmentLadder = [
+  {
+    label: '免费',
+    title: '报价审核清单',
+    description: '先把报价里的漏项、模糊项和工艺边界筛一轮。',
+    href: '/resources#baojia-shenhe-qingdan',
+  },
+  {
+    label: '¥39',
+    title: '报价避坑指南',
+    description: '把报价、预算、合同和增项四件事先系统串起来。',
+    href: '/pricing/baojia-guide',
+  },
+  {
+    label: '¥699',
+    title: '报价风险快审',
+    description: '只看报价重点风险，适合想尽快知道该追问什么的人。',
+    href: '/services/renovation#baojia-shenhe',
+  },
+  {
+    label: '¥1499',
+    title: '签约前决策包',
+    description: '把报价、预算、合同和关键追问一次看全，适合临近签约的人。',
+    href: '/services/renovation#qianyue-qian-juece-bao',
+  },
+]
 
 // 面向轻交付咨询——暂无完整数据，用描述卡展示
 const industryExtras = [
@@ -64,9 +96,9 @@ const industryExtras = [
 
 const splitCards = [
   {
-    label: '装修判断服务',
-    title: '报价、预算和居住场景，先分清你要判断什么',
-    description: '给普通装修业主的入口。先看清问题，再决定要不要把材料发我。',
+    label: '装修签约前判断',
+    title: '先把签约前风险看清，再决定要不要进入人工判断',
+    description: '给普通装修业主的主入口。免费资料、低价指南、报价快审、签约前决策包都从这里进入。',
     href: '/services/renovation',
     image: '/images/services/renovation-judgment-proof.svg',
   },
@@ -91,6 +123,11 @@ const serviceFaqs = [
       '如果你还在摸清问题阶段，或者手里没有具体材料，先用工具和资料把问题缩小，再拿清单和模板，通常比直接咨询更划算。',
   },
   {
+    question: '为什么现在要把签约前决策包单独提出来？',
+    answer:
+      '因为很多人真正卡住的不是单份报价，而是“报价、预算、合同和追问顺序一起乱”。把这个中层产品单独写清，服务梯子才不会塌。',
+  },
+  {
     question: '这个页最想帮你避免什么？',
     answer:
       '避免一上来就把装修业主送进 AI 服务，也避免把传统行业人直接送到泛泛的“服务与合作”页面里。',
@@ -98,8 +135,12 @@ const serviceFaqs = [
 ]
 
 export default function ServicesPage() {
-  const renovationServices = services.filter((s) => renovationSlugs.includes(s.slug))
-  const industryServices = services.filter((s) => industrySlugs.includes(s.slug))
+  const renovationServices = renovationSlugs
+    .map((slug) => getServiceBySlug(slug))
+    .filter((service): service is NonNullable<ReturnType<typeof getServiceBySlug>> => Boolean(service))
+  const industryServices = industrySlugs
+    .map((slug) => getServiceBySlug(slug))
+    .filter((service): service is NonNullable<ReturnType<typeof getServiceBySlug>> => Boolean(service))
 
   return (
     <>
@@ -142,8 +183,8 @@ export default function ServicesPage() {
       <PageHero
         label="找我帮你判断"
         title="工具看不明白的地方，可以找我帮你判断"
-        subtitle="这里不做泛泛咨询。先分清你要判断的是报价、预算、居住场景，还是传统行业 AI 工作流，再看具体服务边界。"
-        note="如果你只是想先自己判断，先去工具页和资料页，不急着付费。"
+        subtitle="这里不做泛泛咨询。当前主线先处理装修签约前判断：免费资料、低价指南、报价快审、签约前决策包。AI 工作流单独走另一条线。"
+        note="如果你还在摸问题阶段，先去资料页和低价指南，不急着付费。"
         size="content"
       />
 
@@ -172,11 +213,28 @@ export default function ServicesPage() {
         </section>
 
         <section className="mb-14 border border-border bg-surface-warm p-6 sm:p-8">
+          <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-3">当前最该先看的</p>
+          <h2 className="text-lg font-semibold text-ink mb-3">装修业主先走这条梯子，不要一上来就把所有服务看一遍</h2>
+          <p className="text-sm text-ink-muted leading-relaxed mb-6 max-w-3xl">
+            现在网站最核心的转化，不是“合作与共建”，也不是泛泛咨询，而是把签约前判断做成一条清楚、可升级、可理解的路径。
+          </p>
+          <div className="grid gap-4 lg:grid-cols-4">
+            {judgmentLadder.map((item) => (
+              <Link key={item.title} href={item.href} className="border border-border bg-surface p-5 hover:border-stone transition-colors">
+                <p className="text-[0.65rem] font-semibold uppercase tracking-widest text-stone">{item.label}</p>
+                <h2 className="mt-3 text-base font-semibold text-ink">{item.title}</h2>
+                <p className="mt-2 text-sm text-ink-muted leading-relaxed">{item.description}</p>
+              </Link>
+            ))}
+          </div>
+        </section>
+
+        <section className="mb-14 border border-border bg-surface-warm p-6 sm:p-8">
           <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-3">可验证的证据</p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {[
-              ['服务范围', '报价审核、预算结构诊断、居住场景判断、AI 工作流整理。'],
-              ['工作方式', '先看材料，再给书面建议，不做空口安慰。'],
+              ['服务范围', '报价快审、签约前决策包、预算结构诊断、居住场景判断、AI 工作流整理。'],
+              ['工作方式', '先看材料，再给书面建议；复杂情况再配微信或语音解读。'],
               ['交付样例', '风险说明、修改建议、流程骨架、提示词框架。'],
               ['哪些不做', '不代砍价、不代施工、不承诺一键自动化。'],
             ].map(([title, desc]) => (
@@ -192,7 +250,7 @@ export default function ServicesPage() {
         <div className="mb-6">
           <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-2">A</p>
           <h2 className="text-lg font-semibold text-ink">装修判断服务</h2>
-          <p className="text-sm text-ink-muted mt-1">先处理普通装修业主最常见的三类问题：报价、预算结构和居住场景选择。</p>
+          <p className="text-sm text-ink-muted mt-1">先处理普通装修业主最常见的四类进入方式：报价快审、签约前决策包、预算结构和居住场景选择。</p>
         </div>
 
         <div className="space-y-10">
@@ -260,14 +318,14 @@ export default function ServicesPage() {
         {/* ───── C. 合作方向 ───── */}
         <div className="mt-16 mb-6">
           <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-2">C</p>
-          <h2 className="text-lg font-semibold text-ink">合作方向</h2>
+          <h2 className="text-lg font-semibold text-ink">合作方向不是当前主线</h2>
         </div>
         <div className="border border-border p-6 sm:p-8">
           <p className="text-sm text-ink leading-relaxed mb-3">
             如果你是传统行业从业者、小老板、内容创作者、工具开发者或品牌方，想一起探索 AI 工具、内容产品、数字资料和轻交付服务，可以联系我。
           </p>
           <p className="text-sm text-ink-muted leading-relaxed mb-6">
-            我对这些方向感兴趣：AI 工具共建、内容系统合作、数字产品联名、传统行业升级案例、一人公司经验交流。
+            但这部分现在不放在网站主转化路径里。网站当前优先验证的，仍然是装修签约前判断和 B 端 AI 工作流两条可付费路径。
           </p>
           <CTA href="/contact" label="查看联系方式" variant="secondary" />
         </div>
@@ -288,7 +346,7 @@ export default function ServicesPage() {
           <div>
             <p className="text-sm font-medium text-ink">还没想好？先从免费工具和资料开始。</p>
             <p className="text-xs text-ink-muted mt-1 max-w-md">
-              装修预算模板、报价审核清单、AI 提示词体验场都可以免费使用。先建立判断，再决定是否需要服务。
+              报价审核清单、报价避坑指南、装修预算模板和 AI 提示词体验场都可以先用。先建立判断，再决定是否需要服务。
             </p>
           </div>
           <CTA href="/resources" label="去资料与清单" variant="secondary" />

@@ -19,7 +19,7 @@ const painPoints = [
   '拿到报价单一头雾水，不知道该先看哪里、问什么',
   '知道大概率有坑，但不确定坑在哪一行',
   '看过零散的避坑文章，但没有可以直接对照检查的工具',
-  '不想花 ¥699 做一对一审核，但需要一份 ¥39 就能落地的清单',
+  '不想一上来就进入人工服务，但需要一份 ¥39 就能落地的签约前检查框架',
 ]
 
 const willGet = [
@@ -27,7 +27,7 @@ const willGet = [
   '六张核心检查表（PDF 表格 + 可填写版）',
   '三类常见陷阱的识别方法 + 应对话术',
   '合同关键条款查漏清单',
-  '升级到报价审核服务的优先通道（含 ¥100 抵扣券）',
+  '升级到报价风险快审或签约前决策包的优先判断入口',
 ]
 
 const tableOfContents = [
@@ -195,9 +195,9 @@ export default async function BaojiaGuidePage() {
           <p className="text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-stone mb-3">购买入口</p>
           <h2 className="text-lg font-semibold text-ink mb-3">定价 {product ? formatYuan(product.price) : '¥39'}，适合签约前自己先过一遍</h2>
           <p className="text-sm text-ink-muted leading-relaxed mb-6 max-w-prose">
-            如果你手里已经有报价单，先用指南和清单自己过一遍；如果仍然看不明白，再升级到报价审核服务。
+            如果你手里已经有报价单，先用指南和清单自己过一遍；如果只是报价本身看不明白，再去报价风险快审；如果报价、预算和合同一起乱，再直接看签约前决策包。
           </p>
-          <div className="grid gap-3 sm:grid-cols-[minmax(0,18rem)_auto_auto] sm:items-center">
+          <div className="grid gap-3 sm:grid-cols-[minmax(0,18rem)_auto_auto_auto] sm:items-center">
             {product && (
               <PurchaseButton
                 productId={product.id}
@@ -215,7 +215,13 @@ export default async function BaojiaGuidePage() {
               href="/services/renovation#baojia-shenhe"
               className="inline-flex items-center text-sm font-medium text-stone border border-stone/40 px-4 py-2 hover:bg-stone-pale transition-colors"
             >
-              查看人工审核 →
+              看报价风险快审 →
+            </Link>
+            <Link
+              href="/services/renovation#qianyue-qian-juece-bao"
+              className="inline-flex items-center text-sm font-medium text-stone border border-stone/40 px-4 py-2 hover:bg-stone-pale transition-colors"
+            >
+              看签约前决策包 →
             </Link>
           </div>
         </section>

@@ -59,11 +59,11 @@ const quickEntriesZh = [
   },
   {
     label: '我在看报价单',
-    prompt: '我正在看装修报价单，请先帮我分流：我应该先看哪些风险、用哪个工具、拿哪份清单、什么时候需要人工审核？',
+    prompt: '我正在看装修报价单，请先帮我分流：我应该先看哪些风险、用哪个工具、拿哪份清单，什么时候看报价快审，什么时候看签约前决策包？',
     links: [
       { label: '报价初筛工具', href: '/tools/quote-check' },
       { label: '报价审核清单', href: '/resources#baojia-shenhe-qingdan' },
-      { label: '报价单审核服务', href: '/services/renovation#baojia-shenhe' },
+      { label: '签约前决策包', href: '/services/renovation#qianyue-qian-juece-bao' },
     ],
   },
   {

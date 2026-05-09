@@ -126,7 +126,7 @@ export default function QuoteCheckClient() {
               开始初筛
             </a>
             <Link href="/services/renovation#baojia-shenhe" className="inline-flex h-11 items-center border border-border px-5 text-sm font-semibold text-ink hover:border-stone">
-              需要人工审核
+              看报价快审
             </Link>
           </div>
         </div>
@@ -243,8 +243,8 @@ export default function QuoteCheckClient() {
                   <button type="button" onClick={copyQuestionList} className="inline-flex h-10 items-center border border-stone px-4 text-sm font-semibold text-stone hover:bg-stone-pale">
                     {copiedQuestions ? '已复制追问' : '复制追问清单'}
                   </button>
-                  <Link href="/services#service-form" className="inline-flex h-10 items-center border border-border px-4 text-sm font-semibold text-ink hover:border-stone">
-                    提交人工判断
+                  <Link href="/services?service=baojia-shenhe#service-form" className="inline-flex h-10 items-center border border-border px-4 text-sm font-semibold text-ink hover:border-stone">
+                    提交报价快审
                   </Link>
                 </div>
               </div>
@@ -274,8 +274,8 @@ export default function QuoteCheckClient() {
                 <p className="mt-2 text-sm leading-relaxed text-ink-muted">适合想自己系统看报价的人。</p>
               </Link>
               <Link href="/services/renovation#baojia-shenhe" className="border border-border bg-canvas p-5 hover:border-stone">
-                <p className="text-sm font-semibold text-ink">找 Zeno 做人工审核</p>
-                <p className="mt-2 text-sm leading-relaxed text-ink-muted">工具看不明白的地方，可以找我帮你判断。</p>
+                <p className="text-sm font-semibold text-ink">看报价风险快审</p>
+                <p className="mt-2 text-sm leading-relaxed text-ink-muted">只是不确定报价重点风险时，先看这一项。</p>
               </Link>
             </div>
           </div>

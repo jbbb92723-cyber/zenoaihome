@@ -3,6 +3,12 @@
 > 基于 Dan Koe + Easy 一人企业方法论，结合 Zeno 实际阶段制定。
 > 2026-04-29 首版
 
+配套执行文档：
+
+1. [一页商业模型图](./zeno-one-page-business-model.md)
+2. [90 天周度执行清单](./zeno-90-day-weekly-execution.md)
+3. [指标仪表盘模板](./zeno-metrics-dashboard-template.md)
+
 ---
 
 ## 一、五大内容板块

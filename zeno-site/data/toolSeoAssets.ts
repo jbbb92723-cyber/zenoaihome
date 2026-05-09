@@ -46,7 +46,8 @@ export const toolSeoAssets = {
     links: [
       { label: '报价审核清单', href: '/resources#baojia-shenhe-qingdan', desc: '把工具里的追问整理成签约前检查表。' },
       { label: '报价避坑完整指南', href: '/pricing/baojia-guide', desc: '适合想自己系统看懂报价的人。' },
-      { label: '报价单审核服务', href: '/services/renovation#baojia-shenhe', desc: '报价复杂、金额较高或临近签约时，进入人工判断。' },
+      { label: '报价风险快审', href: '/services/renovation#baojia-shenhe', desc: '只看报价重点风险，适合快速判断该追问什么。' },
+      { label: '签约前决策包', href: '/services/renovation#qianyue-qian-juece-bao', desc: '报价、预算和合同一起乱时，进入签约前完整判断。' },
       { label: '从工地看世界', href: '/blog/03-cong-gongdi-kan-shijie', desc: '理解为什么现场责任和边界比口头承诺更重要。' },
     ],
   },
