@@ -116,6 +116,7 @@ export const primaryNav: PrimaryNavItem[] = [
           { key: 'budget-structure', zh: { label: '预算结构工具', href: '/tools/budget-structure', desc: '已上线：先拆清钱该怎么分' }, en: { label: 'Budget Structure', href: '/en/tools', desc: 'Live' } },
           { key: 'inspection-guide', zh: { label: '验收节点向导', href: '/tools/inspection-guide', desc: '已上线：按节点生成清单' }, en: { label: 'Inspection Guide', href: '/en/tools', desc: 'Live' } },
           { key: 'budget-risk', zh: { label: '预算风险自测', href: '/tools/budget-risk', desc: '补充诊断' }, en: { label: 'Budget Risk Quiz', href: '/en/tools', desc: 'Live' } },
+          { key: 'content-brain', zh: { label: '内容诊断大脑', href: '/tools/content-brain', desc: '发布前检查选题、标题和转化路径' }, en: { label: 'Content Brain', href: '/en/tools', desc: 'Content diagnosis' } },
           { key: 'needs-map', zh: { label: '需求梳理问卷', href: '/resources#shizhu-pai-zijian-biao', desc: '清单模式' }, en: { label: 'Needs Map', href: '/en/resources', desc: 'Checklist' } },
         ],
       },
@@ -173,6 +174,7 @@ export const primaryNav: PrimaryNavItem[] = [
         en: { label: 'AI Tools', desc: 'Start from real tasks' },
         items: [
           { key: 'ai-hub', zh: { label: 'AI 升级路线', href: '/ai', desc: '传统装修经验如何接入 AI' }, en: { label: 'AI Upgrade Route', href: '/en', desc: 'How field work meets AI' } },
+          { key: 'content-brain', zh: { label: '内容诊断大脑', href: '/tools/content-brain', desc: '选题、标题、初稿和转化路径诊断' }, en: { label: 'Content Brain', href: '/en/tools', desc: 'Diagnose content before publishing' } },
           { key: 'prompt-lab', zh: { label: 'AI 场景生成器', href: '/tools/prompts', desc: '报价、客户、施工、内容一键生成提示词' }, en: { label: 'Prompt Lab', href: '/en/tools/prompts', desc: 'Generate prompts from scenarios' } },
           { key: 'quote-ai', zh: { label: '报价初筛工具', href: '/tools/quote-check', desc: '把报价判断变成可复用流程' }, en: { label: 'Quote Screening', href: '/en/tools', desc: 'Reusable quote screening' } },
         ],

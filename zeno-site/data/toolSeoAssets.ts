@@ -181,6 +181,32 @@ export const toolSeoAssets = {
       { label: '从工地看世界', href: '/blog/03-cong-gongdi-kan-shijie', desc: '理解为什么节点、责任和留痕决定装修结果。' },
     ],
   },
+  contentBrain: {
+    key: 'content-brain',
+    name: '内容诊断大脑',
+    path: '/tools/content-brain',
+    description: '输入选题、目标用户、真实案例和初稿，检查文字洁癖、标题、表达效率、认知落差和站内转化路径。',
+    searchIntent: '适合搜索“内容选题怎么做”“小红书标题怎么起”“AI 写作怎么不像 AI”“内容资产系统”的传统行业内容创作者。',
+    scenarioTitle: '典型场景：你有很多经验，但发出去之前不知道内容到底值不值得做',
+    scenario: [
+      '传统行业内容创作者最常见的问题，不是没有经历，而是把经历直接写成流水账，或者让 AI 改成一篇看起来很顺、但没有判断力的稿子。',
+      '内容诊断大脑先不替你写稿，而是检查选题是否具体、标题是否有边界、表达是否绕、有没有真实案例，以及这篇内容应该导向网站里的哪一个资料、产品或服务。',
+      '它适合放在发布前一关：先把网站长文母版做出来，再拆成小红书图文、短视频开头和公众号文章。这样内容不是一次性流量，而是能长期复用的站内资产。',
+    ],
+    zenoNote: '内容不是为了证明你很会写，而是让一个真实用户在关键决策前少犯一次错。先把事情搞清楚，再把它说清楚。',
+    nationalNote: '这个工具不依赖城市和行业细节。装修、AI、咨询和一人公司内容都能用，但真实案例、产品出口和服务边界必须由创作者自己提供。',
+    faqs: [
+      { question: '内容诊断大脑会自动帮我写文章吗？', answer: '不会。它负责诊断选题、标题、表达、证据和转化路径。真正的内容仍然要来自你的真实经历和判断。' },
+      { question: '它和 AI 场景生成器有什么区别？', answer: '内容诊断大脑是发布前审稿台，判断内容值不值得做、怎么承接；AI 场景生成器更偏生成提示词，把一个真实任务交给 AI 协作。' },
+      { question: '为什么要先发到网站？', answer: '网站长文是母版资产，能承接 SEO、专题、资料和产品链接。小红书、短视频和公众号适合分发，但不应该替代母站沉淀。' },
+    ],
+    links: [
+      { label: 'AI 场景生成器', href: '/tools/prompts', desc: '诊断后继续生成可复制的 AI 协作提示词。' },
+      { label: '创作工作台', href: '/tools/md2wechat', desc: '把网站母版转成公众号可用排版。' },
+      { label: 'AI 内容工作流提示词包', href: '/resources#ai-neirong-gongzuoliu-tishici-bao', desc: '领取内容系统相关模板。' },
+      { label: '内容资产会员年卡', href: '/pricing#creator-yearly', desc: '把选题、标题和模板持续沉淀成资产。' },
+    ],
+  },
 } satisfies Record<string, ToolSeoAsset>
 
 export type ToolSeoKey = keyof typeof toolSeoAssets

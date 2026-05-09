@@ -8,7 +8,7 @@ import StructuredData from '@/components/StructuredData'
 export const metadata: Metadata = {
   title: '工具工作台',
   description:
-    'ZenoAIHome 工具工作台：报价初筛、预算结构、单位换算、瓷砖计算、乳胶漆计算、验收节点向导和 AI 场景生成器。',
+    'ZenoAIHome 工具工作台：报价初筛、预算结构、单位换算、瓷砖计算、乳胶漆计算、验收节点向导、内容诊断大脑和 AI 场景生成器。',
   alternates: {
     canonical: 'https://zenoaihome.com/tools',
   },
@@ -102,6 +102,16 @@ const toolGroups = [
     desc: '给传统装修从业者和内容创作者，把真实经验接进 AI。',
     tools: [
       {
+        title: '内容诊断大脑',
+        status: '已上线',
+        price: '免费',
+        time: '6-12 分钟',
+        job: '发布前检查选题、标题、表达效率、认知落差和站内转化路径。',
+        output: '五维诊断、标题方向、分发拆条、站内产品/资料承接入口。',
+        href: '/tools/content-brain',
+        cta: '诊断内容',
+      },
+      {
         title: 'AI 场景生成器',
         status: '已上线',
         price: '免费',
@@ -130,6 +140,7 @@ const routes = [
   ['怕预算失控', '先拆预算结构', '/tools/budget-structure'],
   ['正在买材料', '先算数量和单位', '/tools/tile-calculator'],
   ['准备验收', '生成节点清单', '/tools/inspection-guide'],
+  ['准备发内容', '先做内容诊断', '/tools/content-brain'],
   ['想用 AI 提效', '生成场景提示词', '/tools/prompts'],
   ['要发公众号', '进入创作工作台', '/tools/md2wechat'],
 ]
