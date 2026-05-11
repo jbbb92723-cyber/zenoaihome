@@ -165,15 +165,15 @@ export const primaryNav: PrimaryNavItem[] = [
   },
   {
     key: 'ai-upgrade',
-    zh: { label: 'AI 升级', href: '/ai' },
-    en: { label: 'AI Upgrade', href: '/en' },
+    zh: { label: 'AI 实践', href: '/ai' },
+    en: { label: 'AI Practice', href: '/en' },
     groups: [
       {
         key: 'ai-tools',
-        zh: { label: 'AI 工具', desc: '先用真实任务跑起来' },
+        zh: { label: 'AI 工具', desc: '把真实经验接进工具和流程' },
         en: { label: 'AI Tools', desc: 'Start from real tasks' },
         items: [
-          { key: 'ai-hub', zh: { label: 'AI 升级路线', href: '/ai', desc: '传统装修经验如何接入 AI' }, en: { label: 'AI Upgrade Route', href: '/en', desc: 'How field work meets AI' } },
+          { key: 'ai-hub', zh: { label: 'AI 实践路线', href: '/ai', desc: '传统行业经验如何变成工具、内容和产品' }, en: { label: 'AI Practice Route', href: '/en', desc: 'How field work meets AI' } },
           { key: 'content-brain', zh: { label: '内容诊断大脑', href: '/tools/content-brain', desc: '选题、标题、初稿和转化路径诊断' }, en: { label: 'Content Brain', href: '/en/tools', desc: 'Diagnose content before publishing' } },
           { key: 'prompt-lab', zh: { label: 'AI 场景生成器', href: '/tools/prompts', desc: '报价、客户、施工、内容一键生成提示词' }, en: { label: 'Prompt Lab', href: '/en/tools/prompts', desc: 'Generate prompts from scenarios' } },
           { key: 'quote-ai', zh: { label: '报价初筛工具', href: '/tools/quote-check', desc: '把报价判断变成可复用流程' }, en: { label: 'Quote Screening', href: '/en/tools', desc: 'Reusable quote screening' } },
