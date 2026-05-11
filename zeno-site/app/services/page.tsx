@@ -10,9 +10,9 @@ import ServiceRequestForm from '@/components/services/ServiceRequestForm'
 import StructuredData from '@/components/StructuredData'
 
 export const metadata: Metadata = {
-  title: '装修与 AI 服务路径 | ZenoAIHome',
+  title: '服务路径 | 装修判断优先',
   description:
-    'ZenoAIHome 服务页。先分清你要买的是装修签约前判断，还是传统行业 AI 工作流判断，再按免费、低价产品和人工服务逐步进入。',
+    'ZenoAIHome 服务页。当前主线是装修签约前报价风险初筛，AI 工作流作为延伸入口。先用免费工具和低价资料把问题缩小，再决定是否进入人工服务。',
   alternates: {
     canonical: 'https://zenoaihome.com/services',
   },
@@ -152,9 +152,9 @@ const nextStageProducts = [
   },
 ]
 
-const splitCards = [
+const entryRoutes = [
   {
-    label: '装修签约前判断',
+    label: '主线 / 装修签约前判断',
     title: '你买的不是咨询时长，是签字前少后悔',
     description: '给普通装修业主的主入口。先用免费工具和 ¥39 指南缩小问题，再看 ¥399、¥699、¥1499 的人工判断。',
     href: '/services/renovation',
@@ -162,7 +162,7 @@ const splitCards = [
     image: '/images/services/renovation-judgment-proof.svg',
   },
   {
-    label: 'AI 工作流判断',
+    label: '延伸 / AI 工作流判断',
     title: '你买的不是提示词，是一个能跑起来的真实场景',
     description: '给传统行业人、同行和内容创作者的入口。先用免费工具跑一个任务，再看小课、会员或一对一咨询。',
     href: '/services/ai-workflow',
@@ -243,44 +243,74 @@ export default function ServicesPage() {
       <PageHero
         label="找我帮你判断"
         title="先分清你要买的是哪种判断"
-        subtitle="装修业主买的是签字前少后悔，传统行业人买的是一个真实 AI 场景能不能跑起来。这里先把两条服务路径分开，再给你对应的免费入口、低价产品和人工服务。"
+        subtitle="装修业主先看签约前报价风险，传统行业人再看 AI 场景能不能跑起来。当前主线是前者，后者是延伸入口。这里先把路径分开，再给你对应的免费入口、低价产品和人工服务。"
         note="还说不清问题时，先用工具；已经有材料和明确时间点，再进入服务。"
         size="content"
       />
 
       <Container size="content" className="py-section">
-        <section className="mb-14 grid grid-cols-1 gap-5 lg:grid-cols-2">
-          {splitCards.map((card) => (
-            <div key={card.label} className="overflow-hidden border border-border bg-surface">
-              <div className="relative aspect-[16/10] border-b border-border bg-stone-pale/30">
+        <section className="mb-14 grid gap-5 lg:grid-cols-[1.18fr_0.82fr]">
+          <div className="overflow-hidden border border-border bg-surface">
+            <div className="relative aspect-[16/10] border-b border-border bg-stone-pale/30">
+              <Image
+                src="/images/services/renovation-judgment-proof.svg"
+                alt="装修签约前判断服务示意图"
+                fill
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 720px"
+              />
+            </div>
+            <div className="p-6 sm:p-7">
+              <p className="mb-3 text-[0.65rem] font-semibold uppercase tracking-widest text-stone">{entryRoutes[0].label}</p>
+              <h2 className="mb-3 max-w-2xl text-2xl font-semibold leading-tight tracking-tight text-ink">{entryRoutes[0].title}</h2>
+              <p className="mb-5 max-w-2xl text-sm leading-relaxed text-ink-muted">{entryRoutes[0].description}</p>
+              <CTA href={entryRoutes[0].href} label={entryRoutes[0].cta} variant="primary" />
+            </div>
+          </div>
+
+          <div className="grid gap-5">
+            <div className="overflow-hidden border border-border bg-surface">
+              <div className="relative aspect-[16/9] border-b border-border bg-[#f5f4fb]">
                 <Image
-                  src={card.image}
-                  alt={card.title}
+                  src="/images/services/ai-workflow-proof.svg"
+                  alt="AI 工作流咨询路径示意图"
                   fill
                   className="object-cover"
                   sizes="(max-width: 1024px) 100vw, 520px"
                 />
               </div>
               <div className="p-6 sm:p-7">
-                <p className="mb-3 text-[0.65rem] font-semibold uppercase tracking-widest text-stone">{card.label}</p>
-                <h2 className="mb-3 text-lg font-semibold text-ink">{card.title}</h2>
-                <p className="mb-5 text-sm leading-relaxed text-ink-muted">{card.description}</p>
-                <CTA href={card.href} label={card.cta} variant="primary" />
+                <p className="mb-3 text-[0.65rem] font-semibold uppercase tracking-widest text-stone">{entryRoutes[1].label}</p>
+                <h2 className="mb-3 text-lg font-semibold leading-snug text-ink">{entryRoutes[1].title}</h2>
+                <p className="mb-5 text-sm leading-relaxed text-ink-muted">{entryRoutes[1].description}</p>
+                <CTA href={entryRoutes[1].href} label={entryRoutes[1].cta} variant="secondary" />
               </div>
             </div>
-          ))}
+
+            <div className="border border-border bg-surface-warm p-6 sm:p-7">
+              <p className="text-xs font-semibold uppercase tracking-widest text-ink-faint">先从主线开始</p>
+              <h3 className="mt-3 text-lg font-semibold text-ink">如果你是装修业主，先去报价初筛。</h3>
+              <p className="mt-3 text-sm leading-relaxed text-ink-muted">
+                先知道自己卡在哪一步，再决定要不要进入人工服务。第二条路可以晚一点看，不要抢第一条路的注意力。
+              </p>
+              <div className="mt-5 flex flex-wrap gap-3">
+                <CTA href="/tools/quote-check" label="先做免费报价初筛" variant="primary" />
+                <CTA href="/services/renovation" label="看装修签约前路径" variant="secondary" />
+              </div>
+            </div>
+          </div>
         </section>
 
         <section className="mb-14 border border-border bg-surface-warm p-6 sm:p-8">
           <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-ink-faint">两条价格路径</p>
           <h2 className="mb-3 text-lg font-semibold text-ink">不是越贵越好，是看你现在卡在哪一步</h2>
           <p className="mb-6 max-w-3xl text-sm leading-relaxed text-ink-muted">
-            网站当前要验证的是两条能收费的路径：装修签约前判断，以及传统行业 AI 工作流判断。每一档都要让用户知道自己会拿到什么，以及下一步该点哪里。
+            网站当前要验证的是一条主线和一条延伸线：装修签约前判断优先，AI 工作流作为背景能力。每一档都要让用户知道自己会拿到什么，以及下一步该点哪里。
           </p>
 
           <div className="grid gap-6 lg:grid-cols-2">
             <div>
-              <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-stone">A / 装修业主</p>
+              <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-stone">主线 / 装修业主</p>
               <div className="grid gap-3">
                 {renovationLadder.map((item) => (
                   <Link key={item.title} href={item.href} className="group border border-border bg-surface p-5 transition-colors hover:border-stone">
@@ -298,7 +328,7 @@ export default function ServicesPage() {
             </div>
 
             <div>
-              <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-stone">B / 传统行业人</p>
+              <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-stone">延伸 / 传统行业人</p>
               <div className="grid gap-3">
                 {aiLadder.map((item) => (
                   <Link key={item.title} href={item.href} className="group border border-border bg-surface p-5 transition-colors hover:border-stone">
