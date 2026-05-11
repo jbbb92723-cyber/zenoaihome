@@ -205,15 +205,15 @@ export default function AIChatWidget() {
         <button
           type="button"
           onClick={() => setOpen(true)}
-          className="fixed bottom-5 right-5 z-[75] inline-flex min-h-16 items-center gap-3 border border-white/25 bg-stone px-5 py-3 text-left text-white shadow-[0_24px_70px_rgba(42,39,35,0.30)] transition-all duration-200 hover:-translate-y-1 hover:bg-stone/95 hover:shadow-[0_28px_86px_rgba(42,39,35,0.36)] sm:bottom-7 sm:right-7 sm:min-h-[4.5rem] sm:px-6 animate-zeno-pulse-once"
+          className="fixed bottom-4 right-4 z-[75] inline-flex h-12 w-12 items-center justify-center border border-white/25 bg-stone p-0 text-left text-white shadow-[0_18px_48px_rgba(42,39,35,0.26)] transition-all duration-200 hover:-translate-y-1 hover:bg-stone/95 hover:shadow-[0_24px_70px_rgba(42,39,35,0.32)] sm:bottom-7 sm:right-7 sm:h-auto sm:w-auto sm:min-h-[4.5rem] sm:gap-3 sm:px-6 sm:py-3 animate-zeno-pulse-once"
           aria-label={isEn ? 'Ask Zeno' : '问 Zeno'}
         >
-          <span className="flex h-10 w-10 shrink-0 items-center justify-center bg-white/12 ring-1 ring-white/20">
+          <span className="flex h-9 w-9 shrink-0 items-center justify-center bg-white/12 ring-1 ring-white/20 sm:h-10 sm:w-10">
             <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
             </svg>
           </span>
-          <span>
+          <span className="hidden sm:block">
             <span className="block text-base font-semibold leading-none sm:text-lg">{isEn ? 'Ask Zeno' : '问 Zeno'}</span>
             <span className="mt-1 block text-xs font-medium text-white/75">{isEn ? 'AI renovation routing' : 'AI 装修判断助手'}</span>
           </span>

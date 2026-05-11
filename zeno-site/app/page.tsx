@@ -10,9 +10,9 @@ const outfit = Outfit({
 })
 
 export const metadata: Metadata = {
-  title: '装修现场长出来的 AI 判断力系统 | ZenoAIHome',
+  title: '装修签约前报价风险初筛 | ZenoAIHome',
   description:
-    'ZenoAIHome 用 16 年装修现场经验做样板，把真实经验拆成判断 SOP，再用 AI 放大成工具、内容、产品和一人公司实践。',
+    'ZenoAIHome 帮助业主在装修前看懂报价风险，建立判断力，少花冤枉钱。先做签约前报价风险初筛，再决定是否需要人工快审。',
   alternates: {
     canonical: 'https://zenoaihome.com/',
   },
@@ -28,7 +28,7 @@ export default function HomePage() {
           name: 'ZenoAIHome',
           url: 'https://zenoaihome.com/',
           description:
-            '装修是现场，AI 是方法，一人公司是结果。ZenoAIHome 把真实行业经验拆成判断 SOP，再做成工具、内容和产品。',
+            'ZenoAIHome 聚焦装修签约前判断，帮助业主看懂报价风险、关键追问和预算取舍。',
           inLanguage: 'zh-CN',
         }}
       />

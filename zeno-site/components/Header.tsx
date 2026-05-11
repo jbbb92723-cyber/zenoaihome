@@ -46,8 +46,7 @@ export default function Header() {
   const [activeMenu, setActiveMenu] = useState<string | null>(null)
   const [scrolled, setScrolled] = useState(false)
   const closeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
-
-  if (pathname.startsWith('/admin')) return null
+  const isAdmin = pathname.startsWith('/admin')
 
   const isEn = pathname.startsWith('/en')
   const logoHref = isEn ? '/en' : '/'
@@ -104,6 +103,8 @@ export default function Header() {
     if (base === '/' || base === '/en') return pathname === base
     return pathname.startsWith(base)
   }
+
+  if (isAdmin) return null
 
   return (
     <header
