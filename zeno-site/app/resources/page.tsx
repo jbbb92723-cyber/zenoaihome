@@ -21,9 +21,9 @@ import CTA from '@/components/CTA'
 import ResourceClaimButton from '@/components/resources/ResourceClaimButton'
 
 export const metadata: Metadata = {
-  title: '按问题拿清单和资料，不用先翻栏目 | ZenoAIHome',
+  title: '装修判断力内容中台 | 按问题拿清单和资料',
   description:
-    '先按问题拿清单和资料，再按阶段展开完整工具库。覆盖报价、预算、验收、居住场景和 AI 工作流。',
+    '按装修判断、预算、验收、居住场景和 AI 工作流拿清单、文章和工具，先按问题找到入口，再往下延伸到服务。',
   alternates: {
     canonical: 'https://zenoaihome.com/resources',
   },
@@ -96,17 +96,44 @@ const problemEntryCards = [
   },
 ]
 
+const pathwayCards = [
+  {
+    title: '先看判断',
+    desc: '先拿清单把报价、预算、验收这些高风险节点分清楚。',
+  },
+  {
+    title: '再拿资料',
+    desc: '把清单、模板、表格和提示词当成可反复使用的判断工具。',
+  },
+  {
+    title: '最后进服务',
+    desc: '当你已经有具体报价、场景或材料，再进入更重的人工判断。',
+  },
+]
+
 export default function ResourcesPage() {
   return (
     <>
       <PageHero
-        label="判断工具库"
+        label="判断力中台"
         title="按问题拿清单和资料，不用先翻栏目"
-        subtitle="如果你已经知道自己卡在哪，就先点那一格。下面再按阶段展开完整工具库，方便你继续往下找。"
+        subtitle="如果你已经知道自己卡在哪，就先点那一格。先按判断顺序找，再按资料类型找，最后才进服务。"
         size="content"
       />
 
       <Container size="content" className="py-section">
+        <section className="mb-12 border border-border bg-surface-warm p-6 sm:p-8">
+          <p className="text-xs font-semibold uppercase tracking-widest text-stone">内容路径</p>
+          <h2 className="mt-3 text-2xl font-semibold tracking-tight text-ink">先看判断，再拿资料，最后进服务</h2>
+          <div className="mt-5 grid gap-4 md:grid-cols-3">
+            {pathwayCards.map((card) => (
+              <div key={card.title} className="border border-border bg-canvas p-5">
+                <p className="text-sm font-semibold text-ink">{card.title}</p>
+                <p className="mt-2 text-sm leading-relaxed text-ink-muted">{card.desc}</p>
+              </div>
+            ))}
+          </div>
+        </section>
 
         <section className="mb-14">
           <SectionHeader

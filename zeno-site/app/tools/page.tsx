@@ -7,9 +7,9 @@ import PageHero from '@/components/PageHero'
 import StructuredData from '@/components/StructuredData'
 
 export const metadata: Metadata = {
-  title: '双主线工具工作台 | ZenoAIHome',
+  title: '装修判断力工具工作台 | ZenoAIHome',
   description:
-    'ZenoAIHome 双主线工具工作台：业主先看装修报价、预算、材料和验收；传统行业人先看 AI 场景、内容诊断和公众号排版。',
+    'ZenoAIHome 的装修判断力工具工作台：业主先走报价初筛、¥39 指南、¥699 快审和 ¥1499 决策包这条线，AI 工具作为延伸。',
   alternates: {
     canonical: 'https://zenoaihome.com/tools',
   },
@@ -17,18 +17,19 @@ export const metadata: Metadata = {
 
 const trackCards = [
   {
-    label: '装修业主',
+    label: '主线 / 装修业主',
     title: '我手上有报价、预算或材料数量，想先知道哪里会出问题',
-    desc: '这条线不教你变成装修专家。它先帮你把签字前最容易后悔的地方筛出来：漏项、模糊项、预算失衡、材料数量和验收节点。',
+    desc: '先从报价初筛开始，把漏项、模糊项、预算失衡和验收节点筛出来，再决定要不要看资料、买指南或进入人工判断。',
     image: '/images/resources/quote-checklist-preview.svg',
     primaryHref: '/tools/quote-check',
     primaryLabel: '先做报价初筛',
-    secondaryHref: '/services/renovation',
-    secondaryLabel: '看装修服务路径',
-    proof: ['报价追问清单', '预算结构结果', '验收拍照点'],
+    secondaryHref: '/pricing/baojia-guide',
+    secondaryLabel: '看 ¥39 指南',
+    proof: ['报价追问清单', '¥39 指南', '验收节点'],
+    variant: 'primary' as const,
   },
   {
-    label: '传统行业人 / 同行',
+    label: '延伸 / 传统行业人',
     title: '我有行业经验，想看 AI 怎么落到内容、工具和产品',
     desc: '这条线不卖万能提示词。它先帮你从一个真实场景开始，把客户问题、内容选题、资料交付和服务流程接进 AI。',
     image: '/images/services/ai-workflow-proof.svg',
@@ -36,7 +37,35 @@ const trackCards = [
     primaryLabel: '先生成 AI 场景',
     secondaryHref: '/services/ai-workflow',
     secondaryLabel: '看 AI 咨询路径',
-    proof: ['真实场景提示词', '内容发布前诊断', '公众号排版结果'],
+    proof: ['真实场景提示词', '内容诊断', '公众号排版'],
+    variant: 'secondary' as const,
+  },
+]
+
+const judgmentPath = [
+  {
+    price: '免费',
+    title: '报价初筛',
+    desc: '先知道报价里哪里没写清。',
+    href: '/tools/quote-check',
+  },
+  {
+    price: '¥39',
+    title: '报价避坑指南',
+    desc: '自己系统补一遍判断框架。',
+    href: '/pricing/baojia-guide',
+  },
+  {
+    price: '¥699',
+    title: '报价风险快审',
+    desc: '带着报价进入人工判断。',
+    href: '/services/renovation#baojia-shenhe',
+  },
+  {
+    price: '¥1499',
+    title: '签约前决策包',
+    desc: '报价、预算、合同一起看。',
+    href: '/services/renovation#qianyue-qian-juece-bao',
   },
 ]
 
@@ -126,7 +155,7 @@ const toolGroups = [
   },
   {
     title: 'AI 实践工具',
-    desc: '给传统行业人、同行和内容创作者用。先用一个真实任务验证 AI 是否能帮上忙。',
+    desc: '给传统行业人、同行和内容创作者用。它是延伸能力，不抢装修判断这条主线。',
     tools: [
       {
         title: 'AI 场景生成器',
@@ -182,7 +211,7 @@ export default function ToolsPage() {
           {
             '@context': 'https://schema.org',
             '@type': 'CollectionPage',
-            name: '双主线工具工作台',
+            name: '装修判断力工具工作台',
             url: 'https://zenoaihome.com/tools',
             description: '可直接使用的装修判断和 AI 实践工具入口。',
             inLanguage: 'zh-CN',
@@ -202,17 +231,31 @@ export default function ToolsPage() {
       />
 
       <PageHero
-        label="工具工作台"
-        title="先选你是谁，再选工具"
-        subtitle="业主先看报价、预算、材料数量和验收；传统行业人先看 AI 怎么接进内容、工具和资料交付。每个入口都给你一个结果，不让你只看概念。"
-        note="看完工具结果，再去资料、低价产品或人工判断。"
+        label="装修判断力工具"
+        title="先从报价初筛开始，再看资料和服务"
+        subtitle="业主先处理报价、预算、材料和验收；AI 工具只在它能帮上忙的时候出现。每个入口都先给你一个结果，不让你只看概念。"
+        note="主线是装修判断，延伸是 AI。先把当前问题看清，再决定下一步。"
         size="content"
       />
 
       <Container size="content" className="py-section">
+        <section className="mb-12 border border-border bg-surface-warm p-6 sm:p-8">
+          <p className="text-xs font-semibold uppercase tracking-widest text-stone">先走这条线</p>
+          <h2 className="mt-3 text-2xl font-semibold tracking-tight text-ink">免费初筛 → ¥39 指南 → ¥699 快审 → ¥1499 决策包</h2>
+          <div className="mt-5 grid gap-3 md:grid-cols-4">
+            {judgmentPath.map((item) => (
+              <Link key={item.title} href={item.href} className="border border-border bg-surface p-5 transition-colors hover:border-stone hover:bg-surface-warm">
+                <p className="text-xs font-semibold uppercase tracking-widest text-stone">{item.price}</p>
+                <h3 className="mt-2 text-sm font-semibold text-ink">{item.title}</h3>
+                <p className="mt-2 text-xs leading-relaxed text-ink-muted">{item.desc}</p>
+              </Link>
+            ))}
+          </div>
+        </section>
+
         <section className="mb-12 grid gap-5 lg:grid-cols-2">
           {trackCards.map((card) => (
-            <article key={card.label} className="overflow-hidden border border-border bg-surface">
+            <article key={card.label} className={`overflow-hidden border ${card.variant === 'primary' ? 'border-stone bg-surface-warm' : 'border-border bg-surface'}`}>
               <div className="relative aspect-[16/9] border-b border-border bg-stone-pale/30">
                 <Image
                   src={card.image}
