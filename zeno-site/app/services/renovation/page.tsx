@@ -177,9 +177,11 @@ export default function RenovationServicesPage() {
           <div className="grid gap-8 lg:grid-cols-[0.62fr_0.38fr] lg:items-center">
             <div className="min-w-0">
               <p className="page-label mb-4">装修签约前判断服务</p>
-              <h1 className="max-w-[22rem] text-[2.1rem] font-semibold leading-tight tracking-tight text-ink sm:max-w-4xl sm:text-5xl">
+              <h1 className="max-w-[22rem] text-[2.1rem] font-semibold leading-tight tracking-tight text-ink [overflow-wrap:anywhere] sm:max-w-4xl sm:text-5xl">
                 <span className="block">别急着买服务，</span>
-                <span className="block">先分清你卡在哪一步。</span>
+                <span className="block sm:hidden">先分清你</span>
+                <span className="block sm:hidden">卡在哪一步。</span>
+                <span className="hidden sm:block">先分清你卡在哪一步。</span>
               </h1>
               <p className="mt-5 max-w-[24rem] text-base leading-relaxed text-ink-muted sm:max-w-2xl sm:text-lg">
                 普通业主最容易在签约前被总价、优惠和口头承诺带跑。这里先把免费工具、低价指南、预算诊断、报价快审和决策包分清楚。
@@ -209,13 +211,18 @@ export default function RenovationServicesPage() {
         <section id="choose" className="mb-14 scroll-mt-24">
           <div className="mb-6 max-w-3xl">
             <p className="text-xs font-semibold uppercase tracking-widest text-stone">先选你现在的状态</p>
-            <h2 className="mt-3 text-2xl font-semibold tracking-tight text-ink">不是越贵越好，是看你现在有没有材料、有没有临近签约。</h2>
+            <h2 className="mt-3 max-w-full text-[1.35rem] font-semibold leading-snug tracking-tight text-ink [overflow-wrap:anywhere] sm:text-2xl">
+              <span className="block sm:hidden">不是越贵越好，</span>
+              <span className="block sm:hidden">是看你现在</span>
+              <span className="block sm:hidden">有没有材料、有没有临近签约。</span>
+              <span className="hidden sm:inline">不是越贵越好，是看你现在有没有材料、有没有临近签约。</span>
+            </h2>
           </div>
           <div className="grid gap-4 lg:grid-cols-4">
             {routeCards.map((item) => (
-              <Link key={item.title} href={item.href} className="group flex min-h-[15rem] flex-col border border-border bg-surface p-5 transition-all duration-150 hover:-translate-y-1 hover:border-stone hover:shadow-[0_18px_46px_rgba(42,39,35,0.07)]">
+              <Link key={item.title} href={item.href} className="group flex min-h-[15rem] min-w-0 flex-col border border-border bg-surface p-5 transition-all duration-150 hover:-translate-y-1 hover:border-stone hover:shadow-[0_18px_46px_rgba(42,39,35,0.07)]">
                 <p className="text-[0.68rem] font-semibold uppercase tracking-widest text-stone">{item.label}</p>
-                <h3 className="mt-3 text-lg font-semibold leading-snug text-ink">{item.title}</h3>
+                <h3 className="mt-3 text-lg font-semibold leading-snug text-ink [overflow-wrap:anywhere]">{item.title}</h3>
                 <p className="mt-3 text-sm leading-relaxed text-ink-muted">{item.desc}</p>
                 <span className="mt-auto pt-5 text-sm font-semibold text-stone">{item.action} -&gt;</span>
               </Link>

@@ -15,17 +15,17 @@ interface ServiceCardProps {
 export default function ServiceCard({ service, index, relatedArticles = [] }: ServiceCardProps) {
   return (
     <div id={service.slug} className="border border-border overflow-hidden scroll-mt-20 bg-surface">
-      <div className="px-6 py-5 border-b border-border bg-surface-warm flex items-start justify-between gap-4">
+      <div className="flex flex-col gap-4 border-b border-border bg-surface-warm px-6 py-5 sm:flex-row sm:items-start sm:justify-between">
         <div className="flex items-start gap-3 min-w-0">
           <span className="text-stone/30 text-xs font-mono shrink-0 mt-[3px]">
             {String(index + 1).padStart(2, '0')}
           </span>
           <div className="min-w-0">
-            <h2 className="text-lg font-semibold text-ink leading-tight">{service.title}</h2>
+            <h2 className="text-lg font-semibold text-ink leading-tight [overflow-wrap:anywhere]">{service.title}</h2>
             <p className="text-sm text-stone mt-1">{service.tagline}</p>
           </div>
         </div>
-        <span className="shrink-0 self-start border border-stone/30 text-stone text-xs px-3 py-1 font-medium whitespace-nowrap">
+        <span className="max-w-full self-start border border-stone/30 px-3 py-1 text-xs font-medium leading-relaxed text-stone sm:shrink-0 sm:whitespace-nowrap">
           {service.price}
         </span>
       </div>
