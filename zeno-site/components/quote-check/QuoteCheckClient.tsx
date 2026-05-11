@@ -226,14 +226,24 @@ export default function QuoteCheckClient() {
     window.localStorage.removeItem(storageKey)
   }
 
-  async function copyResultLink() {
-    const params = new URLSearchParams()
-    params.set('risk', riskLevel)
-    params.set('score', String(riskScore))
-    params.set('missing', String(riskItems.length))
-    params.set('stage', form.quoteStage)
-    if (unitPrice) params.set('unit', String(unitPrice))
-    await navigator.clipboard.writeText(`${window.location.origin}/tools/quote-check?${params.toString()}`)
+  async function copyResultSummary() {
+    const lines = [
+      '装修报价风险初筛结果',
+      `风险等级：${riskLevel}`,
+      `签约阶段：${getStageLabel(form.quoteStage)}`,
+      `已写清边界：${completedCount}/${checks.length}`,
+      `缺失风险分：${riskScore}/${maxScore}`,
+      unitPrice ? `粗略单方：${unitPrice.toLocaleString()} 元/㎡` : '',
+      `判断提醒：${riskCopy}`,
+      `建议下一步：${primaryNextStep.label}`,
+      '',
+      '优先追问：',
+      ...(topQuestions.length > 0
+        ? topQuestions.map((item, index) => `${index + 1}. 【${item.dimension}】${item.question}`)
+        : ['关键边界已经相对清楚，下一步重点核对合同条款、付款节点和验收标准。']),
+    ].filter(Boolean)
+
+    await navigator.clipboard.writeText(lines.join('\n'))
     setCopied(true)
     setTimeout(() => setCopied(false), 1600)
   }
@@ -462,8 +472,8 @@ export default function QuoteCheckClient() {
                 </div>
 
                 <div className="mt-6 flex flex-wrap gap-3">
-                  <button type="button" onClick={copyResultLink} className="inline-flex h-10 items-center bg-stone px-4 text-sm font-semibold text-white transition-colors hover:bg-stone/90">
-                    {copied ? '已复制' : '保存结果链接'}
+                  <button type="button" onClick={copyResultSummary} className="inline-flex h-10 items-center bg-stone px-4 text-sm font-semibold text-white transition-colors hover:bg-stone/90">
+                    {copied ? '已复制摘要' : '复制结果摘要'}
                   </button>
                   <button type="button" onClick={copyQuestionList} className="inline-flex h-10 items-center border border-stone px-4 text-sm font-semibold text-stone transition-colors hover:bg-stone-pale">
                     {copiedQuestions ? '已复制追问' : '复制追问清单'}
