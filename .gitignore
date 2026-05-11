@@ -15,3 +15,4 @@ zeno-site/.env.development.local
 zeno-site/.env.test.local
 zeno-site/.env.production.local
 node_modules
+.gstack/

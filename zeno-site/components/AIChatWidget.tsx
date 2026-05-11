@@ -200,7 +200,7 @@ export default function AIChatWidget() {
   }
 
   return (
-    <>
+    <div className="hidden sm:block">
       {!open && (
         <button
           type="button"
@@ -396,6 +396,6 @@ export default function AIChatWidget() {
           </div>
         </div>
       )}
-    </>
+    </div>
   )
 }
