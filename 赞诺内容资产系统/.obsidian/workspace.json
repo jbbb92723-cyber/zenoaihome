@@ -1,0 +1,225 @@
+{
+  "main": {
+    "id": "61bc28d808e8990c",
+    "type": "split",
+    "children": [
+      {
+        "id": "393acd8a0c759b91",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "b09916e7106fdf07",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "03_素材证据库/金句书摘/金句书摘模板.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "金句书摘模板"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "ed5f2253b2010939",
+    "type": "split",
+    "children": [
+      {
+        "id": "df6da16c4f93d3eb",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "2c073caeec97a7b6",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "文件列表"
+            }
+          },
+          {
+            "id": "e8037a4bbc9cde66",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "搜索"
+            }
+          },
+          {
+            "id": "0c42658875bbe8df",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "书签"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "217670967112ddd1",
+    "type": "split",
+    "children": [
+      {
+        "id": "a59ab11148eb8142",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "67fc4266515486ab",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "03_素材证据库/金句书摘/金句书摘模板.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "金句书摘模板 的反向链接列表"
+            }
+          },
+          {
+            "id": "2dfde770fb0d8e7b",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "03_素材证据库/金句书摘/金句书摘模板.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "金句书摘模板 的出链列表"
+            }
+          },
+          {
+            "id": "139c53066acb0ad1",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "标签"
+            }
+          },
+          {
+            "id": "0edbfa58ff6b0857",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "添加笔记属性"
+            }
+          },
+          {
+            "id": "a131cb595d317523",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "03_素材证据库/金句书摘/金句书摘模板.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "金句书摘模板 的大纲"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:打开快速切换": false,
+      "graph:查看关系图谱": false,
+      "canvas:新建白板": false,
+      "daily-notes:打开/创建今天的日记": false,
+      "templates:插入模板": false,
+      "command-palette:打开命令面板": false,
+      "bases:新建数据库": false
+    }
+  },
+  "active": "b09916e7106fdf07",
+  "lastOpenFiles": [
+    "10_LLM_Wiki/log.md",
+    "10_LLM_Wiki/index.md",
+    "10_LLM_Wiki/SCHEMA.md",
+    "10_LLM_Wiki/raw/videos",
+    "10_LLM_Wiki/raw/transcripts",
+    "10_LLM_Wiki/raw/papers",
+    "10_LLM_Wiki/raw/assets",
+    "10_LLM_Wiki/concepts/renovation-risk",
+    "10_LLM_Wiki/raw/articles",
+    "10_LLM_Wiki/entities/tools",
+    "10_LLM_Wiki/entities/people",
+    "10_LLM_Wiki/entities/companies",
+    "10_LLM_Wiki/concepts/seo-geo",
+    "02_选题地图/AI与个体升级.md",
+    "02_选题地图/人性与判断.md",
+    "02_选题地图/美学与生活.md",
+    "02_选题地图/居住与装修.md",
+    "02_选题地图/成长与长期主义.md",
+    "01_灵感收集箱/热点灵感.md",
+    "01_灵感收集箱/客户问题.md",
+    "00_目录总规.md",
+    "09_网站母站/首页.md",
+    "09_网站母站/命名规则.md",
+    "09_网站母站/关于我.md",
+    "09_网站母站/服务页.md",
+    "09_网站母站/发布流程图.md",
+    "09_网站母站/网站文章/01_居住与装修/02_报价单真正该怎么看.md",
+    "09_网站母站/网站文章/01_居住与装修/01_为什么装修预算总超.md",
+    "05_产品转化/服务/装修报价单审核服务.md",
+    "09_网站母站/_模板/服务页标准模板.md",
+    "00_定位系统/世界观.md",
+    "00_定位系统/品牌定位.md",
+    "00_定位系统/个人资料包.md",
+    "00_定位系统/表达风格.md",
+    "01_灵感收集箱/工地观察.md",
+    "01_灵感收集箱/临时想法.md"
+  ]
+}

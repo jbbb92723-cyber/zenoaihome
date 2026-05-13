@@ -1,0 +1,22 @@
+{
+  "folders": [
+    {
+      "name": "Website - zeno-site",
+      "path": "G:/Zenoaihome.com/zeno-site"
+    },
+    {
+      "name": "Knowledge - 赞诺内容资产系统",
+      "path": "G:/Zenoaihome.com/赞诺内容资产系统"
+    }
+  ],
+  "settings": {
+    "files.encoding": "utf8",
+    "files.eol": "\n",
+    "search.exclude": {
+      "**/node_modules": true,
+      "**/.next": true,
+      "**/out": true,
+      "**/.git": true
+    }
+  }
+}
