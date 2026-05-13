@@ -33,13 +33,13 @@ export const resources: Resource[] = [
     solves: '把模糊的"大概要多少钱"拆成可追踪、可调整的几份钱。',
     howToUse: [
       '先填写基础信息（户型、面积、预算上限）',
-      '按分区逐一填入已知费用项',
+      '按基础施工、主材、柜子收纳、设备、软装和机动预留填入费用',
       '标记"已确认"和"待定"项，清楚看到缺口',
       '每次报价变动后更新，保留版本对比',
     ],
     howToGet: '登录后可在网页端领取，领取记录会进入用户中心。',
     caveats:
-      '模板是框架，不是报价标准。实际费用因地区、工人和材料差异较大，模板帮你看清结构，不替你做决策。',
+      '模板是框架，不是报价标准。实际费用因地区、工人和材料差异较大，模板帮你看清分配，不替你做决策。',
     relatedArticleSlugs: ['02-jia-bu-shi-yangban-jian'],
     tag: '装修',
     previewImage: '/images/resources/budget-template-preview.svg',
@@ -49,10 +49,10 @@ export const resources: Resource[] = [
   {
     id: '02',
     slug: 'baojia-shenhe-qingdan',
-    title: '报价审核清单',
+    title: '报价风险审核清单',
     subtitle: '快速识别报价单里的常见模糊项和风险项',
     description:
-      '一份针对装修报价单的审查框架，帮你在签合同前找到最容易被忽略的坑点，减少后期扯皮的概率。',
+      '一份针对装修报价单的审查框架，帮你在签合同前找到最容易被忽略的风险点，减少后期扯皮的概率。',
     forWho: '看报价单看得头大，不知道从哪里核实的人。',
     solves: '把"感觉贵但说不出哪里不对"变成"有据可查的对照检查"。',
     howToUse: [

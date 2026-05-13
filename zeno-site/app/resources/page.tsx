@@ -1,11 +1,10 @@
 /**
  * app/resources/page.tsx
  *
- * 工具与资料页（四层结构）
- * 1. 免费工具
- * 2. 免费资料
- * 3. 低价产品（即将开放）
- * 4. 服务入口
+ * 资源页承担“按问题找入口”的角色：
+ * 1. 先让业主定位自己卡在哪
+ * 2. 再给对应清单、工具和低价指南
+ * 3. 最后引导到合适的人工判断服务
  *
  * 资源领取走网页端记录。文件直链/下载权限可在后台配置后继续接入。
  */
@@ -21,9 +20,9 @@ import CTA from '@/components/CTA'
 import ResourceClaimButton from '@/components/resources/ResourceClaimButton'
 
 export const metadata: Metadata = {
-  title: '装修判断力内容中台 | 按问题拿清单和资料',
+  title: '装修判断力资源入口 | 按问题拿清单和工具',
   description:
-    '按装修判断、预算、验收、居住场景和 AI 工作流拿清单、文章和工具，先按问题找到入口，再往下延伸到服务。',
+    '按报价风险、签约前判断、预算分配、施工验收和居住需求拿清单、模板和工具，先解决当前问题，再进入更深入服务。',
   alternates: {
     canonical: 'https://zenoaihome.com/resources',
   },
@@ -32,28 +31,28 @@ export const metadata: Metadata = {
 const tagColors: Record<string, string> = {
   装修: 'bg-stone-pale text-stone border border-stone/20',
   居住: 'bg-stone-pale/60 text-stone border border-stone/20',
-  AI:   'bg-[#EAE8F0] text-[#5B4E8A] border border-[#5B4E8A]/20',
+  AI: 'bg-surface-warm text-stone border border-stone/20',
 }
 
 const serviceEntries = [
   {
     title: '报价风险快审',
-    desc: '拿到报价单但还看不清重点风险时，用这项服务把最该追问的地方先挑出来。',
+    desc: '手上已经有报价单，但看不清漏项、模糊项和异常价格时，先把重点风险挑出来。',
     href: '/services/renovation#baojia-shenhe',
   },
   {
-    title: '签约前决策包',
-    desc: '如果报价、预算、合同和付款节点一起乱，直接把签约前关键判断一次看全。',
-    href: '/services/renovation#qianyue-qian-juece-bao',
-  },
-  {
     title: '预算取舍诊断',
-    desc: '还没到逐行看报价，但钱已经越算越乱时，先判断哪些不能砍、哪些可以晚点买。',
+    desc: '还没到逐行看报价，但总预算越算越乱时，先判断哪些钱要守住、哪些可以晚点花。',
     href: '/services/renovation#yusuan-zixun',
   },
   {
+    title: '签约前决策包',
+    desc: '报价、预算、合同和付款节点一起卡住时，把签字前的关键判断一次看全。',
+    href: '/services/renovation#qianyue-qian-juece-bao',
+  },
+  {
     title: 'AI 工作流咨询',
-    desc: '针对你的具体行业场景，设计可落地的 AI 切入路径，而不是通用建议。',
+    desc: '这是延伸服务，适合想把个人经验、内容生产或行业流程接入 AI 的人。',
     href: '/services/ai-workflow',
   },
 ]
@@ -61,60 +60,61 @@ const serviceEntries = [
 const problemEntryCards = [
   {
     title: '我正在看报价单',
-    description: '先拿清单把模糊项和漏项筛一轮，再决定要不要继续往下。',
-    primary: { label: '拿报价审核清单', href: '/resources#baojia-shenhe-qingdan' },
-    secondary: { label: '看 ¥39 报价避坑指南', href: '/pricing/baojia-guide' },
-    fallback: { label: '直接看签约前决策包 →', href: '/services/renovation#qianyue-qian-juece-bao' },
+    description: '先不要只比总价。把漏项、模糊项、单位不清和后期增项口子筛一遍。',
+    primary: { label: '拿报价风险清单', href: '/resources#baojia-shenhe-qingdan' },
+    secondary: { label: '看 ¥39 报价指南', href: '/pricing/baojia-guide' },
+    fallback: { label: '直接看报价风险快审 ->', href: '/services/renovation#baojia-shenhe' },
   },
   {
     title: '我快要签合同了',
-    description: '报价、预算、合同和付款节点一起卡住时，不要只盯总价。',
+    description: '报价、预算、合同和付款节点一起看，别只听口头承诺和优惠期限。',
     primary: { label: '先做报价初筛', href: '/tools/quote-check' },
-    secondary: { label: '看签约前服务怎么选', href: '/services/renovation#choose' },
-    fallback: { label: '直接看签约前决策包 →', href: '/services/renovation#qianyue-qian-juece-bao' },
+    secondary: { label: '看签约前怎么选服务', href: '/services/renovation#choose' },
+    fallback: { label: '直接看签约前决策包 ->', href: '/services/renovation#qianyue-qian-juece-bao' },
   },
   {
     title: '我怕装修超预算',
-    description: '先看总预算更像简约、舒适还是精致，再查为什么会超。',
+    description: '先看你的钱更像简约够住、舒适耐用，还是精致改善，再查为什么会超。',
     primary: { label: '拿装修预算模板', href: '/resources#zhuangxiu-yusuan-moban' },
-    secondary: { label: '先拆预算分配', href: '/tools/budget-structure' },
-    fallback: { label: '直接看预算取舍诊断 →', href: '/services/renovation#yusuan-zixun' },
+    secondary: { label: '拆预算分配', href: '/tools/budget-structure' },
+    fallback: { label: '直接看预算取舍诊断 ->', href: '/services/renovation#yusuan-zixun' },
   },
   {
     title: '我已经开工，不知道怎么验收',
-    description: '先按施工节点把该看、该拍、该留证据的事情跑起来。',
+    description: '按施工节点看该检查什么、该拍什么、哪些问题要先留证据。',
     primary: { label: '拿验收清单', href: '/resources#yanshou-qingdan' },
-    secondary: { label: '回到施工这条路', href: '/start#construction' },
-    fallback: { label: '先看服务边界 →', href: '/services' },
+    secondary: { label: '生成验收节点向导', href: '/tools/inspection-guide' },
+    fallback: { label: '看装修服务边界 ->', href: '/services/renovation' },
   },
   {
     title: '我不想把家装成样板间',
-    description: '先把真实生活需求写清楚，再谈风格表达和预算分配。',
+    description: '先把真实生活需求写清楚，再谈风格、材料和预算分配。',
     primary: { label: '拿居住场景自查表', href: '/resources#shizhu-pai-zijian-biao' },
     secondary: { label: '看居住场景专题', href: '/topics#shi-zhu-pai-zhuangxiu' },
-    fallback: { label: '看居住场景装修服务 →', href: '/services/renovation#shi-zhu-pai-zhuangxiu' },
-  },
-  {
-    title: '我是传统行业人，想用 AI',
-    description: '先用真实任务试一轮，把经验和 AI 接上，再谈系统化。',
-    primary: { label: '拿 AI 工作流提示词包', href: '/resources#ai-neirong-gongzuoliu-tishici-bao' },
-    secondary: { label: '去提示词体验场', href: '/tools/prompts' },
-    fallback: { label: '看 AI 工作流咨询 →', href: '/services/ai-workflow' },
+    fallback: { label: '看居住场景装修服务 ->', href: '/services/renovation#shi-zhu-pai-zhuangxiu' },
   },
 ]
 
+const extensionEntryCard = {
+  title: '我想把 AI 用进内容或工作流',
+  description: '这是延伸入口，不抢装修签约前主线。适合已经有真实任务，想用 AI 放大经验的人。',
+  primary: { label: '拿 AI 工作流提示词包', href: '/resources#ai-neirong-gongzuoliu-tishici-bao' },
+  secondary: { label: '去提示词体验场', href: '/tools/prompts' },
+  fallback: { label: '看 AI 工作流咨询 ->', href: '/services/ai-workflow' },
+}
+
 const pathwayCards = [
   {
-    title: '先看判断',
-    desc: '先拿清单把报价、预算、验收这些高风险节点分清楚。',
+    title: '先定位问题',
+    desc: '你是看不懂报价、快签合同、怕超预算，还是已经开工要验收。',
   },
   {
-    title: '再拿资料',
-    desc: '把清单、模板、表格和提示词当成可反复使用的判断工具。',
+    title: '再拿对应工具',
+    desc: '用清单、模板和网页工具，把模糊担心变成能核对的具体问题。',
   },
   {
-    title: '最后进服务',
-    desc: '当你已经有具体报价、场景或材料，再进入更重的人工判断。',
+    title: '需要时进服务',
+    desc: '材料已经具体、时间也临近时，再进入报价快审、预算取舍或决策包。',
   },
 ]
 
@@ -122,19 +122,19 @@ export default function ResourcesPage() {
   return (
     <>
       <PageHero
-        label="判断力中台"
-        title="按问题拿清单和资料，不用先翻栏目"
-        subtitle="如果你已经知道自己卡在哪，就先点那一格。先按判断顺序找，再按资料类型找，最后才进服务。"
+        label="装修判断力资源入口"
+        title="按你卡住的问题，拿对应清单和工具"
+        subtitle="这不是资料仓库。先找到你现在最难判断的那一步，再去拿清单、模板或工具；如果材料已经具体，再进入人工判断服务。"
         size="content"
       />
 
       <Container size="content" className="py-section">
-        <section className="mb-12 border border-border bg-surface-warm p-6 sm:p-8">
+        <section className="mb-12">
           <p className="text-xs font-semibold uppercase tracking-widest text-stone">内容路径</p>
-          <h2 className="mt-3 text-2xl font-semibold tracking-tight text-ink">先看判断，再拿资料，最后进服务</h2>
+          <h2 className="mt-3 text-2xl font-semibold tracking-tight text-ink">先把问题找准，再拿资料。</h2>
           <div className="mt-5 grid gap-4 md:grid-cols-3">
             {pathwayCards.map((card) => (
-              <div key={card.title} className="border border-border bg-canvas p-5">
+              <div key={card.title} className="border border-border bg-surface p-5">
                 <p className="text-sm font-semibold text-ink">{card.title}</p>
                 <p className="mt-2 text-sm leading-relaxed text-ink-muted">{card.desc}</p>
               </div>
@@ -146,174 +146,225 @@ export default function ResourcesPage() {
           <SectionHeader
             label="先按问题找"
             title="你现在更像哪一种？"
-            subtitle="每一格都先给你一个资料入口，再给一条补充路径和一个更深入的出口。"
+            subtitle="每一格先给一个资料或工具入口，再给一条补充路径。装修签约前判断放在最前面，AI 放在延伸入口。"
           />
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
             {problemEntryCards.map((card) => (
               <div key={card.title} className="border border-border bg-surface p-5 sm:p-6">
-                <h2 className="text-base font-semibold text-ink mb-2">{card.title}</h2>
-                <p className="text-sm text-ink-muted leading-relaxed mb-4">{card.description}</p>
+                <h2 className="mb-2 text-base font-semibold text-ink">{card.title}</h2>
+                <p className="mb-4 text-sm leading-relaxed text-ink-muted">{card.description}</p>
                 <div className="space-y-2.5">
-                  <Link href={card.primary.href} className="block text-sm text-ink hover:text-stone transition-colors">
+                  <Link href={card.primary.href} className="block text-sm text-ink transition-colors hover:text-stone">
                     {card.primary.label}
                   </Link>
-                  <Link href={card.secondary.href} className="block text-sm text-ink-muted hover:text-stone transition-colors">
+                  <Link href={card.secondary.href} className="block text-sm text-ink-muted transition-colors hover:text-stone">
                     {card.secondary.label}
                   </Link>
-                  <Link href={card.fallback.href} className="block text-sm text-stone hover:underline underline-offset-2">
+                  <Link href={card.fallback.href} className="block text-sm text-stone underline-offset-2 hover:underline">
                     {card.fallback.label}
                   </Link>
                 </div>
               </div>
             ))}
           </div>
+
+          <div className="mt-4 border border-border bg-surface-warm p-5 sm:p-6">
+            <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-ink-faint">延伸入口</p>
+            <div className="grid gap-4 lg:grid-cols-[0.42fr_0.58fr] lg:items-start">
+              <div>
+                <h2 className="text-base font-semibold text-ink">{extensionEntryCard.title}</h2>
+                <p className="mt-2 text-sm leading-relaxed text-ink-muted">{extensionEntryCard.description}</p>
+              </div>
+              <div className="space-y-2.5">
+                <Link href={extensionEntryCard.primary.href} className="block text-sm text-ink transition-colors hover:text-stone">
+                  {extensionEntryCard.primary.label}
+                </Link>
+                <Link href={extensionEntryCard.secondary.href} className="block text-sm text-ink-muted transition-colors hover:text-stone">
+                  {extensionEntryCard.secondary.label}
+                </Link>
+                <Link href={extensionEntryCard.fallback.href} className="block text-sm text-stone underline-offset-2 hover:underline">
+                  {extensionEntryCard.fallback.label}
+                </Link>
+              </div>
+            </div>
+          </div>
         </section>
 
-        {/* 阶段导航 */}
         <div className="mb-12">
-          <p className="text-xs font-semibold uppercase tracking-widest text-ink-faint mb-3">
-            如果你更习惯按阶段找
+          <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-ink-faint">
+            如果你更习惯按阶段补充找
           </p>
           <div className="flex flex-wrap gap-3">
-            <a href="#zhuangxiu-qian" className="text-xs font-medium text-stone border border-stone/30 px-3 py-1.5 hover:bg-stone-pale transition-colors">① 装修前判断</a>
-            <a href="#zhuangxiu-zhong" className="text-xs font-medium text-stone border border-stone/30 px-3 py-1.5 hover:bg-stone-pale transition-colors">② 装修中落地</a>
-            <a href="#zhenshi-juzhu" className="text-xs font-medium text-stone border border-stone/30 px-3 py-1.5 hover:bg-stone-pale transition-colors">③ 居住场景</a>
-            <a href="#ai-fuzhu" className="text-xs font-medium text-stone border border-stone/30 px-3 py-1.5 hover:bg-stone-pale transition-colors">④ AI 辅助装修</a>
+            <a href="#zhuangxiu-qian" className="border border-stone/30 px-3 py-1.5 text-xs font-medium text-stone transition-colors hover:bg-stone-pale">① 签约前判断</a>
+            <a href="#zhuangxiu-zhong" className="border border-stone/30 px-3 py-1.5 text-xs font-medium text-stone transition-colors hover:bg-stone-pale">② 施工中验收</a>
+            <a href="#zhenshi-juzhu" className="border border-stone/30 px-3 py-1.5 text-xs font-medium text-stone transition-colors hover:bg-stone-pale">③ 居住需求</a>
+            <a href="#ziliaolingqu" className="border border-stone/30 px-3 py-1.5 text-xs font-medium text-stone transition-colors hover:bg-stone-pale">资料领取区</a>
+            <a href="#ai-fuzhu" className="border border-stone/30 px-3 py-1.5 text-xs font-medium text-stone transition-colors hover:bg-stone-pale">AI 延伸</a>
           </div>
         </div>
 
-        {/* ───── 阶段一：装修前判断 ───── */}
         <section id="zhuangxiu-qian" className="mb-16 scroll-mt-20">
           <SectionHeader
             label="阶段一"
             title="还没签合同的时候"
-            subtitle="这一阶段最大的浪费不是钱，是时间——对着一份你看不懂的报价单和预算纠结两个礼拜。下面几个入口帮你先缩小问题。"
+            subtitle="这一阶段最容易把问题签进合同里。先看报价，再看预算，再看超预算原因，不要只盯总价。"
           />
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <Link
               href="/tools/quote-check"
-              className="group sm:col-span-2 border border-stone/30 bg-stone/5 p-6 sm:p-7 hover:bg-stone/10 transition-colors"
+              className="group border border-stone/30 bg-stone/5 p-6 transition-colors hover:bg-stone/10 sm:col-span-2 sm:p-7"
             >
               <div className="flex items-start justify-between gap-4">
                 <div>
-                  <p className="text-[0.65rem] font-semibold uppercase tracking-widest text-stone mb-2">免费 · 网页端 · 报价初筛</p>
-                  <p className="text-base font-semibold text-ink group-hover:text-stone transition-colors">
+                  <p className="mb-2 text-[0.65rem] font-semibold uppercase tracking-widest text-stone">免费 · 网页端 · 报价初筛</p>
+                  <p className="text-base font-semibold text-ink transition-colors group-hover:text-stone">
                     报价初筛工具
                   </p>
-                  <p className="text-sm text-ink-muted mt-2 leading-relaxed max-w-lg">
+                  <p className="mt-2 max-w-lg text-sm leading-relaxed text-ink-muted">
                     上传材料留在浏览器本地，对照报价单勾选关键边界，生成风险类型和追问话术。
                   </p>
-                  <p className="text-xs text-stone font-medium mt-3">上传报价单 →</p>
+                  <p className="mt-3 text-xs font-medium text-stone">上传报价单 -&gt;</p>
                 </div>
-                <span className="text-stone text-xl shrink-0 mt-1 group-hover:translate-x-1 transition-transform">→</span>
+                <span className="mt-1 shrink-0 text-xl text-stone transition-transform group-hover:translate-x-1">-&gt;</span>
               </div>
             </Link>
 
             <Link
               href="/tools/budget-structure"
-              className="group sm:col-span-2 border border-stone/30 bg-stone/5 p-6 sm:p-7 hover:bg-stone/10 transition-colors"
+              className="group border border-stone/30 bg-stone/5 p-6 transition-colors hover:bg-stone/10 sm:p-7"
             >
-              <div className="flex items-start justify-between gap-4">
-                <div>
-                  <p className="text-[0.65rem] font-semibold uppercase tracking-widest text-stone mb-2">免费 · 5 分钟 · 预算分配</p>
-                  <p className="text-base font-semibold text-ink group-hover:text-stone transition-colors">
-                    预算分配工具
-                  </p>
-                  <p className="text-sm text-ink-muted mt-2 leading-relaxed max-w-lg">
-                    先看你的总预算更像简约够住、舒适耐用，还是精致改善，再拆成几份业主能看懂的钱。
-                  </p>
-                  <p className="text-xs text-stone font-medium mt-3">拆预算分配 →</p>
-                </div>
-                <span className="text-stone text-xl shrink-0 mt-1 group-hover:translate-x-1 transition-transform">→</span>
-              </div>
+              <p className="mb-2 text-[0.65rem] font-semibold uppercase tracking-widest text-stone">免费 · 5 分钟 · 预算分配</p>
+              <p className="text-base font-semibold text-ink transition-colors group-hover:text-stone">
+                预算分配工具
+              </p>
+              <p className="mt-2 text-sm leading-relaxed text-ink-muted">
+                先看总预算更像简约够住、舒适耐用，还是精致改善，再拆成几份业主能看懂的钱。
+              </p>
+              <p className="mt-3 text-xs font-medium text-stone">拆预算分配 -&gt;</p>
             </Link>
 
             <Link
               href="/tools/budget-risk"
-              className="group sm:col-span-2 border border-stone/30 bg-stone/5 p-6 sm:p-7 hover:bg-stone/10 transition-colors"
+              className="group border border-stone/30 bg-stone/5 p-6 transition-colors hover:bg-stone/10 sm:p-7"
             >
-              <div className="flex items-start justify-between gap-4">
-                <div>
-                  <p className="text-[0.65rem] font-semibold uppercase tracking-widest text-stone mb-2">免费 · 10 分钟 · 不需注册</p>
-                  <p className="text-base font-semibold text-ink group-hover:text-stone transition-colors">
-                    超预算原因自测
-                  </p>
-                  <p className="text-sm text-ink-muted mt-2 leading-relaxed max-w-lg">
-                    回答 8 个问题，先分清更像报价没说清、预算没分好、流程没控住，还是需求太散。
-                  </p>
-                  <p className="text-xs text-stone font-medium mt-3">开始自测 →</p>
-                </div>
-                <span className="text-stone text-xl shrink-0 mt-1 group-hover:translate-x-1 transition-transform">→</span>
-              </div>
+              <p className="mb-2 text-[0.65rem] font-semibold uppercase tracking-widest text-stone">免费 · 10 分钟 · 不需注册</p>
+              <p className="text-base font-semibold text-ink transition-colors group-hover:text-stone">
+                超预算原因自测
+              </p>
+              <p className="mt-2 text-sm leading-relaxed text-ink-muted">
+                回答 8 个问题，先分清更像报价没说清、预算没分好、流程没控住，还是需求太散。
+              </p>
+              <p className="mt-3 text-xs font-medium text-stone">开始自测 -&gt;</p>
             </Link>
 
             <Link
               href="/pricing/baojia-guide"
-              className="group sm:col-span-2 border border-border bg-surface p-6 sm:p-7 hover:bg-surface-warm transition-colors"
+              className="group border border-border bg-surface p-6 transition-colors hover:bg-surface-warm sm:col-span-2 sm:p-7"
             >
               <div className="flex items-start justify-between gap-4">
                 <div>
-                  <p className="text-[0.65rem] font-semibold uppercase tracking-widest text-stone mb-2">付费 · ¥39 · 6 张检查表</p>
-                  <p className="text-base font-semibold text-ink group-hover:text-stone transition-colors">
-                    《装修报价避坑完整指南》
+                  <p className="mb-2 text-[0.65rem] font-semibold uppercase tracking-widest text-stone">付费 · ¥39 · 6 张检查表</p>
+                  <p className="text-base font-semibold text-ink transition-colors group-hover:text-stone">
+                    ¥39 报价指南
                   </p>
-                  <p className="text-sm text-ink-muted mt-2 leading-relaxed max-w-lg">
-                    覆盖报价漏项、模糊描述、增项、合同、水电报价六张检查表。签合同前对照看一遍。
+                  <p className="mt-2 max-w-lg text-sm leading-relaxed text-ink-muted">
+                    覆盖报价漏项、模糊描述、增项、合同、水电报价六张检查表。适合签合同前自己系统过一遍。
                   </p>
-                  <p className="text-xs text-stone font-medium mt-3">看详情 →</p>
+                  <p className="mt-3 text-xs font-medium text-stone">看详情 -&gt;</p>
                 </div>
               </div>
             </Link>
           </div>
 
           <div className="mt-5 border border-border bg-surface-warm p-5 sm:p-6">
-            <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-2">看完还不确定？</p>
-            <h3 className="text-base font-semibold text-ink mb-2">人工判断分两层，不要一上来就看最高客单</h3>
-            <p className="text-sm text-ink-muted leading-relaxed mb-4">
-              只是不确定报价重点风险，就进报价快审；如果报价、预算、合同和付款节点一起卡住，再进签约前决策包。
+            <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-ink-faint">看完还不确定？</p>
+            <h3 className="mb-2 text-base font-semibold text-ink">人工判断分三档，不要一上来就看最高客单</h3>
+            <p className="mb-4 text-sm leading-relaxed text-ink-muted">
+              只是不确定报价重点风险，进报价快审；预算取舍本身没想清楚，进预算取舍诊断；临近签字，报价、合同和付款节点都要一起看，再进签约前决策包。
             </p>
             <div className="flex flex-wrap gap-3">
               <CTA href="/services/renovation#baojia-shenhe" label="看报价风险快审" variant="secondary" />
+              <CTA href="/services/renovation#yusuan-zixun" label="看预算取舍诊断" variant="ghost" />
               <CTA href="/services/renovation#qianyue-qian-juece-bao" label="看签约前决策包" variant="primary" />
             </div>
           </div>
         </section>
 
-        {/* ───── 阶段二：装修中落地 ───── */}
         <section id="zhuangxiu-zhong" className="mb-16 scroll-mt-20">
           <SectionHeader
             label="阶段二"
-            title="装修中落地 — 施工过程的质量保障"
-            subtitle="工地开工之后，用这些工具确保关键节点不出问题。"
+            title="已经开工，就按节点验收"
+            subtitle="施工阶段不是当前主线，但已经开工的人需要清楚入口。重点是按节点检查、拍照留证、把整改说清楚。"
           />
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div className="border border-border bg-surface p-5 sm:p-6">
-              <p className="text-sm font-semibold text-ink">装修验收清单</p>
-              <p className="text-xs text-ink-muted mt-1.5 leading-relaxed">
-                从水电隐蔽工程到竣工交付，每个施工节点的验收要点。
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+            <Link href="/resources#yanshou-qingdan" className="group border border-border bg-surface p-5 transition-colors hover:bg-surface-warm sm:p-6">
+              <p className="text-sm font-semibold text-ink transition-colors group-hover:text-stone">验收清单</p>
+              <p className="mt-1.5 text-xs leading-relaxed text-ink-muted">
+                从水电隐蔽到竣工交付，每个节点知道该看什么。
               </p>
-              <p className="text-xs text-ink-faint mt-2">登录后网页端领取，用户中心保留记录</p>
-            </div>
+              <p className="mt-3 text-xs text-stone">领取清单 -&gt;</p>
+            </Link>
 
-            <div className="border border-border bg-surface p-5 sm:p-6">
-              <p className="text-sm font-semibold text-ink">装修预算模板</p>
-              <p className="text-xs text-ink-muted mt-1.5 leading-relaxed">
-                把"感觉花钱"变成"有结构地花钱"。帮你按分类控制每一笔支出。
+            <Link href="/tools/inspection-guide" className="group border border-border bg-surface p-5 transition-colors hover:bg-surface-warm sm:p-6">
+              <p className="text-sm font-semibold text-ink transition-colors group-hover:text-stone">验收节点向导</p>
+              <p className="mt-1.5 text-xs leading-relaxed text-ink-muted">
+                选择当前工序，生成更贴近现场的检查顺序。
               </p>
-              <p className="text-xs text-ink-faint mt-2">登录后网页端领取，用户中心保留记录</p>
-            </div>
+              <p className="mt-3 text-xs text-stone">打开工具 -&gt;</p>
+            </Link>
+
+            <Link href="/start#construction" className="group border border-border bg-surface p-5 transition-colors hover:bg-surface-warm sm:p-6">
+              <p className="text-sm font-semibold text-ink transition-colors group-hover:text-stone">施工阶段路径</p>
+              <p className="mt-1.5 text-xs leading-relaxed text-ink-muted">
+                不知道现在该看预算、材料还是工序时，回到装修路径里定位。
+              </p>
+              <p className="mt-3 text-xs text-stone">回到路径 -&gt;</p>
+            </Link>
           </div>
         </section>
 
-        {/* ───── 阶段三：真实居住选择 ───── */}
         <section id="zhenshi-juzhu" className="mb-16 scroll-mt-20">
           <SectionHeader
             label="阶段三"
-            title="居住场景选择 — 住进去之后的判断"
-            subtitle="装修不是终点，住得舒服才是。这些资料帮你做出更适合真实生活的选择。"
+            title="不想装成样板间，就先写清真实生活"
+            subtitle="审美不是先选风格图，而是先把每天怎么住、哪些东西必须方便、哪些地方值得克制说清楚。"
+          />
+
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+            <Link href="/resources#shizhu-pai-zijian-biao" className="group border border-border bg-surface p-5 transition-colors hover:bg-surface-warm sm:p-6">
+              <p className="text-sm font-semibold text-ink transition-colors group-hover:text-stone">居住场景自查表</p>
+              <p className="mt-1.5 text-xs leading-relaxed text-ink-muted">
+                方案确定前，把家里真实的动线、收纳、清洁和使用习惯写下来。
+              </p>
+              <p className="mt-3 text-xs text-stone">领取自查表 -&gt;</p>
+            </Link>
+
+            <Link href="/topics#shi-zhu-pai-zhuangxiu" className="group border border-border bg-surface p-5 transition-colors hover:bg-surface-warm sm:p-6">
+              <p className="text-sm font-semibold text-ink transition-colors group-hover:text-stone">居住场景专题</p>
+              <p className="mt-1.5 text-xs leading-relaxed text-ink-muted">
+                看看“住得舒服”如何影响材料、收纳、灯光和预算取舍。
+              </p>
+              <p className="mt-3 text-xs text-stone">看专题 -&gt;</p>
+            </Link>
+
+            <Link href="/services/renovation#shi-zhu-pai-zhuangxiu" className="group border border-border bg-surface p-5 transition-colors hover:bg-surface-warm sm:p-6">
+              <p className="text-sm font-semibold text-ink transition-colors group-hover:text-stone">居住场景装修服务</p>
+              <p className="mt-1.5 text-xs leading-relaxed text-ink-muted">
+                这是后续延伸服务，不是当前最窄入口，适合匹配度更高的项目。
+              </p>
+              <p className="mt-3 text-xs text-stone">看服务 -&gt;</p>
+            </Link>
+          </div>
+        </section>
+
+        <section id="ziliaolingqu" className="mb-16 scroll-mt-20">
+          <SectionHeader
+            label="资料领取区"
+            title="所有清单和模板"
+            subtitle="如果你已经知道要找哪一份，直接从这里领取。前面的阶段入口负责帮你判断先用哪一份。"
           />
 
           <div className="space-y-8">
@@ -325,24 +376,24 @@ export default function ResourcesPage() {
                 <div
                   key={resource.id}
                   id={resource.slug}
-                  className="border border-border overflow-hidden scroll-mt-20"
+                  className="scroll-mt-20 overflow-hidden border border-border"
                 >
-                  <div className="px-6 py-5 border-b border-border bg-surface-warm flex items-start justify-between gap-4">
+                  <div className="flex items-start justify-between gap-4 border-b border-border bg-surface-warm px-6 py-5">
                     <div className="min-w-0">
-                      <div className="flex items-center gap-2 mb-2 flex-wrap">
+                      <div className="mb-2 flex flex-wrap items-center gap-2">
                         <span
-                          className={`text-xs px-2 py-0.5 font-medium ${
+                          className={`px-2 py-0.5 text-xs font-medium ${
                             tagColors[resource.tag] ?? 'bg-stone-pale text-stone border border-stone/20'
                           }`}
                         >
                           {resource.tag}
                         </span>
                       </div>
-                      <h3 className="text-base font-semibold text-ink leading-tight">{resource.title}</h3>
-                      <p className="text-sm text-stone mt-1">{resource.subtitle}</p>
+                      <h3 className="text-base font-semibold leading-tight text-ink">{resource.title}</h3>
+                      <p className="mt-1 text-sm text-stone">{resource.subtitle}</p>
                     </div>
                     {resource.previewImage && resource.previewImage.length > 0 ? (
-                      <div className="relative shrink-0 w-20 h-14 overflow-hidden border border-border/60">
+                      <div className="relative h-14 w-20 shrink-0 overflow-hidden border border-border/60">
                         <Image
                           src={resource.previewImage}
                           alt={resource.previewAlt || resource.title}
@@ -352,45 +403,45 @@ export default function ResourcesPage() {
                         />
                       </div>
                     ) : (
-                      <span className="text-3xl text-stone/15 font-light shrink-0 leading-none select-none">↓</span>
+                      <span className="select-none text-3xl font-light leading-none text-stone/15">↓</span>
                     )}
                   </div>
 
-                  <div className="px-6 py-6 space-y-5">
-                    <p className="text-sm text-ink-muted leading-relaxed">{resource.description}</p>
+                  <div className="space-y-5 px-6 py-6">
+                    <p className="text-sm leading-relaxed text-ink-muted">{resource.description}</p>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                    <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
                       <div>
-                        <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-2">适合谁</p>
-                        <p className="text-sm text-ink leading-relaxed">{resource.forWho}</p>
+                        <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-ink-faint">适合谁</p>
+                        <p className="text-sm leading-relaxed text-ink">{resource.forWho}</p>
                       </div>
                       <div>
-                        <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-2">解决什么问题</p>
-                        <p className="text-sm text-ink leading-relaxed">{resource.solves}</p>
+                        <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-ink-faint">解决什么问题</p>
+                        <p className="text-sm leading-relaxed text-ink">{resource.solves}</p>
                       </div>
                     </div>
 
                     <div>
-                      <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-3">怎么用</p>
+                      <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-ink-faint">怎么用</p>
                       <ol className="space-y-1.5">
                         {resource.howToUse.map((step, i) => (
                           <li key={i} className="flex items-start gap-2">
-                            <span className="text-stone text-xs font-semibold shrink-0 mt-0.5 w-4">{i + 1}.</span>
-                            <span className="text-sm text-ink-muted leading-relaxed">{step}</span>
+                            <span className="mt-0.5 w-4 shrink-0 text-xs font-semibold text-stone">{i + 1}.</span>
+                            <span className="text-sm leading-relaxed text-ink-muted">{step}</span>
                           </li>
                         ))}
                       </ol>
                     </div>
 
-                    <div className="bg-surface-warm border border-border px-4 py-3">
-                      <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-1">注意事项</p>
-                      <p className="text-xs text-ink-muted leading-relaxed">{resource.caveats}</p>
+                    <div className="border border-border bg-surface-warm px-4 py-3">
+                      <p className="mb-1 text-xs font-semibold uppercase tracking-widest text-ink-faint">注意事项</p>
+                      <p className="text-xs leading-relaxed text-ink-muted">{resource.caveats}</p>
                     </div>
                   </div>
 
-                  <div className="px-6 py-4 border-t border-border bg-stone-pale/20 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                  <div className="flex flex-col items-start justify-between gap-4 border-t border-border bg-stone-pale/20 px-6 py-4 sm:flex-row sm:items-center">
                     <div>
-                      <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-1">领取方式</p>
+                      <p className="mb-1 text-xs font-semibold uppercase tracking-widest text-ink-faint">领取方式</p>
                       <p className="text-sm text-ink-muted">{resource.howToGet}</p>
                     </div>
                     <ResourceClaimButton resourceId={resource.slug} resourceTitle={resource.title} />
@@ -401,64 +452,62 @@ export default function ResourcesPage() {
           </div>
         </section>
 
-        {/* ───── 阶段四：AI 辅助装修 ───── */}
         <section id="ai-fuzhu" className="mb-16 scroll-mt-20">
           <SectionHeader
-            label="阶段四"
-            title="AI 辅助装修 — 让 AI 帮你做判断"
-            subtitle="不需要懂 AI，只需要知道你要解决什么问题。提示词帮你分析报价、生成沟通话术、整理选材方案。"
+            label="AI 延伸入口"
+            title="AI 只能放大你的判断，不能替你做判断"
+            subtitle="如果你的主问题是装修签约前判断，先用前面的报价和预算工具。这里适合内容生产、提示词和个人工作流。"
           />
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <Link
               href="/tools/prompts"
-              className="group sm:col-span-2 border border-stone/30 bg-stone/5 p-6 sm:p-7 hover:bg-stone/10 transition-colors"
+              className="group border border-stone/30 bg-stone/5 p-6 transition-colors hover:bg-stone/10 sm:col-span-2 sm:p-7"
             >
               <div className="flex items-start justify-between gap-4">
                 <div>
-                  <p className="text-[0.65rem] font-semibold uppercase tracking-widest text-stone mb-2">核心推荐</p>
-                  <p className="text-base font-semibold text-ink group-hover:text-stone transition-colors">
+                  <p className="mb-2 text-[0.65rem] font-semibold uppercase tracking-widest text-stone">延伸工具</p>
+                  <p className="text-base font-semibold text-ink transition-colors group-hover:text-stone">
                     AI 提示词体验场
                   </p>
-                  <p className="text-sm text-ink-muted mt-2 leading-relaxed max-w-lg">
-                    选场景、填情况、一键生成可直接用的提示词。覆盖报价分析、施工沟通、选材方案、装修预算——不需要懂 AI，只需要知道你要解决什么问题。
+                  <p className="mt-2 max-w-lg text-sm leading-relaxed text-ink-muted">
+                    选场景、填情况、一键生成可直接用的提示词。重点不是炫技，而是让真实任务更容易推进。
                   </p>
                 </div>
-                <span className="text-stone text-xl shrink-0 mt-1 group-hover:translate-x-1 transition-transform">→</span>
+                <span className="mt-1 shrink-0 text-xl text-stone transition-transform group-hover:translate-x-1">-&gt;</span>
               </div>
             </Link>
 
             <Link
               href="/tools/md2wechat"
-              className="group border border-border bg-surface p-5 sm:p-6 card-hover"
+              className="group border border-border bg-surface p-5 transition-colors hover:bg-surface-warm sm:p-6"
             >
-              <p className="text-sm font-semibold text-ink group-hover:text-stone transition-colors">
+              <p className="text-sm font-semibold text-ink transition-colors group-hover:text-stone">
                 Markdown 微信排版工具
               </p>
-              <p className="text-xs text-ink-muted mt-1.5 leading-relaxed">
-                把 Markdown 文稿一键转成微信公众号排版，可直接复制粘贴。
+              <p className="mt-1.5 text-xs leading-relaxed text-ink-muted">
+                把 Markdown 文稿转成微信公众号排版，用于内容中台的日常发布。
               </p>
-              <p className="text-xs text-stone mt-3">立即使用 →</p>
+              <p className="mt-3 text-xs text-stone">立即使用 -&gt;</p>
             </Link>
 
             <div className="border border-border bg-surface p-5 sm:p-6">
-              <div className="flex items-center gap-2 mb-1.5">
+              <div className="mb-1.5 flex items-center gap-2">
                 <p className="text-sm font-semibold text-ink">AI 内容工作流提示词包 Pro</p>
-                <span className="text-[0.65rem] text-stone border border-stone/30 px-2 py-0.5 uppercase tracking-wider">即将定价</span>
+                <span className="border border-stone/30 px-2 py-0.5 text-[0.65rem] uppercase tracking-wider text-stone">即将定价</span>
               </div>
-              <p className="text-xs text-ink-muted leading-relaxed">
-                从选题、写作、排版到多平台分发，一套完整的 AI 辅助内容生产系统提示词。
+              <p className="text-xs leading-relaxed text-ink-muted">
+                从选题、写作、排版到复盘，把个人经验沉淀成可反复使用的内容流程。
               </p>
             </div>
           </div>
         </section>
 
-        {/* ───── 需要更深入帮助？ ───── */}
         <section className="mb-12">
           <SectionHeader
             label="需要更深入的帮助"
-            title="工具不够时，可以直接找我"
-            subtitle="先用免费工具建立判断，再决定是否需要更深入的合作。"
+            title="工具不够时，再进入人工判断"
+            subtitle="先用免费工具建立基本判断，再决定是否需要更具体的报价、预算或签约前服务。"
           />
 
           <div className="space-y-3">
@@ -466,26 +515,25 @@ export default function ResourcesPage() {
               <Link
                 key={s.title}
                 href={s.href}
-                className="group flex items-start justify-between gap-4 border border-border bg-surface p-5 hover:bg-surface-warm transition-colors"
+                className="group flex items-start justify-between gap-4 border border-border bg-surface p-5 transition-colors hover:bg-surface-warm"
               >
                 <div>
-                  <p className="text-sm font-semibold text-ink group-hover:text-stone transition-colors">{s.title}</p>
-                  <p className="text-xs text-ink-muted mt-1.5 leading-relaxed">{s.desc}</p>
+                  <p className="text-sm font-semibold text-ink transition-colors group-hover:text-stone">{s.title}</p>
+                  <p className="mt-1.5 text-xs leading-relaxed text-ink-muted">{s.desc}</p>
                 </div>
-                <span className="text-stone text-sm shrink-0 mt-0.5">→</span>
+                <span className="mt-0.5 shrink-0 text-sm text-stone">-&gt;</span>
               </Link>
             ))}
           </div>
         </section>
 
-        {/* 底部 CTA */}
-        <div className="pt-8 border-t border-border">
-          <p className="text-sm text-ink-muted mb-4">
-            工具是辅助，不替代你的现场判断。先用一遍，再回来看对应文章，会更有感觉。
+        <div className="border-t border-border pt-8">
+          <p className="mb-4 text-sm text-ink-muted">
+            工具是辅助，不替代你的现场判断。先用一遍，再回来看对应文章或服务，会更容易分清下一步。
           </p>
           <div className="flex flex-wrap gap-3">
-            <CTA href="/pricing/baojia-guide" label="领取报价避坑指南" variant="primary" />
-            <CTA href="/services" label="查看服务" variant="secondary" />
+            <CTA href="/pricing/baojia-guide" label="看 ¥39 报价指南" variant="primary" />
+            <CTA href="/tools/quote-check" label="先做报价初筛" variant="secondary" />
             <CTA href="/blog" label="看文章" variant="ghost" />
           </div>
         </div>
