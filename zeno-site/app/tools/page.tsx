@@ -15,32 +15,38 @@ export const metadata: Metadata = {
   },
 }
 
-const trackCards = [
+const ownerNeedCards = [
   {
-    label: '主线 / 装修业主',
-    title: '我快要签约了，想先知道报价里哪里会出问题',
-    desc: '先从报价初筛开始，把漏项、模糊项、增项口子和付款节点筛出来，再决定要不要看资料、买指南或进入人工判断。',
-    image: '/images/resources/quote-checklist-preview.svg',
-    primaryHref: '/tools/quote-check',
-    primaryLabel: '先做报价初筛',
-    secondaryHref: '/pricing/baojia-guide',
-    secondaryLabel: '看 ¥39 指南',
-    proof: ['报价追问清单', '¥39 指南', '人工快审'],
-    variant: 'primary' as const,
+    label: '手上有报价单',
+    title: '先看报价有没有漏项和模糊口子',
+    desc: '适合已经拿到报价、准备比较或快签约的人。',
+    href: '/tools/quote-check',
+    action: '做报价初筛',
   },
   {
-    label: '延伸 / 传统行业人',
-    title: '我有行业经验，想看 AI 怎么落到内容、工具和产品',
-    desc: '这条线不卖万能提示词。它先帮你从一个真实场景开始，把客户问题、内容选题、资料交付和服务流程接进 AI。',
-    image: '/images/services/ai-workflow-proof.svg',
-    primaryHref: '/tools/prompts',
-    primaryLabel: '先生成 AI 场景',
-    secondaryHref: '/services/ai-workflow',
-    secondaryLabel: '看 AI 咨询路径',
-    proof: ['真实场景提示词', '内容诊断', '公众号排版'],
-    variant: 'secondary' as const,
+    label: '只有总预算',
+    title: '先拆成几份钱，不要只盯总数',
+    desc: '适合预算有上限，但不知道简约、舒适、精致分别要怎么取舍的人。',
+    href: '/tools/budget-structure',
+    action: '拆预算分配',
+  },
+  {
+    label: '怕越装越超',
+    title: '先判断超支更像来自哪里',
+    desc: '适合已经感觉钱会失控，但分不清是报价、流程还是需求太散的人。',
+    href: '/tools/budget-risk',
+    action: '查超预算原因',
+  },
+  {
+    label: '快要签合同',
+    title: '直接看签约前服务怎么选',
+    desc: '适合报价、预算、合同和付款节点一起卡住的人。',
+    href: '/services/renovation#choose',
+    action: '看服务选择',
   },
 ]
+
+const supportToolKeys = new Set(['单位换算工具', '瓷砖计算器', '乳胶漆计算器', '验收节点向导'])
 
 const judgmentPath = [
   {
@@ -200,8 +206,6 @@ const routes = [
   { audience: '装修业主', situation: '怕越装越超', action: '先查超支原因', href: '/tools/budget-risk' },
   { audience: '装修业主', situation: '准备买材料', action: '先算数量和单位', href: '/tools/tile-calculator' },
   { audience: '装修业主', situation: '准备验收', action: '生成节点清单', href: '/tools/inspection-guide' },
-  { audience: '传统行业人', situation: '想把工作接进 AI', action: '生成真实场景', href: '/tools/prompts' },
-  { audience: '内容创作者', situation: '准备发布内容', action: '先做内容诊断', href: '/tools/content-brain' },
 ]
 
 export default function ToolsPage() {
@@ -212,9 +216,9 @@ export default function ToolsPage() {
           {
             '@context': 'https://schema.org',
             '@type': 'CollectionPage',
-            name: '装修判断力工具工作台',
+            name: '签约前装修判断工具工作台',
             url: 'https://zenoaihome.com/tools',
-            description: '可直接使用的装修判断和 AI 实践工具入口。',
+            description: '签约前报价、预算、材料和验收判断工具入口。',
             inLanguage: 'zh-CN',
           },
           {
@@ -254,50 +258,60 @@ export default function ToolsPage() {
           </div>
         </section>
 
-        <section className="mb-12 grid gap-5 lg:grid-cols-2">
-          {trackCards.map((card) => (
-            <article key={card.label} className={`overflow-hidden border ${card.variant === 'primary' ? 'border-stone bg-surface-warm' : 'border-border bg-surface'}`}>
-              <div className="relative aspect-[16/9] border-b border-border bg-stone-pale/30">
-                <Image
-                  src={card.image}
-                  alt={card.title}
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 1024px) 100vw, 520px"
-                />
-              </div>
-              <div className="p-6 sm:p-7">
-                <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-stone">{card.label}</p>
-                <h2 className="text-xl font-semibold leading-snug text-ink">{card.title}</h2>
+        <section className="mb-12 grid gap-6 lg:grid-cols-[0.42fr_0.58fr]">
+          <div className="overflow-hidden border border-border bg-surface">
+            <div className="relative aspect-[16/10] border-b border-border bg-stone-pale/30">
+              <Image
+                src="/images/resources/quote-checklist-preview.svg"
+                alt="报价审核清单预览"
+                fill
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 440px"
+              />
+            </div>
+            <div className="p-6">
+              <p className="text-xs font-semibold uppercase tracking-widest text-stone">先看材料，不先看概念</p>
+              <h2 className="mt-3 text-xl font-semibold leading-snug text-ink">这个页面只帮你决定下一步用哪个工具。</h2>
+              <p className="mt-3 text-sm leading-relaxed text-ink-muted">
+                如果你已经有报价单，就别先刷文章。先把报价风险跑一遍，再根据结果进入清单、指南或人工服务。
+              </p>
+            </div>
+          </div>
+
+          <div className="grid gap-3 sm:grid-cols-2">
+            {ownerNeedCards.map((card) => (
+              <Link
+                key={card.label}
+                href={card.href}
+                className="group flex min-h-[13rem] flex-col border border-border bg-surface p-5 transition-all duration-150 hover:-translate-y-1 hover:border-stone hover:bg-surface-warm hover:shadow-[0_16px_40px_rgba(42,39,35,0.08)]"
+              >
+                <p className="text-xs font-semibold uppercase tracking-widest text-stone">{card.label}</p>
+                <h2 className="mt-3 text-lg font-semibold leading-snug text-ink">{card.title}</h2>
                 <p className="mt-3 text-sm leading-relaxed text-ink-muted">{card.desc}</p>
-                <div className="mt-5 flex flex-wrap gap-2">
-                  {card.proof.map((item) => (
-                    <span key={item} className="border border-border bg-surface-warm px-3 py-1 text-xs text-ink-muted">
-                      {item}
-                    </span>
-                  ))}
-                </div>
-                <div className="mt-6 flex flex-wrap gap-3">
-                  <CTA href={card.primaryHref} label={card.primaryLabel} variant="primary" />
-                  <CTA href={card.secondaryHref} label={card.secondaryLabel} variant="secondary" />
-                </div>
-              </div>
-            </article>
-          ))}
+                <span className="mt-auto pt-5 text-sm font-semibold text-stone">{card.action} -&gt;</span>
+              </Link>
+            ))}
+          </div>
         </section>
 
-        <section className="mb-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-          {routes.map((route) => (
-            <Link
-              key={`${route.audience}-${route.situation}`}
-              href={route.href}
-              className="group border border-border bg-surface p-5 transition-all duration-150 hover:-translate-y-1 hover:border-stone hover:bg-surface-warm hover:shadow-[0_16px_40px_rgba(42,39,35,0.08)]"
-            >
-              <p className="text-xs font-semibold uppercase tracking-widest text-stone">{route.audience}</p>
-              <p className="mt-3 text-sm font-semibold leading-snug text-ink">{route.situation}</p>
-              <p className="mt-2 text-sm leading-relaxed text-ink-muted group-hover:text-stone">{route.action}</p>
-            </Link>
-          ))}
+        <section className="mb-12">
+          <div className="mb-4">
+            <p className="text-xs font-semibold uppercase tracking-widest text-stone">其他入口</p>
+            <p className="mt-2 text-sm leading-relaxed text-ink-muted">如果你现在不是临近签约，而是预算、材料或施工节点问题，从这里切入。</p>
+          </div>
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {routes.map((route) => (
+              <Link
+                key={`${route.audience}-${route.situation}`}
+                href={route.href}
+                className="group border border-border bg-surface p-5 transition-all duration-150 hover:-translate-y-1 hover:border-stone hover:bg-surface-warm hover:shadow-[0_16px_40px_rgba(42,39,35,0.08)]"
+              >
+                <p className="text-xs font-semibold uppercase tracking-widest text-stone">{route.audience}</p>
+                <p className="mt-3 text-sm font-semibold leading-snug text-ink">{route.situation}</p>
+                <p className="mt-2 text-sm leading-relaxed text-ink-muted group-hover:text-stone">{route.action}</p>
+              </Link>
+            ))}
+          </div>
         </section>
 
         <section className="mb-12 border border-border bg-surface-warm p-6 sm:p-8">
@@ -322,50 +336,71 @@ export default function ToolsPage() {
         </section>
 
         <div className="space-y-12">
-          {toolGroups.map((group) => (
-            <section key={group.title}>
-              <div className="mb-5">
-                <p className="text-xs font-semibold uppercase tracking-widest text-stone">{group.title}</p>
-                <p className="mt-2 text-sm leading-relaxed text-ink-muted">{group.desc}</p>
-              </div>
+          {toolGroups.map((group) => {
+            const primaryTools = group.tools.filter((tool) => !supportToolKeys.has(tool.title))
+            const supportTools = group.tools.filter((tool) => supportToolKeys.has(tool.title))
 
-              <div className="grid gap-5 lg:grid-cols-2">
-                {group.tools.map((tool) => (
-                  <article
-                    key={tool.title}
-                    className="flex flex-col border border-border bg-surface p-6 transition-all duration-150 hover:border-stone/70 hover:shadow-[0_18px_46px_rgba(42,39,35,0.07)]"
-                  >
-                    <div className="flex flex-wrap gap-2 text-[0.68rem] font-semibold uppercase tracking-widest">
-                      <span className="text-stone">{tool.status}</span>
-                      <span className="text-ink-faint">{tool.price}</span>
-                      <span className="text-ink-faint">{tool.time}</span>
-                    </div>
-                    <h2 className="mt-3 text-lg font-semibold text-ink">{tool.title}</h2>
-                    <dl className="mt-4 grid gap-4 text-sm">
-                      <div>
-                        <dt className="font-semibold text-ink">你现在的问题</dt>
-                        <dd className="mt-1 leading-relaxed text-ink-muted">{tool.problem}</dd>
-                      </div>
-                      <div>
-                        <dt className="font-semibold text-ink">免费先拿到</dt>
-                        <dd className="mt-1 leading-relaxed text-ink-muted">{tool.freeGain}</dd>
-                      </div>
-                      <div>
-                        <dt className="font-semibold text-ink">下一步</dt>
-                        <dd className="mt-1 leading-relaxed text-ink-muted">{tool.nextStep}</dd>
-                      </div>
-                    </dl>
-                    <Link
-                      href={tool.href}
-                      className="mt-6 inline-flex h-10 w-fit items-center bg-stone px-4 text-sm font-semibold text-white transition-colors hover:bg-stone/90"
+            return (
+              <section key={group.title}>
+                <div className="mb-5">
+                  <p className="text-xs font-semibold uppercase tracking-widest text-stone">{group.title}</p>
+                  <p className="mt-2 text-sm leading-relaxed text-ink-muted">{group.desc}</p>
+                </div>
+
+                <div className="grid gap-5 lg:grid-cols-2">
+                  {primaryTools.map((tool) => (
+                    <article
+                      key={tool.title}
+                      className="flex flex-col border border-border bg-surface p-6 transition-all duration-150 hover:border-stone/70 hover:shadow-[0_18px_46px_rgba(42,39,35,0.07)]"
                     >
-                      {tool.cta}
-                    </Link>
-                  </article>
-                ))}
-              </div>
-            </section>
-          ))}
+                      <div className="flex flex-wrap gap-2 text-[0.68rem] font-semibold uppercase tracking-widest">
+                        <span className="text-stone">{tool.status}</span>
+                        <span className="text-ink-faint">{tool.price}</span>
+                        <span className="text-ink-faint">{tool.time}</span>
+                      </div>
+                      <h2 className="mt-3 text-lg font-semibold text-ink">{tool.title}</h2>
+                      <dl className="mt-4 grid gap-4 text-sm">
+                        <div>
+                          <dt className="font-semibold text-ink">你现在的问题</dt>
+                          <dd className="mt-1 leading-relaxed text-ink-muted">{tool.problem}</dd>
+                        </div>
+                        <div>
+                          <dt className="font-semibold text-ink">免费先拿到</dt>
+                          <dd className="mt-1 leading-relaxed text-ink-muted">{tool.freeGain}</dd>
+                        </div>
+                        <div>
+                          <dt className="font-semibold text-ink">下一步</dt>
+                          <dd className="mt-1 leading-relaxed text-ink-muted">{tool.nextStep}</dd>
+                        </div>
+                      </dl>
+                      <Link
+                        href={tool.href}
+                        className="mt-6 inline-flex h-10 w-fit items-center bg-stone px-4 text-sm font-semibold text-white transition-colors hover:bg-stone/90"
+                      >
+                        {tool.cta}
+                      </Link>
+                    </article>
+                  ))}
+                </div>
+
+                {supportTools.length > 0 && (
+                  <div className="mt-6 border border-border bg-surface-warm p-5 sm:p-6">
+                    <p className="text-xs font-semibold uppercase tracking-widest text-stone">辅助计算和施工节点</p>
+                    <p className="mt-2 text-sm leading-relaxed text-ink-muted">这些工具不负责决定签不签，只帮你把数量、单位和现场节点看清楚。</p>
+                    <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+                      {supportTools.map((tool) => (
+                        <Link key={tool.title} href={tool.href} className="border border-border bg-canvas p-4 transition-colors hover:border-stone hover:bg-surface">
+                          <p className="text-sm font-semibold text-ink">{tool.title}</p>
+                          <p className="mt-2 text-xs leading-relaxed text-ink-muted">{tool.problem}</p>
+                          <p className="mt-3 text-xs font-semibold text-stone">{tool.cta} -&gt;</p>
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </section>
+            )
+          })}
         </div>
 
         <div className="mt-14 grid gap-5 border border-border bg-surface-warm p-6 sm:p-8 lg:grid-cols-[1fr_auto] lg:items-center">
