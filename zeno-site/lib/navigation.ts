@@ -60,12 +60,12 @@ export const primaryNav: PrimaryNavItem[] = [
       },
       {
         key: 'budget',
-        zh: { label: '控预算', desc: '把总价拆成底线、弹性和缓冲' },
+        zh: { label: '分预算', desc: '先看总预算更像简约、舒适还是精致' },
         en: { label: 'Budget', desc: 'Split baseline, flex and buffer' },
         items: [
-          { key: 'budget-structure', zh: { label: '预算结构工具', href: '/tools/budget-structure', desc: '把总预算拆成硬装、主材、定制和缓冲' }, en: { label: 'Budget Structure Tool', href: '/en/tools', desc: 'Split budget into working buckets' } },
-          { key: 'budget-risk', zh: { label: '预算风险自测', href: '/tools/budget-risk', desc: '先分清风险来自哪里' }, en: { label: 'Budget Risk Quiz', href: '/en/tools', desc: 'Find the risk source' } },
-          { key: 'budget-template', zh: { label: '预算模板', href: '/resources#zhuangxiu-yusuan-moban', desc: '把预算按结构写下来' }, en: { label: 'Budget Template', href: '/en/resources', desc: 'Structure the budget' } },
+          { key: 'budget-structure', zh: { label: '预算分配工具', href: '/tools/budget-structure', desc: '按简约、舒适、精致三档拆钱' }, en: { label: 'Budget Split Tool', href: '/en/tools', desc: 'Split budget into working buckets' } },
+          { key: 'budget-risk', zh: { label: '超预算原因自测', href: '/tools/budget-risk', desc: '看超支更像来自报价、流程还是需求' }, en: { label: 'Overrun Cause Quiz', href: '/en/tools', desc: 'Find the risk source' } },
+          { key: 'budget-template', zh: { label: '预算模板', href: '/resources#zhuangxiu-yusuan-moban', desc: '把预算按几份钱写下来' }, en: { label: 'Budget Template', href: '/en/resources', desc: 'Structure the budget' } },
           { key: 'budget-service', zh: { label: '预算结构诊断', href: '/services/renovation#yusuan-zixun', desc: '预算越算越乱时进入人工判断' }, en: { label: 'Budget Diagnosis', href: '/en/services', desc: 'Human budget diagnosis' } },
         ],
       },
@@ -113,9 +113,9 @@ export const primaryNav: PrimaryNavItem[] = [
         en: { label: 'Judgment Tools', desc: 'Narrow down quote, budget and handover risks' },
         items: [
           { key: 'quote-screening', zh: { label: '报价初筛工具', href: '/tools/quote-check', desc: '已上线：先做风险类型初筛' }, en: { label: 'Quote Screening', href: '/en/tools', desc: 'Live' } },
-          { key: 'budget-structure', zh: { label: '预算结构工具', href: '/tools/budget-structure', desc: '已上线：先拆清钱该怎么分' }, en: { label: 'Budget Structure', href: '/en/tools', desc: 'Live' } },
+          { key: 'budget-structure', zh: { label: '预算分配工具', href: '/tools/budget-structure', desc: '已上线：先拆清钱该怎么分' }, en: { label: 'Budget Split', href: '/en/tools', desc: 'Live' } },
           { key: 'inspection-guide', zh: { label: '验收节点向导', href: '/tools/inspection-guide', desc: '已上线：按节点生成清单' }, en: { label: 'Inspection Guide', href: '/en/tools', desc: 'Live' } },
-          { key: 'budget-risk', zh: { label: '预算风险自测', href: '/tools/budget-risk', desc: '补充诊断' }, en: { label: 'Budget Risk Quiz', href: '/en/tools', desc: 'Live' } },
+          { key: 'budget-risk', zh: { label: '超预算原因自测', href: '/tools/budget-risk', desc: '补充诊断' }, en: { label: 'Overrun Cause Quiz', href: '/en/tools', desc: 'Live' } },
           { key: 'content-brain', zh: { label: '内容诊断大脑', href: '/tools/content-brain', desc: '发布前检查选题、标题和转化路径' }, en: { label: 'Content Brain', href: '/en/tools', desc: 'Content diagnosis' } },
           { key: 'needs-map', zh: { label: '需求梳理问卷', href: '/resources#shizhu-pai-zijian-biao', desc: '清单模式' }, en: { label: 'Needs Map', href: '/en/resources', desc: 'Checklist' } },
         ],

@@ -68,9 +68,9 @@ const problemEntryCards = [
   },
   {
     title: '我怕装修超预算',
-    description: '先把钱按结构拆清，再谈哪些能省、哪些不能动。',
+    description: '先看总预算更像简约、舒适还是精致，再查为什么会超。',
     primary: { label: '拿装修预算模板', href: '/resources#zhuangxiu-yusuan-moban' },
-    secondary: { label: '先做预算风险自测', href: '/tools/budget-risk' },
+    secondary: { label: '先拆预算分配', href: '/tools/budget-structure' },
     fallback: { label: '直接看预算诊断 →', href: '/services/renovation#yusuan-zixun' },
   },
   {
@@ -212,10 +212,10 @@ export default function ResourcesPage() {
                 <div>
                   <p className="text-[0.65rem] font-semibold uppercase tracking-widest text-stone mb-2">免费 · 10 分钟 · 不需注册</p>
                   <p className="text-base font-semibold text-ink group-hover:text-stone transition-colors">
-                    装修预算风险自测
+                    超预算原因自测
                   </p>
                   <p className="text-sm text-ink-muted mt-2 leading-relaxed max-w-lg">
-                    回答 10 个问题，看看你这次装修最可能在哪里超支。题目都来自我审过的上千份真实报价。
+                    回答 8 个问题，先分清更像报价没说清、预算没分好、流程没控住，还是需求太散。
                   </p>
                   <p className="text-xs text-stone font-medium mt-3">开始自测 →</p>
                 </div>

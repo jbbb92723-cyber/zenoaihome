@@ -68,10 +68,10 @@ const quickEntriesZh = [
   },
   {
     label: '我怕超预算',
-    prompt: '我担心装修超预算，请先帮我判断应该从预算结构、报价漏项、施工流程还是需求顺序开始查。',
+    prompt: '我担心装修超预算，请先帮我判断：我应该先拆预算分配，还是先查报价漏项、施工流程和需求顺序的问题。',
     links: [
-      { label: '预算结构工具', href: '/tools/budget-structure' },
-      { label: '预算风险自测', href: '/tools/budget-risk' },
+      { label: '预算分配工具', href: '/tools/budget-structure' },
+      { label: '超预算原因自测', href: '/tools/budget-risk' },
       { label: '预算模板', href: '/resources#zhuangxiu-yusuan-moban' },
     ],
   },

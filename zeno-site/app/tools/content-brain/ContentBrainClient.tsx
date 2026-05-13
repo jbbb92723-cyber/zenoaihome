@@ -49,7 +49,7 @@ const offers: Array<{ id: Exclude<OfferId, 'auto'>; label: string; href: string;
   },
   {
     id: 'budget-template',
-    label: '预算模板 / 预算结构工具',
+    label: '预算模板 / 预算分配工具',
     href: '/tools/budget-structure',
     desc: '适合预算、超支、钱该怎么分和装修前规划内容。',
     keywords: ['预算', '超支', '省钱', '费用', '钱', '结构', '分配'],

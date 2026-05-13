@@ -8,9 +8,9 @@ import RiskDimensionCard from '@/components/budget-risk/RiskDimensionCard'
 import { parseScoreQuery, riskSummaries } from '@/data/budget-risk'
 
 export const metadata: Metadata = {
-  title: '你的装修预算风险结果',
+  title: '你的超预算原因自测结果',
   description:
-    '根据预算风险自测结果，先分清你当前更值得先处理的是报价、预算、流程还是居住场景需求。',
+    '根据超预算原因自测结果，先分清你当前更值得先处理的是报价、预算分配、流程还是居住场景需求。',
   alternates: {
     canonical: 'https://zenoaihome.com/tools/budget-risk/result',
   },
@@ -49,7 +49,7 @@ export default function BudgetRiskResultPage({
           {
             '@context': 'https://schema.org',
             '@type': 'WebPage',
-            name: '装修预算风险结果',
+            name: '超预算原因自测结果',
             url: 'https://zenoaihome.com/tools/budget-risk/result',
             description: dominantSummary.headline,
             inLanguage: 'zh-CN',
@@ -74,7 +74,7 @@ export default function BudgetRiskResultPage({
         title={result.isEmpty ? '你还没完成这轮自测' : dominantSummary.headline}
         subtitle={
           result.isEmpty
-            ? '这个页面需要从预算风险自测进入。先把问题做一轮缩小，再看结果会更有意义。'
+            ? '这个页面需要从超预算原因自测进入。先把问题做一轮缩小，再看结果会更有意义。'
             : dominantSummary.description
         }
         note={result.isEmpty ? '如果你只是直接打开了结果页，先回去做完 8 个问题。' : dominantSummary.whyItMatters}

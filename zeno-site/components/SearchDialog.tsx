@@ -215,8 +215,8 @@ export default function SearchDialog() {
               <button type="button" onClick={() => handleSelect({ title: '报价初筛工具', href: '/tools/quote-check', type: 'tool' })} className="block w-full text-left text-ink-muted hover:text-ink">
                 {isEn ? 'Quote screening' : '做报价初筛'}
               </button>
-              <button type="button" onClick={() => handleSelect({ title: '预算结构工具', href: '/tools/budget-structure', type: 'tool' })} className="block w-full text-left text-ink-muted hover:text-ink">
-                {isEn ? 'Budget structure' : '拆预算结构'}
+              <button type="button" onClick={() => handleSelect({ title: '预算分配工具', href: '/tools/budget-structure', type: 'tool' })} className="block w-full text-left text-ink-muted hover:text-ink">
+                {isEn ? 'Budget split' : '拆预算分配'}
               </button>
               <button type="button" onClick={() => handleSelect({ title: '验收节点向导', href: '/tools/inspection-guide', type: 'tool' })} className="block w-full text-left text-ink-muted hover:text-ink">
                 {isEn ? 'Inspection guide' : '生成验收清单'}

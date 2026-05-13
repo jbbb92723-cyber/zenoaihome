@@ -4,8 +4,8 @@ import { buildToolStructuredData, toolSeoAssets } from '@/data/toolSeoAssets'
 import BudgetStructureClient from './BudgetStructureClient'
 
 export const metadata: Metadata = {
-  title: '装修预算结构工具 | 预算分配比例与缓冲金规划',
-  description: '装修预算怎么分配？输入总预算和房屋面积，把钱拆成硬装、主材、定制、设备、软装和缓冲金。',
+  title: '装修预算分配工具 | 简约、舒适、精致三档拆预算',
+  description: '装修预算怎么分配？按简约够住、舒适耐用、精致改善三种取向，输入总预算和面积，拆出基础施工、主材、收纳、设备、软装和预留机动。',
   alternates: {
     canonical: 'https://zenoaihome.com/tools/budget-structure',
   },

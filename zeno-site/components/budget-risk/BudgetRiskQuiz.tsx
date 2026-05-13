@@ -64,7 +64,7 @@ export default function BudgetRiskQuiz() {
       <div className="sticky top-16 z-20 border border-border bg-canvas/95 p-4 shadow-[0_14px_36px_rgba(42,39,35,0.06)] backdrop-blur">
         <div className="flex items-center justify-between gap-4">
           <div>
-            <p className="text-sm font-semibold text-ink">预算风险自测进度</p>
+            <p className="text-sm font-semibold text-ink">超预算原因自测进度</p>
             <p className="mt-1 text-xs text-ink-muted">已完成 {answeredCount} / {budgetRiskQuestions.length}，系统会自动保存。</p>
           </div>
           <span className="text-sm font-semibold text-stone">{progress}%</span>

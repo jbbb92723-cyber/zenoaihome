@@ -65,7 +65,7 @@ export default function TileCalculatorClient() {
       <section className="mx-auto max-w-6xl px-5 pb-12 sm:px-8">
         <BridgePanel items={[
           { label: '单位换算工具', href: '/tools/unit-converter', desc: '先看清面积和单位，再核对数量。' },
-          { label: '预算结构工具', href: '/tools/budget-structure', desc: '把瓷砖预算放回整体预算结构。' },
+          { label: '预算分配工具', href: '/tools/budget-structure', desc: '把瓷砖费用放回主材选择这份钱里。' },
           { label: '验收节点向导', href: '/tools/inspection-guide', desc: '铺贴完成后按节点验收。' },
         ]} />
       </section>

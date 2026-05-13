@@ -124,8 +124,8 @@ const toolCards: Array<{
   },
   {
     icon: Calculator,
-    title: '预算结构工具',
-    body: '把总预算拆成底线、弹性和缓冲，不只盯一个总价。',
+    title: '预算分配工具',
+    body: '先看总预算更像简约、舒适还是精致，再拆成几份钱。',
     action: '拆预算',
     href: '/tools/budget-structure',
   },

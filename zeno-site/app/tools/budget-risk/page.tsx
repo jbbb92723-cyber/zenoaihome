@@ -6,9 +6,9 @@ import StructuredData from '@/components/StructuredData'
 import BudgetRiskQuiz from '@/components/budget-risk/BudgetRiskQuiz'
 
 export const metadata: Metadata = {
-  title: '装修预算风险自测',
+  title: '超预算原因自测',
   description:
-    '用 8 个问题先分清你当前更大的风险是报价、预算结构、施工流程，还是需求顺序本身。',
+    '用 8 个问题先分清你担心超预算，更像来自报价没说清、预算没分好、施工流程，还是需求顺序本身。',
   alternates: {
     canonical: 'https://zenoaihome.com/tools/budget-risk',
   },
@@ -22,7 +22,7 @@ export default function BudgetRiskToolPage() {
           {
             '@context': 'https://schema.org',
             '@type': 'WebPage',
-            name: '装修预算风险自测',
+            name: '超预算原因自测',
             url: 'https://zenoaihome.com/tools/budget-risk',
             description: '用 8 个问题缩小装修预算与判断风险。',
             inLanguage: 'zh-CN',
@@ -54,8 +54,8 @@ export default function BudgetRiskToolPage() {
 
       <PageHero
         label="工具"
-        title="装修预算风险自测"
-        subtitle="如果你现在已经感觉哪里不对，但说不清是报价、预算、流程还是需求顺序的问题，先用这 8 个问题把风险缩小。"
+        title="超预算原因自测"
+        subtitle="如果你已经感觉钱可能失控，但说不清是报价、预算、流程还是需求顺序的问题，先用这 8 个问题把风险缩小。"
         note="结果页会告诉你先该看哪类资源、文章或服务，而不是给你一个虚假的“总分”。"
         size="content"
       />
