@@ -79,7 +79,7 @@ const offers: Array<{ id: Exclude<OfferId, 'auto'>; label: string; href: string;
     id: 'renovation-service',
     label: '装修判断服务',
     href: '/services/renovation',
-    desc: '适合报价快审、预算诊断、签约前决策和居住场景服务。',
+    desc: '适合报价快审、预算取舍诊断、签约前决策和居住场景服务。',
     keywords: ['装修', '业主', '验收', '施工', '材料', '居住', '南宁'],
   },
 ]

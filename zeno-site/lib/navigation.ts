@@ -66,7 +66,7 @@ export const primaryNav: PrimaryNavItem[] = [
           { key: 'budget-structure', zh: { label: '预算分配工具', href: '/tools/budget-structure', desc: '按简约、舒适、精致三档拆钱' }, en: { label: 'Budget Split Tool', href: '/en/tools', desc: 'Split budget into working buckets' } },
           { key: 'budget-risk', zh: { label: '超预算原因自测', href: '/tools/budget-risk', desc: '看超支更像来自报价、流程还是需求' }, en: { label: 'Overrun Cause Quiz', href: '/en/tools', desc: 'Find the risk source' } },
           { key: 'budget-template', zh: { label: '预算模板', href: '/resources#zhuangxiu-yusuan-moban', desc: '把预算按几份钱写下来' }, en: { label: 'Budget Template', href: '/en/resources', desc: 'Structure the budget' } },
-          { key: 'budget-service', zh: { label: '预算结构诊断', href: '/services/renovation#yusuan-zixun', desc: '预算越算越乱时进入人工判断' }, en: { label: 'Budget Diagnosis', href: '/en/services', desc: 'Human budget diagnosis' } },
+          { key: 'budget-service', zh: { label: '预算取舍诊断', href: '/services/renovation#yusuan-zixun', desc: '预算越算越乱时进入人工判断' }, en: { label: 'Budget Diagnosis', href: '/en/services', desc: 'Human budget diagnosis' } },
         ],
       },
       {
@@ -219,7 +219,7 @@ export const primaryNav: PrimaryNavItem[] = [
       },
       {
         key: 'budget-service',
-        zh: { label: '预算结构诊断', desc: '适合预算有数但越算越乱的人' },
+        zh: { label: '预算取舍诊断', desc: '适合预算有数但越算越乱的人' },
         en: { label: 'Budget Diagnosis', desc: 'For messy budget structure' },
         items: [
           { key: 'budget-fit', zh: { label: '适合谁', href: '/services/renovation#yusuan-zixun' }, en: { label: 'Who it fits', href: '/en/services' } },

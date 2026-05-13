@@ -121,7 +121,7 @@ export const riskSummaries: Record<RiskKey, RiskSummary> = {
     firstStep: '先把总预算拆成几份钱，再看哪些不能动、哪些可以晚点买、哪些只是想要。',
     resource: { label: '先拿装修预算模板', href: '/resources#zhuangxiu-yusuan-moban' },
     article: { label: '先看预算为什么总超', href: '/blog/zhuangxiu-yusuan-weishenme-zongchao' },
-    service: { label: '直接看预算结构诊断', href: '/services/renovation#yusuan-zixun' },
+    service: { label: '直接看预算取舍诊断', href: '/services/renovation#yusuan-zixun' },
   },
   R3: {
     key: 'R3',

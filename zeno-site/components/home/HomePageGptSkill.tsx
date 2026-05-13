@@ -149,9 +149,9 @@ const serviceCards = [
   },
   {
     icon: Calculator,
-    title: '预算结构诊断',
-    body: '还没到逐行看报价，但钱已经越算越乱，先把预算结构拆清。',
-    bullets: ['预算结构', '优先级', '缓冲空间'],
+    title: '预算取舍诊断',
+    body: '还没到逐行看报价，但钱已经越算越乱，先判断哪些不能砍、哪些可以晚点买。',
+    bullets: ['预算分配', '取舍顺序', '预留机动'],
     price: '¥399 / 次',
     href: '/services/renovation#yusuan-zixun',
   },

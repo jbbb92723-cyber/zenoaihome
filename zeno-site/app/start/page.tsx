@@ -37,8 +37,8 @@ const paths = [
     tool: { label: '预算分配工具', href: '/tools/budget-structure' },
     checklist: { label: '装修预算模板', href: '/resources#zhuangxiu-yusuan-moban' },
     article: { label: '超预算原因自测', href: '/tools/budget-risk' },
-    service: { label: '预算结构诊断', href: '/services/renovation#yusuan-zixun' },
-    serviceAdvice: '如果分配完还是不知道哪里该砍、哪里不能动，再进入预算结构诊断。',
+    service: { label: '预算取舍诊断', href: '/services/renovation#yusuan-zixun' },
+    serviceAdvice: '如果分配完还是不知道哪里该砍、哪里不能动，再进入预算取舍诊断。',
   },
   {
     id: 'construction',

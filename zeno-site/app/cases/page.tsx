@@ -36,7 +36,7 @@ const caseGroups: CaseGroup[] = [
     intro: '先看预算为什么会失控，施工阶段为什么要按节点盯，而不是等全部做完再回头。',
     articleSlugs: ['zhuangxiu-yusuan-weishenme-zongchao', 'shuidian-gongcheng-zongchao-yusuan', 'zhuangxiu-hou-hue-de-wu-jian'],
     tool: { label: '去找验收清单和预算模板', href: '/resources' },
-    service: { label: '预算结构诊断', href: '/services/renovation#yusuan-zixun' },
+    service: { label: '预算取舍诊断', href: '/services/renovation#yusuan-zixun' },
   },
   {
     title: 'AI 与内容系统复盘',

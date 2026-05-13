@@ -47,8 +47,8 @@ const serviceEntries = [
     href: '/services/renovation#qianyue-qian-juece-bao',
   },
   {
-    title: '预算结构诊断',
-    desc: '还没到逐行看报价，但钱已经越算越乱时，先把预算结构拆清。',
+    title: '预算取舍诊断',
+    desc: '还没到逐行看报价，但钱已经越算越乱时，先判断哪些不能砍、哪些可以晚点买。',
     href: '/services/renovation#yusuan-zixun',
   },
   {
@@ -67,11 +67,18 @@ const problemEntryCards = [
     fallback: { label: '直接看签约前决策包 →', href: '/services/renovation#qianyue-qian-juece-bao' },
   },
   {
+    title: '我快要签合同了',
+    description: '报价、预算、合同和付款节点一起卡住时，不要只盯总价。',
+    primary: { label: '先做报价初筛', href: '/tools/quote-check' },
+    secondary: { label: '看签约前服务怎么选', href: '/services/renovation#choose' },
+    fallback: { label: '直接看签约前决策包 →', href: '/services/renovation#qianyue-qian-juece-bao' },
+  },
+  {
     title: '我怕装修超预算',
     description: '先看总预算更像简约、舒适还是精致，再查为什么会超。',
     primary: { label: '拿装修预算模板', href: '/resources#zhuangxiu-yusuan-moban' },
     secondary: { label: '先拆预算分配', href: '/tools/budget-structure' },
-    fallback: { label: '直接看预算诊断 →', href: '/services/renovation#yusuan-zixun' },
+    fallback: { label: '直接看预算取舍诊断 →', href: '/services/renovation#yusuan-zixun' },
   },
   {
     title: '我已经开工，不知道怎么验收',
@@ -181,7 +188,7 @@ export default function ResourcesPage() {
           <SectionHeader
             label="阶段一"
             title="还没签合同的时候"
-            subtitle="这一阶段最大的浪费不是钱，是时间——对着一份你看不懂的报价单纠结两个礼拜。下面两个工具帮你压到一晚上。"
+            subtitle="这一阶段最大的浪费不是钱，是时间——对着一份你看不懂的报价单和预算纠结两个礼拜。下面几个入口帮你先缩小问题。"
           />
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -199,6 +206,25 @@ export default function ResourcesPage() {
                     上传材料留在浏览器本地，对照报价单勾选关键边界，生成风险类型和追问话术。
                   </p>
                   <p className="text-xs text-stone font-medium mt-3">上传报价单 →</p>
+                </div>
+                <span className="text-stone text-xl shrink-0 mt-1 group-hover:translate-x-1 transition-transform">→</span>
+              </div>
+            </Link>
+
+            <Link
+              href="/tools/budget-structure"
+              className="group sm:col-span-2 border border-stone/30 bg-stone/5 p-6 sm:p-7 hover:bg-stone/10 transition-colors"
+            >
+              <div className="flex items-start justify-between gap-4">
+                <div>
+                  <p className="text-[0.65rem] font-semibold uppercase tracking-widest text-stone mb-2">免费 · 5 分钟 · 预算分配</p>
+                  <p className="text-base font-semibold text-ink group-hover:text-stone transition-colors">
+                    预算分配工具
+                  </p>
+                  <p className="text-sm text-ink-muted mt-2 leading-relaxed max-w-lg">
+                    先看你的总预算更像简约够住、舒适耐用，还是精致改善，再拆成几份业主能看懂的钱。
+                  </p>
+                  <p className="text-xs text-stone font-medium mt-3">拆预算分配 →</p>
                 </div>
                 <span className="text-stone text-xl shrink-0 mt-1 group-hover:translate-x-1 transition-transform">→</span>
               </div>

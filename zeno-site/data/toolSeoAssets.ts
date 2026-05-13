@@ -73,8 +73,8 @@ export const toolSeoAssets = {
     ],
     links: [
       { label: '查超预算原因', href: '/tools/budget-risk', desc: '分配看完后，继续判断失控来自报价、流程还是需求。' },
-      { label: '装修预算模板', href: '/resources#zhuangxiu-yusuan-moban', desc: '把预算结构记录下来，持续追踪版本。' },
-      { label: '预算结构诊断', href: '/services/renovation#yusuan-zixun', desc: '预算越算越乱时，让 Zeno 帮你拆清优先级。' },
+      { label: '装修预算模板', href: '/resources#zhuangxiu-yusuan-moban', desc: '把预算分配记录下来，持续追踪版本。' },
+      { label: '预算取舍诊断', href: '/services/renovation#yusuan-zixun', desc: '预算越算越乱时，让 Zeno 帮你拆清优先级。' },
       { label: '预算为什么总超', href: '/blog/zhuangxiu-yusuan-weishenme-zongchao', desc: '继续理解超预算背后的顺序问题。' },
     ],
   },

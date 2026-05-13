@@ -7,9 +7,9 @@ import PageHero from '@/components/PageHero'
 import StructuredData from '@/components/StructuredData'
 
 export const metadata: Metadata = {
-  title: '装修判断力工具工作台 | ZenoAIHome',
+  title: '签约前装修判断工具工作台 | ZenoAIHome',
   description:
-    'ZenoAIHome 的装修判断力工具工作台：业主先走报价初筛、¥39 指南、¥699 快审和 ¥1499 决策包这条线，AI 工具作为延伸。',
+    'ZenoAIHome 的签约前装修判断工具工作台：先做报价初筛，再按需要使用预算分配、超预算原因自测、材料计算和验收清单。',
   alternates: {
     canonical: 'https://zenoaihome.com/tools',
   },
@@ -18,14 +18,14 @@ export const metadata: Metadata = {
 const trackCards = [
   {
     label: '主线 / 装修业主',
-    title: '我手上有报价、预算或材料数量，想先知道哪里会出问题',
-    desc: '先从报价初筛开始，把漏项、模糊项、预算失衡和验收节点筛出来，再决定要不要看资料、买指南或进入人工判断。',
+    title: '我快要签约了，想先知道报价里哪里会出问题',
+    desc: '先从报价初筛开始，把漏项、模糊项、增项口子和付款节点筛出来，再决定要不要看资料、买指南或进入人工判断。',
     image: '/images/resources/quote-checklist-preview.svg',
     primaryHref: '/tools/quote-check',
     primaryLabel: '先做报价初筛',
     secondaryHref: '/pricing/baojia-guide',
     secondaryLabel: '看 ¥39 指南',
-    proof: ['报价追问清单', '¥39 指南', '验收节点'],
+    proof: ['报价追问清单', '¥39 指南', '人工快审'],
     variant: 'primary' as const,
   },
   {
@@ -71,8 +71,8 @@ const judgmentPath = [
 
 const toolGroups = [
   {
-    title: '装修判断工具',
-    desc: '给普通业主用。先拿到一个可执行结果，再决定要不要看资料、买指南或找人工判断。',
+    title: '签约前判断工具',
+    desc: '给普通业主用。先处理报价，再补预算、材料数量和验收节点。每个工具都要产出一个可执行结果。',
     tools: [
       {
         title: '报价初筛工具',
@@ -92,7 +92,7 @@ const toolGroups = [
         time: '5-8 分钟',
         problem: '你有总预算，但不知道这个钱更像简约够住、舒适耐用，还是精致改善。',
         freeGain: '参考单方区间、预算取向判断、可复制的分配清单。',
-        nextStep: '如果预算越拆越乱，再进入预算结构诊断。',
+        nextStep: '如果预算越拆越乱，再进入预算取舍诊断。',
         href: '/tools/budget-structure',
         cta: '拆预算',
       },
@@ -103,7 +103,7 @@ const toolGroups = [
         time: '5-8 分钟',
         problem: '你感觉钱会失控，但分不清到底是报价没说清、流程没控住，还是需求太散。',
         freeGain: '四类风险排序、对应文章、资料和服务建议。',
-        nextStep: '按最高风险项去看报价、预算或签约前服务。',
+        nextStep: '按最高风险项回到报价、预算取舍或签约前服务。',
         href: '/tools/budget-risk',
         cta: '查原因',
       },
@@ -232,16 +232,16 @@ export default function ToolsPage() {
       />
 
       <PageHero
-        label="装修判断力工具"
-        title="先从报价初筛开始，再看资料和服务"
-        subtitle="业主先处理报价、预算、材料和验收；AI 工具只在它能帮上忙的时候出现。每个入口都先给你一个结果，不让你只看概念。"
-        note="主线是装修判断，延伸是 AI。先把当前问题看清，再决定下一步。"
+        label="签约前判断工具"
+        title="先看报价风险，再补预算、材料和验收"
+        subtitle="业主先处理签约前最容易后悔的点：报价有没有漏、预算有没有挤、后面会不会增项。AI 工具只在它能帮上忙的时候出现。"
+        note="主线是装修签约前判断，延伸是 AI。先把当前问题看清，再决定下一步。"
         size="content"
       />
 
       <Container size="content" className="py-section">
         <section className="mb-12 border border-border bg-surface-warm p-6 sm:p-8">
-          <p className="text-xs font-semibold uppercase tracking-widest text-stone">先走这条线</p>
+          <p className="text-xs font-semibold uppercase tracking-widest text-stone">签约前主路径</p>
           <h2 className="mt-3 text-2xl font-semibold tracking-tight text-ink">免费初筛 → ¥39 指南 → ¥699 快审 → ¥1499 决策包</h2>
           <div className="mt-5 grid gap-3 md:grid-cols-4">
             {judgmentPath.map((item) => (
@@ -304,7 +304,7 @@ export default function ToolsPage() {
           <div className="grid gap-6 lg:grid-cols-[0.36fr_0.64fr] lg:items-start">
             <div>
               <p className="text-xs font-semibold uppercase tracking-widest text-stone">为什么这样排</p>
-              <h2 className="mt-3 text-2xl font-semibold tracking-tight text-ink">同一套判断方法，先分清使用场景。</h2>
+              <h2 className="mt-3 text-2xl font-semibold tracking-tight text-ink">先处理签字前会后悔的点，再处理辅助计算。</h2>
             </div>
             <div className="grid gap-4 sm:grid-cols-3">
               {[

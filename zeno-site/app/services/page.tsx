@@ -66,10 +66,10 @@ const renovationLadder = [
   },
   {
     label: '¥399',
-    title: '预算结构诊断',
+    title: '预算取舍诊断',
     description: '预算总数有了，但钱该怎么分、哪里该留缓冲还不清楚。',
     href: '/services/renovation#yusuan-zixun',
-    action: '看预算诊断',
+    action: '看取舍诊断',
   },
   {
     label: '¥699',
@@ -351,7 +351,7 @@ export default function ServicesPage() {
           <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-ink-faint">可验证的交付</p>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {[
-              ['装修线交付', '报价风险、预算结构、合同追问和验收节点，最后落到一份能执行的清单。'],
+              ['装修线交付', '报价风险、预算取舍、合同追问和验收节点，最后落到一份能执行的清单。'],
               ['AI 线交付', '场景切入建议、工作流骨架、提示词框架和内容承接建议。'],
               ['工作方式', '先看材料，再给书面建议；复杂情况再配微信或语音解读。'],
               ['明确不做', '不代砍价、不代施工、不代开发程序，也不承诺一次解决所有流程。'],
@@ -367,7 +367,7 @@ export default function ServicesPage() {
         <div className="mb-6">
           <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-ink-faint">A</p>
           <h2 className="text-lg font-semibold text-ink">装修判断服务</h2>
-          <p className="mt-1 text-sm text-ink-muted">先处理普通装修业主最常见的四类进入方式：报价快审、签约前决策包、预算结构和居住场景选择。</p>
+          <p className="mt-1 text-sm text-ink-muted">先处理普通装修业主最常见的四类进入方式：报价快审、签约前决策包、预算取舍和居住场景选择。</p>
         </div>
 
         <div className="space-y-10">
@@ -461,7 +461,7 @@ export default function ServicesPage() {
           <div>
             <p className="text-sm font-medium text-ink">还没想好？先从免费工具和资料开始。</p>
             <p className="mt-1 max-w-md text-xs text-ink-muted">
-              报价初筛、预算结构、验收清单、AI 场景生成器和内容诊断都可以先用。先建立判断，再决定是否需要服务。
+              报价初筛、预算分配、验收清单、AI 场景生成器和内容诊断都可以先用。先建立判断，再决定是否需要服务。
             </p>
           </div>
           <div className="flex flex-wrap gap-3">

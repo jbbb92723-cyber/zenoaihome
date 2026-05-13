@@ -8,9 +8,9 @@ import StructuredData from '@/components/StructuredData'
 import { getServiceBySlug } from '@/data/services'
 
 export const metadata: Metadata = {
-  title: '装修签约前判断服务 | 报价快审、预算诊断、决策包怎么选',
+  title: '装修签约前判断服务 | 报价快审、预算取舍诊断、决策包怎么选',
   description:
-    '装修签约前判断服务入口。按你的材料和阶段选择：免费报价初筛、¥39 指南、¥399 预算诊断、¥699 报价快审或 ¥1499 签约前决策包。',
+    '装修签约前判断服务入口。按你的材料和阶段选择：免费报价初筛、¥39 指南、¥399 预算取舍诊断、¥699 报价快审或 ¥1499 签约前决策包。',
   alternates: {
     canonical: 'https://zenoaihome.com/services/renovation',
   },
@@ -35,10 +35,10 @@ const routeCards = [
   },
   {
     label: '预算越算越乱',
-    title: '选 ¥399 预算结构诊断',
-    desc: '你还没到逐行看报价的阶段，核心问题是钱该怎么分、哪里该留缓冲。',
+    title: '选 ¥399 预算取舍诊断',
+    desc: '你还没到逐行看报价的阶段，核心问题是哪些钱不能砍、哪些可以晚点买。',
     href: '#yusuan-zixun',
-    action: '看预算诊断',
+    action: '看取舍诊断',
   },
   {
     label: '马上要签约',
@@ -64,8 +64,8 @@ const priceLadder = [
   },
   {
     price: '¥399',
-    title: '预算结构诊断',
-    desc: '预算总数有了，但结构和取舍还乱。',
+    title: '预算取舍诊断',
+    desc: '预算总数有了，但不知道哪里该守、哪里该放。',
     href: '#yusuan-zixun',
   },
   {
@@ -124,9 +124,9 @@ const faqs = [
       '当你已经临近签约、对比了几轮仍分不出风险差异，或者你已经发现问题但不知道该怎么追问时，直接进入人工判断会更省时间。',
   },
   {
-    question: '预算结构诊断和报价风险快审有什么区别？',
+    question: '预算取舍诊断和报价风险快审有什么区别？',
     answer:
-      '报价风险快审是在你拿到具体报价单之后，看漏项、模糊项和风险边界。预算结构诊断是在报价前或报价混乱时，先把钱按结构拆清。',
+      '报价风险快审是在你拿到具体报价单之后，看漏项、模糊项和风险边界。预算取舍诊断是在报价前或报价混乱时，先判断哪些钱不能砍、哪些可以晚点买。',
   },
   {
     question: '报价风险快审和签约前决策包有什么区别？',
@@ -154,7 +154,7 @@ export default function RenovationServicesPage() {
             '@type': 'CollectionPage',
             name: '装修签约前判断服务',
             url: 'https://zenoaihome.com/services/renovation',
-            description: '按材料和签约阶段选择报价快审、预算诊断或签约前决策包。',
+            description: '按材料和签约阶段选择报价快审、预算取舍诊断或签约前决策包。',
             inLanguage: 'zh-CN',
           },
           {
@@ -184,7 +184,7 @@ export default function RenovationServicesPage() {
                 <span className="hidden sm:block">先分清你卡在哪一步。</span>
               </h1>
               <p className="mt-5 max-w-[24rem] text-base leading-relaxed text-ink-muted sm:max-w-2xl sm:text-lg">
-                普通业主最容易在签约前被总价、优惠和口头承诺带跑。这里先把免费工具、低价指南、预算诊断、报价快审和决策包分清楚。
+                普通业主最容易在签约前被总价、优惠和口头承诺带跑。这里先把免费工具、低价指南、预算取舍诊断、报价快审和决策包分清楚。
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <CTA href="/tools/quote-check" label="先做免费报价初筛" variant="primary" />
@@ -196,7 +196,7 @@ export default function RenovationServicesPage() {
               <p className="text-xs font-semibold uppercase tracking-widest text-stone">这页只解决一个问题</p>
               <h2 className="mt-3 text-xl font-semibold leading-snug text-ink">签约前，我到底该买哪一档判断？</h2>
               <div className="mt-5 grid gap-3">
-                {['没有材料，先不要买服务', '只有报价，看 ¥699 快审', '预算结构乱，看 ¥399 诊断', '马上签约，看 ¥1499 决策包'].map((item) => (
+                {['没有材料，先不要买服务', '只有报价，看 ¥699 快审', '预算取舍乱，看 ¥399 诊断', '马上签约，看 ¥1499 决策包'].map((item) => (
                   <div key={item} className="border border-border bg-canvas px-4 py-3 text-sm font-medium text-ink">
                     {item}
                   </div>
