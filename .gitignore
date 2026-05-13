@@ -16,3 +16,15 @@ zeno-site/.env.test.local
 zeno-site/.env.production.local
 node_modules
 .gstack/
+
+# ─── Obsidian local settings / plugins（公开仓库不提交）────────────────
+赞诺内容资产系统/.obsidian/
+
+# ─── Private renovation/client material（公开仓库不提交）───────────────
+赞诺内容资产系统/99_私密资料/
+赞诺内容资产系统/**/客户资料/
+赞诺内容资产系统/**/报价单原件/
+赞诺内容资产系统/**/合同原件/
+赞诺内容资产系统/**/身份证/
+赞诺内容资产系统/**/银行卡/
+赞诺内容资产系统/**/微信聊天截图/
