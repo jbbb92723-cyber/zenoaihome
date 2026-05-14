@@ -40,20 +40,48 @@ export function InfoChip({ title, body }: { title: string; body: string }) {
   )
 }
 
-export function NumberInput({ label, unit, value, onChange, placeholder }: { label: string; unit: string; value: string; onChange: (value: string) => void; placeholder?: string }) {
+function cleanNumericInput(raw: string) {
+  const normalized = raw.replace(/[,，\s]/g, '')
+  const chars = normalized.replace(/[^\d.]/g, '').split('')
+  let dotUsed = false
+
+  return chars.filter((char) => {
+    if (char !== '.') return true
+    if (dotUsed) return false
+    dotUsed = true
+    return true
+  }).join('')
+}
+
+export function NumberInput({
+  label,
+  unit,
+  value,
+  onChange,
+  placeholder,
+  hint,
+}: {
+  label: string
+  unit: string
+  value: string
+  onChange: (value: string) => void
+  placeholder?: string
+  hint?: string
+}) {
   return (
     <label className="block text-sm font-medium text-ink">
       {label}
       <div className="mt-2 flex border border-border bg-canvas focus-within:border-stone">
         <input
           value={value}
-          onChange={(event) => onChange(event.target.value)}
+          onChange={(event) => onChange(cleanNumericInput(event.target.value))}
           inputMode="decimal"
           placeholder={placeholder}
-          className="min-h-11 w-full bg-transparent px-3 text-sm outline-none placeholder:text-ink-faint"
+          className="min-h-11 w-full bg-transparent px-3 font-mono text-sm tabular-nums outline-none placeholder:text-ink-faint"
         />
         <span className="flex min-w-14 items-center justify-center border-l border-border px-3 text-xs text-ink-muted">{unit}</span>
       </div>
+      {hint && <span className="mt-1.5 block text-xs leading-relaxed text-ink-faint">{hint}</span>}
     </label>
   )
 }
@@ -61,7 +89,7 @@ export function NumberInput({ label, unit, value, onChange, placeholder }: { lab
 export function ResultPanel({ title, children, actions }: { title: string; children: ReactNode; actions?: ReactNode }) {
   return (
     <section className="border border-border bg-surface-warm p-5 sm:p-6">
-      <p className="text-xs font-semibold uppercase tracking-widest text-stone">Result</p>
+      <p className="text-xs font-semibold uppercase tracking-widest text-stone">计算结果</p>
       <h2 className="mt-2 text-xl font-semibold text-ink">{title}</h2>
       <div className="mt-4 text-sm leading-relaxed text-ink-muted">{children}</div>
       {actions && <div className="mt-5 flex flex-wrap gap-3">{actions}</div>}
@@ -71,13 +99,16 @@ export function ResultPanel({ title, children, actions }: { title: string; child
 
 export function BridgePanel({ items }: { items: Array<{ label: string; href: string; desc: string }> }) {
   return (
-    <div className="grid gap-3 md:grid-cols-3">
-      {items.map((item) => (
-        <Link key={item.href + item.label} href={item.href} className="border border-border bg-surface p-5 transition-colors hover:border-stone hover:bg-surface-warm">
-          <p className="text-sm font-semibold text-ink">{item.label}</p>
-          <p className="mt-2 text-xs leading-relaxed text-ink-muted">{item.desc}</p>
-        </Link>
-      ))}
+    <div>
+      <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-ink-faint">下一步可以接着看</p>
+      <div className="grid gap-3 md:grid-cols-3">
+        {items.map((item) => (
+          <Link key={item.href + item.label} href={item.href} className="border border-border bg-surface p-5 transition-colors hover:border-stone hover:bg-surface-warm">
+            <p className="text-sm font-semibold text-ink">{item.label}</p>
+            <p className="mt-2 text-xs leading-relaxed text-ink-muted">{item.desc}</p>
+          </Link>
+        ))}
+      </div>
     </div>
   )
 }

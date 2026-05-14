@@ -1,6 +1,7 @@
 'use client'
 
 import { useTheme } from 'next-themes'
+import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
 
 /**
@@ -13,10 +14,10 @@ import { useEffect, useState } from 'react'
 const ORDER = ['light', 'eye', 'dark'] as const
 type ThemeKey = (typeof ORDER)[number]
 
-const META: Record<ThemeKey, { label: string; nextTitle: string }> = {
-  light: { label: '亮', nextTitle: '切换到护眼模式' },
-  eye:   { label: '护', nextTitle: '切换到暗色模式' },
-  dark:  { label: '暗', nextTitle: '切换到亮色模式' },
+const META: Record<ThemeKey, { zhLabel: string; enLabel: string; zhNext: string; enNext: string }> = {
+  light: { zhLabel: '亮色', enLabel: 'Light', zhNext: '切换到护眼模式', enNext: 'Switch to eye-comfort mode' },
+  eye:   { zhLabel: '护眼', enLabel: 'Eye',   zhNext: '切换到暗色模式', enNext: 'Switch to dark mode' },
+  dark:  { zhLabel: '暗色', enLabel: 'Dark',  zhNext: '切换到亮色模式', enNext: 'Switch to light mode' },
 }
 
 function getNext(current: ThemeKey): ThemeKey {
@@ -63,12 +64,14 @@ function Icon({ theme }: { theme: ThemeKey }) {
 
 export default function ThemeToggle() {
   const { theme, setTheme } = useTheme()
+  const pathname = usePathname()
   const [mounted, setMounted] = useState(false)
+  const isEn = pathname.startsWith('/en')
 
   useEffect(() => setMounted(true), [])
 
   if (!mounted) {
-    return <div className="w-[3.5rem] h-7" aria-hidden />
+    return <div className="h-7 w-[4.25rem]" aria-hidden />
   }
 
   const current = ((ORDER as readonly string[]).includes(theme ?? '')
@@ -76,17 +79,19 @@ export default function ThemeToggle() {
     : 'light') as ThemeKey
   const next = getNext(current)
   const meta = META[current]
+  const label = isEn ? meta.enLabel : meta.zhLabel
+  const nextTitle = isEn ? meta.enNext : meta.zhNext
 
   return (
     <button
       type="button"
       onClick={() => setTheme(next)}
-      title={meta.nextTitle}
-      aria-label={meta.nextTitle}
+      title={nextTitle}
+      aria-label={nextTitle}
       className="group inline-flex items-center gap-1.5 h-7 px-2.5 border border-border rounded-full text-[0.6875rem] font-medium text-ink-muted hover:text-ink hover:border-stone/50 transition-all duration-150"
     >
       <Icon theme={current} />
-      <span className="leading-none">{meta.label}</span>
+      <span className="leading-none">{label}</span>
     </button>
   )
 }

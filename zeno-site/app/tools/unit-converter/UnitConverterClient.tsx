@@ -11,17 +11,42 @@ const modes = {
   price: { label: '单方换算', unit: '元', hint: '用总价和面积粗看预算压力。' },
 }
 
+const examples: Record<keyof typeof modes, Array<{ label: string; value: string; area?: string }>> = {
+  area: [
+    { label: '80 ㎡', value: '80' },
+    { label: '100 ㎡', value: '100' },
+    { label: '120 ㎡', value: '120' },
+  ],
+  length: [
+    { label: '2.4 m', value: '2.4' },
+    { label: '3 m', value: '3' },
+    { label: '5.8 m', value: '5.8' },
+  ],
+  price: [
+    { label: '10 万 / 100㎡', value: '100000', area: '100' },
+    { label: '18 万 / 120㎡', value: '180000', area: '120' },
+    { label: '25 万 / 140㎡', value: '250000', area: '140' },
+  ],
+}
+
+function toPositiveNumber(value: string) {
+  const number = Number(value)
+  return Number.isFinite(number) && number > 0 ? number : 0
+}
+
 export default function UnitConverterClient() {
   const [mode, setMode] = useState<keyof typeof modes>('area')
   const [value, setValue] = useState('100')
   const [area, setArea] = useState('100')
-  const number = Number(value) || 0
-  const areaNumber = Number(area) || 0
+  const number = toPositiveNumber(value)
+  const areaNumber = toPositiveNumber(area)
 
   const result = useMemo(() => {
-    if (mode === 'area') return [`${number} ㎡ = ${(number * 10.7639).toFixed(1)} ft²`, `${number} ㎡ ≈ ${(number / 3.3058).toFixed(1)} 坪`, `${number} ㎡地面通常不是墙面面积，墙面要另算周长和层高。`]
-    if (mode === 'length') return [`${number} m = ${(number * 100).toFixed(0)} cm`, `${number} m = ${(number * 1000).toFixed(0)} mm`, '报价里“延米”常见于柜体、台面、踢脚线，不能直接等同面积。']
-    return [`总价 ${number.toLocaleString()} 元 / ${areaNumber || 1} ㎡ = ${Math.round(number / (areaNumber || 1)).toLocaleString()} 元/㎡`, '单方只能粗看预算压力，不能判断报价是否合理。', '还要继续看漏项、材料、工艺和增项边界。']
+    if (!number) return ['先输入一个大于 0 的数字。', '这个工具只做口径换算，不直接判断贵不贵。']
+    if (mode === 'area') return [`${number} ㎡ = ${(number * 10.7639).toFixed(1)} ft²`, `${number} ㎡ ≈ ${(number / 3.3058).toFixed(1)} 坪`, '房屋面积、铺贴面积和墙面面积不是同一个数，报价里要问清楚口径。']
+    if (mode === 'length') return [`${number} m = ${(number * 100).toFixed(0)} cm`, `${number} m = ${(number * 1000).toFixed(0)} mm`, '延米常见于柜体、台面、踢脚线，不能直接和平方米单价比较。']
+    if (!areaNumber) return ['做单方换算时，还需要填写房屋面积。', '单方只是粗看预算压力，不能替代报价审核。']
+    return [`总价 ${number.toLocaleString()} 元 / ${areaNumber} ㎡ = ${Math.round(number / areaNumber).toLocaleString()} 元/㎡`, '单方只能粗看预算压力，不能判断报价是否合理。', '还要继续看漏项、材料、工艺、工程量和增项边界。']
   }, [mode, number, areaNumber])
 
   return (
@@ -31,12 +56,30 @@ export default function UnitConverterClient() {
           <p className="mb-3 text-sm font-semibold text-ink">选择你要换算的类型</p>
           <div className="mb-5 grid gap-2 sm:grid-cols-3">
             {Object.entries(modes).map(([key, item]) => (
-              <button key={key} onClick={() => setMode(key as keyof typeof modes)} type="button" className={`border px-4 py-3 text-left text-sm ${mode === key ? 'border-stone bg-stone/5 text-ink' : 'border-border bg-canvas text-ink-muted hover:border-stone/50'}`}>{item.label}</button>
+              <button key={key} onClick={() => setMode(key as keyof typeof modes)} type="button" className={`border px-4 py-3 text-left text-sm transition-colors ${mode === key ? 'border-stone bg-stone/5 text-ink' : 'border-border bg-canvas text-ink-muted hover:border-stone/50'}`}>{item.label}</button>
             ))}
           </div>
-          <NumberInput label="输入数值" unit={modes[mode].unit} value={value} onChange={setValue} />
-          {mode === 'price' && <div className="mt-4"><NumberInput label="房屋面积" unit="㎡" value={area} onChange={setArea} /></div>}
+          <NumberInput label="输入数值" unit={modes[mode].unit} value={value} onChange={setValue} hint="可以输入小数；千分位逗号会自动清掉。" />
+          {mode === 'price' && <div className="mt-4"><NumberInput label="房屋面积" unit="㎡" value={area} onChange={setArea} hint="最好确认是建筑面积还是套内面积，不同口径不能混用。" /></div>}
           <p className="mt-4 text-sm leading-relaxed text-ink-muted">{modes[mode].hint}</p>
+          <div className="mt-5">
+            <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-ink-faint">常用例子</p>
+            <div className="flex flex-wrap gap-2">
+              {examples[mode].map((example) => (
+                <button
+                  key={example.label}
+                  type="button"
+                  onClick={() => {
+                    setValue(example.value)
+                    if (example.area) setArea(example.area)
+                  }}
+                  className="border border-border bg-canvas px-3 py-1.5 text-xs text-ink-muted transition-colors hover:border-stone hover:text-stone"
+                >
+                  {example.label}
+                </button>
+              ))}
+            </div>
+          </div>
         </div>
 
         <ResultPanel title="换算结果">

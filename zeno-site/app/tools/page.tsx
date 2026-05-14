@@ -46,7 +46,7 @@ const ownerNeedCards = [
   },
 ]
 
-const supportToolKeys = new Set(['单位换算工具', '瓷砖计算器', '乳胶漆计算器', '验收节点向导'])
+const supportToolKeys = new Set(['单位换算工具', '瓷砖计算器', '乳胶漆计算器'])
 
 const judgmentPath = [
   {
@@ -119,8 +119,8 @@ const toolGroups = [
         price: '免费',
         time: '1-3 分钟',
         problem: '报价里的㎡、米、延米、坪和单方混在一起，越看越晕。',
-        freeGain: '常用单位换算结果和报价理解提醒。',
-        nextStep: '换算后再回报价单，看数量和单价是否说得清。',
+        freeGain: '常用单位换算结果，以及哪些单位不能直接互相比。',
+        nextStep: '换算后再回报价单，看工程量、单位和单价是不是同一口径。',
         href: '/tools/unit-converter',
         cta: '换算单位',
       },
@@ -130,8 +130,8 @@ const toolGroups = [
         price: '免费',
         time: '3-5 分钟',
         problem: '准备买砖，但不知道片数、箱数和损耗该怎么估。',
-        freeGain: '建议购买片数、箱数、损耗说明。',
-        nextStep: '拿结果去和商家报价核对，别只听一个总价。',
+        freeGain: '建议沟通片数、整箱数量、损耗比例和下单提醒。',
+        nextStep: '拿结果去问商家同批次、补货和退换规则，别只听一个总价。',
         href: '/tools/tile-calculator',
         cta: '算瓷砖',
       },
@@ -141,8 +141,8 @@ const toolGroups = [
         price: '免费',
         time: '3-5 分钟',
         problem: '墙面面积、涂布率和桶数对不上，担心买少或买多。',
-        freeGain: '底漆、面漆升数、桶数和采购提醒。',
-        nextStep: '拿结果对照施工方和商家的用量说明。',
+        freeGain: '底漆、面漆升数、桶数，以及采购前要问的几个问题。',
+        nextStep: '拿结果对照施工方和商家的用量说明，再看基层处理有没有写清。',
         href: '/tools/paint-calculator',
         cta: '算乳胶漆',
       },
@@ -204,7 +204,7 @@ const routes = [
   { audience: '装修业主', situation: '手上有报价单', action: '先做报价初筛', href: '/tools/quote-check' },
   { audience: '装修业主', situation: '只有一个总预算', action: '先拆预算分配', href: '/tools/budget-structure' },
   { audience: '装修业主', situation: '怕越装越超', action: '先查超支原因', href: '/tools/budget-risk' },
-  { audience: '装修业主', situation: '准备买材料', action: '先算数量和单位', href: '/tools/tile-calculator' },
+  { audience: '装修业主', situation: '准备买材料', action: '先用计算工具估范围', href: '/tools/tile-calculator' },
   { audience: '装修业主', situation: '准备验收', action: '生成节点清单', href: '/tools/inspection-guide' },
 ]
 
@@ -385,13 +385,17 @@ export default function ToolsPage() {
 
                 {supportTools.length > 0 && (
                   <div className="mt-6 border border-border bg-surface-warm p-5 sm:p-6">
-                    <p className="text-xs font-semibold uppercase tracking-widest text-stone">辅助计算和施工节点</p>
-                    <p className="mt-2 text-sm leading-relaxed text-ink-muted">这些工具不负责决定签不签，只帮你把数量、单位和现场节点看清楚。</p>
-                    <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+                    <p className="text-xs font-semibold uppercase tracking-widest text-stone">材料计算工具</p>
+                    <h2 className="mt-2 text-xl font-semibold tracking-tight text-ink">先算范围，不直接拿结果下单。</h2>
+                    <p className="mt-2 text-sm leading-relaxed text-ink-muted">
+                      单位、瓷砖和乳胶漆计算只负责把数量口径算清楚。真正下单前，还要回到现场复尺、产品说明、补货退换和报价边界。
+                    </p>
+                    <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
                       {supportTools.map((tool) => (
                         <Link key={tool.title} href={tool.href} className="border border-border bg-canvas p-4 transition-colors hover:border-stone hover:bg-surface">
                           <p className="text-sm font-semibold text-ink">{tool.title}</p>
                           <p className="mt-2 text-xs leading-relaxed text-ink-muted">{tool.problem}</p>
+                          <p className="mt-3 text-xs leading-relaxed text-ink-faint">{tool.freeGain}</p>
                           <p className="mt-3 text-xs font-semibold text-stone">{tool.cta} -&gt;</p>
                         </Link>
                       ))}

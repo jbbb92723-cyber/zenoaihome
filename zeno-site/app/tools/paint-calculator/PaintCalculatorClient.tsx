@@ -5,6 +5,23 @@ import ToolSeoAssetSection from '@/components/tools/ToolSeoAssetSection'
 import { BridgePanel, NumberInput, ResultPanel, ToolPageShell } from '@/components/tools/ToolPageShell'
 import { toolSeoAssets } from '@/data/toolSeoAssets'
 
+const wallAreaPresets = [
+  { label: '80㎡房子粗估', value: '170' },
+  { label: '100㎡房子粗估', value: '220' },
+  { label: '120㎡房子粗估', value: '260' },
+]
+
+const coveragePresets = [
+  { label: '旧墙/深色 8㎡/L', value: '8' },
+  { label: '常见 10㎡/L', value: '10' },
+  { label: '遮盖好 12㎡/L', value: '12' },
+]
+
+function toPositiveNumber(value: string) {
+  const number = Number(value)
+  return Number.isFinite(number) && number > 0 ? number : 0
+}
+
 export default function PaintCalculatorClient() {
   const [wallArea, setWallArea] = useState('220')
   const [coverage, setCoverage] = useState('10')
@@ -14,10 +31,10 @@ export default function PaintCalculatorClient() {
   const [copied, setCopied] = useState(false)
 
   const result = useMemo(() => {
-    const area = Number(wallArea) || 0
-    const cover = Number(coverage) || 10
-    const bucketSize = Number(bucket) || 5
-    const coatCount = Number(coats) || 2
+    const area = toPositiveNumber(wallArea)
+    const cover = toPositiveNumber(coverage) || 10
+    const bucketSize = toPositiveNumber(bucket) || 5
+    const coatCount = Math.max(1, Math.floor(toPositiveNumber(coats) || 2))
     const topLiters = Math.ceil((area * coatCount / cover) * 1.1)
     const primerLiters = primer ? Math.ceil((area / cover) * 1.05) : 0
     return {
@@ -39,10 +56,42 @@ export default function PaintCalculatorClient() {
       <section className="mx-auto grid max-w-6xl gap-8 px-5 py-12 sm:px-8 lg:grid-cols-[0.55fr_0.45fr]">
         <div className="border border-border bg-surface p-5 sm:p-6">
           <div className="grid gap-4 sm:grid-cols-2">
-            <NumberInput label="墙面面积" unit="㎡" value={wallArea} onChange={setWallArea} />
-            <NumberInput label="每升可刷面积" unit="㎡/L" value={coverage} onChange={setCoverage} />
+            <NumberInput label="墙面面积" unit="㎡" value={wallArea} onChange={setWallArea} hint="不是建筑面积。可先用房屋面积粗估，再让现场复尺修正。" />
+            <NumberInput label="每升可刷面积" unit="㎡/L" value={coverage} onChange={setCoverage} hint="看产品说明。旧墙、深色、基层差时取低一点。" />
             <NumberInput label="单桶容量" unit="L" value={bucket} onChange={setBucket} />
             <NumberInput label="面漆遍数" unit="遍" value={coats} onChange={setCoats} />
+          </div>
+          <div className="mt-5 grid gap-4 sm:grid-cols-2">
+            <div>
+              <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-ink-faint">没有墙面面积时</p>
+              <div className="flex flex-wrap gap-2">
+                {wallAreaPresets.map((preset) => (
+                  <button
+                    key={preset.label}
+                    type="button"
+                    onClick={() => setWallArea(preset.value)}
+                    className="border border-border bg-canvas px-3 py-1.5 text-xs text-ink-muted transition-colors hover:border-stone hover:text-stone"
+                  >
+                    {preset.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+            <div>
+              <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-ink-faint">涂布率参考</p>
+              <div className="flex flex-wrap gap-2">
+                {coveragePresets.map((preset) => (
+                  <button
+                    key={preset.label}
+                    type="button"
+                    onClick={() => setCoverage(preset.value)}
+                    className="border border-border bg-canvas px-3 py-1.5 text-xs text-ink-muted transition-colors hover:border-stone hover:text-stone"
+                  >
+                    {preset.label}
+                  </button>
+                ))}
+              </div>
+            </div>
           </div>
           <label className="mt-5 flex cursor-pointer items-start gap-3 border border-border bg-canvas p-4 text-sm text-ink-muted hover:border-stone/50">
             <input type="checkbox" checked={primer} onChange={(event) => setPrimer(event.target.checked)} className="mt-1 h-4 w-4 accent-stone" />
@@ -54,7 +103,8 @@ export default function PaintCalculatorClient() {
           <div className="space-y-3">
             <p>面漆用量约 <span className="font-semibold text-ink">{result.topLiters}L</span>，按 {bucket}L/桶，建议约 <span className="font-semibold text-ink">{result.topBuckets} 桶</span>。</p>
             {primer ? <p>底漆用量约 <span className="font-semibold text-ink">{result.primerLiters}L</span>，建议约 <span className="font-semibold text-ink">{result.primerBuckets} 桶</span>。</p> : <p>当前未计算底漆。旧墙、深色改浅色、基层问题多时，不建议跳过底漆判断。</p>}
-            <p>提醒：门窗洞口、柜体遮挡、深色漆、修补返工都会影响实际用量。</p>
+            <p>这个结果已经按面漆约 10% 余量估算。门窗洞口、柜体遮挡、深色漆、修补返工都会影响实际用量。</p>
+            <p>下单前要问清：是否含底漆、是否含基层找补、深色是否另算，以及剩余未开封桶能不能退。</p>
           </div>
         </ResultPanel>
       </section>

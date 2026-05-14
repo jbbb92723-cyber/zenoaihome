@@ -10,14 +10,35 @@
   --font-noto: 'Noto Sans SC', sans-serif;
 
   /* 颜色语义变量 — 亮色 */
-  --color-canvas:      #FAF8F4;
-  --color-surface:     #FFFFFF;
-  --color-surface-warm:#F5F2EE;
-  --color-ink:         #2A2723;
-  --color-ink-muted:   #6F6860;
-  --color-ink-faint:   #A09890;
-  --color-stone:       #8B7355;
-  --color-border:      #E8E1D8;
+  --color-canvas-rgb: 250 248 244;
+  --color-surface-rgb: 255 255 255;
+  --color-surface-warm-rgb: 245 242 238;
+  --color-ink-rgb: 42 39 35;
+  --color-ink-muted-rgb: 111 104 96;
+  --color-ink-faint-rgb: 160 152 144;
+  --color-stone-rgb: 139 115 85;
+  --color-stone-light-rgb: 196 168 130;
+  --color-stone-pale-rgb: 240 234 226;
+  --color-stone-deep-rgb: 107 88 64;
+  --color-border-rgb: 232 225 216;
+  --color-border-subtle-rgb: 240 235 228;
+  --color-selection-rgb: 240 234 226;
+  --color-scrollbar-rgb: 221 214 204;
+
+  --color-canvas:      rgb(var(--color-canvas-rgb));
+  --color-surface:     rgb(var(--color-surface-rgb));
+  --color-surface-warm:rgb(var(--color-surface-warm-rgb));
+  --color-ink:         rgb(var(--color-ink-rgb));
+  --color-ink-muted:   rgb(var(--color-ink-muted-rgb));
+  --color-ink-faint:   rgb(var(--color-ink-faint-rgb));
+  --color-stone:       rgb(var(--color-stone-rgb));
+  --color-stone-light: rgb(var(--color-stone-light-rgb));
+  --color-stone-pale:  rgb(var(--color-stone-pale-rgb));
+  --color-stone-deep:  rgb(var(--color-stone-deep-rgb));
+  --color-border:      rgb(var(--color-border-rgb));
+  --color-border-subtle:rgb(var(--color-border-subtle-rgb));
+  --color-selection:   rgb(var(--color-selection-rgb));
+  --color-scrollbar:   rgb(var(--color-scrollbar-rgb));
 
   /* 间距节奏 */
   --section-y: 5rem;
@@ -26,26 +47,38 @@
 
 /* 暗色主题 — 温暖暗色，非纯黑 */
 .dark {
-  --color-canvas:      #1C1A17;
-  --color-surface:     #252320;
-  --color-surface-warm:#2A2825;
-  --color-ink:         #E8E2DA;
-  --color-ink-muted:   #A09890;
-  --color-ink-faint:   #706860;
-  --color-stone:       #C4A882;
-  --color-border:      #3A3530;
+  --color-canvas-rgb: 28 26 23;
+  --color-surface-rgb: 37 35 32;
+  --color-surface-warm-rgb: 42 40 37;
+  --color-ink-rgb: 232 226 218;
+  --color-ink-muted-rgb: 160 152 144;
+  --color-ink-faint-rgb: 112 104 96;
+  --color-stone-rgb: 196 168 130;
+  --color-stone-light-rgb: 142 118 86;
+  --color-stone-pale-rgb: 51 46 40;
+  --color-stone-deep-rgb: 232 216 189;
+  --color-border-rgb: 58 53 48;
+  --color-border-subtle-rgb: 48 43 39;
+  --color-selection-rgb: 59 51 42;
+  --color-scrollbar-rgb: 80 72 63;
 }
 
 /* 护眼主题 — 暖色背景，降低蓝光，不过黄 */
 .eye {
-  --color-canvas:      #F2EDE0;
-  --color-surface:     #FAF7F0;
-  --color-surface-warm:#EDE8DC;
-  --color-ink:         #3A3428;
-  --color-ink-muted:   #7A7060;
-  --color-ink-faint:   #A89D88;
-  --color-stone:       #9C7E56;
-  --color-border:      #D6CEBC;
+  --color-canvas-rgb: 242 237 224;
+  --color-surface-rgb: 250 247 240;
+  --color-surface-warm-rgb: 237 232 220;
+  --color-ink-rgb: 58 52 40;
+  --color-ink-muted-rgb: 122 112 96;
+  --color-ink-faint-rgb: 168 157 136;
+  --color-stone-rgb: 156 126 86;
+  --color-stone-light-rgb: 180 147 103;
+  --color-stone-pale-rgb: 229 220 200;
+  --color-stone-deep-rgb: 110 87 55;
+  --color-border-rgb: 214 206 188;
+  --color-border-subtle-rgb: 233 225 210;
+  --color-selection-rgb: 229 220 200;
+  --color-scrollbar-rgb: 205 191 173;
 }
 
 /* ─────────────────────────────────────────
@@ -174,7 +207,7 @@ a {
    选中文字颜色
 ───────────────────────────────────────── */
 ::selection {
-  background-color: #F0EAE2;
+  background-color: var(--color-selection);
   color: var(--color-ink);
 }
 
@@ -184,10 +217,10 @@ a {
 ::-webkit-scrollbar { width: 5px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb {
-  background: #DDD6CC;
+  background: var(--color-scrollbar);
   border-radius: 3px;
 }
-::-webkit-scrollbar-thumb:hover { background: #C4A882; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-stone-light); }
 
 /* ─────────────────────────────────────────
    无障碍焦点
