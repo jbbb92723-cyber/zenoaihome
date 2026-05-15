@@ -12,27 +12,27 @@ import '@/styles/globals.css'
 
 export const metadata: Metadata = {
   title: {
-    default: 'Zeno 赞诺｜Zeno AI Home — 从熟悉行业出发，用 AI、产品和内容搭建个人事业系统',
-    template: '%s · Zeno 赞诺',
+    default: 'ZenoAIHome — 装修签约前，先把报价风险看清楚',
+    template: '%s · ZenoAIHome',
   },
   description:
-    '我是 Zeno。装修行业 16 年，现在用 AI、开发、内容和产品化能力，把真实经验逐步沉淀成可复用、可交易、可持续的个人资产。',
-  keywords: ['装修', '居住', 'AI 实践', '一人公司', '数字产品', '工具', '内容资产', '长期主义'],
+    '16 年装修现场经验，帮业主在签约前看懂报价漏项、预算取舍和合同边界。先用免费工具初筛，再决定是否进入人工服务。',
+  keywords: ['装修报价', '装修签约', '报价避坑', '装修预算', '装修合同', '报价审核', '签约前判断'],
   authors: [{ name: 'Zeno' }],
   openGraph: {
     type: 'website',
     locale: 'zh_CN',
     url: 'https://zenoaihome.com',
-    siteName: 'Zeno 赞诺',
-    title: 'Zeno 赞诺 — 从熟悉行业出发，用 AI、产品和内容搭建个人事业系统',
+    siteName: 'ZenoAIHome',
+    title: 'ZenoAIHome — 装修签约前，先把报价风险看清楚',
     description:
-      '我是 Zeno。装修行业 16 年，现在用 AI、开发、内容和产品化能力，把真实经验逐步沉淀成可复用、可交易、可持续的个人资产。',
+      '16 年装修现场经验，帮业主在签约前看懂报价漏项、预算取舍和合同边界。先用免费工具初筛，再决定是否进入人工服务。',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Zeno 赞诺 — 从熟悉行业出发，用 AI、产品和内容搭建个人事业系统',
+    title: 'ZenoAIHome — 装修签约前，先把报价风险看清楚',
     description:
-      '装修是入口，不是终局。用 AI、内容、工具和产品化，搭建更自由的个人事业系统。',
+      '帮业主在签约前看懂报价漏项、预算取舍和合同边界。免费初筛 → ¥39 指南 → 人工快审。',
   },
   robots: {
     index: true,

@@ -46,7 +46,7 @@ const staggerItem = {
   visible: {
     opacity: 1,
     y: 0,
-    transition: { type: 'spring', stiffness: 120, damping: 20 },
+    transition: { type: 'spring' as const, stiffness: 120, damping: 20 },
   },
 }
 
@@ -55,7 +55,7 @@ const scaleIn = {
   visible: {
     opacity: 1,
     scale: 1,
-    transition: { type: 'spring', stiffness: 100, damping: 22 },
+    transition: { type: 'spring' as const, stiffness: 100, damping: 22 },
   },
 }
 
@@ -113,9 +113,9 @@ const frameworkSteps: Array<{
 ]
 
 const quoteSignals = [
-  { label: '漏项风险', value: '78%', note: '项目没写清，后面容易加钱', color: '#9a5424' },
-  { label: '工艺边界', value: '64%', note: '口头承诺多，合同里少', color: '#3f6258' },
-  { label: '付款节点', value: '52%', note: '节点和验收口径要补', color: '#31485c' },
+  { label: '常见漏项', value: '5 类', width: '72%', note: '水电、防水、找平、拆改、搬运——没写清就是增项入口', color: '#9a5424' },
+  { label: '追问清单', value: '12 项', width: '88%', note: '签字前该逐项问清的具体条目', color: '#3f6258' },
+  { label: '付款节点', value: '4 个', width: '56%', note: '开工、水电、泥木、竣工——每个都需要验收对齐', color: '#31485c' },
 ]
 
 const aiBuildRows = [
@@ -375,7 +375,7 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
                       <div className="h-2 overflow-hidden bg-[#efe5da]">
                         <motion.div
                           className="h-full origin-left"
-                          style={{ backgroundColor: item.color, width: item.value }}
+                          style={{ backgroundColor: item.color, width: item.width }}
                           initial={{ scaleX: 0 }}
                           whileInView={{ scaleX: 1 }}
                           viewport={{ once: true }}

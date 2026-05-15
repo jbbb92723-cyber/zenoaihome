@@ -147,8 +147,6 @@ export const primaryNav: PrimaryNavItem[] = [
         en: { label: 'Digital Products', desc: 'Paid guides and packs' },
         items: [
           { key: 'quote-guide', zh: { label: '报价避坑完整指南', href: '/pricing/baojia-guide', desc: '¥39' }, en: { label: 'Quote Guide', href: '/en/pricing/baojia-guide', desc: '¥39' } },
-          { key: 'contract-pack', zh: { label: '合同条款提醒包', href: '/pricing#contract-pack', desc: '规划中' }, en: { label: 'Contract Pack', href: '/en/pricing/baojia-guide', desc: 'Planned' } },
-          { key: 'startup-pack', zh: { label: '装修启动包', href: '/pricing#renovation-start-pack', desc: '规划中' }, en: { label: 'Renovation Starter Pack', href: '/en/pricing/baojia-guide', desc: 'Planned' } },
         ],
       },
       {
