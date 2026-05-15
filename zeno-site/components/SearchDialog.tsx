@@ -13,7 +13,7 @@ interface SearchResult {
 }
 
 const recommendedZh: SearchResult[] = [
-  { title: 'AI 升级装修行业', href: '/ai', type: 'page', excerpt: '从装修现场经验出发，探索 AI 工具、方法论和数字产品。' },
+  { title: 'AI 实践路线', href: '/ai', type: 'page', excerpt: '传统装修经验如何接入 AI 工具、方法论和数字产品。' },
   { title: '报价单怎么看', href: '/tools/quote-check', type: 'tool', excerpt: '先做一轮风险类型初筛。' },
   { title: '预算怎么分', href: '/tools/budget-structure', type: 'tool', excerpt: '把总预算拆成能行动的结构。' },
   { title: '瓷砖用量怎么算', href: '/tools/tile-calculator', type: 'tool', excerpt: '估算片数、箱数和损耗。' },
@@ -221,8 +221,8 @@ export default function SearchDialog() {
               <button type="button" onClick={() => handleSelect({ title: '验收节点向导', href: '/tools/inspection-guide', type: 'tool' })} className="block w-full text-left text-ink-muted hover:text-ink">
                 {isEn ? 'Inspection guide' : '生成验收清单'}
               </button>
-              <button type="button" onClick={() => handleSelect({ title: 'AI 升级', href: '/ai', type: 'page' })} className="block w-full text-left text-ink-muted hover:text-ink">
-                {isEn ? 'AI upgrade route' : '看 AI 升级路线'}
+              <button type="button" onClick={() => handleSelect({ title: 'AI 实践路线', href: '/ai', type: 'page' })} className="block w-full text-left text-ink-muted hover:text-ink">
+                {isEn ? 'AI practice route' : '看 AI 实践路线'}
               </button>
               <button type="button" onClick={() => handleSelect({ title: '服务提交', href: '/services#service-form', type: 'service' })} className="block w-full text-left text-ink-muted hover:text-ink">
                 {isEn ? 'Submit service request' : '提交服务需求'}

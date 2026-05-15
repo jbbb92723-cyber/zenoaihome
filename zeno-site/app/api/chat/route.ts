@@ -255,7 +255,7 @@ const KNOWLEDGE_ZH: Array<{ pattern: RegExp; intent: IntentKey; payload: ChatRep
         '先跑通一个小场景，比一下子接很多工具更稳。',
       ],
       actions: [
-        { label: '看 AI 升级路线', href: '/ai', kind: 'page' },
+        { label: '看 AI 实践路线', href: '/ai', kind: 'page' },
         { label: '试 AI 提示词工具', href: '/tools/prompts', kind: 'tool' },
         { label: '看 AI 工作流咨询', href: '/services/ai-workflow', kind: 'service' },
       ],

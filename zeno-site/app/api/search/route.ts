@@ -15,7 +15,7 @@ interface SearchResult {
 const staticPages: SearchResult[] = [
   { title: '首页', href: '/', type: 'page' },
   { title: '从这里开始', href: '/start', type: 'page' },
-  { title: 'AI 升级装修行业', href: '/ai', type: 'page', excerpt: '传统装修经验如何接入 AI 工具、方法论、内容系统和服务升级。' },
+  { title: 'AI 实践路线', href: '/ai', type: 'page', excerpt: '传统装修经验如何接入 AI 工具、方法论、内容系统和服务升级。' },
   { title: '工具中心', href: '/tools', type: 'page' },
   { title: '工具与资料', href: '/resources', type: 'page' },
   { title: '服务', href: '/services', type: 'page' },

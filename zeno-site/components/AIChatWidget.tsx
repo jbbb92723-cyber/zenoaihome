@@ -49,10 +49,10 @@ const actionKindLabels: Record<'zh' | 'en', Record<ChatActionKind, string>> = {
 
 const quickEntriesZh = [
   {
-    label: '我想用 AI 升级装修业务',
-    prompt: '我想探索传统装修行业怎么用 AI 升级，请先帮我分流：哪些工作流最值得先改，哪些工具适合试，第一步怎么落地？',
+    label: '我想把 AI 接进装修业务',
+    prompt: '我想探索传统装修行业怎么接入 AI，请先帮我分流：哪些工作流最值得先改，哪些工具适合试，第一步怎么落地？',
     links: [
-      { label: 'AI 升级路线', href: '/ai' },
+      { label: 'AI 实践路线', href: '/ai' },
       { label: 'AI 提示词工具', href: '/tools/prompts' },
       { label: 'AI 工作流咨询', href: '/services/ai-workflow' },
     ],

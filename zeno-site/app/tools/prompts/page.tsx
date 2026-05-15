@@ -210,7 +210,7 @@ export default function PromptPlayground() {
 
             <div className="grid gap-4 md:grid-cols-3">
               <Link href="/ai" className="border border-border bg-surface p-5 hover:border-stone">
-                <p className="text-sm font-semibold text-ink">看 AI 升级路线</p>
+                <p className="text-sm font-semibold text-ink">看 AI 实践路线</p>
                 <p className="mt-2 text-xs leading-relaxed text-ink-muted">从工具试用走向方法、服务和产品化。</p>
               </Link>
               <Link href="/pricing#ai-workflow-course" className="border border-border bg-surface p-5 hover:border-stone">
