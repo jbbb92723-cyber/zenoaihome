@@ -129,6 +129,19 @@ export default function ResourcesPage() {
       />
 
       <Container size="content" className="py-section">
+        <section className="mb-12 border border-stone/30 bg-stone/5 p-5 sm:p-6">
+          <p className="text-xs font-semibold uppercase tracking-widest text-stone">签约前优先</p>
+          <h2 className="mt-3 text-xl font-semibold tracking-tight text-ink">如果你手上已经有报价，先别从资料库乱翻。</h2>
+          <p className="mt-3 text-sm leading-relaxed text-ink-muted">
+            先走报价初筛，再拿报价审核清单；如果要自己系统看，进 ¥39 指南；如果已经临近签约，再看人工快审或决策包。
+          </p>
+          <div className="mt-5 flex flex-wrap gap-3">
+            <Link href="/tools/quote-check" className="inline-flex h-10 items-center bg-stone px-4 text-sm font-semibold text-white transition-colors hover:bg-stone/90">先做报价初筛</Link>
+            <Link href="/resources#baojia-shenhe-qingdan" className="inline-flex h-10 items-center border border-stone/40 px-4 text-sm font-semibold text-stone transition-colors hover:bg-stone-pale">拿报价审核清单</Link>
+            <Link href="/pricing/baojia-guide" className="inline-flex h-10 items-center border border-stone/40 px-4 text-sm font-semibold text-stone transition-colors hover:bg-stone-pale">看 ¥39 指南</Link>
+          </div>
+        </section>
+
         <section className="mb-12">
           <p className="text-xs font-semibold uppercase tracking-widest text-stone">内容路径</p>
           <h2 className="mt-3 text-2xl font-semibold tracking-tight text-ink">先把问题找准，再拿资料。</h2>

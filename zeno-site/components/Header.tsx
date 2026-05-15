@@ -212,7 +212,7 @@ export default function Header() {
             </Link>
             <Link
               href={uploadHref}
-              className="ml-1 inline-flex h-9 items-center bg-stone px-4 text-[0.8125rem] font-medium text-white transition-all duration-150 hover:-translate-y-px hover:bg-stone/90 hover:shadow-[0_12px_28px_rgba(139,115,85,0.20)]"
+              className="ml-1 inline-flex h-9 items-center bg-stone px-4 text-[0.8125rem] font-medium text-white transition-all duration-200 hover:-translate-y-px hover:bg-stone/90 hover:shadow-[0_12px_28px_rgba(139,115,85,0.20)] active:scale-[0.97] active:translate-y-0"
             >
               {uploadLabel}
             </Link>

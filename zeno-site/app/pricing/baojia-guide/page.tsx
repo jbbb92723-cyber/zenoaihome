@@ -74,7 +74,7 @@ export default async function BaojiaGuidePage() {
       <PageHero
         label="低价产品"
         title="装修报价避坑完整指南"
-        subtitle="拿到报价单后，逐行对照检查。六张核心清单，把签合同前 30 分钟该看的事写清楚。"
+        subtitle="拿到报价单后，先别只看总价。六张核心清单，帮你把签合同前 30 分钟最该看的事一次看清。"
         size="content"
       />
 
@@ -107,16 +107,36 @@ export default async function BaojiaGuidePage() {
         {/* 这份指南解决什么 */}
         <section className="border-t border-border pt-12">
           <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-3">这份指南解决什么</p>
-          <h2 className="text-lg font-semibold text-ink mb-5">不替你砍价，帮你看清楚</h2>
+          <h2 className="text-lg font-semibold text-ink mb-5">不替你砍价，帮你在签前看懂</h2>
           <div className="space-y-4 text-sm text-ink leading-[1.85]">
             <p>
               这不是课程，也不是文章合集。它是一份你拿到装修报价单后可以直接对照检查的实用 PDF 指南。
             </p>
             <p className="text-ink-muted">
-              文章是"读完理解"，这份指南是"边看边对照"。每张表都标注了风险等级判定标准，配套话术模板告诉你怎么向施工方追问，
-              全部按"拿到报价单 → 签合同前"的真实使用顺序排好。
+              这份指南真正卖的，不是 PDF 本身，而是签合同前少后悔的那半小时。你可以先自己过一遍，再决定要不要进报价快审。
             </p>
           </div>
+
+        </section>
+
+        {/* 30 分钟使用路径 */}
+        <section className="border-t border-border pt-12">
+          <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-3">30 分钟怎么用</p>
+          <h2 className="text-lg font-semibold text-ink mb-5">不是从头读完，是签约前按顺序查</h2>
+          <ol className="grid gap-3 sm:grid-cols-5">
+            {[
+              '先看报价单有没有拆到项目、数量、单位和单价',
+              '再标记漏项、模糊描述和另计项目',
+              '接着检查水电、付款节点和验收口径',
+              '把最重要的追问发给施工方确认',
+              '仍然看不懂，再升级到报价风险快审',
+            ].map((step, index) => (
+              <li key={step} className="border border-border bg-surface p-4 text-sm leading-relaxed text-ink-muted">
+                <span className="mb-2 block text-xs font-semibold uppercase tracking-widest text-stone">{index + 1}</span>
+                {step}
+              </li>
+            ))}
+          </ol>
         </section>
 
         {/* 你会得到什么 */}
@@ -195,7 +215,7 @@ export default async function BaojiaGuidePage() {
           <p className="text-[0.65rem] font-semibold uppercase tracking-[0.18em] text-stone mb-3">购买入口</p>
           <h2 className="text-lg font-semibold text-ink mb-3">定价 {product ? formatYuan(product.price) : '¥39'}，适合签约前自己先过一遍</h2>
           <p className="text-sm text-ink-muted leading-relaxed mb-6 max-w-prose">
-            如果你手里已经有报价单，先用指南和清单自己过一遍；如果只是报价本身看不明白，再去报价风险快审；如果报价、预算和合同一起乱，再直接看签约前决策包。
+            如果你手里已经有报价单，先用指南和清单自己过一遍；如果已经明显看不懂，再去报价风险快审；如果报价、预算和合同一起乱，再直接看签约前决策包。
           </p>
           <div className="grid gap-3 sm:grid-cols-[minmax(0,18rem)_auto_auto_auto] sm:items-center">
             {product && (

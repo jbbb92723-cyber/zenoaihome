@@ -1,13 +1,6 @@
 import type { Metadata } from 'next'
-import { Outfit } from 'next/font/google'
 import HomePageGptSkill from '@/components/home/HomePageGptSkill'
 import StructuredData from '@/components/StructuredData'
-
-const outfit = Outfit({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
-  display: 'swap',
-})
 
 export const metadata: Metadata = {
   title: '装修签约前报价风险初筛 | ZenoAIHome',
@@ -32,7 +25,7 @@ export default function HomePage() {
           inLanguage: 'zh-CN',
         }}
       />
-      <HomePageGptSkill fontClassName={outfit.className} />
+      <HomePageGptSkill fontClassName="" />
     </>
   )
 }

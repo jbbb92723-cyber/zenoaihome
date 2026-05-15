@@ -163,20 +163,20 @@ function getPrimaryNextStep(score: number, stage: QuoteStage) {
     return {
       label: '看 ¥699 报价风险快审',
       href: '/services/renovation#baojia-shenhe',
-      desc: '缺失项多，适合带着报价单进入人工判断。',
+      desc: '缺失项多，先带着报价单进入人工判断，别急着签。',
     }
   }
   if (score >= 4) {
     return {
       label: '看 ¥39 报价避坑指南',
       href: '/pricing/baojia-guide',
-      desc: '先系统补一遍报价、合同、预算和增项常识。',
+      desc: '先系统补一遍报价、合同、预算和增项常识，再继续谈。',
     }
   }
   return {
     label: '领取签约前检查清单',
     href: '/resources#baojia-shenhe-qingdan',
-    desc: '报价结构还可以，下一步把追问清单拿去对照合同。',
+    desc: '报价结构还可以，下一步把追问清单拿去对照合同和付款节点。',
   }
 }
 

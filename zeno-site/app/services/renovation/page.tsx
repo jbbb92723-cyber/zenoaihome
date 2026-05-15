@@ -230,6 +230,36 @@ export default function RenovationServicesPage() {
           </div>
         </section>
 
+        <section className="mb-14 border border-stone/30 bg-stone/5 p-6 sm:p-8">
+          <p className="text-xs font-semibold uppercase tracking-widest text-stone">快速选择</p>
+          <h2 className="mt-3 text-2xl font-semibold tracking-tight text-ink">你现在该走哪一步？</h2>
+          <div className="mt-6 overflow-x-auto">
+            <table className="w-full min-w-[40rem] border-collapse text-left text-sm">
+              <thead>
+                <tr className="border-b border-stone/20 text-xs uppercase tracking-widest text-ink-faint">
+                  <th className="py-3 pr-4 font-semibold">你的情况</th>
+                  <th className="px-4 py-3 font-semibold">建议动作</th>
+                  <th className="px-4 py-3 font-semibold">不要急着做什么</th>
+                </tr>
+              </thead>
+              <tbody>
+                {[
+                  ['还没有完整报价', '先用免费报价初筛和清单补材料', '不要直接买人工服务'],
+                  ['有报价，但看不懂风险', '看 ¥699 报价风险快审', '不要只拿总价比高低'],
+                  ['预算总数混乱', '看 ¥399 预算取舍诊断', '不要先被材料档次带跑'],
+                  ['马上要签合同', '看 ¥1499 签约前决策包', '不要只听口头承诺和限时优惠'],
+                ].map(([situation, action, warning]) => (
+                  <tr key={situation} className="border-b border-stone/20 last:border-b-0">
+                    <th className="py-4 pr-4 font-semibold text-ink">{situation}</th>
+                    <td className="px-4 py-4 text-ink-muted">{action}</td>
+                    <td className="px-4 py-4 text-ink-muted">{warning}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </section>
+
         <section className="mb-14 border border-border bg-surface-warm p-6 sm:p-8">
           <div className="grid gap-6 lg:grid-cols-[0.34fr_0.66fr]">
             <div>

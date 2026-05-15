@@ -1,5 +1,4 @@
 import type { Metadata } from 'next'
-import { Inter, Noto_Sans_SC } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/react'
 import { ThemeProvider } from '@/components/ThemeProvider'
 import { SessionProvider } from 'next-auth/react'
@@ -10,18 +9,6 @@ import AIChatWidget from '@/components/AIChatWidget'
 import HashScrollHandler from '@/components/HashScrollHandler'
 import '@/styles/globals.css'
 
-const inter = Inter({
-  subsets: ['latin'],
-  variable: '--font-inter',
-  display: 'swap',
-})
-
-const notoSansSC = Noto_Sans_SC({
-  subsets: ['latin'],
-  weight: ['400', '500', '600'],
-  variable: '--font-noto',
-  display: 'swap',
-})
 
 export const metadata: Metadata = {
   title: {
@@ -65,13 +52,13 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="zh-CN" className={`${inter.variable} ${notoSansSC.variable}`} suppressHydrationWarning>
+    <html lang="zh-CN" suppressHydrationWarning>
       <body className="bg-canvas text-ink font-sans antialiased">
         <SessionProvider>
           <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false} themes={['light', 'eye', 'dark']}>
             <HashScrollHandler />
             <Header />
-            <main className="min-h-[calc(100vh-56px)]">{children}</main>
+            <main className="min-h-[calc(100dvh-56px)]">{children}</main>
             <Footer />
             <SearchDialog />
             <AIChatWidget />
