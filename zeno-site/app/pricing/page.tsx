@@ -8,6 +8,7 @@ import PageHero from '@/components/PageHero'
 import StructuredData from '@/components/StructuredData'
 import { PRODUCTS, formatYuan } from '@/data/products'
 import PurchaseButton from './PurchaseButton'
+import CommercialLadder from '@/components/CommercialLadder'
 
 export const metadata: Metadata = {
   title: '判断力产品 | 先用低价产品把问题看懂',
@@ -43,49 +44,6 @@ const sectionMeta: Record<
     description: '把选题、提示词和结构沉淀成资产，不靠临时灵感。',
   },
 }
-
-const quickRoutes = [
-  {
-    label: '主线 / 报价入门',
-    title: '装修报价避坑完整指南',
-    price: '¥39',
-    desc: '拿到报价单后先把漏项、模糊项和增项口子看清楚。',
-    href: '/pricing/baojia-guide',
-    cta: '看 ¥39 指南',
-    image: '/images/resources/quote-checklist-preview.svg',
-    variant: 'primary' as const,
-  },
-  {
-    label: '主线 / 判断顺序',
-    title: '装修判断力入门小课',
-    price: '¥99',
-    desc: '把报价、预算、合同和验收的判断顺序串起来。',
-    href: '#renovation-judgment-course',
-    cta: '看小课',
-    image: '/images/resources/budget-template-preview.svg',
-    variant: 'secondary' as const,
-  },
-  {
-    label: '延伸 / AI 场景',
-    title: '传统装修行业 AI 工作流小课',
-    price: '¥199',
-    desc: '把现场经验接进 AI，而不是追工具。',
-    href: '#ai-workflow-course',
-    cta: '看 AI 小课',
-    image: '/images/resources/ai-prompt-pack.svg',
-    variant: 'secondary' as const,
-  },
-  {
-    label: '长期 / 内容资产',
-    title: '内容资产会员年卡',
-    price: '¥199/年',
-    desc: '长期更新的选题、提示词和内容系统。',
-    href: '#creator-yearly',
-    cta: '看年卡',
-    image: '/images/resources/explainer-storyboard.svg',
-    variant: 'secondary' as const,
-  },
-]
 
 const flowCards = [
   {
@@ -178,34 +136,13 @@ export default async function PricingPage() {
       />
 
       <Container size="layout" className="py-section">
-        <section className="mb-12 grid gap-5 lg:grid-cols-2">
-          {quickRoutes.map((item) => (
-            <article
-              key={item.title}
-              className={`overflow-hidden border ${item.variant === 'primary' ? 'border-stone bg-surface-warm' : 'border-border bg-surface'}`}
-            >
-              <div className="relative aspect-[16/10] border-b border-border bg-stone-pale/30">
-                <Image
-                  src={item.image}
-                  alt={item.title}
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 1024px) 100vw, 720px"
-                />
-              </div>
-              <div className="flex min-h-[18rem] flex-col p-6 sm:p-7">
-                <div className="flex flex-wrap items-center gap-2 text-xs font-semibold uppercase tracking-widest">
-                  <span className="text-stone">{item.label}</span>
-                  <span className="text-ink-faint">{item.price}</span>
-                </div>
-                <h2 className="mt-3 text-xl font-semibold leading-snug text-ink">{item.title}</h2>
-                <p className="mt-3 text-sm leading-relaxed text-ink-muted">{item.desc}</p>
-                <div className="mt-auto pt-6">
-                  <CTA href={item.href} label={item.cta} variant={item.variant} />
-                </div>
-              </div>
-            </article>
-          ))}
+        <section className="mb-12 border border-border bg-surface-warm p-6 sm:p-8">
+          <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-ink-faint">业主签约前判断梯子</p>
+          <h2 className="mb-2 text-lg font-semibold text-ink">先按你现在卡在哪一步选</h2>
+          <p className="mb-6 max-w-3xl text-sm leading-relaxed text-ink-muted">
+            从免费报价初筛到 ¥9800 起的居住场景服务。下面的小课、AI 工作流、内容年卡是延伸产品，先看完主梯子再决定要不要看。
+          </p>
+          <CommercialLadder variant="summary" />
         </section>
 
         <section className="mb-12 border border-border bg-surface-warm p-6 sm:p-8">

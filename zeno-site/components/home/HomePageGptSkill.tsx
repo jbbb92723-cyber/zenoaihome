@@ -18,6 +18,7 @@ import {
   UsersThree,
   Wrench,
 } from '@phosphor-icons/react'
+import CommercialLadder from '@/components/CommercialLadder'
 
 /* ─── Types ─── */
 type IconComponent = typeof FileText
@@ -164,41 +165,6 @@ const toolCards: Array<{
     body: '用一份低价资料，把报价、预算、合同和增项先系统串起来。',
     action: '看 ¥39 指南',
     href: '/pricing/baojia-guide',
-  },
-]
-
-const serviceCards = [
-  {
-    icon: FileText,
-    title: '报价风险快审',
-    body: '签约前，把漏项、异常单价、模糊工艺和增项口子先看出来。',
-    bullets: ['漏项和模糊项', '异常单价', '工艺边界', '追问清单'],
-    price: '¥699 / 份',
-    href: '/services/renovation#baojia-shenhe',
-  },
-  {
-    icon: Calculator,
-    title: '预算取舍诊断',
-    body: '还没到逐行看报价，但钱已经越算越乱，先判断哪些不能砍、哪些可以晚点买。',
-    bullets: ['预算分配', '取舍顺序', '预留机动'],
-    price: '¥399 / 次',
-    href: '/services/renovation#yusuan-zixun',
-  },
-  {
-    icon: ClipboardText,
-    title: '签约前决策包',
-    body: '如果报价、预算、合同和付款节点一起乱，用这一项一次看全。',
-    bullets: ['报价 + 预算 + 合同', '关键追问顺序', '付款节点边界', '一次讲清'],
-    price: '¥1499 / 次',
-    href: '/services/renovation#qianyue-qian-juece-bao',
-  },
-  {
-    icon: Sparkle,
-    title: '居住场景服务',
-    body: '适合南宁本地、重视长期居住体验的人，从怎么住开始判断。',
-    bullets: ['生活场景', '审美取舍', '预算拆解', '南宁本地'],
-    price: '¥9800 起',
-    href: '/services/renovation#shi-zhu-pai-zhuangxiu',
   },
 ]
 
@@ -639,57 +605,20 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
           <p className="text-sm font-semibold text-[#8b4d27]">05 / 付费产品</p>
           <div className="mt-8 text-center">
             <h2 className="text-[clamp(2rem,4.2vw,4.1rem)] font-semibold leading-tight tracking-tight text-[#25221f]">
-              服务不从高客单开始，从低门槛信任入口开始。
+              不是越贵越好，看你卡在哪一步。
             </h2>
-            <p className="mt-4 text-base leading-8 text-[#6f675f]">内容建立信任，工具筛选真实需求，咨询处理关键判断。没有材料、不临近决策，就先回到免费工具和清单。</p>
+            <p className="mt-4 text-base leading-8 text-[#6f675f]">从免费报价初筛到 ¥9800 起的居住场景服务，按你现在临近什么决策来选——不要先看价格，先看适合谁。</p>
           </div>
 
-          {/* 2x2 grid — avoid generic 4-equal-col */}
+          {/* 统一商业梯子：data/commercial-ladder.ts 是单一真源 */}
           <motion.div
-            className="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2"
+            className="mt-12"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: '-60px' }}
-            variants={staggerContainer}
+            variants={fadeUp}
           >
-            {serviceCards.map((card) => {
-              const Icon = card.icon
-              return (
-                <motion.div key={card.title} variants={staggerItem}>
-                  <Link
-                    href={card.href}
-                    className="group flex min-h-[22rem] flex-col border border-[#e4d8cb] bg-white/90 p-8 transition-all duration-200 hover:-translate-y-px hover:shadow-[0_26px_80px_rgba(67,45,26,0.12)] active:scale-[0.998]"
-                    style={{ boxShadow: '0 18px 70px rgba(67,45,26,0.08)' }}
-                  >
-                    <div className="flex items-start gap-5">
-                      <span className="flex h-14 w-14 shrink-0 items-center justify-center border border-[#ead9c7] bg-[#fbf8f4] text-[#a15b2f]">
-                        <Icon size={30} weight="duotone" aria-hidden />
-                      </span>
-                      <div>
-                        <h3 className="text-xl font-semibold leading-snug text-[#2b2723]">{card.title}</h3>
-                        <p className="mt-2 text-sm leading-7 text-[#6f675f]">{card.body}</p>
-                      </div>
-                    </div>
-                    <div className="my-6 h-px bg-[#e6d9cc]" />
-                    <ul className="space-y-3">
-                      {card.bullets.map((item) => (
-                        <li key={item} className="flex items-center gap-3 text-sm text-[#514b45]">
-                          <CheckCircle size={18} weight="duotone" className="shrink-0 text-[#a15b2f]" aria-hidden />
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
-                    <div className="mt-auto flex items-end justify-between gap-4 pt-8">
-                      <p className={`${fontClassName} text-2xl font-medium tabular-nums text-[#8b4d27]`}>{card.price}</p>
-                      <span className="inline-flex items-center gap-2 bg-[#9a5424] px-5 py-2 text-sm font-medium text-white transition-all duration-200 group-hover:bg-[#7f421a] active:scale-[0.97]">
-                        看服务边界
-                        <ArrowRight size={16} className="transition-transform duration-200 group-hover:translate-x-1" aria-hidden />
-                      </span>
-                    </div>
-                  </Link>
-                </motion.div>
-              )
-            })}
+            <CommercialLadder variant="compact" />
           </motion.div>
 
           {/* Trust Bar */}

@@ -5,6 +5,7 @@ import Container from '@/components/Container'
 import CTA from '@/components/CTA'
 import PageHero from '@/components/PageHero'
 import StructuredData from '@/components/StructuredData'
+import CommercialLadder from '@/components/CommercialLadder'
 
 export const metadata: Metadata = {
   title: '签约前装修判断工具工作台 | ZenoAIHome',
@@ -47,33 +48,6 @@ const ownerNeedCards = [
 ]
 
 const supportToolKeys = new Set(['单位换算工具', '瓷砖计算器', '乳胶漆计算器'])
-
-const judgmentPath = [
-  {
-    price: '免费',
-    title: '报价初筛',
-    desc: '先知道报价里哪里没写清。',
-    href: '/tools/quote-check',
-  },
-  {
-    price: '¥39',
-    title: '报价避坑指南',
-    desc: '自己系统补一遍判断框架。',
-    href: '/pricing/baojia-guide',
-  },
-  {
-    price: '¥699',
-    title: '报价风险快审',
-    desc: '带着报价进入人工判断。',
-    href: '/services/renovation#baojia-shenhe',
-  },
-  {
-    price: '¥1499',
-    title: '签约前决策包',
-    desc: '报价、预算、合同一起看。',
-    href: '/services/renovation#qianyue-qian-juece-bao',
-  },
-]
 
 const toolGroups = [
   {
@@ -243,19 +217,27 @@ export default function ToolsPage() {
         size="content"
       />
 
-      <Container size="content" className="py-section">
-        <section className="mb-12 border border-border bg-surface-warm p-6 sm:p-8">
-          <p className="text-xs font-semibold uppercase tracking-widest text-stone">签约前主路径</p>
-          <h2 className="mt-3 text-2xl font-semibold tracking-tight text-ink">免费初筛 → ¥39 指南 → ¥699 快审 → ¥1499 决策包</h2>
-          <div className="mt-5 grid gap-3 md:grid-cols-4">
-            {judgmentPath.map((item) => (
-              <Link key={item.title} href={item.href} className="border border-border bg-surface p-5 transition-colors hover:border-stone hover:bg-surface-warm">
-                <p className="text-xs font-semibold uppercase tracking-widest text-stone">{item.price}</p>
-                <h3 className="mt-2 text-sm font-semibold text-ink">{item.title}</h3>
-                <p className="mt-2 text-xs leading-relaxed text-ink-muted">{item.desc}</p>
-              </Link>
-            ))}
+      {/* “如果你只看一个”强引导——防止业主在 7 张卡片面前迷失 */}
+      <section className="border-y-2 border-[#9a5424] bg-[#fbf3e9]">
+        <Container size="content" className="py-6">
+          <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <p className="text-[0.7rem] font-semibold uppercase tracking-widest text-[#9a5424]">如果你只看一个</p>
+              <h2 className="mt-1 text-xl font-semibold leading-snug text-[#272421]">
+                先做免费报价初筛——<span className="text-[#7f421a]">8 分钟出风险等级</span>
+              </h2>
+              <p className="mt-1 text-xs leading-relaxed text-[#7b6d5d]">输出一份重点追问清单，别的工具可以等你拿到初筛结果再决定要不要看。</p>
+            </div>
+            <CTA href="/tools/quote-check" label="开始免费初筛" variant="primary" />
           </div>
+        </Container>
+      </section>
+
+      <Container size="content" className="py-section">
+        <section className="mb-12">
+          <p className="text-xs font-semibold uppercase tracking-widest text-stone">签约前主路径</p>
+          <h2 className="mt-3 mb-5 text-2xl font-semibold tracking-tight text-ink">从免费初筛到 ¥9800 居住场景服务</h2>
+          <CommercialLadder variant="summary" />
         </section>
 
         <section className="mb-12 grid gap-6 lg:grid-cols-[0.42fr_0.58fr]">

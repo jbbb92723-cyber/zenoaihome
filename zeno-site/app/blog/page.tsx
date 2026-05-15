@@ -22,9 +22,9 @@ export default function BlogPage() {
   return (
     <>
       <PageHero
-        label="文章"
-        title="我写的东西"
-        subtitle="从居住场景出发，记录 AI 实践、工具产品、一人公司和判断系统。这里不是普通博客，而是 Zeno 把经验沉淀成资产的内容入口。"
+        label="文章 / 判断库"
+        title="业主真正会遇到的装修问题"
+        subtitle="按报价、预算、合同、施工、居住分类。每篇都来自真实工地或真实客户问题，不是观点输出。"
       />
 
       <Container size="content" className="py-12 sm:py-16">

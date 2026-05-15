@@ -8,6 +8,8 @@ import CTA from '@/components/CTA'
 import ServiceCard from '@/components/ServiceCard'
 import ServiceRequestForm from '@/components/services/ServiceRequestForm'
 import StructuredData from '@/components/StructuredData'
+import CommercialLadder from '@/components/CommercialLadder'
+import { commercialLadder } from '@/data/commercial-ladder'
 
 export const metadata: Metadata = {
   title: '服务路径 | 装修判断优先',
@@ -48,44 +50,6 @@ const serviceRelatedArticles: Record<string, { label: string; href: string }[]> 
 
 const renovationSlugs = ['baojia-shenhe', 'qianyue-qian-juece-bao', 'yusuan-zixun', 'shi-zhu-pai-zhuangxiu']
 const industrySlugs = ['ai-neirong-xitong-zixun']
-
-const renovationLadder = [
-  {
-    label: '免费',
-    title: '报价初筛 + 审核清单',
-    description: '先把漏项、模糊项、付款节点和追问顺序筛一轮。',
-    href: '/tools/quote-check',
-    action: '先做初筛',
-  },
-  {
-    label: '¥39',
-    title: '报价避坑指南',
-    description: '把报价、预算、合同和增项四件事先系统看一遍。',
-    href: '/pricing/baojia-guide',
-    action: '看低价指南',
-  },
-  {
-    label: '¥399',
-    title: '预算取舍诊断',
-    description: '预算总数有了，但钱该怎么分、哪里该留缓冲还不清楚。',
-    href: '/services/renovation#yusuan-zixun',
-    action: '看取舍诊断',
-  },
-  {
-    label: '¥699',
-    title: '报价风险快审',
-    description: '已经拿到报价单，想尽快知道最该追问什么。',
-    href: '/services/renovation#baojia-shenhe',
-    action: '看报价快审',
-  },
-  {
-    label: '¥1499',
-    title: '签约前决策包',
-    description: '报价、预算、合同和关键追问一起看，适合临近签约。',
-    href: '/services/renovation#qianyue-qian-juece-bao',
-    action: '看决策包',
-  },
-]
 
 const aiLadder = [
   {
@@ -308,23 +272,10 @@ export default function ServicesPage() {
             网站当前要验证的是一条主线和一条延伸线：装修签约前判断优先，AI 工作流作为背景能力。每一档都要让用户知道自己会拿到什么，以及下一步该点哪里。
           </p>
 
-          <div className="grid gap-6 lg:grid-cols-2">
+          <div className="grid gap-8 lg:grid-cols-[2fr_1fr]">
             <div>
-              <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-stone">主线 / 装修业主</p>
-              <div className="grid gap-3">
-                {renovationLadder.map((item) => (
-                  <Link key={item.title} href={item.href} className="group border border-border bg-surface p-5 transition-colors hover:border-stone">
-                    <div className="flex items-start justify-between gap-4">
-                      <div>
-                        <p className="text-[0.65rem] font-semibold uppercase tracking-widest text-stone">{item.label}</p>
-                        <h3 className="mt-2 text-base font-semibold text-ink">{item.title}</h3>
-                      </div>
-                      <span className="shrink-0 text-xs font-semibold text-ink-muted group-hover:text-stone">{item.action}</span>
-                    </div>
-                    <p className="mt-3 text-sm leading-relaxed text-ink-muted">{item.description}</p>
-                  </Link>
-                ))}
-              </div>
+              <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-stone">主线 / 装修签约前判断</p>
+              <CommercialLadder variant="full" rungs={commercialLadder} />
             </div>
 
             <div>

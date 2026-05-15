@@ -5,7 +5,7 @@ import { SessionProvider } from 'next-auth/react'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import SearchDialog from '@/components/SearchDialog'
-import AIChatWidget from '@/components/AIChatWidget'
+import ConditionalAIWidget from '@/components/ConditionalAIWidget'
 import HashScrollHandler from '@/components/HashScrollHandler'
 import '@/styles/globals.css'
 
@@ -61,7 +61,7 @@ export default function RootLayout({
             <main className="min-h-[calc(100dvh-56px)]">{children}</main>
             <Footer />
             <SearchDialog />
-            <AIChatWidget />
+            <ConditionalAIWidget />
           </ThemeProvider>
         </SessionProvider>
         <Analytics />

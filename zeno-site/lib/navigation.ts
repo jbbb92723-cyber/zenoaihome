@@ -162,44 +162,6 @@ export const primaryNav: PrimaryNavItem[] = [
     ],
   },
   {
-    key: 'ai-upgrade',
-    zh: { label: 'AI 实践', href: '/ai' },
-    en: { label: 'AI Practice', href: '/en' },
-    groups: [
-      {
-        key: 'ai-tools',
-        zh: { label: 'AI 工具', desc: '把真实经验接进工具和流程' },
-        en: { label: 'AI Tools', desc: 'Start from real tasks' },
-        items: [
-          { key: 'ai-hub', zh: { label: 'AI 实践路线', href: '/ai', desc: '传统行业经验如何变成工具、内容和产品' }, en: { label: 'AI Practice Route', href: '/en', desc: 'How field work meets AI' } },
-          { key: 'content-brain', zh: { label: '内容诊断大脑', href: '/tools/content-brain', desc: '选题、标题、初稿和转化路径诊断' }, en: { label: 'Content Brain', href: '/en/tools', desc: 'Diagnose content before publishing' } },
-          { key: 'prompt-lab', zh: { label: 'AI 场景生成器', href: '/tools/prompts', desc: '报价、客户、施工、内容一键生成提示词' }, en: { label: 'Prompt Lab', href: '/en/tools/prompts', desc: 'Generate prompts from scenarios' } },
-          { key: 'quote-ai', zh: { label: '报价初筛工具', href: '/tools/quote-check', desc: '把报价判断变成可复用流程' }, en: { label: 'Quote Screening', href: '/en/tools', desc: 'Reusable quote screening' } },
-        ],
-      },
-      {
-        key: 'ai-methods',
-        zh: { label: '方法论', desc: '不追工具，先重排流程' },
-        en: { label: 'Methods', desc: 'Workflow before tools' },
-        items: [
-          { key: 'ai-article', zh: { label: '为什么我开始认真学 AI', href: '/blog/04-wei-shenme-wo-kaishi-renzheng-xue-ai', desc: '从现场经验进入 AI' }, en: { label: 'Why I Started Learning AI', href: '/en/articles/why-i-started-learning-ai' } },
-          { key: 'content-system', zh: { label: '内容资产 SOP', href: '/resources#ai-neirong-gongzuoliu-tishici-bao', desc: '把经验变成可复用提示词' }, en: { label: 'Content System', href: '/en/resources' } },
-          { key: 'ai-workflow-service', zh: { label: 'AI 工作流咨询', href: '/services/ai-workflow', desc: '适合传统行业人做系统化' }, en: { label: 'AI Workflow Consulting', href: '/en/services' } },
-        ],
-      },
-      {
-        key: 'ai-notes',
-        zh: { label: '经验心得', desc: '工具体验、日常思考和复盘' },
-        en: { label: 'Notes', desc: 'Experiments and reflections' },
-        items: [
-          { key: 'blog-ai', zh: { label: 'AI 实践文章', href: '/blog#ai', desc: '长期记录' }, en: { label: 'AI Writing', href: '/en/blog' } },
-          { key: 'notes-ai', zh: { label: '思考札记', href: '/notes', desc: '日常观察与方法沉淀' }, en: { label: 'Notes', href: '/en/notes' } },
-          { key: 'pricing-ai-course', zh: { label: 'AI 小课与产品', href: '/pricing#ai-workflow-course', desc: '低价产品和课程入口' }, en: { label: 'AI Products', href: '/en/pricing/baojia-guide' } },
-        ],
-      },
-    ],
-  },
-  {
     key: 'services',
     zh: { label: '服务', href: '/services' },
     en: { label: 'Services', href: '/en/services' },
@@ -262,8 +224,19 @@ export const primaryNav: PrimaryNavItem[] = [
         items: [
           { key: 'about-zeno', zh: { label: '我是谁', href: '/about', desc: '16 年现场经验' }, en: { label: 'Who I Am', href: '/en/about', desc: '16 years on-site' } },
           { key: 'why-site', zh: { label: '为什么做这个站', href: '/about#why-site', desc: '把经验变成可用判断工具' }, en: { label: 'Why This Site', href: '/en/about', desc: 'Turn experience into tools' } },
-          { key: 'blog', zh: { label: '长期记录', href: '/blog', desc: '文章、工地观察与 AI 实践' }, en: { label: 'Writing', href: '/en/blog', desc: 'Articles and field notes' } },
+          { key: 'blog', zh: { label: '长期记录', href: '/blog', desc: '文章、工地观察与同行思考' }, en: { label: 'Writing', href: '/en/blog', desc: 'Articles and field notes' } },
           { key: 'contact', zh: { label: '联系方式', href: '/contact', desc: '微信、邮箱和服务咨询' }, en: { label: 'Contact', href: '/en/about', desc: 'Email and contact' } },
+        ],
+      },
+      {
+        key: 'ai-extension',
+        zh: { label: 'AI 延伸', desc: '传统行业人怎么接 AI，仅为同行准备' },
+        en: { label: 'AI Extension', desc: 'For peers in traditional industries' },
+        items: [
+          { key: 'ai-hub', zh: { label: 'AI 实践路线', href: '/ai', desc: '现场经验如何变成工具、内容和产品' }, en: { label: 'AI Practice Route', href: '/en', desc: 'How field work meets AI' } },
+          { key: 'ai-article', zh: { label: '为什么我开始认真学 AI', href: '/blog/04-wei-shenme-wo-kaishi-renzheng-xue-ai', desc: '从现场经验进入 AI' }, en: { label: 'Why I Started Learning AI', href: '/en/articles/why-i-started-learning-ai' } },
+          { key: 'ai-service', zh: { label: 'AI 工作流咨询', href: '/services/ai-workflow', desc: '适合传统行业人做系统化' }, en: { label: 'AI Workflow Consulting', href: '/en/services' } },
+          { key: 'notes-ai', zh: { label: '思考札记', href: '/notes', desc: '日常观察与方法沉淀' }, en: { label: 'Notes', href: '/en/notes' } },
         ],
       },
     ],
