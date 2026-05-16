@@ -196,42 +196,6 @@ export default function ToolsPage() {
       </section>
 
       <Container size="content" className="py-section">
-        <section className="mb-12 grid gap-6 lg:grid-cols-[0.42fr_0.58fr]">
-          <div className="overflow-hidden border border-border bg-surface">
-            <div className="relative aspect-[16/10] border-b border-border bg-stone-pale/30">
-              <Image
-                src="/images/resources/quote-checklist-preview.svg"
-                alt="报价审核清单预览"
-                fill
-                className="object-cover"
-                sizes="(max-width: 1024px) 100vw, 440px"
-              />
-            </div>
-            <div className="p-6">
-              <p className="text-xs font-semibold uppercase tracking-widest text-stone">先看材料，不先看概念</p>
-              <h2 className="mt-3 text-xl font-semibold leading-snug text-ink">这个页面只帮你决定下一步用哪个工具。</h2>
-              <p className="mt-3 text-sm leading-relaxed text-ink-muted">
-                如果你已经有报价单，就别先刷文章。先把报价风险跑一遍，再根据结果进入清单、指南或人工服务。
-              </p>
-            </div>
-          </div>
-
-          <div className="grid gap-3 sm:grid-cols-2">
-            {ownerNeedCards.map((card) => (
-              <Link
-                key={card.label}
-                href={card.href}
-                className="group flex min-h-[13rem] flex-col border border-border bg-surface p-5 transition-all duration-150 hover:-translate-y-1 hover:border-stone hover:bg-surface-warm hover:shadow-[0_16px_40px_rgba(42,39,35,0.08)]"
-              >
-                <p className="text-xs font-semibold uppercase tracking-widest text-stone">{card.label}</p>
-                <h2 className="mt-3 text-lg font-semibold leading-snug text-ink">{card.title}</h2>
-                <p className="mt-3 text-sm leading-relaxed text-ink-muted">{card.desc}</p>
-                <span className="mt-auto pt-5 text-sm font-semibold text-stone">{card.action} -&gt;</span>
-              </Link>
-            ))}
-          </div>
-        </section>
-
         <section className="mb-12">
           <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-stone">按你现在的情况进入</p>
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
