@@ -1,6 +1,5 @@
 ﻿import type { Metadata } from 'next'
 import Link from 'next/link'
-import PageHero from '@/components/PageHero'
 import Container from '@/components/Container'
 import CTA from '@/components/CTA'
 
@@ -33,11 +32,32 @@ const doingNow = [
 export default function AboutPage() {
   return (
     <>
-      <PageHero
-        label="关于我"
-        title="我是 Zeno"
-        subtitle="从装修现场出发，把普通业主真正会遇到的报价、预算、合同、施工和验收问题讲清楚。"
-      />
+      {/* ── Custom Hero: 几何色块 + 16 年数字锚点 ── */}
+      <div className="border-b border-border pt-12 pb-10 sm:pt-16 sm:pb-12">
+        <Container size="content">
+          <div className="grid items-end gap-8 sm:grid-cols-[1fr_auto]">
+            <div>
+              <p className="page-label mb-4">关于我</p>
+              <h1 className="page-title mb-5">我是 Zeno</h1>
+              <p className="max-w-2xl text-base leading-[1.7] text-ink-muted sm:text-lg">
+                从装修现场出发，把普通业主真正会遇到的报价、预算、合同、施工和验收问题讲清楚。
+              </p>
+            </div>
+            {/* 几何锚点 */}
+            <div className="flex shrink-0 items-end gap-3">
+              <div className="border-l-[3px] border-[#9a5424] pl-4">
+                <p className="text-[3.5rem] font-bold leading-none tracking-tight text-[#272421]">16</p>
+                <p className="mt-1 text-xs font-semibold uppercase tracking-widest text-[#9a5424]">年装修现场</p>
+              </div>
+              <div className="mb-1 h-8 w-px bg-[#e7ded3]" />
+              <div>
+                <p className="text-sm font-medium text-[#272421]">报价 · 预算 · 施工</p>
+                <p className="text-xs text-[#7b6d5d]">经验做成工具和服务</p>
+              </div>
+            </div>
+          </div>
+        </Container>
+      </div>
 
       <Container size="content" className="py-14 sm:py-16">
         {/* ── 我是谁（精简版） ── */}
