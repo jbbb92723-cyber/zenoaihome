@@ -31,7 +31,7 @@ export default function ContractStagePage() {
         coreProblem={
           <>
             <p>
-              很多人签合同时被一句话带过：&ldquo;放心，到时候肯定给你做。&rdquo; 这句话在合同没落字之前，等于零。
+              很多人签合同时被一句话带过：「放心，到时候肯定给你做。」这句话在合同没落字之前，等于零。
               合同是你和对方关系破裂时唯一能用的武器，不是友好时才看的文件。
             </p>
             <p>
@@ -58,7 +58,7 @@ export default function ContractStagePage() {
           },
           {
             title: '增项没有签字流程',
-            body: '现场说一句&ldquo;加个插座&rdquo;就增项，最后结算时才看到数字。要写：增项必须书面确认、单价提前定、未签字不算。',
+            body: '现场说一句「加个插座」就增项，最后结算时才看到数字。要写：增项必须书面确认、单价提前定、未签字不算。',
           },
         ]}
         criteria={[

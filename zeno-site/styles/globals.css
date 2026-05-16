@@ -92,6 +92,8 @@ html {
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
   scroll-behavior: smooth;
+  /* 防止滚动条出现/消失导致整页横向抖动 */
+  scrollbar-gutter: stable;
 }
 
 body {

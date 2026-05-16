@@ -14,12 +14,14 @@ export const metadata: Metadata = {
   },
 }
 
-const supportToolKeys = new Set(['单位换算工具', '瓷砖计算器', '乳胶漆计算器'])
+const supportToolKeys = new Set<string>()
 
 const toolGroups = [
   {
-    title: '签约前判断工具',
-    desc: '先处理报价，再补预算、材料数量和验收节点。每一步都给你一个可以拿去用的结果。',
+    title: '看报价',
+    stageHref: '/start/budget',
+    stageLabel: '对应阶段：02 再看钱',
+    desc: '拿到报价单后，先看漏项、模糊项、增项口子。单位先对齐，再比单价。',
     tools: [
       {
         title: '报价初筛工具',
@@ -28,18 +30,37 @@ const toolGroups = [
         time: '8-15 分钟',
         problem: '拿到报价单后，看不出漏项、模糊项、增项口子和付款风险。',
         freeGain: '风险等级、重点追问清单、下一步服务入口。',
-        nextStep: '如果结果里高风险项很多，再看报价快审或签约前决策包。',
+        nextStep: '如果结果里高风险项很多，再看 ¥699 报价快审或 ¥1499 决策包。',
         href: '/tools/quote-check',
         cta: '开始初筛',
       },
+      {
+        title: '单位换算工具',
+        status: '已上线',
+        price: '免费',
+        time: '1-3 分钟',
+        problem: '报价里 ㎡、米、延米、坪、单方混在一起，越看越晕。',
+        freeGain: '常用单位换算结果，以及哪些单位不能直接互相比。',
+        nextStep: '换算后再回报价单，看工程量、单位和单价是不是同一口径。',
+        href: '/tools/unit-converter',
+        cta: '换算单位',
+      },
+    ],
+  },
+  {
+    title: '看预算',
+    stageHref: '/start/budget',
+    stageLabel: '对应阶段：02 再看钱',
+    desc: '总预算到位之后，先拆结构、再查超支风险，搞清楚哪里该守哪里能放。',
+    tools: [
       {
         title: '预算分配工具',
         status: '已上线',
         price: '免费',
         time: '5-8 分钟',
-        problem: '你有总预算，但不知道这个钱更像简约够住、舒适耐用，还是精致改善。',
+        problem: '你有总预算，但不知道是简约够住、舒适耐用，还是精致改善。',
         freeGain: '参考单方区间、预算取向判断、可复制的分配清单。',
-        nextStep: '如果预算越拆越乱，再进入预算取舍诊断。',
+        nextStep: '如果预算越拆越乱，再进入 ¥399 预算取舍诊断。',
         href: '/tools/budget-structure',
         cta: '拆预算',
       },
@@ -48,23 +69,39 @@ const toolGroups = [
         status: '已上线',
         price: '免费',
         time: '5-8 分钟',
-        problem: '你感觉钱会失控，但分不清到底是报价没说清、流程没控住，还是需求太散。',
+        problem: '你感觉钱会失控，但分不清是报价没说清、流程没控住，还是需求太散。',
         freeGain: '四类风险排序、对应文章、资料和服务建议。',
         nextStep: '按最高风险项回到报价、预算取舍或签约前服务。',
         href: '/tools/budget-risk',
         cta: '查原因',
       },
+    ],
+  },
+  {
+    title: '看合同',
+    stageHref: '/start/contract',
+    stageLabel: '对应阶段：03 再看合同',
+    desc: '签约前，把口头承诺、付款节点、增项规则、违约责任落进合同。当前没有自动化工具，先用清单和指南补齐。',
+    tools: [
       {
-        title: '单位换算工具',
-        status: '已上线',
-        price: '免费',
-        time: '1-3 分钟',
-        problem: '报价里的㎡、米、延米、坪和单方混在一起，越看越晕。',
-        freeGain: '常用单位换算结果，以及哪些单位不能直接互相比。',
-        nextStep: '换算后再回报价单，看工程量、单位和单价是不是同一口径。',
-        href: '/tools/unit-converter',
-        cta: '换算单位',
+        title: '¥39 报价避坑指南',
+        status: '低价指南',
+        price: '¥39',
+        time: '自学 1-2 小时',
+        problem: '不知道合同里要追问哪些条款、怎么把口头承诺落字。',
+        freeGain: '报价、合同、增项、付款节点和质保条款的完整自查清单。',
+        nextStep: '看完指南还不放心，再进 ¥1499 签约前决策包。',
+        href: '/pricing/baojia-guide',
+        cta: '看 ¥39 指南',
       },
+    ],
+  },
+  {
+    title: '算量',
+    stageHref: '/start/build',
+    stageLabel: '对应阶段：04 再看施工',
+    desc: '下单前先估出片数、桶数和损耗范围。拿结果去问商家同批次、补货和退换规则，别只听总价。',
+    tools: [
       {
         title: '瓷砖计算器',
         status: '已上线',
@@ -72,7 +109,7 @@ const toolGroups = [
         time: '3-5 分钟',
         problem: '准备买砖，但不知道片数、箱数和损耗该怎么估。',
         freeGain: '建议沟通片数、整箱数量、损耗比例和下单提醒。',
-        nextStep: '拿结果去问商家同批次、补货和退换规则，别只听一个总价。',
+        nextStep: '把结果带去问商家同批次、补货、退换规则。',
         href: '/tools/tile-calculator',
         cta: '算瓷砖',
       },
@@ -87,6 +124,14 @@ const toolGroups = [
         href: '/tools/paint-calculator',
         cta: '算乳胶漆',
       },
+    ],
+  },
+  {
+    title: '看验收',
+    stageHref: '/start/inspect',
+    stageLabel: '对应阶段：05 再看验收',
+    desc: '到水电、防水、泥工、安装节点之前，先生成现场清单。看完、拍完、留痕，再付下一笔款。',
+    tools: [
       {
         title: '验收节点向导',
         status: '已上线',
@@ -101,8 +146,10 @@ const toolGroups = [
     ],
   },
   {
-    title: 'AI 实践工具',
-    desc: '给同行和内容创作者用。拿一个真实工作场景跑一轮，再决定要不要深入。',
+    title: '通用提示词 / AI 工作台',
+    stageHref: '/ai',
+    stageLabel: '面向同行和内容创作者',
+    desc: '给同行用：从真实业务场景出发拿到提示词，跑一遍再决定要不要把 AI 接进工作流。',
     tools: [
       {
         title: 'AI 场景生成器',
@@ -127,7 +174,7 @@ const toolGroups = [
         cta: '诊断内容',
       },
       {
-        title: '创作工作台',
+        title: '创作工作台 (md → 公众号)',
         status: '已上线',
         price: '免费',
         time: '按文章长度',
@@ -142,12 +189,12 @@ const toolGroups = [
 ]
 
 const routes = [
-  { situation: '手上有报价单', action: '先做报价初筛', href: '/tools/quote-check' },
-  { situation: '只有一个总预算', action: '先拆预算分配', href: '/tools/budget-structure' },
-  { situation: '怕越装越超', action: '先查超支原因', href: '/tools/budget-risk' },
-  { situation: '准备买材料', action: '先用计算工具估范围', href: '/tools/tile-calculator' },
+  { situation: '手上有报价单', action: '先看报价工具', href: '/tools/quote-check' },
+  { situation: '只有总预算', action: '先拆预算', href: '/tools/budget-structure' },
+  { situation: '快要签合同', action: '进合同阶段页', href: '/start/contract' },
+  { situation: '准备买材料', action: '先算量', href: '/tools/tile-calculator' },
   { situation: '准备验收', action: '生成节点清单', href: '/tools/inspection-guide' },
-  { situation: '快要签合同', action: '看签约前服务怎么选', href: '/services/renovation' },
+  { situation: '想把 AI 接进工作', action: '看 AI 场景', href: '/tools/prompts' },
 ]
 
 export default function ToolsPage() {
@@ -240,9 +287,17 @@ export default function ToolsPage() {
 
             return (
               <section key={group.title}>
-                <div className="mb-5">
-                  <p className="text-xs font-semibold uppercase tracking-widest text-stone">{group.title}</p>
-                  <p className="mt-2 text-sm leading-relaxed text-ink-muted">{group.desc}</p>
+                <div className="mb-5 flex flex-col gap-2 border-l-2 border-stone/40 pl-4 sm:flex-row sm:items-end sm:justify-between sm:gap-6">
+                  <div>
+                    <p className="text-xs font-semibold uppercase tracking-widest text-stone">{group.title}</p>
+                    <p className="mt-2 text-sm leading-relaxed text-ink-muted">{group.desc}</p>
+                  </div>
+                  <Link
+                    href={group.stageHref}
+                    className="shrink-0 text-xs font-semibold text-stone hover:underline underline-offset-2"
+                  >
+                    {group.stageLabel} -&gt;
+                  </Link>
                 </div>
 
                 <div className="grid gap-5 lg:grid-cols-2">

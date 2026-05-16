@@ -113,7 +113,7 @@ export default function Header() {
       }`}
     >
       <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
-        <div className={`flex items-center justify-between transition-all duration-200 ${scrolled ? 'h-14' : 'h-16'}`}>
+        <div className="flex h-16 items-center justify-between">
           <Link
             href={logoHref}
             className="shrink-0 text-[0.9375rem] font-semibold tracking-tight text-ink transition-colors hover:text-stone"

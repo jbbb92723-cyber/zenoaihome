@@ -391,6 +391,30 @@ export default function RenovationServicesPage() {
         <div className="mb-6">
           <p className="text-xs font-semibold uppercase tracking-widest text-stone">服务明细</p>
           <h2 className="mt-3 text-2xl font-semibold tracking-tight text-ink">每项服务解决什么、需要什么、交付什么。</h2>
+          <p className="mt-3 text-sm leading-relaxed text-ink-muted">每一档服务对应一个判断阶段，下面括号里的链接是它在「装修判断」里所在的位置。</p>
+        </div>
+
+        <div className="mb-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          {[
+            { slug: 'baojia-shenhe',           name: '帮你审报价',     stage: '02 再看钱',   href: '/start/budget' },
+            { slug: 'yusuan-zixun',            name: '帮你定预算',     stage: '02 再看钱',   href: '/start/budget' },
+            { slug: 'qianyue-qian-juece-bao',  name: '帮你过签约这一关', stage: '03 再看合同', href: '/start/contract' },
+            { slug: 'shi-zhu-pai-zhuangxiu',   name: '帮你做整套居住判断', stage: '06 再看居住', href: '/start/living' },
+          ].map((item) => (
+            <a
+              key={item.slug}
+              href={`#${item.slug}`}
+              className="border border-border bg-surface p-4 text-sm hover:border-stone"
+            >
+              <p className="font-semibold text-ink">{item.name}</p>
+              <p className="mt-2 text-xs text-stone">
+                对应阶段：
+                <Link href={item.href} className="underline underline-offset-2 hover:text-stone-deep">
+                  {item.stage}
+                </Link>
+              </p>
+            </a>
+          ))}
         </div>
 
         <div className="space-y-10">
