@@ -319,7 +319,7 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
                 <div className="flex items-start justify-between gap-5">
                   <div>
                     <p className="text-xs font-semibold tracking-[0.18em] text-stone">QUOTE RISK</p>
-                    <h2 className="mt-3 break-all text-xl font-semibold leading-snug text-ink sm:break-normal sm:text-2xl">不是先判断贵不贵，先判断能不能签。</h2>
+                    <h2 className="mt-3 text-xl font-semibold leading-snug text-ink [text-wrap:balance] sm:text-2xl">不是先判断贵不贵，先判断能不能签。</h2>
                   </div>
                   <span className="flex h-12 w-12 shrink-0 items-center justify-center bg-surface-warm text-stone">
                     <ShieldCheck size={26} weight="duotone" aria-hidden />
@@ -366,8 +366,8 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
       <AnimatedSection className="border-b border-border py-20 sm:py-24">
         <div className="mx-auto max-w-[1320px] px-5 sm:px-8 lg:px-12">
           <div className="mx-auto max-w-3xl text-center">
-            <p className="text-sm font-medium text-stone">02</p>
-            <h2 className="mt-3 text-[clamp(2rem,4vw,3.2rem)] font-semibold leading-tight tracking-tight text-ink">
+            <p className="text-sm font-medium tracking-[0.18em] text-stone">02 / 签约前的坑</p>
+            <h2 className="mt-3 text-[clamp(2rem,4vw,3.2rem)] font-semibold leading-tight tracking-tight text-ink [text-wrap:balance]">
               很多装修后悔，不是发生在施工后。
             </h2>
             <p className="mt-4 text-base leading-8 text-ink-muted">报价没看懂，合同没问清，预算没拆透，后面就容易一步步被动。签约前先把判断做清楚。</p>
@@ -447,10 +447,10 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
               03 / 判断方法
               <span className="h-px w-28 bg-[#dfc5ac]" />
             </p>
-            <h2 className="mt-6 text-[clamp(2rem,4vw,3.2rem)] font-semibold leading-tight tracking-tight text-ink">
-              我先看五件事，不先制造焦虑。
+            <h2 className="mt-6 text-[clamp(2rem,4vw,3.2rem)] font-semibold leading-tight tracking-tight text-ink [text-wrap:balance]">
+              我先看六件事，不先制造焦虑。
             </h2>
-            <p className="mt-4 text-base leading-8 text-ink-muted">项目完整性、价格异常、漏项风险、边界说明、预算取舍。看完这些，再决定要不要继续谈、怎么追问。</p>
+            <p className="mt-4 text-base leading-8 text-ink-muted">项目完整性、价格异常、漏项风险、边界说明、预算取舍、追问清单。看完这些，再决定要不要继续谈。</p>
           </div>
 
           <motion.div
@@ -491,7 +491,7 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
         <div className="mx-auto max-w-[1240px] px-5 sm:px-8 lg:px-12">
           <div className="mx-auto max-w-4xl text-center">
             <p className="text-sm font-medium tracking-[0.18em] text-stone">04 / 免费入口</p>
-            <h2 className="mt-5 text-[clamp(2rem,4vw,3.2rem)] font-semibold leading-tight tracking-tight text-ink">
+            <h2 className="mt-5 text-[clamp(2rem,4vw,3.2rem)] font-semibold leading-tight tracking-tight text-ink [text-wrap:balance]">
               先让你拿到具体东西，再决定要不要付费。
             </h2>
             <p className="mt-4 text-base leading-8 text-ink-muted">免费初筛负责缩小问题，低价资料负责补判断，人工服务只处理工具看不明白、临近签约的部分。</p>
@@ -561,7 +561,7 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
         <div className="mx-auto max-w-[1240px] px-5 sm:px-8 lg:px-12">
           <div className="mx-auto max-w-3xl text-center">
             <p className="text-sm font-medium tracking-[0.18em] text-stone">04.5 / 你会拿到什么</p>
-            <h2 className="mt-5 text-[clamp(2rem,4vw,3.2rem)] font-semibold leading-tight tracking-tight text-ink">
+            <h2 className="mt-5 text-[clamp(2rem,4vw,3.2rem)] font-semibold leading-tight tracking-tight text-ink [text-wrap:balance]">
               不只是建议，是可以拿去用的文件。
             </h2>
             <p className="mt-4 text-base leading-8 text-ink-muted">以下是脱敏样张。付费服务交付的是基于你真实报价单生成的完整版。</p>
@@ -620,10 +620,10 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
         <div className="mx-auto max-w-[1240px] px-5 sm:px-8 lg:px-12">
           <div className="mx-auto max-w-3xl text-center">
             <p className="text-sm font-medium tracking-[0.18em] text-stone">04.8 / 真实案例</p>
-            <h2 className="mt-5 text-[clamp(2rem,4vw,3.2rem)] font-semibold leading-tight tracking-tight text-ink">
+            <h2 className="mt-5 text-[clamp(2rem,4vw,3.2rem)] font-semibold leading-tight tracking-tight text-ink [text-wrap:balance]">
               这些问题，都是签约前能避开的。
             </h2>
-            <p className="mt-4 text-base leading-8 text-ink-muted">以下是脱敏后的真实判断案例。细节已做匿名处理，风险类型和金额区间保持原样。</p>
+            <p className="mt-4 text-base leading-8 text-ink-muted">下面三个案例都是真实服务中遇到的情况，细节已脱敏，风险类型和金额保持原样。</p>
           </div>
 
           <motion.div
@@ -662,9 +662,9 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
       {/* ══════ Section 05: Services — 2x2 Grid ══════ */}
       <AnimatedSection className="relative isolate overflow-hidden border-b border-border bg-surface py-20 sm:py-24">
         <div className="relative mx-auto max-w-[1320px] px-5 sm:px-8 lg:px-12">
-          <p className="text-sm font-semibold text-stone">05 / 付费产品</p>
-          <div className="mt-8 text-center">
-            <h2 className="text-[clamp(2rem,4vw,3.2rem)] font-semibold leading-tight tracking-tight text-ink">
+          <div className="mx-auto max-w-4xl text-center">
+            <p className="text-sm font-medium tracking-[0.18em] text-stone">05 / 付费产品</p>
+            <h2 className="mt-5 text-[clamp(2rem,4vw,3.2rem)] font-semibold leading-tight tracking-tight text-ink [text-wrap:balance]">
               不是越贵越好，看你卡在哪一步。
             </h2>
             <p className="mt-4 text-base leading-8 text-ink-muted">从免费报价初筛到 ¥9800 起的居住场景服务，按你现在临近什么决策来选——不要先看价格，先看适合谁。</p>
@@ -742,7 +742,7 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
             variants={staggerContainer}
           >
             <motion.p variants={staggerItem} className="text-sm font-medium tracking-[0.18em] text-stone">06</motion.p>
-            <motion.h2 variants={staggerItem} className="mt-5 text-[clamp(2rem,4vw,3.2rem)] font-semibold leading-tight tracking-tight text-ink">
+            <motion.h2 variants={staggerItem} className="mt-5 text-[clamp(2rem,4vw,3.2rem)] font-semibold leading-tight tracking-tight text-ink [text-wrap:balance]">
               我不是泛装修博主，也不想吓唬你。
             </motion.h2>
             <motion.div variants={staggerItem} className="mt-7 space-y-5 text-base leading-9 text-ink-muted">
@@ -768,7 +768,7 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
             </motion.div>
 
             <motion.p variants={staggerItem} className="mt-8 border-t border-border pt-6 text-sm leading-7 text-ink-faint">
-              起点一定要窄。越具体，越容易被信任；越能解决一个真实问题，越容易形成长期资产。
+              能帮的事情有限，边界先说清。做不到的不接，看不清的不讲。
             </motion.p>
           </motion.div>
         </div>
