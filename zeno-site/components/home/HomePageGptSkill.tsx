@@ -271,7 +271,7 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
               variants={staggerItem}
               className="max-w-[22rem] text-[2.1rem] font-semibold leading-[1.16] tracking-tight text-ink sm:max-w-4xl sm:text-[4.25rem] xl:text-[5.25rem]"
             >
-              <span className="block">\u62ff\u5230\u88c5\u4fee\u62a5\u4ef7\u5355\uff0c</span>
+              <span className="block">拿到装修报价单，</span>
               <span className="block">不知道能不能签？</span>
             </motion.h1>
 
