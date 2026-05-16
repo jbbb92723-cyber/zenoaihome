@@ -149,39 +149,39 @@ export default function Header() {
 
                 {item.groups && activeMenu === item.key && (
                   <>
-                    <div className={`pointer-events-none fixed inset-x-0 bottom-0 z-[64] bg-canvas/90 backdrop-blur-[2px] ${scrolled ? 'top-14' : 'top-16'}`} />
+                    <div className={`pointer-events-none fixed inset-x-0 bottom-0 z-[64] bg-canvas/80 backdrop-blur-sm ${scrolled ? 'top-14' : 'top-16'}`} />
                     <div
-                      className={`fixed left-1/2 z-[70] w-[min(1120px,calc(100vw-3rem))] -translate-x-1/2 pt-3 animate-menu-in ${scrolled ? 'top-14' : 'top-16'}`}
+                      className={`fixed left-1/2 z-[70] w-[min(960px,calc(100vw-3rem))] -translate-x-1/2 pt-3 animate-menu-in ${scrolled ? 'top-14' : 'top-16'}`}
                       onMouseEnter={() => handleMenuEnter(item.key)}
                       onMouseLeave={handleMenuLeave}
                     >
-                    <div className="border border-border bg-canvas p-6 shadow-[0_30px_90px_rgba(42,39,35,0.24)] ring-1 ring-white/70">
-                      <div className="mb-4 flex items-center justify-between border-b border-border pb-4">
-                        <div>
-                          <p className="text-xs font-semibold uppercase tracking-widest text-stone">{item.label}</p>
-                          <p className="mt-1 text-xs text-ink-muted">
-                            {isEn ? 'Choose the stage before choosing the page.' : '先选问题阶段，再进入对应工具、资料或服务。'}
-                          </p>
-                        </div>
-                        <Link href={item.href} className="text-xs font-medium text-stone hover:text-ink">
-                          {isEn ? 'Overview ->' : '看概览 ->'}
+                    <div className="border border-border/60 bg-canvas shadow-[0_24px_64px_rgba(42,39,35,0.18)] ring-1 ring-white/60">
+                      {/* header bar */}
+                      <div className="flex items-center justify-between border-b border-border/50 px-7 py-4">
+                        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-stone">{item.label}</p>
+                        <Link href={item.href} className="text-xs text-ink-muted transition-colors hover:text-stone">
+                          {isEn ? 'View all →' : '查看全部 →'}
                         </Link>
                       </div>
 
-                      <div className="grid grid-cols-[repeat(auto-fit,minmax(190px,1fr))] gap-5">
+                      {/* body */}
+                      <div className={`px-7 py-6 ${item.groups.length === 1 ? 'max-w-lg' : 'grid gap-10'}`} style={item.groups.length > 1 ? { gridTemplateColumns: `repeat(${Math.min(item.groups.length, 3)}, 1fr)` } : undefined}>
                         {item.groups.map((group) => (
                           <div key={group.key} className="min-w-0">
-                            <p className="text-sm font-semibold text-ink">{group.label}</p>
-                            {group.desc && <p className="mt-1 text-xs leading-relaxed text-ink-muted">{group.desc}</p>}
-                            <div className="mt-3 space-y-1">
+                            {item.groups!.length > 1 && (
+                              <p className="mb-1 text-[11px] font-medium uppercase tracking-[0.15em] text-ink-faint">{group.label}</p>
+                            )}
+                            {group.desc && <p className="mb-4 text-xs text-ink-muted">{group.desc}</p>}
+                            {!group.desc && item.groups!.length > 1 && <div className="mb-4" />}
+                            <div className="space-y-0.5">
                               {group.items.map((leaf) => (
                                 <Link
                                   key={leaf.key}
                                   href={leaf.href}
-                                  className="group block border border-transparent bg-transparent px-3 py-2 transition-all duration-150 hover:-translate-y-px hover:border-border hover:bg-surface-warm hover:shadow-[0_10px_24px_rgba(42,39,35,0.06)]"
+                                  className="group flex items-baseline gap-3 rounded-sm px-2 py-1.5 transition-colors duration-100 hover:bg-surface-warm"
                                 >
-                                  <span className="block text-sm font-medium text-ink group-hover:text-stone">{leaf.label}</span>
-                                  {leaf.desc && <span className="mt-0.5 block text-xs leading-relaxed text-ink-muted">{leaf.desc}</span>}
+                                  <span className="text-sm text-ink group-hover:text-stone">{leaf.label}</span>
+                                  {leaf.desc && <span className="text-[11px] text-ink-faint">{leaf.desc}</span>}
                                 </Link>
                               ))}
                             </div>
@@ -304,19 +304,20 @@ function MobileNavGroup({
 
       {expanded && (
         <div className="pb-4">
-          <Link href={item.href} onClick={onNavigate} className="mb-3 block text-sm font-medium text-stone">
-            {isEn ? 'Overview' : '概览'}
+          <Link href={item.href} onClick={onNavigate} className="mb-3 inline-block text-xs text-ink-muted hover:text-stone">
+            {isEn ? 'View all →' : '查看全部 →'}
           </Link>
           <div className="space-y-4">
             {item.groups.map((group) => (
-              <div key={group.key} className="border-l border-border pl-4">
-                <p className="text-sm font-semibold text-ink">{group.label}</p>
-                {group.desc && <p className="mt-1 text-xs leading-relaxed text-ink-muted">{group.desc}</p>}
-                <div className="mt-2 grid gap-1">
+              <div key={group.key}>
+                {item.groups!.length > 1 && (
+                  <p className="mb-2 text-[11px] font-medium uppercase tracking-[0.15em] text-ink-faint">{group.label}</p>
+                )}
+                <div className="grid gap-0.5">
                   {group.items.map((leaf) => (
-                    <Link key={leaf.key} href={leaf.href} onClick={onNavigate} className="block py-1.5 text-sm text-ink-muted hover:text-ink">
-                      {leaf.label}
-                      {leaf.desc && <span className="block text-xs leading-relaxed text-ink-faint">{leaf.desc}</span>}
+                    <Link key={leaf.key} href={leaf.href} onClick={onNavigate} className="flex items-baseline gap-2 py-1.5 text-sm text-ink-muted hover:text-ink">
+                      <span>{leaf.label}</span>
+                      {leaf.desc && <span className="text-[11px] text-ink-faint">{leaf.desc}</span>}
                     </Link>
                   ))}
                 </div>
