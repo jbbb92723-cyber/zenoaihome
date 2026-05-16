@@ -52,7 +52,7 @@ const serviceEntries = [
   },
   {
     title: 'AI 工作流咨询',
-    desc: '这是延伸服务，适合想把个人经验、内容生产或行业流程接入 AI 的人。',
+    desc: '想把个人经验、内容生产或行业流程接入 AI，先拿免费工具跑一个场景再决定。',
     href: '/services/ai-workflow',
   },
 ]
@@ -97,7 +97,7 @@ const problemEntryCards = [
 
 const extensionEntryCard = {
   title: '我想把 AI 用进内容或工作流',
-  description: '这是延伸入口，不抢装修签约前主线。适合已经有真实任务，想用 AI 放大经验的人。',
+  description: '适合已经有真实任务，想用 AI 放大经验的人。',
   primary: { label: '拿 AI 工作流提示词包', href: '/resources#ai-neirong-gongzuoliu-tishici-bao' },
   secondary: { label: '去提示词体验场', href: '/tools/prompts' },
   fallback: { label: '看 AI 工作流咨询 ->', href: '/services/ai-workflow' },
@@ -124,7 +124,7 @@ export default function ResourcesPage() {
       <PageHero
         label="装修判断力资源入口"
         title="按你卡住的问题，拿对应清单和工具"
-        subtitle="这不是资料仓库。先找到你现在最难判断的那一步，再去拿清单、模板或工具；如果材料已经具体，再进入人工判断服务。"
+        subtitle="先找到你现在最难判断的那一步，再拿清单、模板或工具。材料已经具体的，再进人工服务。"
         size="content"
       />
 

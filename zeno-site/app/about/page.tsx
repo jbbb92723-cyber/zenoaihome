@@ -23,10 +23,10 @@ const dontDo = [
 ]
 
 const doingNow = [
-  '把签约前最容易踩的报价、预算、合同问题做成可直接用的工具和清单。',
-  '在文章里持续记录工地现场和报价案例的判断过程，不是观点输出。',
+  '把签约前最容易踩的报价、预算、合同问题，做成工具和清单。',
+  '在文章里持续记录报价案例和工地现场的判断过程。',
   '提供从 ¥39 自查指南到 ¥9800 起居住场景服务的人工判断。',
-  '同步把 AI 怎么接进装修这门传统行业，做成给同行看的延伸内容。',
+  '把 AI 怎么接进装修这门传统行业，做成给同行看的延伸内容。',
 ]
 
 export default function AboutPage() {
@@ -68,8 +68,8 @@ export default function AboutPage() {
             这些年教会我一件事：传统行业最大的消耗不在技术，在信息差、在信任成本、在好经验没被记下来。
           </p>
           <p className="text-base text-ink leading-[1.85] mt-4">
-            我现在做的事，其实只有一个意图：帮装修这个行业变得更透明一点，
-            帮普通人在装修这件事上少踩点坑、少花点冤枉钱、住得更舒展。
+            我现在做的事很简单：帮装修这个行业透明一点，
+            帮普通人少踩点坑、少花点冒柉钱、住得更舒展。
           </p>
           <p className="text-base text-ink leading-[1.85] mt-4">
             这个网站不是装修公司官网，也不是单纯的博客。
@@ -143,15 +143,15 @@ export default function AboutPage() {
 
         {/* ── 如果你需要更具体的判断 ── */}
         <section className="mb-12 border border-border p-6 sm:p-8">
-          <h2 className="section-heading mb-4">如果你需要的不是更多信息，而是更具体的判断</h2>
+          <h2 className="section-heading mb-4">你需要的不是更多信息，而是具体的判断</h2>
           <p className="text-sm text-ink-muted leading-relaxed mb-2">
-            如果你正在装修，手里已经有报价单、方案、预算或施工判断问题，可以直接看我现在开放的服务。
+            手里有报价单、方案、预算或施工问题，可以直接看我现在开放的服务。
           </p>
           <p className="text-sm text-ink-muted leading-relaxed mb-5">
-            如果你想把 AI 真正接进自己的工作流，而不是停留在工具尝鲜，也可以先看看我提供的咨询方向。
+            想把 AI 接进工作流，可以先看咨询方向。
           </p>
           {/* 改了什么：CTA 文案从“看看我能帮什么”改成更具体的行动引导 */}
-          <CTA href="/services" label="直接看我现在能帮你判断什么" variant="secondary" />
+          <CTA href="/services" label="看服务边界" variant="secondary" />
         </section>
 
         {/* ── 联系入口 ── */}

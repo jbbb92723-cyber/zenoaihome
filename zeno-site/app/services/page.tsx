@@ -120,7 +120,7 @@ const entryRoutes = [
   {
     label: '主线 / 装修签约前判断',
     title: '你买的不是咨询时长，是签字前少后悔',
-    description: '给普通装修业主的主入口。先用免费工具和 ¥39 指南缩小问题，再看 ¥399、¥699、¥1499 的人工判断。',
+    description: '先用免费工具和 ¥39 指南缩小问题，再看 ¥399、¥699、¥1499 的人工判断。',
     href: '/services/renovation',
     cta: '看装修签约前路径',
     image: '/images/services/renovation-judgment-proof.svg',
@@ -128,7 +128,7 @@ const entryRoutes = [
   {
     label: '延伸 / AI 工作流判断',
     title: '你买的不是提示词，是一个能跑起来的真实场景',
-    description: '给传统行业人、同行和内容创作者的入口。先用免费工具跑一个任务，再看小课、会员或一对一咨询。',
+    description: '先用免费工具跑一个任务，再看小课、会员或一对一咨询。',
     href: '/services/ai-workflow',
     cta: '看 AI 工作流路径',
     image: '/images/services/ai-workflow-proof.svg',
@@ -137,24 +137,24 @@ const entryRoutes = [
 
 const serviceFaqs = [
   {
-    question: '为什么总服务页要先分两条入口？',
+    question: '为什么总服务页要分两条入口？',
     answer:
-      '因为装修业主和传统行业人的购买理由不同。业主想在签字前少后悔，同行想把已有经验接进 AI。先分清入口，后面的工具、产品和服务才不会混。',
+      '装修业主和同行买的东西不一样。业主想签字前少后悔，同行想把经验接进 AI。分清入口，后面的工具和服务才不会混。',
   },
   {
-    question: '什么时候更适合先用工具和资料，而不是直接找我？',
+    question: '什么时候更适合先用工具，而不是直接找我？',
     answer:
-      '如果你还没有具体材料，或者只是感觉有问题但说不清，先用工具和资料把问题缩小。带着清单来问，比空着手咨询更划算。',
+      '还没有具体材料，或者只是感觉有问题但说不清——先用工具把问题缩小。带着清单来问，比空着手咨询更划算。',
   },
   {
-    question: '为什么要把价格梯子写出来？',
+    question: '为什么把价格写出来？',
     answer:
-      '因为零收入阶段最怕什么都想卖，最后用户也不知道该买什么。价格梯子写清楚，用户能按自己的阶段选择，你也能看出哪个产品真正有人要。',
+      '不写清楚，你不知道该买哪个，我也不知道哪个真有人要。按你现在的阶段选，别贪多。',
   },
   {
     question: '课程、会员和陪跑现在是不是主线？',
     answer:
-      '不是。它们是后面的放大方式。当前先把免费工具、低价产品和两条人工服务跑通，再根据真实问题扩展。',
+      '不是。当前先把免费工具和两条人工服务跑通，再根据真实问题扩展。',
   },
 ]
 
@@ -207,8 +207,8 @@ export default function ServicesPage() {
       <PageHero
         label="找我帮你判断"
         title="先分清你要买的是哪种判断"
-        subtitle="装修业主先看签约前报价风险，传统行业人再看 AI 场景能不能跑起来。当前主线是前者，后者是延伸入口。这里先把路径分开，再给你对应的免费入口、低价产品和人工服务。"
-        note="还说不清问题时，先用工具；已经有材料和明确时间点，再进入服务。"
+        subtitle="装修业主先看报价风险，传统行业人再看 AI 场景能不能跑。这里把路径分开，先给你免费入口，再决定要不要人工服务。"
+        note="还说不清问题时，先用工具；已经有材料和明确时间点，再进服务。"
         size="content"
       />
 
@@ -269,7 +269,7 @@ export default function ServicesPage() {
           <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-ink-faint">两条价格路径</p>
           <h2 className="mb-3 text-lg font-semibold text-ink">不是越贵越好，是看你现在卡在哪一步</h2>
           <p className="mb-6 max-w-3xl text-sm leading-relaxed text-ink-muted">
-            网站当前要验证的是一条主线和一条延伸线：装修签约前判断优先，AI 工作流作为背景能力。每一档都要让用户知道自己会拿到什么，以及下一步该点哪里。
+            装修签约前判断优先，AI 工作流作为延伸。每一档都写清你会拿到什么，以及下一步该点哪里。
           </p>
 
           <div className="grid gap-8 lg:grid-cols-[2fr_1fr]">

@@ -148,9 +148,9 @@ export default function StartPage() {
 
         <div className="mt-14 border border-border bg-surface-warm p-6 sm:p-8">
           <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-3">如果你还是不确定</p>
-          <h2 className="text-lg font-semibold text-ink mb-3">先去工具页和资源页，再回来判断要不要服务</h2>
+          <h2 className="text-lg font-semibold text-ink mb-3">还不确定——先去工具页跑一轮，再回来看要不要服务</h2>
           <p className="text-sm text-ink-muted leading-relaxed mb-5">
-            工具负责把问题缩小，资源负责给你第一轮抓手；服务只在你已经知道“问题大概在哪”，但还需要人直接判断时再进入。
+            工具把问题缩小，资料给你第一轮拓手。服务只在你已经知道“问题大概在哪”的时候再进。
           </p>
           <div className="flex flex-wrap gap-3">
             <CTA href="/tools" label="去工具页" variant="secondary" />

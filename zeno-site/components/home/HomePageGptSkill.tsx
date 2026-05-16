@@ -370,7 +370,7 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
             <h2 className="mt-3 text-[clamp(2rem,4vw,3.2rem)] font-semibold leading-tight tracking-tight text-ink [text-wrap:balance]">
               很多装修后悔，不是发生在施工后。
             </h2>
-            <p className="mt-4 text-base leading-8 text-ink-muted">报价没看懂，合同没问清，预算没拆透，后面就容易一步步被动。签约前先把判断做清楚。</p>
+            <p className="mt-4 text-base leading-8 text-ink-muted">报价没看懂，合同没问清，预算没拆透——后面就是一步接一步被动。</p>
           </div>
 
           {/* Asymmetric: Row 1 → 2 cols (wider), Row 2 → 3 cols (narrower) */}
@@ -450,7 +450,7 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
             <h2 className="mt-6 text-[clamp(2rem,4vw,3.2rem)] font-semibold leading-tight tracking-tight text-ink [text-wrap:balance]">
               我先看六件事，不先制造焦虑。
             </h2>
-            <p className="mt-4 text-base leading-8 text-ink-muted">项目完整性、价格异常、漏项风险、边界说明、预算取舍、追问清单。看完这些，再决定要不要继续谈。</p>
+            <p className="mt-4 text-base leading-8 text-ink-muted">完整性、异常价、漏项、边界、取舍、追问。看完再决定要不要继续谈。</p>
           </div>
 
           <motion.div
@@ -494,7 +494,7 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
             <h2 className="mt-5 text-[clamp(2rem,4vw,3.2rem)] font-semibold leading-tight tracking-tight text-ink [text-wrap:balance]">
               先让你拿到具体东西，再决定要不要付费。
             </h2>
-            <p className="mt-4 text-base leading-8 text-ink-muted">免费初筛负责缩小问题，低价资料负责补判断，人工服务只处理工具看不明白、临近签约的部分。</p>
+            <p className="mt-4 text-base leading-8 text-ink-muted">免费工具先给结果，低价资料补判断，人工服务只接工具解决不了的。</p>
           </div>
 
           {/* Asymmetric: 1 featured + 3 stacked — NOT generic 4-equal cards */}
@@ -667,7 +667,7 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
             <h2 className="mt-5 text-[clamp(2rem,4vw,3.2rem)] font-semibold leading-tight tracking-tight text-ink [text-wrap:balance]">
               不是越贵越好，看你卡在哪一步。
             </h2>
-            <p className="mt-4 text-base leading-8 text-ink-muted">从免费报价初筛到 ¥9800 起的居住场景服务，按你现在临近什么决策来选——不要先看价格，先看适合谁。</p>
+            <p className="mt-4 text-base leading-8 text-ink-muted">不要先看价格，先看你卡在哪一步。从免费初筛到居住场景服务，按决策节点选。</p>
           </div>
 
           {/* 统一商业梯子：data/commercial-ladder.ts 是单一真源 */}
@@ -747,7 +747,7 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
             </motion.h2>
             <motion.div variants={staggerItem} className="mt-7 space-y-5 text-base leading-9 text-ink-muted">
               <p>我做装修 16 年，见过很多后悔不是来自审美，而是来自签约前没问清、预算里没留边界、施工中没有留痕。</p>
-              <p>我想帮你解决的，就是签约前的判断问题。不是替你做所有决定，而是在关键节点上帮你看清楚风险、关键点和下一步。</p>
+              <p>我想帮你解决的就一件事：签约前的判断。不替你做所有决定，但在关键节点帮你看清风险和下一步。</p>
             </motion.div>
 
             <motion.div variants={staggerItem} className="mt-10 grid grid-cols-1 gap-px border border-border bg-[#e6d9cc] sm:grid-cols-3">
