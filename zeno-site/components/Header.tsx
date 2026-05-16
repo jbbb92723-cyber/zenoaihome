@@ -132,7 +132,7 @@ export default function Header() {
                 <Link
                   href={item.href}
                   onFocus={() => item.groups && setActiveMenu(item.key)}
-                  className={`group/nav relative inline-flex items-center gap-1 px-3 py-2 text-[0.8125rem] transition-colors ${
+                  className={`group/nav relative inline-flex items-center gap-1 px-3 py-2 text-sm transition-colors ${
                     isActive(item.href)
                       ? 'text-stone font-semibold'
                       : 'text-ink-muted hover:text-ink'
@@ -207,12 +207,12 @@ export default function Header() {
             </button>
             <LanguageToggle />
             <ThemeToggle />
-            <Link href={loginHref} className="px-2 py-2 text-[0.8125rem] text-ink-muted transition-colors hover:text-ink">
+            <Link href={loginHref} className="px-2 py-2 text-sm text-ink-muted transition-colors hover:text-ink">
               {loginLabel}
             </Link>
             <Link
               href={uploadHref}
-              className="ml-1 inline-flex h-9 items-center bg-stone px-4 text-[0.8125rem] font-medium text-white transition-all duration-200 hover:-translate-y-px hover:bg-stone/90 hover:shadow-[0_12px_28px_rgba(139,115,85,0.20)] active:scale-[0.97] active:translate-y-0"
+              className="ml-1 inline-flex h-9 items-center bg-stone px-4 text-sm font-medium text-white transition-all duration-200 hover:-translate-y-px hover:bg-stone/90 hover:shadow-[0_12px_28px_rgba(139,115,85,0.20)] active:scale-[0.97] active:translate-y-0"
             >
               {uploadLabel}
             </Link>

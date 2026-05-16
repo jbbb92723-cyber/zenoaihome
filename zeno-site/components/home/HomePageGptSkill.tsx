@@ -1,4 +1,4 @@
-"use client"
+﻿"use client"
 
 import Link from 'next/link'
 import { useRef } from 'react'
@@ -187,9 +187,9 @@ const trustItems: Array<{ icon: IconComponent; title: string; body: string }> = 
 function ActionLink({ href, children, variant = 'primary' }: ActionLinkProps) {
   const baseClass = 'inline-flex min-h-12 items-center justify-center gap-2 text-sm font-medium transition-all duration-200'
   const className = {
-    primary: `${baseClass} bg-[#9a5424] px-5 py-3 text-white hover:bg-[#7f421a] active:scale-[0.98] active:-translate-y-px`,
-    secondary: `${baseClass} border border-[#cdbfaf] bg-white/70 px-5 py-3 text-[#5f3b24] hover:bg-white hover:border-[#b9875d] active:scale-[0.98]`,
-    text: `inline-flex items-center gap-2 text-sm font-medium text-[#7b4b2b] transition-all duration-200 hover:text-[#4b2b18] hover:gap-3`,
+    primary: `${baseClass} bg-stone px-5 py-3 text-white hover:bg-stone-deep active:scale-[0.98] active:-translate-y-px`,
+    secondary: `${baseClass} border border-border bg-surface/70 px-5 py-3 text-stone-deep hover:bg-surface hover:border-stone active:scale-[0.98]`,
+    text: `inline-flex items-center gap-2 text-sm font-medium text-stone transition-all duration-200 hover:text-ink hover:gap-3`,
   }[variant]
 
   return (
@@ -237,12 +237,12 @@ type Props = {
 ═══════════════════════════════════════════ */
 export default function HomePageGptSkill({ fontClassName }: Props) {
   return (
-    <main className="bg-[#fbf8f4] text-[#272421]">
+    <main className="bg-canvas text-ink">
       {/* ══════ HERO — Asymmetric Split Layout ══════ */}
-      <section className="relative isolate overflow-hidden border-b border-[#e7ded3]">
+      <section className="relative isolate overflow-hidden border-b border-border">
         {/* Background abstract pattern — no stock photos */}
         <div className="absolute inset-y-0 right-0 hidden w-[56%] opacity-60 lg:block" aria-hidden>
-          <div className="absolute inset-0 bg-gradient-to-l from-transparent via-[#fbf8f4]/60 to-[#fbf8f4]" />
+          <div className="absolute inset-0 bg-gradient-to-l from-transparent via-canvas/60 to-canvas" />
           <svg className="h-full w-full opacity-20" viewBox="0 0 800 800" preserveAspectRatio="xMidYMid slice">
             <defs>
               <linearGradient id="hero-grad" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -269,13 +269,13 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
           >
             <motion.h1
               variants={staggerItem}
-              className="max-w-[22rem] text-[2.1rem] font-semibold leading-[1.16] tracking-tight text-[#24211e] sm:max-w-4xl sm:text-[4.25rem] xl:text-[5.25rem]"
+              className="max-w-[22rem] text-[2.1rem] font-semibold leading-[1.16] tracking-tight text-ink sm:max-w-4xl sm:text-[4.25rem] xl:text-[5.25rem]"
             >
-              <span className="block">拿到装修报价，</span>
+              <span className="block">\u62ff\u5230\u88c5\u4fee\u62a5\u4ef7\u5355\uff0c</span>
               <span className="block">不知道能不能签？</span>
             </motion.h1>
 
-            <motion.p variants={staggerItem} className="mt-7 max-w-[22rem] text-base leading-8 text-[#5f5952] sm:max-w-2xl sm:text-lg">
+            <motion.p variants={staggerItem} className="mt-7 max-w-[22rem] text-base leading-8 text-ink-muted sm:max-w-2xl sm:text-lg">
               上传或对照报价单，先查 8 个签约前风险。
             </motion.p>
 
@@ -288,14 +288,14 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
 
             <motion.div
               variants={staggerItem}
-              className="mt-10 grid max-w-3xl grid-cols-2 gap-px border border-[#e8ddd1] bg-[#e8ddd1] sm:grid-cols-4"
+              className="mt-10 grid max-w-3xl grid-cols-2 gap-px border border-border bg-[#e8ddd1] sm:grid-cols-4"
             >
               {['16 年\n装修现场', '5 个\n判断维度', '免费\n初筛入口', '边界\n先说清'].map((item) => {
                 const [title, body] = item.split('\n')
                 return (
-                  <div key={item} className="bg-white/76 px-4 py-4">
-                    <p className="text-sm font-semibold leading-5 text-[#3a332e]">{title}</p>
-                    <p className="mt-1 text-xs leading-5 text-[#7c7168]">{body}</p>
+                  <div key={item} className="bg-surface/76 px-4 py-4">
+                    <p className="text-sm font-semibold leading-5 text-ink">{title}</p>
+                    <p className="mt-1 text-xs leading-5 text-ink-faint">{body}</p>
                   </div>
                 )
               })}
@@ -313,15 +313,15 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
               {/* Quote Risk Card — Liquid Glass refraction */}
               <motion.div
                 variants={scaleIn}
-                className="min-w-0 border border-white/70 bg-white/86 p-7 backdrop-blur-sm"
+                className="min-w-0 border border-surface/70 bg-surface/86 p-7 backdrop-blur-sm"
                 style={{ boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.6), 0 22px 70px rgba(80,55,32,0.12)' }}
               >
                 <div className="flex items-start justify-between gap-5">
                   <div>
-                    <p className="text-xs font-semibold tracking-[0.18em] text-[#a65a2c]">QUOTE RISK</p>
-                    <h2 className="mt-3 break-all text-xl font-semibold leading-snug text-[#2a2520] sm:break-normal sm:text-2xl">不是先判断贵不贵，先判断能不能签。</h2>
+                    <p className="text-xs font-semibold tracking-[0.18em] text-stone">QUOTE RISK</p>
+                    <h2 className="mt-3 break-all text-xl font-semibold leading-snug text-ink sm:break-normal sm:text-2xl">不是先判断贵不贵，先判断能不能签。</h2>
                   </div>
-                  <span className="flex h-12 w-12 shrink-0 items-center justify-center bg-[#f4eee7] text-[#a15b2f]">
+                  <span className="flex h-12 w-12 shrink-0 items-center justify-center bg-surface-warm text-stone">
                     <ShieldCheck size={26} weight="duotone" aria-hidden />
                   </span>
                 </div>
@@ -330,10 +330,10 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
                   {quoteSignals.map((item, idx) => (
                     <div key={item.label}>
                       <div className="mb-2 flex items-center justify-between gap-4">
-                        <p className="text-sm font-semibold text-[#322d28]">{item.label}</p>
-                        <p className={`${fontClassName} text-lg font-semibold tabular-nums text-[#8b4d27]`}>{item.value}</p>
+                        <p className="text-sm font-semibold text-ink">{item.label}</p>
+                        <p className={`${fontClassName} text-lg font-semibold tabular-nums text-stone`}>{item.value}</p>
                       </div>
-                      <div className="h-2 overflow-hidden bg-[#efe5da]">
+                      <div className="h-2 overflow-hidden bg-stone-pale">
                         <motion.div
                           className="h-full origin-left"
                           style={{ backgroundColor: item.color, width: item.width }}
@@ -343,16 +343,16 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
                           transition={{ type: 'spring', stiffness: 60, damping: 18, delay: 0.4 + idx * 0.12 }}
                         />
                       </div>
-                      <p className="mt-2 text-xs leading-5 text-[#766c63]">{item.note}</p>
+                      <p className="mt-2 text-xs leading-5 text-ink-faint">{item.note}</p>
                     </div>
                   ))}
                 </div>
 
-                <div className="mt-8 border-t border-[#e6d9cc] pt-6">
-                  <p className="text-sm font-semibold text-[#332d27]">初筛会输出什么</p>
-                  <div className="mt-4 grid gap-2 text-sm text-[#5f5952] sm:grid-cols-2">
+                <div className="mt-8 border-t border-border pt-6">
+                  <p className="text-sm font-semibold text-ink">初筛会输出什么</p>
+                  <div className="mt-4 grid gap-2 text-sm text-ink-muted sm:grid-cols-2">
                     {['风险等级', '漏项提醒', '追问清单', '下一步建议'].map((item) => (
-                      <span key={item} className="border border-[#ead9c7] bg-[#fbf8f4] px-3 py-2">{item}</span>
+                      <span key={item} className="border border-border bg-canvas px-3 py-2">{item}</span>
                     ))}
                   </div>
                 </div>
@@ -363,14 +363,14 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
       </section>
 
       {/* ══════ Section 02: Pain Points — Asymmetric 2+3 Grid ══════ */}
-      <AnimatedSection className="border-b border-[#e7ded3] py-20 sm:py-24">
+      <AnimatedSection className="border-b border-border py-20 sm:py-24">
         <div className="mx-auto max-w-[1320px] px-5 sm:px-8 lg:px-12">
           <div className="mx-auto max-w-3xl text-center">
-            <p className="text-sm font-medium text-[#a65a2c]">02</p>
-            <h2 className="mt-3 text-[clamp(2rem,4vw,3.8rem)] font-semibold leading-tight tracking-tight text-[#25221f]">
+            <p className="text-sm font-medium text-stone">02</p>
+            <h2 className="mt-3 text-[clamp(2rem,4vw,3.2rem)] font-semibold leading-tight tracking-tight text-ink">
               很多装修后悔，不是发生在施工后。
             </h2>
-            <p className="mt-4 text-base leading-8 text-[#756c63]">报价没看懂，合同没问清，预算没拆透，后面就容易一步步被动。签约前先把判断做清楚。</p>
+            <p className="mt-4 text-base leading-8 text-ink-muted">报价没看懂，合同没问清，预算没拆透，后面就容易一步步被动。签约前先把判断做清楚。</p>
           </div>
 
           {/* Asymmetric: Row 1 → 2 cols (wider), Row 2 → 3 cols (narrower) */}
@@ -387,15 +387,15 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
                 <motion.div key={card.title} variants={staggerItem}>
                   <Link
                     href={card.href}
-                    className="group flex min-h-[16rem] flex-col border border-[#e4d8cb] bg-white p-8 transition-all duration-200 hover:-translate-y-px hover:shadow-[0_24px_70px_rgba(67,45,26,0.1)] active:scale-[0.995]"
+                    className="group flex min-h-[16rem] flex-col border border-border bg-surface p-8 transition-all duration-200 hover:-translate-y-px hover:shadow-[0_24px_70px_rgba(67,45,26,0.1)] active:scale-[0.995]"
                     style={{ boxShadow: '0 18px 60px rgba(67,45,26,0.06)' }}
                   >
-                    <span className="flex h-14 w-14 items-center justify-center border border-[#c09a77] text-[#a15b2f]">
+                    <span className="flex h-14 w-14 items-center justify-center border border-stone-light text-stone">
                       <Icon size={30} weight="duotone" aria-hidden />
                     </span>
-                    <h3 className="mt-6 text-xl font-semibold leading-8 text-[#2c2824]">{card.title}</h3>
-                    <p className="mt-3 max-w-[45ch] text-sm leading-7 text-[#6f675f]">{card.body}</p>
-                    <span className="mt-auto inline-flex items-center gap-2 pt-6 text-sm font-medium text-[#7b4b2b] transition-all duration-200 group-hover:gap-3">
+                    <h3 className="mt-6 text-xl font-semibold leading-8 text-ink">{card.title}</h3>
+                    <p className="mt-3 max-w-[45ch] text-sm leading-7 text-ink-muted">{card.body}</p>
+                    <span className="mt-auto inline-flex items-center gap-2 pt-6 text-sm font-medium text-stone transition-all duration-200 group-hover:gap-3">
                       进入这条线
                       <ArrowRight size={16} aria-hidden />
                     </span>
@@ -418,15 +418,15 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
                 <motion.div key={card.title} variants={staggerItem}>
                   <Link
                     href={card.href}
-                    className="group flex min-h-[16rem] flex-col border border-[#e4d8cb] bg-white p-8 transition-all duration-200 hover:-translate-y-px hover:shadow-[0_24px_70px_rgba(67,45,26,0.1)] active:scale-[0.995]"
+                    className="group flex min-h-[16rem] flex-col border border-border bg-surface p-8 transition-all duration-200 hover:-translate-y-px hover:shadow-[0_24px_70px_rgba(67,45,26,0.1)] active:scale-[0.995]"
                     style={{ boxShadow: '0 18px 60px rgba(67,45,26,0.06)' }}
                   >
-                    <span className="flex h-14 w-14 items-center justify-center border border-[#c09a77] text-[#a15b2f]">
+                    <span className="flex h-14 w-14 items-center justify-center border border-stone-light text-stone">
                       <Icon size={30} weight="duotone" aria-hidden />
                     </span>
-                    <h3 className="mt-6 text-xl font-semibold leading-8 text-[#2c2824]">{card.title}</h3>
-                    <p className="mt-3 max-w-[45ch] text-sm leading-7 text-[#6f675f]">{card.body}</p>
-                    <span className="mt-auto inline-flex items-center gap-2 pt-6 text-sm font-medium text-[#7b4b2b] transition-all duration-200 group-hover:gap-3">
+                    <h3 className="mt-6 text-xl font-semibold leading-8 text-ink">{card.title}</h3>
+                    <p className="mt-3 max-w-[45ch] text-sm leading-7 text-ink-muted">{card.body}</p>
+                    <span className="mt-auto inline-flex items-center gap-2 pt-6 text-sm font-medium text-stone transition-all duration-200 group-hover:gap-3">
                       进入这条线
                       <ArrowRight size={16} aria-hidden />
                     </span>
@@ -439,18 +439,18 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
       </AnimatedSection>
 
       {/* ══════ Section 03: Framework — Horizontal Flow Steps ══════ */}
-      <AnimatedSection className="border-b border-[#e7ded3] bg-white py-20 sm:py-24">
+      <AnimatedSection className="border-b border-border bg-surface py-20 sm:py-24">
         <div className="mx-auto max-w-[1320px] px-5 sm:px-8 lg:px-12">
           <div className="mx-auto max-w-4xl text-center">
-            <p className="flex items-center justify-center gap-4 text-sm font-medium tracking-[0.18em] text-[#a65a2c]">
+            <p className="flex items-center justify-center gap-4 text-sm font-medium tracking-[0.18em] text-stone">
               <span className="h-px w-28 bg-[#dfc5ac]" />
               03 / 判断方法
               <span className="h-px w-28 bg-[#dfc5ac]" />
             </p>
-            <h2 className="mt-6 text-[clamp(2.6rem,5vw,5rem)] font-semibold leading-tight tracking-tight text-[#25221f]">
+            <h2 className="mt-6 text-[clamp(2rem,4vw,3.2rem)] font-semibold leading-tight tracking-tight text-ink">
               我先看五件事，不先制造焦虑。
             </h2>
-            <p className="mt-4 text-base leading-8 text-[#686159]">项目完整性、价格异常、漏项风险、边界说明、预算取舍。看完这些，再决定要不要继续谈、怎么追问。</p>
+            <p className="mt-4 text-base leading-8 text-ink-muted">项目完整性、价格异常、漏项风险、边界说明、预算取舍。看完这些，再决定要不要继续谈、怎么追问。</p>
           </div>
 
           <motion.div
@@ -471,14 +471,14 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
                       aria-hidden
                     />
                   )}
-                  <div className="mx-auto flex h-28 w-28 items-center justify-center border border-[#ead9c7] bg-[#fbf8f4]">
-                    <Icon size={42} weight="duotone" className="text-[#a15b2f]" aria-hidden />
+                  <div className="mx-auto flex h-28 w-28 items-center justify-center border border-border bg-canvas">
+                    <Icon size={42} weight="duotone" className="text-stone" aria-hidden />
                   </div>
-                  <span className={`${fontClassName} -mt-4 inline-flex h-9 min-w-9 items-center justify-center bg-[#b48d67] px-3 text-sm font-semibold tabular-nums text-white`}>
+                  <span className={`${fontClassName} -mt-4 inline-flex h-9 min-w-9 items-center justify-center bg-stone px-3 text-sm font-semibold tabular-nums text-white`}>
                     {step.number}
                   </span>
-                  <h3 className="mt-6 text-xl font-semibold text-[#2c2824]">{step.title}</h3>
-                  <p className="mx-auto mt-3 max-w-[11rem] text-sm leading-7 text-[#6f675f]">{step.body}</p>
+                  <h3 className="mt-6 text-xl font-semibold text-ink">{step.title}</h3>
+                  <p className="mx-auto mt-3 max-w-[11rem] text-sm leading-7 text-ink-muted">{step.body}</p>
                 </motion.div>
               )
             })}
@@ -487,14 +487,14 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
       </AnimatedSection>
 
       {/* ══════ Section 04: Tools — Asymmetric 1+3 Layout ══════ */}
-      <AnimatedSection className="border-b border-[#e7ded3] py-20 sm:py-24">
+      <AnimatedSection className="border-b border-border py-20 sm:py-24">
         <div className="mx-auto max-w-[1240px] px-5 sm:px-8 lg:px-12">
           <div className="mx-auto max-w-4xl text-center">
-            <p className="text-sm font-medium tracking-[0.18em] text-[#a65a2c]">04 / 免费入口</p>
-            <h2 className="mt-5 text-[clamp(2rem,4.4vw,4.25rem)] font-semibold leading-tight tracking-tight text-[#25221f]">
+            <p className="text-sm font-medium tracking-[0.18em] text-stone">04 / 免费入口</p>
+            <h2 className="mt-5 text-[clamp(2rem,4vw,3.2rem)] font-semibold leading-tight tracking-tight text-ink">
               先让你拿到具体东西，再决定要不要付费。
             </h2>
-            <p className="mt-4 text-base leading-8 text-[#6f675f]">免费初筛负责缩小问题，低价资料负责补判断，人工服务只处理工具看不明白、临近签约的部分。</p>
+            <p className="mt-4 text-base leading-8 text-ink-muted">免费初筛负责缩小问题，低价资料负责补判断，人工服务只处理工具看不明白、临近签约的部分。</p>
           </div>
 
           {/* Asymmetric: 1 featured + 3 stacked — NOT generic 4-equal cards */}
@@ -509,13 +509,13 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
             <motion.div variants={staggerItem}>
               <Link
                 href={toolCards[0].href}
-                className="group flex h-full flex-col border border-[#e4d8cb] bg-white p-10 transition-all duration-200 hover:-translate-y-px hover:shadow-[0_26px_80px_rgba(67,45,26,0.11)] active:scale-[0.998]"
+                className="group flex h-full flex-col border border-border bg-surface p-10 transition-all duration-200 hover:-translate-y-px hover:shadow-[0_26px_80px_rgba(67,45,26,0.11)] active:scale-[0.998]"
                 style={{ boxShadow: '0 18px 60px rgba(67,45,26,0.07)' }}
               >
-                <ShieldCheck size={56} weight="duotone" className="text-[#a15b2f]" aria-hidden />
-                <h3 className="mt-7 text-2xl font-semibold text-[#2b2723]">{toolCards[0].title}</h3>
-                <p className="mt-4 max-w-[40ch] text-base leading-8 text-[#6f675f]">{toolCards[0].body}</p>
-                <span className="mt-auto inline-flex items-center gap-2 pt-8 text-sm font-medium text-[#7b4b2b] transition-all duration-200 group-hover:gap-3">
+                <ShieldCheck size={56} weight="duotone" className="text-stone" aria-hidden />
+                <h3 className="mt-7 text-2xl font-semibold text-ink">{toolCards[0].title}</h3>
+                <p className="mt-4 max-w-[40ch] text-base leading-8 text-ink-muted">{toolCards[0].body}</p>
+                <span className="mt-auto inline-flex items-center gap-2 pt-8 text-sm font-medium text-stone transition-all duration-200 group-hover:gap-3">
                   {toolCards[0].action}
                   <ArrowRight size={16} aria-hidden />
                 </span>
@@ -530,17 +530,17 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
                   <motion.div key={card.title} variants={staggerItem}>
                     <Link
                       href={card.href}
-                      className="group flex items-center gap-6 border border-[#e4d8cb] bg-white p-6 transition-all duration-200 hover:-translate-y-px hover:shadow-[0_18px_50px_rgba(67,45,26,0.09)] active:scale-[0.998]"
+                      className="group flex items-center gap-6 border border-border bg-surface p-6 transition-all duration-200 hover:-translate-y-px hover:shadow-[0_18px_50px_rgba(67,45,26,0.09)] active:scale-[0.998]"
                       style={{ boxShadow: '0 12px 40px rgba(67,45,26,0.05)' }}
                     >
-                      <span className="flex h-14 w-14 shrink-0 items-center justify-center border border-[#ead9c7] bg-[#fbf8f4] text-[#a15b2f]">
+                      <span className="flex h-14 w-14 shrink-0 items-center justify-center border border-border bg-canvas text-stone">
                         <Icon size={28} weight="duotone" aria-hidden />
                       </span>
                       <div className="min-w-0 flex-1">
-                        <h3 className="text-lg font-semibold text-[#2b2723]">{card.title}</h3>
-                        <p className="mt-1 text-sm leading-6 text-[#6f675f]">{card.body}</p>
+                        <h3 className="text-lg font-semibold text-ink">{card.title}</h3>
+                        <p className="mt-1 text-sm leading-6 text-ink-muted">{card.body}</p>
                       </div>
-                      <ArrowRight size={18} className="shrink-0 text-[#7b4b2b] transition-transform duration-200 group-hover:translate-x-1" aria-hidden />
+                      <ArrowRight size={18} className="shrink-0 text-stone transition-transform duration-200 group-hover:translate-x-1" aria-hidden />
                     </Link>
                   </motion.div>
                 )
@@ -557,14 +557,14 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
       </AnimatedSection>
 
       {/* ══════ Section 04.5: Sample Deliverables — Social Proof ══════ */}
-      <AnimatedSection className="border-b border-[#e7ded3] bg-white py-20 sm:py-24">
+      <AnimatedSection className="border-b border-border bg-surface py-20 sm:py-24">
         <div className="mx-auto max-w-[1240px] px-5 sm:px-8 lg:px-12">
           <div className="mx-auto max-w-3xl text-center">
-            <p className="text-sm font-medium tracking-[0.18em] text-[#a65a2c]">04.5 / 你会拿到什么</p>
-            <h2 className="mt-5 text-[clamp(2rem,4vw,3.5rem)] font-semibold leading-tight tracking-tight text-[#25221f]">
+            <p className="text-sm font-medium tracking-[0.18em] text-stone">04.5 / 你会拿到什么</p>
+            <h2 className="mt-5 text-[clamp(2rem,4vw,3.2rem)] font-semibold leading-tight tracking-tight text-ink">
               不只是建议，是可以拿去用的文件。
             </h2>
-            <p className="mt-4 text-base leading-8 text-[#6f675f]">以下是脱敏样张。付费服务交付的是基于你真实报价单生成的完整版。</p>
+            <p className="mt-4 text-base leading-8 text-ink-muted">以下是脱敏样张。付费服务交付的是基于你真实报价单生成的完整版。</p>
           </div>
 
           <motion.div
@@ -594,13 +594,13 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
                 desc: '可以直接发给装修公司的追问话术，不暴露来源。',
               },
             ].map((item) => (
-              <motion.div key={item.label} variants={staggerItem} className="overflow-hidden border border-[#e4d8cb] bg-white">
-                <div className="relative aspect-[4/3] border-b border-[#e4d8cb] bg-[#fbf8f4]">
+              <motion.div key={item.label} variants={staggerItem} className="overflow-hidden border border-border bg-white">
+                <div className="relative aspect-[4/3] border-b border-border bg-canvas">
                   <img src={item.src} alt={item.alt} className="h-full w-full object-cover" />
                 </div>
                 <div className="p-5">
-                  <p className="text-xs font-semibold uppercase tracking-widest text-[#9a5424]">{item.label}</p>
-                  <p className="mt-2 text-sm leading-relaxed text-[#6f675f]">{item.desc}</p>
+                  <p className="text-xs font-semibold uppercase tracking-widest text-stone">{item.label}</p>
+                  <p className="mt-2 text-sm leading-relaxed text-ink-muted">{item.desc}</p>
                 </div>
               </motion.div>
             ))}
@@ -616,14 +616,14 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
       </AnimatedSection>
 
       {/* ══════ Section 04.8: Case Studies — Trust through real examples ══════ */}
-      <AnimatedSection className="border-b border-[#e7ded3] py-20 sm:py-24">
+      <AnimatedSection className="border-b border-border py-20 sm:py-24">
         <div className="mx-auto max-w-[1240px] px-5 sm:px-8 lg:px-12">
           <div className="mx-auto max-w-3xl text-center">
-            <p className="text-sm font-medium tracking-[0.18em] text-[#a65a2c]">04.8 / 真实案例</p>
-            <h2 className="mt-5 text-[clamp(2rem,4vw,3.5rem)] font-semibold leading-tight tracking-tight text-[#25221f]">
+            <p className="text-sm font-medium tracking-[0.18em] text-stone">04.8 / 真实案例</p>
+            <h2 className="mt-5 text-[clamp(2rem,4vw,3.2rem)] font-semibold leading-tight tracking-tight text-ink">
               这些问题，都是签约前能避开的。
             </h2>
-            <p className="mt-4 text-base leading-8 text-[#6f675f]">以下是脱敏后的真实判断案例。细节已做匿名处理，风险类型和金额区间保持原样。</p>
+            <p className="mt-4 text-base leading-8 text-ink-muted">以下是脱敏后的真实判断案例。细节已做匿名处理，风险类型和金额区间保持原样。</p>
           </div>
 
           <motion.div
@@ -637,15 +637,15 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
               <motion.div
                 key={item.title}
                 variants={staggerItem}
-                className="flex flex-col border border-[#e4d8cb] bg-white p-7"
+                className="flex flex-col border border-border bg-surface p-7"
                 style={{ boxShadow: '0 12px 40px rgba(67,45,26,0.05)' }}
               >
-                <p className="inline-flex w-fit border border-[#e6c9a5] bg-[#fbf3e9] px-3 py-1 text-xs font-semibold text-[#9a5424]">{item.tag}</p>
-                <h3 className="mt-4 text-lg font-semibold leading-snug text-[#2b2723]">{item.title}</h3>
-                <p className="mt-4 flex-1 text-sm leading-7 text-[#6f675f]">{item.summary}</p>
-                <div className="mt-5 border-t border-[#e8ddd1] pt-4">
-                  <p className="text-xs font-semibold uppercase tracking-widest text-[#9a5424]">结果</p>
-                  <p className="mt-2 text-sm leading-relaxed text-[#504a44]">{item.result}</p>
+                <p className="inline-flex w-fit border border-stone-light bg-surface-warm px-3 py-1 text-xs font-semibold text-stone">{item.tag}</p>
+                <h3 className="mt-4 text-lg font-semibold leading-snug text-ink">{item.title}</h3>
+                <p className="mt-4 flex-1 text-sm leading-7 text-ink-muted">{item.summary}</p>
+                <div className="mt-5 border-t border-border pt-4">
+                  <p className="text-xs font-semibold uppercase tracking-widest text-stone">结果</p>
+                  <p className="mt-2 text-sm leading-relaxed text-ink-muted">{item.result}</p>
                 </div>
               </motion.div>
             ))}
@@ -660,14 +660,14 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
       </AnimatedSection>
 
       {/* ══════ Section 05: Services — 2x2 Grid ══════ */}
-      <AnimatedSection className="relative isolate overflow-hidden border-b border-[#e7ded3] bg-white py-20 sm:py-24">
+      <AnimatedSection className="relative isolate overflow-hidden border-b border-border bg-surface py-20 sm:py-24">
         <div className="relative mx-auto max-w-[1320px] px-5 sm:px-8 lg:px-12">
-          <p className="text-sm font-semibold text-[#8b4d27]">05 / 付费产品</p>
+          <p className="text-sm font-semibold text-stone">05 / 付费产品</p>
           <div className="mt-8 text-center">
-            <h2 className="text-[clamp(2rem,4.2vw,4.1rem)] font-semibold leading-tight tracking-tight text-[#25221f]">
+            <h2 className="text-[clamp(2rem,4vw,3.2rem)] font-semibold leading-tight tracking-tight text-ink">
               不是越贵越好，看你卡在哪一步。
             </h2>
-            <p className="mt-4 text-base leading-8 text-[#6f675f]">从免费报价初筛到 ¥9800 起的居住场景服务，按你现在临近什么决策来选——不要先看价格，先看适合谁。</p>
+            <p className="mt-4 text-base leading-8 text-ink-muted">从免费报价初筛到 ¥9800 起的居住场景服务，按你现在临近什么决策来选——不要先看价格，先看适合谁。</p>
           </div>
 
           {/* 统一商业梯子：data/commercial-ladder.ts 是单一真源 */}
@@ -683,7 +683,7 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
 
           {/* Trust Bar */}
           <motion.div
-            className="mt-8 grid grid-cols-1 border border-[#e8ddd1] bg-white/82 sm:grid-cols-3"
+            className="mt-8 grid grid-cols-1 border border-border bg-surface/82 sm:grid-cols-3"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
@@ -693,11 +693,11 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
             {trustItems.map((item) => {
               const Icon = item.icon
               return (
-                <div key={item.title} className="flex items-center gap-4 border-b border-[#e8ddd1] px-6 py-5 last:border-b-0 sm:border-b-0 sm:border-r sm:last:border-r-0">
-                  <Icon size={32} weight="duotone" className="shrink-0 text-[#8b4d27]" aria-hidden />
+                <div key={item.title} className="flex items-center gap-4 border-b border-border px-6 py-5 last:border-b-0 sm:border-b-0 sm:border-r sm:last:border-r-0">
+                  <Icon size={32} weight="duotone" className="shrink-0 text-stone" aria-hidden />
                   <div>
-                    <p className="font-semibold text-[#2b2723]">{item.title}</p>
-                    <p className="text-sm leading-6 text-[#716961]">{item.body}</p>
+                    <p className="font-semibold text-ink">{item.title}</p>
+                    <p className="text-sm leading-6 text-ink-faint">{item.body}</p>
                   </div>
                 </div>
               )
@@ -707,7 +707,7 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
       </AnimatedSection>
 
       {/* ══════ Section 06: About — Split Screen ══════ */}
-      <AnimatedSection className="grid min-h-[80dvh] grid-cols-1 border-b border-[#e7ded3] bg-white lg:grid-cols-[0.52fr_0.48fr]">
+      <AnimatedSection className="grid min-h-[80dvh] grid-cols-1 border-b border-border bg-surface lg:grid-cols-[0.52fr_0.48fr]">
         {/* Left: Abstract visual — no stock photos */}
         <div className="relative min-h-[24rem] overflow-hidden bg-[#2b261f] lg:min-h-full" aria-hidden>
           <div className="absolute inset-0 opacity-30">
@@ -727,7 +727,7 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
             </svg>
           </div>
           <div className="absolute bottom-12 left-8 max-w-[280px]">
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#c4a882]/80">Since 2010</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-stone-light/80">Since 2010</p>
             <p className="mt-2 text-lg font-medium leading-relaxed text-white/60">16 年装修现场，走过的坑比讲的多。</p>
           </div>
         </div>
@@ -741,22 +741,22 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
             viewport={{ once: true, margin: '-80px' }}
             variants={staggerContainer}
           >
-            <motion.p variants={staggerItem} className="text-sm font-medium tracking-[0.18em] text-[#a65a2c]">06</motion.p>
-            <motion.h2 variants={staggerItem} className="mt-5 text-[clamp(2.5rem,5vw,4.75rem)] font-semibold leading-tight tracking-tight text-[#25221f]">
+            <motion.p variants={staggerItem} className="text-sm font-medium tracking-[0.18em] text-stone">06</motion.p>
+            <motion.h2 variants={staggerItem} className="mt-5 text-[clamp(2rem,4vw,3.2rem)] font-semibold leading-tight tracking-tight text-ink">
               我不是泛装修博主，也不想吓唬你。
             </motion.h2>
-            <motion.div variants={staggerItem} className="mt-7 space-y-5 text-base leading-9 text-[#504a44]">
+            <motion.div variants={staggerItem} className="mt-7 space-y-5 text-base leading-9 text-ink-muted">
               <p>我做装修 16 年，见过很多后悔不是来自审美，而是来自签约前没问清、预算里没留边界、施工中没有留痕。</p>
               <p>我想帮你解决的，就是签约前的判断问题。不是替你做所有决定，而是在关键节点上帮你看清楚风险、关键点和下一步。</p>
             </motion.div>
 
-            <motion.div variants={staggerItem} className="mt-10 grid grid-cols-1 gap-px border border-[#e6d9cc] bg-[#e6d9cc] sm:grid-cols-3">
+            <motion.div variants={staggerItem} className="mt-10 grid grid-cols-1 gap-px border border-border bg-[#e6d9cc] sm:grid-cols-3">
               {['经验\n真实现场', '审美\n长期居住', '工具\n可复用判断'].map((item) => {
                 const [title, body] = item.split('\n')
                 return (
-                  <div key={item} className="bg-[#fbf8f4] px-5 py-5">
-                    <p className={`${fontClassName} text-3xl font-medium tabular-nums text-[#8b4d27]`}>{title}</p>
-                    <p className="mt-1 text-sm text-[#6f675f]">{body}</p>
+                  <div key={item} className="bg-canvas px-5 py-5">
+                    <p className={`${fontClassName} text-3xl font-medium tabular-nums text-stone`}>{title}</p>
+                    <p className="mt-1 text-sm text-ink-muted">{body}</p>
                   </div>
                 )
               })}
@@ -767,7 +767,7 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
               <ActionLink href="/services/renovation#baojia-shenhe" variant="secondary">看报价快审边界</ActionLink>
             </motion.div>
 
-            <motion.p variants={staggerItem} className="mt-8 border-t border-[#e6d9cc] pt-6 text-sm leading-7 text-[#716961]">
+            <motion.p variants={staggerItem} className="mt-8 border-t border-border pt-6 text-sm leading-7 text-ink-faint">
               起点一定要窄。越具体，越容易被信任；越能解决一个真实问题，越容易形成长期资产。
             </motion.p>
           </motion.div>
