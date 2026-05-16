@@ -177,11 +177,8 @@ export default function RenovationServicesPage() {
           <div className="grid gap-8 lg:grid-cols-[0.62fr_0.38fr] lg:items-center">
             <div className="min-w-0">
               <p className="page-label mb-4">装修签约前判断服务</p>
-              <h1 className="max-w-[22rem] text-[2.1rem] font-semibold leading-tight tracking-tight text-ink [overflow-wrap:anywhere] sm:max-w-4xl sm:text-5xl">
-                <span className="block">别急着买服务，</span>
-                <span className="block sm:hidden">先分清你</span>
-                <span className="block sm:hidden">卡在哪一步。</span>
-                <span className="hidden sm:block">先分清你卡在哪一步。</span>
+              <h1 className="max-w-[22rem] text-[2.1rem] font-semibold leading-tight tracking-tight text-ink sm:max-w-4xl sm:text-5xl">
+                别急着买服务，先分清你卡在哪一步。
               </h1>
               <p className="mt-5 max-w-[24rem] text-base leading-relaxed text-ink-muted sm:max-w-2xl sm:text-lg">
                 普通业主最容易在签约前被总价、优惠和口头承诺带跑。这里先把免费工具、低价指南、预算取舍诊断、报价快审和决策包分清楚。
@@ -211,11 +208,8 @@ export default function RenovationServicesPage() {
         <section id="choose" className="mb-14 scroll-mt-24">
           <div className="mb-6 max-w-3xl">
             <p className="text-xs font-semibold uppercase tracking-widest text-stone">先选你现在的状态</p>
-            <h2 className="mt-3 max-w-full text-[1.35rem] font-semibold leading-snug tracking-tight text-ink [overflow-wrap:anywhere] sm:text-2xl">
-              <span className="block sm:hidden">不是越贵越好，</span>
-              <span className="block sm:hidden">是看你现在</span>
-              <span className="block sm:hidden">有没有材料、有没有临近签约。</span>
-              <span className="hidden sm:inline">不是越贵越好，是看你现在有没有材料、有没有临近签约。</span>
+            <h2 className="mt-3 max-w-full text-[1.35rem] font-semibold leading-snug tracking-tight text-ink sm:text-2xl">
+              不是越贵越好，是看你现在有没有材料、有没有临近签约。
             </h2>
           </div>
           <div className="grid gap-4 lg:grid-cols-4">
@@ -285,21 +279,60 @@ export default function RenovationServicesPage() {
           <div className="overflow-hidden border border-border bg-surface">
             <div className="relative aspect-[16/10] border-b border-border bg-stone-pale/40">
               <Image
-                src="/images/services/renovation-judgment-proof.svg"
-                alt="报价审核与装修判断服务示意图"
+                src="/images/services/sample-risk-report.svg"
+                alt="报价风险报告脱敏样张"
                 fill
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 560px"
               />
             </div>
             <div className="p-6">
-              <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-ink-faint">先看证据，不先听口号</p>
+              <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-stone">样张 1 / 报价风险报告</p>
               <p className="text-sm leading-relaxed text-ink-muted">
-                这类服务的重点不是“我懂很多”，而是你能不能看清：要提供什么、我会看什么、最后会交付什么、哪些事情我明确不做。
+                你提交报价单后会收到的第一份文件。包含风险等级、漏项、模糊项、异常单价和追问建议。
               </p>
             </div>
           </div>
 
+          <div className="grid gap-4">
+            <div className="overflow-hidden border border-border bg-surface">
+              <div className="relative aspect-[16/7] border-b border-border bg-stone-pale/40">
+                <Image
+                  src="/images/services/sample-followup-checklist.svg"
+                  alt="签约前追问清单脱敏样张"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 480px"
+                />
+              </div>
+              <div className="p-5">
+                <p className="mb-1 text-xs font-semibold uppercase tracking-widest text-stone">样张 2 / 追问清单</p>
+                <p className="text-xs leading-relaxed text-ink-muted">
+                  基于风险报告生成，逐项列出你该问施工方的具体问题。
+                </p>
+              </div>
+            </div>
+            <div className="overflow-hidden border border-border bg-surface">
+              <div className="relative aspect-[16/7] border-b border-border bg-stone-pale/40">
+                <Image
+                  src="/images/services/sample-communication-script.svg"
+                  alt="话术示例脱敏样张"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 480px"
+                />
+              </div>
+              <div className="p-5">
+                <p className="mb-1 text-xs font-semibold uppercase tracking-widest text-stone">样张 3 / 话术示例</p>
+                <p className="text-xs leading-relaxed text-ink-muted">
+                  可以直接发给装修公司的追问话术，不用暴露来源。
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="mb-14">
           <div className="border border-border bg-surface p-6 sm:p-8">
             <p className="text-xs font-semibold uppercase tracking-widest text-stone">快审还是决策包</p>
             <h2 className="mt-3 text-xl font-semibold text-ink">¥699 和 ¥1499 的区别，不是时间长短。</h2>
@@ -370,6 +403,28 @@ export default function RenovationServicesPage() {
             />
           ))}
         </div>
+
+        {/* ── 下单后流程 ── */}
+        <section className="mt-14 mb-14 border-y-2 border-[#9a5424] bg-[#fbf3e9] p-6 sm:p-8">
+          <p className="text-xs font-semibold uppercase tracking-widest text-[#9a5424]">下单后会发生什么</p>
+          <h2 className="mt-3 text-xl font-semibold text-ink">服务流程一共 6 步，每步你都知道在等什么。</h2>
+          <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {[
+              { step: '01', title: '提交材料', desc: '报价单、合同草稿、户型信息或预算上限，放网盘链接或截图。' },
+              { step: '02', title: '我先判断适不适合接', desc: '如果你的情况不在服务范围，会直接告诉你，不收费。' },
+              { step: '03', title: '确认档位和付款', desc: '按你的材料和阶段确认服务档位，付款后启动。' },
+              { step: '04', title: '输出书面风险说明', desc: '报价风险、追问清单、预算校准或合同建议，全部文字交付。' },
+              { step: '05', title: '必要时微信语音解读', desc: '文字说不清的部分，30 分钟内语音补充。' },
+              { step: '06', title: '你拿清单回去确认', desc: '拿追问清单和风险说明，回去和施工方逐项确认。' },
+            ].map((item) => (
+              <div key={item.step} className="border border-[#d4a574]/40 bg-white/70 p-5">
+                <p className="text-2xl font-bold text-[#9a5424]/30">{item.step}</p>
+                <p className="mt-2 text-sm font-semibold text-ink">{item.title}</p>
+                <p className="mt-2 text-xs leading-relaxed text-ink-muted">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </section>
 
         <section className="mt-14 grid grid-cols-1 gap-6 lg:grid-cols-[1fr_0.95fr]">
           <div className="border border-border bg-surface p-6 sm:p-8">

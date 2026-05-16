@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 480" fill="none">
+  <rect width="680" height="480" fill="#fbf8f4"/>
+  <rect x="40" y="32" width="600" height="416" rx="2" stroke="#e7ded3" stroke-width="1.5" fill="white"/>
+  <!-- Header -->
+  <rect x="40" y="32" width="600" height="56" fill="#2b261f"/>
+  <text x="64" y="67" font-family="system-ui" font-size="16" font-weight="600" fill="#fbf8f4">报价风险报告（脱敏样张）</text>
+  <text x="540" y="67" font-family="system-ui" font-size="12" fill="#c4a882">ZenoAIHome</text>
+  <!-- Risk Level -->
+  <rect x="64" y="108" width="120" height="36" rx="2" fill="#c0392b"/>
+  <text x="90" y="132" font-family="system-ui" font-size="14" font-weight="700" fill="white">风险等级：高</text>
+  <text x="200" y="132" font-family="system-ui" font-size="13" fill="#5f5952">5 项漏项 · 3 项模糊 · 2 项异常单价</text>
+  <!-- Divider -->
+  <line x1="64" y1="160" x2="616" y2="160" stroke="#e7ded3" stroke-width="1"/>
+  <!-- Row 1 -->
+  <rect x="64" y="172" width="8" height="8" rx="1" fill="#c0392b"/>
+  <text x="84" y="180" font-family="system-ui" font-size="13" font-weight="600" fill="#272421">漏项：防水工程未写入报价</text>
+  <text x="84" y="200" font-family="system-ui" font-size="12" fill="#7b6d5d">卫生间、厨房、阳台均未列防水项目，后期增项概率极高。</text>
+  <!-- Row 2 -->
+  <rect x="64" y="222" width="8" height="8" rx="1" fill="#e67e22"/>
+  <text x="84" y="230" font-family="system-ui" font-size="13" font-weight="600" fill="#272421">模糊项：水电改造"按实结算"</text>
+  <text x="84" y="250" font-family="system-ui" font-size="12" fill="#7b6d5d">未约定单价上限和点位数量，实际可能超出预估 40%-80%。</text>
+  <!-- Row 3 -->
+  <rect x="64" y="272" width="8" height="8" rx="1" fill="#e67e22"/>
+  <text x="84" y="280" font-family="system-ui" font-size="13" font-weight="600" fill="#272421">模糊项：乳胶漆品牌写"或同等"</text>
+  <text x="84" y="300" font-family="system-ui" font-size="12" fill="#7b6d5d">未指定具体型号和系列，施工时可能用低一档产品替代。</text>
+  <!-- Row 4 -->
+  <rect x="64" y="322" width="8" height="8" rx="1" fill="#c0392b"/>
+  <text x="84" y="330" font-family="system-ui" font-size="13" font-weight="600" fill="#272421">异常单价：墙面找平 ¥12/㎡</text>
+  <text x="84" y="350" font-family="system-ui" font-size="12" fill="#7b6d5d">当地市场价 ¥25-35/㎡，过低可能后期追加或降低工艺标准。</text>
+  <!-- Footer -->
+  <line x1="64" y1="380" x2="616" y2="380" stroke="#e7ded3" stroke-width="1"/>
+  <text x="64" y="405" font-family="system-ui" font-size="12" fill="#9a5424" font-weight="600">→ 建议：签约前先就以上 10 项逐一追问，要求书面确认。</text>
+  <text x="64" y="428" font-family="system-ui" font-size="11" fill="#7b6d5d">本样张为脱敏示例，实际报告基于你提交的真实报价单生成。</text>
+</svg>

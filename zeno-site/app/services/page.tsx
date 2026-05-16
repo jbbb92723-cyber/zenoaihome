@@ -300,6 +300,22 @@ export default function ServicesPage() {
 
         <section className="mb-14 border border-border bg-surface-warm p-6 sm:p-8">
           <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-ink-faint">可验证的交付</p>
+          <p className="mb-6 text-sm leading-relaxed text-ink-muted">以下是脱敏样张。装修线付费服务交付的是基于你真实报价单生成的完整版文件。</p>
+          <div className="mb-6 grid gap-4 sm:grid-cols-3">
+            {[
+              { src: '/images/services/sample-risk-report.svg', label: '报价风险报告', desc: '风险等级 + 漏项 + 模糊项 + 异常单价' },
+              { src: '/images/services/sample-followup-checklist.svg', label: '追问清单', desc: '逐项列出签约前该问的具体问题' },
+              { src: '/images/services/sample-communication-script.svg', label: '话术示例', desc: '可以直接发给施工方的追问话术' },
+            ].map((item) => (
+              <div key={item.label} className="overflow-hidden border border-border bg-surface">
+                <Image src={item.src} alt={`${item.label}脱敏样张`} width={340} height={255} className="w-full object-cover" />
+                <div className="p-4">
+                  <p className="text-xs font-semibold uppercase tracking-widest text-stone">{item.label}</p>
+                  <p className="mt-1 text-xs leading-relaxed text-ink-muted">{item.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {[
               ['装修线交付', '报价风险、预算取舍、合同追问和验收节点，最后落到一份能执行的清单。'],

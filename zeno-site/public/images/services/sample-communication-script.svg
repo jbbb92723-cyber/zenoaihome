@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 480" fill="none">
+  <rect width="680" height="480" fill="#fbf8f4"/>
+  <rect x="40" y="32" width="600" height="416" rx="2" stroke="#e7ded3" stroke-width="1.5" fill="white"/>
+  <!-- Header -->
+  <rect x="40" y="32" width="600" height="56" fill="#2b261f"/>
+  <text x="64" y="67" font-family="system-ui" font-size="16" font-weight="600" fill="#fbf8f4">话术示例：拿去问装修公司（脱敏样张）</text>
+  <text x="540" y="67" font-family="system-ui" font-size="12" fill="#c4a882">ZenoAIHome</text>
+  <!-- Intro -->
+  <text x="64" y="112" font-family="system-ui" font-size="12" fill="#9a5424" font-weight="600">以下话术可以直接发给施工方，不需要说出处。</text>
+  <line x1="64" y1="128" x2="616" y2="128" stroke="#e7ded3" stroke-width="1"/>
+  <!-- Chat Bubble 1 -->
+  <rect x="64" y="142" width="520" height="56" rx="6" fill="#f0ebe4"/>
+  <text x="80" y="162" font-family="system-ui" font-size="12" font-weight="600" fill="#5f3b24">关于防水：</text>
+  <text x="80" y="182" font-family="system-ui" font-size="12" fill="#272421">"报价里没看到防水项目，请确认是否包含？如果包含，面积和做法写在哪一页？"</text>
+  <!-- Chat Bubble 2 -->
+  <rect x="64" y="212" width="520" height="56" rx="6" fill="#f0ebe4"/>
+  <text x="80" y="232" font-family="system-ui" font-size="12" font-weight="600" fill="#5f3b24">关于水电：</text>
+  <text x="80" y="252" font-family="system-ui" font-size="12" fill="#272421">"水电改造写的是按实结算，能不能写一个预估点位数和单价上限？超出怎么算？"</text>
+  <!-- Chat Bubble 3 -->
+  <rect x="64" y="282" width="520" height="56" rx="6" fill="#f0ebe4"/>
+  <text x="80" y="302" font-family="system-ui" font-size="12" font-weight="600" fill="#5f3b24">关于材料：</text>
+  <text x="80" y="322" font-family="system-ui" font-size="12" fill="#272421">"乳胶漆写的'XX品牌或同等'，能不能改成指定品牌和系列，写进合同？"</text>
+  <!-- Chat Bubble 4 -->
+  <rect x="64" y="352" width="520" height="56" rx="6" fill="#f0ebe4"/>
+  <text x="80" y="372" font-family="system-ui" font-size="12" font-weight="600" fill="#5f3b24">关于增项：</text>
+  <text x="80" y="392" font-family="system-ui" font-size="12" fill="#272421">"如果施工中有变更或增项，审批流程是什么？增项单价按什么标准？"</text>
+  <!-- Footer -->
+  <line x1="64" y1="420" x2="616" y2="420" stroke="#e7ded3" stroke-width="1"/>
+  <text x="64" y="440" font-family="system-ui" font-size="11" fill="#7b6d5d">本样张为脱敏示例，实际话术根据你的报价风险报告定制。</text>
+</svg>

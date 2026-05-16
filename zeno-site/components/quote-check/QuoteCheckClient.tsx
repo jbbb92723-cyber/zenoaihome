@@ -562,6 +562,31 @@ export default function QuoteCheckClient() {
         </div>
       </section>
 
+      {/* ── 样张预览 ── */}
+      <section className="border-t border-border bg-canvas">
+        <div className="mx-auto max-w-5xl px-5 py-14 sm:px-8">
+          <p className="text-xs font-semibold uppercase tracking-widest text-stone">付费服务你会拿到什么</p>
+          <h2 className="mt-3 text-xl font-semibold text-ink">以下是脱敏样张，实际基于你的报价单生成。</h2>
+          <div className="mt-6 grid gap-4 sm:grid-cols-3">
+            {[
+              { src: '/images/services/sample-risk-report.svg', label: '报价风险报告' },
+              { src: '/images/services/sample-followup-checklist.svg', label: '追问清单' },
+              { src: '/images/services/sample-communication-script.svg', label: '话术示例' },
+            ].map((item) => (
+              <div key={item.label} className="overflow-hidden border border-border bg-surface">
+                <img src={item.src} alt={`${item.label}脱敏样张`} className="aspect-[4/3] w-full object-cover" />
+                <p className="p-3 text-xs font-semibold text-stone">{item.label}</p>
+              </div>
+            ))}
+          </div>
+          <div className="mt-6">
+            <Link href="/services/renovation#baojia-shenhe" className="text-sm font-semibold text-stone hover:underline underline-offset-2">
+              看 ¥699 报价快审边界 →
+            </Link>
+          </div>
+        </div>
+      </section>
+
       <ToolSeoAssetSection asset={toolSeoAssets.quoteCheck} />
     </main>
   )

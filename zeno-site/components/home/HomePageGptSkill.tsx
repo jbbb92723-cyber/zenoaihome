@@ -599,6 +599,65 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
         </div>
       </AnimatedSection>
 
+      {/* ══════ Section 04.5: Sample Deliverables — Social Proof ══════ */}
+      <AnimatedSection className="border-b border-[#e7ded3] bg-white py-20 sm:py-24">
+        <div className="mx-auto max-w-[1240px] px-5 sm:px-8 lg:px-12">
+          <div className="mx-auto max-w-3xl text-center">
+            <p className="text-sm font-medium tracking-[0.18em] text-[#a65a2c]">04.5 / 你会拿到什么</p>
+            <h2 className="mt-5 text-[clamp(2rem,4vw,3.5rem)] font-semibold leading-tight tracking-tight text-[#25221f]">
+              不只是建议，是可以拿去用的文件。
+            </h2>
+            <p className="mt-4 text-base leading-8 text-[#6f675f]">以下是脱敏样张。付费服务交付的是基于你真实报价单生成的完整版。</p>
+          </div>
+
+          <motion.div
+            className="mt-12 grid grid-cols-1 gap-5 lg:grid-cols-3"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-60px' }}
+            variants={staggerContainer}
+          >
+            {[
+              {
+                src: '/images/services/sample-risk-report.svg',
+                alt: '报价风险报告脱敏样张',
+                label: '报价风险报告',
+                desc: '风险等级 + 漏项 + 模糊项 + 异常单价，一页看清。',
+              },
+              {
+                src: '/images/services/sample-followup-checklist.svg',
+                alt: '追问清单脱敏样张',
+                label: '签约前追问清单',
+                desc: '逐项列出该问施工方的具体问题，对应风险编号。',
+              },
+              {
+                src: '/images/services/sample-communication-script.svg',
+                alt: '话术示例脱敏样张',
+                label: '话术示例',
+                desc: '可以直接发给装修公司的追问话术，不暴露来源。',
+              },
+            ].map((item) => (
+              <motion.div key={item.label} variants={staggerItem} className="overflow-hidden border border-[#e4d8cb] bg-white">
+                <div className="relative aspect-[4/3] border-b border-[#e4d8cb] bg-[#fbf8f4]">
+                  <img src={item.src} alt={item.alt} className="h-full w-full object-cover" />
+                </div>
+                <div className="p-5">
+                  <p className="text-xs font-semibold uppercase tracking-widest text-[#9a5424]">{item.label}</p>
+                  <p className="mt-2 text-sm leading-relaxed text-[#6f675f]">{item.desc}</p>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+
+          <div className="mt-10 text-center">
+            <ActionLink href="/tools/quote-check">
+              <UploadSimple size={18} aria-hidden />
+              先做免费报价初筛，看完再决定
+            </ActionLink>
+          </div>
+        </div>
+      </AnimatedSection>
+
       {/* ══════ Section 05: Services — 2x2 Grid ══════ */}
       <AnimatedSection className="relative isolate overflow-hidden border-b border-[#e7ded3] bg-white py-20 sm:py-24">
         <div className="relative mx-auto max-w-[1320px] px-5 sm:px-8 lg:px-12">
@@ -647,7 +706,7 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
       </AnimatedSection>
 
       {/* ══════ Section 06: About — Split Screen ══════ */}
-      <AnimatedSection className="grid min-h-[100dvh] grid-cols-1 border-b border-[#e7ded3] bg-white lg:grid-cols-[0.52fr_0.48fr]">
+      <AnimatedSection className="grid min-h-[80dvh] grid-cols-1 border-b border-[#e7ded3] bg-white lg:grid-cols-[0.52fr_0.48fr]">
         {/* Left: Abstract visual — no stock photos */}
         <div className="relative min-h-[24rem] overflow-hidden bg-[#2b261f] lg:min-h-full" aria-hidden>
           <div className="absolute inset-0 opacity-30">
@@ -687,7 +746,7 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
             </motion.h2>
             <motion.div variants={staggerItem} className="mt-7 space-y-5 text-base leading-9 text-[#504a44]">
               <p>我做装修 16 年，见过很多后悔不是来自审美，而是来自签约前没问清、预算里没留边界、施工中没有留痕。</p>
-              <p>我想做的是装修判断力和生活方式审美的内容型个人品牌。不是替你做所有决定，而是在关键节点上帮你看清楚风险、关键点和下一步。</p>
+              <p>我想帮你解决的，就是签约前的判断问题。不是替你做所有决定，而是在关键节点上帮你看清楚风险、关键点和下一步。</p>
             </motion.div>
 
             <motion.div variants={staggerItem} className="mt-10 grid grid-cols-1 gap-px border border-[#e6d9cc] bg-[#e6d9cc] sm:grid-cols-3">
