@@ -1,11 +1,9 @@
 import type { Metadata } from 'next'
-import Image from 'next/image'
 import Link from 'next/link'
 import Container from '@/components/Container'
 import CTA from '@/components/CTA'
 import PageHero from '@/components/PageHero'
 import StructuredData from '@/components/StructuredData'
-import CommercialLadder from '@/components/CommercialLadder'
 
 export const metadata: Metadata = {
   title: '签约前装修判断工具工作台 | ZenoAIHome',
@@ -15,37 +13,6 @@ export const metadata: Metadata = {
     canonical: 'https://zenoaihome.com/tools',
   },
 }
-
-const ownerNeedCards = [
-  {
-    label: '手上有报价单',
-    title: '先看报价有没有漏项和模糊口子',
-    desc: '适合已经拿到报价、准备比较或快签约的人。',
-    href: '/tools/quote-check',
-    action: '做报价初筛',
-  },
-  {
-    label: '只有总预算',
-    title: '先拆成几份钱，不要只盯总数',
-    desc: '适合预算有上限，但不知道简约、舒适、精致分别要怎么取舍的人。',
-    href: '/tools/budget-structure',
-    action: '拆预算分配',
-  },
-  {
-    label: '怕越装越超',
-    title: '先判断超支更像来自哪里',
-    desc: '适合已经感觉钱会失控，但分不清是报价、流程还是需求太散的人。',
-    href: '/tools/budget-risk',
-    action: '查超预算原因',
-  },
-  {
-    label: '快要签合同',
-    title: '直接看签约前服务怎么选',
-    desc: '适合报价、预算、合同和付款节点一起卡住的人。',
-    href: '/services/renovation#choose',
-    action: '看服务选择',
-  },
-]
 
 const supportToolKeys = new Set(['单位换算工具', '瓷砖计算器', '乳胶漆计算器'])
 
@@ -175,11 +142,12 @@ const toolGroups = [
 ]
 
 const routes = [
-  { audience: '装修业主', situation: '手上有报价单', action: '先做报价初筛', href: '/tools/quote-check' },
-  { audience: '装修业主', situation: '只有一个总预算', action: '先拆预算分配', href: '/tools/budget-structure' },
-  { audience: '装修业主', situation: '怕越装越超', action: '先查超支原因', href: '/tools/budget-risk' },
-  { audience: '装修业主', situation: '准备买材料', action: '先用计算工具估范围', href: '/tools/tile-calculator' },
-  { audience: '装修业主', situation: '准备验收', action: '生成节点清单', href: '/tools/inspection-guide' },
+  { situation: '手上有报价单', action: '先做报价初筛', href: '/tools/quote-check' },
+  { situation: '只有一个总预算', action: '先拆预算分配', href: '/tools/budget-structure' },
+  { situation: '怕越装越超', action: '先查超支原因', href: '/tools/budget-risk' },
+  { situation: '准备买材料', action: '先用计算工具估范围', href: '/tools/tile-calculator' },
+  { situation: '准备验收', action: '生成节点清单', href: '/tools/inspection-guide' },
+  { situation: '快要签合同', action: '看签约前服务怎么选', href: '/services/renovation' },
 ]
 
 export default function ToolsPage() {
@@ -212,34 +180,22 @@ export default function ToolsPage() {
       <PageHero
         label="签约前判断工具"
         title="先看报价风险，再补预算、材料和验收"
-        subtitle="业主先处理签约前最容易后悔的点：报价有没有漏、预算有没有挤、后面会不会增项。AI 工具只在它能帮上忙的时候出现。"
-        note="主线是装修签约前判断，延伸是 AI。先把当前问题看清，再决定下一步。"
+        subtitle="先处理报价有没有漏、预算有没有挤、后面会不会增项。看完工具结果再决定下一步。"
         size="content"
       />
 
-      {/* “如果你只看一个”强引导——防止业主在 7 张卡片面前迷失 */}
-      <section className="border-y-2 border-[#9a5424] bg-[#fbf3e9]">
-        <Container size="content" className="py-6">
+      <section className="bg-surface-warm">
+        <Container size="content" className="py-5">
           <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
-            <div>
-              <p className="text-[0.7rem] font-semibold uppercase tracking-widest text-[#9a5424]">如果你只看一个</p>
-              <h2 className="mt-1 text-xl font-semibold leading-snug text-[#272421]">
-                先做免费报价初筛——<span className="text-[#7f421a]">8 分钟出风险等级</span>
-              </h2>
-              <p className="mt-1 text-xs leading-relaxed text-[#7b6d5d]">输出一份重点追问清单，别的工具可以等你拿到初筛结果再决定要不要看。</p>
-            </div>
+            <h2 className="text-xl font-semibold leading-snug text-ink">
+              先做免费报价初筛——<span className="text-stone">8 分钟出风险等级</span>
+            </h2>
             <CTA href="/tools/quote-check" label="开始免费初筛" variant="primary" />
           </div>
         </Container>
       </section>
 
       <Container size="content" className="py-section">
-        <section className="mb-12">
-          <p className="text-xs font-semibold uppercase tracking-widest text-stone">签约前主路径</p>
-          <h2 className="mt-3 mb-5 text-2xl font-semibold tracking-tight text-ink">从免费初筛到 ¥9800 居住场景服务</h2>
-          <CommercialLadder variant="summary" />
-        </section>
-
         <section className="mb-12 grid gap-6 lg:grid-cols-[0.42fr_0.58fr]">
           <div className="overflow-hidden border border-border bg-surface">
             <div className="relative aspect-[16/10] border-b border-border bg-stone-pale/30">
@@ -277,20 +233,16 @@ export default function ToolsPage() {
         </section>
 
         <section className="mb-12">
-          <div className="mb-4">
-            <p className="text-xs font-semibold uppercase tracking-widest text-stone">其他入口</p>
-            <p className="mt-2 text-sm leading-relaxed text-ink-muted">如果你现在不是临近签约，而是预算、材料或施工节点问题，从这里切入。</p>
-          </div>
+          <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-stone">按你现在的情况进入</p>
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {routes.map((route) => (
               <Link
-                key={`${route.audience}-${route.situation}`}
+                key={route.situation}
                 href={route.href}
-                className="group border border-border bg-surface p-5 transition-all duration-150 hover:-translate-y-1 hover:border-stone hover:bg-surface-warm hover:shadow-[0_16px_40px_rgba(42,39,35,0.08)]"
+                className="group flex flex-col border border-border bg-surface p-5 transition-colors duration-150 hover:border-stone hover:bg-surface-warm"
               >
-                <p className="text-xs font-semibold uppercase tracking-widest text-stone">{route.audience}</p>
-                <p className="mt-3 text-sm font-semibold leading-snug text-ink">{route.situation}</p>
-                <p className="mt-2 text-sm leading-relaxed text-ink-muted group-hover:text-stone">{route.action}</p>
+                <p className="text-sm font-semibold leading-snug text-ink">{route.situation}</p>
+                <p className="mt-2 text-sm text-stone">{route.action} →</p>
               </Link>
             ))}
           </div>
