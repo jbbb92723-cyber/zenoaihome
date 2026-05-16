@@ -18,11 +18,14 @@ export const metadata: Metadata = {
 export default function EnLayout({ children }: { children: React.ReactNode }) {
   return (
     <div lang="en">
-      <div className="border-b border-[#e7ded3] bg-[#fbf8f4] px-5 py-3 text-center text-xs text-[#7b6d5d]">
-        This site is primarily in Chinese. English pages are short summaries.{' '}
-        <a href="https://zenoaihome.com/" className="underline">
+      <div className="border-y-2 border-[#9a5424] bg-[#fbf3e9] px-5 py-3 text-center text-[0.78rem] leading-relaxed text-[#5f3b24]">
+        <span className="font-semibold">English summary only.</span>{' '}
+        Full site is in Chinese.{' '}
+        <a href="https://zenoaihome.com/" className="font-semibold text-[#7f421a] underline underline-offset-2 hover:text-[#5f3b24]">
           Go to Chinese version →
         </a>
+        <span className="mx-2 text-[#9a5424]/40">|</span>
+        <span lang="zh-CN" className="text-[#7b6d5d]">中文用户请点上方链接返回中文主站</span>
       </div>
       {children}
     </div>

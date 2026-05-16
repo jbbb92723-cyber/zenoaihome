@@ -25,7 +25,9 @@ const ALLOW_PREFIXES = [
 
 export default function ConditionalAIWidget() {
   const path = usePathname() ?? ''
-  const allowed = ALLOW_PREFIXES.some((p) => path === p || path.startsWith(`${p}/`)) || path === '/ai'
+  // /en 英文站全部屏蔽（widget 内部仅中文 quick entries）
+  if (path.startsWith('/en')) return null
+  const allowed = ALLOW_PREFIXES.some((p) => path === p || path.startsWith(`${p}/`))
   if (!allowed) return null
   return <AIChatWidget />
 }
