@@ -1,78 +1,64 @@
 import type { Metadata } from 'next'
+import Link from 'next/link'
 import Container from '@/components/Container'
 import CTA from '@/components/CTA'
-import PageHero from '@/components/PageHero'
 import StructuredData from '@/components/StructuredData'
 
 export const metadata: Metadata = {
-  title: '从这里开始',
+  title: '装修判断｜从看人到看居住，6 个阶段的判断系统',
   description:
-    '别乱逛，先找到你的问题。报价、预算、施工、居住场景——哪个最急从哪个进。',
-  alternates: {
-    canonical: 'https://zenoaihome.com/start',
-  },
+    '装修判断不是「选个公司」那么简单。从看人、看钱、看合同、看施工、看验收到看居住——6 个阶段，每一步都有判断标准。',
+  alternates: { canonical: 'https://zenoaihome.com/start' },
 }
 
-const paths = [
+const stages = [
   {
-    id: 'quote',
-    label: '签约前',
-    title: '报价单拿到了，看不清风险',
-    time: '10–20 分钟',
-    description: '先用工具过一轮，再决定要不要人工判断。',
-    nudge: '报价卡住了看快审，合同预算一起卡了看决策包。',
-    tool: { label: '报价初筛工具', href: '/tools/quote-check' },
-    checklist: { label: '报价审核清单', href: '/resources#baojia-shenhe-qingdan' },
-    article: { label: '报价避坑指南（¥39）', href: '/pricing/baojia-guide' },
-    service: { label: '签约前决策包', href: '/services/renovation#qianyue-qian-juece-bao' },
+    n: '01',
+    id: 'people',
+    label: '先看人',
+    title: '装修公司、设计师、工长、师傅怎么判断',
+    core: '找谁做，决定了后面的报价能不能信、合同有没有用、工地能不能盯。',
+    href: '/start/people',
   },
   {
+    n: '02',
     id: 'budget',
-    label: '预算分配',
-    title: '总数有了，不知道怎么分',
-    time: '5–8 分钟',
-    description: '按取向拆钱，再查哪里容易超。',
-    nudge: '分完还不知道砍哪里，进预算取舍诊断。',
-    tool: { label: '预算分配工具', href: '/tools/budget-structure' },
-    checklist: { label: '装修预算模板', href: '/resources#zhuangxiu-yusuan-moban' },
-    article: { label: '超预算原因自测', href: '/tools/budget-risk' },
-    service: { label: '预算取舍诊断', href: '/services/renovation#yusuan-zixun' },
+    label: '再看钱',
+    title: '装修预算和报价怎么定',
+    core: '预算是你的底线，报价是对方的开口。两者之间的差，就是你要建立的判断力。',
+    href: '/start/budget',
   },
   {
-    id: 'construction',
-    label: '施工中',
-    title: '开工了，不知道每个节点盯什么',
-    time: '15 分钟',
-    description: '水电、泥工、木作、油漆，每个阶段都有检查口。',
-    nudge: '现场有争议，先拍照留痕，再决定要不要介入。',
-    tool: { label: '施工节点入口', href: '/resources#construction-checkpoints' },
-    checklist: { label: '留痕与验收清单', href: '/resources#yanshou-qingdan' },
-    article: { label: '从工地看世界', href: '/blog/03-cong-gongdi-kan-shijie' },
-    service: { label: '提交现场判断', href: '/services#service-form' },
+    n: '03',
+    id: 'contract',
+    label: '再看合同',
+    title: '装修合同怎么审、口头承诺怎么落字',
+    core: '签完合同你就失去主动权。所有口头承诺、付款节点、增项规则必须签前写进去。',
+    href: '/start/contract',
   },
   {
+    n: '04',
+    id: 'build',
+    label: '再看施工',
+    title: '工地怎么盯、变更怎么留痕',
+    core: '不是天天泡工地，是按节点去——水电、防水、瓦工、木油，每个节点知道看什么。',
+    href: '/start/build',
+  },
+  {
+    n: '05',
+    id: 'inspect',
+    label: '再看验收',
+    title: '装修验收怎么做、质保怎么写',
+    core: '验收前是甲方，签字后是乙方。把质保、整改、售后全部锁死再签字。',
+    href: '/start/inspect',
+  },
+  {
+    n: '06',
     id: 'living',
-    label: '居住场景',
-    title: '怕的不是风格不像，是住进去不顺手',
-    time: '20–30 分钟',
-    description: '先写清真实需求，再回头看方案。',
-    nudge: '风格和生活打架时，用居住场景重排优先级。',
-    tool: { label: '居住场景自查表', href: '/resources#shizhu-pai-zijian-biao' },
-    checklist: { label: '入住前后复盘表', href: '/resources#living-beyond-completion' },
-    article: { label: '家不是样板间', href: '/blog/02-jia-bu-shi-yangban-jian' },
-    service: { label: '居住场景装修服务', href: '/services/renovation#shi-zhu-pai-zhuangxiu' },
-  },
-  {
-    id: 'ai',
-    label: '传统行业 + AI',
-    title: '想把 AI 接进业务，不想先陷进工具堆',
-    time: '15 分钟',
-    description: '拿一个真实任务跑一轮，再决定要不要做工作流。',
-    nudge: '有稳定业务和真实任务，再谈流程和知识库。',
-    tool: { label: '提示词体验场', href: '/tools/prompts' },
-    checklist: { label: '内容资产 SOP', href: '/resources#content-system-sop' },
-    article: { label: '为什么我开始认真学 AI', href: '/blog/04-wei-shenme-wo-kaishi-renzheng-xue-ai' },
-    service: { label: 'AI 工作流咨询', href: '/services/ai-workflow' },
+    label: '再看居住',
+    title: '装修对居住体验的影响',
+    core: '装修的终点不是交工，是住得顺手。先写真实生活场景，再回头看方案。',
+    href: '/start/living',
   },
 ]
 
@@ -84,81 +70,115 @@ export default function StartPage() {
           {
             '@context': 'https://schema.org',
             '@type': 'CollectionPage',
-            name: '从这里开始',
+            name: '装修判断',
             url: 'https://zenoaihome.com/start',
-            description: '按具体问题分流的起点页。',
+            description: '从看人到看居住的 6 阶段装修判断系统。',
             inLanguage: 'zh-CN',
           },
           {
             '@context': 'https://schema.org',
             '@type': 'ItemList',
-            name: '问题入口',
-            itemListElement: paths.map((item, index) => ({
+            name: '装修判断 6 阶段',
+            itemListElement: stages.map((s, i) => ({
               '@type': 'ListItem',
-              position: index + 1,
-              name: item.title,
-              url: `https://zenoaihome.com${item.tool.href}`,
+              position: i + 1,
+              name: s.title,
+              url: `https://zenoaihome.com${s.href}`,
             })),
           },
         ]}
       />
 
-      <PageHero
-        label="从这里开始"
-        title="别乱逛，先找到你的问题"
-        subtitle="报价看不懂、预算分不清、开工了不知道盯什么——哪个最急，就从哪个进。"
-        note="已经确定要人工判断的，直接去服务页。还没想清楚的，先往下看。"
-        size="content"
-      />
-
-      <Container size="content" className="py-section">
-        <div className="space-y-6">
-          {paths.map((path, index) => (
-            <section key={path.id} id={path.id} className="border border-border bg-surface overflow-hidden scroll-mt-24">
-              <div className="px-6 py-5 border-b border-border flex items-start gap-4 bg-surface-warm">
-                <span className="text-2xl font-light leading-none shrink-0 mt-0.5 text-stone/40">
-                  {String(index + 1).padStart(2, '0')}
-                </span>
-                <div className="flex-1">
-                  <div className="flex items-center gap-3 mb-2">
-                    <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest">{path.label}</p>
-                    <span className="text-xs text-ink-faint">·</span>
-                    <p className="text-xs text-ink-faint">{path.time}</p>
-                  </div>
-                  <h2 className="text-lg font-semibold text-ink leading-snug">{path.title}</h2>
-                </div>
-              </div>
-
-              <div className="p-6 sm:p-7 grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-6 items-start">
-                <div className="space-y-3">
-                  <p className="text-sm text-ink-muted leading-relaxed">{path.description}</p>
-                  <p className="text-xs text-ink-faint leading-relaxed">{path.nudge}</p>
-                </div>
-
-                <div className="grid gap-3 sm:grid-cols-2">
-                  <CTA href={path.tool.href} label={path.tool.label} variant="primary" />
-                  <CTA href={path.checklist.href} label={path.checklist.label} variant="secondary" />
-                  <CTA href={path.article.href} label={path.article.label} variant="ghost" />
-                  <CTA href={path.service.href} label={path.service.label} variant="ghost" />
-                </div>
-              </div>
-            </section>
-          ))}
-        </div>
-
-        <div className="mt-14 border border-border bg-surface-warm p-6 sm:p-8">
-          <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-3">如果你还是不确定</p>
-          <h2 className="text-lg font-semibold text-ink mb-3">还不确定——先去工具页跑一轮，再回来看要不要服务</h2>
-          <p className="text-sm text-ink-muted leading-relaxed mb-5">
-            工具把问题缩小，资料给你第一轮拓手。服务只在你已经知道“问题大概在哪”的时候再进。
+      {/* Hero */}
+      <div className="pt-14 sm:pt-20 pb-12 sm:pb-16 border-b border-border bg-surface-warm">
+        <Container size="content">
+          <p className="page-label mb-5">装修判断</p>
+          <h1 className="page-title mb-6">
+            在签约前看懂装修，<br className="hidden sm:block" />
+            从这 6 步开始
+          </h1>
+          <p className="text-base sm:text-lg text-ink-muted leading-[1.8] max-w-2xl">
+            装修不是「选个公司就完事」。它是一条决策链：先看人、再看钱、再看合同、再看施工、再看验收、最后看你能不能住得顺手。
+            每一步都有判断标准——这套系统就是把这些标准一次性给你。
           </p>
-          <div className="flex flex-wrap gap-3">
-            <CTA href="/tools" label="去工具页" variant="secondary" />
-            <CTA href="/resources" label="去资源页" variant="ghost" />
-            <CTA href="/services#service-form" label="提交服务需求" variant="ghost" />
-          </div>
+          <p className="mt-5 text-sm text-ink-faint leading-relaxed max-w-xl">
+            不需要按顺序看完。卡在哪一步，就从哪一步开始。
+          </p>
+        </Container>
+      </div>
+
+      {/* 决策时间线 */}
+      <Container size="content" className="py-section">
+        <div className="mb-10">
+          <p className="text-xs font-semibold uppercase tracking-widest text-ink-faint mb-3">
+            装修判断 · 6 个阶段
+          </p>
+          <h2 className="text-2xl sm:text-3xl font-semibold text-ink leading-tight">
+            按用户视角排，不是按职业角色排
+          </h2>
         </div>
+
+        <ol className="relative border-l border-border ml-3 sm:ml-4 space-y-px">
+          {stages.map((s) => (
+            <li key={s.id} id={s.id} className="relative pl-8 sm:pl-10 scroll-mt-24">
+              <span className="absolute left-0 top-7 -translate-x-1/2 w-3 h-3 bg-surface border-2 border-stone rounded-full" />
+
+              <Link
+                href={s.href}
+                className="group block border border-border bg-surface hover:border-stone transition-colors p-6 sm:p-7 -ml-px mb-3"
+              >
+                <div className="flex items-start gap-5">
+                  <span className="text-3xl sm:text-4xl font-light text-stone/30 leading-none shrink-0 mt-1 group-hover:text-stone/60 transition-colors">
+                    {s.n}
+                  </span>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-2">
+                      {s.label}
+                    </p>
+                    <h3 className="text-lg sm:text-xl font-semibold text-ink leading-snug mb-3 group-hover:text-stone transition-colors">
+                      {s.title}
+                    </h3>
+                    <p className="text-sm sm:text-base text-ink-muted leading-relaxed">
+                      {s.core}
+                    </p>
+                    <p className="mt-4 text-xs text-stone font-semibold group-hover:underline">
+                      进入这一步 →
+                    </p>
+                  </div>
+                </div>
+              </Link>
+            </li>
+          ))}
+        </ol>
       </Container>
+
+      {/* 底部：AI 工具 + 服务 */}
+      <div className="border-t border-border bg-surface-warm">
+        <Container size="content" className="py-section">
+          <div className="grid sm:grid-cols-2 gap-px bg-border border border-border">
+            <div className="bg-surface p-6 sm:p-8">
+              <p className="text-[11px] font-semibold uppercase tracking-widest text-ink-faint mb-3">
+                方法层
+              </p>
+              <h3 className="text-lg font-semibold text-ink mb-3">AI 工具帮你更快看懂</h3>
+              <p className="text-sm text-ink-muted leading-relaxed mb-5">
+                报价初筛、预算分配、超预算自测、验收向导——把判断动作交给工具先跑一轮。
+              </p>
+              <CTA href="/tools" label="去 AI 工具" variant="secondary" />
+            </div>
+            <div className="bg-surface p-6 sm:p-8">
+              <p className="text-[11px] font-semibold uppercase tracking-widest text-ink-faint mb-3">
+                承接层
+              </p>
+              <h3 className="text-lg font-semibold text-ink mb-3">卡住了，我直接帮你判断</h3>
+              <p className="text-sm text-ink-muted leading-relaxed mb-5">
+                报价审、合同审、预算诊断、居住场景装修——人工服务只在你已经知道「问题大概在哪」时再用。
+              </p>
+              <CTA href="/services" label="看服务" variant="secondary" />
+            </div>
+          </div>
+        </Container>
+      </div>
     </>
   )
 }
