@@ -119,16 +119,25 @@ const quoteSignals = [
   { label: '付款节点', value: '4 个', width: '56%', note: '开工、水电、泥木、竣工——每个都需要验收对齐', color: '#31485c' },
 ]
 
-const aiBuildRows = [
-  ['经验', '16 年装修现场里的坑、细节和人性'],
-  ['审美', '不是堆材料，而是长期住起来舒服'],
-  ['工具', '把判断过程拆成表单、清单和报告'],
-]
-
-const nextStepLinks = [
-  { label: '先做报价风险初筛', href: '/tools/quote-check' },
-  { label: '领取签约前检查清单', href: '/resources#baojia-shenhe-qingdan' },
-  { label: '已经有材料就看快审服务', href: '/services/renovation#baojia-shenhe' },
+const caseStudies = [
+  {
+    tag: '低价陷阱',
+    title: '报价便宜 3 万，为什么我反而建议先别签',
+    summary: '总价 8.2 万看起来很有竞争力，但水电按实结、防水面积未写、垃圾外运不含——三项加起来预计增项 2.8–4.1 万。签约前追问 6 个点后，业主决定先让对方补齐再比较。',
+    result: '补齐后实际报价 11.7 万，高于另一家的 10.9 万。',
+  },
+  {
+    tag: '增项风险',
+    title: '合同写了按实际结算，签完多花了 4.2 万',
+    summary: '合同里水电改造写"按实际发生量结算"，没有封顶、没有预估、没有单价明细。施工到一半业主才知道每米线管单价比市场高 40%，但已经开槽无法更换。',
+    result: '后续协商扣回 0.8 万，其余 3.4 万只能认。',
+  },
+  {
+    tag: '付款节点',
+    title: '付款 70% 才到贴砖阶段，验收时已经没有筹码',
+    summary: '合同约定开工 40%、水电 30%、泥木 20%、竣工 10%。泥木验收发现墙砖空鼓率超标，但业主只剩 10% 尾款，施工方态度强硬不愿返工。',
+    result: '建议的节点比例是 30/25/25/20，验收前始终保留 ≥20% 作为谈判空间。',
+  },
 ]
 
 const toolCards: Array<{
@@ -250,7 +259,7 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
           </svg>
         </div>
 
-        <div className="relative mx-auto grid max-w-[1400px] grid-cols-1 gap-10 px-5 py-14 sm:px-8 lg:min-h-[100dvh] lg:grid-cols-[minmax(0,1fr)_minmax(520px,1fr)] lg:px-12 lg:py-16">
+        <div className="relative mx-auto grid max-w-[1400px] grid-cols-1 gap-10 px-5 py-14 sm:px-8 lg:min-h-[100dvh] lg:grid-cols-[minmax(0,1.2fr)_minmax(380px,0.8fr)] lg:px-12 lg:py-16">
           {/* Left: Text Block */}
           <motion.div
             className="flex min-w-0 max-w-3xl flex-col justify-center"
@@ -258,36 +267,22 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
             animate="visible"
             variants={staggerContainer}
           >
-            <motion.p variants={staggerItem} className="mb-7 flex items-center gap-3 text-sm font-medium text-[#a65a2c]">
-              <span className="h-px w-6 bg-[#d96f38]" />
-              装修判断力 / 签约前报价风险初筛
-            </motion.p>
-
             <motion.h1
               variants={staggerItem}
               className="max-w-[22rem] text-[2.1rem] font-semibold leading-[1.16] tracking-tight text-[#24211e] sm:max-w-4xl sm:text-[4.25rem] xl:text-[5.25rem]"
             >
-              <span className="block">装修报价拿到手，</span>
-              <span className="block">先别急着签。</span>
+              <span className="block">拿到装修报价，</span>
+              <span className="block">不知道能不能签？</span>
             </motion.h1>
 
             <motion.p variants={staggerItem} className="mt-7 max-w-[22rem] text-base leading-8 text-[#5f5952] sm:max-w-2xl sm:text-lg">
-              适合已经拿到装修报价、准备比较或快签约的人。先把漏项、模糊项、付款节点和追问顺序看清楚，再决定要不要继续谈。
+              上传或对照报价单，先查 8 个签约前风险。
             </motion.p>
 
-            <motion.div variants={staggerItem} className="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+            <motion.div variants={staggerItem} className="mt-9">
               <ActionLink href="/tools/quote-check">
                 <UploadSimple size={18} aria-hidden />
-                开始免费报价初筛
-              </ActionLink>
-              <ActionLink href="/resources#baojia-shenhe-qingdan" variant="secondary">
-                查看签约前自查清单
-              </ActionLink>
-            </motion.div>
-
-            <motion.div variants={staggerItem} className="mt-6">
-              <ActionLink href="/about" variant="text">
-                了解 Zeno 的装修经验和判断方法
+                免费生成报价追问清单
               </ActionLink>
             </motion.div>
 
@@ -307,14 +302,14 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
             </motion.div>
           </motion.div>
 
-          {/* Right: Info Cards with scale-in */}
+          {/* Right: Quote Risk Card — single focused element */}
           <motion.div
             className="grid min-w-0 content-center gap-4 lg:pl-2"
             initial="hidden"
             animate="visible"
             variants={staggerContainer}
           >
-            <div className="grid min-w-0 gap-4 xl:grid-cols-[1.04fr_0.96fr]">
+            <div className="grid min-w-0 gap-4">
               {/* Quote Risk Card — Liquid Glass refraction */}
               <motion.div
                 variants={scaleIn}
@@ -362,44 +357,6 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
                   </div>
                 </div>
               </motion.div>
-
-              {/* Right Column Stack */}
-              <div className="grid gap-4">
-                {/* Brand Axis Card */}
-                <motion.div
-                  variants={scaleIn}
-                  className="min-w-0 bg-[#2b261f] p-7 text-white"
-                  style={{ boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.05), 0 22px 70px rgba(80,55,32,0.15)' }}
-                >
-                  <p className="text-xs font-semibold tracking-[0.18em] text-[#d9b98f]">BRAND AXIS</p>
-                  <h2 className="mt-3 break-all text-xl font-semibold leading-snug sm:break-normal sm:text-2xl">用经验、审美和工具，帮人把家的决策做对。</h2>
-                  <div className="mt-7 space-y-3">
-                    {aiBuildRows.map(([label, body]) => (
-                      <div key={label} className="grid grid-cols-[4.5rem_1fr] gap-3 border border-white/12 bg-white/6 px-4 py-3">
-                        <p className="text-sm font-semibold text-[#e6c9a5]">{label}</p>
-                        <p className="text-sm leading-6 text-white/76">{body}</p>
-                      </div>
-                    ))}
-                  </div>
-                </motion.div>
-
-                {/* Next Steps Card — Liquid Glass */}
-                <motion.div
-                  variants={scaleIn}
-                  className="bg-white/84 p-5 backdrop-blur-sm"
-                  style={{ boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.5), 0 18px 50px rgba(80,55,32,0.10)' }}
-                >
-                  <p className="text-sm font-semibold text-[#332d27]">现在从哪一步开始</p>
-                  <div className="mt-3 grid gap-2">
-                    {nextStepLinks.map((item) => (
-                      <Link key={item.label} href={item.href} className="group flex items-center justify-between gap-4 border border-[#ead9c7] bg-[#fbf8f4] px-4 py-3 text-sm font-medium text-[#6b4125] transition-all duration-200 hover:border-[#b9875d] hover:bg-white active:scale-[0.99]">
-                        {item.label}
-                        <ArrowRight size={16} className="transition-transform duration-200 group-hover:translate-x-1" aria-hidden />
-                      </Link>
-                    ))}
-                  </div>
-                </motion.div>
-              </div>
             </div>
           </motion.div>
         </div>
@@ -653,6 +610,50 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
             <ActionLink href="/tools/quote-check">
               <UploadSimple size={18} aria-hidden />
               先做免费报价初筛，看完再决定
+            </ActionLink>
+          </div>
+        </div>
+      </AnimatedSection>
+
+      {/* ══════ Section 04.8: Case Studies — Trust through real examples ══════ */}
+      <AnimatedSection className="border-b border-[#e7ded3] py-20 sm:py-24">
+        <div className="mx-auto max-w-[1240px] px-5 sm:px-8 lg:px-12">
+          <div className="mx-auto max-w-3xl text-center">
+            <p className="text-sm font-medium tracking-[0.18em] text-[#a65a2c]">04.8 / 真实案例</p>
+            <h2 className="mt-5 text-[clamp(2rem,4vw,3.5rem)] font-semibold leading-tight tracking-tight text-[#25221f]">
+              这些问题，都是签约前能避开的。
+            </h2>
+            <p className="mt-4 text-base leading-8 text-[#6f675f]">以下是脱敏后的真实判断案例。细节已做匿名处理，风险类型和金额区间保持原样。</p>
+          </div>
+
+          <motion.div
+            className="mt-12 grid grid-cols-1 gap-5 lg:grid-cols-3"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-60px' }}
+            variants={staggerContainer}
+          >
+            {caseStudies.map((item) => (
+              <motion.div
+                key={item.title}
+                variants={staggerItem}
+                className="flex flex-col border border-[#e4d8cb] bg-white p-7"
+                style={{ boxShadow: '0 12px 40px rgba(67,45,26,0.05)' }}
+              >
+                <p className="inline-flex w-fit border border-[#e6c9a5] bg-[#fbf3e9] px-3 py-1 text-xs font-semibold text-[#9a5424]">{item.tag}</p>
+                <h3 className="mt-4 text-lg font-semibold leading-snug text-[#2b2723]">{item.title}</h3>
+                <p className="mt-4 flex-1 text-sm leading-7 text-[#6f675f]">{item.summary}</p>
+                <div className="mt-5 border-t border-[#e8ddd1] pt-4">
+                  <p className="text-xs font-semibold uppercase tracking-widest text-[#9a5424]">结果</p>
+                  <p className="mt-2 text-sm leading-relaxed text-[#504a44]">{item.result}</p>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+
+          <div className="mt-10 text-center">
+            <ActionLink href="/services/renovation" variant="secondary">
+              看我的判断服务边界
             </ActionLink>
           </div>
         </div>
