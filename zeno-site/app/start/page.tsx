@@ -17,67 +17,62 @@ const paths = [
   {
     id: 'quote',
     label: '签约前',
-    title: '手上已经有报价单，但看不清哪里有风险',
-    description: '先用工具、清单和低价指南过一轮，再决定是做报价快审，还是直接把报价、预算和合同一起看。',
-    forWho: '适合已经拿到报价单、准备比较或快要签约的人。',
-    time: '10-20 分钟完成第一轮初筛。',
+    title: '报价单拿到了，看不清风险',
+    time: '10–20 分钟',
+    description: '先用工具过一轮，再决定要不要人工判断。',
+    nudge: '报价卡住了看快审，合同预算一起卡了看决策包。',
     tool: { label: '报价初筛工具', href: '/tools/quote-check' },
     checklist: { label: '报价审核清单', href: '/resources#baojia-shenhe-qingdan' },
     article: { label: '报价避坑指南（¥39）', href: '/pricing/baojia-guide' },
     service: { label: '签约前决策包', href: '/services/renovation#qianyue-qian-juece-bao' },
-    serviceAdvice: '如果你只是不确定报价本身，先看报价快审；如果合同、预算和付款节点一起卡住，直接看决策包。',
   },
   {
     id: 'budget',
     label: '预算分配',
-    title: '总预算有个数，但不知道钱该怎么分',
-    description: '先把总预算拆成简约、舒适或精致三种取向下的几份钱，再查超预算的原因。',
-    forWho: '适合预算有上限，但总被报价、风格、材料和家人意见拉扯的人。',
-    time: '5-8 分钟完成第一轮分配。',
+    title: '总数有了，不知道怎么分',
+    time: '5–8 分钟',
+    description: '按取向拆钱，再查哪里容易超。',
+    nudge: '分完还不知道砍哪里，进预算取舍诊断。',
     tool: { label: '预算分配工具', href: '/tools/budget-structure' },
     checklist: { label: '装修预算模板', href: '/resources#zhuangxiu-yusuan-moban' },
     article: { label: '超预算原因自测', href: '/tools/budget-risk' },
     service: { label: '预算取舍诊断', href: '/services/renovation#yusuan-zixun' },
-    serviceAdvice: '如果分配完还是不知道哪里该砍、哪里不能动，再进入预算取舍诊断。',
   },
   {
     id: 'construction',
     label: '施工中',
-    title: '已经开工了，不确定每个节点该盯什么',
-    description: '不要等竣工。水电、泥工、木作、油漆都该各有自己的检查口和留痕方式。',
-    forWho: '适合已经进场、每天被工地消息推着走的人。',
-    time: '先用 15 分钟整理当前节点。',
+    title: '开工了，不知道每个节点盯什么',
+    time: '15 分钟',
+    description: '水电、泥工、木作、油漆，每个阶段都有检查口。',
+    nudge: '现场有争议，先拍照留痕，再决定要不要介入。',
     tool: { label: '施工节点入口', href: '/resources#construction-checkpoints' },
     checklist: { label: '留痕与验收清单', href: '/resources#yanshou-qingdan' },
     article: { label: '从工地看世界', href: '/blog/03-cong-gongdi-kan-shijie' },
     service: { label: '提交现场判断', href: '/services#service-form' },
-    serviceAdvice: '如果现场争议已经出现，先保留照片、聊天记录和节点确认，再判断是否需要介入。',
   },
   {
     id: 'living',
     label: '居住场景',
-    title: '最怕的是住进去不顺手，而不是风格不够像',
-    description: '先把家庭成员、作息、收纳、做饭、办公这些真实需求写清，再回头判断方案。',
-    forWho: '适合不想只照搬效果图、希望房子长期好住的人。',
-    time: '20-30 分钟写完第一轮真实需求。',
+    title: '怕的不是风格不像，是住进去不顺手',
+    time: '20–30 分钟',
+    description: '先写清真实需求，再回头看方案。',
+    nudge: '风格和生活打架时，用居住场景重排优先级。',
     tool: { label: '居住场景自查表', href: '/resources#shizhu-pai-zijian-biao' },
     checklist: { label: '入住前后复盘表', href: '/resources#living-beyond-completion' },
     article: { label: '家不是样板间', href: '/blog/02-jia-bu-shi-yangban-jian' },
     service: { label: '居住场景装修服务', href: '/services/renovation#shi-zhu-pai-zhuangxiu' },
-    serviceAdvice: '如果你在风格、预算和生活习惯之间摇摆，先用居住场景问题重排优先级。',
   },
   {
     id: 'ai',
     label: '传统行业 + AI',
-    title: '想把 AI 用进业务，但不想先陷进工具堆',
-    description: '先拿一个真实任务来，跑一轮提示词或流程骨架，再决定要不要做 AI 工作流咨询。',
-    forWho: '适合有行业经验、有内容或服务流程，但不知道怎么接进 AI 的人。',
-    time: '先用 15 分钟跑一个真实任务。',
+    title: '想把 AI 接进业务，不想先陷进工具堆',
+    time: '15 分钟',
+    description: '拿一个真实任务跑一轮，再决定要不要做工作流。',
+    nudge: '有稳定业务和真实任务，再谈流程和知识库。',
     tool: { label: '提示词体验场', href: '/tools/prompts' },
     checklist: { label: '内容资产 SOP', href: '/resources#content-system-sop' },
     article: { label: '为什么我开始认真学 AI', href: '/blog/04-wei-shenme-wo-kaishi-renzheng-xue-ai' },
     service: { label: 'AI 工作流咨询', href: '/services/ai-workflow' },
-    serviceAdvice: '如果你已经有稳定业务和真实任务，再谈流程、提示词库和知识库才有意义。',
   },
 ]
 
@@ -124,29 +119,20 @@ export default function StartPage() {
                 <span className="text-2xl font-light leading-none shrink-0 mt-0.5 text-stone/40">
                   {String(index + 1).padStart(2, '0')}
                 </span>
-                <div>
-                  <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-2">{path.label}</p>
+                <div className="flex-1">
+                  <div className="flex items-center gap-3 mb-2">
+                    <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest">{path.label}</p>
+                    <span className="text-xs text-ink-faint">·</span>
+                    <p className="text-xs text-ink-faint">{path.time}</p>
+                  </div>
                   <h2 className="text-lg font-semibold text-ink leading-snug">{path.title}</h2>
                 </div>
               </div>
 
-              <div className="p-6 sm:p-7 grid grid-cols-1 lg:grid-cols-[0.95fr_1.05fr] gap-7 items-start">
-                <div>
+              <div className="p-6 sm:p-7 grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-6 items-start">
+                <div className="space-y-3">
                   <p className="text-sm text-ink-muted leading-relaxed">{path.description}</p>
-                  <dl className="mt-5 grid gap-3 text-sm">
-                    <div>
-                      <dt className="font-semibold text-ink">适合谁</dt>
-                      <dd className="mt-1 text-ink-muted leading-relaxed">{path.forWho}</dd>
-                    </div>
-                    <div>
-                      <dt className="font-semibold text-ink">预计耗时</dt>
-                      <dd className="mt-1 text-ink-muted leading-relaxed">{path.time}</dd>
-                    </div>
-                    <div>
-                      <dt className="font-semibold text-ink">什么时候进入服务</dt>
-                      <dd className="mt-1 text-ink-muted leading-relaxed">{path.serviceAdvice}</dd>
-                    </div>
-                  </dl>
+                  <p className="text-xs text-ink-faint leading-relaxed">{path.nudge}</p>
                 </div>
 
                 <div className="grid gap-3 sm:grid-cols-2">
