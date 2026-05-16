@@ -114,7 +114,7 @@ export default function StartPage() {
       <Container size="content" className="py-section">
         <div className="space-y-6">
           {paths.map((path, index) => (
-            <section key={path.id} className="border border-border bg-surface overflow-hidden">
+            <section key={path.id} id={path.id} className="border border-border bg-surface overflow-hidden scroll-mt-24">
               <div className="px-6 py-5 border-b border-border flex items-start gap-4 bg-surface-warm">
                 <span className="text-2xl font-light leading-none shrink-0 mt-0.5 text-stone/40">
                   {String(index + 1).padStart(2, '0')}
