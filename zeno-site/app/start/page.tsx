@@ -7,7 +7,7 @@ import StructuredData from '@/components/StructuredData'
 export const metadata: Metadata = {
   title: '从这里开始',
   description:
-    '如果你第一次来到站里，按你当前最具体的问题进入：报价、预算、施工、居住场景，或传统行业里的 AI 工作流。',
+    '别乱逛，先找到你的问题。报价、预算、施工、居住场景——哪个最急从哪个进。',
   alternates: {
     canonical: 'https://zenoaihome.com/start',
   },
@@ -110,9 +110,9 @@ export default function StartPage() {
 
       <PageHero
         label="从这里开始"
-        title="先按问题进，不要一上来全站乱看"
-        subtitle="这个页面只做一件事：帮你先确认当前最值得处理的是哪类问题。路径对了，后面的文章、资料和服务才不会混。"
-        note="如果你已经很明确自己要人工判断，可以直接去服务页；如果还在摸清问题阶段，就先走下面这些入口。"
+        title="别乱逛，先找到你的问题"
+        subtitle="报价看不懂、预算分不清、开工了不知道盯什么——哪个最急，就从哪个进。"
+        note="已经确定要人工判断的，直接去服务页。还没想清楚的，先往下看。"
         size="content"
       />
 
