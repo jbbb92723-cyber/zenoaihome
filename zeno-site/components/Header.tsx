@@ -151,45 +151,68 @@ export default function Header() {
                   <>
                     <div className={`pointer-events-none fixed inset-x-0 bottom-0 z-[64] bg-canvas/80 backdrop-blur-sm ${scrolled ? 'top-14' : 'top-16'}`} />
                     <div
-                      className={`fixed left-1/2 z-[70] w-[min(960px,calc(100vw-3rem))] -translate-x-1/2 pt-3 animate-menu-in ${scrolled ? 'top-14' : 'top-16'}`}
+                      className={`fixed left-1/2 z-[70] -translate-x-1/2 pt-3 animate-menu-in ${scrolled ? 'top-14' : 'top-16'} ${item.groups.length === 1 ? 'w-[min(460px,calc(100vw-3rem))]' : 'w-[min(900px,calc(100vw-3rem))]'}`}
                       onMouseEnter={() => handleMenuEnter(item.key)}
                       onMouseLeave={handleMenuLeave}
                     >
-                    <div className="border border-border/60 bg-canvas shadow-[0_24px_64px_rgba(42,39,35,0.18)] ring-1 ring-white/60">
-                      {/* header bar */}
-                      <div className="flex items-center justify-between border-b border-border/50 px-7 py-4">
-                        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-stone">{item.label}</p>
-                        <Link href={item.href} className="text-xs text-ink-muted transition-colors hover:text-stone">
-                          {isEn ? 'View all →' : '查看全部 →'}
-                        </Link>
-                      </div>
+                      <div className="border border-border/60 bg-canvas shadow-[0_20px_56px_rgba(42,39,35,0.15)]">
+                        {/* top bar */}
+                        <div className="flex items-center justify-between border-b border-border/50 px-6 py-3">
+                          <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-stone">{item.label}</p>
+                          <Link href={item.href} className="text-[11px] text-ink-faint transition-colors hover:text-stone">
+                            {isEn ? 'View all →' : '查看全部 →'}
+                          </Link>
+                        </div>
 
-                      {/* body */}
-                      <div className={`px-7 py-6 ${item.groups.length === 1 ? 'max-w-lg' : 'grid gap-10'}`} style={item.groups.length > 1 ? { gridTemplateColumns: `repeat(${Math.min(item.groups.length, 3)}, 1fr)` } : undefined}>
-                        {item.groups.map((group) => (
-                          <div key={group.key} className="min-w-0">
-                            {item.groups!.length > 1 && (
-                              <p className="mb-1 text-[11px] font-medium uppercase tracking-[0.15em] text-ink-faint">{group.label}</p>
+                        {item.groups.length === 1 ? (
+                          /* ── 单组：两列 ── */
+                          <div className="p-6">
+                            {item.groups[0].desc && (
+                              <p className="mb-4 text-xs text-ink-muted">{item.groups[0].desc}</p>
                             )}
-                            {group.desc && <p className="mb-4 text-xs text-ink-muted">{group.desc}</p>}
-                            {!group.desc && item.groups!.length > 1 && <div className="mb-4" />}
-                            <div className="space-y-0.5">
-                              {group.items.map((leaf) => (
+                            <div className="grid grid-cols-2 gap-x-4 gap-y-px">
+                              {item.groups[0].items.map((leaf) => (
                                 <Link
                                   key={leaf.key}
                                   href={leaf.href}
-                                  className="group flex items-baseline gap-3 rounded-sm px-2 py-1.5 transition-colors duration-100 hover:bg-surface-warm"
+                                  className="group flex flex-col border-l-2 border-transparent py-2.5 pl-3 transition-colors duration-100 hover:border-stone/50 hover:bg-surface-warm"
                                 >
-                                  <span className="text-sm text-ink group-hover:text-stone">{leaf.label}</span>
-                                  {leaf.desc && <span className="text-[11px] text-ink-faint">{leaf.desc}</span>}
+                                  <span className="text-sm font-medium leading-snug text-ink group-hover:text-stone">{leaf.label}</span>
+                                  {leaf.desc && <span className="mt-0.5 text-[11px] leading-snug text-ink-faint">{leaf.desc}</span>}
                                 </Link>
                               ))}
                             </div>
                           </div>
-                        ))}
+                        ) : (
+                          /* ── 多组：分栏 + 竖分割线 ── */
+                          <div className="grid" style={{ gridTemplateColumns: `repeat(${item.groups.length}, 1fr)` }}>
+                            {item.groups.map((group, gi) => (
+                              <div
+                                key={group.key}
+                                className={`p-6 ${gi < item.groups!.length - 1 ? 'border-r border-border/40' : ''}`}
+                              >
+                                <div className="mb-4 border-b border-border/40 pb-3">
+                                  <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-stone/70">{group.label}</p>
+                                  {group.desc && <p className="mt-1 text-[11px] leading-relaxed text-ink-faint">{group.desc}</p>}
+                                </div>
+                                <div className="space-y-px">
+                                  {group.items.map((leaf) => (
+                                    <Link
+                                      key={leaf.key}
+                                      href={leaf.href}
+                                      className="group flex flex-col border-l-2 border-transparent py-2 pl-3 transition-colors duration-100 hover:border-stone/50 hover:bg-surface-warm"
+                                    >
+                                      <span className="text-sm leading-snug text-ink group-hover:text-stone">{leaf.label}</span>
+                                      {leaf.desc && <span className="mt-0.5 text-[11px] leading-snug text-ink-faint">{leaf.desc}</span>}
+                                    </Link>
+                                  ))}
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        )}
                       </div>
                     </div>
-                  </div>
                   </>
                 )}
               </div>
