@@ -170,8 +170,8 @@ const toolCards: Array<{
   },
   {
     icon: Notebook,
-    title: '报价避坑指南',
-    body: '用一份低价资料，把报价、预算、合同和增项先系统串起来。',
+    title: '报价风险自查指南',
+    body: '用一份 ¥39 指南，把报价、合同和付款节点先系统看清楚。',
     action: '看 ¥39 指南',
     href: '/pricing/baojia-guide',
   },
@@ -667,7 +667,7 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
             <h2 className="mt-5 text-[clamp(2rem,4vw,3.2rem)] font-semibold leading-tight tracking-tight text-ink [text-wrap:balance]">
               不是越贵越好，看你卡在哪一步。
             </h2>
-            <p className="mt-4 text-base leading-8 text-ink-muted">不要先看价格，先看你卡在哪一步。从免费初筛到居住场景服务，按决策节点选。</p>
+            <p className="mt-4 text-base leading-8 text-ink-muted">不要先看价格，先看你卡在哪一步。从免费初筛到三档人工判断，按决策节点选。</p>
           </div>
 
           {/* 统一商业梯子：data/commercial-ladder.ts 是单一真源 */}

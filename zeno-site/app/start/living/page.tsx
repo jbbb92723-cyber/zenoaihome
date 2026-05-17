@@ -84,9 +84,7 @@ export default function LivingStagePage() {
           { label: '居住场景自查表', href: '/resources#shizhu-pai-zijian-biao' },
           { label: '入住前后复盘表', href: '/resources#living-beyond-completion' },
         ]}
-        services={[
-          { label: '居住场景装修服务 ¥9800 起（南宁本地）', href: '/services/renovation#shi-zhu-pai-zhuangxiu' },
-        ]}
+        services={[]}
         prev={{ label: '再看验收：交工时收什么', href: '/start/inspect' }}
       />
     </>

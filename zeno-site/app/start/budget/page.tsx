@@ -79,7 +79,7 @@ export default function BudgetStagePage() {
           { label: '报价初筛（在线工具）', href: '/tools/quote-check' },
           { label: '预算分配工具', href: '/tools/budget-structure' },
           { label: '超预算原因自测', href: '/tools/budget-risk' },
-          { label: '报价避坑指南 ¥39', href: '/pricing/baojia-guide' },
+          { label: '报价风险自查指南 ¥39', href: '/pricing/baojia-guide' },
         ]}
         services={[
           { label: '报价风险快审 ¥699', href: '/services/renovation#baojia-shenhe' },

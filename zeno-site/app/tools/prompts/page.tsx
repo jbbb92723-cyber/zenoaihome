@@ -68,7 +68,7 @@ function buildPrompt(scenario: Scenario, context: string, desiredOutput: string)
   const contextText = context.trim() || '[在这里补充你的真实情况、材料或客户原话]'
   const outputText = desiredOutput.trim() || scenario.output
 
-  return `你是一位懂装修现场、客户沟通和 AI 工作流的顾问。你的任务不是写漂亮废话，而是把真实情况拆成可判断、可执行、可复用的步骤。
+  return `你是一位懂装修现场、客户沟通和签约前报价风险判断的顾问。你的任务不是写漂亮废话，而是把真实情况拆成可判断、可执行、可复用的步骤。
 
 当前场景：${scenario.label}
 要解决的问题：${scenario.job}
@@ -209,17 +209,17 @@ export default function PromptPlayground() {
             </div>
 
             <div className="grid gap-4 md:grid-cols-3">
-              <Link href="/ai" className="border border-border bg-surface p-5 hover:border-stone">
-                <p className="text-sm font-semibold text-ink">看 AI 实践路线</p>
-                <p className="mt-2 text-xs leading-relaxed text-ink-muted">从工具试用走向方法、服务和产品化。</p>
+              <Link href="/tools/quote-check" className="border border-border bg-surface p-5 hover:border-stone">
+                <p className="text-sm font-semibold text-ink">回到报价初筛</p>
+                <p className="mt-2 text-xs leading-relaxed text-ink-muted">AI 生成的问题，最后要回到报价和合同里确认。</p>
               </Link>
-              <Link href="/pricing#ai-workflow-course" className="border border-border bg-surface p-5 hover:border-stone">
-                <p className="text-sm font-semibold text-ink">AI 工作流小课</p>
-                <p className="mt-2 text-xs leading-relaxed text-ink-muted">适合想系统学一遍的人。</p>
+              <Link href="/resources" className="border border-border bg-surface p-5 hover:border-stone">
+                <p className="text-sm font-semibold text-ink">看风险资料库</p>
+                <p className="mt-2 text-xs leading-relaxed text-ink-muted">风险词典、规则库和检查模板都在这里。</p>
               </Link>
               <Link href="/services/ai-workflow" className="border border-border bg-surface p-5 hover:border-stone">
-                <p className="text-sm font-semibold text-ink">AI 工作流咨询</p>
-                <p className="mt-2 text-xs leading-relaxed text-ink-muted">工具跑不通时，再进入人工拆解。</p>
+                <p className="text-sm font-semibold text-ink">AI 延伸交流</p>
+                <p className="mt-2 text-xs leading-relaxed text-ink-muted">这是给同行和内容场景的延伸入口，不是业主主路径。</p>
               </Link>
             </div>
           </section>

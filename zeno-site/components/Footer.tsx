@@ -30,7 +30,7 @@ export default function Footer() {
             <p className="mt-3 text-[0.8125rem] text-ink-muted leading-relaxed max-w-[220px]">
               {isEn
                 ? 'From a familiar industry, building a freer personal business system with AI, products, and content.'
-                : '从 16 年装修现场出发，把装修判断、居住场景和 AI 如何接进真实工作讲明白。'}
+                : '从 16 年装修现场出发，帮业主在签约前看清报价、合同和付款节点里没说清的风险。'}
             </p>
           </div>
 

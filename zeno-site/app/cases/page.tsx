@@ -17,7 +17,7 @@ type CaseGroup = {
 export const metadata: Metadata = {
   title: '案例复盘：先看判断过程，再决定怎么做',
   description:
-    '这里先公开能公开的判断复盘，不编造客户隐私案例。看报价、预算、施工、实住和 AI 工作流里，判断是怎么一步步做出来的。',
+    '这里先公开能公开的判断复盘，不编造客户隐私案例。重点看报价、预算、合同和施工节点里，判断是怎么一步步做出来的。',
   alternates: {
     canonical: 'https://zenoaihome.com/cases',
   },
@@ -28,7 +28,7 @@ const caseGroups: CaseGroup[] = [
     title: '报价与签约复盘',
     intro: '先看一份报价是怎么被拆开、怎么识别风险、为什么低价不一定更划算。',
     articleSlugs: ['baojia-dan-zenme-kan', 'article-03-04', 'article-03-02'],
-    tool: { label: '先看报价避坑指南', href: '/pricing/baojia-guide' },
+    tool: { label: '先看报价风险自查指南', href: '/pricing/baojia-guide' },
     service: { label: '签约前决策包', href: '/services/renovation#qianyue-qian-juece-bao' },
   },
   {
@@ -39,11 +39,11 @@ const caseGroups: CaseGroup[] = [
     service: { label: '预算取舍诊断', href: '/services/renovation#yusuan-zixun' },
   },
   {
-    title: 'AI 与内容系统复盘',
-    intro: '先看一个传统行业人怎么把经验拆成流程，再让 AI 放大，而不是先追工具。',
+    title: 'AI 辅助整理复盘',
+    intro: '先看 AI 怎么辅助整理报价、清单和内容，但最后仍然回到人的判断。',
     articleSlugs: ['04-wei-shenme-wo-kaishi-renzheng-xue-ai', 'article-05-06', 'neirong-xitong-jianqi'],
     tool: { label: '去提示词体验场', href: '/tools/prompts' },
-    service: { label: 'AI 工作流咨询', href: '/services/ai-workflow' },
+    service: { label: '回到报价初筛', href: '/tools/quote-check' },
   },
 ]
 

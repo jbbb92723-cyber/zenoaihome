@@ -4,6 +4,13 @@ import Link from 'next/link'
 import { useEffect, useMemo, useState } from 'react'
 import ToolSeoAssetSection from '@/components/tools/ToolSeoAssetSection'
 import { toolSeoAssets } from '@/data/toolSeoAssets'
+import {
+  projectRiskLibrary,
+  quoteCheckTemplates,
+  quoteRiskDictionary,
+  quoteRiskDimensions,
+  quoteRiskRules,
+} from '@/data/quote-risk'
 
 type QuoteStage = 'firstQuote' | 'comparing' | 'readyToSign' | 'alreadyStarted'
 
@@ -56,79 +63,7 @@ const stageOptions: Array<{ value: QuoteStage; label: string; desc: string }> = 
   { value: 'alreadyStarted', label: '已经签约或开工', desc: '更多是复盘和补救' },
 ]
 
-const checks: Array<{
-  key: CheckKey
-  dimension: string
-  label: string
-  risk: string
-  question: string
-  weight: number
-}> = [
-  {
-    key: 'hasItemizedQuote',
-    dimension: '项目完整性',
-    label: '按空间或工种拆分到具体项目',
-    risk: '项目颗粒度不足，后期容易用“没包含”解释增项。',
-    question: '请把每个空间/工种的项目、数量、单位和单价拆出来，不要只给总价。',
-    weight: 2,
-  },
-  {
-    key: 'hasMaterialBrand',
-    dimension: '材料边界',
-    label: '主材/辅材品牌、型号、规格清楚',
-    risk: '材料描述模糊，后期替换空间很大。',
-    question: '这项材料的品牌、型号、规格、环保等级和可替代规则分别是什么？',
-    weight: 1,
-  },
-  {
-    key: 'hasProcessDescription',
-    dimension: '工艺边界',
-    label: '关键工艺做法写清楚',
-    risk: '工艺边界不清，现场质量很难验。',
-    question: '这项施工的基层处理、施工步骤、厚度/遍数和验收标准是什么？',
-    weight: 2,
-  },
-  {
-    key: 'hasMeasurementRule',
-    dimension: '工程量算法',
-    label: '工程量计算规则写清楚',
-    risk: '面积、米数、点位算法不清，结算容易变形。',
-    question: '工程量按什么规则计算？门窗洞口、损耗、转角和重复计算怎么处理？',
-    weight: 1,
-  },
-  {
-    key: 'hasChangeOrderRule',
-    dimension: '增减项流程',
-    label: '增减项和变更流程写清楚',
-    risk: '变更没有前置确认，预算会在施工中失控。',
-    question: '所有增减项是否必须先报价、先确认、再施工？未确认施工如何处理？',
-    weight: 2,
-  },
-  {
-    key: 'hasAcceptanceStandard',
-    dimension: '验收标准',
-    label: '节点验收标准写清楚',
-    risk: '只写“合格”没有意义，出问题很难争取。',
-    question: '水电、泥木、油漆、安装分别按什么标准验收？谁签字后进入下一步？',
-    weight: 1,
-  },
-  {
-    key: 'hasWarrantyScope',
-    dimension: '售后边界',
-    label: '保修范围和期限写清楚',
-    risk: '售后边界不清，后期维权成本高。',
-    question: '哪些项目保修？保修多久？人为损坏、材料问题、施工问题如何区分？',
-    weight: 1,
-  },
-  {
-    key: 'hasPaymentMilestone',
-    dimension: '付款节点',
-    label: '付款节点和交付节点对应',
-    risk: '钱走得比工程快，业主会失去主动权。',
-    question: '每一笔付款对应哪个完成节点？未验收通过是否可以拒付下一笔？',
-    weight: 2,
-  },
-]
+const checks = quoteRiskDimensions
 
 const maxScore = checks.reduce((sum, item) => sum + item.weight, 0)
 
@@ -168,7 +103,7 @@ function getPrimaryNextStep(score: number, stage: QuoteStage) {
   }
   if (score >= 4) {
     return {
-      label: '看 ¥39 报价避坑指南',
+      label: '看 ¥39 报价风险自查指南',
       href: '/pricing/baojia-guide',
       desc: '先系统补一遍报价、合同、预算和增项常识，再继续谈。',
     }
@@ -523,7 +458,7 @@ export default function QuoteCheckClient() {
                   <div className="grid gap-3">
                     {[
                       { label: '领取报价审核清单', href: '/resources#baojia-shenhe-qingdan' },
-                      { label: '看 ¥39 报价避坑指南', href: '/pricing/baojia-guide' },
+                      { label: '看 ¥39 报价风险自查指南', href: '/pricing/baojia-guide' },
                       { label: '看 ¥1499 签约前决策包', href: '/services/renovation#qianyue-qian-juece-bao' },
                     ].map((item) => (
                       <Link key={item.href} href={item.href} className="flex items-center justify-between border border-border bg-canvas px-4 py-3 text-sm font-semibold text-ink transition-colors hover:border-stone">
@@ -548,7 +483,7 @@ export default function QuoteCheckClient() {
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {[
               ['免费', '报价初筛', '先知道哪里没写清'],
-              ['¥39', '报价避坑指南', '自己系统补一遍'],
+              ['¥39', '报价风险自查指南', '自己系统补一遍'],
               ['¥699', '报价风险快审', '带材料进入人工判断'],
               ['¥1499', '签约前决策包', '报价、预算、合同一起看'],
             ].map(([price, title, desc]) => (
@@ -583,6 +518,79 @@ export default function QuoteCheckClient() {
             <Link href="/services/renovation#baojia-shenhe" className="text-sm font-semibold text-stone hover:underline underline-offset-2">
               看 ¥699 报价快审边界 →
             </Link>
+          </div>
+        </div>
+      </section>
+
+      <section id="risk-library" className="border-t border-border bg-surface">
+        <div className="mx-auto max-w-6xl px-5 py-12 sm:px-8 sm:py-16">
+          <div className="grid gap-8 lg:grid-cols-[0.36fr_0.64fr]">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-widest text-stone">结构化资产</p>
+              <h2 className="mt-3 text-2xl font-semibold tracking-tight text-ink">风险词典、规则和项目库，会持续沉淀。</h2>
+              <p className="mt-4 text-sm leading-relaxed text-ink-muted">
+                这部分不是装修百科，而是给签约前报价判断用的数据资产。人能看懂，未来 AI 工具和搜索引擎也能读取。
+              </p>
+            </div>
+
+            <div className="grid gap-5">
+              <article className="border border-border bg-canvas p-5 sm:p-6">
+                <p className="text-xs font-semibold uppercase tracking-widest text-stone">风险词典</p>
+                <div className="mt-4 grid gap-3 sm:grid-cols-3">
+                  {quoteRiskDictionary.slice(0, 9).map((item) => (
+                    <div key={item.term} className="border border-border bg-surface p-4">
+                      <h3 className="text-sm font-semibold text-ink">{item.term}</h3>
+                      <p className="mt-2 text-xs leading-relaxed text-ink-muted">{item.plain}</p>
+                      <p className="mt-2 text-xs leading-relaxed text-ink-faint">{item.whatToLookFor}</p>
+                    </div>
+                  ))}
+                </div>
+              </article>
+
+              <article className="border border-border bg-canvas p-5 sm:p-6">
+                <p className="text-xs font-semibold uppercase tracking-widest text-stone">风险规则库</p>
+                <div className="mt-4 grid gap-3 sm:grid-cols-2">
+                  {quoteRiskRules.map((rule) => (
+                    <div key={rule.title} className="border border-border bg-surface p-4">
+                      <h3 className="text-sm font-semibold text-ink">{rule.title}</h3>
+                      <p className="mt-2 text-xs leading-relaxed text-ink-muted">触发：{rule.trigger}</p>
+                      <p className="mt-2 text-xs leading-relaxed text-ink-muted">原因：{rule.why}</p>
+                      <p className="mt-2 text-xs leading-relaxed text-stone">追问：{rule.ask}</p>
+                    </div>
+                  ))}
+                </div>
+              </article>
+
+              <article className="border border-border bg-canvas p-5 sm:p-6">
+                <p className="text-xs font-semibold uppercase tracking-widest text-stone">检查模板</p>
+                <div className="mt-4 grid gap-3 sm:grid-cols-2">
+                  {quoteCheckTemplates.map((template) => (
+                    <div key={template.title} className="border border-border bg-surface p-4">
+                      <h3 className="text-sm font-semibold text-ink">{template.title}</h3>
+                      <p className="mt-2 text-xs leading-relaxed text-ink-muted">{template.use}</p>
+                      <p className="mt-2 text-xs leading-relaxed text-ink-faint">输出：{template.output}</p>
+                    </div>
+                  ))}
+                </div>
+              </article>
+
+              <article className="border border-border bg-canvas p-5 sm:p-6">
+                <p className="text-xs font-semibold uppercase tracking-widest text-stone">施工项目风险库</p>
+                <div className="mt-4 grid gap-3 sm:grid-cols-2">
+                  {projectRiskLibrary.map((item) => (
+                    <div key={item.project} className="border border-border bg-surface p-4">
+                      <h3 className="text-sm font-semibold text-ink">{item.project}</h3>
+                      <p className="mt-2 text-xs leading-relaxed text-ink-muted">{item.commonRisk}</p>
+                      <ul className="mt-3 space-y-1">
+                        {item.mustAsk.map((ask) => (
+                          <li key={ask} className="text-xs leading-relaxed text-stone">- {ask}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+              </article>
+            </div>
           </div>
         </div>
       </section>

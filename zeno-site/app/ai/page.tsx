@@ -5,8 +5,8 @@ import PageHero from '@/components/PageHero'
 import StructuredData from '@/components/StructuredData'
 
 export const metadata: Metadata = {
-  title: '传统行业 AI 实践路线 | ZenoAIHome',
-  description: 'ZenoAIHome 记录一个传统行业人如何把装修现场经验拆成 SOP，再用 AI 做成工具、内容、产品和一人公司实践。',
+  title: 'AI 延伸路线 | ZenoAIHome',
+  description: '这里记录 AI 在内容、资料和流程整理里的辅助用法，不是装修主线。',
   alternates: {
     canonical: 'https://zenoaihome.com/ai',
   },
@@ -36,10 +36,10 @@ const tracks = [
   },
   {
     label: '服务升级',
-    title: '当工具跑通后，再把经验整理成服务和产品',
-    desc: '提示词、清单、课程、咨询和数字产品，都是把现场经验规模化的方式。',
+    title: '当工具跑通后，再把经验整理成资料和流程',
+    desc: '提示词、清单和工作流，只作为辅助层，不抢装修报价判断的主线。',
     href: '/services/ai-workflow',
-    action: '看 AI 工作流咨询',
+    action: '看 AI 延伸整理',
   },
 ]
 
@@ -58,18 +58,18 @@ export default function AIPage() {
         data={{
           '@context': 'https://schema.org',
           '@type': 'CollectionPage',
-          name: '传统行业 AI 实践路线',
+          name: 'AI 延伸路线',
           url: 'https://zenoaihome.com/ai',
-          description: '从装修现场经验出发，记录传统行业人如何把 AI 用进内容、工具、产品和交付。',
+          description: '从装修现场经验出发，记录 AI 在内容、工具和流程里的辅助用法。',
           inLanguage: 'zh-CN',
         }}
       />
 
       <PageHero
         label="AI 实践"
-        title="我不是离开装修去谈 AI，而是把装修现场做成 AI 样板间"
-        subtitle="这里记录我怎么把 16 年装修经验拆成 SOP，再接进 AI 工具、内容系统、客户沟通、报价判断和数字产品。你看到的不是课程大纲，而是一人公司正在搭建的过程。"
-        note="先从真实任务开始：报价怎么看、客户怎么问、内容怎么写、服务怎么交付。"
+        title="AI 只做延伸，不抢主线"
+        subtitle="这里记录 AI 在内容、资料和流程整理里的辅助用法。主线仍然是报价风险判断、清单和签约前决策。"
+        note="先从真实任务开始：报价怎么看、清单怎么补、内容怎么整理。"
         size="content"
       />
 

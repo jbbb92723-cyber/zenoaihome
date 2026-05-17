@@ -42,7 +42,7 @@ const goals: Array<{ id: GoalId; label: string; desc: string }> = [
 const offers: Array<{ id: Exclude<OfferId, 'auto'>; label: string; href: string; desc: string; keywords: string[] }> = [
   {
     id: 'quote-guide',
-    label: '报价避坑指南',
+    label: '报价风险自查指南',
     href: '/pricing/baojia-guide',
     desc: '适合报价、合同、漏项、增项和签约前内容。',
     keywords: ['报价', '合同', '漏项', '增项', '签约', '付款', '工艺'],
@@ -57,14 +57,14 @@ const offers: Array<{ id: Exclude<OfferId, 'auto'>; label: string; href: string;
   {
     id: 'ai-course',
     label: '传统装修行业 AI 工作流小课',
-    href: '/pricing#ai-workflow-course',
+    href: '/tools/prompts',
     desc: '适合传统行业 AI、提示词、工作流和内容系统内容。',
     keywords: ['AI', '提示词', '工作流', '内容', '效率', '自动化', '工具'],
   },
   {
     id: 'creator-card',
     label: '内容资产会员年卡',
-    href: '/pricing#creator-yearly',
+    href: '/tools/content-brain',
     desc: '适合个人品牌、一人公司、选题库和长期写作内容。',
     keywords: ['内容资产', '一人公司', '选题', '写作', '个人品牌', '长期', '会员'],
   },
@@ -79,7 +79,7 @@ const offers: Array<{ id: Exclude<OfferId, 'auto'>; label: string; href: string;
     id: 'renovation-service',
     label: '装修判断服务',
     href: '/services/renovation',
-    desc: '适合报价快审、预算取舍诊断、签约前决策和居住场景服务。',
+    desc: '适合报价快审、预算取舍诊断和签约前决策。',
     keywords: ['装修', '业主', '验收', '施工', '材料', '居住', '南宁'],
   },
 ]
@@ -206,10 +206,10 @@ function MemberGate({ isLoggedIn }: { isLoggedIn: boolean }) {
             它不是公开流量工具，而是会员每次发内容前的审稿台：先判断选题值不值得做，再看标题、证据、表达和站内承接。会员得到的不是一篇代写稿，而是一套能反复训练内容判断力的流程。
           </p>
           <div className="mt-6 flex flex-wrap gap-3">
-            <Link href={isLoggedIn ? '/pricing#creator-yearly' : '/login?callbackUrl=/tools/content-brain'} className="inline-flex h-10 items-center bg-stone px-4 text-sm font-semibold text-white hover:bg-stone/90">
+            <Link href={isLoggedIn ? '/tools/content-brain' : '/login?callbackUrl=/tools/content-brain'} className="inline-flex h-10 items-center bg-stone px-4 text-sm font-semibold text-white hover:bg-stone/90">
               {isLoggedIn ? '升级创作会员' : '登录后使用'}
             </Link>
-            <Link href="/pricing#creator-yearly" className="inline-flex h-10 items-center border border-stone px-4 text-sm font-semibold text-stone hover:bg-stone-pale">
+            <Link href="/tools/prompts" className="inline-flex h-10 items-center border border-stone px-4 text-sm font-semibold text-stone hover:bg-stone-pale">
               查看会员权益
             </Link>
           </div>
@@ -580,7 +580,7 @@ export default function ContentBrainClient({ canUseTool, isLoggedIn }: ContentBr
         <BridgePanel items={[
           { label: '创作工作台', href: '/tools/md2wechat', desc: '诊断后，把网站母版改成公众号排版。' },
           { label: 'AI 场景生成器', href: '/tools/prompts', desc: '把内容选题变成更完整的 AI 协作提示词。' },
-          { label: '内容资产产品', href: '/pricing#creator-yearly', desc: '把选题、标题、模板和提示词沉淀成会员资产。' },
+          { label: '报价风险资料库', href: '/resources', desc: '回到当前主站的风险词典、规则和检查模板。' },
         ]} />
       </section>
 

@@ -143,7 +143,7 @@ export const services: Service[] = [
     id: '04',
     slug: 'shi-zhu-pai-zhuangxiu',
     title: '居住场景装修服务',
-    tagline: '先按怎么住，再谈风格和预算',
+    tagline: '延伸服务：先按怎么住，再谈风格和预算',
     description:
       '想要一个真正适合自己生活的家，不想被样板间审美带偏，也不想花了钱住进去才发现“看起来好、用起来累”。',
     solves:
@@ -173,8 +173,8 @@ export const services: Service[] = [
     ],
     boundary:
       '服务范围：南宁市区。服务容量有限，不是所有需求都能接受。详细合作方式需初步沟通后确定。',
-    price: '9800 元起（按项目复杂度调整）',
-    contactNote: '微信联系：zanxiansheng2025，备注「装修咨询」。',
+    price: '单独评估（南宁本地，非主线）',
+    contactNote: '微信联系：zanxiansheng2025，备注「居住场景」。',
     tag: '装修',
   },
   {

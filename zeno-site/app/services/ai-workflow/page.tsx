@@ -8,9 +8,9 @@ import StructuredData from '@/components/StructuredData'
 import { services } from '@/data/services'
 
 export const metadata: Metadata = {
-  title: 'AI 工作流咨询：先跑通一个真实场景，再谈系统',
+  title: 'AI 延伸整理：先跑通一个真实场景，再谈系统',
   description:
-    '给传统行业人的 AI 工作流与内容系统入口。先看是否适合你，再决定要不要做一对一咨询。',
+    '给传统行业人的 AI 延伸整理入口。先看是否适合你，再决定要不要做一对一咨询。',
   alternates: {
     canonical: 'https://zenoaihome.com/services/ai-workflow',
   },
@@ -20,7 +20,7 @@ const aiService = services.find((service) => service.slug === 'ai-neirong-xitong
 
 const faqs = [
   {
-    question: '什么样的传统行业人适合来做 AI 工作流咨询？',
+    question: '什么样的传统行业人适合来做 AI 延伸整理？',
     answer:
       '你已经有真实业务场景，也愿意自己继续迭代，只是卡在不知道该从哪个环节切入，或者内容和流程一直跑不稳。',
   },
@@ -87,7 +87,7 @@ export default function AIWorkflowPage() {
           {
             '@context': 'https://schema.org',
             '@type': 'WebPage',
-            name: 'AI 工作流咨询',
+            name: 'AI 延伸整理',
             url: 'https://zenoaihome.com/services/ai-workflow',
             description: '传统行业人先跑通一个真实场景，再决定是否需要咨询。',
             inLanguage: 'zh-CN',
@@ -108,7 +108,7 @@ export default function AIWorkflowPage() {
       />
 
       <PageHero
-        label="AI 工作流咨询"
+        label="AI 延伸整理"
         title="先跑通一个真实场景，再谈系统"
         subtitle="这条入口只给传统行业从业者。重点不是追一个新工具，而是把你已经在做的工作、内容和服务流程接进 AI。"
         note="如果你还在试探阶段，先去体验场；如果你已经在反复试错，才值得做一对一判断。"
@@ -118,7 +118,7 @@ export default function AIWorkflowPage() {
       <Container size="content" className="py-section">
         <section className="mb-14 border border-border bg-surface overflow-hidden">
           <div className="border-b border-border bg-surface-warm px-6 py-5 sm:px-8">
-            <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-2">AI 一人公司</p>
+            <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-2">AI 延伸整理</p>
             <h2 className="text-xl font-semibold text-ink">核心宣言</h2>
             <p className="text-sm text-ink-muted leading-relaxed mt-3 max-w-3xl">
               这不是一份教你追风口的承诺书，而是一条更慢、更稳、也更适合普通行业人的路径说明。
@@ -172,7 +172,7 @@ export default function AIWorkflowPage() {
             <div className="p-6">
               <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-2">先看你能不能落地</p>
               <p className="text-sm text-ink-muted leading-relaxed">
-                这项咨询不是卖一个术语，也不是帮你搭全套自动化。它解决的是：你现在这条业务链里，AI 应该先接哪里，怎么从一个环节开始跑通。
+                这项整理不是卖一个术语，也不是帮你搭全套自动化。它解决的是：你现在这条业务链里，AI 应该先接哪里，怎么从一个环节开始跑通。
               </p>
             </div>
           </div>
@@ -228,7 +228,7 @@ export default function AIWorkflowPage() {
               最有效的沟通方式不是问“我能不能用 AI”，而是直接告诉我：你现在每天重复做的那件事是什么，它卡在哪里。
             </p>
             <div className="flex flex-wrap gap-3">
-              <CTA href="/services/ai-workflow#ai-neirong-xitong-zixun" label="直接看咨询卡" variant="primary" />
+              <CTA href="/services/ai-workflow#ai-neirong-xitong-zixun" label="直接看延伸整理卡" variant="primary" />
               <CTA href="/contact" label="先看联系方式" variant="secondary" />
               <CTA href="/services" label="回总服务页" variant="ghost" />
             </div>

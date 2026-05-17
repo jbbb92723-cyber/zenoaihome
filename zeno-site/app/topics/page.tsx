@@ -10,7 +10,7 @@ import StructuredData from '@/components/StructuredData'
 export const metadata: Metadata = {
   title: '按问题看 5 个长期专题',
   description:
-    '如果你不想碎片化阅读，就按问题进入这 5 个长期专题：居住场景、AI 工作流、美学与生活、长期主义和工地观察。',
+    '如果你不想碎片化阅读，就按问题进入这 5 个长期专题：报价风险判断、AI 辅助整理、风险工具与模板、一人公司和判断与生活。',
 }
 
 const topicAccents: Record<string, string> = {
@@ -31,7 +31,7 @@ export default function TopicsPage() {
           name: '按问题看 5 个长期专题',
           url: 'https://zenoaihome.com/topics',
           description:
-            '如果你不想碎片化阅读，就按问题进入这 5 个长期专题：居住场景、AI 工作流、工具与产品、一人公司和判断与生活。',
+            '如果你不想碎片化阅读，就按问题进入这 5 个长期专题：报价风险判断、AI 辅助整理、风险工具与模板、一人公司和判断与生活。',
           inLanguage: 'zh-CN',
           mainEntity: {
             '@type': 'ItemList',
@@ -49,7 +49,7 @@ export default function TopicsPage() {
       <PageHero
         label="问题专题"
         title="按问题看这 5 个长期专题"
-        subtitle="如果你不想在文章列表里碎片化跳转，就从专题开始。这里不是标签堆叠，而是把同一类长期问题串成可持续阅读的路径。"
+        subtitle="如果你不想在文章列表里碎片化跳转，就从专题开始。第一主线是签约前报价风险判断，其他内容只作为延伸。"
         size="content"
       />
 
@@ -63,11 +63,11 @@ export default function TopicsPage() {
           <div className="space-y-1.5 text-sm text-ink-muted">
             <p>
               <span className="text-stone font-medium">新读者</span>
-              　先看「居住场景」，从装修入口建立信任
+              　先看「报价风险判断」，从签约前最关键的问题开始
             </p>
             <p>
               <span className="text-stone font-medium">想用 AI</span>
-              　再看「AI 实践」和「工具与产品」
+              　再看「AI 辅助整理」和「风险工具与模板」
             </p>
             <p>
               <span className="text-stone font-medium">想做自己的事</span>

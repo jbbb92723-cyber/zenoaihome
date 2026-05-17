@@ -25,10 +25,10 @@ export interface Product {
 export const PRODUCTS: Product[] = [
   {
     id:           'quote-guide-pack',
-    name:         '装修报价避坑完整指南',
+    name:         '装修报价风险自查指南',
     tagline:      '签约前先把报价看明白',
     type:         'resource',
-    value:        'quote-guide-pack|装修报价避坑完整指南|/pricing/baojia-guide',
+    value:        'quote-guide-pack|装修报价风险自查指南|/pricing/baojia-guide',
     price:        3900,
     originalPrice: 9900,
     category:     '装修判断',

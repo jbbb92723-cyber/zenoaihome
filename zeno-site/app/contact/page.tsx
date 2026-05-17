@@ -6,7 +6,7 @@ import Container from '@/components/Container'
 export const metadata: Metadata = {
   title: '联系我',
   description:
-    '欢迎真实、具体、可落地的交流。内容交流、装修相关咨询、AI 工作流与内容系统交流、商务合作——找到适合你的联系入口。',
+    '联系 Zeno。优先处理签约前报价风险、预算取舍、合同和付款节点判断；AI 与内容交流属于延伸，不是主服务入口。',
 }
 
 const contactChannels = [
@@ -20,7 +20,7 @@ const contactChannels = [
   {
     id: 'wechat',
     title: '微信',
-    desc: '装修咨询和 AI 工作流交流的主要渠道。加微信时请备注来意，便于我判断是否能帮到你。',
+    desc: '签约前报价风险、预算取舍和合同追问的主要联系渠道。加微信时请备注来意，便于判断是否能帮到你。',
     value: 'zanxiansheng2025',
     tag: '咨询',
   },
@@ -34,10 +34,10 @@ const contactChannels = [
 ]
 
 const suitableFor = [
-  { title: '装修相关咨询',      desc: '你正在做关键决策，需要第二视角来校准方案、预算或执行路径。' },
-  { title: '报价审核',          desc: '拿到报价单但看不懂，想知道哪些是正常的，哪些需要问清楚。' },
-  { title: '内容交流',          desc: '你读过文章或专题后，有明确观点想讨论，或有一线经验想补充。' },
-  { title: 'AI 工作流与内容系统', desc: '你来自传统行业，想把 AI 真正用进工作，而不是只做演示。' },
+  { title: '报价风险快审',      desc: '拿到报价单但看不懂，想知道漏项、模糊项和增项口子在哪里。' },
+  { title: '签约前决策',        desc: '报价、预算、合同和付款节点一起卡住，想在签字前理清追问顺序。' },
+  { title: '预算取舍诊断',      desc: '总预算有了，但不知道简约够住、舒适耐用、精致改善该怎么取舍。' },
+  { title: '内容或 AI 延伸交流', desc: '你读过文章或工具后，有明确问题想讨论。AI 交流暂时不是主服务入口。' },
   { title: '商务合作',          desc: '如果你的合作与网站主题高度相关，可以发邮件说明背景和具体想法。' },
 ]
 
@@ -67,9 +67,9 @@ export default function ContactPage() {
             <div className="border border-border p-5">
               <p className="text-sm font-semibold text-ink mb-2">你有明确的问题要解决</p>
               <p className="text-xs text-ink-muted leading-relaxed mb-4">
-                手里有报价单、方案、预算，或者想把 AI 接进工作流——直接看服务页更高效。
+                手里有报价单、合同草稿、预算上限，或者一两周内准备签约——直接看服务页更高效。
               </p>
-              <Link href="/services" className="text-sm text-stone hover:underline underline-offset-2 decoration-stone/40">
+              <Link href="/services/renovation" className="text-sm text-stone hover:underline underline-offset-2 decoration-stone/40">
                 查看服务 →
               </Link>
             </div>
@@ -152,10 +152,10 @@ export default function ContactPage() {
           <p className="text-sm text-ink-muted mb-5">有背景信息，会更快得到有效回复。</p>
           <div className="border border-border bg-surface p-6 space-y-4">
             {[
-              '你当前的背景（正在装修 / 行业身份 / 当前阶段）',
-              '你最核心的一个问题',
-              '你已经尝试过什么',
-              '你希望得到什么类型的帮助',
+              '你当前阶段（刚拿报价 / 正在对比 / 一两周内准备签约 / 已经开工）',
+              '房屋面积、城市、预算上限和装修方式',
+              '报价单、合同草稿或付款节点里最让你不确定的一点',
+              '你希望我帮你做免费分流、报价快审，还是签约前决策包判断',
             ].map((tip, i) => (
               <div key={i} className="flex items-start gap-3">
                 <span className="text-stone text-xs shrink-0 font-semibold mt-0.5">{i + 1}.</span>

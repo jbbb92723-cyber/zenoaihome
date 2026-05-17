@@ -16,7 +16,8 @@ export const metadata: Metadata = {
   },
 }
 
-const renovationSlugs = ['baojia-shenhe', 'qianyue-qian-juece-bao', 'yusuan-zixun', 'shi-zhu-pai-zhuangxiu']
+const renovationSlugs = ['yusuan-zixun', 'baojia-shenhe', 'qianyue-qian-juece-bao']
+const extensionRenovationSlugs = ['shi-zhu-pai-zhuangxiu']
 
 const routeCards = [
   {
@@ -58,7 +59,7 @@ const priceLadder = [
   },
   {
     price: '¥39',
-    title: '报价避坑指南',
+    title: '报价风险自查指南',
     desc: '自己系统补一遍报价、合同和增项常识。',
     href: '/pricing/baojia-guide',
   },
@@ -104,7 +105,7 @@ const relatedArticles: Record<string, { label: string; href: string }[]> = {
   ],
   'qianyue-qian-juece-bao': [
     { label: '装修预算为什么总超？', href: '/blog/zhuangxiu-yusuan-weishenme-zongchao' },
-    { label: '报价避坑完整指南', href: '/pricing/baojia-guide' },
+    { label: '报价风险自查指南', href: '/pricing/baojia-guide' },
     { label: '家不是样板间', href: '/blog/02-jia-bu-shi-yangban-jian' },
   ],
   'yusuan-zixun': [
@@ -134,14 +135,17 @@ const faqs = [
       '快审更适合“我手里已经有报价单，想尽快知道关键风险”。决策包适合“我快要签了，想把报价、预算、合同和追问顺序一次理清”。',
   },
   {
-    question: '居住场景装修服务为什么放在后面？',
+    question: '延伸服务为什么放在后面？',
     answer:
-      '当前主线是签约前报价判断。居住场景服务适合南宁本地、重视长期使用体验的项目，不是人人需要。',
+      '当前主线是签约前报价判断。居住场景只适合南宁本地、重视长期使用体验的项目，不是准备签约业主的第一入口。',
   },
 ]
 
 export default function RenovationServicesPage() {
   const renovationServices = renovationSlugs
+    .map((slug) => getServiceBySlug(slug))
+    .filter((service): service is NonNullable<ReturnType<typeof getServiceBySlug>> => Boolean(service))
+  const extensionRenovationServices = extensionRenovationSlugs
     .map((slug) => getServiceBySlug(slug))
     .filter((service): service is NonNullable<ReturnType<typeof getServiceBySlug>> => Boolean(service))
 
@@ -390,16 +394,15 @@ export default function RenovationServicesPage() {
 
         <div className="mb-6">
           <p className="text-xs font-semibold uppercase tracking-widest text-stone">服务明细</p>
-          <h2 className="mt-3 text-2xl font-semibold tracking-tight text-ink">每项服务解决什么、需要什么、交付什么。</h2>
-          <p className="mt-3 text-sm leading-relaxed text-ink-muted">每一档服务对应一个判断阶段，下面括号里的链接是它在「装修判断」里所在的位置。</p>
+          <h2 className="mt-3 text-2xl font-semibold tracking-tight text-ink">三档人工服务解决什么、需要什么、交付什么。</h2>
+          <p className="mt-3 text-sm leading-relaxed text-ink-muted">主服务只保留预算取舍、报价快审和签约前决策三档。其他延伸服务放在后面，不抢签约前报价判断主线。</p>
         </div>
 
-        <div className="mb-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mb-8 grid gap-3 sm:grid-cols-3">
           {[
-            { slug: 'baojia-shenhe',           name: '帮你审报价',     stage: '02 再看钱',   href: '/start/budget' },
             { slug: 'yusuan-zixun',            name: '帮你定预算',     stage: '02 再看钱',   href: '/start/budget' },
+            { slug: 'baojia-shenhe',           name: '帮你审报价',     stage: '02 再看钱',   href: '/start/budget' },
             { slug: 'qianyue-qian-juece-bao',  name: '帮你过签约这一关', stage: '03 再看合同', href: '/start/contract' },
-            { slug: 'shi-zhu-pai-zhuangxiu',   name: '帮你做整套居住判断', stage: '06 再看居住', href: '/start/living' },
           ].map((item) => (
             <a
               key={item.slug}
@@ -427,6 +430,28 @@ export default function RenovationServicesPage() {
             />
           ))}
         </div>
+
+        {extensionRenovationServices.length > 0 && (
+          <section className="mt-14">
+            <div className="mb-6 border-l-2 border-stone/40 pl-4">
+              <p className="text-xs font-semibold uppercase tracking-widest text-stone">延伸服务</p>
+              <h2 className="mt-3 text-2xl font-semibold tracking-tight text-ink">延伸服务先放后面。</h2>
+              <p className="mt-3 text-sm leading-relaxed text-ink-muted">
+                这项服务适合南宁本地、重视长期居住体验的人，不是签约前报价风险判断的主入口。
+              </p>
+            </div>
+            <div className="space-y-10">
+              {extensionRenovationServices.map((service, index) => (
+                <ServiceCard
+                  key={service.id}
+                  service={service}
+                  index={index}
+                  relatedArticles={relatedArticles[service.slug]}
+                />
+              ))}
+            </div>
+          </section>
+        )}
 
         {/* ── 下单后流程 ── */}
         <section className="mt-14 mb-14 border-y-2 border-[#9a5424] bg-[#fbf3e9] p-6 sm:p-8">

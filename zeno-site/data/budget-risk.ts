@@ -145,7 +145,7 @@ export const riskSummaries: Record<RiskKey, RiskSummary> = {
     firstStep: '先把家庭成员、作息、收纳、做饭、办公这些真实需求写出来，再回头看方案。',
     resource: { label: '先拿居住场景自查表', href: '/resources#living-beyond-completion' },
     article: { label: '先看家不是样板间', href: '/blog/02-jia-bu-shi-yangban-jian' },
-    service: { label: '直接看居住场景服务', href: '/services/renovation#shi-zhu-pai-zhuangxiu' },
+    service: { label: '先看签约前决策包', href: '/services/renovation#qianyue-qian-juece-bao' },
   },
 }
 

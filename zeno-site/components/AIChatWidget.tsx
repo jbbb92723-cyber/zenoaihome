@@ -49,15 +49,6 @@ const actionKindLabels: Record<'zh' | 'en', Record<ChatActionKind, string>> = {
 
 const quickEntriesZh = [
   {
-    label: '我想把 AI 接进装修业务',
-    prompt: '我想探索传统装修行业怎么接入 AI，请先帮我分流：哪些工作流最值得先改，哪些工具适合试，第一步怎么落地？',
-    links: [
-      { label: 'AI 实践路线', href: '/ai' },
-      { label: 'AI 提示词工具', href: '/tools/prompts' },
-      { label: 'AI 工作流咨询', href: '/services/ai-workflow' },
-    ],
-  },
-  {
     label: '我在看报价单',
     prompt: '我正在看装修报价单，请先帮我分流：我应该先看哪些风险、用哪个工具、拿哪份清单，什么时候看报价快审，什么时候看签约前决策包？',
     links: [
@@ -86,11 +77,20 @@ const quickEntriesZh = [
   },
   {
     label: '我想按居住场景做选择',
-    prompt: '我不想只按效果图装修，请帮我从家庭成员、做饭、收纳、清洁和长期使用这些居住场景分流下一步。',
+    prompt: '我不想只按效果图装修，请帮我判断这些居住需求应该在报价和合同里怎么说清楚。',
     links: [
       { label: '家不是样板间', href: '/blog/02-jia-bu-shi-yangban-jian' },
       { label: '居住场景自查表', href: '/resources#shizhu-pai-zijian-biao' },
-      { label: '居住场景服务', href: '/services/renovation#shi-zhu-pai-zhuangxiu' },
+      { label: '签约前决策包', href: '/services/renovation#qianyue-qian-juece-bao' },
+    ],
+  },
+  {
+    label: '我想用 AI 辅助整理',
+    prompt: '我想用 AI 辅助整理报价信息，但不想让 AI 替我拍板，请帮我分清 AI 能做什么、不能做什么。',
+    links: [
+      { label: '报价初筛工具', href: '/tools/quote-check' },
+      { label: '风险资料库', href: '/resources' },
+      { label: 'AI 提示词工具', href: '/tools/prompts' },
     ],
   },
 ]
@@ -256,7 +256,7 @@ export default function AIChatWidget() {
                 <p className="text-sm leading-relaxed text-ink-muted">
                   {isEn
                     ? 'Choose the closest situation. I will route you to the right article, tool, checklist or service.'
-                    : '先选最接近你当前处境的一项。我会把你导向对应文章、工具、清单、AI 方法或服务。'}
+                    : '先选最接近你当前处境的一项。我会把你导向对应工具、清单、资料或人工判断服务。'}
                 </p>
 
                 <div className="mt-3 border border-border bg-surface px-3 py-3">

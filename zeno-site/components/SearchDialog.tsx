@@ -13,12 +13,12 @@ interface SearchResult {
 }
 
 const recommendedZh: SearchResult[] = [
-  { title: 'AI 实践路线', href: '/ai', type: 'page', excerpt: '传统装修经验如何接入 AI 工具、方法论和数字产品。' },
-  { title: '报价单怎么看', href: '/tools/quote-check', type: 'tool', excerpt: '先做一轮风险类型初筛。' },
-  { title: '预算怎么分', href: '/tools/budget-structure', type: 'tool', excerpt: '把总预算拆成能行动的结构。' },
-  { title: '瓷砖用量怎么算', href: '/tools/tile-calculator', type: 'tool', excerpt: '估算片数、箱数和损耗。' },
-  { title: '节点验收', href: '/tools/inspection-guide', type: 'tool', excerpt: '每个节点该看什么、该拍什么、该确认什么。' },
-  { title: '家不是样板间', href: '/blog/02-jia-bu-shi-yangban-jian', type: 'article', excerpt: '从居住场景倒推装修选择。' },
+  { title: '报价初筛工具', href: '/tools/quote-check', type: 'tool', excerpt: '先做一轮风险初筛，看看哪里没写清。' },
+  { title: '报价审核清单', href: '/resources#baojia-shenhe-qingdan', type: 'checklist', excerpt: '签约前逐项核对报价、合同和付款节点。' },
+  { title: '报价风险自查指南', href: '/pricing/baojia-guide', type: 'resource', excerpt: '¥39 自查框架，适合先自己过一遍。' },
+  { title: '三档人工判断', href: '/services/renovation', type: 'service', excerpt: '预算取舍、报价快审、签约前决策包。' },
+  { title: '预算分配工具', href: '/tools/budget-structure', type: 'tool', excerpt: '按简约够住、舒适耐用、精致改善三档拆预算。' },
+  { title: '验收节点向导', href: '/tools/inspection-guide', type: 'tool', excerpt: '每个节点该看什么、该拍什么、该确认什么。' },
 ]
 
 const recommendedEn: SearchResult[] = [
@@ -26,7 +26,7 @@ const recommendedEn: SearchResult[] = [
   { title: 'Budget risk', href: '/en/tools', type: 'tool', excerpt: 'Find where the budget gets unstable.' },
   { title: 'Site checkpoints', href: '/en/resources', type: 'checklist', excerpt: 'What to check at each stage.' },
   { title: 'Home is not a showroom', href: '/en/articles/home-is-not-a-showroom', type: 'article', excerpt: 'Design from real living.' },
-  { title: 'AI workflow', href: '/en/services', type: 'service', excerpt: 'Bring field experience into AI.' },
+  { title: 'AI extension', href: '/en/tools/prompts', type: 'tool', excerpt: 'Use AI as an auxiliary layer.' },
 ]
 
 export default function SearchDialog() {
@@ -139,7 +139,7 @@ export default function SearchDialog() {
               {isEn ? 'Search ZenoAIHome' : '搜索 ZenoAIHome'}
             </p>
             <p className="mt-1 text-sm text-ink-muted">
-              {isEn ? 'Pages, tools, checklists, services and articles.' : '页面、工具、清单、服务和文章，从这里进入。'}
+              {isEn ? 'Quote risk, tools, checklists and services.' : '先找报价风险、清单和服务入口。'}
             </p>
           </div>
           <button type="button" onClick={() => setOpen(false)} className="text-sm text-ink-muted hover:text-ink">
@@ -157,7 +157,7 @@ export default function SearchDialog() {
               value={query}
               onChange={(event) => setQuery(event.target.value)}
               onKeyDown={handleInputKeyDown}
-              placeholder={isEn ? 'Search quote, budget, checklist, service...' : '搜索报价、预算、验收、服务...'}
+              placeholder={isEn ? 'Search quote risk, checklist, service...' : '搜索报价风险、清单、服务...'}
               className="w-full bg-transparent text-2xl font-medium text-ink outline-none placeholder:text-ink-faint sm:text-4xl"
             />
             <kbd className="hidden shrink-0 border border-border px-2 py-1 text-xs text-ink-faint sm:inline-flex">
@@ -178,7 +178,7 @@ export default function SearchDialog() {
             <div className="space-y-2">
               {!loading && query.trim() && visibleResults.length === 0 && (
                 <div className="border border-border bg-surface p-6 text-sm text-ink-muted">
-                  {isEn ? 'No result found. Try quote, budget or service.' : '没有找到结果。可以试试“报价”“预算”“验收”“服务”。'}
+                  {isEn ? 'No result found. Try quote or checklist.' : '没有找到结果。可以试试“报价”“清单”“服务”。'}
                 </div>
               )}
 
@@ -215,17 +215,17 @@ export default function SearchDialog() {
               <button type="button" onClick={() => handleSelect({ title: '报价初筛工具', href: '/tools/quote-check', type: 'tool' })} className="block w-full text-left text-ink-muted hover:text-ink">
                 {isEn ? 'Quote screening' : '做报价初筛'}
               </button>
-              <button type="button" onClick={() => handleSelect({ title: '预算分配工具', href: '/tools/budget-structure', type: 'tool' })} className="block w-full text-left text-ink-muted hover:text-ink">
-                {isEn ? 'Budget split' : '拆预算分配'}
+              <button type="button" onClick={() => handleSelect({ title: '报价审核清单', href: '/resources#baojia-shenhe-qingdan', type: 'checklist' })} className="block w-full text-left text-ink-muted hover:text-ink">
+                {isEn ? 'Quote checklist' : '看报价清单'}
               </button>
               <button type="button" onClick={() => handleSelect({ title: '验收节点向导', href: '/tools/inspection-guide', type: 'tool' })} className="block w-full text-left text-ink-muted hover:text-ink">
                 {isEn ? 'Inspection guide' : '生成验收清单'}
               </button>
-              <button type="button" onClick={() => handleSelect({ title: 'AI 实践路线', href: '/ai', type: 'page' })} className="block w-full text-left text-ink-muted hover:text-ink">
-                {isEn ? 'AI practice route' : '看 AI 实践路线'}
+              <button type="button" onClick={() => handleSelect({ title: '报价风险自查指南', href: '/pricing/baojia-guide', type: 'resource' })} className="block w-full text-left text-ink-muted hover:text-ink">
+                {isEn ? 'Quote guide' : '看 ¥39 指南'}
               </button>
-              <button type="button" onClick={() => handleSelect({ title: '服务提交', href: '/services#service-form', type: 'service' })} className="block w-full text-left text-ink-muted hover:text-ink">
-                {isEn ? 'Submit service request' : '提交服务需求'}
+              <button type="button" onClick={() => handleSelect({ title: '三档人工判断', href: '/services/renovation', type: 'service' })} className="block w-full text-left text-ink-muted hover:text-ink">
+                {isEn ? 'Human review services' : '看人工服务'}
               </button>
               <button type="button" onClick={() => handleSelect({ title: '资料与清单', href: '/resources', type: 'resource' })} className="block w-full text-left text-ink-muted hover:text-ink">
                 {isEn ? 'Open resources' : '打开资料与清单'}

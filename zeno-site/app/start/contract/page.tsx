@@ -82,7 +82,7 @@ export default function ContractStagePage() {
         tools={[
           { label: '合同必改清单（资料页）', href: '/resources' },
           { label: '口头承诺落字模板', href: '/resources' },
-          { label: '报价避坑指南 ¥39', href: '/pricing/baojia-guide' },
+          { label: '报价风险自查指南 ¥39', href: '/pricing/baojia-guide' },
         ]}
         services={[
           { label: '签约前决策包 ¥1499（含合同审）', href: '/services/renovation#qianyue-qian-juece-bao' },

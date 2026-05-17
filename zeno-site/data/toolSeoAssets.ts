@@ -45,7 +45,8 @@ export const toolSeoAssets = {
     ],
     links: [
       { label: '报价审核清单', href: '/resources#baojia-shenhe-qingdan', desc: '把工具里的追问整理成签约前检查表。' },
-      { label: '报价避坑完整指南', href: '/pricing/baojia-guide', desc: '适合想自己系统看懂报价的人。' },
+      { label: '风险词典与模板', href: '/tools/quote-check#risk-library', desc: '给人和 AI 都能读的判断资产。' },
+      { label: '报价风险自查指南', href: '/pricing/baojia-guide', desc: '适合想自己系统看懂报价的人。' },
       { label: '报价风险快审', href: '/services/renovation#baojia-shenhe', desc: '只看报价重点风险，适合快速判断该追问什么。' },
       { label: '签约前决策包', href: '/services/renovation#qianyue-qian-juece-bao', desc: '报价、预算和合同一起乱时，进入签约前完整判断。' },
       { label: '从工地看世界', href: '/blog/03-cong-gongdi-kan-shijie', desc: '理解为什么现场责任和边界比口头承诺更重要。' },
@@ -153,7 +154,7 @@ export const toolSeoAssets = {
       { label: '单位换算工具', href: '/tools/unit-converter', desc: '先看墙面面积和房屋面积的区别。' },
       { label: '验收节点向导', href: '/tools/inspection-guide', desc: '油漆完成后检查色差、流挂、裂纹和修补。' },
       { label: '预算分配工具', href: '/tools/budget-structure', desc: '把油漆费用放回基础施工或主材选择里。' },
-      { label: '居住场景装修服务', href: '/services/renovation#shi-zhu-pai-zhuangxiu', desc: '需要从整体居住体验判断材料和施工取舍时再进入服务。' },
+      { label: '签约前决策包', href: '/services/renovation#qianyue-qian-juece-bao', desc: '需要把报价、预算、合同和付款节点一起看时再进入服务。' },
     ],
   },
   inspectionGuide: {
@@ -178,7 +179,7 @@ export const toolSeoAssets = {
     links: [
       { label: '报价初筛工具', href: '/tools/quote-check', desc: '验收前先看报价和合同有没有写清验收标准。' },
       { label: '验收清单资料', href: '/resources#yanshou-qingdan', desc: '把节点检查内容整理成可下载资料。' },
-      { label: '找 Zeno 判断现场问题', href: '/services#service-form', desc: '清单看完仍不确定，可以提交资料。' },
+      { label: '找 Zeno 做签约前判断', href: '/services/renovation', desc: '报价、合同和付款节点仍不确定，可以提交资料。' },
       { label: '从工地看世界', href: '/blog/03-cong-gongdi-kan-shijie', desc: '理解为什么节点、责任和留痕决定装修结果。' },
     ],
   },
@@ -205,7 +206,7 @@ export const toolSeoAssets = {
       { label: 'AI 场景生成器', href: '/tools/prompts', desc: '诊断后继续生成可复制的 AI 协作提示词。' },
       { label: '创作工作台', href: '/tools/md2wechat', desc: '把网站母版转成公众号可用排版。' },
       { label: 'AI 内容工作流提示词包', href: '/resources#ai-neirong-gongzuoliu-tishici-bao', desc: '领取内容系统相关模板。' },
-      { label: '内容资产会员年卡', href: '/pricing#creator-yearly', desc: '把选题、标题和模板持续沉淀成资产。' },
+      { label: 'AI 场景提示词工具', href: '/tools/prompts', desc: '把具体任务整理成可复制的 AI 协作提示词。' },
     ],
   },
 } satisfies Record<string, ToolSeoAsset>

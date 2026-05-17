@@ -15,10 +15,11 @@ interface SearchResult {
 const staticPages: SearchResult[] = [
   { title: '首页', href: '/', type: 'page' },
   { title: '从这里开始', href: '/start', type: 'page' },
-  { title: 'AI 实践路线', href: '/ai', type: 'page', excerpt: '传统装修经验如何接入 AI 工具、方法论、内容系统和服务升级。' },
-  { title: '工具中心', href: '/tools', type: 'page' },
-  { title: '工具与资料', href: '/resources', type: 'page' },
-  { title: '服务', href: '/services', type: 'page' },
+  { title: '报价风险判断', href: '/tools/quote-check', type: 'tool', excerpt: '签约前先看报价里哪些地方没写清。' },
+  { title: '风险词典与规则', href: '/tools/quote-check#risk-library', type: 'resource', excerpt: '漏项、模糊项、增项口子和付款节点。' },
+  { title: '工具中心', href: '/tools', type: 'page', excerpt: '报价初筛为主，预算和验收工具做辅助。' },
+  { title: '资料与清单', href: '/resources', type: 'page', excerpt: '签约前报价风险资料库。' },
+  { title: '服务价格', href: '/services/renovation', type: 'service', excerpt: '预算取舍、报价快审、签约前决策包。' },
   { title: '思考札记', href: '/notes', type: 'page' },
   { title: '关于 Zeno', href: '/about', type: 'page' },
   { title: '联系我', href: '/contact', type: 'page' },
@@ -29,9 +30,8 @@ const staticPages: SearchResult[] = [
   { title: '瓷砖计算器', href: '/tools/tile-calculator', type: 'tool', excerpt: '输入铺贴面积和瓷砖规格，估算片数、箱数和损耗。' },
   { title: '乳胶漆计算器', href: '/tools/paint-calculator', type: 'tool', excerpt: '估算底漆、面漆升数和桶数。' },
   { title: '验收节点向导', href: '/tools/inspection-guide', type: 'tool', excerpt: '按水电、防水、泥工、木作、油漆、安装和竣工生成验收清单。' },
-  { title: 'AI 提示词体验场', href: '/tools/prompts', type: 'tool' },
   { title: 'Markdown 微信排版工具', href: '/tools/md2wechat', type: 'tool' },
-  { title: '报价避坑完整指南', href: '/pricing/baojia-guide', type: 'resource', excerpt: '低价数字产品，签约前系统看报价。' },
+  { title: '报价风险自查指南', href: '/pricing/baojia-guide', type: 'resource', excerpt: '低价数字产品，签约前系统看报价。' },
 ]
 
 export async function GET(request: NextRequest) {
@@ -109,11 +109,12 @@ export async function GET(request: NextRequest) {
 
   // Search services
   for (const service of services) {
+    if (service.tag !== '装修' || service.slug === 'shi-zhu-pai-zhuangxiu') continue
     const searchText = `${service.title} ${service.tagline} ${service.description} ${service.solves} ${service.tag}`.toLowerCase()
     if (searchText.includes(q)) {
       results.push({
         title: service.title,
-        href: service.slug === 'ai-neirong-xitong-zixun' ? '/services/ai-workflow' : `/services/renovation#${service.slug}`,
+        href: `/services/renovation#${service.slug}`,
         type: 'service',
         excerpt: `${service.tagline} · ${service.price}`,
       })

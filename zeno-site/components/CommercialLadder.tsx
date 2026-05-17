@@ -8,14 +8,14 @@ import { commercialLadder, type LadderRung } from '@/data/commercial-ladder'
  * - full  ：竖向完整卡片，用于服务页"装修签约前判断阶梯"
  * - summary：价格页顶部"业主决策路径"导航
  *
- * 数据源：data/commercial-ladder.ts。不要在调用处传入额外数据。
+ * 数据源：data/commercial-ladder.ts。不要在调用处重复写价格和档位。
  */
 
 type Variant = 'compact' | 'full' | 'summary'
 
 type Props = {
   variant?: Variant
-  /** 可选：限定展示的档位（按 tier 过滤）。不传则展示全部 6 档 */
+  /** 可选：限定展示的档位（按 tier 过滤）。不传则展示完整主路径 */
   rungs?: LadderRung[]
   className?: string
 }

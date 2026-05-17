@@ -360,12 +360,11 @@ export default function ToolsPage() {
           <div>
             <p className="text-xs font-semibold uppercase tracking-widest text-stone">工具之后怎么走</p>
             <p className="mt-3 max-w-3xl text-sm leading-relaxed text-ink-muted">
-              报价看不懂、临近签约——去装修服务。跑过一个 AI 场景想深入——去工作流咨询。还在摸问题——先拿资料。
+              报价看不懂、临近签约——去三档人工服务。还在摸问题——先拿资料。AI 工具只放在延伸区，帮你整理信息，不替你判断能不能签。
             </p>
           </div>
           <div className="flex flex-wrap gap-3">
             <CTA href="/services/renovation" label="我是业主，看装修服务" variant="primary" />
-            <CTA href="/services/ai-workflow" label="我是同行，看 AI 咨询" variant="secondary" />
             <CTA href="/resources" label="先拿免费资料" variant="ghost" />
             <CTA href="/pricing/baojia-guide" label="看 ¥39 指南" variant="ghost" />
           </div>

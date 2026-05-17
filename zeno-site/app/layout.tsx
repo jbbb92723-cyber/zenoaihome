@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   },
   description:
     '16 年装修现场经验，帮业主在签约前看懂报价漏项、预算取舍和合同边界。先用免费工具初筛，再决定是否进入人工服务。',
-  keywords: ['装修报价', '装修签约', '报价避坑', '装修预算', '装修合同', '报价审核', '签约前判断'],
+  keywords: ['装修报价', '装修签约', '报价风险', '装修预算', '装修合同', '报价审核', '签约前判断'],
   authors: [{ name: 'Zeno' }],
   openGraph: {
     type: 'website',
