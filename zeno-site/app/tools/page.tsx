@@ -14,188 +14,154 @@ export const metadata: Metadata = {
   },
 }
 
-const supportToolKeys = new Set<string>()
+const primaryTool = {
+  title: '签约前报价风险初筛',
+  status: '主入口',
+  price: '免费',
+  time: '8-15 分钟',
+  href: '/tools/quote-check',
+  cta: '开始报价初筛',
+  problem: '你已经拿到报价单，准备签约，但看不出漏项、模糊项、后期增项口子和付款风险。',
+  gain: '先拿到风险等级、重点追问清单和下一步建议。它不替你做决定，只帮你先看清哪些地方还没说清。',
+}
 
-const toolGroups = [
+const quickRoutes = [
+  { situation: '手上有报价单', action: '先做报价初筛', href: '/tools/quote-check', primary: true },
+  { situation: '只有总预算', action: '先看钱怎么分', href: '/tools/budget-structure' },
+  { situation: '担心后面超预算', action: '查超预算原因', href: '/tools/budget-risk' },
+  { situation: '快要签合同', action: '看签约前清单', href: '/start/contract' },
+  { situation: '准备买材料', action: '算材料数量', href: '/tools/tile-calculator' },
+  { situation: '准备验收', action: '生成节点清单', href: '/tools/inspection-guide' },
+]
+
+const decisionTools = [
   {
-    title: '看报价',
-    stageHref: '/start/budget',
-    stageLabel: '对应阶段：02 再看钱',
-    desc: '拿到报价单后，先看漏项、模糊项、增项口子。单位先对齐，再比单价。',
+    title: '预算分配工具',
+    status: '辅助判断',
+    price: '免费',
+    time: '5-8 分钟',
+    href: '/tools/budget-structure',
+    cta: '看钱怎么分',
+    problem: '你知道总预算，但不知道自己更接近简约够住、舒适耐用，还是精致改善。',
+    freeGain: '按三种说人话的装修取向，拆出基础施工、主材、柜子、设备、软装和预留机动钱。',
+    nextStep: '预算只是辅助。临近签约时，还是要回到报价单，看项目边界有没有写清。',
+  },
+  {
+    title: '超预算原因自测',
+    status: '辅助判断',
+    price: '免费',
+    time: '5-8 分钟',
+    href: '/tools/budget-risk',
+    cta: '查超预算原因',
+    problem: '你感觉钱可能失控，但分不清问题来自报价没写清、需求太散，还是施工过程没留余地。',
+    freeGain: '先判断最值得优先处理的一类问题，再去看对应工具、文章或服务。',
+    nextStep: '如果最高风险指向报价，先回报价初筛；如果指向取舍，再看预算诊断。',
+  },
+  {
+    title: '¥39 报价自查指南',
+    status: '低价指南',
+    price: '¥39',
+    time: '自学 1-2 小时',
+    href: '/pricing/baojia-guide',
+    cta: '看 ¥39 指南',
+    problem: '你想自己系统检查报价、合同、增项、付款节点和质保条款。',
+    freeGain: '用清单把该问的问题问完整，把口头承诺尽量落到文字里。',
+    nextStep: '看完仍然拿不准，再进入人工快审或签约前决策包。',
+  },
+]
+
+const supportSections = [
+  {
+    title: '施工和材料辅助',
+    label: '后置工具',
+    desc: '这些工具只帮你把数量、口径和现场节点问清楚，不判断这份报价能不能签。',
+    stageHref: '/start/build',
+    stageLabel: '看施工阶段',
     tools: [
-      {
-        title: '报价初筛工具',
-        status: '已上线',
-        price: '免费',
-        time: '8-15 分钟',
-        problem: '拿到报价单后，看不出漏项、模糊项、增项口子和付款风险。',
-        freeGain: '风险等级、重点追问清单、下一步服务入口。',
-        nextStep: '如果结果里高风险项很多，再看 ¥699 报价快审或 ¥1499 决策包。',
-        href: '/tools/quote-check',
-        cta: '开始初筛',
-      },
       {
         title: '单位换算工具',
         status: '已上线',
         price: '免费',
         time: '1-3 分钟',
-        problem: '报价里 ㎡、米、延米、坪、单方混在一起，越看越晕。',
-        freeGain: '常用单位换算结果，以及哪些单位不能直接互相比。',
-        nextStep: '换算后再回报价单，看工程量、单位和单价是不是同一口径。',
         href: '/tools/unit-converter',
         cta: '换算单位',
+        problem: '报价里 ㎡、米、延米、坪、单方混在一起，越看越乱。',
+        freeGain: '先把单位口径对齐，再回报价单看工程量和单价。',
       },
-    ],
-  },
-  {
-    title: '看预算',
-    stageHref: '/start/budget',
-    stageLabel: '对应阶段：02 再看钱',
-    desc: '总预算到位之后，先拆结构、再查超支风险，搞清楚哪里该守哪里能放。',
-    tools: [
-      {
-        title: '预算分配工具',
-        status: '已上线',
-        price: '免费',
-        time: '5-8 分钟',
-        problem: '你有总预算，但不知道是简约够住、舒适耐用，还是精致改善。',
-        freeGain: '参考单方区间、预算取向判断、可复制的分配清单。',
-        nextStep: '如果预算越拆越乱，再进入 ¥399 预算取舍诊断。',
-        href: '/tools/budget-structure',
-        cta: '拆预算',
-      },
-      {
-        title: '超预算原因自测',
-        status: '已上线',
-        price: '免费',
-        time: '5-8 分钟',
-        problem: '你感觉钱会失控，但分不清是报价没说清、流程没控住，还是需求太散。',
-        freeGain: '四类风险排序、对应文章、资料和服务建议。',
-        nextStep: '按最高风险项回到报价、预算取舍或签约前服务。',
-        href: '/tools/budget-risk',
-        cta: '查原因',
-      },
-    ],
-  },
-  {
-    title: '看合同',
-    stageHref: '/start/contract',
-    stageLabel: '对应阶段：03 再看合同',
-    desc: '签约前，把口头承诺、付款节点、增项规则、违约责任落进合同。当前没有自动化工具，先用清单和指南补齐。',
-    tools: [
-      {
-        title: '¥39 报价避坑指南',
-        status: '低价指南',
-        price: '¥39',
-        time: '自学 1-2 小时',
-        problem: '不知道合同里要追问哪些条款、怎么把口头承诺落字。',
-        freeGain: '报价、合同、增项、付款节点和质保条款的完整自查清单。',
-        nextStep: '看完指南还不放心，再进 ¥1499 签约前决策包。',
-        href: '/pricing/baojia-guide',
-        cta: '看 ¥39 指南',
-      },
-    ],
-  },
-  {
-    title: '算量',
-    stageHref: '/start/build',
-    stageLabel: '对应阶段：04 再看施工',
-    desc: '下单前先估出片数、桶数和损耗范围。拿结果去问商家同批次、补货和退换规则，别只听总价。',
-    tools: [
       {
         title: '瓷砖计算器',
         status: '已上线',
         price: '免费',
         time: '3-5 分钟',
-        problem: '准备买砖，但不知道片数、箱数和损耗该怎么估。',
-        freeGain: '建议沟通片数、整箱数量、损耗比例和下单提醒。',
-        nextStep: '把结果带去问商家同批次、补货、退换规则。',
         href: '/tools/tile-calculator',
         cta: '算瓷砖',
+        problem: '准备买砖，但不知道片数、箱数和损耗该怎么估。',
+        freeGain: '拿结果去问商家同批次、补货、退换和损耗规则。',
       },
       {
         title: '乳胶漆计算器',
         status: '已上线',
         price: '免费',
         time: '3-5 分钟',
-        problem: '墙面面积、涂布率和桶数对不上，担心买少或买多。',
-        freeGain: '底漆、面漆升数、桶数，以及采购前要问的几个问题。',
-        nextStep: '拿结果对照施工方和商家的用量说明，再看基层处理有没有写清。',
         href: '/tools/paint-calculator',
         cta: '算乳胶漆',
+        problem: '墙面面积、涂布率和桶数对不上，担心买少或买多。',
+        freeGain: '先估底漆、面漆用量，再看基层处理和产品说明有没有写清。',
       },
-    ],
-  },
-  {
-    title: '看验收',
-    stageHref: '/start/inspect',
-    stageLabel: '对应阶段：05 再看验收',
-    desc: '到水电、防水、泥工、安装节点之前，先生成现场清单。看完、拍完、留痕，再付下一笔款。',
-    tools: [
       {
         title: '验收节点向导',
         status: '已上线',
         price: '免费',
         time: '5-10 分钟',
-        problem: '快到水电、防水、泥工或安装节点，不知道该看什么、拍什么。',
-        freeGain: '检查项、拍照点、高风险信号、可复制清单。',
-        nextStep: '把清单发给家人或施工方，现场按节点留证。',
         href: '/tools/inspection-guide',
         cta: '生成清单',
+        problem: '快到水电、防水、泥工或安装节点，不知道该看什么、拍什么。',
+        freeGain: '生成检查项、拍照点和可复制清单，现场看完再付下一笔款。',
       },
     ],
   },
   {
-    title: '通用提示词 / AI 工作台',
+    title: 'AI 和内容延伸',
+    label: '非主路径',
+    desc: '这部分主要给同行和内容创作者。AI 是辅助层，用来整理信息和提高效率，不抢装修判断的主线。',
     stageHref: '/ai',
-    stageLabel: '面向同行和内容创作者',
-    desc: '给同行用：从真实业务场景出发拿到提示词，跑一遍再决定要不要把 AI 接进工作流。',
+    stageLabel: '看 AI 实践',
     tools: [
       {
         title: 'AI 场景生成器',
         status: '已上线',
         price: '免费',
         time: '3-10 分钟',
-        problem: '想用 AI，但不知道从哪件事开始。客户沟通？资料整理？选题？',
-        freeGain: '一段可复制到 Claude / ChatGPT 的提示词，加一份执行清单。',
-        nextStep: '跑完一个真实场景后，再看 AI 工作流咨询。',
         href: '/tools/prompts',
         cta: '生成场景',
+        problem: '想用 AI，但不知道先从客户沟通、资料整理还是内容选题开始。',
+        freeGain: '拿到一段可复制的提示词和一份执行清单。',
       },
       {
         title: '内容诊断大脑',
         status: '已上线',
         price: '免费',
         time: '6-12 分钟',
-        problem: '内容写完了，但不确定选题对不对、标题有没有力、后面能接什么产品。',
-        freeGain: '五维诊断、标题方向、分发拆条建议、产品和资料入口。',
-        nextStep: '如果内容要变成产品线索，再进入 AI 内容诊断或咨询。',
         href: '/tools/content-brain',
         cta: '诊断内容',
+        problem: '内容写完了，但不确定选题、标题和后续产品入口是否清楚。',
+        freeGain: '得到五维诊断、标题方向和分发拆条建议。',
       },
       {
         title: '创作工作台 (md → 公众号)',
         status: '已上线',
         price: '免费',
         time: '按文章长度',
-        problem: 'Markdown 写完了，但发公众号前还要反复处理排版。',
-        freeGain: '可复制粘贴到公众号后台的排版结果。',
-        nextStep: '把文章沉淀成资料、案例或低价产品。',
         href: '/tools/md2wechat',
         cta: '打开工作台',
+        problem: 'Markdown 写完了，但发公众号前还要反复处理排版。',
+        freeGain: '生成可复制到公众号后台的排版结果。',
       },
     ],
   },
 ]
 
-const routes = [
-  { situation: '手上有报价单', action: '先看报价工具', href: '/tools/quote-check' },
-  { situation: '只有总预算', action: '先拆预算', href: '/tools/budget-structure' },
-  { situation: '快要签合同', action: '进合同阶段页', href: '/start/contract' },
-  { situation: '准备买材料', action: '先算量', href: '/tools/tile-calculator' },
-  { situation: '准备验收', action: '生成节点清单', href: '/tools/inspection-guide' },
-  { situation: '想把 AI 接进工作', action: '看 AI 场景', href: '/tools/prompts' },
-]
+const allTools = [primaryTool, ...decisionTools, ...supportSections.flatMap((section) => section.tools)]
 
 export default function ToolsPage() {
   return (
@@ -214,7 +180,7 @@ export default function ToolsPage() {
             '@context': 'https://schema.org',
             '@type': 'ItemList',
             name: '工具列表',
-            itemListElement: toolGroups.flatMap((group) => group.tools).map((tool, index) => ({
+            itemListElement: allTools.map((tool, index) => ({
               '@type': 'ListItem',
               position: index + 1,
               name: tool.title,
@@ -226,18 +192,43 @@ export default function ToolsPage() {
 
       <PageHero
         label="签约前判断工具"
-        title="先看报价风险，再补预算、材料和验收"
-        subtitle="先处理报价有没有漏、预算有没有挤、后面会不会增项。看完工具结果再决定下一步。"
+        title="先做报价初筛，再看预算和辅助工具"
+        subtitle="工具页的主线不是大而全，而是帮准备签约的业主先看清报价边界。预算、算量、验收和 AI 都是辅助入口。"
         size="content"
       />
 
       <section className="bg-surface-warm">
-        <Container size="content" className="py-5">
-          <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
-            <h2 className="text-xl font-semibold leading-snug text-ink">
-              先做免费报价初筛——<span className="text-stone">8 分钟出风险等级</span>
-            </h2>
-            <CTA href="/tools/quote-check" label="开始免费初筛" variant="primary" />
+        <Container size="content" className="py-8">
+          <div className="grid gap-6 lg:grid-cols-[0.58fr_0.42fr] lg:items-center">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-widest text-stone">主入口 / 签约前报价风险初筛</p>
+              <h2 className="mt-3 text-2xl font-semibold tracking-tight text-ink sm:text-3xl">装修签字前，先确认报价有没有说清楚。</h2>
+              <p className="mt-3 max-w-2xl text-sm leading-relaxed text-ink-muted">{primaryTool.problem}</p>
+              <p className="mt-2 max-w-2xl text-sm leading-relaxed text-ink-muted">{primaryTool.gain}</p>
+              <div className="mt-5 flex flex-wrap gap-3">
+                <CTA href={primaryTool.href} label={primaryTool.cta} variant="primary" />
+                <CTA href="/resources#sign-before-contract" label="先看签约前资料" variant="secondary" />
+              </div>
+            </div>
+            <div className="border border-border bg-canvas p-5">
+              <div className="flex flex-wrap gap-2 text-[0.68rem] font-semibold uppercase tracking-widest">
+                <span className="text-stone">{primaryTool.status}</span>
+                <span className="text-ink-faint">{primaryTool.price}</span>
+                <span className="text-ink-faint">{primaryTool.time}</span>
+              </div>
+              <div className="mt-4 grid gap-3 text-sm">
+                {[
+                  ['先看', '漏项、模糊项、增项口子、付款节点。'],
+                  ['再问', '把最该追问的问题整理成清单。'],
+                  ['再决定', '需要自己继续看，还是进入人工快审。'],
+                ].map(([title, body]) => (
+                  <div key={title} className="border border-border bg-surface p-4">
+                    <p className="font-semibold text-ink">{title}</p>
+                    <p className="mt-1 text-xs leading-relaxed text-ink-muted">{body}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </Container>
       </section>
@@ -246,11 +237,13 @@ export default function ToolsPage() {
         <section className="mb-12">
           <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-stone">按你现在的情况进入</p>
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {routes.map((route) => (
+            {quickRoutes.map((route) => (
               <Link
                 key={route.situation}
                 href={route.href}
-                className="group flex flex-col border border-border bg-surface p-5 transition-colors duration-150 hover:border-stone hover:bg-surface-warm"
+                className={`group flex flex-col border p-5 transition-colors duration-150 hover:border-stone hover:bg-surface-warm ${
+                  route.primary ? 'border-stone bg-surface-warm' : 'border-border bg-surface'
+                }`}
               >
                 <p className="text-sm font-semibold leading-snug text-ink">{route.situation}</p>
                 <p className="mt-2 text-sm text-stone">{route.action} →</p>
@@ -263,13 +256,13 @@ export default function ToolsPage() {
           <div className="grid gap-6 lg:grid-cols-[0.36fr_0.64fr] lg:items-start">
             <div>
               <p className="text-xs font-semibold uppercase tracking-widest text-stone">为什么这样排</p>
-              <h2 className="mt-3 text-2xl font-semibold tracking-tight text-ink">先处理签字前会后悔的点，再处理辅助计算。</h2>
+              <h2 className="mt-3 text-2xl font-semibold tracking-tight text-ink">先处理签约前会影响结果的判断，再处理辅助计算。</h2>
             </div>
             <div className="grid gap-4 sm:grid-cols-3">
               {[
-                ['业主先避错', '先看签字前会后悔的点：报价没写清、预算没缓冲、节点没留证。'],
-                ['同行先验证', '先拿一个真实工作场景跑 AI，不从抽象课程和工具清单开始。'],
-                ['看不懂再付费', '免费工具先给结果，付费服务只处理工具解决不了的判断。'],
+                ['主线只有一条', '普通业主最先要看的，是这份报价现在能不能继续谈、还能不能签。'],
+                ['预算是辅助', '简约够住、舒适耐用、精致改善，只是帮你先看钱怎么分。'],
+                ['AI 不抢主叙事', 'AI 可以整理信息和生成清单，但最后仍然回到人的判断和边界。'],
               ].map(([title, body]) => (
                 <div key={title} className="border border-border bg-canvas p-5">
                   <p className="text-sm font-semibold text-ink">{title}</p>
@@ -280,84 +273,87 @@ export default function ToolsPage() {
           </div>
         </section>
 
-        <div className="space-y-12">
-          {toolGroups.map((group) => {
-            const primaryTools = group.tools.filter((tool) => !supportToolKeys.has(tool.title))
-            const supportTools = group.tools.filter((tool) => supportToolKeys.has(tool.title))
-
-            return (
-              <section key={group.title}>
-                <div className="mb-5 flex flex-col gap-2 border-l-2 border-stone/40 pl-4 sm:flex-row sm:items-end sm:justify-between sm:gap-6">
+        <section className="mb-12">
+          <div className="mb-5 border-l-2 border-stone/40 pl-4">
+            <p className="text-xs font-semibold uppercase tracking-widest text-stone">签约前辅助判断</p>
+            <p className="mt-2 text-sm leading-relaxed text-ink-muted">
+              这组工具解决“钱怎么分、为什么会超、哪些问题要写清”。它们服务报价判断，不替代报价判断。
+            </p>
+          </div>
+          <div className="grid gap-5 lg:grid-cols-3">
+            {decisionTools.map((tool) => (
+              <article
+                key={tool.title}
+                className="flex flex-col border border-border bg-surface p-6 transition-all duration-150 hover:border-stone/70 hover:shadow-[0_18px_46px_rgba(42,39,35,0.07)]"
+              >
+                <div className="flex flex-wrap gap-2 text-[0.68rem] font-semibold uppercase tracking-widest">
+                  <span className="text-stone">{tool.status}</span>
+                  <span className="text-ink-faint">{tool.price}</span>
+                  <span className="text-ink-faint">{tool.time}</span>
+                </div>
+                <h2 className="mt-3 text-lg font-semibold text-ink">{tool.title}</h2>
+                <dl className="mt-4 grid gap-4 text-sm">
                   <div>
-                    <p className="text-xs font-semibold uppercase tracking-widest text-stone">{group.title}</p>
-                    <p className="mt-2 text-sm leading-relaxed text-ink-muted">{group.desc}</p>
+                    <dt className="font-semibold text-ink">你现在的问题</dt>
+                    <dd className="mt-1 leading-relaxed text-ink-muted">{tool.problem}</dd>
                   </div>
+                  <div>
+                    <dt className="font-semibold text-ink">先拿到什么</dt>
+                    <dd className="mt-1 leading-relaxed text-ink-muted">{tool.freeGain}</dd>
+                  </div>
+                  <div>
+                    <dt className="font-semibold text-ink">下一步</dt>
+                    <dd className="mt-1 leading-relaxed text-ink-muted">{tool.nextStep}</dd>
+                  </div>
+                </dl>
+                <Link
+                  href={tool.href}
+                  className="mt-6 inline-flex h-10 w-fit items-center bg-stone px-4 text-sm font-semibold text-white transition-colors hover:bg-stone/90"
+                >
+                  {tool.cta}
+                </Link>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <div className="space-y-12">
+          {supportSections.map((section) => (
+            <section key={section.title}>
+              <div className="mb-5 flex flex-col gap-2 border-l-2 border-stone/40 pl-4 sm:flex-row sm:items-end sm:justify-between sm:gap-6">
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-widest text-stone">{section.label}</p>
+                  <h2 className="mt-2 text-xl font-semibold tracking-tight text-ink">{section.title}</h2>
+                  <p className="mt-2 text-sm leading-relaxed text-ink-muted">{section.desc}</p>
+                </div>
+                <Link
+                  href={section.stageHref}
+                  className="shrink-0 text-xs font-semibold text-stone hover:underline underline-offset-2"
+                >
+                  {section.stageLabel} -&gt;
+                </Link>
+              </div>
+
+              <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+                {section.tools.map((tool) => (
                   <Link
-                    href={group.stageHref}
-                    className="shrink-0 text-xs font-semibold text-stone hover:underline underline-offset-2"
+                    key={tool.title}
+                    href={tool.href}
+                    className="border border-border bg-surface p-4 transition-colors hover:border-stone hover:bg-surface-warm"
                   >
-                    {group.stageLabel} -&gt;
-                  </Link>
-                </div>
-
-                <div className="grid gap-5 lg:grid-cols-2">
-                  {primaryTools.map((tool) => (
-                    <article
-                      key={tool.title}
-                      className="flex flex-col border border-border bg-surface p-6 transition-all duration-150 hover:border-stone/70 hover:shadow-[0_18px_46px_rgba(42,39,35,0.07)]"
-                    >
-                      <div className="flex flex-wrap gap-2 text-[0.68rem] font-semibold uppercase tracking-widest">
-                        <span className="text-stone">{tool.status}</span>
-                        <span className="text-ink-faint">{tool.price}</span>
-                        <span className="text-ink-faint">{tool.time}</span>
-                      </div>
-                      <h2 className="mt-3 text-lg font-semibold text-ink">{tool.title}</h2>
-                      <dl className="mt-4 grid gap-4 text-sm">
-                        <div>
-                          <dt className="font-semibold text-ink">你现在的问题</dt>
-                          <dd className="mt-1 leading-relaxed text-ink-muted">{tool.problem}</dd>
-                        </div>
-                        <div>
-                          <dt className="font-semibold text-ink">免费先拿到</dt>
-                          <dd className="mt-1 leading-relaxed text-ink-muted">{tool.freeGain}</dd>
-                        </div>
-                        <div>
-                          <dt className="font-semibold text-ink">下一步</dt>
-                          <dd className="mt-1 leading-relaxed text-ink-muted">{tool.nextStep}</dd>
-                        </div>
-                      </dl>
-                      <Link
-                        href={tool.href}
-                        className="mt-6 inline-flex h-10 w-fit items-center bg-stone px-4 text-sm font-semibold text-white transition-colors hover:bg-stone/90"
-                      >
-                        {tool.cta}
-                      </Link>
-                    </article>
-                  ))}
-                </div>
-
-                {supportTools.length > 0 && (
-                  <div className="mt-6 border border-border bg-surface-warm p-5 sm:p-6">
-                    <p className="text-xs font-semibold uppercase tracking-widest text-stone">材料计算工具</p>
-                    <h2 className="mt-2 text-xl font-semibold tracking-tight text-ink">先算范围，不直接拿结果下单。</h2>
-                    <p className="mt-2 text-sm leading-relaxed text-ink-muted">
-                      单位、瓷砖和乳胶漆计算只负责把数量口径算清楚。真正下单前，还要回到现场复尺、产品说明、补货退换和报价边界。
-                    </p>
-                    <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-                      {supportTools.map((tool) => (
-                        <Link key={tool.title} href={tool.href} className="border border-border bg-canvas p-4 transition-colors hover:border-stone hover:bg-surface">
-                          <p className="text-sm font-semibold text-ink">{tool.title}</p>
-                          <p className="mt-2 text-xs leading-relaxed text-ink-muted">{tool.problem}</p>
-                          <p className="mt-3 text-xs leading-relaxed text-ink-faint">{tool.freeGain}</p>
-                          <p className="mt-3 text-xs font-semibold text-stone">{tool.cta} -&gt;</p>
-                        </Link>
-                      ))}
+                    <div className="flex flex-wrap gap-2 text-[0.65rem] font-semibold uppercase tracking-widest">
+                      <span className="text-stone">{tool.status}</span>
+                      <span className="text-ink-faint">{tool.price}</span>
                     </div>
-                  </div>
-                )}
-              </section>
-            )
-          })}
+                    <p className="mt-3 text-sm font-semibold text-ink">{tool.title}</p>
+                    <p className="mt-2 text-xs leading-relaxed text-ink-muted">{tool.problem}</p>
+                    <p className="mt-3 text-xs leading-relaxed text-ink-faint">{tool.freeGain}</p>
+                    <p className="mt-3 text-xs font-semibold text-stone">{tool.cta} -&gt;</p>
+                  </Link>
+                ))}
+              </div>
+            </section>
+          ))}
         </div>
 
         <div className="mt-14 grid gap-5 border border-border bg-surface-warm p-6 sm:p-8 lg:grid-cols-[1fr_auto] lg:items-center">
