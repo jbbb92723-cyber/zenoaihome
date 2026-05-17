@@ -83,7 +83,7 @@ const problemCards: Array<{
     icon: ClipboardText,
     title: '合同快签了，但追问顺序乱',
     body: '哪些要写进合同，哪些要先拍照留证，哪些不能只听口头承诺。',
-    href: '/services/renovation#qianyue-qian-juece-bao',
+    href: '/services/renovation#quote-deep',
   },
   {
     icon: Notebook,
@@ -159,7 +159,7 @@ const toolCards: Array<{
     title: '报价审核清单',
     body: '签约前按项目、工艺、材料、变更和付款逐项核对。',
     action: '领检查清单',
-    href: '/resources#baojia-shenhe-qingdan',
+    href: '/checklists/quote-initial-check',
   },
   {
     icon: Calculator,
@@ -170,10 +170,42 @@ const toolCards: Array<{
   },
   {
     icon: Notebook,
-    title: '报价风险自查指南',
-    body: '用一份 ¥39 指南，把报价、合同和付款节点先系统看清楚。',
-    action: '看 ¥39 指南',
-    href: '/pricing/baojia-guide',
+    title: '签约前检查模板',
+    body: '报价、合同、付款节点、水电和老房翻新都可以逐项对照。',
+    action: '看检查模板',
+    href: '/checklists',
+  },
+]
+
+const judgmentAssetCards: Array<{
+  icon: IconComponent
+  title: string
+  body: string
+  href: string
+}> = [
+  {
+    icon: FileText,
+    title: '报价风险词典',
+    body: '解释报价里最容易引发增项和扯皮的词，例如按实结算、暂估、品牌同档、最终以现场为准。',
+    href: '/risk-dictionary',
+  },
+  {
+    icon: Wrench,
+    title: '施工项目风险库',
+    body: '按水电、防水、找平、拆除、瓷砖等项目，查看报价里应该写清什么。',
+    href: '/project-risks',
+  },
+  {
+    icon: ClipboardText,
+    title: '签约前检查模板',
+    body: '报价、合同、付款节点、水电、老房翻新等模板，拿到报价后可以逐项对照。',
+    href: '/checklists',
+  },
+  {
+    icon: ShieldCheck,
+    title: '报价风险报告模板',
+    body: '人工快审会输出结构化报告，也会反过来优化风险规则库。',
+    href: '/services/renovation',
   },
 ]
 
@@ -556,6 +588,63 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
         </div>
       </AnimatedSection>
 
+      {/* ══════ Section 04.2: Judgment Assets — Human + Agent Ready ══════ */}
+      <AnimatedSection className="border-b border-border bg-surface py-20 sm:py-24">
+        <div className="mx-auto max-w-[1240px] px-5 sm:px-8 lg:px-12">
+          <div className="mx-auto max-w-4xl text-center">
+            <p className="text-sm font-medium tracking-[0.18em] text-stone">04.2 / 判断资产</p>
+            <h2 className="mt-5 text-[clamp(2rem,4vw,3.2rem)] font-semibold leading-tight tracking-tight text-ink [text-wrap:balance]">
+              ZenoAIHome 不只是看一份报价，而是在沉淀一套签约前判断系统
+            </h2>
+            <p className="mt-4 text-base leading-8 text-ink-muted">
+              这些不是装修百科，而是帮业主在签字前判断“哪些没说清、哪些容易增项、哪些必须写进合同”的实用资产。
+            </p>
+          </div>
+
+          <motion.div
+            className="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-60px' }}
+            variants={staggerContainer}
+          >
+            {judgmentAssetCards.map((card) => {
+              const Icon = card.icon
+              return (
+                <motion.div key={card.title} variants={staggerItem}>
+                  <Link
+                    href={card.href}
+                    className="group flex min-h-[15rem] flex-col border border-border bg-canvas p-7 transition-all duration-200 hover:-translate-y-px hover:border-stone hover:shadow-[0_22px_64px_rgba(67,45,26,0.09)] active:scale-[0.998]"
+                  >
+                    <div className="flex items-start justify-between gap-5">
+                      <span className="flex h-14 w-14 shrink-0 items-center justify-center border border-stone-light bg-surface text-stone">
+                        <Icon size={30} weight="duotone" aria-hidden />
+                      </span>
+                      <ArrowRight size={18} className="shrink-0 text-stone transition-transform duration-200 group-hover:translate-x-1" aria-hidden />
+                    </div>
+                    <h3 className="mt-6 text-xl font-semibold leading-snug text-ink">{card.title}</h3>
+                    <p className="mt-3 max-w-[45rem] text-sm leading-7 text-ink-muted">{card.body}</p>
+                  </Link>
+                </motion.div>
+              )
+            })}
+          </motion.div>
+
+          <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row sm:flex-wrap">
+            <ActionLink href="/tools/quote-check">
+              <UploadSimple size={18} aria-hidden />
+              先做免费报价初筛
+            </ActionLink>
+            <ActionLink href="/risk-dictionary" variant="secondary">
+              查看风险词典
+            </ActionLink>
+            <ActionLink href="/checklists" variant="secondary">
+              查看检查模板
+            </ActionLink>
+          </div>
+        </div>
+      </AnimatedSection>
+
       {/* ══════ Section 04.5: Sample Deliverables — Social Proof ══════ */}
       <AnimatedSection className="border-b border-border bg-surface py-20 sm:py-24">
         <div className="mx-auto max-w-[1240px] px-5 sm:px-8 lg:px-12">
@@ -764,7 +853,7 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
 
             <motion.div variants={staggerItem} className="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <ActionLink href="/tools/quote-check">先做报价初筛</ActionLink>
-              <ActionLink href="/services/renovation#baojia-shenhe" variant="secondary">看报价快审边界</ActionLink>
+              <ActionLink href="/services/renovation#quote-standard" variant="secondary">看报价快审边界</ActionLink>
             </motion.div>
 
             <motion.p variants={staggerItem} className="mt-8 border-t border-border pt-6 text-sm leading-7 text-ink-faint">

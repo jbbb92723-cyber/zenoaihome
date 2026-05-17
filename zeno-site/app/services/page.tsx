@@ -14,27 +14,27 @@ import { serviceLadder } from '@/data/commercial-ladder'
 export const metadata: Metadata = {
   title: '服务价格 | 签约前报价判断三档',
   description:
-    'ZenoAIHome 服务价格页。当前主线是装修签约前报价风险判断：¥399 预算取舍诊断、¥699 报价风险快审、¥1499 签约前决策包。',
+    'ZenoAIHome 服务价格页。当前主线是装修签约前报价风险判断：免费初筛、¥99 体验版初查、¥299 标准版快审、¥699 深度版签约前判断。',
   alternates: {
     canonical: 'https://zenoaihome.com/services',
   },
 }
 
 const serviceRelatedArticles: Record<string, { label: string; href: string }[]> = {
-  'baojia-shenhe': [
-    { label: '装修预算为什么总超？', href: '/blog/zhuangxiu-yusuan-weishenme-zongchao' },
-    { label: '家不是样板间', href: '/blog/02-jia-bu-shi-yangban-jian' },
-    { label: '从工地看世界', href: '/blog/03-cong-gongdi-kan-shijie' },
+  'quote-entry': [
+    { label: '装修报价风险词典', href: '/risk-dictionary' },
+    { label: '签约前检查模板', href: '/checklists' },
+    { label: '施工项目风险库', href: '/project-risks' },
   ],
-  'qianyue-qian-juece-bao': [
-    { label: '装修预算为什么总超？', href: '/blog/zhuangxiu-yusuan-weishenme-zongchao' },
-    { label: '报价风险自查指南', href: '/pricing/baojia-guide' },
-    { label: '家不是样板间', href: '/blog/02-jia-bu-shi-yangban-jian' },
+  'quote-standard': [
+    { label: '装修报价风险词典', href: '/risk-dictionary' },
+    { label: '报价单初查模板', href: '/checklists/quote-initial-check' },
+    { label: '水电报价风险', href: '/project-risks/water-electric-renovation' },
   ],
-  'yusuan-zixun': [
-    { label: '装修预算为什么总超？', href: '/blog/zhuangxiu-yusuan-weishenme-zongchao' },
-    { label: '从工地看世界', href: '/blog/03-cong-gongdi-kan-shijie' },
-    { label: '长期主义不是忍耐', href: '/blog/05-changqi-zhuyi-bushi-rennai' },
+  'quote-deep': [
+    { label: '合同签约前检查模板', href: '/checklists/contract-pre-signing-check' },
+    { label: '付款节点检查模板', href: '/checklists/payment-milestone-check' },
+    { label: '付款节点过前', href: '/risk-dictionary/payment-milestone-too-early' },
   ],
   'shi-zhu-pai-zhuangxiu': [
     { label: '家不是样板间', href: '/blog/02-jia-bu-shi-yangban-jian' },
@@ -43,14 +43,14 @@ const serviceRelatedArticles: Record<string, { label: string; href: string }[]> 
   ],
 }
 
-const renovationSlugs = ['yusuan-zixun', 'baojia-shenhe', 'qianyue-qian-juece-bao']
+const renovationSlugs = ['quote-entry', 'quote-standard', 'quote-deep']
 const extensionRenovationSlugs = ['shi-zhu-pai-zhuangxiu']
 
 const entryRoutes = [
   {
     label: '主线 / 装修签约前判断',
     title: '你买的不是咨询时长，是签字前少后悔',
-    description: '先用免费工具和 ¥39 指南缩小问题，再看 ¥399、¥699、¥1499 的人工判断。',
+    description: '先做免费初筛，再按材料完整度选择 ¥99 初查、¥299 快审或 ¥699 深度判断。',
     href: '/services/renovation',
     cta: '看装修签约前路径',
     image: '/images/services/renovation-judgment-proof.svg',
@@ -61,7 +61,7 @@ const serviceFaqs = [
   {
     question: '为什么服务页只保留三档主服务？',
     answer:
-      '当前网站只先打穿签约前报价判断。预算取舍、报价快审、签约前决策包分别对应三种真实卡点，其他服务先放到延伸位置。',
+      '当前网站只先打穿签约前报价判断。体验版、标准版、深度版分别对应“先看明显风险”“完整看报价”“快签前一起看合同和付款节点”。',
   },
   {
     question: '什么时候更适合先用工具，而不是直接找我？',
@@ -129,8 +129,8 @@ export default function ServicesPage() {
       <PageHero
         label="服务价格"
         title="签约前报价判断，只保留三档。"
-        subtitle="如果你是准备签约的业主，先看报价有没有说清，再决定用 ¥399 预算取舍、¥699 报价快审，还是 ¥1499 签约前决策包。"
-        note="还没有报价材料时，先用免费初筛和 ¥39 指南，不要急着买人工服务。"
+        subtitle="如果你是准备签约的业主，先看报价有没有说清，再决定用 ¥99 初查、¥299 快审，还是 ¥699 深度判断。"
+        note="还没有完整报价材料时，先用免费初筛，不要急着买人工服务。"
         size="content"
       />
 
@@ -157,8 +157,8 @@ export default function ServicesPage() {
           <div className="grid gap-5">
             {[
               ['先做免费初筛', '把报价里没写清的地方先标出来。', '/tools/quote-check', '去初筛'],
-              ['再用风险资料补问题', '风险词典、规则库和检查模板，帮你把问题问具体。', '/resources', '看资料库'],
-              ['最后选三档服务', '预算取舍、报价快审、签约前决策包，按材料和阶段选。', '/services/renovation', '看怎么选'],
+              ['再用风险资料补问题', '风险词典、项目风险库和检查模板，帮你把问题问具体。', '/risk-dictionary', '看风险词典'],
+              ['最后选三档服务', '体验版初查、标准版快审、深度版判断，按材料和阶段选。', '/services/renovation', '看怎么选'],
             ].map(([title, desc, href, action], index) => (
               <Link key={title} href={href} className="group border border-border bg-surface p-6 transition-colors hover:border-stone hover:bg-surface-warm">
                 <p className="text-xs font-semibold uppercase tracking-widest text-stone">0{index + 1}</p>
@@ -174,7 +174,7 @@ export default function ServicesPage() {
           <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-ink-faint">主价格路径</p>
           <h2 className="mb-3 text-lg font-semibold text-ink">报价看不懂，先从这条路走。</h2>
           <p className="mb-6 max-w-3xl text-sm leading-relaxed text-ink-muted">
-            免费初筛负责把风险找出来，¥39 指南负责让你自己补问题，三档人工服务负责处理你的具体材料。
+            免费初筛负责先找方向，¥99 初查看明显风险，¥299 快审看完整报价，¥699 深度版把报价、合同和付款节点一起看。
           </p>
 
           <div className="grid gap-8 lg:grid-cols-[2fr_0.9fr]">
@@ -182,7 +182,7 @@ export default function ServicesPage() {
               <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-stone">三档人工服务</p>
               <CommercialLadder variant="full" rungs={serviceLadder} />
               <div className="mt-4 border border-border bg-surface p-4 text-sm leading-relaxed text-ink-muted">
-                免费初筛和 ¥39 指南是前置入口。真正进入人工服务前，你应该已经有报价、合同、预算或明确问题。
+                真正进入人工服务前，你应该已经有报价材料；深度版还需要合同草稿或付款节点。
               </div>
             </div>
 
@@ -190,9 +190,9 @@ export default function ServicesPage() {
               <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-stone">怎么选</p>
               <div className="grid gap-3">
                 {[
-                  ['预算取舍诊断', '预算总数有了，但不知道简约够住、舒适耐用、精致改善该怎么取舍。'],
-                  ['报价风险快审', '手里已有报价单，最想知道漏项、模糊项和增项口子在哪里。'],
-                  ['签约前决策包', '报价、预算、合同和付款节点一起卡住，已经接近签字。'],
+                  ['体验版报价风险初查', '只想先看这份报价有没有明显问题，适合 10 行以内重点报价。'],
+                  ['标准版报价风险快审', '手里已有完整报价，最想知道漏项、模糊项和增项口子在哪里。'],
+                  ['深度版签约前判断', '报价、合同和付款节点一起卡住，已经接近签字。'],
                 ].map(([title, desc]) => (
                   <div key={title} className="border border-border bg-surface p-5">
                     <h3 className="text-base font-semibold text-ink">{title}</h3>
@@ -224,7 +224,7 @@ export default function ServicesPage() {
           </div>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {[
-              ['装修线交付', '报价风险、预算取舍、合同追问和验收节点，最后落到一份能执行的清单。'],
+              ['装修线交付', '报价风险、合同追问和付款节点提醒，最后落到一份能执行的清单。'],
               ['AI 辅助边界', 'AI 可以整理信息和生成清单，但不替你判断能不能签。'],
               ['工作方式', '先看材料，再给书面建议；复杂情况再配微信或语音解读。'],
               ['明确不做', '不代砍价、不代施工、不做法律审查，也不替你做最终签约决定。'],
@@ -299,8 +299,8 @@ export default function ServicesPage() {
             </p>
           </div>
           <div className="flex flex-wrap gap-3">
-            <CTA href="/tools" label="去工具工作台" variant="primary" />
-            <CTA href="/resources" label="去资料与清单" variant="secondary" />
+            <CTA href="/tools/quote-check" label="去报价初筛" variant="primary" />
+            <CTA href="/checklists" label="去检查模板" variant="secondary" />
           </div>
         </div>
 

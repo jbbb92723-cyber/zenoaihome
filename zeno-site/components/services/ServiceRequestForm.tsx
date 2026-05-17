@@ -16,7 +16,7 @@ interface FormState {
 }
 
 const emptyForm: FormState = {
-  serviceType: 'baojia-shenhe',
+  serviceType: 'quote-standard',
   name: '',
   phone: '',
   wechat: '',
