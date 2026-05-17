@@ -72,8 +72,8 @@ export const primaryNav: PrimaryNavItem[] = [
         en: { label: 'Human Services', desc: 'Use tools first, come when stuck' },
         items: [
           { key: 'quote-risk-initial', zh: { label: '报价风险初查', href: '/tools/quote-check', desc: '先免费筛一遍报价风险' }, en: { label: 'Initial Quote Check', href: '/en/tools', desc: 'Start with a quick check' } },
-          { key: 'quote-fast', zh: { label: '标准报价快审', href: '/services/renovation#baojia-shenhe', desc: '人工看漏项、模糊项和增项口子' }, en: { label: 'Quote Quick Review', href: '/en/services', desc: 'Human quote review' } },
-          { key: 'decision-pack', zh: { label: '签约前深度判断', href: '/services/renovation#qianyue-qian-juece-bao', desc: '报价、合同、付款节点一起看' }, en: { label: 'Pre-sign Decision Pack', href: '/en/services', desc: 'Quote, contract, and payment review' } },
+          { key: 'quote-fast', zh: { label: '标准报价快审', href: '/services/renovation#quote-standard', desc: '人工看漏项、模糊项和增项口子' }, en: { label: 'Quote Quick Review', href: '/en/services', desc: 'Human quote review' } },
+          { key: 'decision-pack', zh: { label: '签约前深度判断', href: '/services/renovation#quote-deep', desc: '报价、合同、付款节点一起看' }, en: { label: 'Pre-sign Decision Pack', href: '/en/services', desc: 'Quote, contract, and payment review' } },
         ],
       },
     ],
@@ -132,9 +132,9 @@ const CN_TO_EN: Record<string, string> = {
   '/tools/tile-calculator': '/en/tools',
   '/tools/paint-calculator': '/en/tools',
   '/tools/inspection-guide': '/en/tools',
-  '/risk-dictionary': '/en/resources',
-  '/checklists': '/en/resources',
-  '/project-risks': '/en/resources',
+  '/risk-dictionary': '/en',
+  '/checklists': '/en',
+  '/project-risks': '/en',
   '/resources':  '/en/resources',
   '/services':   '/en/services',
   '/services/renovation': '/en/services',
@@ -176,9 +176,9 @@ export function getLangHref(pathname: string, isEn: boolean): string {
   } else {
     if (CN_TO_EN[pathname]) return CN_TO_EN[pathname]
     if (pathname.startsWith('/blog/')) return '/en/blog'
-    if (pathname.startsWith('/risk-dictionary/')) return '/en/resources'
-    if (pathname.startsWith('/checklists/')) return '/en/resources'
-    if (pathname.startsWith('/project-risks/')) return '/en/resources'
+    if (pathname.startsWith('/risk-dictionary/')) return '/en'
+    if (pathname.startsWith('/checklists/')) return '/en'
+    if (pathname.startsWith('/project-risks/')) return '/en'
     if (pathname.startsWith('/services/')) return '/en/services'
     if (pathname.startsWith('/tools/')) return pathname === '/tools/prompts' ? '/en/tools/prompts' : '/en/tools'
     return '/en'

@@ -12,7 +12,10 @@ interface Props {
 }
 
 export function generateStaticParams() {
-  return checklistTemplates.map((template) => ({ slug: template.slug }))
+  return [
+    ...checklistTemplates.map((template) => ({ slug: template.slug })),
+    { slug: 'contract-before-signing' },
+  ]
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {

@@ -487,5 +487,9 @@ export const quoteCheckTemplates: QuoteCheckTemplate[] = checklistTemplates.map(
 }))
 
 export function getChecklistTemplateBySlug(slug: string) {
-  return checklistTemplates.find((template) => template.slug === slug)
+  const slugAliases: Record<string, string> = {
+    'contract-before-signing': 'contract-pre-signing-check',
+  }
+
+  return checklistTemplates.find((template) => template.slug === (slugAliases[slug] ?? slug))
 }

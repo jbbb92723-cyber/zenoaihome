@@ -5,12 +5,14 @@ import { useEffect, useMemo, useState } from 'react'
 import ToolSeoAssetSection from '@/components/tools/ToolSeoAssetSection'
 import { toolSeoAssets } from '@/data/toolSeoAssets'
 import {
+  getQuoteRiskRuleById,
   projectRiskLibrary,
   quoteCheckTemplates,
   quoteRiskDictionary,
   quoteRiskDimensions,
   quoteRiskRules,
 } from '@/data/quote-risk'
+import type { QuoteRiskRule } from '@/data/quote-risk-rules'
 
 type QuoteStage = 'firstQuote' | 'comparing' | 'readyToSign' | 'alreadyStarted'
 
@@ -39,6 +41,10 @@ type CheckKey =
   | 'hasWarrantyScope'
   | 'hasPaymentMilestone'
 
+type CheckItem = (typeof quoteRiskDimensions)[number] & {
+  relatedRiskIds: string[]
+}
+
 const storageKey = 'zeno.quote-check.v2'
 
 const defaultState: QuoteFormState = {
@@ -63,7 +69,21 @@ const stageOptions: Array<{ value: QuoteStage; label: string; desc: string }> = 
   { value: 'alreadyStarted', label: '已经签约或开工', desc: '更多是复盘和补救' },
 ]
 
-const checks = quoteRiskDimensions
+const checkRelatedRiskIds: Record<CheckKey, string[]> = {
+  hasItemizedQuote: ['qr-04', 'qr-06', 'qr-07'],
+  hasMaterialBrand: ['qr-02', 'qr-16'],
+  hasProcessDescription: ['qr-03', 'qr-17'],
+  hasMeasurementRule: ['qr-05'],
+  hasChangeOrderRule: ['qr-14'],
+  hasAcceptanceStandard: ['qr-17', 'qr-19'],
+  hasWarrantyScope: ['qr-19'],
+  hasPaymentMilestone: ['qr-13'],
+}
+
+const checks: CheckItem[] = quoteRiskDimensions.map((item) => ({
+  ...item,
+  relatedRiskIds: checkRelatedRiskIds[item.key] ?? [],
+}))
 
 const maxScore = checks.reduce((sum, item) => sum + item.weight, 0)
 
@@ -81,38 +101,45 @@ function getRiskCopy(score: number, stage: QuoteStage) {
   if (stage === 'alreadyStarted') {
     return '你已经过了签约前最适合调整的窗口。现在重点是把变更、验收和付款留痕补起来。'
   }
-  if (score >= 8) return '这份报价不适合直接签。先把缺失信息补齐，再谈价格和优惠。'
-  if (score >= 4) return '可以继续谈，但要先追问边界。不要只盯总价，也不要只听口头承诺。'
-  return '报价结构相对清楚。下一步重点把关键内容写进合同，并核对付款和验收节点。'
+  if (score >= 8) return '这份报价不建议直接签。先把缺失边界补齐，再谈价格和优惠。'
+  if (score >= 4) return '可以继续谈，但要先把这些追问问清楚。'
+  return '报价结构相对清楚，下一步重点核对合同和付款节点。'
 }
 
 function getPrimaryNextStep(score: number, stage: QuoteStage) {
   if (stage === 'alreadyStarted') {
     return {
-      label: '生成验收节点清单',
-      href: '/tools/inspection-guide',
-      desc: '已经开工时，先把现场节点、照片和确认记录补起来。',
+      label: '查看检查模板',
+      href: '/checklists',
+      desc: '已经开工或签约后，先用清单补齐变更、验收和付款记录。',
     }
   }
   if (score >= 8) {
     return {
-      label: '看 ¥699 报价风险快审',
-      href: '/services/renovation#baojia-shenhe',
-      desc: '缺失项多，先带着报价单进入人工判断，别急着签。',
+      label: '看 ¥299 标准版报价快审',
+      href: '/services/renovation#quote-standard',
+      desc: '这份报价不建议直接签。先把缺失边界补齐，再谈价格和优惠。',
     }
   }
   if (score >= 4) {
     return {
-      label: '看 ¥39 报价风险自查指南',
-      href: '/pricing/baojia-guide',
-      desc: '先系统补一遍报价、合同、预算和增项常识，再继续谈。',
+      label: '查看检查模板',
+      href: '/checklists',
+      desc: '可以继续谈，但要先把这些追问问清楚。',
     }
   }
   return {
-    label: '领取签约前检查清单',
-    href: '/resources#baojia-shenhe-qingdan',
-    desc: '报价结构还可以，下一步把追问清单拿去对照合同和付款节点。',
+    label: '看合同签约前检查模板',
+    href: '/checklists/contract-before-signing',
+    desc: '报价结构相对清楚，下一步重点核对合同和付款节点。',
   }
+}
+
+function getRelatedRiskRules(riskItems: CheckItem[]): QuoteRiskRule[] {
+  const ids = Array.from(new Set(riskItems.flatMap((item) => item.relatedRiskIds)))
+  return ids
+    .map((id) => getQuoteRiskRuleById(id))
+    .filter((item): item is QuoteRiskRule => Boolean(item))
 }
 
 export default function QuoteCheckClient() {
@@ -142,6 +169,7 @@ export default function QuoteCheckClient() {
   const riskCopy = getRiskCopy(riskScore, form.quoteStage)
   const topQuestions = riskItems.slice(0, 3)
   const primaryNextStep = getPrimaryNextStep(riskScore, form.quoteStage)
+  const relatedRiskRules = useMemo(() => getRelatedRiskRules(riskItems), [riskItems])
 
   const unitPrice = useMemo(() => {
     const area = Number(form.area)
@@ -209,8 +237,8 @@ export default function QuoteCheckClient() {
               <a href="#quote-form" className="inline-flex h-11 items-center bg-stone px-5 text-sm font-semibold text-white transition-colors hover:bg-stone/90">
                 开始初筛
               </a>
-              <Link href="/resources#baojia-shenhe-qingdan" className="inline-flex h-11 items-center border border-border px-5 text-sm font-semibold text-ink transition-colors hover:border-stone">
-                先领检查清单
+              <Link href="/checklists" className="inline-flex h-11 items-center border border-border px-5 text-sm font-semibold text-ink transition-colors hover:border-stone">
+                查看检查模板
               </Link>
             </div>
           </div>
@@ -222,7 +250,7 @@ export default function QuoteCheckClient() {
                 ['风险等级', '低 / 中 / 高，不直接替你拍板'],
                 ['缺失项数量', '看报价里哪些边界没写清'],
                 ['前三个追问', '先问最影响签约判断的问题'],
-                ['下一步入口', '清单、¥39 指南、¥699 快审或 ¥1499 决策包'],
+                ['下一步入口', '风险词典、检查模板或 ¥299 标准版快审'],
               ].map(([title, desc]) => (
                 <div key={title} className="border border-border bg-canvas px-4 py-3">
                   <p className="text-sm font-semibold text-ink">{title}</p>
@@ -457,9 +485,9 @@ export default function QuoteCheckClient() {
 
                   <div className="grid gap-3">
                     {[
-                      { label: '领取报价审核清单', href: '/resources#baojia-shenhe-qingdan' },
-                      { label: '看 ¥39 报价风险自查指南', href: '/pricing/baojia-guide' },
-                      { label: '看 ¥1499 签约前决策包', href: '/services/renovation#qianyue-qian-juece-bao' },
+                      { label: '查看风险词典', href: '/risk-dictionary' },
+                      { label: '查看检查模板', href: '/checklists' },
+                      { label: '看 ¥299 标准版快审', href: '/services/renovation#quote-standard' },
                     ].map((item) => (
                       <Link key={item.href} href={item.href} className="flex items-center justify-between border border-border bg-canvas px-4 py-3 text-sm font-semibold text-ink transition-colors hover:border-stone">
                         {item.label}
@@ -468,6 +496,26 @@ export default function QuoteCheckClient() {
                     ))}
                   </div>
                 </div>
+
+                {relatedRiskRules.length > 0 && (
+                  <div className="border border-border bg-canvas p-6">
+                    <p className="text-xs font-semibold uppercase tracking-widest text-stone">相关风险词典</p>
+                    <h3 className="mt-2 text-lg font-semibold text-ink">这些词条和你未勾选的风险有关。</h3>
+                    <div className="mt-5 grid gap-3 sm:grid-cols-2">
+                      {relatedRiskRules.map((rule) => (
+                        <Link
+                          key={rule.id}
+                          href={`/risk-dictionary/${rule.slug}`}
+                          className="group border border-border bg-surface p-4 transition-colors hover:border-stone"
+                        >
+                          <h4 className="text-sm font-semibold text-ink">{rule.name}</h4>
+                          <p className="mt-2 text-xs leading-relaxed text-ink-muted">{rule.oneLine}</p>
+                          <p className="mt-3 text-xs font-semibold text-stone">查看词条 -&gt;</p>
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -483,9 +531,9 @@ export default function QuoteCheckClient() {
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {[
               ['免费', '报价初筛', '先知道哪里没写清'],
-              ['¥39', '报价风险自查指南', '自己系统补一遍'],
-              ['¥699', '报价风险快审', '带材料进入人工判断'],
-              ['¥1499', '签约前决策包', '报价、预算、合同一起看'],
+              ['¥99', '体验版初查', '看 10 行以内重点报价'],
+              ['¥299', '标准版快审', '完整报价风险说明'],
+              ['¥699', '深度版判断', '报价、合同、付款节点一起看'],
             ].map(([price, title, desc]) => (
               <div key={title} className="border border-border bg-canvas p-4">
                 <p className="text-xs font-semibold uppercase tracking-widest text-stone">{price}</p>
@@ -515,8 +563,8 @@ export default function QuoteCheckClient() {
             ))}
           </div>
           <div className="mt-6">
-            <Link href="/services/renovation#baojia-shenhe" className="text-sm font-semibold text-stone hover:underline underline-offset-2">
-              看 ¥699 报价快审边界 →
+            <Link href="/services/renovation#quote-standard" className="text-sm font-semibold text-stone hover:underline underline-offset-2">
+              看 ¥299 标准版报价快审 →
             </Link>
           </div>
         </div>

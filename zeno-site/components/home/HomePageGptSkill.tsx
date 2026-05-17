@@ -75,9 +75,9 @@ const problemCards: Array<{
   },
   {
     icon: Calculator,
-    title: '低价很诱人，但怕后面加钱',
-    body: '便宜本身不是问题，真正要看的是哪些没写清，后面怎么变更。',
-    href: '/pricing/baojia-guide',
+    title: '低价很诱人，但怕后面增项',
+    body: '便宜本身不是问题，真正要看哪些按实结算、哪些暂估、哪些另计。',
+    href: '/risk-dictionary',
   },
   {
     icon: ClipboardText,
@@ -87,15 +87,15 @@ const problemCards: Array<{
   },
   {
     icon: Notebook,
-    title: '预算有数，但不知道怎么取舍',
-    body: '钱不是越省越好，而是先分清底线、弹性和可以缓一缓的选择。',
-    href: '/tools/budget-structure',
+    title: '项目很多，不知道漏了什么',
+    body: '按水电、防水、找平、拆除、瓷砖等项目，看报价里应该写清什么。',
+    href: '/project-risks',
   },
   {
     icon: HouseLine,
-    title: '想把家做好，但不想被风格带跑',
-    body: '审美不是只选风格，而是把真实居住、预算和长期体验放在一起判断。',
-    href: '/blog/02-jia-bu-shi-yangban-jian',
+    title: '已经临近签约，想人工看一遍',
+    body: '报价、合同草稿和付款节点都有了，再进入对应档位的人工判断。',
+    href: '/services/renovation',
   },
 ]
 
@@ -163,10 +163,10 @@ const toolCards: Array<{
   },
   {
     icon: Calculator,
-    title: '预算分配工具',
-    body: '先看总预算更像简约、舒适还是精致，再拆成几份钱。',
-    action: '拆预算',
-    href: '/tools/budget-structure',
+    title: '风险词典',
+    body: '先看按实结算、暂估、同档替换、付款节点这些词到底危险在哪里。',
+    action: '查风险词',
+    href: '/risk-dictionary',
   },
   {
     icon: Notebook,
@@ -308,13 +308,16 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
             </motion.h1>
 
             <motion.p variants={staggerItem} className="mt-7 max-w-[22rem] text-base leading-8 text-ink-muted sm:max-w-2xl sm:text-lg">
-              上传或对照报价单，先查 8 个签约前风险。
+              先别急着比总价。很多装修后悔，不是因为贵，而是签约前没看清：哪些没包含、哪些按实结算、哪些口头承诺没写进合同。
             </motion.p>
 
-            <motion.div variants={staggerItem} className="mt-9">
+            <motion.div variants={staggerItem} className="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <ActionLink href="/tools/quote-check">
                 <UploadSimple size={18} aria-hidden />
                 免费生成报价追问清单
+              </ActionLink>
+              <ActionLink href="/risk-dictionary" variant="secondary">
+                查看风险词典
               </ActionLink>
             </motion.div>
 
@@ -581,8 +584,8 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
           </motion.div>
 
           <div className="mt-10 text-center">
-            <ActionLink href="/resources" variant="text">
-              进入资料与清单
+            <ActionLink href="/checklists" variant="text">
+              查看签约前检查模板
             </ActionLink>
           </div>
         </div>
