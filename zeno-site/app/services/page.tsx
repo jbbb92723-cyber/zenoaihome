@@ -285,7 +285,7 @@ export default function ServicesPage() {
         <div className="mt-12 border border-border p-6 sm:p-8">
           <p className="mb-3 text-sm leading-relaxed text-ink">我不接所有咨询，只接我能真正帮到的。</p>
           <p className="mb-6 text-sm leading-relaxed text-ink-muted">
-            如果你的需求不在范围内，或读完之后觉得匹配度不高，不用勉强，文章和资料页对你可能更有用。
+            如果你的需求不在范围内，或读完之后觉得匹配度不高，不用勉强，风险词典和检查模板可能更适合你先用。
             如果读完觉得“好像说的就是我的问题”，可以发一条简短的背景说明，我会评估是否能帮到你。
           </p>
           <CTA href="/contact" label="查看联系方式" variant="secondary" />
@@ -293,7 +293,7 @@ export default function ServicesPage() {
 
         <div className="mt-6 flex flex-col items-start justify-between gap-5 border border-border bg-surface-warm p-6 sm:flex-row sm:items-center sm:p-8">
           <div>
-            <p className="text-sm font-medium text-ink">还没想好？先从免费工具和资料开始。</p>
+            <p className="text-sm font-medium text-ink">还没想好？先从免费初筛和检查模板开始。</p>
             <p className="mt-1 max-w-md text-xs text-ink-muted">
               报价初筛、风险词典、检查模板和验收清单都可以先用。先建立判断，再决定是否需要服务。
             </p>

@@ -49,17 +49,17 @@ export const primaryNav: PrimaryNavItem[] = [
   {
     key: 'risk-dictionary',
     zh: { label: '风险词典', href: '/risk-dictionary' },
-    en: { label: 'Risk Dictionary', href: '/en/resources' },
+    en: { label: 'Risk Dictionary', href: '/en' },
   },
   {
     key: 'checklists',
     zh: { label: '检查模板', href: '/checklists' },
-    en: { label: 'Checklists', href: '/en/resources' },
+    en: { label: 'Checklists', href: '/en' },
   },
   {
     key: 'project-risks',
     zh: { label: '项目风险库', href: '/project-risks' },
-    en: { label: 'Project Risks', href: '/en/resources' },
+    en: { label: 'Project Risks', href: '/en' },
   },
   {
     key: 'services',

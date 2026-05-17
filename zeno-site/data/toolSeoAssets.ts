@@ -44,12 +44,12 @@ export const toolSeoAssets = {
       { question: '不同城市的装修报价能用同一个工具看吗？', answer: '可以。这个工具不做本地价格裁判，而是检查报价结构。具体单价要回到本地行情，但风险边界的判断逻辑全国通用。' },
     ],
     links: [
-      { label: '报价审核清单', href: '/resources#baojia-shenhe-qingdan', desc: '把工具里的追问整理成签约前检查表。' },
-      { label: '风险词典与模板', href: '/tools/quote-check#risk-library', desc: '给人和 AI 都能读的判断资产。' },
-      { label: '报价风险自查指南', href: '/pricing/baojia-guide', desc: '适合想自己系统看懂报价的人。' },
-      { label: '报价风险快审', href: '/services/renovation#baojia-shenhe', desc: '只看报价重点风险，适合快速判断该追问什么。' },
-      { label: '签约前决策包', href: '/services/renovation#qianyue-qian-juece-bao', desc: '报价、预算和合同一起乱时，进入签约前完整判断。' },
-      { label: '从工地看世界', href: '/blog/03-cong-gongdi-kan-shijie', desc: '理解为什么现场责任和边界比口头承诺更重要。' },
+      { label: '签约前检查模板', href: '/checklists/quote-initial-check', desc: '把工具里的追问整理成签约前可对照的检查表。' },
+      { label: '装修报价风险词典', href: '/risk-dictionary', desc: '查按实结算、暂估、品牌型号缺失等高频风险词。' },
+      { label: '施工项目风险库', href: '/project-risks', desc: '按水电、防水、拆除、找平等项目看报价里该写清什么。' },
+      { label: '标准版报价风险快审', href: '/services/renovation#quote-standard', desc: '完整报价已经拿到、准备继续谈或签约时再进入人工判断。' },
+      { label: '合同签约前检查模板', href: '/checklists/contract-before-signing', desc: '报价结构相对清楚后，继续核对合同和付款节点。' },
+      { label: '报价单怎么看', href: '/blog/zhuangxiu-baojiadan-zenme-kan', desc: '文章归档保留为补充阅读，不作为主路径。' },
     ],
   },
   budgetStructure: {

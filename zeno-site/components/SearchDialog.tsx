@@ -14,19 +14,17 @@ interface SearchResult {
 
 const recommendedZh: SearchResult[] = [
   { title: '报价初筛工具', href: '/tools/quote-check', type: 'tool', excerpt: '先做一轮风险初筛，看看哪里没写清。' },
-  { title: '报价审核清单', href: '/resources#baojia-shenhe-qingdan', type: 'checklist', excerpt: '签约前逐项核对报价、合同和付款节点。' },
-  { title: '报价风险自查指南', href: '/pricing/baojia-guide', type: 'resource', excerpt: '¥39 自查框架，适合先自己过一遍。' },
-  { title: '三档人工判断', href: '/services/renovation', type: 'service', excerpt: '预算取舍、报价快审、签约前决策包。' },
-  { title: '预算分配工具', href: '/tools/budget-structure', type: 'tool', excerpt: '按简约够住、舒适耐用、精致改善三档拆预算。' },
-  { title: '验收节点向导', href: '/tools/inspection-guide', type: 'tool', excerpt: '每个节点该看什么、该拍什么、该确认什么。' },
+  { title: '装修报价风险词典', href: '/risk-dictionary', type: 'resource', excerpt: '查报价里容易引发增项和扯皮的词。' },
+  { title: '签约前检查模板', href: '/checklists', type: 'checklist', excerpt: '报价、合同、付款节点可以逐项对照。' },
+  { title: '施工项目风险库', href: '/project-risks', type: 'resource', excerpt: '按水电、防水、拆除等项目看报价里该写清什么。' },
+  { title: '三档人工判断', href: '/services/renovation', type: 'service', excerpt: '¥99 初查、¥299 快审、¥699 深度判断。' },
 ]
 
 const recommendedEn: SearchResult[] = [
-  { title: 'Quote review', href: '/en/tools', type: 'tool', excerpt: 'Start from quote risk screening.' },
-  { title: 'Budget risk', href: '/en/tools', type: 'tool', excerpt: 'Find where the budget gets unstable.' },
-  { title: 'Site checkpoints', href: '/en/resources', type: 'checklist', excerpt: 'What to check at each stage.' },
-  { title: 'Home is not a showroom', href: '/en/articles/home-is-not-a-showroom', type: 'article', excerpt: 'Design from real living.' },
-  { title: 'AI extension', href: '/en/tools/prompts', type: 'tool', excerpt: 'Use AI as an auxiliary layer.' },
+  { title: 'Quote screening', href: '/en/tools', type: 'tool', excerpt: 'Start from quote risk screening.' },
+  { title: 'Risk dictionary', href: '/en', type: 'resource', excerpt: 'Chinese risk dictionary is the current main asset.' },
+  { title: 'Checklists', href: '/en', type: 'checklist', excerpt: 'Chinese checklists are the current main asset.' },
+  { title: 'Services', href: '/en/services', type: 'service', excerpt: 'Use tools first, then human review.' },
 ]
 
 export default function SearchDialog() {
@@ -215,20 +213,17 @@ export default function SearchDialog() {
               <button type="button" onClick={() => handleSelect({ title: '报价初筛工具', href: '/tools/quote-check', type: 'tool' })} className="block w-full text-left text-ink-muted hover:text-ink">
                 {isEn ? 'Quote screening' : '做报价初筛'}
               </button>
-              <button type="button" onClick={() => handleSelect({ title: '报价审核清单', href: '/resources#baojia-shenhe-qingdan', type: 'checklist' })} className="block w-full text-left text-ink-muted hover:text-ink">
-                {isEn ? 'Quote checklist' : '看报价清单'}
+              <button type="button" onClick={() => handleSelect({ title: '签约前检查模板', href: '/checklists', type: 'checklist' })} className="block w-full text-left text-ink-muted hover:text-ink">
+                {isEn ? 'Checklists' : '看检查模板'}
               </button>
-              <button type="button" onClick={() => handleSelect({ title: '验收节点向导', href: '/tools/inspection-guide', type: 'tool' })} className="block w-full text-left text-ink-muted hover:text-ink">
-                {isEn ? 'Inspection guide' : '生成验收清单'}
+              <button type="button" onClick={() => handleSelect({ title: '装修报价风险词典', href: '/risk-dictionary', type: 'resource' })} className="block w-full text-left text-ink-muted hover:text-ink">
+                {isEn ? 'Risk dictionary' : '查风险词典'}
               </button>
-              <button type="button" onClick={() => handleSelect({ title: '报价风险自查指南', href: '/pricing/baojia-guide', type: 'resource' })} className="block w-full text-left text-ink-muted hover:text-ink">
-                {isEn ? 'Quote guide' : '看 ¥39 指南'}
+              <button type="button" onClick={() => handleSelect({ title: '施工项目风险库', href: '/project-risks', type: 'resource' })} className="block w-full text-left text-ink-muted hover:text-ink">
+                {isEn ? 'Project risks' : '看项目风险库'}
               </button>
               <button type="button" onClick={() => handleSelect({ title: '三档人工判断', href: '/services/renovation', type: 'service' })} className="block w-full text-left text-ink-muted hover:text-ink">
                 {isEn ? 'Human review services' : '看人工服务'}
-              </button>
-              <button type="button" onClick={() => handleSelect({ title: '资料与清单', href: '/resources', type: 'resource' })} className="block w-full text-left text-ink-muted hover:text-ink">
-                {isEn ? 'Open resources' : '打开资料与清单'}
               </button>
             </div>
             <p className="mt-6 border-t border-border pt-4 text-xs leading-relaxed text-ink-muted">

@@ -85,6 +85,25 @@ export default async function ChecklistDetailPage({ params }: Props) {
         data={[
           {
             '@context': 'https://schema.org',
+            '@type': 'Article',
+            headline: `${template.title} | 签约前检查模板`,
+            description: `${template.subtitle} 可直接照着检查、复制追问，适合装修签约前核对报价、合同和付款节点。`,
+            url: `https://zenoaihome.com/checklists/${template.slug}`,
+            inLanguage: 'zh-CN',
+            articleSection: '签约前检查模板',
+            about: {
+              '@type': 'Thing',
+              name: template.title,
+              description: template.subtitle,
+            },
+            isPartOf: {
+              '@type': 'CollectionPage',
+              name: '签约前检查模板',
+              url: 'https://zenoaihome.com/checklists',
+            },
+          },
+          {
+            '@context': 'https://schema.org',
             '@type': 'HowTo',
             name: template.title,
             description: template.subtitle,
@@ -198,7 +217,7 @@ export default async function ChecklistDetailPage({ params }: Props) {
           <div className="mt-5 flex flex-wrap gap-3">
             <CTA href="/tools/quote-check" label="做免费报价初筛" variant="primary" />
             <CTA href="/risk-dictionary" label="看相关风险词典" variant="secondary" />
-            <CTA href="/services/renovation#baojia-shenhe" label="看人工快审服务" variant="ghost" />
+            <CTA href="/services/renovation#quote-standard" label="看人工快审服务" variant="ghost" />
           </div>
         </section>
       </Container>

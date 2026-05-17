@@ -529,7 +529,7 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
             <h2 className="mt-5 text-[clamp(2rem,4vw,3.2rem)] font-semibold leading-tight tracking-tight text-ink [text-wrap:balance]">
               先让你拿到具体东西，再决定要不要付费。
             </h2>
-            <p className="mt-4 text-base leading-8 text-ink-muted">免费工具先给结果，低价资料补判断，人工服务只接工具解决不了的。</p>
+            <p className="mt-4 text-base leading-8 text-ink-muted">免费初筛先给结果，风险词典和模板补判断，人工服务只接工具解决不了的。</p>
           </div>
 
           {/* Asymmetric: 1 featured + 3 stacked — NOT generic 4-equal cards */}

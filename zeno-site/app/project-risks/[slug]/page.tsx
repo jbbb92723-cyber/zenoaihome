@@ -116,11 +116,12 @@ function ProjectStructuredData({ project }: { project: RenovationProjectRisk }) 
       data={[
         {
           '@context': 'https://schema.org',
-          '@type': 'WebPage',
-          name: `${project.name}报价风险`,
+          '@type': 'Article',
+          headline: `${project.name}报价风险 | 施工项目风险库`,
           description: project.oneLine,
           url: `https://zenoaihome.com/project-risks/${project.slug}`,
           inLanguage: 'zh-CN',
+          articleSection: '施工项目风险库',
           about: {
             '@type': 'Thing',
             name: `${project.name}装修报价风险`,
@@ -226,7 +227,7 @@ export default async function ProjectRiskDetailPage({ params }: Props) {
           </p>
           <div className="mt-5 flex flex-wrap gap-3">
             <CTA href="/tools/quote-check" label="做免费报价初筛" variant="primary" />
-            <CTA href="/services/renovation#baojia-shenhe" label="看人工报价快审" variant="secondary" />
+            <CTA href="/services/renovation#quote-standard" label="看人工报价快审" variant="secondary" />
           </div>
         </section>
       </Container>

@@ -109,6 +109,25 @@ export default async function RiskDictionaryDetailPage({ params }: Props) {
         data={[
           {
             '@context': 'https://schema.org',
+            '@type': 'Article',
+            headline: `${rule.name} | 装修报价风险词典`,
+            description: `${rule.oneLine} 签约前先问清，避免后期增项和扯皮。`,
+            url: `https://zenoaihome.com/risk-dictionary/${rule.slug}`,
+            inLanguage: 'zh-CN',
+            articleSection: '装修报价风险词典',
+            about: {
+              '@type': 'Thing',
+              name: rule.name,
+              description: rule.oneLine,
+            },
+            isPartOf: {
+              '@type': 'CollectionPage',
+              name: '装修报价风险词典',
+              url: 'https://zenoaihome.com/risk-dictionary',
+            },
+          },
+          {
+            '@context': 'https://schema.org',
             '@type': 'DefinedTerm',
             name: rule.name,
             description: rule.oneLine,
@@ -217,7 +236,7 @@ export default async function RiskDictionaryDetailPage({ params }: Props) {
           <div className="mt-5 flex flex-wrap gap-3">
             <CTA href="/tools/quote-check" label="先做免费报价初筛" variant="primary" />
             <CTA href="/checklists" label="看签约前检查模板" variant="secondary" />
-            <CTA href="/services/renovation#baojia-shenhe" label="看人工报价快审" variant="ghost" />
+            <CTA href="/services/renovation#quote-standard" label="看人工报价快审" variant="ghost" />
           </div>
         </section>
       </Container>
