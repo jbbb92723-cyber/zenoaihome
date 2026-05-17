@@ -6,6 +6,7 @@
  * 维护规则：
  * - 改价格 / 改命名 / 增减档位 → 只动这个文件
  * - 三个 variant（compact / full / summary）由 CommercialLadder 组件统一渲染
+ * - 主路径只保留：免费初筛 -> ¥99 体验版 -> ¥299 标准版 -> ¥699 深度版
  */
 
 export type LadderTier =
@@ -18,7 +19,7 @@ export type LadderTier =
 export type LadderRung = {
   /** 档位，用于排序 / 样式分组 */
   tier: LadderTier
-  /** 展示用价格文本，如 "免费" / "¥39" / "¥699" */
+  /** 展示用价格文本，如 "免费" / "¥99" / "¥699" */
   price: string
   /** 数值价格（元），用于 SEO Schema 与排序，免费=0 */
   priceNumeric: number
@@ -34,7 +35,7 @@ export type LadderRung = {
   cta: string
   /** 数据来源（决定 PurchaseButton 还是普通跳链） */
   source: 'tool' | 'product' | 'service'
-  /** 可选高亮徽标，例如 "主线起点" / "签约前最常用" */
+  /** 可选高亮徽标，例如 "主线起点" / "主推" */
   badge?: string
 }
 
@@ -45,7 +46,7 @@ export const commercialLadder: LadderRung[] = [
     priceNumeric: 0,
     title: '报价初筛工具',
     whoFor: '已经拿到报价，但还没签字',
-    delivers: '8 分钟出风险等级 + 重点追问清单',
+    delivers: '8 分钟生成风险等级和重点追问清单',
     href: '/tools/quote-check',
     cta: '先做免费初筛',
     source: 'tool',
@@ -53,58 +54,47 @@ export const commercialLadder: LadderRung[] = [
   },
   {
     tier: 'paid-low',
-    price: '¥39',
-    priceNumeric: 39,
-    title: '装修报价风险自查指南',
-    whoFor: '想自己系统过一遍报价、合同、付款节点和增项',
-    delivers: '检查模板 + 追问框架 + 签约前自查 SOP',
-    href: '/pricing/baojia-guide',
-    cta: '看 ¥39 指南',
-    source: 'product',
+    price: '¥99',
+    priceNumeric: 99,
+    title: '体验版报价风险初查',
+    whoFor: '只想先知道这份报价有没有明显风险',
+    delivers: '检查 10 行以内重点报价，标出 3 个高风险点和 5 个追问问题',
+    href: '/services/renovation#quote-entry',
+    cta: '看 ¥99 初查',
+    source: 'service',
+    badge: '低门槛验证',
   },
   {
     tier: 'paid-mid',
-    price: '¥399',
-    priceNumeric: 399,
-    title: '预算取舍诊断',
-    whoFor: '预算总数有了，但不知道哪些钱该守、哪些可以缓',
-    delivers: '一次诊断 + 取舍优先级表',
-    href: '/services/renovation#yusuan-zixun',
-    cta: '看取舍诊断',
+    price: '¥299',
+    priceNumeric: 299,
+    title: '标准版报价风险快审',
+    whoFor: '手里有完整报价，准备继续谈或准备签约',
+    delivers: '完整报价风险说明 + 漏项/模糊项/增项口子 + 签约前追问清单',
+    href: '/services/renovation#quote-standard',
+    cta: '看 ¥299 快审',
     source: 'service',
-  },
-  {
-    tier: 'paid-mid',
-    price: '¥699',
-    priceNumeric: 699,
-    title: '报价风险快审',
-    whoFor: '手里已经有报价单，想尽快判断该追问什么',
-    delivers: '人工逐项审 + 风险说明 + 追问清单',
-    href: '/services/renovation#baojia-shenhe',
-    cta: '看 ¥699 快审',
-    source: 'service',
-    badge: '签约前最常用',
+    badge: '主推',
   },
   {
     tier: 'paid-high',
-    price: '¥1499',
-    priceNumeric: 1499,
-    title: '签约前决策包',
-    whoFor: '报价、预算、合同同时卡住，临近签字',
-    delivers: '报价 + 合同 + 付款节点一次看全',
-    href: '/services/renovation#qianyue-qian-juece-bao',
-    cta: '看决策包',
+    price: '¥699',
+    priceNumeric: 699,
+    title: '深度版签约前判断',
+    whoFor: '已经接近签合同，报价、合同和付款节点都要一起看',
+    delivers: '报价 + 合同 + 付款节点风险判断，附 30 分钟微信语音解读',
+    href: '/services/renovation#quote-deep',
+    cta: '看 ¥699 深度版',
     source: 'service',
+    badge: '快签前',
   },
 ]
 
 /** 仅取付费档（用于价格页主梯子展示） */
 export const paidLadder = commercialLadder.filter((r) => r.tier !== 'free')
 
-/** 首页展示完整主路径：免费初筛 -> 指南 -> 三档服务 */
+/** 首页展示完整主路径：免费初筛 -> ¥99 -> ¥299 -> ¥699 */
 export const homepageLadder: LadderRung[] = commercialLadder
 
-/** 主服务三档：预算取舍 / 报价快审 / 签约前决策 */
-export const serviceLadder: LadderRung[] = commercialLadder.filter((r) =>
-  ['paid-mid', 'paid-high'].includes(r.tier),
-)
+/** 主服务三档：体验版初查 / 标准版快审 / 深度版签约前判断 */
+export const serviceLadder: LadderRung[] = paidLadder
