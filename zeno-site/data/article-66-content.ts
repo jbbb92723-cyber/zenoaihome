@@ -417,7 +417,7 @@ A：先整理客户每天反复问你的 20 个问题。不要先学工具。问
 
 如果你是装修业主，最直接的入口还是装修报价风险。
 
-你可以先看 [装修报价风险系列](/blog/zhuangxiu-baojia-fengxian-xilie)，再根据需要了解 [装修报价单审核服务](/services/renovation#baojia-shenhe)。
+你可以先看 [装修报价风险系列](/blog/zhuangxiu-baojia-fengxian-xilie)，再根据需要了解 [装修报价单审核服务](/services/renovation#quote-standard)。
 
 如果你是传统行业从业者，也想把自己的经验整理成内容资产、服务流程或 AI 工作流，这条线我会逐步开放。
 

@@ -79,11 +79,11 @@ export default function BudgetStagePage() {
           { label: '报价初筛（在线工具）', href: '/tools/quote-check' },
           { label: '预算分配工具', href: '/tools/budget-structure' },
           { label: '超预算原因自测', href: '/tools/budget-risk' },
-          { label: '报价风险自查指南 ¥39', href: '/pricing/baojia-guide' },
+          { label: '签约前检查模板', href: '/checklists' },
         ]}
         services={[
-          { label: '报价风险快审 ¥699', href: '/services/renovation#baojia-shenhe' },
-          { label: '预算取舍诊断 ¥399', href: '/services/renovation#yusuan-zixun' },
+          { label: '标准版报价风险快审 ¥299', href: '/services/renovation#quote-standard' },
+          { label: '深度版签约前判断 ¥699', href: '/services/renovation#quote-deep' },
         ]}
         prev={{ label: '先看人：装修公司 / 工长 / 师傅', href: '/start/people' }}
         next={{ label: '再看合同：签约前必须改什么', href: '/start/contract' }}

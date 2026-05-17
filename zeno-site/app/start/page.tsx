@@ -5,9 +5,9 @@ import CTA from '@/components/CTA'
 import StructuredData from '@/components/StructuredData'
 
 export const metadata: Metadata = {
-  title: '装修判断｜从看人到看居住，6 个阶段的判断系统',
+  title: '签约前装修判断｜报价、合同和付款节点先看清',
   description:
-    '装修判断不是「选个公司」那么简单。从看人、看钱、看合同、看施工、看验收到看居住——6 个阶段，每一步都有判断标准。',
+    'ZenoAIHome 旧版装修判断路线页。当前主线已收窄为签约前报价风险判断：报价初筛、风险词典、检查模板和三档人工快审。',
   alternates: { canonical: 'https://zenoaihome.com/start' },
 }
 
@@ -94,16 +94,20 @@ export default function StartPage() {
         <Container size="content">
           <p className="page-label mb-5">装修判断</p>
           <h1 className="page-title mb-6">
-            在签约前看懂装修，<br className="hidden sm:block" />
-            从这 6 步开始
+            旧版装修判断路线，<br className="hidden sm:block" />
+            当前先回到报价风险
           </h1>
           <p className="text-base sm:text-lg text-ink-muted leading-[1.8] max-w-2xl">
-            装修不是「选个公司就完事」。它是一条决策链：先看人、再看钱、再看合同、再看施工、再看验收、最后看你能不能住得顺手。
-            每一步都有判断标准——这套系统就是把这些标准一次性给你。
+            这个页面保留旧版 6 步判断框架，方便历史访问。但现在网站主线已经收窄：
+            签装修合同前，先看清报价里哪些没包含、哪些按实结算、哪些口头承诺没写进合同。
           </p>
           <p className="mt-5 text-sm text-ink-faint leading-relaxed max-w-xl">
-            不需要按顺序看完。卡在哪一步，就从哪一步开始。
+            如果你已经拿到报价单，先做免费初筛，再看风险词典和检查模板。
           </p>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <CTA href="/tools/quote-check" label="先做免费报价初筛" variant="primary" />
+            <CTA href="/risk-dictionary" label="查看风险词典" variant="secondary" />
+          </div>
         </Container>
       </div>
 
@@ -152,29 +156,29 @@ export default function StartPage() {
         </ol>
       </Container>
 
-      {/* 底部：AI 工具 + 服务 */}
+      {/* 底部：主路径 + 服务 */}
       <div className="border-t border-border bg-surface-warm">
         <Container size="content" className="py-section">
           <div className="grid sm:grid-cols-2 gap-px bg-border border border-border">
             <div className="bg-surface p-6 sm:p-8">
               <p className="text-[11px] font-semibold uppercase tracking-widest text-ink-faint mb-3">
-                方法层
+                主路径
               </p>
-              <h3 className="text-lg font-semibold text-ink mb-3">AI 工具帮你更快看懂</h3>
+              <h3 className="text-lg font-semibold text-ink mb-3">先把报价里的边界找出来</h3>
               <p className="text-sm text-ink-muted leading-relaxed mb-5">
-                报价初筛、预算分配、超预算自测、验收向导——把判断动作交给工具先跑一轮。
+                免费初筛先帮你找漏项、模糊项、增项口子和付款节点风险，再决定要不要继续人工快审。
               </p>
-              <CTA href="/tools" label="去 AI 工具" variant="secondary" />
+              <CTA href="/tools/quote-check" label="做报价初筛" variant="secondary" />
             </div>
             <div className="bg-surface p-6 sm:p-8">
               <p className="text-[11px] font-semibold uppercase tracking-widest text-ink-faint mb-3">
                 承接层
               </p>
-              <h3 className="text-lg font-semibold text-ink mb-3">卡住了，我直接帮你判断</h3>
+              <h3 className="text-lg font-semibold text-ink mb-3">卡住了，再进入三档人工判断</h3>
               <p className="text-sm text-ink-muted leading-relaxed mb-5">
-                报价审、合同审、预算诊断、居住场景装修——人工服务只在你已经知道「问题大概在哪」时再用。
+                ¥99 看重点行明显风险，¥299 看完整报价，¥699 把报价、合同和付款节点一起看。
               </p>
-              <CTA href="/services" label="看服务" variant="secondary" />
+              <CTA href="/services/renovation" label="看服务价格" variant="secondary" />
             </div>
           </div>
         </Container>

@@ -204,15 +204,15 @@ export default async function AccountPage() {
           )}
         </section>
 
-        {/* ── 4. 创作工具 ───────────────────────────────────── */}
+        {/* ── 4. 当前主入口 ───────────────────────────────────── */}
         <section className="border border-border bg-surface p-6">
-          <p className="text-[0.65rem] text-ink-faint font-semibold uppercase tracking-widest mb-4">我的创作工具</p>
+          <p className="text-[0.65rem] text-ink-faint font-semibold uppercase tracking-widest mb-4">当前主入口</p>
           <div className="grid grid-cols-2 gap-3">
             {[
-              { href: '/tools/prompts',  label: 'AI 提示词体验场' },
-              { href: '/tools/md2wechat', label: 'md2wechat 排版' },
-              { href: '/tools/publish',  label: '公众号创作工作台' },
-              { href: '/services',       label: '创作会员中心' },
+              { href: '/tools/quote-check', label: '报价初筛工具' },
+              { href: '/risk-dictionary', label: '风险词典' },
+              { href: '/checklists', label: '检查模板' },
+              { href: '/services/renovation', label: '服务价格' },
             ].map(item => (
               <Link
                 key={item.href}
@@ -229,13 +229,13 @@ export default async function AccountPage() {
         <section className="border border-border bg-surface p-6">
           <div className="flex items-center justify-between mb-4">
             <p className="text-[0.65rem] text-ink-faint font-semibold uppercase tracking-widest">服务申请</p>
-            <Link href="/services" className="text-xs text-stone hover:underline underline-offset-2">查看服务</Link>
+            <Link href="/services/renovation" className="text-xs text-stone hover:underline underline-offset-2">查看服务</Link>
           </div>
 
           {serviceRequests.length === 0 ? (
             <div className="py-6 text-center">
               <p className="text-sm text-ink-muted mb-3">暂无服务申请记录</p>
-              <Link href="/services" className="text-xs text-stone border border-stone/30 px-4 py-2 hover:bg-stone-pale/50 transition-colors">
+              <Link href="/services/renovation" className="text-xs text-stone border border-stone/30 px-4 py-2 hover:bg-stone-pale/50 transition-colors">
                 查看 Zeno 服务
               </Link>
             </div>

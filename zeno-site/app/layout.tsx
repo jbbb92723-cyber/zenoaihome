@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'ZenoAIHome — 装修签约前，先把报价风险看清楚',
     description:
-      '帮业主在签约前看懂报价漏项、预算取舍和合同边界。免费初筛 → ¥39 指南 → 人工快审。',
+      '帮业主在签约前看懂报价漏项、合同边界和付款节点。免费初筛 → ¥99 初查 → ¥299 快审 → ¥699 深度判断。',
   },
   robots: {
     index: true,

@@ -6,7 +6,7 @@ import Container from '@/components/Container'
 export const metadata: Metadata = {
   title: '联系我',
   description:
-    '联系 Zeno。优先处理签约前报价风险、预算取舍、合同和付款节点判断；AI 与内容交流属于延伸，不是主服务入口。',
+    '联系 Zeno。优先处理签约前报价风险、合同和付款节点判断；AI 与内容交流属于延伸，不是主服务入口。',
 }
 
 const contactChannels = [
@@ -20,7 +20,7 @@ const contactChannels = [
   {
     id: 'wechat',
     title: '微信',
-    desc: '签约前报价风险、预算取舍和合同追问的主要联系渠道。加微信时请备注来意，便于判断是否能帮到你。',
+    desc: '签约前报价风险、合同和付款节点追问的主要联系渠道。加微信时请备注来意，便于判断是否能帮到你。',
     value: 'zanxiansheng2025',
     tag: '咨询',
   },
@@ -34,9 +34,9 @@ const contactChannels = [
 ]
 
 const suitableFor = [
-  { title: '报价风险快审',      desc: '拿到报价单但看不懂，想知道漏项、模糊项和增项口子在哪里。' },
-  { title: '签约前决策',        desc: '报价、预算、合同和付款节点一起卡住，想在签字前理清追问顺序。' },
-  { title: '预算取舍诊断',      desc: '总预算有了，但不知道简约够住、舒适耐用、精致改善该怎么取舍。' },
+  { title: '¥99 体验版初查',    desc: '只有几行重点报价，只想先知道有没有明显风险。' },
+  { title: '¥299 标准版快审',   desc: '拿到完整报价但看不懂，想知道漏项、模糊项和增项口子在哪里。' },
+  { title: '¥699 深度版判断',   desc: '报价、合同和付款节点一起卡住，想在签字前理清追问顺序。' },
   { title: '内容或 AI 延伸交流', desc: '你读过文章或工具后，有明确问题想讨论。AI 交流暂时不是主服务入口。' },
   { title: '商务合作',          desc: '如果你的合作与网站主题高度相关，可以发邮件说明背景和具体想法。' },
 ]
@@ -76,10 +76,10 @@ export default function ContactPage() {
             <div className="border border-border p-5">
               <p className="text-sm font-semibold text-ink mb-2">你还在了解阶段</p>
               <p className="text-xs text-ink-muted leading-relaxed mb-4">
-                先建立基本判断，再决定下一步。资料页里有免费清单、模板和工具。
+                先建立基本判断，再决定下一步。风险词典、检查模板和报价初筛都可以先用。
               </p>
-              <Link href="/resources" className="text-sm text-stone hover:underline underline-offset-2 decoration-stone/40">
-                先看资料页 →
+              <Link href="/checklists" className="text-sm text-stone hover:underline underline-offset-2 decoration-stone/40">
+                先看检查模板 →
               </Link>
             </div>
             <div className="border border-border p-5">
@@ -155,7 +155,7 @@ export default function ContactPage() {
               '你当前阶段（刚拿报价 / 正在对比 / 一两周内准备签约 / 已经开工）',
               '房屋面积、城市、预算上限和装修方式',
               '报价单、合同草稿或付款节点里最让你不确定的一点',
-              '你希望我帮你做免费分流、报价快审，还是签约前决策包判断',
+              '你希望我帮你做免费分流、¥99 初查、¥299 快审，还是 ¥699 深度判断',
             ].map((tip, i) => (
               <div key={i} className="flex items-start gap-3">
                 <span className="text-stone text-xs shrink-0 font-semibold mt-0.5">{i + 1}.</span>

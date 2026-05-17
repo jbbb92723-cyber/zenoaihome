@@ -74,11 +74,11 @@ export default function AboutPage() {
         <section className="mb-12">
           <h2 className="section-heading mb-5">你可以怎么开始</h2>
           <p className="text-base leading-[1.85] text-ink">
-            <strong>从 ¥0 到 ¥1499</strong>，按你现在的情况选：免费报价初筛 → ¥39 风险自查指南 → ¥399 / ¥699 / ¥1499 三档人工判断。
+            <strong>从免费初筛到 ¥699</strong>，按你现在的材料完整度选：免费报价初筛 → ¥99 体验版初查 → ¥299 标准版快审 → ¥699 深度版签约前判断。
           </p>
           <div className="mt-6 flex flex-wrap gap-3">
             <CTA href="/tools/quote-check" label="先做报价初筛" variant="primary" />
-            <CTA href="/pricing/baojia-guide" label="看 ¥39 指南" variant="secondary" />
+            <CTA href="/pricing" label="看价格路径" variant="secondary" />
             <CTA href="/services/renovation" label="看人工服务" variant="ghost" />
           </div>
         </section>

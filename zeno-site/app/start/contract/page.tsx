@@ -80,12 +80,12 @@ export default function ContractStagePage() {
           },
         ]}
         tools={[
-          { label: '合同必改清单（资料页）', href: '/resources' },
-          { label: '口头承诺落字模板', href: '/resources' },
-          { label: '报价风险自查指南 ¥39', href: '/pricing/baojia-guide' },
+          { label: '合同签约前检查模板', href: '/checklists/contract-pre-signing-check' },
+          { label: '风险词典：口头承诺未写入合同', href: '/risk-dictionary/oral-promise-not-written' },
+          { label: '报价初筛工具', href: '/tools/quote-check' },
         ]}
         services={[
-          { label: '签约前决策包 ¥1499（含合同审）', href: '/services/renovation#qianyue-qian-juece-bao' },
+          { label: '深度版签约前判断 ¥699', href: '/services/renovation#quote-deep' },
         ]}
         prev={{ label: '再看钱：预算 + 报价', href: '/start/budget' }}
         next={{ label: '再看施工：开工后盯什么', href: '/start/build' }}

@@ -123,7 +123,7 @@ const CN_TO_EN: Record<string, string> = {
   '/ai':         '/en',
   '/tools':      '/en/tools',
   '/topics':     '/en/topics',
-  '/tools/prompts': '/en/tools/prompts',
+  '/tools/prompts': '/en/tools',
   '/tools/quote-check': '/en/tools',
   '/tools/budget-structure': '/en/tools',
   '/tools/budget-risk': '/en/tools',
@@ -150,7 +150,7 @@ const EN_TO_CN: Record<string, string> = {
   '/en/about':      '/about',
   '/en/blog':       '/blog',
   '/en/tools':      '/tools',
-  '/en/tools/prompts': '/tools/prompts',
+  '/en/tools/prompts': '/tools/quote-check',
   '/en/topics':     '/topics',
   '/en/resources':  '/resources',
   '/en/services':   '/services',
@@ -170,7 +170,7 @@ export function getLangHref(pathname: string, isEn: boolean): string {
     if (pathname.startsWith('/en/blog/')) return '/blog'
     if (pathname.startsWith('/en/articles/')) return '/blog'
     const cnPath = pathname.replace(/^\/en/, '') || '/'
-    const knownCn = ['/', '/start', '/about', '/blog', '/cases', '/ai', '/tools', '/tools/prompts', '/tools/quote-check', '/tools/budget-structure', '/tools/budget-risk', '/tools/unit-converter', '/tools/tile-calculator', '/tools/paint-calculator', '/tools/inspection-guide', '/risk-dictionary', '/checklists', '/project-risks', '/topics', '/resources', '/services', '/contact', '/login', '/register']
+    const knownCn = ['/', '/start', '/about', '/blog', '/cases', '/ai', '/tools', '/tools/prompts', '/tools/quote-check', '/tools/budget-structure', '/tools/budget-risk', '/tools/unit-converter', '/tools/tile-calculator', '/tools/paint-calculator', '/tools/inspection-guide', '/risk-dictionary', '/checklists', '/project-risks', '/topics', '/resources', '/services', '/services/renovation', '/contact', '/login', '/register']
     if (knownCn.includes(cnPath)) return cnPath
     return '/'
   } else {
@@ -180,7 +180,7 @@ export function getLangHref(pathname: string, isEn: boolean): string {
     if (pathname.startsWith('/checklists/')) return '/en'
     if (pathname.startsWith('/project-risks/')) return '/en'
     if (pathname.startsWith('/services/')) return '/en/services'
-    if (pathname.startsWith('/tools/')) return pathname === '/tools/prompts' ? '/en/tools/prompts' : '/en/tools'
+    if (pathname.startsWith('/tools/')) return '/en/tools'
     return '/en'
   }
 }

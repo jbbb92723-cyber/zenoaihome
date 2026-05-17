@@ -8,9 +8,9 @@ import CTA from '@/components/CTA'
 import StructuredData from '@/components/StructuredData'
 
 export const metadata: Metadata = {
-  title: '按问题看 5 个长期专题',
+  title: '报价风险判断专题 | ZenoAIHome',
   description:
-    '如果你不想碎片化阅读，就按问题进入这 5 个长期专题：报价风险判断、AI 辅助整理、风险工具与模板、一人公司和判断与生活。',
+    '按问题进入 ZenoAIHome 的长期专题。第一主线是签约前报价风险判断，AI、工具和一人公司内容只作为延伸。',
 }
 
 const topicAccents: Record<string, string> = {
@@ -31,7 +31,7 @@ export default function TopicsPage() {
           name: '按问题看 5 个长期专题',
           url: 'https://zenoaihome.com/topics',
           description:
-            '如果你不想碎片化阅读，就按问题进入这 5 个长期专题：报价风险判断、AI 辅助整理、风险工具与模板、一人公司和判断与生活。',
+            '第一主线是签约前报价风险判断，其他内容作为延伸阅读。',
           inLanguage: 'zh-CN',
           mainEntity: {
             '@type': 'ItemList',
@@ -66,8 +66,8 @@ export default function TopicsPage() {
               　先看「报价风险判断」，从签约前最关键的问题开始
             </p>
             <p>
-              <span className="text-stone font-medium">想用 AI</span>
-              　再看「AI 辅助整理」和「风险工具与模板」
+              <span className="text-stone font-medium">想查资料</span>
+              　再看「风险工具与模板」，用词典、项目风险库和检查模板补问题
             </p>
             <p>
               <span className="text-stone font-medium">想做自己的事</span>

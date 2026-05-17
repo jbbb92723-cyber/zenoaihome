@@ -36,15 +36,9 @@ const serviceRelatedArticles: Record<string, { label: string; href: string }[]> 
     { label: '付款节点检查模板', href: '/checklists/payment-milestone-check' },
     { label: '付款节点过前', href: '/risk-dictionary/payment-milestone-too-early' },
   ],
-  'shi-zhu-pai-zhuangxiu': [
-    { label: '家不是样板间', href: '/blog/02-jia-bu-shi-yangban-jian' },
-    { label: '我为什么不想只做一个教人装修的人', href: '/blog/01-wo-wei-shenme-bu-xiang-zhi-zuo-jiaoren-zhuangxiu' },
-    { label: '长期主义不是忍耐', href: '/blog/05-changqi-zhuyi-bushi-rennai' },
-  ],
 }
 
 const renovationSlugs = ['quote-entry', 'quote-standard', 'quote-deep']
-const extensionRenovationSlugs = ['shi-zhu-pai-zhuangxiu']
 
 const entryRoutes = [
   {
@@ -82,9 +76,6 @@ const serviceFaqs = [
 
 export default function ServicesPage() {
   const renovationServices = renovationSlugs
-    .map((slug) => getServiceBySlug(slug))
-    .filter((service): service is NonNullable<ReturnType<typeof getServiceBySlug>> => Boolean(service))
-  const extensionRenovationServices = extensionRenovationSlugs
     .map((slug) => getServiceBySlug(slug))
     .filter((service): service is NonNullable<ReturnType<typeof getServiceBySlug>> => Boolean(service))
 
@@ -248,29 +239,6 @@ export default function ServicesPage() {
           ))}
         </div>
 
-        {extensionRenovationServices.length > 0 && (
-          <>
-            <div className="mb-6 mt-16">
-              <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-ink-faint">A+</p>
-              <h2 className="text-lg font-semibold text-ink">延伸服务：居住场景</h2>
-              <p className="mt-1 text-sm text-ink-muted">
-                这不是签约前报价风险判断的主入口，只适合南宁本地且需要更深居住判断的用户。
-              </p>
-            </div>
-
-            <div className="space-y-10">
-              {extensionRenovationServices.map((service, index) => (
-                <ServiceCard
-                  key={service.id}
-                  service={service}
-                  index={index}
-                  relatedArticles={serviceRelatedArticles[service.slug]}
-                />
-              ))}
-            </div>
-          </>
-        )}
-
         <section id="service-form" className="mt-16 scroll-mt-24">
           <div className="mb-6">
             <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-ink-faint">提交资料</p>
@@ -279,7 +247,7 @@ export default function ServicesPage() {
               这里是站内服务申请入口。暂不做站内文件上传，你可以先放网盘链接、报价单说明、户型信息；提交后会进入你的用户记录。
             </p>
           </div>
-          <ServiceRequestForm services={[...renovationServices, ...extensionRenovationServices]} />
+          <ServiceRequestForm services={renovationServices} />
         </section>
 
         <div className="mt-12 border border-border p-6 sm:p-8">

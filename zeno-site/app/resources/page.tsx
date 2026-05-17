@@ -115,11 +115,11 @@ export default function ResourcesPage() {
           <p className="text-xs font-semibold uppercase tracking-widest text-stone">先走主路径</p>
           <h2 className="mt-3 text-xl font-semibold tracking-tight text-ink">如果你手上已经有报价，先不要乱翻资料。</h2>
           <p className="mt-3 text-sm leading-relaxed text-ink-muted">
-            先做免费报价初筛，再用风险词典和检查模板补问题；如果仍然看不明白，再进入人工快审或签约前决策包。
+            先做免费报价初筛，再用风险词典和检查模板补问题；如果仍然看不明白，再按材料完整度进入 ¥99 / ¥299 / ¥699 三档人工判断。
           </p>
           <div className="mt-5 flex flex-wrap gap-3">
             <CTA href="/tools/quote-check" label="先做报价初筛" variant="primary" />
-            <CTA href="#baojia-shenhe-qingdan" label="拿报价审核清单" variant="secondary" />
+            <CTA href="/checklists/quote-initial-check" label="看报价单初查模板" variant="secondary" />
             <CTA href="/services/renovation" label="看三档人工服务" variant="ghost" />
           </div>
         </section>
@@ -238,8 +238,8 @@ export default function ResourcesPage() {
           </p>
           <div className="mt-5 flex flex-wrap gap-3">
             <CTA href="/tools/quote-check" label="回到报价初筛" variant="primary" />
-            <CTA href="/pricing/baojia-guide" label="看 ¥39 指南" variant="secondary" />
-            <CTA href="/services/renovation#baojia-shenhe" label="看 ¥699 快审" variant="ghost" />
+            <CTA href="/checklists" label="看检查模板" variant="secondary" />
+            <CTA href="/services/renovation#quote-standard" label="看 ¥299 标准版快审" variant="ghost" />
           </div>
         </section>
       </Container>

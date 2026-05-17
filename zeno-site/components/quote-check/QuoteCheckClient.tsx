@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { useEffect, useMemo, useState } from 'react'
 import ToolSeoAssetSection from '@/components/tools/ToolSeoAssetSection'
 import { toolSeoAssets } from '@/data/toolSeoAssets'
@@ -130,7 +131,7 @@ function getPrimaryNextStep(score: number, stage: QuoteStage) {
   }
   return {
     label: '看合同签约前检查模板',
-    href: '/checklists/contract-before-signing',
+    href: '/checklists/contract-pre-signing-check',
     desc: '报价结构相对清楚，下一步重点核对合同和付款节点。',
   }
 }
@@ -557,7 +558,15 @@ export default function QuoteCheckClient() {
               { src: '/images/services/sample-communication-script.svg', label: '话术示例' },
             ].map((item) => (
               <div key={item.label} className="overflow-hidden border border-border bg-surface">
-                <img src={item.src} alt={`${item.label}脱敏样张`} className="aspect-[4/3] w-full object-cover" />
+                <div className="relative aspect-[4/3]">
+                  <Image
+                    src={item.src}
+                    alt={`${item.label}脱敏样张`}
+                    fill
+                    sizes="(max-width: 640px) 100vw, 33vw"
+                    className="object-cover"
+                  />
+                </div>
                 <p className="p-3 text-xs font-semibold text-stone">{item.label}</p>
               </div>
             ))}

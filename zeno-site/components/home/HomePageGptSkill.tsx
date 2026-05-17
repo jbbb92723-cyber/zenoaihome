@@ -1,6 +1,7 @@
 ﻿"use client"
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import {
@@ -688,7 +689,13 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
             ].map((item) => (
               <motion.div key={item.label} variants={staggerItem} className="overflow-hidden border border-border bg-white">
                 <div className="relative aspect-[4/3] border-b border-border bg-canvas">
-                  <img src={item.src} alt={item.alt} className="h-full w-full object-cover" />
+                  <Image
+                    src={item.src}
+                    alt={item.alt}
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 33vw"
+                    className="object-cover"
+                  />
                 </div>
                 <div className="p-5">
                   <p className="text-xs font-semibold uppercase tracking-widest text-stone">{item.label}</p>

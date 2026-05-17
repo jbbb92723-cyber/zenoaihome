@@ -81,7 +81,7 @@ export default function PeopleStagePage() {
           { label: '看工地现场记录模板', href: '/resources' },
         ]}
         services={[
-          { label: '帮你过一遍候选名单（咨询服务）', href: '/services/renovation#qianyue-qian-juece-bao' },
+          { label: '帮你过一遍候选名单（咨询服务）', href: '/services/renovation#quote-deep' },
         ]}
         next={{ label: '再看钱：预算 + 报价', href: '/start/budget' }}
       />
