@@ -49,17 +49,17 @@ export const primaryNav: PrimaryNavItem[] = [
   {
     key: 'risk-dictionary',
     zh: { label: '风险词典', href: '/risk-dictionary' },
-    en: { label: 'Risk Dictionary', href: '/en' },
+    en: { label: 'Risk Language', href: '/en/tools#risk-language' },
   },
   {
     key: 'checklists',
     zh: { label: '检查模板', href: '/checklists' },
-    en: { label: 'Checklists', href: '/en' },
+    en: { label: 'Checklists', href: '/en/tools#checklists' },
   },
   {
     key: 'project-risks',
     zh: { label: '项目风险库', href: '/project-risks' },
-    en: { label: 'Project Risks', href: '/en' },
+    en: { label: 'Project Risks', href: '/en/tools#project-risks' },
   },
   {
     key: 'services',
@@ -69,11 +69,11 @@ export const primaryNav: PrimaryNavItem[] = [
       {
         key: 'all-services',
         zh: { label: '三档人工判断', desc: '初筛 / 快审 / 深度判断' },
-        en: { label: 'Human Services', desc: 'Use tools first, come when stuck' },
+        en: { label: 'Expert Review', desc: 'Use the free check first. Review only when materials are ready.' },
         items: [
-          { key: 'quote-risk-initial', zh: { label: '报价风险初查', href: '/tools/quote-check', desc: '先免费筛一遍报价风险' }, en: { label: 'Initial Quote Check', href: '/en/tools', desc: 'Start with a quick check' } },
-          { key: 'quote-fast', zh: { label: '标准报价快审', href: '/services/renovation#quote-standard', desc: '人工看漏项、模糊项和增项口子' }, en: { label: 'Quote Quick Review', href: '/en/services', desc: 'Human quote review' } },
-          { key: 'decision-pack', zh: { label: '签约前深度判断', href: '/services/renovation#quote-deep', desc: '报价、合同、付款节点一起看' }, en: { label: 'Pre-sign Decision Pack', href: '/en/services', desc: 'Quote, contract, and payment review' } },
+          { key: 'quote-risk-initial', zh: { label: '报价风险初查', href: '/tools/quote-check', desc: '先免费筛一遍报价风险' }, en: { label: 'Free Quote Risk Check', href: '/en/tools', desc: 'Start with a lightweight first pass' } },
+          { key: 'quote-fast', zh: { label: '标准报价快审', href: '/services/renovation#quote-standard', desc: '人工看漏项、模糊项和增项口子' }, en: { label: 'Standard Quote Review', href: '/en/services', desc: 'For a complete renovation quote' } },
+          { key: 'decision-pack', zh: { label: '签约前深度判断', href: '/services/renovation#quote-deep', desc: '报价、合同、付款节点一起看' }, en: { label: 'Deep Pre-Signing Review', href: '/en/services', desc: 'Quote, contract, and payment milestones' } },
         ],
       },
     ],

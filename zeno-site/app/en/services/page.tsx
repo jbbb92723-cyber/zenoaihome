@@ -1,142 +1,139 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import Container from '@/components/Container'
-import PageHero from '@/components/PageHero'
+import StructuredData from '@/components/StructuredData'
 
 export const metadata: Metadata = {
-  title: 'Services — Zeno',
+  title: 'Expert Quote Review | ZenoAIHome',
   description:
-    "What I sell isn't renovation services — it's clearer judgment. Renovation, AI, and content systems are three surfaces of the same underlying work: helping you make sharper decisions in noisy environments.",
+    'English overview of ZenoAIHome expert review options: RMB 99 entry review, RMB 299 standard quote review, and RMB 699 pre-signing review for quote, contract, and payment milestones.',
   alternates: {
     canonical: 'https://zenoaihome.com/en/services',
     languages: {
-      'zh-CN': 'https://zenoaihome.com/services',
+      'zh-CN': 'https://zenoaihome.com/services/renovation',
       en: 'https://zenoaihome.com/en/services',
     },
   },
 }
 
-const lightConsulting = [
+const services = [
   {
-    title: 'Renovation Quote Review',
-    desc: 'A line-by-line review of your renovation quote to identify hidden risks, inflated items, and missing contingencies before you sign.',
-    price: '¥699 / quote',
+    price: 'RMB 99',
+    title: 'Entry Quote Risk Review',
+    bestFor: 'You only want to know whether a few important quote lines contain obvious risks.',
+    includes: 'Checks up to 10 key quote lines, highlights 3 high-risk points, and gives 5 pre-signing questions.',
+    boundary: 'Not a full quote review. No negotiation, no promise that a contractor is reliable.',
   },
   {
-    title: 'Renovation Budget Consulting',
-    desc: 'Build a structured budget framework before you start. Clarify what to prioritize, where to leave flexibility, and where the typical overruns hide.',
-    price: '¥399 / session',
+    price: 'RMB 299',
+    title: 'Standard Quote Risk Review',
+    bestFor: 'You already have a complete quote and are preparing to keep negotiating or sign soon.',
+    includes: 'Quote risk notes, missing scope items, unclear wording, add-on cost openings, and a pre-signing question list.',
+    boundary: 'No negotiation on your behalf, no lowest-price promise, no final signing decision made for you.',
   },
   {
-    title: 'AI + Content System Consulting',
-    desc: 'A practical AI integration path designed for your specific industry context — covering workflow design and prompt frameworks tailored to your scenario.',
-    price: '¥1,999 / session',
-  },
-]
-
-const deepService = [
-  {
-    title: 'Real-Living Renovation Service',
-    desc: 'Designed from how a family actually lives — not from reference photos. Limited to projects in Nanning, China. I take only projects I think are a fit.',
-    price: 'From ¥9,800',
+    price: 'RMB 699',
+    title: 'Deep Pre-Signing Review',
+    bestFor: 'You are close to signing and already have a quote, draft contract, and payment schedule.',
+    includes: 'Quote risk report, contract/payment milestone reminders, question sequence, and a 30-minute WeChat voice explanation.',
+    boundary: 'Not legal contract review. No signing on your behalf. No direct communication with the contractor for you.',
   },
 ]
 
-const partnerships = [
-  'Content system buildouts for traditional industries',
-  'AI workflow consulting for small teams / companies',
-  'Personal website + brand system co-build',
-  'Co-creation on content and digital products',
+const faqs = [
+  ['Can I buy this without a quote?', 'No. If you do not yet have a quote, start with the free quote risk check and checklists. Expert review works only when there is concrete material to read.'],
+  ['Is this a legal contract review?', 'No. The review focuses on renovation quote scope, payment milestones, and practical risk questions before signing. For legal advice, consult a qualified lawyer.'],
+  ['Will you negotiate the price for me?', 'No. The output helps you ask clearer questions and request written clarification. It does not replace negotiation or your final decision.'],
+  ['Can English-speaking users use the service?', 'The current service is primarily designed for Chinese renovation quotes. English summaries are available, but the source material is usually Chinese.'],
 ]
 
 export default function EnServicesPage() {
   return (
     <>
-      <PageHero
-        label="Services"
-        title="Three Surfaces, One Underlying Work"
-        subtitle="What I sell isn't renovation services — it's clearer judgment. Renovation, AI, and content systems are three surfaces of the same underlying work."
+      <StructuredData
+        data={{
+          '@context': 'https://schema.org',
+          '@type': 'Service',
+          name: 'ZenoAIHome Expert Quote Review',
+          url: 'https://zenoaihome.com/en/services',
+          description: metadata.description,
+          inLanguage: 'en',
+          areaServed: 'China',
+        }}
       />
 
-      <Container size="content" className="py-12 sm:py-16 space-y-16">
-
-        <div className="border-l-2 border-stone-light pl-4">
-          <p className="text-sm text-ink-muted leading-relaxed">
-            Light consulting is remote and quick. Deep service is limited and on the ground.
-            Partnerships are open conversations — reach out if there's a real fit.
+      <section className="border-b border-border bg-surface-warm py-12 sm:py-16">
+        <Container size="content">
+          <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-stone">Expert Review</p>
+          <h1 className="max-w-3xl text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">
+            If you already have a renovation quote, choose the review level by how close you are to signing.
+          </h1>
+          <p className="mt-5 max-w-2xl text-base leading-8 text-ink-muted">
+            Do not buy expert review too early. If you do not yet have a complete quote, use the free quote risk check and checklists first. Human review is most useful when real quote, contract, and payment materials are already in hand.
           </p>
-        </div>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <Link href="/tools/quote-check" className="bg-stone px-5 py-3 text-sm font-semibold text-white hover:bg-stone/90">
+              Start with the Chinese free check
+            </Link>
+            <Link href="/services/renovation" className="border border-border px-5 py-3 text-sm font-semibold text-ink hover:border-stone">
+              Open Chinese service page
+            </Link>
+          </div>
+        </Container>
+      </section>
 
-        {/* Light consulting */}
-        <section>
-          <header className="mb-6">
-            <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-2">Light Consulting</p>
-            <h2 className="text-lg font-semibold text-ink">Remote, fast, one specific problem at a time</h2>
-          </header>
-          <div className="space-y-4">
-            {lightConsulting.map((s) => (
-              <div key={s.title} className="border border-border p-5 hover:border-stone/40 transition-colors">
-                <div className="flex items-start justify-between gap-4 flex-wrap mb-2">
-                  <p className="text-sm font-semibold text-ink">{s.title}</p>
-                  <p className="text-xs text-stone font-medium">{s.price}</p>
+      <Container size="layout" className="py-14 sm:py-16">
+        <section className="mb-14">
+          <div className="mb-6 max-w-2xl">
+            <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-stone">Pricing Path</p>
+            <h2 className="text-2xl font-semibold tracking-tight text-ink">Free check first. Paid review only when the materials are ready.</h2>
+          </div>
+          <div className="grid gap-4 lg:grid-cols-3">
+            {services.map((service) => (
+              <article key={service.title} className="flex flex-col border border-border bg-surface p-6">
+                <p className="text-sm font-semibold text-stone">{service.price}</p>
+                <h3 className="mt-3 text-lg font-semibold leading-snug text-ink">{service.title}</h3>
+                <div className="mt-5 space-y-4 text-sm leading-7 text-ink-muted">
+                  <p><span className="font-semibold text-ink">Best for: </span>{service.bestFor}</p>
+                  <p><span className="font-semibold text-ink">Includes: </span>{service.includes}</p>
+                  <p><span className="font-semibold text-ink">Boundary: </span>{service.boundary}</p>
                 </div>
-                <p className="text-sm text-ink-muted leading-relaxed">{s.desc}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section className="mb-14 grid gap-8 lg:grid-cols-[0.4fr_0.6fr]">
+          <div>
+            <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-stone">Prepare Before Review</p>
+            <h2 className="text-2xl font-semibold tracking-tight text-ink">The review is only as useful as the material you provide.</h2>
+          </div>
+          <div className="grid gap-3 sm:grid-cols-2">
+            {[
+              'Renovation quote: Excel, PDF, screenshot, or text',
+              'City, home size, and renovation method',
+              'Whether you are preparing to sign',
+              'Draft contract or payment milestone screenshot',
+              'The one issue you are most worried about',
+            ].map((item) => (
+              <div key={item} className="border border-border bg-surface px-4 py-3 text-sm text-ink-muted">
+                {item}
               </div>
             ))}
           </div>
         </section>
 
-        {/* Deep service */}
-        <section>
-          <header className="mb-6">
-            <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-2">Deep Service</p>
-            <h2 className="text-lg font-semibold text-ink">Limited capacity, on-the-ground</h2>
-          </header>
-          <div className="space-y-4">
-            {deepService.map((s) => (
-              <div key={s.title} className="border border-border p-5 hover:border-stone/40 transition-colors">
-                <div className="flex items-start justify-between gap-4 flex-wrap mb-2">
-                  <p className="text-sm font-semibold text-ink">{s.title}</p>
-                  <p className="text-xs text-stone font-medium">{s.price}</p>
-                </div>
-                <p className="text-sm text-ink-muted leading-relaxed">{s.desc}</p>
+        <section className="border border-border bg-surface-warm p-6 sm:p-8">
+          <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-stone">FAQ</p>
+          <div className="grid gap-5 md:grid-cols-2">
+            {faqs.map(([question, answer]) => (
+              <div key={question}>
+                <h3 className="text-sm font-semibold text-ink">{question}</h3>
+                <p className="mt-2 text-sm leading-7 text-ink-muted">{answer}</p>
               </div>
             ))}
           </div>
         </section>
-
-        {/* Partnerships */}
-        <section>
-          <header className="mb-6">
-            <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-2">Partnerships</p>
-            <h2 className="text-lg font-semibold text-ink">Open directions I'm exploring</h2>
-            <p className="text-sm text-ink-muted mt-1">If you have a matching need, let's talk.</p>
-          </header>
-          <ul className="space-y-2.5">
-            {partnerships.map((p) => (
-              <li key={p} className="flex items-start gap-3 text-sm text-ink leading-relaxed">
-                <span className="text-stone shrink-0 mt-1">·</span>
-                <span>{p}</span>
-              </li>
-            ))}
-          </ul>
-        </section>
-
-        {/* Contact */}
-        <div className="pt-8 border-t border-border flex flex-wrap gap-3">
-          <Link
-            href="mailto:zenoaihome@qq.com"
-            className="text-sm font-medium text-paper bg-stone px-5 py-2.5 hover:bg-stone/85 transition-colors"
-          >
-            Contact Zeno
-          </Link>
-          <Link
-            href="/services"
-            className="text-sm font-medium text-stone border border-stone/30 px-5 py-2.5 hover:bg-stone-pale/50 transition-colors"
-          >
-            View Chinese version →
-          </Link>
-        </div>
       </Container>
     </>
   )

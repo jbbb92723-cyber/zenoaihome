@@ -29,7 +29,7 @@ export default function Footer() {
             </Link>
             <p className="mt-3 text-[0.8125rem] text-ink-muted leading-relaxed max-w-[220px]">
               {isEn
-                ? 'From a familiar industry, building a freer personal business system with AI, products, and content.'
+                ? 'Pre-signing renovation quote risk checks for homeowners who need clear scope before signing.'
                 : '从 16 年装修现场出发，帮业主在签约前看清报价、合同和付款节点里没说清的风险。'}
             </p>
           </div>
@@ -93,7 +93,7 @@ export default function Footer() {
           </p>
           <p className="text-[0.75rem] text-ink-faint">
             {isEn
-              ? 'Content updated regularly. Quality over quantity.'
+              ? 'Clarify the quote before you sign.'
               : '先建立判断力，再做装修决定。'}
           </p>
         </div>

@@ -100,34 +100,32 @@ const quickEntriesEn = [
     label: 'I am checking a quote',
     prompt: 'I am checking a renovation quote. Help me route to the right risks, tools, checklists and service if needed.',
     links: [
-      { label: 'Tools', href: '/en/tools' },
-      { label: 'Resources', href: '/en/resources' },
-      { label: 'Services', href: '/en/services' },
+      { label: 'Quote Risk Check', href: '/en/tools' },
+      { label: 'Expert Review', href: '/en/services' },
     ],
   },
   {
-    label: 'I worry about budget overrun',
-    prompt: 'I worry about budget overrun. Help me identify whether it is a quote, budget structure, process or needs issue.',
+    label: 'I worry about add-on costs',
+    prompt: 'I worry about add-on costs after signing. Help me identify missing scope, unclear wording, change-order risks, and payment milestone issues.',
     links: [
-      { label: 'Tools', href: '/en/tools' },
-      { label: 'Resources', href: '/en/resources' },
-      { label: 'Services', href: '/en/services' },
+      { label: 'Risk Language', href: '/en/tools#risk-language' },
+      { label: 'Checklists', href: '/en/tools#checklists' },
     ],
   },
   {
-    label: 'The project has started',
-    prompt: 'My renovation has started. Help me route by construction checkpoints and evidence keeping.',
+    label: 'I am close to signing',
+    prompt: 'I am close to signing a renovation contract. Help me decide whether I need a standard quote review or a deep pre-signing review.',
     links: [
-      { label: 'Resources', href: '/en/resources' },
-      { label: 'Writing', href: '/en/blog' },
+      { label: 'Expert Review', href: '/en/services' },
+      { label: 'About Zeno', href: '/en/about' },
     ],
   },
   {
-    label: 'I design for real living',
-    prompt: 'I want to design from real living, not just showroom images. Help me route next steps.',
+    label: 'What does this site do?',
+    prompt: 'Explain ZenoAIHome in English: what it helps homeowners clarify before signing, and what it does not do.',
     links: [
-      { label: 'Article', href: '/en/articles/home-is-not-a-showroom' },
-      { label: 'Resources', href: '/en/resources' },
+      { label: 'Home', href: '/en' },
+      { label: 'About', href: '/en/about' },
     ],
   },
 ]

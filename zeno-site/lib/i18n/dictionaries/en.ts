@@ -7,7 +7,7 @@
 const en = {
   // ── Global ────────────────────────────────
   siteName: 'Zeno',
-  siteDescription: 'From renovation sites to real living — on design, human nature, growth, and long-term thinking in the age of AI.',
+  siteDescription: 'Pre-signing renovation quote risk checks for homeowners who need clear scope before signing.',
   locale: 'en',
 
   // ── Navigation ────────────────────────────
@@ -16,7 +16,7 @@ const en = {
     about: 'About',
     blog: 'Blog',
     topics: 'Topics',
-    resources: 'Resources',
+    resources: 'Risk Tools',
     services: 'Services',
     tools: 'Tools',
     contact: 'Contact',
@@ -27,11 +27,11 @@ const en = {
   // ── Home ──────────────────────────────────
   home: {
     heroLabel: 'Zeno',
-    heroTitle: 'From renovation sites\nto real-world clarity.',
-    heroDesc: "I'm Zeno — 16 years in home renovation, now writing about livable design, human judgment, and building a thoughtful life in the age of AI. Not just how to renovate, but how to think clearly when the stakes are real.",
+    heroTitle: 'Before signing,\nclarify the quote.',
+    heroDesc: "I'm Zeno — 16 years in home renovation, now helping homeowners understand what renovation quotes do not clearly say before they sign.",
     ctaBlog: 'Read the blog',
     ctaAbout: 'About me',
-    ctaResources: 'Free resources',
+    ctaResources: 'Risk tools',
     ctaServices: 'Work with me',
     sectionDirections: 'What I write about',
     sectionDirectionsHeading: 'Five threads, all grounded in real experience',
@@ -50,7 +50,7 @@ const en = {
   blog: {
     pageLabel: 'Blog',
     pageTitle: 'Writing',
-    pageSubtitle: 'From renovation to real living — on design, human nature, growth, and AI. Prioritized for substance over clicks.',
+    pageSubtitle: 'Selected English writing from ZenoAIHome. The full quote-risk system is maintained in Chinese.',
     allCategories: 'All',
     noArticles: 'No articles in this category yet.',
     readMore: 'Read more',
@@ -67,11 +67,11 @@ const en = {
 
   // ── Writing areas ─────────────────────────
   writingAreas: [
-    { title: 'Real Living', desc: 'Budgets, materials, contractors, and the judgment calls that actually matter when you live in the result.' },
-    { title: 'AI in Practice', desc: 'How traditional industry professionals build content systems, tools, and digital leverage with AI.' },
-    { title: 'Tools & Products', desc: 'Turning experience into reusable, tradeable assets — content systems, templates, and digital products.' },
-    { title: 'One-Person Company', desc: 'Building a lighter, freer business with AI, development, content, and automation.' },
-    { title: 'Judgment & Life', desc: 'Staying clear-headed under pressure — on job sites, in business, and in daily decisions.' },
+    { title: 'Quote Risk', desc: 'Missing scope, unclear materials, add-on costs, and payment milestones before signing.' },
+    { title: 'Risk Language', desc: 'Plain-English explanations of terms that often create later disputes.' },
+    { title: 'Checklists', desc: 'Practical questions homeowners can ask before signing a renovation contract.' },
+    { title: 'Project Risks', desc: 'What common renovation items should clarify inside a quote.' },
+    { title: 'Judgment', desc: 'Field-tested thinking from renovation sites and real homeowner decisions.' },
   ],
 
   // ── Categories ────────────────────────────

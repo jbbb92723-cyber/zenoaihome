@@ -1,91 +1,83 @@
 import type { Metadata } from 'next'
-import Container from '@/components/Container'
 import Link from 'next/link'
+import Container from '@/components/Container'
 
 export const metadata: Metadata = {
-  title: 'About Zeno',
-  description: 'Who I am, what I write about, and why I look beyond renovation.',
+  title: 'About Zeno | ZenoAIHome',
+  description:
+    'Zeno is a renovation practitioner in China with 16 years of site experience, building ZenoAIHome to help homeowners clarify quote risks before signing.',
+  alternates: {
+    canonical: 'https://zenoaihome.com/en/about',
+    languages: { 'zh-CN': 'https://zenoaihome.com/about', en: 'https://zenoaihome.com/en/about' },
+  },
 }
 
 const sections = [
   {
     title: 'Who I am',
     content:
-      "I\u2019m Zeno (Zàn Nuò \u8d5e\u8bfa in Chinese) \u2014 a renovation practitioner based in Nanning, China. I\u2019ve spent over 16 years on job sites, managing projects, reading blueprints, and solving problems that don\u2019t fit neatly into textbooks. I\u2019m not an influencer or a media company. I\u2019m one person building a long-term writing practice.",
+      'I am Zeno, a renovation practitioner based in China. I have spent more than 16 years on real renovation sites: reading quotes, coordinating work, handling scope changes, and seeing where homeowners usually lose control before they even realize it.',
   },
   {
-    title: 'From renovation sites to broader life questions',
+    title: 'Why quote risk matters',
     content:
-      "Renovation taught me to see things as they are \u2014 not as they\u2019re marketed. A home is not a showroom. A budget is not a wish list. Over time, I started writing about what I noticed: how people make decisions under pressure, how aesthetics shape daily living, and how long-term thinking applies to more than just buildings. The job site turned out to be a surprisingly good classroom for life.",
+      'A renovation quote is not just a price list. It is a responsibility map for future work. If scope, materials, quantities, change-order rules, acceptance standards, warranty terms, and payment milestones are unclear before signing, later disputes are predictable.',
   },
   {
-    title: 'Why I write beyond renovation',
+    title: 'What ZenoAIHome is building',
     content:
-      "Because the patterns I see on job sites appear everywhere \u2014 in business, in technology adoption, in how people handle uncertainty. Writing helps me think clearly, and sharing those observations connects me with others who think similarly. I\u2019m not trying to build a content empire. I\u2019m trying to say what I honestly think, and see if it resonates.",
+      'ZenoAIHome turns field experience into practical pre-signing judgment assets: a quote risk check, a risk dictionary, checklists, a project risk library, and focused expert review. AI helps organize information, but the core remains human judgment and clear written scope.',
   },
   {
-    title: 'What I believe',
+    title: 'What I do not do',
     content:
-      "Long-term thinking is not patience \u2014 it\u2019s a strategy. Real aesthetics come from restraint, not decoration. AI should serve practitioners, not replace their judgment. Good writing comes from lived experience, not templates. A home should be built for how you actually live, not for how it photographs.",
+      'I do not negotiate on your behalf, provide legal contract review, promise the lowest price, or decide whether you must sign. The work is to help you see what still needs to be clarified before you make that decision.',
   },
   {
-    title: "What I don\u2019t believe in",
+    title: 'Why the English site is selective',
     content:
-      "Quick fixes. Viral-first content strategies. Gatekeeping knowledge behind unnecessary paywalls. Pretending AI will solve everything. Treating people as traffic. Motivational slogans disguised as wisdom. Fake case studies. Copying whatever is trending.",
-  },
-  {
-    title: 'Current focus',
-    content:
-      "Building this site as a long-term writing home. Exploring how AI tools can genuinely help traditional industry professionals. Developing practical tools (prompt utilities, checklists, budget planners). Writing in both Chinese and English to connect with a broader audience. The Chinese site has 50+ in-depth articles; the English section is growing selectively.",
+      'The full service and data library are currently in Chinese because the real quotes and contracts are usually Chinese. The English site is a curated edition: accurate, natural, and useful, without pretending that every Chinese page has been fully localized.',
   },
 ]
 
 export default function EnAboutPage() {
   return (
     <>
-      <div className="pt-12 sm:pt-16 pb-10 sm:pb-12 border-b border-border">
+      <section className="border-b border-border bg-surface-warm py-12 sm:py-16">
         <Container size="content">
-          <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-4">About</p>
-          <h1 className="text-2xl font-semibold text-ink tracking-tight">About Zeno</h1>
-          <p className="text-base text-ink-muted leading-[1.7] mt-4 max-w-2xl">
-            Renovation practitioner, writer, and long-term thinker based in China.
+          <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-stone">About</p>
+          <h1 className="max-w-3xl text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">
+            Field experience turned into pre-signing judgment.
+          </h1>
+          <p className="mt-5 max-w-2xl text-base leading-8 text-ink-muted">
+            ZenoAIHome exists for one practical moment: before a homeowner signs a renovation contract and needs to know what the quote has not clearly said.
           </p>
         </Container>
-      </div>
+      </section>
 
       <Container size="reading" className="py-14 sm:py-16">
         <div className="space-y-10">
-          {sections.map((s) => (
-            <section key={s.title}>
-              <h2 className="text-base font-semibold text-ink mb-3">{s.title}</h2>
-              <p className="text-sm text-ink-muted leading-relaxed">{s.content}</p>
+          {sections.map((section) => (
+            <section key={section.title}>
+              <h2 className="mb-3 text-base font-semibold text-ink">{section.title}</h2>
+              <p className="text-sm leading-8 text-ink-muted">{section.content}</p>
             </section>
           ))}
 
-          {/* Contact */}
-          <section className="pt-8 border-t border-border">
-            <h2 className="text-base font-semibold text-ink mb-3">Contact</h2>
-            <p className="text-sm text-ink-muted leading-relaxed mb-4">
-              For international readers, the best way to reach me is by email.
+          <section className="border-t border-border pt-8">
+            <h2 className="mb-3 text-base font-semibold text-ink">Contact</h2>
+            <p className="mb-4 text-sm leading-7 text-ink-muted">
+              For international readers, email is the clearest way to reach me. Chinese homeowners can use the Chinese service page and WeChat contact details.
             </p>
-            <ul className="space-y-2 text-sm text-ink-muted">
-              <li>Email: zenoaihome@qq.com</li>
-            </ul>
+            <p className="text-sm text-ink">Email: zenoaihome@qq.com</p>
           </section>
 
-          {/* CTAs */}
-          <div className="pt-8 border-t border-border flex flex-wrap gap-3">
-            <Link
-              href="/en/tools"
-              className="text-sm font-medium text-paper bg-stone px-4 py-2 hover:bg-stone/85 transition-colors"
-            >
-              Explore tools
+          <div className="border-t border-border pt-8 flex flex-wrap gap-3">
+            <Link href="/en/tools" className="bg-stone px-4 py-2 text-sm font-semibold text-white hover:bg-stone/90">
+              Explore quote risk tools
             </Link>
-            <Link
-              href="/en/blog"
-              className="text-sm font-medium text-stone border border-stone/40 px-4 py-2 hover:bg-stone-pale transition-colors"
-            >
-              Read selected essays
+            <Link href="/en/services" className="border border-border px-4 py-2 text-sm font-semibold text-ink hover:border-stone">
+              See review options
             </Link>
           </div>
         </div>
