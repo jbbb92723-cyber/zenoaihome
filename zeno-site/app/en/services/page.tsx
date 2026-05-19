@@ -6,7 +6,7 @@ import StructuredData from '@/components/StructuredData'
 export const metadata: Metadata = {
   title: 'Expert Quote Review | ZenoAIHome',
   description:
-    'English overview of ZenoAIHome expert review options: RMB 99 entry review, RMB 299 standard quote review, and RMB 699 pre-signing review for quote, contract, and payment milestones.',
+    'English overview of ZenoAIHome expert quote review options: RMB 99 entry review, RMB 299 standard review, and RMB 699 pre-signing review for quote, contract, and payment milestones.',
   alternates: {
     canonical: 'https://zenoaihome.com/en/services',
     languages: {
@@ -22,29 +22,29 @@ const services = [
     title: 'Entry Quote Risk Review',
     bestFor: 'You only want to know whether a few important quote lines contain obvious risks.',
     includes: 'Checks up to 10 key quote lines, highlights 3 high-risk points, and gives 5 pre-signing questions.',
-    boundary: 'Not a full quote review. No negotiation, no promise that a contractor is reliable.',
+    boundary: 'Not a full quote review. No negotiation, and no shortcut judgment about whether a contractor is good.',
   },
   {
     price: 'RMB 299',
     title: 'Standard Quote Risk Review',
     bestFor: 'You already have a complete quote and are preparing to keep negotiating or sign soon.',
     includes: 'Quote risk notes, missing scope items, unclear wording, add-on cost openings, and a pre-signing question list.',
-    boundary: 'No negotiation on your behalf, no lowest-price promise, no final signing decision made for you.',
+    boundary: 'No negotiation on your behalf, no lowest-price promise, and no final signing decision made for you.',
   },
   {
     price: 'RMB 699',
     title: 'Deep Pre-Signing Review',
     bestFor: 'You are close to signing and already have a quote, draft contract, and payment schedule.',
     includes: 'Quote risk report, contract/payment milestone reminders, question sequence, and a 30-minute WeChat voice explanation.',
-    boundary: 'Not legal contract review. No signing on your behalf. No direct communication with the contractor for you.',
+    boundary: 'Not legal contract review. No signing on your behalf. I do not speak to the contractor for you.',
   },
 ]
 
 const faqs = [
-  ['Can I buy this without a quote?', 'No. If you do not yet have a quote, start with the free quote risk check and checklists. Expert review works only when there is concrete material to read.'],
+  ['Can I buy this without a quote?', 'Usually no. If you do not yet have a quote, start with the free Quote Risk Check and checklists. Expert review only works when there is concrete material to read.'],
   ['Is this a legal contract review?', 'No. The review focuses on renovation quote scope, payment milestones, and practical risk questions before signing. For legal advice, consult a qualified lawyer.'],
   ['Will you negotiate the price for me?', 'No. The output helps you ask clearer questions and request written clarification. It does not replace negotiation or your final decision.'],
-  ['Can English-speaking users use the service?', 'The current service is primarily designed for Chinese renovation quotes. English summaries are available, but the source material is usually Chinese.'],
+  ['Can English-speaking users use the service?', 'Yes, with one constraint: the current review process is built around Chinese renovation quotes. English summaries are possible, but the source material is usually Chinese.'],
 ]
 
 export default function EnServicesPage() {
@@ -66,17 +66,17 @@ export default function EnServicesPage() {
         <Container size="content">
           <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-stone">Expert Review</p>
           <h1 className="max-w-3xl text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">
-            If you already have a renovation quote, choose the review level by how close you are to signing.
+            Already have a renovation quote? Choose the review by how close you are to signing.
           </h1>
           <p className="mt-5 max-w-2xl text-base leading-8 text-ink-muted">
-            Do not buy expert review too early. If you do not yet have a complete quote, use the free quote risk check and checklists first. Human review is most useful when real quote, contract, and payment materials are already in hand.
+            Do not buy expert review before there is something real to read. If you do not yet have a complete quote, use the free Quote Risk Check and checklists first. Human review is most useful when the quote, draft contract, and payment schedule are already in hand.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <Link href="/tools/quote-check" className="bg-stone px-5 py-3 text-sm font-semibold text-white hover:bg-stone/90">
-              Start with the Chinese free check
+              Start with the Chinese Quote Risk Check
             </Link>
             <Link href="/services/renovation" className="border border-border px-5 py-3 text-sm font-semibold text-ink hover:border-stone">
-              Open Chinese service page
+              Open the Chinese service page
             </Link>
           </div>
         </Container>
@@ -86,7 +86,7 @@ export default function EnServicesPage() {
         <section className="mb-14">
           <div className="mb-6 max-w-2xl">
             <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-stone">Pricing Path</p>
-            <h2 className="text-2xl font-semibold tracking-tight text-ink">Free check first. Paid review only when the materials are ready.</h2>
+            <h2 className="text-2xl font-semibold tracking-tight text-ink">Free check first. Paid review when the paperwork is real.</h2>
           </div>
           <div className="grid gap-4 lg:grid-cols-3">
             {services.map((service) => (
@@ -106,7 +106,7 @@ export default function EnServicesPage() {
         <section className="mb-14 grid gap-8 lg:grid-cols-[0.4fr_0.6fr]">
           <div>
             <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-stone">Prepare Before Review</p>
-            <h2 className="text-2xl font-semibold tracking-tight text-ink">The review is only as useful as the material you provide.</h2>
+            <h2 className="text-2xl font-semibold tracking-tight text-ink">A useful review starts with the material you provide.</h2>
           </div>
           <div className="grid gap-3 sm:grid-cols-2">
             {[

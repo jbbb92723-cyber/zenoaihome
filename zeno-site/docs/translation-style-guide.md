@@ -11,8 +11,11 @@ ZenoAIHome's English voice is:
 - Restrained: confident without sounding loud.
 - Practical: useful before a homeowner signs, not abstract education.
 - Anti-hype: especially when writing about AI, pricing, or renovation risk.
+- Lived-in: a little human texture is welcome when it clarifies real renovation stakes.
 
 Think: a field-tested renovation practitioner helping a homeowner clarify the quote before signing. Not a marketer, not a lawyer, not a generic renovation blogger.
+
+Small vivid phrases are allowed when they make the risk easier to picture, such as "before anyone picks up a hammer." Do not turn the English site into jokes, fear copy, or clever slogans.
 
 ## 2. English Positioning
 
@@ -22,7 +25,7 @@ Core English positioning:
 
 Core English promise:
 
-> Before you sign a renovation contract, understand what the quote does not clearly say.
+> Before you sign a renovation contract, see what your renovation quote leaves unclear.
 
 Core phrase for "先说清":
 
@@ -108,7 +111,7 @@ Tone calibration:
 ### Headings
 
 - English headings should be concise and active.
-- Prefer job language: "Before you sign..." / "What the quote does not clearly say".
+- Prefer job language: "Before you sign..." / "What your quote leaves unclear".
 - Avoid poetic slogans unless the page already has clear functional context.
 
 ### Paragraphs

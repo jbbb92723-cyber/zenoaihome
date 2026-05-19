@@ -8,7 +8,7 @@ import { getRecentLocalizedArticles } from '@/lib/i18n'
 export const metadata: Metadata = {
   title: 'ZenoAIHome — Pre-Signing Renovation Quote Risk Check',
   description:
-    'A selective English edition of ZenoAIHome. Before you sign a renovation contract, understand what the quote does not clearly say: missing scope, change orders, payment milestones, and verbal promises.',
+    'A selective English edition of ZenoAIHome. Before you sign a renovation contract, see what your renovation quote leaves unclear: missing scope, change orders, payment milestones, and verbal promises.',
   openGraph: {
     type: 'website',
     locale: 'en',
@@ -27,19 +27,19 @@ export const metadata: Metadata = {
 const riskSignals = [
   'Missing scope items',
   'Open-ended change orders',
-  'Unclear material models',
-  'Loose payment milestones',
+  'Vague material specs',
+  'Too-early payment milestones',
 ]
 
 const assets = [
   {
     title: 'Quote Risk Check',
-    body: 'A lightweight first pass for homeowners who already have a renovation quote and need to know what to ask before signing.',
+    body: 'A lightweight first pass for homeowners who already have a quote and need a sharper question list before signing.',
     href: '/en/tools',
   },
   {
     title: 'Risk Dictionary',
-    body: 'English summaries of the core risk language behind terms such as actual settlement, temporary estimates, same-grade substitution, and site conditions.',
+    body: 'Plain-English summaries of the wording that often causes trouble later: billed by actual quantity, provisional estimates, same-grade substitutes, and site-condition clauses.',
     href: '/en/tools#risk-language',
   },
   {
@@ -49,7 +49,7 @@ const assets = [
   },
   {
     title: 'Expert Review',
-    body: 'When the quote, draft contract, and payment schedule are already in hand, a human review helps you decide what still needs to be clarified.',
+    body: 'When the quote, draft contract, and payment schedule are already on your desk, a human review helps you see what still needs to be clarified.',
     href: '/en/services',
   },
 ]
@@ -78,10 +78,10 @@ export default function EnHomePage() {
                 Selective English Edition
               </p>
               <h1 className="max-w-3xl text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-5xl">
-                Before you sign a renovation contract, understand what the quote does not clearly say.
+                Before you sign a renovation contract, see what your quote leaves unclear.
               </h1>
               <p className="mt-6 max-w-2xl text-base leading-8 text-ink-muted">
-                ZenoAIHome helps homeowners check renovation quotes before signing. The goal is not to chase the lowest price, but to clarify scope, materials, change orders, payment milestones, and verbal promises before they become disputes.
+                ZenoAIHome helps homeowners check renovation quotes before signing. The point is not to hunt for the cheapest number. It is to clarify scope, materials, change orders, payment milestones, and verbal promises before they turn into expensive after-the-fact conversations.
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <Link href="/en/tools" className="bg-stone px-5 py-3 text-sm font-semibold text-white hover:bg-stone/90">
@@ -103,7 +103,7 @@ export default function EnHomePage() {
                 ))}
               </div>
               <p className="mt-5 text-sm leading-7 text-ink-muted">
-                Built from 16 years of renovation-site experience. AI can help organize information, but the core value is human judgment and clear scope before signing.
+                Built from 16 years of renovation-site experience. AI can help sort the paperwork, but the real work is still judgment: what is included, what is not, and what should be written down before anyone picks up a hammer.
               </p>
             </div>
           </div>
@@ -118,7 +118,7 @@ export default function EnHomePage() {
               Not a renovation encyclopedia. A pre-signing judgment system.
             </h2>
             <p className="mt-4 text-sm leading-7 text-ink-muted">
-              The Chinese site contains the full toolset and data library. This English edition explains the system clearly for international readers and future bilingual expansion.
+              The Chinese site contains the full toolset and data library. This English edition keeps the essential logic readable for international readers: fewer pages, cleaner wording, no machine-translation fog.
             </p>
           </div>
           <div className="grid gap-4 md:grid-cols-2">

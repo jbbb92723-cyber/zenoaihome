@@ -69,7 +69,7 @@ export const primaryNav: PrimaryNavItem[] = [
       {
         key: 'all-services',
         zh: { label: '三档人工判断', desc: '初筛 / 快审 / 深度判断' },
-        en: { label: 'Expert Review', desc: 'Use the free check first. Review only when materials are ready.' },
+        en: { label: 'Expert Review', desc: 'Use the free check first. Review only when the paperwork is ready.' },
         items: [
           { key: 'quote-risk-initial', zh: { label: '报价风险初查', href: '/tools/quote-check', desc: '先免费筛一遍报价风险' }, en: { label: 'Free Quote Risk Check', href: '/en/tools', desc: 'Start with a lightweight first pass' } },
           { key: 'quote-fast', zh: { label: '标准报价快审', href: '/services/renovation#quote-standard', desc: '人工看漏项、模糊项和增项口子' }, en: { label: 'Standard Quote Review', href: '/en/services', desc: 'For a complete renovation quote' } },

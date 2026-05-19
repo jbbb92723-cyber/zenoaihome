@@ -28,7 +28,7 @@ const en = {
   home: {
     heroLabel: 'Zeno',
     heroTitle: 'Before signing,\nclarify the quote.',
-    heroDesc: "I'm Zeno — 16 years in home renovation, now helping homeowners understand what renovation quotes do not clearly say before they sign.",
+    heroDesc: "I'm Zeno — 16 years in home renovation, now helping homeowners see what their renovation quotes leave unclear before they sign.",
     ctaBlog: 'Read the blog',
     ctaAbout: 'About me',
     ctaResources: 'Risk tools',

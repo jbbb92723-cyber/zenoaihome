@@ -5,7 +5,7 @@ import Container from '@/components/Container'
 export const metadata: Metadata = {
   title: 'About Zeno | ZenoAIHome',
   description:
-    'Zeno is a renovation practitioner in China with 16 years of site experience, building ZenoAIHome to help homeowners clarify quote risks before signing.',
+    'Zeno is a renovation practitioner in China with 16 years on site, building ZenoAIHome to help homeowners clarify quote risks before signing.',
   alternates: {
     canonical: 'https://zenoaihome.com/en/about',
     languages: { 'zh-CN': 'https://zenoaihome.com/about', en: 'https://zenoaihome.com/en/about' },
@@ -16,7 +16,7 @@ const sections = [
   {
     title: 'Who I am',
     content:
-      'I am Zeno, a renovation practitioner based in China. I have spent more than 16 years on real renovation sites: reading quotes, coordinating work, handling scope changes, and seeing where homeowners usually lose control before they even realize it.',
+      'I am Zeno, a renovation practitioner based in China. I have spent more than 16 years on real renovation sites: reading quotes, coordinating work, handling scope changes, and seeing the awkward parts that never fit neatly into a showroom photo.',
   },
   {
     title: 'Why quote risk matters',
@@ -26,7 +26,7 @@ const sections = [
   {
     title: 'What ZenoAIHome is building',
     content:
-      'ZenoAIHome turns field experience into practical pre-signing judgment assets: a quote risk check, a risk dictionary, checklists, a project risk library, and focused expert review. AI helps organize information, but the core remains human judgment and clear written scope.',
+      'ZenoAIHome turns field experience into practical pre-signing judgment assets: a quote risk check, a risk dictionary, checklists, a project risk library, and focused expert review. AI helps sort information, but the core remains human judgment and clear written scope.',
   },
   {
     title: 'What I do not do',
@@ -36,7 +36,7 @@ const sections = [
   {
     title: 'Why the English site is selective',
     content:
-      'The full service and data library are currently in Chinese because the real quotes and contracts are usually Chinese. The English site is a curated edition: accurate, natural, and useful, without pretending that every Chinese page has been fully localized.',
+      'The full service and data library are currently in Chinese because the real quotes and contracts are usually Chinese. The English site is a carefully edited doorway: accurate, natural, and useful, without pretending that every Chinese page has been fully localized.',
   },
 ]
 
@@ -47,7 +47,7 @@ export default function EnAboutPage() {
         <Container size="content">
           <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-stone">About</p>
           <h1 className="max-w-3xl text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">
-            Field experience turned into pre-signing judgment.
+            Sixteen years on site, turned into pre-signing judgment.
           </h1>
           <p className="mt-5 max-w-2xl text-base leading-8 text-ink-muted">
             ZenoAIHome exists for one practical moment: before a homeowner signs a renovation contract and needs to know what the quote has not clearly said.

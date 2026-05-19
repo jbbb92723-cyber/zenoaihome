@@ -53,7 +53,7 @@ export default function Header() {
   const loginLabel = isEn ? 'Log in' : '登录'
   const loginHref = isEn ? '/en/login' : '/login'
   const uploadHref = isEn ? '/en/tools' : '/tools/quote-check'
-  const uploadLabel = isEn ? 'Start With Quote' : '先看报价'
+  const uploadLabel = isEn ? 'Start Quote Check' : '先看报价'
 
   const navItems = useMemo<LocalizedPrimary[]>(() => primaryNav.map((item) => ({
     key: item.key,
