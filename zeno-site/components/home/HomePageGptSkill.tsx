@@ -304,21 +304,21 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
               variants={staggerItem}
               className="max-w-[22rem] text-[2.1rem] font-semibold leading-[1.16] tracking-tight text-ink sm:max-w-4xl sm:text-[4.25rem] xl:text-[5.25rem]"
             >
-              <span className="block">拿到装修报价单，</span>
-              <span className="block">不知道能不能签？</span>
+              <span className="block">签约前，先看懂</span>
+              <span className="block">装修报价里的风险</span>
             </motion.h1>
 
             <motion.p variants={staggerItem} className="mt-7 max-w-[22rem] text-base leading-8 text-ink-muted sm:max-w-2xl sm:text-lg">
-              先别急着比总价。很多装修后悔，不是因为贵，而是签约前没看清：哪些没包含、哪些按实结算、哪些口头承诺没写进合同。
+              ZenoAIHome 帮你识别报价漏项、材料模糊、合同口头承诺和后期增项风险，让你在签字前多一层判断。
             </motion.p>
 
             <motion.div variants={staggerItem} className="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <ActionLink href="/tools/quote-check">
                 <UploadSimple size={18} aria-hidden />
-                免费生成报价追问清单
+                免费做报价风险初筛
               </ActionLink>
               <ActionLink href="/risk-dictionary" variant="secondary">
-                查看风险词典
+                查看常见报价风险
               </ActionLink>
             </motion.div>
 
@@ -404,9 +404,9 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
           <div className="mx-auto max-w-3xl text-center">
             <p className="text-sm font-medium tracking-[0.18em] text-stone">02 / 签约前的坑</p>
             <h2 className="mt-3 text-[clamp(2rem,4vw,3.2rem)] font-semibold leading-tight tracking-tight text-ink [text-wrap:balance]">
-              很多装修后悔，不是发生在施工后。
+              装修报价最危险的，不是贵，而是你看不懂它包含什么。
             </h2>
-            <p className="mt-4 text-base leading-8 text-ink-muted">报价没看懂，合同没问清，预算没拆透——后面就是一步接一步被动。</p>
+            <p className="mt-4 text-base leading-8 text-ink-muted">报价没看懂，合同没问清，增项边界没写清——后面就是一步接一步被动。</p>
           </div>
 
           {/* Asymmetric: Row 1 → 2 cols (wider), Row 2 → 3 cols (narrower) */}
