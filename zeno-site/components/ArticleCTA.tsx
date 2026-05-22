@@ -23,7 +23,7 @@ type CTAConfig = {
 const RENO_CTA: CTAConfig = {
   title: '你这篇看完了，下一步可以——',
   description:
-    '如果你手里已经有报价，先用免费初筛把风险缩小，再决定要不要进入人工快审。',
+    '如果你手里已经有报价，先用免费初筛把风险缩小，再决定要不要进入对应的人工判断。',
   primary: { label: '先做免费报价初筛', href: '/tools/quote-check' },
   secondary: { label: '查看签约前检查模板', href: '/checklists' },
 }

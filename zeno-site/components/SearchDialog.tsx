@@ -17,7 +17,7 @@ const recommendedZh: SearchResult[] = [
   { title: '装修报价风险词典', href: '/risk-dictionary', type: 'resource', excerpt: '查报价里容易引发增项和扯皮的词。' },
   { title: '签约前检查模板', href: '/checklists', type: 'checklist', excerpt: '报价、合同、付款节点可以逐项对照。' },
   { title: '施工项目风险库', href: '/project-risks', type: 'resource', excerpt: '按水电、防水、拆除等项目看报价里该写清什么。' },
-  { title: '三档人工判断', href: '/services/renovation', type: 'service', excerpt: '¥99 初查、¥299 快审、¥699 深度判断。' },
+  { title: '签约前风险判断服务', href: '/services/renovation', type: 'service', excerpt: '报价风险初筛、合同风险初筛、报价对比判断。' },
 ]
 
 const recommendedEn: SearchResult[] = [

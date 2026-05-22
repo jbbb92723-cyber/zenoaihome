@@ -7,9 +7,9 @@ import StructuredData from '@/components/StructuredData'
 import { getServiceBySlug } from '@/data/services'
 
 export const metadata: Metadata = {
-  title: '我手里的装修报价，现在该买哪一档判断？| ZenoAIHome',
+  title: '装修签约前风险判断服务 | ZenoAIHome',
   description:
-    '装修签约前报价风险判断服务。先判断你现在适合免费初筛、¥99 体验版、¥299 标准版，还是 ¥699 深度版。',
+    '装修签约前风险判断服务：报价风险初筛、合同风险初筛、报价对比判断，帮业主在签字前看清报价、合同和增项风险。',
   alternates: {
     canonical: 'https://zenoaihome.com/services/renovation',
   },
@@ -24,30 +24,30 @@ const choiceCards = [
   {
     label: '还没完整报价',
     title: '免费初筛 + 检查模板',
-    description: '先不要买人工服务。把报价、合同和付款节点材料补齐，再决定是否需要人工判断。',
+    description: '先不要买人工服务。把报价材料补齐，再决定是否需要人工判断。',
     href: '/tools/quote-check',
     action: '先做免费初筛',
   },
   {
-    label: '只有几行重点报价',
-    title: '¥99 体验版',
-    description: '适合先看明显风险，不做整份报价审查。重点是先知道这份报价有没有明显不清楚的地方。',
+    label: '看不懂报价',
+    title: '报价风险初筛',
+    description: '适合已经拿到装修报价，但看不懂里面有没有坑。重点是主要风险点和签约前追问清单。',
     href: '#quote-entry',
-    action: '看 ¥99 初查',
+    action: '看报价初筛',
   },
   {
-    label: '有完整报价准备谈',
-    title: '¥299 标准版',
-    description: '适合已经拿到完整报价，准备继续谈或准备签约，需要系统看漏项、模糊项和增项口子。',
+    label: '准备签合同',
+    title: '合同风险初筛',
+    description: '适合准备签合同，但担心口头承诺没有写清。重点是模糊条款和修改建议方向。',
     href: '#quote-standard',
-    action: '看 ¥299 快审',
+    action: '看合同初筛',
   },
   {
-    label: '快签合同且有合同草稿',
-    title: '¥699 深度版',
-    description: '适合报价、合同草稿和付款节点都已经有，临近签字前想把关键风险一次看清。',
+    label: '有 2-3 家报价',
+    title: '报价对比判断',
+    description: '适合手里有多家装修公司报价，不知道怎么选。重点是报价差异、风险对比和追问重点。',
     href: '#quote-deep',
-    action: '看 ¥699 深度版',
+    action: '看报价对比',
   },
 ]
 
@@ -86,12 +86,12 @@ const faqs = [
   {
     question: '¥99 和 ¥299 区别是什么？',
     answer:
-      '¥99 只看 10 行以内重点报价，帮你先判断有没有明显风险。¥299 看完整报价，重点是漏项、模糊项、增项口子和签约前追问清单。',
+      '¥99 是报价风险初筛，主要看你手里这份报价有没有明显漏项、模糊项和增项口子。¥299 是合同风险初筛，主要看合同草稿、付款节点和口头承诺有没有写清。',
   },
   {
     question: '¥299 和 ¥699 区别是什么？',
     answer:
-      '¥299 主要看报价。¥699 适合快签前，把报价、合同草稿和付款节点一起看，并附 30 分钟微信语音解读。',
+      '¥299 主要看合同风险。¥699 是报价对比判断，适合你手里有 2-3 家报价，需要看总价差异、包含范围、漏项和增项风险。',
   },
   {
     question: '会不会替我砍价？',
@@ -118,13 +118,13 @@ export default function RenovationServicesPage() {
           {
             '@context': 'https://schema.org',
             '@type': 'Service',
-            name: '装修签约前报价风险判断',
+            name: '装修签约前风险判断服务',
             url: 'https://zenoaihome.com/services/renovation',
-            description: '帮助业主按报价材料完整度选择免费初筛、¥99 初查、¥299 快审或 ¥699 深度判断。',
+            description: '帮助业主在签约前看清报价风险、合同风险和多家报价差异。',
             inLanguage: 'zh-CN',
             hasOfferCatalog: {
               '@type': 'OfferCatalog',
-              name: '签约前报价判断三档服务',
+              name: '签约前风险判断三档服务',
               itemListElement: renovationServices.map((service) => ({
                 '@type': 'Offer',
                 itemOffered: {
@@ -156,16 +156,16 @@ export default function RenovationServicesPage() {
       <section className="border-b border-border bg-surface-warm">
         <Container size="layout" className="py-14 sm:py-16">
           <div className="max-w-4xl">
-            <p className="page-label mb-4">装修签约前报价判断</p>
+            <p className="page-label mb-4">装修签约前风险判断</p>
             <h1 className="text-[2.1rem] font-semibold leading-tight tracking-tight text-ink sm:text-5xl">
-              我手里的装修报价，现在该买哪一档判断？
+              你现在卡在报价、合同，还是多家报价对比？
             </h1>
             <p className="mt-5 max-w-3xl text-base leading-relaxed text-ink-muted sm:text-lg">
-              如果你还没有完整报价，先不要买人工服务。先用免费初筛和检查模板。只有当你已经拿到报价、准备继续谈或临近签约时，再进入人工快审。
+              如果你还没有完整材料，先不要买人工服务。先用免费初筛和检查模板。只有当你已经拿到报价、合同草稿或多家报价时，再进入对应服务。
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <CTA href="/tools/quote-check" label="先做免费报价初筛" variant="primary" />
-              <CTA href="#pricing" label="直接看三档服务" variant="secondary" />
+              <CTA href="#pricing" label="直接看服务" variant="secondary" />
             </div>
           </div>
         </Container>
@@ -175,7 +175,7 @@ export default function RenovationServicesPage() {
         <section className="mb-14">
           <div className="mb-6 max-w-3xl">
             <p className="text-xs font-semibold uppercase tracking-widest text-stone">选择路径</p>
-            <h2 className="mt-3 text-2xl font-semibold tracking-tight text-ink">先看你手里有什么，再决定买哪一档。</h2>
+            <h2 className="mt-3 text-2xl font-semibold tracking-tight text-ink">先看你现在卡在哪一步，再决定要不要人工判断。</h2>
           </div>
           <div className="grid gap-4 lg:grid-cols-4">
             {choiceCards.map((item) => (
@@ -195,10 +195,10 @@ export default function RenovationServicesPage() {
 
         <section id="pricing" className="mb-14 scroll-mt-24">
           <div className="mb-6 max-w-3xl">
-            <p className="text-xs font-semibold uppercase tracking-widest text-stone">三档价格</p>
-            <h2 className="mt-3 text-2xl font-semibold tracking-tight text-ink">只保留签约前报价判断三档。</h2>
+            <p className="text-xs font-semibold uppercase tracking-widest text-stone">三项服务</p>
+            <h2 className="mt-3 text-2xl font-semibold tracking-tight text-ink">只保留签约前最常用的三类判断。</h2>
             <p className="mt-3 text-sm leading-relaxed text-ink-muted">
-              每一档都对应一个真实阶段。不要为了“更全面”直接买高档，先看你的材料是否已经到那个阶段。
+              不是把服务做复杂，而是把入口讲清楚：看报价、看合同、看多家报价差异。
             </p>
           </div>
 
@@ -332,7 +332,7 @@ export default function RenovationServicesPage() {
               <p className="text-xs font-semibold uppercase tracking-widest text-stone">下一步</p>
               <h2 className="mt-3 text-xl font-semibold text-ink">如果你已经有报价，先做免费初筛。</h2>
               <p className="mt-2 max-w-2xl text-sm leading-relaxed text-ink-muted">
-                如果结果显示高风险，再进入人工快审。这样不会一上来买错档，也能先把真正该问的问题找出来。
+                如果结果显示高风险，再进入对应人工服务。这样不会一上来买错，也能先把真正该问的问题找出来。
               </p>
             </div>
             <div className="flex flex-wrap gap-3">

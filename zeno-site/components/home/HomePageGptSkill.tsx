@@ -84,7 +84,7 @@ const problemCards: Array<{
     icon: ClipboardText,
     title: '合同快签了，但追问顺序乱',
     body: '哪些要写进合同，哪些要先拍照留证，哪些不能只听口头承诺。',
-    href: '/services/renovation#quote-deep',
+    href: '/services/renovation#quote-standard',
   },
   {
     icon: Notebook,
@@ -205,15 +205,15 @@ const judgmentAssetCards: Array<{
   {
     icon: ShieldCheck,
     title: '报价风险报告模板',
-    body: '人工快审会输出结构化报告，也会反过来优化风险规则库。',
+    body: '人工判断会输出结构化报告，也会反过来优化风险规则库。',
     href: '/services/renovation',
   },
 ]
 
 const trustItems: Array<{ icon: IconComponent; title: string; body: string }> = [
-  { icon: ShieldCheck, title: '现场验证', body: '装修判断来自真实报价、预算和施工问题。' },
-  { icon: Wrench, title: '工具沉淀', body: '不靠感觉吓人，把判断拆成清单和步骤。' },
-  { icon: UsersThree, title: '说清边界', body: '能帮什么、不能帮什么先讲明白。' },
+  { icon: ShieldCheck, title: '不做泛装修百科', body: '只聚焦报价、合同和增项风险。' },
+  { icon: Wrench, title: '不替装修公司背书', body: '只帮业主看清风险点和追问方向。' },
+  { icon: UsersThree, title: '不制造焦虑', body: '只给签约前能用的追问清单。' },
 ]
 
 /* ─── Reusable Components ─── */
@@ -762,11 +762,11 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
       <AnimatedSection className="relative isolate overflow-hidden border-b border-border bg-surface py-20 sm:py-24">
         <div className="relative mx-auto max-w-[1320px] px-5 sm:px-8 lg:px-12">
           <div className="mx-auto max-w-4xl text-center">
-            <p className="text-sm font-medium tracking-[0.18em] text-stone">05 / 付费产品</p>
+            <p className="text-sm font-medium tracking-[0.18em] text-stone">05 / 服务</p>
             <h2 className="mt-5 text-[clamp(2rem,4vw,3.2rem)] font-semibold leading-tight tracking-tight text-ink [text-wrap:balance]">
-              不是越贵越好，看你卡在哪一步。
+              不是越贵越好，看你现在卡在哪一步。
             </h2>
-            <p className="mt-4 text-base leading-8 text-ink-muted">不要先看价格，先看你卡在哪一步。从免费初筛到三档人工判断，按决策节点选。</p>
+            <p className="mt-4 text-base leading-8 text-ink-muted">看不懂报价，看报价风险初筛；准备签合同，看合同风险初筛；有 2-3 家报价，看报价对比判断。</p>
           </div>
 
           {/* 统一商业梯子：data/commercial-ladder.ts 是单一真源 */}
@@ -842,11 +842,11 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
           >
             <motion.p variants={staggerItem} className="text-sm font-medium tracking-[0.18em] text-stone">06</motion.p>
             <motion.h2 variants={staggerItem} className="mt-5 text-[clamp(2rem,4vw,3.2rem)] font-semibold leading-tight tracking-tight text-ink [text-wrap:balance]">
-              我不是泛装修博主，也不想吓唬你。
+              我们关注的不是装修知识，而是签约前判断。
             </motion.h2>
             <motion.div variants={staggerItem} className="mt-7 space-y-5 text-base leading-9 text-ink-muted">
-              <p>我做装修 16 年，见过很多后悔不是来自审美，而是来自签约前没问清、预算里没留边界、施工中没有留痕。</p>
-              <p>我想帮你解决的就一件事：签约前的判断。不替你做所有决定，但在关键节点帮你看清风险和下一步。</p>
+              <p>很多装修问题，不是施工当天才出现的，而是在报价和合同阶段就已经埋下了。</p>
+              <p>ZenoAIHome 做的事情，是把这些风险提前翻译成普通业主能看懂的问题。不替你做所有决定，但在关键节点帮你看清风险和下一步。</p>
             </motion.div>
 
             <motion.div variants={staggerItem} className="mt-10 grid grid-cols-1 gap-px border border-border bg-[#e6d9cc] sm:grid-cols-3">
@@ -863,11 +863,11 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
 
             <motion.div variants={staggerItem} className="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <ActionLink href="/tools/quote-check">先做报价初筛</ActionLink>
-              <ActionLink href="/services/renovation#quote-standard" variant="secondary">看报价快审边界</ActionLink>
+              <ActionLink href="/services/renovation" variant="secondary">查看服务</ActionLink>
             </motion.div>
 
             <motion.p variants={staggerItem} className="mt-8 border-t border-border pt-6 text-sm leading-7 text-ink-faint">
-              能帮的事情有限，边界先说清。做不到的不接，看不清的不讲。
+              不做泛装修百科，不替装修公司背书，不制造焦虑；只帮你把签约前能问清的问题先问清。
             </motion.p>
           </motion.div>
         </div>

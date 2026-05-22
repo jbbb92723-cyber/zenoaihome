@@ -7,7 +7,7 @@ import StructuredData from '@/components/StructuredData'
 import { quoteRiskRules } from '@/data/quote-risk-rules'
 
 export const metadata: Metadata = {
-  title: '装修报价风险词典 | ZenoAIHome',
+  title: '看报价 | 装修报价风险词典 | ZenoAIHome',
   description:
     '把装修报价单里容易引发增项、扯皮和后悔的风险词讲清楚。不是装修百科，只看签约前必须问清的风险边界。',
   alternates: {
@@ -46,9 +46,9 @@ export default function RiskDictionaryPage() {
       />
 
       <PageHero
-        label="装修报价风险词典"
-        title="装修报价风险词典"
-        subtitle="把报价单里容易引发增项、扯皮和后悔的词讲清楚。不是装修百科，只看签约前必须问清的风险边界。"
+        label="看报价"
+        title="报价单不是看总价，而是看边界。"
+        subtitle="按报价风险词、材料品牌型号、数量面积、漏项和低价陷阱，把签约前必须问清的报价边界先看懂。"
         size="content"
       />
 
@@ -61,8 +61,8 @@ export default function RiskDictionaryPage() {
 
       <Container size="layout" className="py-section">
         <section className="mb-12 border border-border bg-surface-warm p-6 sm:p-8">
-          <p className="text-xs font-semibold uppercase tracking-widest text-stone">这个词典解决什么</p>
-          <h2 className="mt-3 text-2xl font-semibold tracking-tight text-ink">它不教你装修施工，只帮你在签约前把话问清。</h2>
+          <p className="text-xs font-semibold uppercase tracking-widest text-stone">这个栏目解决什么</p>
+          <h2 className="mt-3 text-2xl font-semibold tracking-tight text-ink">报价单不是看总价，而是看项目、材料、计量和增项入口。</h2>
           <p className="mt-3 max-w-3xl text-sm leading-relaxed text-ink-muted">
             报价单里很多风险不是藏在专业术语里，而是藏在“按实结算、暂估、以现场为准、另计、不含”这些看似普通的词里。
             这个词典把每个风险拆成触发词、常见项目、签约前追问和合同备注建议，方便你回到自己的报价单逐项核对。

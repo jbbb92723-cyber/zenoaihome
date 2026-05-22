@@ -7,7 +7,7 @@ import StructuredData from '@/components/StructuredData'
 export const metadata: Metadata = {
   title: '签约前装修判断｜报价、合同和付款节点先看清',
   description:
-    'ZenoAIHome 旧版装修判断路线页。当前主线已收窄为签约前报价风险判断：报价初筛、风险词典、检查模板和三档人工快审。',
+    'ZenoAIHome 旧版装修判断路线页。当前主线已收窄为签约前风险判断：报价初筛、风险词典、检查模板和三类人工判断。',
   alternates: { canonical: 'https://zenoaihome.com/start' },
 }
 
@@ -166,7 +166,7 @@ export default function StartPage() {
               </p>
               <h3 className="text-lg font-semibold text-ink mb-3">先把报价里的边界找出来</h3>
               <p className="text-sm text-ink-muted leading-relaxed mb-5">
-                免费初筛先帮你找漏项、模糊项、增项口子和付款节点风险，再决定要不要继续人工快审。
+                免费初筛先帮你找漏项、模糊项、增项口子和付款节点风险，再决定要不要继续人工判断。
               </p>
               <CTA href="/tools/quote-check" label="做报价初筛" variant="secondary" />
             </div>
@@ -176,7 +176,7 @@ export default function StartPage() {
               </p>
               <h3 className="text-lg font-semibold text-ink mb-3">卡住了，再进入三档人工判断</h3>
               <p className="text-sm text-ink-muted leading-relaxed mb-5">
-                ¥99 看重点行明显风险，¥299 看完整报价，¥699 把报价、合同和付款节点一起看。
+                报价看不懂，看报价风险初筛；合同快签了，看合同风险初筛；有多家报价，再看报价对比判断。
               </p>
               <CTA href="/services/renovation" label="看服务价格" variant="secondary" />
             </div>

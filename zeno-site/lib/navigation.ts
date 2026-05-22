@@ -71,9 +71,9 @@ export const primaryNav: PrimaryNavItem[] = [
         zh: { label: '签约前人工判断', desc: '报价、合同、付款节点一起看清' },
         en: { label: 'Expert Review', desc: 'Use the free check first. Review only when the paperwork is ready.' },
         items: [
-          { key: 'quote-risk-initial', zh: { label: '免费报价风险初筛', href: '/tools/quote-check', desc: '先筛漏项、模糊项和付款风险' }, en: { label: 'Free Quote Risk Check', href: '/en/tools', desc: 'Start with a lightweight first pass' } },
-          { key: 'quote-fast', zh: { label: '标准报价快审', href: '/services/renovation#quote-standard', desc: '人工看完整报价的增项口子' }, en: { label: 'Standard Quote Review', href: '/en/services', desc: 'For a complete renovation quote' } },
-          { key: 'decision-pack', zh: { label: '签约前深度判断', href: '/services/renovation#quote-deep', desc: '报价、合同、付款节点一起判断' }, en: { label: 'Deep Pre-Signing Review', href: '/en/services', desc: 'Quote, contract, and payment milestones' } },
+          { key: 'quote-risk-initial', zh: { label: '报价风险初筛', href: '/services/renovation#quote-entry', desc: '看报价有没有明显坑' }, en: { label: 'Free Quote Risk Check', href: '/en/tools', desc: 'Start with a lightweight first pass' } },
+          { key: 'quote-fast', zh: { label: '合同风险初筛', href: '/services/renovation#quote-standard', desc: '看口头承诺和付款节点有没有写清' }, en: { label: 'Standard Quote Review', href: '/en/services', desc: 'For a complete renovation quote' } },
+          { key: 'decision-pack', zh: { label: '报价对比判断', href: '/services/renovation#quote-deep', desc: '2-3 家报价差异和风险对比' }, en: { label: 'Deep Pre-Signing Review', href: '/en/services', desc: 'Quote, contract, and payment milestones' } },
         ],
       },
     ],

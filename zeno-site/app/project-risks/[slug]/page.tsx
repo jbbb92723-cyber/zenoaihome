@@ -223,11 +223,11 @@ export default async function ProjectRiskDetailPage({ params }: Props) {
           <p className="text-xs font-semibold uppercase tracking-widest text-stone">下一步</p>
           <h2 className="mt-3 text-2xl font-semibold tracking-tight text-ink">不要只看单个项目，回到整份报价一起判断。</h2>
           <p className="mt-3 max-w-3xl text-sm leading-relaxed text-ink-muted">
-            如果这个项目已经出现模糊词、漏项或增项口子，建议先用免费报价初筛把整份报价过一遍；临近签约再看人工快审。
+            如果这个项目已经出现模糊词、漏项或增项口子，建议先用免费报价初筛把整份报价过一遍；临近签约再看对应人工服务。
           </p>
           <div className="mt-5 flex flex-wrap gap-3">
             <CTA href="/tools/quote-check" label="做免费报价初筛" variant="primary" />
-            <CTA href="/services/renovation#quote-standard" label="看人工报价快审" variant="secondary" />
+            <CTA href="/services/renovation" label="查看服务" variant="secondary" />
           </div>
         </section>
       </Container>

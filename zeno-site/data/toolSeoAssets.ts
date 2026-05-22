@@ -47,7 +47,7 @@ export const toolSeoAssets = {
       { label: '签约前检查模板', href: '/checklists/quote-initial-check', desc: '把工具里的追问整理成签约前可对照的检查表。' },
       { label: '装修报价风险词典', href: '/risk-dictionary', desc: '查按实结算、暂估、品牌型号缺失等高频风险词。' },
       { label: '施工项目风险库', href: '/project-risks', desc: '按水电、防水、拆除、找平等项目看报价里该写清什么。' },
-      { label: '标准版报价风险快审', href: '/services/renovation#quote-standard', desc: '完整报价已经拿到、准备继续谈或签约时再进入人工判断。' },
+      { label: '合同风险初筛', href: '/services/renovation#quote-standard', desc: '准备签合同、担心口头承诺和付款节点没写清时再进入人工判断。' },
       { label: '合同签约前检查模板', href: '/checklists/contract-pre-signing-check', desc: '报价结构相对清楚后，继续核对合同和付款节点。' },
       { label: '报价单怎么看', href: '/blog/zhuangxiu-baojiadan-zenme-kan', desc: '文章归档保留为补充阅读，不作为主路径。' },
     ],
@@ -75,7 +75,7 @@ export const toolSeoAssets = {
     links: [
       { label: '查超预算原因', href: '/tools/budget-risk', desc: '分配看完后，继续判断失控来自报价、流程还是需求。' },
       { label: '装修预算模板', href: '/resources#zhuangxiu-yusuan-moban', desc: '把预算分配记录下来，持续追踪版本。' },
-      { label: '标准版报价风险快审', href: '/services/renovation#quote-standard', desc: '预算越算越乱时，先回到完整报价，看漏项、模糊项和增项口子。' },
+      { label: '合同风险初筛', href: '/services/renovation#quote-standard', desc: '预算越算越乱时，回到合同和付款节点，看承诺有没有写清。' },
       { label: '预算为什么总超', href: '/blog/zhuangxiu-yusuan-weishenme-zongchao', desc: '继续理解超预算背后的顺序问题。' },
     ],
   },
@@ -154,7 +154,7 @@ export const toolSeoAssets = {
       { label: '单位换算工具', href: '/tools/unit-converter', desc: '先看墙面面积和房屋面积的区别。' },
       { label: '验收节点向导', href: '/tools/inspection-guide', desc: '油漆完成后检查色差、流挂、裂纹和修补。' },
       { label: '预算分配工具', href: '/tools/budget-structure', desc: '把油漆费用放回基础施工或主材选择里。' },
-      { label: '深度版签约前判断', href: '/services/renovation#quote-deep', desc: '需要把报价、合同和付款节点一起看时再进入服务。' },
+      { label: '报价对比判断', href: '/services/renovation#quote-deep', desc: '手里有 2-3 家报价、不知道怎么选时再进入服务。' },
     ],
   },
   inspectionGuide: {

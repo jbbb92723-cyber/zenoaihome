@@ -217,7 +217,7 @@ export default async function ChecklistDetailPage({ params }: Props) {
           <div className="mt-5 flex flex-wrap gap-3">
             <CTA href="/tools/quote-check" label="做免费报价初筛" variant="primary" />
             <CTA href="/risk-dictionary" label="看相关风险词典" variant="secondary" />
-            <CTA href="/services/renovation#quote-standard" label="看人工快审服务" variant="ghost" />
+            <CTA href="/services/renovation" label="查看服务" variant="ghost" />
           </div>
         </section>
       </Container>

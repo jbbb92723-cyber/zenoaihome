@@ -117,8 +117,8 @@ function getPrimaryNextStep(score: number, stage: QuoteStage) {
   }
   if (score >= 8) {
     return {
-      label: '看 ¥299 标准版报价快审',
-      href: '/services/renovation#quote-standard',
+      label: '看报价风险初筛',
+      href: '/services/renovation#quote-entry',
       desc: '这份报价不建议直接签。先把缺失边界补齐，再谈价格和优惠。',
     }
   }
@@ -251,7 +251,7 @@ export default function QuoteCheckClient() {
                 ['风险等级', '低 / 中 / 高，不直接替你拍板'],
                 ['缺失项数量', '看报价里哪些边界没写清'],
                 ['前三个追问', '先问最影响签约判断的问题'],
-                ['下一步入口', '风险词典、检查模板或 ¥299 标准版快审'],
+                ['下一步入口', '风险词典、检查模板或对应人工判断'],
               ].map(([title, desc]) => (
                 <div key={title} className="border border-border bg-canvas px-4 py-3">
                   <p className="text-sm font-semibold text-ink">{title}</p>
@@ -405,7 +405,7 @@ export default function QuoteCheckClient() {
           <div className="border border-stone/30 bg-stone/5 p-5">
             <h2 className="text-sm font-semibold text-ink">适合先用工具的情况</h2>
             <p className="mt-2 text-sm leading-relaxed text-ink-muted">
-              你还没确定施工方，或者只是想先知道报价里哪里没写清。已经临近签约、材料很多、问题复杂，再考虑人工快审。
+              你还没确定施工方，或者只是想先知道报价里哪里没写清。已经临近签约、材料很多、问题复杂，再考虑对应人工判断。
             </p>
           </div>
         </aside>
@@ -488,7 +488,7 @@ export default function QuoteCheckClient() {
                     {[
                       { label: '查看风险词典', href: '/risk-dictionary' },
                       { label: '查看检查模板', href: '/checklists' },
-                      { label: '看 ¥299 标准版快审', href: '/services/renovation#quote-standard' },
+                      { label: '查看服务', href: '/services/renovation' },
                     ].map((item) => (
                       <Link key={item.href} href={item.href} className="flex items-center justify-between border border-border bg-canvas px-4 py-3 text-sm font-semibold text-ink transition-colors hover:border-stone">
                         {item.label}
@@ -532,9 +532,9 @@ export default function QuoteCheckClient() {
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {[
               ['免费', '报价初筛', '先知道哪里没写清'],
-              ['¥99', '体验版初查', '看 10 行以内重点报价'],
-              ['¥299', '标准版快审', '完整报价风险说明'],
-              ['¥699', '深度版判断', '报价、合同、付款节点一起看'],
+              ['¥99', '报价风险初筛', '主要风险点 + 追问清单'],
+              ['¥299', '合同风险初筛', '模糊条款 + 修改建议方向'],
+              ['¥699', '报价对比判断', '差异分析 + 风险对比'],
             ].map(([price, title, desc]) => (
               <div key={title} className="border border-border bg-canvas p-4">
                 <p className="text-xs font-semibold uppercase tracking-widest text-stone">{price}</p>
@@ -572,8 +572,8 @@ export default function QuoteCheckClient() {
             ))}
           </div>
           <div className="mt-6">
-            <Link href="/services/renovation#quote-standard" className="text-sm font-semibold text-stone hover:underline underline-offset-2">
-              看 ¥299 标准版报价快审 →
+            <Link href="/services/renovation" className="text-sm font-semibold text-stone hover:underline underline-offset-2">
+              查看服务 →
             </Link>
           </div>
         </div>

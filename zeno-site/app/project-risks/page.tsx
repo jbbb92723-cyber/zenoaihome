@@ -7,7 +7,7 @@ import StructuredData from '@/components/StructuredData'
 import { renovationProjectRisks } from '@/data/renovation-project-risks'
 
 export const metadata: Metadata = {
-  title: '施工项目风险库 | 装修报价风险判断 | ZenoAIHome',
+  title: '看增项 | 施工项目风险库 | ZenoAIHome',
   description:
     '按拆除、水电、防水、找平、瓷砖等施工项目，查看装修报价里应该写清什么、哪些地方容易漏项和增项。',
   alternates: {
@@ -38,9 +38,9 @@ export default function ProjectRisksPage() {
       />
 
       <PageHero
-        label="施工项目风险库"
-        title="施工项目风险库"
-        subtitle="按拆除、水电、防水、找平、瓷砖等项目，查看报价里应该写清什么、哪些地方容易漏项和增项。"
+        label="看增项"
+        title="很多增项不是施工中突然出现，而是报价阶段就留了口子。"
+        subtitle="按水电、拆改、找平、防水、定制接口和“现场为准”类风险，查看签约前应该约定清楚什么。"
         size="content"
       />
 
@@ -53,8 +53,8 @@ export default function ProjectRisksPage() {
 
       <Container size="layout" className="py-section">
         <section className="mb-12 border border-border bg-surface-warm p-6 sm:p-8">
-          <p className="text-xs font-semibold uppercase tracking-widest text-stone">怎么用</p>
-          <h2 className="mt-3 text-2xl font-semibold tracking-tight text-ink">先按报价单上的项目找，不要泛泛看装修知识。</h2>
+          <p className="text-xs font-semibold uppercase tracking-widest text-stone">这个栏目解决什么</p>
+          <h2 className="mt-3 text-2xl font-semibold tracking-tight text-ink">先按报价单上的项目找，看哪里可能变成后期增项。</h2>
           <p className="mt-3 max-w-3xl text-sm leading-relaxed text-ink-muted">
             你拿到报价单后，通常会看到拆除、水电、防水、找平、瓷砖、吊顶、安装这些项目。
             这里每一页只回答一件事：签约前，这个项目的报价必须写清什么，哪些词会留下增项口子。

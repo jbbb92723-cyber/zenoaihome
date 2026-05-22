@@ -7,7 +7,7 @@ import StructuredData from '@/components/StructuredData'
 import { checklistTemplates } from '@/data/checklist-templates'
 
 export const metadata: Metadata = {
-  title: '签约前检查模板 | ZenoAIHome',
+  title: '看合同 | 签约前检查模板 | ZenoAIHome',
   description:
     '签约前检查模板：报价单初查、合同签约前检查、水电改造、老房翻新和付款节点检查清单，帮助业主拿到报价和合同后逐项对照。',
   alternates: {
@@ -45,9 +45,9 @@ export default function ChecklistsPage() {
       />
 
       <PageHero
-        label="签约前检查模板"
-        title="签约前检查模板"
-        subtitle="不是泛泛的装修资料，而是你拿到报价、合同和付款节点后，可以逐项对照的检查清单。"
+        label="看合同"
+        title="销售说过的话，不等于合同里有保障。"
+        subtitle="围绕口头承诺、付款节点、延期责任、材料替换、质保范围和增项确认流程，签约前逐项对照。"
         size="content"
       />
 
@@ -60,8 +60,8 @@ export default function ChecklistsPage() {
 
       <Container size="layout" className="py-section">
         <section className="mb-12 border border-border bg-surface-warm p-6 sm:p-8">
-          <p className="text-xs font-semibold uppercase tracking-widest text-stone">怎么用</p>
-          <h2 className="mt-3 text-2xl font-semibold tracking-tight text-ink">先选你现在最卡的那一张清单。</h2>
+          <p className="text-xs font-semibold uppercase tracking-widest text-stone">这个栏目解决什么</p>
+          <h2 className="mt-3 text-2xl font-semibold tracking-tight text-ink">把“对方说过”变成“合同里写清”。</h2>
           <p className="mt-3 max-w-3xl text-sm leading-relaxed text-ink-muted">
             如果你刚拿到报价，先看报价单初查；已经临近签约，就看合同和付款节点；
             如果是水电多、老房翻新，就优先看对应模板。每张模板都可以照着问，也可以复制成自己的追问清单。
@@ -102,11 +102,11 @@ export default function ChecklistsPage() {
           <h2 className="mt-3 text-2xl font-semibold tracking-tight text-ink">模板适合自查，不适合替你做最终判断。</h2>
           <p className="mt-3 max-w-3xl text-sm leading-relaxed text-ink-muted">
             如果你已经临近签约，不建议只靠模板自己判断。可以先做免费报价初筛；
-            如果报价、合同和付款节点一起看不清，再把报价和合同一起做人工快审。
+            如果报价、合同和付款节点一起看不清，再进入对应的人工判断服务。
           </p>
           <div className="mt-5 flex flex-wrap gap-3">
             <CTA href="/tools/quote-check" label="先做免费报价初筛" variant="primary" />
-            <CTA href="/services/renovation#quote-standard" label="看人工报价快审" variant="secondary" />
+            <CTA href="/services/renovation" label="查看服务" variant="secondary" />
           </div>
         </section>
       </Container>

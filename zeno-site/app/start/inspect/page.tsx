@@ -85,7 +85,7 @@ export default function InspectStagePage() {
           { label: '质保售后落字模板', href: '/resources' },
         ]}
         services={[
-          { label: '深度版签约前判断 ¥699（含付款和质保提醒）', href: '/services/renovation#quote-deep' },
+          { label: '合同风险初筛（含付款和质保提醒）', href: '/services/renovation#quote-standard' },
         ]}
         prev={{ label: '再看施工：开工后盯什么', href: '/start/build' }}
         next={{ label: '再看居住：住进去顺不顺手', href: '/start/living' }}

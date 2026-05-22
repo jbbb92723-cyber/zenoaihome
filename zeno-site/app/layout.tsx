@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     template: '%s · ZenoAIHome',
   },
   description:
-    '16 年装修现场经验，帮业主在签约前看懂报价漏项、预算取舍和合同边界。先用免费工具初筛，再决定是否进入人工服务。',
+    'ZenoAIHome 帮业主在签约前看懂装修报价、合同和增项风险。先做免费初筛，再按材料进入报价风险初筛、合同风险初筛或报价对比判断。',
   keywords: ['装修报价', '装修签约', '报价风险', '装修预算', '装修合同', '报价审核', '签约前判断'],
   authors: [{ name: 'Zeno' }],
   openGraph: {
@@ -26,13 +26,13 @@ export const metadata: Metadata = {
     siteName: 'ZenoAIHome',
     title: 'ZenoAIHome — 装修签约前，先把报价风险看清楚',
     description:
-      '16 年装修现场经验，帮业主在签约前看懂报价漏项、预算取舍和合同边界。先用免费工具初筛，再决定是否进入人工服务。',
+      'ZenoAIHome 帮业主在签约前看懂装修报价、合同和增项风险。先做免费初筛，再按材料进入报价风险初筛、合同风险初筛或报价对比判断。',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'ZenoAIHome — 装修签约前，先把报价风险看清楚',
     description:
-      '帮业主在签约前看懂报价漏项、合同边界和付款节点。免费初筛 → ¥99 初查 → ¥299 快审 → ¥699 深度判断。',
+      '帮业主在签约前看懂报价漏项、合同边界和付款节点。免费初筛后，再按情况选择报价风险初筛、合同风险初筛或报价对比判断。',
   },
   robots: {
     index: true,

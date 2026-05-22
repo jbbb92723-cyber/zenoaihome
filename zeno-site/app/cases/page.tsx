@@ -29,14 +29,14 @@ const caseGroups: CaseGroup[] = [
     intro: '先看一份报价是怎么被拆开、怎么识别风险、为什么低价不一定更划算。',
     articleSlugs: ['baojia-dan-zenme-kan', 'article-03-04', 'article-03-02'],
     tool: { label: '先做免费报价初筛', href: '/tools/quote-check' },
-    service: { label: '看 ¥699 深度版判断', href: '/services/renovation#quote-deep' },
+    service: { label: '看报价对比判断', href: '/services/renovation#quote-deep' },
   },
   {
     title: '预算与施工复盘',
     intro: '先看预算为什么会失控，施工阶段为什么要按节点盯，而不是等全部做完再回头。',
     articleSlugs: ['zhuangxiu-yusuan-weishenme-zongchao', 'shuidian-gongcheng-zongchao-yusuan', 'zhuangxiu-hou-hue-de-wu-jian'],
     tool: { label: '看签约前检查模板', href: '/checklists' },
-    service: { label: '看 ¥299 标准版快审', href: '/services/renovation#quote-standard' },
+    service: { label: '看合同风险初筛', href: '/services/renovation#quote-standard' },
   },
   {
     title: '判断资产整理复盘',

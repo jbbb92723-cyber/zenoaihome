@@ -20,7 +20,7 @@ const staticPages: SearchResult[] = [
   { title: '装修报价风险词典', href: '/risk-dictionary', type: 'resource', excerpt: '解释报价里容易引发增项和扯皮的风险词。' },
   { title: '签约前检查模板', href: '/checklists', type: 'checklist', excerpt: '报价、合同、付款节点可以逐项对照。' },
   { title: '施工项目风险库', href: '/project-risks', type: 'resource', excerpt: '按水电、防水、拆除等项目看报价里该写清什么。' },
-  { title: '服务价格', href: '/services/renovation', type: 'service', excerpt: '免费初筛、¥99 初查、¥299 快审、¥699 深度判断。' },
+  { title: '服务价格', href: '/services/renovation', type: 'service', excerpt: '报价风险初筛、合同风险初筛、报价对比判断。' },
   { title: '关于 Zeno', href: '/about', type: 'page' },
   { title: '联系我', href: '/contact', type: 'page' },
 ]

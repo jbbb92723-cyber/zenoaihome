@@ -165,11 +165,11 @@ export default function ToolsPage() {
           <p className="text-xs font-semibold uppercase tracking-widest text-stone">下一步</p>
           <h2 className="mt-3 text-2xl font-semibold tracking-tight text-ink">工具看完，回到你的报价单。</h2>
           <p className="mt-3 max-w-3xl text-sm leading-relaxed text-ink-muted">
-            如果初筛结果显示高风险，先要求施工方把缺失边界补齐；如果仍然看不明白，再进入 ¥299 标准版报价快审。
+            如果初筛结果显示高风险，先要求施工方把缺失边界补齐；如果仍然看不明白，再进入报价风险初筛或对应人工服务。
           </p>
           <div className="mt-5 flex flex-wrap gap-3">
             <CTA href="/tools/quote-check" label="做免费报价初筛" variant="primary" />
-            <CTA href="/services/renovation#quote-standard" label="看 ¥299 标准版快审" variant="secondary" />
+            <CTA href="/services/renovation" label="查看服务" variant="secondary" />
           </div>
         </section>
       </Container>

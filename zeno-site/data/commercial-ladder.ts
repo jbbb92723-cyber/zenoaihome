@@ -6,7 +6,7 @@
  * 维护规则：
  * - 改价格 / 改命名 / 增减档位 → 只动这个文件
  * - 三个 variant（compact / full / summary）由 CommercialLadder 组件统一渲染
- * - 主路径只保留：免费初筛 -> ¥99 体验版 -> ¥299 标准版 -> ¥699 深度版
+ * - 主路径只保留：免费初筛 -> 报价风险初筛 -> 合同风险初筛 -> 报价对比判断
  */
 
 export type LadderTier =
@@ -46,7 +46,7 @@ export const commercialLadder: LadderRung[] = [
     priceNumeric: 0,
     title: '报价初筛工具',
     whoFor: '已经拿到报价，但还没签字',
-    delivers: '8 分钟生成风险等级和重点追问清单',
+    delivers: '生成风险等级、可能存在的 3 个风险和签约前追问问题',
     href: '/tools/quote-check',
     cta: '先做免费初筛',
     source: 'tool',
@@ -56,11 +56,11 @@ export const commercialLadder: LadderRung[] = [
     tier: 'paid-low',
     price: '¥99',
     priceNumeric: 99,
-    title: '体验版报价风险初查',
-    whoFor: '只想先知道这份报价有没有明显风险',
-    delivers: '检查 10 行以内重点报价，标出 3 个高风险点和 5 个追问问题',
+    title: '报价风险初筛',
+    whoFor: '已经拿到装修报价，但看不懂里面有没有坑',
+    delivers: '主要风险点 + 签约前追问清单',
     href: '/services/renovation#quote-entry',
-    cta: '看 ¥99 初查',
+    cta: '看报价初筛',
     source: 'service',
     badge: '低门槛验证',
   },
@@ -68,11 +68,11 @@ export const commercialLadder: LadderRung[] = [
     tier: 'paid-mid',
     price: '¥299',
     priceNumeric: 299,
-    title: '标准版报价风险快审',
-    whoFor: '手里有完整报价，准备继续谈或准备签约',
-    delivers: '完整报价风险说明 + 漏项/模糊项/增项口子 + 签约前追问清单',
+    title: '合同风险初筛',
+    whoFor: '准备签合同，但担心口头承诺没有写清',
+    delivers: '合同模糊条款提醒 + 修改建议方向',
     href: '/services/renovation#quote-standard',
-    cta: '看 ¥299 快审',
+    cta: '看合同初筛',
     source: 'service',
     badge: '主推',
   },
@@ -80,11 +80,11 @@ export const commercialLadder: LadderRung[] = [
     tier: 'paid-high',
     price: '¥699',
     priceNumeric: 699,
-    title: '深度版签约前判断',
-    whoFor: '已经接近签合同，报价、合同和付款节点都要一起看',
-    delivers: '报价 + 合同 + 付款节点风险判断，附 30 分钟微信语音解读',
+    title: '报价对比判断',
+    whoFor: '手里有 2-3 家装修公司报价，不知道怎么选',
+    delivers: '报价差异分析 + 风险对比 + 追问重点',
     href: '/services/renovation#quote-deep',
-    cta: '看 ¥699 深度版',
+    cta: '看报价对比',
     source: 'service',
     badge: '快签前',
   },
@@ -93,8 +93,8 @@ export const commercialLadder: LadderRung[] = [
 /** 仅取付费档（用于价格页主梯子展示） */
 export const paidLadder = commercialLadder.filter((r) => r.tier !== 'free')
 
-/** 首页展示完整主路径：免费初筛 -> ¥99 -> ¥299 -> ¥699 */
+/** 首页展示完整主路径：免费初筛 -> 三档人工判断 */
 export const homepageLadder: LadderRung[] = commercialLadder
 
-/** 主服务三档：体验版初查 / 标准版快审 / 深度版签约前判断 */
+/** 主服务三档：报价风险初筛 / 合同风险初筛 / 报价对比判断 */
 export const serviceLadder: LadderRung[] = paidLadder
