@@ -107,7 +107,7 @@ export const services: Service[] = [
   {
     id: '03',
     slug: 'quote-deep',
-    title: '深度版签约前判断',
+    title: '签约前深度判断',
     tagline: '报价、合同和付款节点都已经有，且临近签约',
     description:
       '适合已经接近签合同，手里有报价、合同草稿和付款节点，需要一起判断签约前风险的业主。',
@@ -139,7 +139,6 @@ export const services: Service[] = [
     iDeliver: [
       '报价风险报告',
       '合同/付款节点风险提醒',
-      '追问顺序',
       '30 分钟微信语音解读',
     ],
     boundary:

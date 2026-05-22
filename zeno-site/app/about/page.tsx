@@ -1,85 +1,128 @@
 import type { Metadata } from 'next'
-import Link from 'next/link'
 import Container from '@/components/Container'
 import CTA from '@/components/CTA'
 
 export const metadata: Metadata = {
-  title: '关于我 | Zeno',
+  title: '为什么只做装修签约前风险判断 | ZenoAIHome',
   description:
-    '我是 Zeno。装修行业 16 年，从工地现场走出来。现在专注把签约前报价风险判断整理成文章、清单、工具和服务。',
+    'ZenoAIHome 只聚焦装修签约前报价、合同、付款节点和增项风险判断。不做装修百科，不替装修公司销售，只帮业主把签字前该问清的问题说清楚。',
+  alternates: {
+    canonical: 'https://zenoaihome.com/about',
+  },
 }
+
+const principles = [
+  {
+    title: '先看边界，不先比总价',
+    body: '总价只是结果。签约前更该先看清哪些包含、哪些另计、哪些按实结算、哪些只是口头承诺。',
+  },
+  {
+    title: '先问清楚，再决定能不能签',
+    body: '判断不是替你拍板，而是把关键风险翻译成你能拿去问装修公司的问题。',
+  },
+  {
+    title: 'AI 辅助整理，人负责把关',
+    body: 'AI 可以帮助整理报价、生成追问清单，但不能替代现场经验、合同边界和最终责任判断。',
+  },
+]
+
+const notDo = [
+  '我们不替你承诺哪家公司一定靠谱。',
+  '我们不做装修百科。',
+  '我们不替装修公司销售。',
+  '我们不制造焦虑。',
+  '我们只帮你在签约前看清报价和合同里的风险点。',
+]
+
+const canHelp = [
+  '把报价里的漏项、模糊项、暂估和按实结算风险先标出来。',
+  '把销售口头承诺转成签约前应该写进报价或合同的确认点。',
+  '把付款节点、增项确认、材料替换和质保范围里的风险说清楚。',
+  '给你一份可以复制、可以发给装修公司的追问清单。',
+]
 
 export default function AboutPage() {
   return (
     <>
-      <div className="border-b border-border py-12 sm:py-16">
-        <Container size="content">
-          <div className="grid items-end gap-8 sm:grid-cols-[1fr_auto]">
-            <div>
-              <p className="page-label mb-4">关于我</p>
-              <h1 className="page-title mb-5">我是 Zeno</h1>
-              <p className="max-w-2xl text-base leading-[1.7] text-ink-muted sm:text-lg">
-                从装修现场走出来的人。现在只做一件很窄的事：帮准备签约的业主看清报价里没说清的风险。
-              </p>
-            </div>
-            <div className="flex shrink-0 items-end gap-3">
-              <div className="border-l-[3px] border-[#9a5424] pl-4">
-                <p className="text-[3.5rem] font-bold leading-none tracking-tight text-[#272421]">16</p>
-                <p className="mt-1 text-xs font-semibold uppercase tracking-widest text-[#9a5424]">年装修现场</p>
-              </div>
-              <div className="mb-1 h-8 w-px bg-[#e7ded3]" />
-              <div>
-                <p className="text-sm font-medium text-[#272421]">报价 · 预算 · 合同</p>
-                <p className="text-xs text-[#7b6d5d]">经验做成工具和服务</p>
-              </div>
-            </div>
-          </div>
+      <section className="border-b border-border bg-surface-warm">
+        <Container size="content" className="py-14 sm:py-16">
+          <p className="page-label mb-4">关于 ZenoAIHome</p>
+          <h1 className="page-title mb-5">为什么 ZenoAIHome 只做装修签约前风险判断</h1>
+          <p className="max-w-3xl text-base leading-[1.85] text-ink-muted sm:text-lg">
+            装修真正让业主被动的时刻，往往不是开工当天，而是签约前：报价没说清、合同没写清、付款节点没绑定验收，后面就会变成增项、扯皮和后悔。
+          </p>
         </Container>
-      </div>
+      </section>
 
       <Container size="content" className="py-14 sm:py-16">
-        <section className="mb-12">
-          <h2 className="section-heading mb-5">为什么专注签约前判断</h2>
-          <p className="text-base leading-[1.85] text-ink">
-            装修最难的地方，不只是施工本身，而是业主在信息不对称的情况下，要连续做很多高成本、低容错的判断。
-          </p>
-          <p className="mt-4 text-base leading-[1.85] text-ink">
-            我现在只把入口收在一个点上：签约前报价风险初筛。先看清漏项、模糊项、增项口子、付款节点和合同边界，再决定能不能继续签。
-          </p>
-        </section>
-
-        <section className="mb-12">
-          <h2 className="section-heading mb-5">16 年现场积累</h2>
-          <p className="text-base leading-[1.85] text-ink">
-            这些年我跑过工地、盯过施工、看过很多报价单，也处理过不少业主和施工方之间的分歧。
-            现场经验最后沉淀成一种模式识别能力：哪里没写清，后面大概率会出问题。
-          </p>
-          <p className="mt-4 text-base leading-[1.85] text-ink">
-            这个网站不是装修公司官网，也不是泛装修百科。它更像一个签约前判断工作台：文章讲方法，清单帮你对照，工具帮你初筛，服务处理具体材料。
-          </p>
-          <div className="mt-5">
-            <Link href="/blog/zeno-from-renovation-to-opc" className="text-sm text-stone hover:underline underline-offset-2">
-              阅读完整文章：从装修现场到一人公司 →
-            </Link>
+        <section className="mb-14">
+          <h2 className="section-heading mb-5">1. 为什么业主最容易在签约前吃亏</h2>
+          <div className="space-y-4 text-base leading-[1.85] text-ink">
+            <p>
+              普通业主拿到报价时，最容易先看总价。但报价真正危险的地方，常常藏在没写清的范围、材料型号、计量规则、暂估项和“以现场为准”里。
+            </p>
+            <p>
+              这些问题在签约前只是几句话，开工后就可能变成几千、几万的增项，或者变成双方都觉得自己有理的争议。
+            </p>
           </div>
         </section>
 
-        <section className="mb-12">
-          <h2 className="section-heading mb-5">AI 在这里是什么位置</h2>
-          <p className="text-base leading-[1.85] text-ink">
-            AI 是辅助层，不是品牌主叙事。它适合整理资料、生成追问清单、把经验变成可复用的检查流程，但最后的边界判断仍然需要人的经验和克制。
-          </p>
+        <section className="mb-14">
+          <h2 className="section-heading mb-5">2. 为什么报价和合同阶段最值得提前判断</h2>
+          <div className="border border-border bg-surface p-6 sm:p-7">
+            <p className="text-base leading-[1.85] text-ink">
+              因为这是成本最低、话还说得动的阶段。签字前，你还能要求对方把材料、工艺、付款节点、增项流程和口头承诺写清楚；签字后，再争“当时是不是包含”，主动权就少很多。
+            </p>
+          </div>
         </section>
 
-        <section className="mb-12">
-          <h2 className="section-heading mb-5">你可以怎么开始</h2>
-          <p className="text-base leading-[1.85] text-ink">
-            <strong>从免费初筛到人工判断</strong>，按你手里材料完整度选：免费报价初筛 → ¥99 报价风险初查 → ¥299 标准报价快审 → ¥699 深度版签约前判断。
+        <section className="mb-14">
+          <h2 className="section-heading mb-5">3. ZenoAIHome 的判断原则</h2>
+          <div className="grid gap-4 md:grid-cols-3">
+            {principles.map((item) => (
+              <div key={item.title} className="border border-border bg-surface p-5">
+                <h3 className="text-base font-semibold text-ink">{item.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-ink-muted">{item.body}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="mb-14 grid gap-8 lg:grid-cols-[0.42fr_0.58fr]">
+          <div>
+            <h2 className="section-heading mb-5">4. 我们不做什么</h2>
+            <p className="text-sm leading-relaxed text-ink-muted">
+              边界说清楚，服务才不会变味。ZenoAIHome 不把自己包装成万能装修顾问。
+            </p>
+          </div>
+          <div className="space-y-3">
+            {notDo.map((item) => (
+              <div key={item} className="border border-border bg-surface px-5 py-4 text-sm font-medium leading-relaxed text-ink">
+                {item}
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="mb-14">
+          <h2 className="section-heading mb-5">5. 我们能帮你做什么</h2>
+          <div className="grid gap-4 md:grid-cols-2">
+            {canHelp.map((item) => (
+              <div key={item} className="border border-border bg-surface p-5 text-sm leading-relaxed text-ink">
+                {item}
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="border border-border bg-surface-warm p-6 sm:p-8">
+          <h2 className="text-xl font-semibold text-ink">如果你已经拿到报价，先从免费初筛开始。</h2>
+          <p className="mt-3 max-w-2xl text-sm leading-relaxed text-ink-muted">
+            初筛先帮你找出报价里没说清的地方；如果已经准备签约，再考虑人工复核。
           </p>
           <div className="mt-6 flex flex-wrap gap-3">
             <CTA href="/tools/quote-check" label="先做报价初筛" variant="primary" />
-            <CTA href="/pricing" label="看价格路径" variant="secondary" />
-            <CTA href="/services/renovation" label="看人工服务" variant="ghost" />
+            <CTA href="/services/renovation" label="看人工复核服务" variant="secondary" />
           </div>
         </section>
       </Container>

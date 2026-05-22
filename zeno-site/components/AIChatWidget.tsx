@@ -72,12 +72,12 @@ const quickEntriesZh = [
     links: [
       { label: '合同检查模板', href: '/checklists/contract-pre-signing-check' },
       { label: '付款节点检查模板', href: '/checklists/payment-milestone-check' },
-      { label: '深度版签约前判断', href: '/services/renovation#quote-deep' },
+      { label: '签约前深度判断', href: '/services/renovation#quote-deep' },
     ],
   },
   {
     label: '我想人工看一遍',
-    prompt: '我已经有报价材料了，请帮我判断应该选 ¥99 报价风险初查、¥299 标准报价快审，还是 ¥699 深度版签约前判断。',
+    prompt: '我已经有报价材料了，请帮我判断应该选 ¥99 报价风险初查、¥299 标准报价快审，还是 ¥699 签约前深度判断。',
     links: [
       { label: '服务价格', href: '/services/renovation' },
       { label: '报价风险初查', href: '/services/renovation#quote-entry' },

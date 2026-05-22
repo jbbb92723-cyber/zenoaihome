@@ -7,9 +7,9 @@ import StructuredData from '@/components/StructuredData'
 import { getServiceBySlug } from '@/data/services'
 
 export const metadata: Metadata = {
-  title: '装修报价风险快审服务 | ¥99、¥299、¥699 | ZenoAIHome',
+  title: '签约前报价和合同人工复核 | ¥99、¥299、¥699 | ZenoAIHome',
   description:
-    'ZenoAIHome 装修报价风险快审服务：¥99 报价风险初查、¥299 标准报价快审、¥699 深度版签约前判断，帮业主在签字前看清报价、合同和增项风险。',
+    'ZenoAIHome 签约前人工复核服务：¥99 报价风险初查、¥299 标准报价快审、¥699 签约前深度判断，帮业主看清报价、合同和付款节点里的风险。',
   alternates: {
     canonical: 'https://zenoaihome.com/services/renovation',
   },
@@ -44,10 +44,10 @@ const choiceCards = [
   },
   {
     label: '快签合同且有草稿',
-    title: '¥699 深度版签约前判断',
+    title: '¥699 签约前深度判断',
     description: '适合报价、合同、付款节点都已经有，且临近签约。一起看清签字前风险。',
     href: '#quote-deep',
-    action: '看 ¥699 深度版',
+    action: '看 ¥699 深度判断',
   },
 ]
 
@@ -118,7 +118,7 @@ export default function RenovationServicesPage() {
           {
             '@context': 'https://schema.org',
             '@type': 'Service',
-            name: '装修报价风险快审服务',
+            name: '签约前报价和合同人工复核',
             url: 'https://zenoaihome.com/services/renovation',
             description: '帮助业主在签约前看清报价、合同和付款节点里的风险。',
             inLanguage: 'zh-CN',
@@ -158,10 +158,10 @@ export default function RenovationServicesPage() {
           <div className="max-w-4xl">
             <p className="page-label mb-4">装修签约前风险判断</p>
             <h1 className="text-[2.1rem] font-semibold leading-tight tracking-tight text-ink sm:text-5xl">
-              我手里的装修报价，现在该买哪一档判断？
+              签约前，让我们帮你把报价和合同再看一遍
             </h1>
             <p className="mt-5 max-w-3xl text-base leading-relaxed text-ink-muted sm:text-lg">
-              如果你还没有完整报价，先不要买人工服务。先用免费初筛和检查模板。只有当你已经拿到报价、准备继续谈或临近签约时，再进入人工快审。
+              不是帮你砍价，也不是替你选装修公司，而是帮你看清报价、合同和付款节点里的风险。
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <CTA href="/tools/quote-check" label="先做免费报价初筛" variant="primary" />

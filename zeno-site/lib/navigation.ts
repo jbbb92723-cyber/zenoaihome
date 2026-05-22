@@ -73,7 +73,7 @@ export const primaryNav: PrimaryNavItem[] = [
         items: [
           { key: 'quote-risk-initial', zh: { label: '¥99 报价风险初查', href: '/services/renovation#quote-entry', desc: '10 行以内重点报价，先看明显风险' }, en: { label: 'Quote Risk First Pass', href: '/en/services', desc: 'A quick look at the obvious risks' } },
           { key: 'quote-fast', zh: { label: '¥299 标准报价快审', href: '/services/renovation#quote-standard', desc: '完整报价，找漏项、模糊项和增项口子' }, en: { label: 'Standard Quote Review', href: '/en/services', desc: 'For a complete renovation quote' } },
-          { key: 'decision-pack', zh: { label: '¥699 深度签约判断', href: '/services/renovation#quote-deep', desc: '报价、合同、付款节点一起看' }, en: { label: 'Deep Pre-Signing Review', href: '/en/services', desc: 'Quote, contract, and payment milestones together' } },
+          { key: 'decision-pack', zh: { label: '¥699 签约前深度判断', href: '/services/renovation#quote-deep', desc: '报价、合同、付款节点一起看' }, en: { label: 'Deep Pre-Signing Review', href: '/en/services', desc: 'Quote, contract, and payment milestones together' } },
         ],
       },
     ],

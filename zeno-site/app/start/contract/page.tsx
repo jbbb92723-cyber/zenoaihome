@@ -85,7 +85,7 @@ export default function ContractStagePage() {
           { label: '报价初筛工具', href: '/tools/quote-check' },
         ]}
         services={[
-          { label: '深度版签约前判断', href: '/services/renovation#quote-deep' },
+          { label: '签约前深度判断', href: '/services/renovation#quote-deep' },
         ]}
         prev={{ label: '再看钱：预算 + 报价', href: '/start/budget' }}
         next={{ label: '再看施工：开工后盯什么', href: '/start/build' }}

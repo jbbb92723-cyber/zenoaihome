@@ -145,7 +145,7 @@ export const riskSummaries: Record<RiskKey, RiskSummary> = {
     firstStep: '先把家庭成员、作息、收纳、做饭、办公这些真实需求写出来，再回头看方案。',
     resource: { label: '先看合同签约前检查模板', href: '/checklists/contract-pre-signing-check' },
     article: { label: '先看家不是样板间', href: '/blog/02-jia-bu-shi-yangban-jian' },
-    service: { label: '先看深度版签约前判断', href: '/services/renovation#quote-deep' },
+    service: { label: '先看签约前深度判断', href: '/services/renovation#quote-deep' },
   },
 }
 

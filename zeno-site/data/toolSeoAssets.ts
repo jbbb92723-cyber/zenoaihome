@@ -154,7 +154,7 @@ export const toolSeoAssets = {
       { label: '单位换算工具', href: '/tools/unit-converter', desc: '先看墙面面积和房屋面积的区别。' },
       { label: '验收节点向导', href: '/tools/inspection-guide', desc: '油漆完成后检查色差、流挂、裂纹和修补。' },
       { label: '预算分配工具', href: '/tools/budget-structure', desc: '把油漆费用放回基础施工或主材选择里。' },
-      { label: '深度版签约前判断', href: '/services/renovation#quote-deep', desc: '报价、合同和付款节点都已经有，且临近签约时再进入服务。' },
+      { label: '签约前深度判断', href: '/services/renovation#quote-deep', desc: '报价、合同和付款节点都已经有，且临近签约时再进入服务。' },
     ],
   },
   inspectionGuide: {

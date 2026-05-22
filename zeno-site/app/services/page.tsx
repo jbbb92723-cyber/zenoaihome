@@ -14,7 +14,7 @@ import { serviceLadder } from '@/data/commercial-ladder'
 export const metadata: Metadata = {
   title: '服务价格 | 签约前风险判断',
   description:
-    'ZenoAIHome 服务价格页。当前主线是装修签约前报价风险判断：免费初筛、¥99 报价风险初查、¥299 标准报价快审、¥699 深度版签约前判断。',
+    'ZenoAIHome 服务价格页。当前主线是装修签约前报价风险判断：免费初筛、¥99 报价风险初查、¥299 标准报价快审、¥699 签约前深度判断。',
   alternates: {
     canonical: 'https://zenoaihome.com/services',
   },
@@ -149,7 +149,7 @@ export default function ServicesPage() {
             {[
               ['先做免费初筛', '把报价里没写清的地方先标出来。', '/tools/quote-check', '去初筛'],
               ['再用风险资料补问题', '风险词典、项目风险库和检查模板，帮你把问题问具体。', '/risk-dictionary', '看风险词典'],
-              ['最后选服务', '¥99 报价风险初查、¥299 标准报价快审、¥699 深度版签约前判断，按材料完整度选。', '/services/renovation', '看怎么选'],
+              ['最后选服务', '¥99 报价风险初查、¥299 标准报价快审、¥699 签约前深度判断，按材料完整度选。', '/services/renovation', '看怎么选'],
             ].map(([title, desc, href, action], index) => (
               <Link key={title} href={href} className="group border border-border bg-surface p-6 transition-colors hover:border-stone hover:bg-surface-warm">
                 <p className="text-xs font-semibold uppercase tracking-widest text-stone">0{index + 1}</p>
@@ -165,7 +165,7 @@ export default function ServicesPage() {
           <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-ink-faint">主价格路径</p>
           <h2 className="mb-3 text-lg font-semibold text-ink">报价看不懂，先从这条路走。</h2>
           <p className="mb-6 max-w-3xl text-sm leading-relaxed text-ink-muted">
-            免费初筛负责先找方向；¥99 初查看重点报价明显风险；¥299 快审看完整报价里的漏项、模糊项和增项口子；¥699 深度版把报价、合同和付款节点一起看。
+            免费初筛负责先找方向；¥99 初查看重点报价明显风险；¥299 快审看完整报价里的漏项、模糊项和增项口子；¥699 深度判断把报价、合同和付款节点一起看。
           </p>
 
           <div className="grid gap-8 lg:grid-cols-[2fr_0.9fr]">
@@ -183,7 +183,7 @@ export default function ServicesPage() {
                 {[
                   ['¥99 报价风险初查', '刚拿到报价，只想先看明显风险。'],
                   ['¥299 标准报价快审', '已有完整报价，准备继续谈或签约。'],
-                  ['¥699 深度版签约前判断', '报价、合同和付款节点都已经有，且临近签约。'],
+                  ['¥699 签约前深度判断', '报价、合同和付款节点都已经有，且临近签约。'],
                 ].map(([title, desc]) => (
                   <div key={title} className="border border-border bg-surface p-5">
                     <h3 className="text-base font-semibold text-ink">{title}</h3>

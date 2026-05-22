@@ -29,7 +29,7 @@ const caseGroups: CaseGroup[] = [
     intro: '先看一份报价是怎么被拆开、怎么识别风险、为什么低价不一定更划算。',
     articleSlugs: ['baojia-dan-zenme-kan', 'article-03-04', 'article-03-02'],
     tool: { label: '先做免费报价初筛', href: '/tools/quote-check' },
-    service: { label: '看深度版签约前判断', href: '/services/renovation#quote-deep' },
+    service: { label: '看签约前深度判断', href: '/services/renovation#quote-deep' },
   },
   {
     title: '预算与施工复盘',

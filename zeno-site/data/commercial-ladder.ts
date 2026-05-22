@@ -6,7 +6,7 @@
  * 维护规则：
  * - 改价格 / 改命名 / 增减档位 → 只动这个文件
  * - 三个 variant（compact / full / summary）由 CommercialLadder 组件统一渲染
- * - 主路径只保留：免费初筛 -> ¥99 报价风险初查 -> ¥299 标准报价快审 -> ¥699 深度版签约前判断
+ * - 主路径只保留：免费初筛 -> ¥99 报价风险初查 -> ¥299 标准报价快审 -> ¥699 签约前深度判断
  */
 
 export type LadderTier =
@@ -80,11 +80,11 @@ export const commercialLadder: LadderRung[] = [
     tier: 'paid-high',
     price: '¥699',
     priceNumeric: 699,
-    title: '深度版签约前判断',
+    title: '签约前深度判断',
     whoFor: '报价、合同和付款节点都已经有，且临近签约',
-    delivers: '报价 + 合同 + 付款节点风险判断，附 30 分钟微信语音解读',
+    delivers: '报价风险报告 + 合同/付款节点风险提醒 + 30 分钟语音解读',
     href: '/services/renovation#quote-deep',
-    cta: '看 ¥699 深度版',
+    cta: '看 ¥699 深度判断',
     source: 'service',
     badge: '快签前',
   },
@@ -96,5 +96,5 @@ export const paidLadder = commercialLadder.filter((r) => r.tier !== 'free')
 /** 首页展示完整主路径：免费初筛 -> 三档人工判断 */
 export const homepageLadder: LadderRung[] = commercialLadder
 
-/** 主服务三档：报价风险初查 / 标准报价快审 / 深度版签约前判断 */
+/** 主服务三档：报价风险初查 / 标准报价快审 / 签约前深度判断 */
 export const serviceLadder: LadderRung[] = paidLadder

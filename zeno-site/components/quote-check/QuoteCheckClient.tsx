@@ -117,16 +117,18 @@ function getPrimaryNextStep(score: number, stage: QuoteStage) {
   }
   if (score >= 8) {
     return {
-      label: '看 ¥299 标准版报价快审',
-      href: '/services/renovation#quote-standard',
+      label: '查看人工复核服务',
+      href: '/services/renovation',
       desc: '这份报价不建议直接签。先把缺失边界补齐，再谈价格和优惠。',
+      reviewNote: '如果你已经准备签约，建议做一次人工报价复核。',
     }
   }
   if (score >= 4) {
     return {
-      label: '查看检查模板',
-      href: '/checklists',
+      label: '查看人工复核服务',
+      href: '/services/renovation',
       desc: '可以继续谈，但要先把这些追问问清楚。',
+      reviewNote: '如果你已经准备签约，建议做一次人工报价复核。',
     }
   }
   return {
@@ -226,13 +228,12 @@ export default function QuoteCheckClient() {
       <section className="border-b border-border bg-surface-warm">
         <div className="mx-auto grid max-w-6xl gap-8 px-5 py-14 sm:px-8 lg:grid-cols-[0.62fr_0.38fr] lg:py-16">
           <div className="min-w-0">
-            <p className="text-xs font-semibold uppercase tracking-widest text-stone">签约前报价风险初筛</p>
+            <p className="text-xs font-semibold uppercase tracking-widest text-stone">签约前风险工具</p>
             <h1 className="mt-4 max-w-[22rem] text-[2rem] font-semibold leading-tight tracking-tight text-ink sm:max-w-3xl sm:text-5xl">
-              <span className="block">报价单别急着签，</span>
-              <span className="block">先看哪里没写清。</span>
+              装修报价风险初筛
             </h1>
             <p className="mt-5 max-w-[22rem] text-base leading-relaxed text-ink-muted sm:max-w-2xl sm:text-lg">
-              这不是自动审报价，也不是帮你砍价。它先帮你判断一件事：这份报价在签约前，哪些地方必须追问，哪些内容要写进合同。
+              不用懂装修术语。你只需要回答几个问题，我们会帮你判断这份报价里可能存在的漏项、模糊项和增项风险。
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <a href="#quote-form" className="inline-flex h-11 items-center bg-stone px-5 text-sm font-semibold text-white transition-colors hover:bg-stone/90">
@@ -249,9 +250,9 @@ export default function QuoteCheckClient() {
             <div className="mt-5 grid gap-3">
               {[
                 ['风险等级', '低 / 中 / 高，不直接替你拍板'],
-                ['缺失项数量', '看报价里哪些边界没写清'],
-                ['前三个追问', '先问最影响签约判断的问题'],
-                ['下一步入口', '风险词典、检查模板或对应人工判断'],
+                ['3 个风险', '先看最可能影响签约的缺口'],
+                ['3 个追问', '先问最影响签约判断的问题'],
+                ['是否复核', '判断是否建议进入人工报价复核'],
               ].map(([title, desc]) => (
                 <div key={title} className="border border-border bg-canvas px-4 py-3">
                   <p className="text-sm font-semibold text-ink">{title}</p>
@@ -426,12 +427,12 @@ export default function QuoteCheckClient() {
                     <p className="mt-1 text-sm font-semibold text-ink">{getStageLabel(form.quoteStage)}</p>
                   </div>
                   <div className="bg-surface p-4">
-                    <p className="text-xs font-semibold uppercase tracking-widest text-ink-faint">缺失项</p>
-                    <p className="mt-1 text-sm font-semibold text-ink">{riskItems.length} 项需要追问</p>
+                    <p className="text-xs font-semibold uppercase tracking-widest text-ink-faint">可能风险</p>
+                    <p className="mt-1 text-sm font-semibold text-ink">{Math.min(riskItems.length, 3)} 个重点风险</p>
                   </div>
                   <div className="bg-surface p-4">
-                    <p className="text-xs font-semibold uppercase tracking-widest text-ink-faint">合同材料</p>
-                    <p className="mt-1 text-sm font-semibold text-ink">{form.hasContractDraft ? '已拿到，建议一起核对' : '暂未拿到，先补付款节点'}</p>
+                    <p className="text-xs font-semibold uppercase tracking-widest text-ink-faint">人工复核</p>
+                    <p className="mt-1 text-sm font-semibold text-ink">{riskScore >= 4 && form.quoteStage !== 'alreadyStarted' ? '建议准备签约前复核' : '可先自查合同和付款节点'}</p>
                   </div>
                 </div>
 
@@ -449,8 +450,8 @@ export default function QuoteCheckClient() {
                 <div className="border border-border bg-canvas p-6">
                   <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-start">
                     <div>
-                      <p className="text-xs font-semibold uppercase tracking-widest text-stone">前三个最该追问的问题</p>
-                      <h3 className="mt-2 text-lg font-semibold text-ink">先问这些，不要一上来只谈优惠。</h3>
+                      <p className="text-xs font-semibold uppercase tracking-widest text-stone">3 个风险 + 3 个追问</p>
+                      <h3 className="mt-2 text-lg font-semibold text-ink">先看风险，再问问题，不要一上来只谈优惠。</h3>
                     </div>
                     <span className="w-fit bg-stone-pale px-3 py-1 text-xs font-semibold text-stone">{riskScore}/{maxScore} 风险分</span>
                   </div>
@@ -480,6 +481,9 @@ export default function QuoteCheckClient() {
                   <Link href={primaryNextStep.href} className="group border border-stone bg-stone p-6 text-white transition-colors hover:bg-stone/90">
                     <p className="text-xs font-semibold uppercase tracking-widest text-white/65">建议下一步</p>
                     <h3 className="mt-2 text-xl font-semibold">{primaryNextStep.label}</h3>
+                    {'reviewNote' in primaryNextStep && primaryNextStep.reviewNote && (
+                      <p className="mt-3 text-sm font-semibold leading-relaxed text-white">{primaryNextStep.reviewNote}</p>
+                    )}
                     <p className="mt-3 text-sm leading-relaxed text-white/76">{primaryNextStep.desc}</p>
                     <span className="mt-5 inline-flex text-sm font-semibold">进入这一步 -&gt;</span>
                   </Link>
@@ -534,7 +538,7 @@ export default function QuoteCheckClient() {
               ['免费', '报价初筛', '先知道哪里没写清'],
               ['¥99', '报价风险初查', '3 个高风险点 + 5 个追问问题'],
               ['¥299', '标准报价快审', '漏项、模糊项、增项口子'],
-              ['¥699', '深度版签约前判断', '报价、合同、付款节点一起看'],
+              ['¥699', '签约前深度判断', '报价、合同、付款节点一起看'],
             ].map(([price, title, desc]) => (
               <div key={title} className="border border-border bg-canvas p-4">
                 <p className="text-xs font-semibold uppercase tracking-widest text-stone">{price}</p>

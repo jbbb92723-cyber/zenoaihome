@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     template: '%s · ZenoAIHome',
   },
   description:
-    'ZenoAIHome 帮业主在签约前看懂装修报价、合同和增项风险。先做免费初筛，再按材料进入 ¥99 报价风险初查、¥299 标准报价快审或 ¥699 深度版签约前判断。',
+    'ZenoAIHome 帮业主在签约前看懂装修报价、合同和增项风险。先做免费初筛，再按材料进入 ¥99 报价风险初查、¥299 标准报价快审或 ¥699 签约前深度判断。',
   keywords: ['装修报价', '装修签约', '报价风险', '装修预算', '装修合同', '报价审核', '签约前判断'],
   authors: [{ name: 'Zeno' }],
   openGraph: {
