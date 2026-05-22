@@ -117,8 +117,8 @@ function getPrimaryNextStep(score: number, stage: QuoteStage) {
   }
   if (score >= 8) {
     return {
-      label: '看报价风险初筛',
-      href: '/services/renovation#quote-entry',
+      label: '看 ¥299 标准版报价快审',
+      href: '/services/renovation#quote-standard',
       desc: '这份报价不建议直接签。先把缺失边界补齐，再谈价格和优惠。',
     }
   }
@@ -532,9 +532,9 @@ export default function QuoteCheckClient() {
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {[
               ['免费', '报价初筛', '先知道哪里没写清'],
-              ['¥99', '报价风险初筛', '主要风险点 + 追问清单'],
-              ['¥299', '合同风险初筛', '模糊条款 + 修改建议方向'],
-              ['¥699', '报价对比判断', '差异分析 + 风险对比'],
+              ['¥99', '报价风险初查', '3 个高风险点 + 5 个追问问题'],
+              ['¥299', '标准报价快审', '漏项、模糊项、增项口子'],
+              ['¥699', '深度版签约前判断', '报价、合同、付款节点一起看'],
             ].map(([price, title, desc]) => (
               <div key={title} className="border border-border bg-canvas p-4">
                 <p className="text-xs font-semibold uppercase tracking-widest text-stone">{price}</p>

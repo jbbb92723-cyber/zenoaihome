@@ -115,7 +115,7 @@ export default function ResourcesPage() {
           <p className="text-xs font-semibold uppercase tracking-widest text-stone">先走主路径</p>
           <h2 className="mt-3 text-xl font-semibold tracking-tight text-ink">如果你手上已经有报价，先不要乱翻资料。</h2>
           <p className="mt-3 text-sm leading-relaxed text-ink-muted">
-            先做免费报价初筛，再用风险词典和检查模板补问题；如果仍然看不明白，再按材料情况进入报价风险初筛、合同风险初筛或报价对比判断。
+            先做免费报价初筛，再用风险词典和检查模板补问题；如果仍然看不明白，再按材料情况进入 ¥99 初查、¥299 快审或 ¥699 深度判断。
           </p>
           <div className="mt-5 flex flex-wrap gap-3">
             <CTA href="/tools/quote-check" label="先做报价初筛" variant="primary" />
@@ -239,7 +239,7 @@ export default function ResourcesPage() {
           <div className="mt-5 flex flex-wrap gap-3">
             <CTA href="/tools/quote-check" label="回到报价初筛" variant="primary" />
             <CTA href="/checklists" label="看检查模板" variant="secondary" />
-            <CTA href="/services/renovation#quote-standard" label="看合同风险初筛" variant="ghost" />
+            <CTA href="/services/renovation#quote-standard" label="看标准报价快审" variant="ghost" />
           </div>
         </section>
       </Container>

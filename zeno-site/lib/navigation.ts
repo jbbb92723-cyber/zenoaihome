@@ -44,22 +44,22 @@ export const primaryNav: PrimaryNavItem[] = [
   {
     key: 'quote-risk',
     zh: { label: '看报价', href: '/risk-dictionary' },
-    en: { label: 'Quote Check', href: '/en/tools' },
+    en: { label: 'Quote Risks', href: '/en/tools' },
   },
   {
     key: 'contract-risk',
     zh: { label: '看合同', href: '/checklists' },
-    en: { label: 'Risk Language', href: '/en/tools#risk-language' },
+    en: { label: 'Contract Checks', href: '/en/tools#checklists' },
   },
   {
     key: 'addon-risk',
     zh: { label: '看增项', href: '/project-risks' },
-    en: { label: 'Checklists', href: '/en/tools#checklists' },
+    en: { label: 'Add-On Risks', href: '/en/tools#project-risks' },
   },
   {
     key: 'risk-tools',
     zh: { label: '风险工具', href: '/tools/quote-check' },
-    en: { label: 'Project Risks', href: '/en/tools#project-risks' },
+    en: { label: 'Risk Tool', href: '/en/tools' },
   },
   {
     key: 'services',
@@ -68,12 +68,12 @@ export const primaryNav: PrimaryNavItem[] = [
     groups: [
       {
         key: 'all-services',
-        zh: { label: '签约前人工判断', desc: '报价、合同、付款节点一起看清' },
+        zh: { label: '签约前人工判断', desc: '从重点初查到深度判断，按材料完整度选择' },
         en: { label: 'Expert Review', desc: 'Use the free check first. Review only when the paperwork is ready.' },
         items: [
-          { key: 'quote-risk-initial', zh: { label: '报价风险初筛', href: '/services/renovation#quote-entry', desc: '看报价有没有明显坑' }, en: { label: 'Free Quote Risk Check', href: '/en/tools', desc: 'Start with a lightweight first pass' } },
-          { key: 'quote-fast', zh: { label: '合同风险初筛', href: '/services/renovation#quote-standard', desc: '看口头承诺和付款节点有没有写清' }, en: { label: 'Standard Quote Review', href: '/en/services', desc: 'For a complete renovation quote' } },
-          { key: 'decision-pack', zh: { label: '报价对比判断', href: '/services/renovation#quote-deep', desc: '2-3 家报价差异和风险对比' }, en: { label: 'Deep Pre-Signing Review', href: '/en/services', desc: 'Quote, contract, and payment milestones' } },
+          { key: 'quote-risk-initial', zh: { label: '¥99 报价风险初查', href: '/services/renovation#quote-entry', desc: '10 行以内重点报价，先看明显风险' }, en: { label: 'Quote Risk First Pass', href: '/en/services', desc: 'A quick look at the obvious risks' } },
+          { key: 'quote-fast', zh: { label: '¥299 标准报价快审', href: '/services/renovation#quote-standard', desc: '完整报价，找漏项、模糊项和增项口子' }, en: { label: 'Standard Quote Review', href: '/en/services', desc: 'For a complete renovation quote' } },
+          { key: 'decision-pack', zh: { label: '¥699 深度签约判断', href: '/services/renovation#quote-deep', desc: '报价、合同、付款节点一起看' }, en: { label: 'Deep Pre-Signing Review', href: '/en/services', desc: 'Quote, contract, and payment milestones together' } },
         ],
       },
     ],

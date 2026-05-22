@@ -176,7 +176,7 @@ export default function StartPage() {
               </p>
               <h3 className="text-lg font-semibold text-ink mb-3">卡住了，再进入三档人工判断</h3>
               <p className="text-sm text-ink-muted leading-relaxed mb-5">
-                报价看不懂，看报价风险初筛；合同快签了，看合同风险初筛；有多家报价，再看报价对比判断。
+                只有几行重点报价，看 ¥99 初查；已有完整报价，看 ¥299 快审；报价、合同和付款节点都齐了，再看 ¥699 深度判断。
               </p>
               <CTA href="/services/renovation" label="看服务价格" variant="secondary" />
             </div>

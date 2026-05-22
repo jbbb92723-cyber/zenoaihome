@@ -3,9 +3,9 @@ import HomePageGptSkill from '@/components/home/HomePageGptSkill'
 import StructuredData from '@/components/StructuredData'
 
 export const metadata: Metadata = {
-  title: '装修签约前报价风险初筛 | ZenoAIHome',
+  title: '签约前装修报价风险判断 | ZenoAIHome',
   description:
-    'ZenoAIHome 帮业主在签约前看懂装修报价、合同和增项风险。先做免费报价风险初筛，再决定是否需要报价、合同或多家报价的人工判断。',
+    'ZenoAIHome 帮业主在签约前看懂装修报价、合同和增项风险。先做免费报价风险初筛，再决定是否需要 ¥99 初查、¥299 快审或 ¥699 深度判断。',
   alternates: {
     canonical: 'https://zenoaihome.com/',
   },

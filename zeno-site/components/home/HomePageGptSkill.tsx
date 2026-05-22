@@ -1,20 +1,17 @@
 ﻿"use client"
 
 import Link from 'next/link'
-import Image from 'next/image'
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import {
   ArrowRight,
   Calculator,
-  CheckCircle,
   ClipboardText,
   FileText,
   HouseLine,
   MagnifyingGlass,
   Notebook,
   ShieldCheck,
-  Sparkle,
   UploadSimple,
   UsersThree,
   Wrench,
@@ -70,33 +67,33 @@ const problemCards: Array<{
 }> = [
   {
     icon: MagnifyingGlass,
-    title: '报价看不懂，但快要签了',
-    body: '总价能看见，漏项、单价、工艺和增项边界还没看清。',
+    title: '总价看起来低，但怕后面增项',
+    body: '报价低不一定危险，真正要看哪些没包含、哪些暂估、哪些按实结算。',
     href: '/tools/quote-check',
   },
   {
     icon: Calculator,
-    title: '低价很诱人，但怕后面增项',
-    body: '便宜本身不是问题，真正要看哪些按实结算、哪些暂估、哪些另计。',
+    title: '材料写得模糊，不知道以后会不会被替换',
+    body: '只写品牌、环保材料、同等档次，不写型号和规格，后期很容易扯皮。',
     href: '/risk-dictionary',
   },
   {
     icon: ClipboardText,
-    title: '合同快签了，但追问顺序乱',
-    body: '哪些要写进合同，哪些要先拍照留证，哪些不能只听口头承诺。',
-    href: '/services/renovation#quote-standard',
+    title: '销售承诺很多，但合同里没写清',
+    body: '口头说都包含，不等于合同里有保障。签约前要把关键承诺落到纸面。',
+    href: '/checklists',
   },
   {
     icon: Notebook,
-    title: '项目很多，不知道漏了什么',
-    body: '按水电、防水、找平、拆除、瓷砖等项目，看报价里应该写清什么。',
-    href: '/project-risks',
+    title: '几家报价差很多，不知道怎么比',
+    body: '不能只比总价，要看包含范围、漏项、付款节点和增项入口。',
+    href: '/services/renovation#quote-standard',
   },
   {
     icon: HouseLine,
-    title: '已经临近签约，想人工看一遍',
-    body: '报价、合同草稿和付款节点都有了，再进入对应档位的人工判断。',
-    href: '/services/renovation',
+    title: '快签约了，想找人再看一遍',
+    body: '报价、合同和付款节点都有了，就适合做一次签约前风险判断。',
+    href: '/services/renovation#quote-deep',
   },
 ]
 
@@ -106,39 +103,18 @@ const frameworkSteps: Array<{
   title: string
   body: string
 }> = [
-  { number: '01', icon: MagnifyingGlass, title: '看完整性', body: '报价有没有拆到空间、工种、数量和单价。' },
-  { number: '02', icon: Calculator, title: '看异常价', body: '低价项、模糊项和明显偏离常识的单价。' },
-  { number: '03', icon: FileText, title: '看漏项', body: '哪些项目现在没写，后面最容易变成增项。' },
-  { number: '04', icon: ClipboardText, title: '看边界', body: '材料、工艺、变更、验收和付款有没有说清。' },
-  { number: '05', icon: Notebook, title: '看取舍', body: '预算有限时，哪些保底，哪些可以缓。' },
-  { number: '06', icon: ShieldCheck, title: '给追问', body: '最后输出签约前应该问清的具体问题。' },
+  { number: '01', icon: MagnifyingGlass, title: '看漏项', body: '识别哪些项目没写，后面容易变成增项。' },
+  { number: '02', icon: Calculator, title: '看模糊项', body: '材料、工艺、数量和面积有没有说清。' },
+  { number: '03', icon: FileText, title: '看风险词', body: '暂估、另计、按实结算和现场为准要重点追问。' },
+  { number: '04', icon: ClipboardText, title: '看付款节点', body: '付款有没有和验收绑定，尾款是否留得住。' },
+  { number: '05', icon: Notebook, title: '看合同边界', body: '口头承诺、替换规则、延期和质保有没有落字。' },
+  { number: '06', icon: ShieldCheck, title: '给追问清单', body: '把签约前必须问清的问题整理成可发出去的话。' },
 ]
 
 const quoteSignals = [
   { label: '常见漏项', value: '5 类', width: '72%', note: '水电、防水、找平、拆改、搬运——没写清就是增项入口', color: '#9a5424' },
   { label: '追问清单', value: '12 项', width: '88%', note: '签字前该逐项问清的具体条目', color: '#3f6258' },
   { label: '付款节点', value: '4 个', width: '56%', note: '开工、水电、泥木、竣工——每个都需要验收对齐', color: '#31485c' },
-]
-
-const caseStudies = [
-  {
-    tag: '低价陷阱',
-    title: '报价便宜 3 万，为什么我反而建议先别签',
-    summary: '总价 8.2 万看起来很有竞争力，但水电按实结、防水面积未写、垃圾外运不含——三项加起来预计增项 2.8–4.1 万。签约前追问 6 个点后，业主决定先让对方补齐再比较。',
-    result: '补齐后实际报价 11.7 万，高于另一家的 10.9 万。',
-  },
-  {
-    tag: '增项风险',
-    title: '合同写了按实际结算，签完多花了 4.2 万',
-    summary: '合同里水电改造写"按实际发生量结算"，没有封顶、没有预估、没有单价明细。施工到一半业主才知道每米线管单价比市场高 40%，但已经开槽无法更换。',
-    result: '后续协商扣回 0.8 万，其余 3.4 万只能认。',
-  },
-  {
-    tag: '付款节点',
-    title: '付款 70% 才到贴砖阶段，验收时已经没有筹码',
-    summary: '合同约定开工 40%、水电 30%、泥木 20%、竣工 10%。泥木验收发现墙砖空鼓率超标，但业主只剩 10% 尾款，施工方态度强硬不愿返工。',
-    result: '建议的节点比例是 30/25/25/20，验收前始终保留 ≥20% 作为谈判空间。',
-  },
 ]
 
 const toolCards: Array<{
@@ -150,31 +126,31 @@ const toolCards: Array<{
 }> = [
   {
     icon: ShieldCheck,
-    title: '报价初筛工具',
-    body: '业主先把报价里的漏项、模糊项和增项口子筛一遍。',
-    action: '先看报价风险',
+    title: '报价风险初筛',
+    body: '先把报价里的漏项、模糊项、增项口子和付款风险筛一遍。',
+    action: '免费生成追问清单',
     href: '/tools/quote-check',
   },
   {
-    icon: ClipboardText,
-    title: '报价审核清单',
-    body: '签约前按项目、工艺、材料、变更和付款逐项核对。',
-    action: '领检查清单',
-    href: '/checklists/quote-initial-check',
-  },
-  {
-    icon: Calculator,
+    icon: FileText,
     title: '风险词典',
-    body: '先看按实结算、暂估、同档替换、付款节点这些词到底危险在哪里。',
+    body: '查按实结算、暂估、同档替换、最终以现场为准这些高频风险词。',
     action: '查风险词',
     href: '/risk-dictionary',
   },
   {
-    icon: Notebook,
+    icon: ClipboardText,
     title: '签约前检查模板',
-    body: '报价、合同、付款节点、水电和老房翻新都可以逐项对照。',
+    body: '报价、合同、付款节点、水电和老房翻新，都可以照着逐项问。',
     action: '看检查模板',
     href: '/checklists',
+  },
+  {
+    icon: Wrench,
+    title: '项目风险库',
+    body: '按水电、防水、找平、拆除、瓷砖等项目，看签约前该写清什么。',
+    action: '看项目风险',
+    href: '/project-risks',
   },
 ]
 
@@ -186,34 +162,53 @@ const judgmentAssetCards: Array<{
 }> = [
   {
     icon: FileText,
-    title: '报价风险词典',
-    body: '解释报价里最容易引发增项和扯皮的词，例如按实结算、暂估、品牌同档、最终以现场为准。',
-    href: '/risk-dictionary',
-  },
-  {
-    icon: Wrench,
-    title: '施工项目风险库',
-    body: '按水电、防水、找平、拆除、瓷砖等项目，查看报价里应该写清什么。',
-    href: '/project-risks',
-  },
-  {
-    icon: ClipboardText,
-    title: '签约前检查模板',
-    body: '报价、合同、付款节点、水电、老房翻新等模板，拿到报价后可以逐项对照。',
-    href: '/checklists',
+    title: '按实结算',
+    body: '看起来公平，实际容易把数量、范围和最终金额都留到施工后再算。',
+    href: '/risk-dictionary/actual-settlement-change-order-risk',
   },
   {
     icon: ShieldCheck,
-    title: '报价风险报告模板',
-    body: '人工判断会输出结构化报告，也会反过来优化风险规则库。',
-    href: '/services/renovation',
+    title: '材料品牌型号缺失',
+    body: '只写品牌或同档材料，不写型号规格，后期替换时很难判断是不是缩水。',
+    href: '/risk-dictionary/missing-material-brand-model',
+  },
+  {
+    icon: ClipboardText,
+    title: '口头承诺未写入合同',
+    body: '销售说过、群里聊过，都不等于合同有保障，关键承诺必须写成附件或备注。',
+    href: '/risk-dictionary/oral-promise-not-written',
+  },
+  {
+    icon: Wrench,
+    title: '增项确认流程缺失',
+    body: '没有书面确认、单价和业主同意流程，施工中的小变更很容易变成大账单。',
+    href: '/risk-dictionary/change-order-confirmation-missing',
   },
 ]
 
 const trustItems: Array<{ icon: IconComponent; title: string; body: string }> = [
-  { icon: ShieldCheck, title: '不做泛装修百科', body: '只聚焦报价、合同和增项风险。' },
-  { icon: Wrench, title: '不替装修公司背书', body: '只帮业主看清风险点和追问方向。' },
-  { icon: UsersThree, title: '不制造焦虑', body: '只给签约前能用的追问清单。' },
+  { icon: ShieldCheck, title: '不做泛装修百科', body: '我们只聚焦报价、合同和增项这些签约前最容易出问题的地方。' },
+  { icon: Wrench, title: '不替装修公司背书', body: '我们不判断哪家公司一定靠谱，只帮你看清报价和合同里的风险点。' },
+  { icon: UsersThree, title: '不制造焦虑', body: '每个风险都要落到可追问的问题上，而不是吓你不要装修。' },
+]
+
+const homeFaqs = [
+  {
+    question: '免费报价风险初筛能替代人工审核吗？',
+    answer: '不能。免费初筛适合先找明显风险和追问方向；如果已经准备签约、报价较复杂，再进入人工复核。',
+  },
+  {
+    question: '没有完整报价，可以买人工服务吗？',
+    answer: '不建议。没有报价时很容易变成泛泛咨询，先用风险词典和检查模板把材料补齐更划算。',
+  },
+  {
+    question: '你们会替我砍价或推荐装修公司吗？',
+    answer: '不会。ZenoAIHome 不代谈判、不替装修公司背书，只帮业主在签约前把没说清的风险看出来。',
+  },
+  {
+    question: '结果可以直接发给装修公司吗？',
+    answer: '建议发追问清单和确认话术，不一定要发完整判断。重点是让对方把边界写进报价、合同或补充说明。',
+  },
 ]
 
 /* ─── Reusable Components ─── */
@@ -484,9 +479,9 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
               <span className="h-px w-28 bg-[#dfc5ac]" />
             </p>
             <h2 className="mt-6 text-[clamp(2rem,4vw,3.2rem)] font-semibold leading-tight tracking-tight text-ink [text-wrap:balance]">
-              我先看六件事，不先制造焦虑。
+              看报价、看合同、看增项。
             </h2>
-            <p className="mt-4 text-base leading-8 text-ink-muted">完整性、异常价、漏项、边界、取舍、追问。看完再决定要不要继续谈。</p>
+            <p className="mt-4 text-base leading-8 text-ink-muted">先把漏项、模糊项、风险词、付款节点和合同边界看清，最后落到一份签约前追问清单。</p>
           </div>
 
           <motion.div
@@ -596,12 +591,12 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
       <AnimatedSection className="border-b border-border bg-surface py-20 sm:py-24">
         <div className="mx-auto max-w-[1240px] px-5 sm:px-8 lg:px-12">
           <div className="mx-auto max-w-4xl text-center">
-            <p className="text-sm font-medium tracking-[0.18em] text-stone">04.2 / 判断资产</p>
+            <p className="text-sm font-medium tracking-[0.18em] text-stone">05 / 风险词</p>
             <h2 className="mt-5 text-[clamp(2rem,4vw,3.2rem)] font-semibold leading-tight tracking-tight text-ink [text-wrap:balance]">
-              ZenoAIHome 不只是看一份报价，而是在沉淀一套签约前判断系统
+              签约前先看懂这些风险词。
             </h2>
             <p className="mt-4 text-base leading-8 text-ink-muted">
-              这些不是装修百科，而是帮业主在签字前判断“哪些没说清、哪些容易增项、哪些必须写进合同”的实用资产。
+              这些不是装修百科，而是报价里最容易引发增项、扯皮和后悔的词。先看懂，再决定要不要签。
             </p>
           </div>
 
@@ -649,124 +644,15 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
         </div>
       </AnimatedSection>
 
-      {/* ══════ Section 04.5: Sample Deliverables — Social Proof ══════ */}
-      <AnimatedSection className="border-b border-border bg-surface py-20 sm:py-24">
-        <div className="mx-auto max-w-[1240px] px-5 sm:px-8 lg:px-12">
-          <div className="mx-auto max-w-3xl text-center">
-            <p className="text-sm font-medium tracking-[0.18em] text-stone">04.5 / 你会拿到什么</p>
-            <h2 className="mt-5 text-[clamp(2rem,4vw,3.2rem)] font-semibold leading-tight tracking-tight text-ink [text-wrap:balance]">
-              不只是建议，是可以拿去用的文件。
-            </h2>
-            <p className="mt-4 text-base leading-8 text-ink-muted">以下是脱敏样张。付费服务交付的是基于你真实报价单生成的完整版。</p>
-          </div>
-
-          <motion.div
-            className="mt-12 grid grid-cols-1 gap-5 lg:grid-cols-3"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-60px' }}
-            variants={staggerContainer}
-          >
-            {[
-              {
-                src: '/images/services/sample-risk-report.svg',
-                alt: '报价风险报告脱敏样张',
-                label: '报价风险报告',
-                desc: '风险等级 + 漏项 + 模糊项 + 异常单价，一页看清。',
-              },
-              {
-                src: '/images/services/sample-followup-checklist.svg',
-                alt: '追问清单脱敏样张',
-                label: '签约前追问清单',
-                desc: '逐项列出该问施工方的具体问题，对应风险编号。',
-              },
-              {
-                src: '/images/services/sample-communication-script.svg',
-                alt: '话术示例脱敏样张',
-                label: '话术示例',
-                desc: '可以直接发给装修公司的追问话术，不暴露来源。',
-              },
-            ].map((item) => (
-              <motion.div key={item.label} variants={staggerItem} className="overflow-hidden border border-border bg-white">
-                <div className="relative aspect-[4/3] border-b border-border bg-canvas">
-                  <Image
-                    src={item.src}
-                    alt={item.alt}
-                    fill
-                    sizes="(max-width: 1024px) 100vw, 33vw"
-                    className="object-cover"
-                  />
-                </div>
-                <div className="p-5">
-                  <p className="text-xs font-semibold uppercase tracking-widest text-stone">{item.label}</p>
-                  <p className="mt-2 text-sm leading-relaxed text-ink-muted">{item.desc}</p>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-
-          <div className="mt-10 text-center">
-            <ActionLink href="/tools/quote-check">
-              <UploadSimple size={18} aria-hidden />
-              先做免费报价初筛，看完再决定
-            </ActionLink>
-          </div>
-        </div>
-      </AnimatedSection>
-
-      {/* ══════ Section 04.8: Case Studies — Trust through real examples ══════ */}
-      <AnimatedSection className="border-b border-border py-20 sm:py-24">
-        <div className="mx-auto max-w-[1240px] px-5 sm:px-8 lg:px-12">
-          <div className="mx-auto max-w-3xl text-center">
-            <p className="text-sm font-medium tracking-[0.18em] text-stone">04.8 / 真实案例</p>
-            <h2 className="mt-5 text-[clamp(2rem,4vw,3.2rem)] font-semibold leading-tight tracking-tight text-ink [text-wrap:balance]">
-              这些问题，都是签约前能避开的。
-            </h2>
-            <p className="mt-4 text-base leading-8 text-ink-muted">下面三个案例都是真实服务中遇到的情况，细节已脱敏，风险类型和金额保持原样。</p>
-          </div>
-
-          <motion.div
-            className="mt-12 grid grid-cols-1 gap-5 lg:grid-cols-3"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-60px' }}
-            variants={staggerContainer}
-          >
-            {caseStudies.map((item) => (
-              <motion.div
-                key={item.title}
-                variants={staggerItem}
-                className="flex flex-col border border-border bg-surface p-7"
-                style={{ boxShadow: '0 12px 40px rgba(67,45,26,0.05)' }}
-              >
-                <p className="inline-flex w-fit border border-stone-light bg-surface-warm px-3 py-1 text-xs font-semibold text-stone">{item.tag}</p>
-                <h3 className="mt-4 text-lg font-semibold leading-snug text-ink">{item.title}</h3>
-                <p className="mt-4 flex-1 text-sm leading-7 text-ink-muted">{item.summary}</p>
-                <div className="mt-5 border-t border-border pt-4">
-                  <p className="text-xs font-semibold uppercase tracking-widest text-stone">结果</p>
-                  <p className="mt-2 text-sm leading-relaxed text-ink-muted">{item.result}</p>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-
-          <div className="mt-10 text-center">
-            <ActionLink href="/services/renovation" variant="secondary">
-              看我的判断服务边界
-            </ActionLink>
-          </div>
-        </div>
-      </AnimatedSection>
-
       {/* ══════ Section 05: Services — 2x2 Grid ══════ */}
       <AnimatedSection className="relative isolate overflow-hidden border-b border-border bg-surface py-20 sm:py-24">
         <div className="relative mx-auto max-w-[1320px] px-5 sm:px-8 lg:px-12">
           <div className="mx-auto max-w-4xl text-center">
-            <p className="text-sm font-medium tracking-[0.18em] text-stone">05 / 服务</p>
+            <p className="text-sm font-medium tracking-[0.18em] text-stone">06 / 服务</p>
             <h2 className="mt-5 text-[clamp(2rem,4vw,3.2rem)] font-semibold leading-tight tracking-tight text-ink [text-wrap:balance]">
-              不是越贵越好，看你现在卡在哪一步。
+              如果准备签约，可以让我们帮你再看一遍。
             </h2>
-            <p className="mt-4 text-base leading-8 text-ink-muted">看不懂报价，看报价风险初筛；准备签合同，看合同风险初筛；有 2-3 家报价，看报价对比判断。</p>
+            <p className="mt-4 text-base leading-8 text-ink-muted">不是替你签字，也不是替你砍价。人工复核只做一件事：把报价、合同和付款节点里没说清的风险列出来。</p>
           </div>
 
           {/* 统一商业梯子：data/commercial-ladder.ts 是单一真源 */}
@@ -840,7 +726,7 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
             viewport={{ once: true, margin: '-80px' }}
             variants={staggerContainer}
           >
-            <motion.p variants={staggerItem} className="text-sm font-medium tracking-[0.18em] text-stone">06</motion.p>
+            <motion.p variants={staggerItem} className="text-sm font-medium tracking-[0.18em] text-stone">07 / 信任</motion.p>
             <motion.h2 variants={staggerItem} className="mt-5 text-[clamp(2rem,4vw,3.2rem)] font-semibold leading-tight tracking-tight text-ink [text-wrap:balance]">
               我们关注的不是装修知识，而是签约前判断。
             </motion.h2>
@@ -870,6 +756,28 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
               不做泛装修百科，不替装修公司背书，不制造焦虑；只帮你把签约前能问清的问题先问清。
             </motion.p>
           </motion.div>
+        </div>
+      </AnimatedSection>
+
+      {/* ══════ Section 07: FAQ ══════ */}
+      <AnimatedSection className="border-b border-border py-20 sm:py-24">
+        <div className="mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-12">
+          <div className="mx-auto max-w-3xl text-center">
+            <p className="text-sm font-medium tracking-[0.18em] text-stone">08 / FAQ</p>
+            <h2 className="mt-5 text-[clamp(2rem,4vw,3.2rem)] font-semibold leading-tight tracking-tight text-ink [text-wrap:balance]">
+              业主常见问题
+            </h2>
+            <p className="mt-4 text-base leading-8 text-ink-muted">先把边界说清楚，再决定要不要继续看、继续问、继续签。</p>
+          </div>
+
+          <div className="mt-12 grid gap-4 sm:grid-cols-2">
+            {homeFaqs.map((item) => (
+              <div key={item.question} className="border border-border bg-surface p-6">
+                <h3 className="text-base font-semibold text-ink">{item.question}</h3>
+                <p className="mt-3 text-sm leading-7 text-ink-muted">{item.answer}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </AnimatedSection>
     </main>

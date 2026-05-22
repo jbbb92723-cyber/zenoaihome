@@ -14,7 +14,7 @@ import { serviceLadder } from '@/data/commercial-ladder'
 export const metadata: Metadata = {
   title: '服务价格 | 签约前风险判断',
   description:
-    'ZenoAIHome 服务价格页。当前主线是装修签约前风险判断：报价风险初筛、合同风险初筛、报价对比判断。',
+    'ZenoAIHome 服务价格页。当前主线是装修签约前报价风险判断：免费初筛、¥99 报价风险初查、¥299 标准报价快审、¥699 深度版签约前判断。',
   alternates: {
     canonical: 'https://zenoaihome.com/services',
   },
@@ -44,7 +44,7 @@ const entryRoutes = [
   {
     label: '主线 / 装修签约前判断',
     title: '你买的不是咨询时长，是签字前少后悔',
-    description: '先做免费初筛，再按你卡住的位置选择报价风险初筛、合同风险初筛或报价对比判断。',
+    description: '先做免费初筛，再按报价材料完整度选择 ¥99 初查、¥299 快审或 ¥699 深度判断。',
     href: '/services/renovation',
     cta: '看装修签约前路径',
     image: '/images/services/renovation-judgment-proof.svg',
@@ -55,7 +55,7 @@ const serviceFaqs = [
   {
     question: '为什么服务页只保留三档主服务？',
     answer:
-      '当前网站只先打穿签约前判断。三项服务分别对应“看报价有没有坑”“看合同有没有写清”“看多家报价怎么比较”。',
+      '当前网站先打穿签约前报价判断。三项服务分别对应“重点报价初查”“完整报价快审”“报价、合同和付款节点一起看”。',
   },
   {
     question: '什么时候更适合先用工具，而不是直接找我？',
@@ -120,7 +120,7 @@ export default function ServicesPage() {
       <PageHero
         label="服务价格"
         title="签约前风险判断，只保留三项服务。"
-        subtitle="如果你是准备签约的业主，先看自己卡在报价、合同，还是多家报价对比，再决定是否进入人工判断。"
+        subtitle="如果你是准备签约的业主，先看自己手里的报价材料到哪一步，再决定是否进入人工判断。"
         note="还没有完整报价材料时，先用免费初筛，不要急着买人工服务。"
         size="content"
       />
@@ -149,7 +149,7 @@ export default function ServicesPage() {
             {[
               ['先做免费初筛', '把报价里没写清的地方先标出来。', '/tools/quote-check', '去初筛'],
               ['再用风险资料补问题', '风险词典、项目风险库和检查模板，帮你把问题问具体。', '/risk-dictionary', '看风险词典'],
-              ['最后选服务', '报价风险初筛、合同风险初筛、报价对比判断，按你卡住的位置选。', '/services/renovation', '看怎么选'],
+              ['最后选服务', '¥99 报价风险初查、¥299 标准报价快审、¥699 深度版签约前判断，按材料完整度选。', '/services/renovation', '看怎么选'],
             ].map(([title, desc, href, action], index) => (
               <Link key={title} href={href} className="group border border-border bg-surface p-6 transition-colors hover:border-stone hover:bg-surface-warm">
                 <p className="text-xs font-semibold uppercase tracking-widest text-stone">0{index + 1}</p>
@@ -165,7 +165,7 @@ export default function ServicesPage() {
           <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-ink-faint">主价格路径</p>
           <h2 className="mb-3 text-lg font-semibold text-ink">报价看不懂，先从这条路走。</h2>
           <p className="mb-6 max-w-3xl text-sm leading-relaxed text-ink-muted">
-            免费初筛负责先找方向；报价风险初筛看报价有没有坑；合同风险初筛看口头承诺和付款节点有没有写清；报价对比判断看 2-3 家报价怎么选。
+            免费初筛负责先找方向；¥99 初查看重点报价明显风险；¥299 快审看完整报价里的漏项、模糊项和增项口子；¥699 深度版把报价、合同和付款节点一起看。
           </p>
 
           <div className="grid gap-8 lg:grid-cols-[2fr_0.9fr]">
@@ -181,9 +181,9 @@ export default function ServicesPage() {
               <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-stone">怎么选</p>
               <div className="grid gap-3">
                 {[
-                  ['报价风险初筛', '已经拿到装修报价，但看不懂里面有没有坑。'],
-                  ['合同风险初筛', '准备签合同，但担心口头承诺没有写清。'],
-                  ['报价对比判断', '手里有 2-3 家装修公司报价，不知道怎么选。'],
+                  ['¥99 报价风险初查', '刚拿到报价，只想先看明显风险。'],
+                  ['¥299 标准报价快审', '已有完整报价，准备继续谈或签约。'],
+                  ['¥699 深度版签约前判断', '报价、合同和付款节点都已经有，且临近签约。'],
                 ].map(([title, desc]) => (
                   <div key={title} className="border border-border bg-surface p-5">
                     <h3 className="text-base font-semibold text-ink">{title}</h3>

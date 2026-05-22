@@ -50,7 +50,7 @@ const actionKindLabels: Record<'zh' | 'en', Record<ChatActionKind, string>> = {
 const quickEntriesZh = [
   {
     label: '我在看报价单',
-    prompt: '我正在看装修报价单，请先帮我分流：我应该先看哪些风险、用哪个工具、拿哪份检查模板，什么时候需要报价风险初筛、合同风险初筛或报价对比判断？',
+    prompt: '我正在看装修报价单，请先帮我分流：我应该先看哪些风险、用哪个工具、拿哪份检查模板，什么时候需要 ¥99 初查、¥299 快审或 ¥699 深度判断？',
     links: [
       { label: '报价初筛工具', href: '/tools/quote-check' },
       { label: '风险词典', href: '/risk-dictionary' },
@@ -72,16 +72,16 @@ const quickEntriesZh = [
     links: [
       { label: '合同检查模板', href: '/checklists/contract-pre-signing-check' },
       { label: '付款节点检查模板', href: '/checklists/payment-milestone-check' },
-      { label: '合同风险初筛', href: '/services/renovation#quote-standard' },
+      { label: '深度版签约前判断', href: '/services/renovation#quote-deep' },
     ],
   },
   {
     label: '我想人工看一遍',
-    prompt: '我已经有报价材料了，请帮我判断应该选报价风险初筛、合同风险初筛，还是报价对比判断。',
+    prompt: '我已经有报价材料了，请帮我判断应该选 ¥99 报价风险初查、¥299 标准报价快审，还是 ¥699 深度版签约前判断。',
     links: [
       { label: '服务价格', href: '/services/renovation' },
-      { label: '报价风险初筛', href: '/services/renovation#quote-entry' },
-      { label: '合同风险初筛', href: '/services/renovation#quote-standard' },
+      { label: '报价风险初查', href: '/services/renovation#quote-entry' },
+      { label: '标准报价快审', href: '/services/renovation#quote-standard' },
     ],
   },
   {

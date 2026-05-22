@@ -7,9 +7,9 @@ import StructuredData from '@/components/StructuredData'
 import { getServiceBySlug } from '@/data/services'
 
 export const metadata: Metadata = {
-  title: '装修签约前风险判断服务 | ZenoAIHome',
+  title: '装修报价风险快审服务 | ¥99、¥299、¥699 | ZenoAIHome',
   description:
-    '装修签约前风险判断服务：报价风险初筛、合同风险初筛、报价对比判断，帮业主在签字前看清报价、合同和增项风险。',
+    'ZenoAIHome 装修报价风险快审服务：¥99 报价风险初查、¥299 标准报价快审、¥699 深度版签约前判断，帮业主在签字前看清报价、合同和增项风险。',
   alternates: {
     canonical: 'https://zenoaihome.com/services/renovation',
   },
@@ -29,25 +29,25 @@ const choiceCards = [
     action: '先做免费初筛',
   },
   {
-    label: '看不懂报价',
-    title: '报价风险初筛',
-    description: '适合已经拿到装修报价，但看不懂里面有没有坑。重点是主要风险点和签约前追问清单。',
+    label: '只有几行重点报价',
+    title: '¥99 报价风险初查',
+    description: '适合刚拿到报价，只想先看明显风险。重点是 3 个高风险点和 5 个追问问题。',
     href: '#quote-entry',
-    action: '看报价初筛',
+    action: '看 ¥99 初查',
   },
   {
-    label: '准备签合同',
-    title: '合同风险初筛',
-    description: '适合准备签合同，但担心口头承诺没有写清。重点是模糊条款和修改建议方向。',
+    label: '有完整报价准备谈',
+    title: '¥299 标准报价快审',
+    description: '适合已有完整报价，准备继续谈或签约。重点是漏项、模糊项、增项口子和追问清单。',
     href: '#quote-standard',
-    action: '看合同初筛',
+    action: '看 ¥299 快审',
   },
   {
-    label: '有 2-3 家报价',
-    title: '报价对比判断',
-    description: '适合手里有多家装修公司报价，不知道怎么选。重点是报价差异、风险对比和追问重点。',
+    label: '快签合同且有草稿',
+    title: '¥699 深度版签约前判断',
+    description: '适合报价、合同、付款节点都已经有，且临近签约。一起看清签字前风险。',
     href: '#quote-deep',
-    action: '看报价对比',
+    action: '看 ¥699 深度版',
   },
 ]
 
@@ -86,12 +86,12 @@ const faqs = [
   {
     question: '¥99 和 ¥299 区别是什么？',
     answer:
-      '¥99 是报价风险初筛，主要看你手里这份报价有没有明显漏项、模糊项和增项口子。¥299 是合同风险初筛，主要看合同草稿、付款节点和口头承诺有没有写清。',
+      '¥99 看 10 行以内重点报价，适合先判断有没有明显风险。¥299 看完整报价，重点找漏项、模糊项、增项口子和签约前追问清单。',
   },
   {
     question: '¥299 和 ¥699 区别是什么？',
     answer:
-      '¥299 主要看合同风险。¥699 是报价对比判断，适合你手里有 2-3 家报价，需要看总价差异、包含范围、漏项和增项风险。',
+      '¥299 主要看完整报价本身。¥699 会把报价、合同草稿和付款节点放在一起看，并附 30 分钟微信语音解读，适合已经快签约的人。',
   },
   {
     question: '会不会替我砍价？',
@@ -118,9 +118,9 @@ export default function RenovationServicesPage() {
           {
             '@context': 'https://schema.org',
             '@type': 'Service',
-            name: '装修签约前风险判断服务',
+            name: '装修报价风险快审服务',
             url: 'https://zenoaihome.com/services/renovation',
-            description: '帮助业主在签约前看清报价风险、合同风险和多家报价差异。',
+            description: '帮助业主在签约前看清报价、合同和付款节点里的风险。',
             inLanguage: 'zh-CN',
             hasOfferCatalog: {
               '@type': 'OfferCatalog',
@@ -158,14 +158,14 @@ export default function RenovationServicesPage() {
           <div className="max-w-4xl">
             <p className="page-label mb-4">装修签约前风险判断</p>
             <h1 className="text-[2.1rem] font-semibold leading-tight tracking-tight text-ink sm:text-5xl">
-              你现在卡在报价、合同，还是多家报价对比？
+              我手里的装修报价，现在该买哪一档判断？
             </h1>
             <p className="mt-5 max-w-3xl text-base leading-relaxed text-ink-muted sm:text-lg">
-              如果你还没有完整材料，先不要买人工服务。先用免费初筛和检查模板。只有当你已经拿到报价、合同草稿或多家报价时，再进入对应服务。
+              如果你还没有完整报价，先不要买人工服务。先用免费初筛和检查模板。只有当你已经拿到报价、准备继续谈或临近签约时，再进入人工快审。
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <CTA href="/tools/quote-check" label="先做免费报价初筛" variant="primary" />
-              <CTA href="#pricing" label="直接看服务" variant="secondary" />
+              <CTA href="#pricing" label="直接看三档服务" variant="secondary" />
             </div>
           </div>
         </Container>
@@ -175,7 +175,7 @@ export default function RenovationServicesPage() {
         <section className="mb-14">
           <div className="mb-6 max-w-3xl">
             <p className="text-xs font-semibold uppercase tracking-widest text-stone">选择路径</p>
-            <h2 className="mt-3 text-2xl font-semibold tracking-tight text-ink">先看你现在卡在哪一步，再决定要不要人工判断。</h2>
+            <h2 className="mt-3 text-2xl font-semibold tracking-tight text-ink">先看报价材料完整到哪一步，再决定要不要人工判断。</h2>
           </div>
           <div className="grid gap-4 lg:grid-cols-4">
             {choiceCards.map((item) => (
@@ -198,7 +198,7 @@ export default function RenovationServicesPage() {
             <p className="text-xs font-semibold uppercase tracking-widest text-stone">三项服务</p>
             <h2 className="mt-3 text-2xl font-semibold tracking-tight text-ink">只保留签约前最常用的三类判断。</h2>
             <p className="mt-3 text-sm leading-relaxed text-ink-muted">
-              不是把服务做复杂，而是把入口讲清楚：看报价、看合同、看多家报价差异。
+              不是把服务做复杂，而是把入口讲清楚：重点报价先初查，完整报价做快审，快签约再把合同和付款节点一起看。
             </p>
           </div>
 

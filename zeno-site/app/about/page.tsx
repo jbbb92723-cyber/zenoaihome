@@ -74,7 +74,7 @@ export default function AboutPage() {
         <section className="mb-12">
           <h2 className="section-heading mb-5">你可以怎么开始</h2>
           <p className="text-base leading-[1.85] text-ink">
-            <strong>从免费初筛到人工判断</strong>，按你现在卡住的位置选：免费报价初筛 → 报价风险初筛 → 合同风险初筛 → 报价对比判断。
+            <strong>从免费初筛到人工判断</strong>，按你手里材料完整度选：免费报价初筛 → ¥99 报价风险初查 → ¥299 标准报价快审 → ¥699 深度版签约前判断。
           </p>
           <div className="mt-6 flex flex-wrap gap-3">
             <CTA href="/tools/quote-check" label="先做报价初筛" variant="primary" />

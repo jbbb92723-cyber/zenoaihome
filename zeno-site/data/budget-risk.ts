@@ -109,7 +109,7 @@ export const riskSummaries: Record<RiskKey, RiskSummary> = {
     firstStep: '先把报价里的模糊项、漏项和追问清单列出来，再决定谈不谈价格。',
     resource: { label: '先看报价单初查模板', href: '/checklists/quote-initial-check' },
     article: { label: '先看装修预算为什么总超', href: '/blog/zhuangxiu-yusuan-weishenme-zongchao' },
-    service: { label: '直接看报价风险初筛', href: '/services/renovation#quote-entry' },
+    service: { label: '直接看报价风险初查', href: '/services/renovation#quote-entry' },
   },
   R2: {
     key: 'R2',
@@ -121,7 +121,7 @@ export const riskSummaries: Record<RiskKey, RiskSummary> = {
     firstStep: '先把总预算拆成几份钱，再看哪些不能动、哪些可以晚点买、哪些只是想要。',
     resource: { label: '先拿装修预算模板', href: '/resources#zhuangxiu-yusuan-moban' },
     article: { label: '先看预算为什么总超', href: '/blog/zhuangxiu-yusuan-weishenme-zongchao' },
-    service: { label: '直接看合同风险初筛', href: '/services/renovation#quote-standard' },
+    service: { label: '直接看标准报价快审', href: '/services/renovation#quote-standard' },
   },
   R3: {
     key: 'R3',
@@ -145,7 +145,7 @@ export const riskSummaries: Record<RiskKey, RiskSummary> = {
     firstStep: '先把家庭成员、作息、收纳、做饭、办公这些真实需求写出来，再回头看方案。',
     resource: { label: '先看合同签约前检查模板', href: '/checklists/contract-pre-signing-check' },
     article: { label: '先看家不是样板间', href: '/blog/02-jia-bu-shi-yangban-jian' },
-    service: { label: '先看报价对比判断', href: '/services/renovation#quote-deep' },
+    service: { label: '先看深度版签约前判断', href: '/services/renovation#quote-deep' },
   },
 }
 

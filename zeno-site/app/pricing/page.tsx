@@ -9,7 +9,7 @@ import { commercialLadder } from '@/data/commercial-ladder'
 export const metadata: Metadata = {
   title: '报价风险判断价格路径 | 免费初筛、¥99、¥299、¥699 | ZenoAIHome',
   description:
-    'ZenoAIHome 当前价格主线：免费报价初筛、报价风险初筛、合同风险初筛、报价对比判断。',
+    'ZenoAIHome 当前价格主线：免费报价初筛、¥99 报价风险初查、¥299 标准报价快审、¥699 深度版签约前判断。',
   alternates: {
     canonical: 'https://zenoaihome.com/pricing',
   },
@@ -24,7 +24,7 @@ const faqs = [
   {
     question: '我应该先买哪一档？',
     answer:
-      '没有具体材料时先不要买人工服务。看不懂报价选报价风险初筛；准备签合同选合同风险初筛；有多家报价选报价对比判断。',
+      '没有具体材料时先不要买人工服务。只有几行重点报价选 ¥99 初查；已有完整报价选 ¥299 快审；报价、合同和付款节点都齐了且快签约，选 ¥699 深度判断。',
   },
   {
     question: '免费初筛和人工服务是什么关系？',
@@ -43,7 +43,7 @@ export default function PricingPage() {
             '@type': 'CollectionPage',
             name: '报价风险判断价格路径',
             url: 'https://zenoaihome.com/pricing',
-            description: '免费初筛、报价风险初筛、合同风险初筛、报价对比判断组成的签约前风险判断路径。',
+            description: '免费初筛、¥99 报价风险初查、¥299 标准报价快审、¥699 深度版签约前判断组成的签约前风险判断路径。',
             inLanguage: 'zh-CN',
             hasPart: commercialLadder.map((item) => ({
               '@type': item.source === 'service' ? 'Service' : 'WebApplication',
@@ -75,7 +75,7 @@ export default function PricingPage() {
       <PageHero
         label="价格路径"
         title="不要先比价格，先看你手里的材料到哪一步。"
-        subtitle="当前主线只保留：免费报价初筛 → 报价风险初筛 → 合同风险初筛 → 报价对比判断。"
+        subtitle="当前主线只保留：免费报价初筛 → ¥99 报价风险初查 → ¥299 标准报价快审 → ¥699 深度版签约前判断。"
         size="content"
       />
 
@@ -84,7 +84,7 @@ export default function PricingPage() {
           <p className="text-xs font-semibold uppercase tracking-widest text-stone">主价格梯子</p>
           <h2 className="mt-3 text-2xl font-semibold tracking-tight text-ink">报价看不懂，就按这个顺序走。</h2>
           <p className="mt-3 max-w-3xl text-sm leading-relaxed text-ink-muted">
-            免费初筛先判断哪里没写清；报价风险初筛看报价有没有坑；合同风险初筛看口头承诺有没有写清；报价对比判断看多家报价怎么选。
+            免费初筛先判断哪里没写清；¥99 初查看重点报价明显风险；¥299 快审看完整报价里的漏项、模糊项和增项口子；¥699 深度版把报价、合同和付款节点一起看。
           </p>
           <div className="mt-6">
             <CommercialLadder variant="full" />
@@ -94,9 +94,9 @@ export default function PricingPage() {
         <section className="mb-12 grid gap-4 md:grid-cols-2">
           {[
             ['还没完整报价', '先做免费初筛和检查模板，不建议买人工服务。', '/tools/quote-check', '先做免费初筛'],
-            ['看不懂报价', '已经拿到报价，但不知道里面有没有坑。', '/services/renovation#quote-entry', '看报价初筛'],
-            ['准备签合同', '担心口头承诺、付款节点和材料替换没写清。', '/services/renovation#quote-standard', '看合同初筛'],
-            ['有多家报价', '2-3 家报价差异很大，不知道怎么选。', '/services/renovation#quote-deep', '看报价对比'],
+            ['只有几行重点报价', '刚拿到报价，只想先看明显风险。', '/services/renovation#quote-entry', '看 ¥99 初查'],
+            ['已有完整报价', '准备继续谈或签约，需要看漏项、模糊项和增项口子。', '/services/renovation#quote-standard', '看 ¥299 快审'],
+            ['快签合同且有草稿', '报价、合同、付款节点都已经有，需要一起判断。', '/services/renovation#quote-deep', '看 ¥699 深度版'],
           ].map(([title, desc, href, action]) => (
             <div key={title} className="border border-border bg-surface p-5">
               <h2 className="text-base font-semibold text-ink">{title}</h2>
