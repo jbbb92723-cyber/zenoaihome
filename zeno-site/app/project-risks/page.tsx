@@ -7,13 +7,28 @@ import StructuredData from '@/components/StructuredData'
 import { renovationProjectRisks } from '@/data/renovation-project-risks'
 
 export const metadata: Metadata = {
-  title: '看增项 | 施工项目风险库 | ZenoAIHome',
+  title: '施工项目报价风险库｜水电、防水、拆除、找平增项风险',
   description:
-    '按拆除、水电、防水、找平、瓷砖等施工项目，查看装修报价里应该写清什么、哪些地方容易漏项和增项。',
+    '按拆除、水电、防水、找平、瓷砖等施工项目，查看装修报价里应该写清什么、哪些地方容易漏项、模糊和后期增项。',
   alternates: {
     canonical: 'https://zenoaihome.com/project-risks',
   },
 }
+
+const faqs = [
+  {
+    question: '施工项目风险库和施工教程有什么区别？',
+    answer: '施工项目风险库不教你怎么施工，只看签约前报价里应该写清什么，比如水电计量、防水范围、找平厚度、拆除和垃圾清运边界。',
+  },
+  {
+    question: '哪些项目最容易产生增项？',
+    answer: '水电改造、拆改、防水、找平、垃圾清运和收口处理都容易产生增项，因为这些项目经常受现场条件、数量和范围变化影响。',
+  },
+  {
+    question: '项目风险看完以后下一步做什么？',
+    answer: '下一步要回到整份报价单，把多个项目的漏项、模糊项、按实结算和付款节点放在一起判断，必要时做报价初筛或人工复核。',
+  },
+]
 
 export default function ProjectRisksPage() {
   return (
@@ -32,6 +47,18 @@ export default function ProjectRisksPage() {
               name: `${project.name}报价风险`,
               description: project.oneLine,
               url: `https://zenoaihome.com/project-risks/${project.slug}`,
+            })),
+          },
+          {
+            '@context': 'https://schema.org',
+            '@type': 'FAQPage',
+            mainEntity: faqs.map((item) => ({
+              '@type': 'Question',
+              name: item.question,
+              acceptedAnswer: {
+                '@type': 'Answer',
+                text: item.answer,
+              },
             })),
           },
         ]}
@@ -59,6 +86,18 @@ export default function ProjectRisksPage() {
             你拿到报价单后，通常会看到拆除、水电、防水、找平、瓷砖、吊顶、安装这些项目。
             这里每一页只回答一件事：签约前，这个项目的报价必须写清什么，哪些词会留下增项口子。
           </p>
+          <div className="mt-6 grid gap-3 md:grid-cols-3">
+            {[
+              ['搜索意图', '适合搜索“水电改造报价怎么看”“防水报价注意什么”“拆除报价包含什么”的业主。'],
+              ['页面边界', '这里只讲签约前报价怎么判断，不写施工教程，也不教你自己施工。'],
+              ['怎么使用', '先找到报价单里的项目，再核对包含范围、常见漏项、模糊词和签约前追问。'],
+            ].map(([title, body]) => (
+              <div key={title} className="border border-border bg-surface p-4">
+                <h3 className="text-sm font-semibold text-ink">{title}</h3>
+                <p className="mt-2 text-xs leading-relaxed text-ink-muted">{body}</p>
+              </div>
+            ))}
+          </div>
         </section>
 
         <section>
@@ -99,6 +138,18 @@ export default function ProjectRisksPage() {
           <div className="mt-5 flex flex-wrap gap-3">
             <CTA href="/tools/quote-check" label="做免费报价初筛" variant="primary" />
             <CTA href="/risk-dictionary" label="查风险词典" variant="secondary" />
+          </div>
+        </section>
+
+        <section className="mt-10 border border-border bg-surface p-6 sm:p-8">
+          <p className="text-xs font-semibold uppercase tracking-widest text-stone">常见问题</p>
+          <div className="mt-5 grid gap-5 md:grid-cols-3">
+            {faqs.map((item) => (
+              <div key={item.question}>
+                <h2 className="text-sm font-semibold text-ink">{item.question}</h2>
+                <p className="mt-2 text-sm leading-7 text-ink-muted">{item.answer}</p>
+              </div>
+            ))}
           </div>
         </section>
       </Container>

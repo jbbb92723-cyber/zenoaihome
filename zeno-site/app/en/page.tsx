@@ -6,17 +6,17 @@ import ArticleCardEn from './ArticleCardEn'
 import { getRecentLocalizedArticles } from '@/lib/i18n'
 
 export const metadata: Metadata = {
-  title: 'ZenoAIHome — Pre-Signing Renovation Quote Risk Check',
+  title: 'ZenoAIHome | Renovation Quote Risk Check Before You Sign',
   description:
-    'A selective English edition of ZenoAIHome. Before you sign a renovation contract, see what your renovation quote leaves unclear: missing scope, change orders, payment milestones, and verbal promises.',
+    'A selective English edition of ZenoAIHome for homeowners in China. Before you sign a renovation contract, see what your quote leaves unclear: scope gaps, vague materials, open-ended change orders, payment milestones, and verbal promises.',
   openGraph: {
     type: 'website',
     locale: 'en',
     url: 'https://zenoaihome.com/en',
     siteName: 'ZenoAIHome',
-    title: 'ZenoAIHome — Pre-Signing Renovation Quote Risk Check',
+    title: 'ZenoAIHome | Renovation Quote Risk Check Before You Sign',
     description:
-      'Clarify renovation quote scope before signing. Built from 16 years of real renovation experience in China.',
+      'A practical pre-signing quote risk check, built from 16 years of real renovation-site experience in China.',
   },
   alternates: {
     canonical: 'https://zenoaihome.com/en',
@@ -25,31 +25,31 @@ export const metadata: Metadata = {
 }
 
 const riskSignals = [
-  'Missing scope items',
-  'Open-ended change orders',
-  'Vague material specs',
-  'Too-early payment milestones',
+  'Scope that quietly slips out of the quote',
+  'Change orders with no approval process',
+  'Materials described too loosely',
+  'Payments scheduled before real leverage',
 ]
 
 const assets = [
   {
     title: 'Quote Risk Check',
-    body: 'A lightweight first pass for homeowners who already have a quote and need a sharper question list before signing.',
+    body: 'Paste the obvious parts, answer a few plain questions, and get a sharper list of what to ask before you sign.',
     href: '/en/tools',
   },
   {
     title: 'Risk Dictionary',
-    body: 'Plain-English summaries of the wording that often causes trouble later: billed by actual quantity, provisional estimates, same-grade substitutes, and site-condition clauses.',
+    body: 'Plain-English notes on the phrases that sound harmless now and expensive later: actual quantity, provisional estimates, same-grade substitutes, and site-condition clauses.',
     href: '/en/tools#risk-language',
   },
   {
     title: 'Checklists',
-    body: 'Practical pre-signing questions for quotes, contracts, payment milestones, water and electrical work, and older-home renovation.',
+    body: 'Questions you can send to a contractor, not vague advice you forget five minutes after reading.',
     href: '/en/tools#checklists',
   },
   {
     title: 'Expert Review',
-    body: 'When the quote, draft contract, and payment schedule are already on your desk, a human review helps you see what still needs to be clarified.',
+    body: 'When the quote, draft contract, and payment schedule are already on your desk, a human second look helps you see what is still fuzzy.',
     href: '/en/services',
   },
 ]
@@ -78,10 +78,10 @@ export default function EnHomePage() {
                 Selective English Edition
               </p>
               <h1 className="max-w-3xl text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-5xl">
-                Before you sign a renovation contract, see what your quote leaves unclear.
+                Before you sign, find the things your renovation quote has not really said.
               </h1>
               <p className="mt-6 max-w-2xl text-base leading-8 text-ink-muted">
-                ZenoAIHome helps homeowners check renovation quotes before signing. The point is not to hunt for the cheapest number. It is to clarify scope, materials, change orders, payment milestones, and verbal promises before they turn into expensive after-the-fact conversations.
+                ZenoAIHome helps homeowners in China check renovation quotes before signing. This is not about chasing the cheapest number. It is about spotting vague scope, soft material wording, open-ended add-ons, payment pressure, and promises that still live only in chat.
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <Link href="/en/tools" className="bg-stone px-5 py-3 text-sm font-semibold text-white hover:bg-stone/90">
@@ -103,7 +103,7 @@ export default function EnHomePage() {
                 ))}
               </div>
               <p className="mt-5 text-sm leading-7 text-ink-muted">
-                Built from 16 years of renovation-site experience. AI can help sort the paperwork, but the real work is still judgment: what is included, what is not, and what should be written down before anyone picks up a hammer.
+                Built from 16 years on real renovation sites. AI can help sort the paperwork, but the real work is still judgment: what is included, what is not, and what should be written down before anyone picks up a hammer.
               </p>
             </div>
           </div>
@@ -115,10 +115,10 @@ export default function EnHomePage() {
           <div className="mb-10 max-w-3xl">
             <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-stone">Judgment Assets</p>
             <h2 className="text-2xl font-semibold tracking-tight text-ink sm:text-3xl">
-              Not a renovation encyclopedia. A pre-signing judgment system.
+              Not a renovation encyclopedia. More like a pre-signing smoke detector.
             </h2>
             <p className="mt-4 text-sm leading-7 text-ink-muted">
-              The Chinese site contains the full toolset and data library. This English edition keeps the essential logic readable for international readers: fewer pages, cleaner wording, no machine-translation fog.
+              The Chinese site contains the full toolset and data library. This English edition is intentionally selective: fewer pages, cleaner wording, and no machine-translation fog. It explains the system without pretending every local detail travels perfectly across languages.
             </p>
           </div>
           <div className="grid gap-4 md:grid-cols-2">

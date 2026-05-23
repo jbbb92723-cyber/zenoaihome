@@ -3,7 +3,7 @@ import Link from 'next/link'
 import Container from '@/components/Container'
 
 export const metadata: Metadata = {
-  title: 'About Zeno | ZenoAIHome',
+  title: 'About Zeno | Pre-Signing Renovation Judgment',
   description:
     'Zeno is a renovation practitioner in China with 16 years on site, building ZenoAIHome to help homeowners clarify quote risks before signing.',
   alternates: {
@@ -16,17 +16,17 @@ const sections = [
   {
     title: 'Who I am',
     content:
-      'I am Zeno, a renovation practitioner based in China. I have spent more than 16 years on real renovation sites: reading quotes, coordinating work, handling scope changes, and seeing the awkward parts that never fit neatly into a showroom photo.',
+      'I am Zeno, a renovation practitioner based in China. I have spent more than 16 years on real renovation sites: reading quotes, coordinating work, handling scope changes, and seeing the awkward parts that never make it into a showroom photo.',
   },
   {
     title: 'Why quote risk matters',
     content:
-      'A renovation quote is not just a price list. It is a responsibility map for future work. If scope, materials, quantities, change-order rules, acceptance standards, warranty terms, and payment milestones are unclear before signing, later disputes are predictable.',
+      'A renovation quote is not just a price list. It is a responsibility map for future work. If scope, materials, quantities, change-order rules, acceptance standards, warranty terms, and payment milestones are unclear before signing, later disputes are not surprising; they are baked in.',
   },
   {
     title: 'What ZenoAIHome is building',
     content:
-      'ZenoAIHome turns field experience into practical pre-signing judgment assets: a quote risk check, a risk dictionary, checklists, a project risk library, and focused expert review. AI helps sort information, but the core remains human judgment and clear written scope.',
+      'ZenoAIHome turns field experience into practical pre-signing judgment assets: a quote risk check, a risk dictionary, checklists, a project risk library, and focused expert review. AI helps sort the paperwork; it does not replace the judgment of what must be written down.',
   },
   {
     title: 'What I do not do',
@@ -36,7 +36,7 @@ const sections = [
   {
     title: 'Why the English site is selective',
     content:
-      'The full service and data library are currently in Chinese because the real quotes and contracts are usually Chinese. The English site is a carefully edited doorway: accurate, natural, and useful, without pretending that every Chinese page has been fully localized.',
+      'The full service and data library are currently in Chinese because the real quotes and contracts are usually Chinese. The English site is a carefully edited doorway: accurate, natural, and useful, without pretending that every local Chinese detail has been fully localized.',
   },
 ]
 
@@ -50,7 +50,7 @@ export default function EnAboutPage() {
             Sixteen years on site, turned into pre-signing judgment.
           </h1>
           <p className="mt-5 max-w-2xl text-base leading-8 text-ink-muted">
-            ZenoAIHome exists for one practical moment: before a homeowner signs a renovation contract and needs to know what the quote has not clearly said.
+            ZenoAIHome exists for one practical moment: before a homeowner signs a renovation contract and needs to know what the quote still has not clearly said.
           </p>
         </Container>
       </section>

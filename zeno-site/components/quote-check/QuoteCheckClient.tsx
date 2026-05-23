@@ -20,6 +20,7 @@ type QuoteStage = 'firstQuote' | 'comparing' | 'readyToSign' | 'alreadyStarted'
 interface QuoteFormState {
   area: string
   total: string
+  quoteText: string
   quoteStage: QuoteStage
   hasContractDraft: boolean
   hasItemizedQuote: boolean
@@ -46,11 +47,20 @@ type CheckItem = (typeof quoteRiskDimensions)[number] & {
   relatedRiskIds: string[]
 }
 
+type TextRiskSignal = {
+  id: string
+  title: string
+  reason: string
+  matchedTerms: string[]
+  relatedRiskIds: string[]
+}
+
 const storageKey = 'zeno.quote-check.v2'
 
 const defaultState: QuoteFormState = {
   area: '',
   total: '',
+  quoteText: '',
   quoteStage: 'readyToSign',
   hasContractDraft: false,
   hasItemizedQuote: false,
@@ -86,7 +96,108 @@ const checks: CheckItem[] = quoteRiskDimensions.map((item) => ({
   relatedRiskIds: checkRelatedRiskIds[item.key] ?? [],
 }))
 
+const textRiskRules: Array<{
+  id: string
+  title: string
+  reason: string
+  terms: string[]
+  relatedRiskIds: string[]
+}> = [
+  {
+    id: 'text-actual-settlement',
+    title: '出现按实结算类表述',
+    reason: '这类词通常意味着最终数量、范围或金额还没有锁定，签约前要问清单价、上限和确认流程。',
+    terms: ['按实结算', '按实际结算', '实测实量', '按现场实际', '最终以现场为准'],
+    relatedRiskIds: ['qr-01', 'qr-05', 'qr-14'],
+  },
+  {
+    id: 'text-provisional-estimate',
+    title: '出现暂估或另计类表述',
+    reason: '暂估、另计、不含项目很容易成为后期增项入口，需要问清是否包含、怎么计价、谁确认。',
+    terms: ['暂估', '暂定', '预估', '另计', '另行收费', '不含', '未含'],
+    relatedRiskIds: ['qr-06', 'qr-07', 'qr-14'],
+  },
+  {
+    id: 'text-material-vague',
+    title: '材料描述可能不够具体',
+    reason: '只写品牌、同档或环保材料，不写型号规格时，后期替换和验收容易扯皮。',
+    terms: ['同等品牌', '同档品牌', '同档次', '环保材料', '优质材料', '品牌或同等'],
+    relatedRiskIds: ['qr-02', 'qr-16', 'qr-17'],
+  },
+  {
+    id: 'text-process-vague',
+    title: '工艺描述可能过于笼统',
+    reason: '常规工艺、标准施工这类表述不等于验收标准，签约前要问清具体做法和验收口径。',
+    terms: ['标准工艺', '常规工艺', '规范施工', '国标施工', '按规范'],
+    relatedRiskIds: ['qr-03', 'qr-17'],
+  },
+  {
+    id: 'text-water-electric-open',
+    title: '水电费用可能没有锁边界',
+    reason: '水电最容易因为点位、米数和开槽方式变化超预算，要提前约定计量规则和增项确认。',
+    terms: ['水电按实', '水电预收', '水电另计', '水电改造按实际', '强弱电按实际'],
+    relatedRiskIds: ['qr-10', 'qr-05', 'qr-14'],
+  },
+  {
+    id: 'text-payment-front-loaded',
+    title: '付款可能过早',
+    reason: '付款比例如果走在验收前面，后面要求整改和补充说明会更被动。',
+    terms: ['签约付', '开工付', '预付款', '首付款', '进场付'],
+    relatedRiskIds: ['qr-13'],
+  },
+  {
+    id: 'text-change-order-missing',
+    title: '增项确认流程需要重点追问',
+    reason: '报价里出现变更、增项、现场确认时，要写清谁确认、何时确认、单价怎么定。',
+    terms: ['变更', '增项', '现场确认', '现场签证', '工程签证'],
+    relatedRiskIds: ['qr-14', 'qr-01'],
+  },
+]
+
 const maxScore = checks.reduce((sum, item) => sum + item.weight, 0)
+
+function analyzeQuoteText(text: string): TextRiskSignal[] {
+  const normalized = text.replace(/\s+/g, '')
+  if (normalized.length < 12) return []
+
+  const signals = textRiskRules
+    .map((rule) => {
+      const matchedTerms = rule.terms.filter((term) => normalized.includes(term))
+      if (matchedTerms.length === 0) return null
+      return {
+        id: rule.id,
+        title: rule.title,
+        reason: rule.reason,
+        matchedTerms,
+        relatedRiskIds: rule.relatedRiskIds,
+      }
+    })
+    .filter((item): item is TextRiskSignal => Boolean(item))
+
+  const hasMaterialDetail = ['型号', '规格', '品牌', '系列'].some((term) => normalized.includes(term))
+  if (!hasMaterialDetail) {
+    signals.push({
+      id: 'text-missing-material-detail',
+      title: '未看到明确材料型号或规格',
+      reason: '如果你粘贴的是完整报价，材料型号规格缺失需要重点追问；如果只是片段，可回到原报价核对。',
+      matchedTerms: ['未见型号/规格'],
+      relatedRiskIds: ['qr-02', 'qr-16'],
+    })
+  }
+
+  const hasAcceptanceOrWarranty = ['验收', '质保', '保修'].some((term) => normalized.includes(term))
+  if (!hasAcceptanceOrWarranty) {
+    signals.push({
+      id: 'text-missing-acceptance-warranty',
+      title: '未看到验收或质保表述',
+      reason: '报价和合同最终要能对齐验收标准、质保范围和售后责任。',
+      matchedTerms: ['未见验收/质保'],
+      relatedRiskIds: ['qr-17', 'qr-19'],
+    })
+  }
+
+  return signals.slice(0, 8)
+}
 
 function getStageLabel(stage: QuoteStage) {
   return stageOptions.find((item) => item.value === stage)?.label ?? '准备签约'
@@ -173,6 +284,13 @@ export default function QuoteCheckClient() {
   const topQuestions = riskItems.slice(0, 3)
   const primaryNextStep = getPrimaryNextStep(riskScore, form.quoteStage)
   const relatedRiskRules = useMemo(() => getRelatedRiskRules(riskItems), [riskItems])
+  const textSignals = useMemo(() => analyzeQuoteText(form.quoteText), [form.quoteText])
+  const textRelatedRiskRules = useMemo(() => {
+    const ids = Array.from(new Set(textSignals.flatMap((item) => item.relatedRiskIds)))
+    return ids
+      .map((id) => getQuoteRiskRuleById(id))
+      .filter((item): item is QuoteRiskRule => Boolean(item))
+  }, [textSignals])
 
   const unitPrice = useMemo(() => {
     const area = Number(form.area)
@@ -202,6 +320,7 @@ export default function QuoteCheckClient() {
       unitPrice ? `粗略单方：${unitPrice.toLocaleString()} 元/㎡` : '',
       `判断提醒：${riskCopy}`,
       `建议下一步：${primaryNextStep.label}`,
+      textSignals.length > 0 ? `文本初扫：发现 ${textSignals.length} 个需要追问的报价表述` : '',
       '',
       '优先追问：',
       ...(topQuestions.length > 0
@@ -338,6 +457,38 @@ export default function QuoteCheckClient() {
                 />
               </label>
             </div>
+
+            <label className="mt-5 block text-sm font-medium text-ink">
+              粘贴报价文字（可选）
+              <textarea
+                value={form.quoteText}
+                onChange={(event) => updateField('quoteText', event.target.value)}
+                rows={7}
+                placeholder={'可以粘贴报价里的重点行，例如：\n水电改造按实结算，材料同等品牌，防水按规范施工，最终以现场为准。'}
+                className="mt-2 w-full resize-y border border-border bg-canvas px-3 py-2 text-sm leading-6 outline-none focus:border-stone"
+              />
+              <span className="mt-2 block text-xs leading-relaxed text-ink-muted">
+                文本只在浏览器本地做关键词初扫，不上传服务器，也不替代人工审核。先帮你找出“按实结算、暂估、同档、现场为准”等需要追问的词。
+              </span>
+            </label>
+
+            {textSignals.length > 0 && (
+              <div className="mt-5 border border-stone/30 bg-stone/5 p-4">
+                <p className="text-xs font-semibold uppercase tracking-widest text-stone">文本初扫</p>
+                <div className="mt-3 space-y-3">
+                  {textSignals.slice(0, 3).map((signal) => (
+                    <div key={signal.id} className="border border-border bg-surface p-3">
+                      <p className="text-sm font-semibold text-ink">{signal.title}</p>
+                      <p className="mt-1 text-xs leading-relaxed text-ink-muted">{signal.reason}</p>
+                      <p className="mt-2 text-xs text-stone">触发：{signal.matchedTerms.join(' / ')}</p>
+                    </div>
+                  ))}
+                </div>
+                {textSignals.length > 3 && (
+                  <p className="mt-3 text-xs text-ink-faint">还有 {textSignals.length - 3} 个文本信号会在结果页展示。</p>
+                )}
+              </div>
+            )}
           </div>
 
           <div className="border border-border bg-surface p-5">
@@ -477,6 +628,25 @@ export default function QuoteCheckClient() {
                   </div>
                 </div>
 
+                {textSignals.length > 0 && (
+                  <div className="border border-border bg-canvas p-6">
+                    <p className="text-xs font-semibold uppercase tracking-widest text-stone">报价文本初扫</p>
+                    <h3 className="mt-2 text-lg font-semibold text-ink">这些表述在你粘贴的报价文字里出现过。</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-ink-muted">
+                      这不是 AI 审价，只是把高频风险词先标出来。真正签约前，还要让对方把范围、单价、上限和确认流程写清楚。
+                    </p>
+                    <div className="mt-5 grid gap-3 sm:grid-cols-2">
+                      {textSignals.map((signal) => (
+                        <div key={signal.id} className="border border-border bg-surface p-4">
+                          <h4 className="text-sm font-semibold text-ink">{signal.title}</h4>
+                          <p className="mt-2 text-xs leading-relaxed text-ink-muted">{signal.reason}</p>
+                          <p className="mt-3 text-xs font-semibold text-stone">触发：{signal.matchedTerms.join(' / ')}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
                 <div className="grid gap-4 md:grid-cols-[1.1fr_0.9fr]">
                   <Link href={primaryNextStep.href} className="group border border-stone bg-stone p-6 text-white transition-colors hover:bg-stone/90">
                     <p className="text-xs font-semibold uppercase tracking-widest text-white/65">建议下一步</p>
@@ -508,6 +678,26 @@ export default function QuoteCheckClient() {
                     <h3 className="mt-2 text-lg font-semibold text-ink">这些词条和你未勾选的风险有关。</h3>
                     <div className="mt-5 grid gap-3 sm:grid-cols-2">
                       {relatedRiskRules.map((rule) => (
+                        <Link
+                          key={rule.id}
+                          href={`/risk-dictionary/${rule.slug}`}
+                          className="group border border-border bg-surface p-4 transition-colors hover:border-stone"
+                        >
+                          <h4 className="text-sm font-semibold text-ink">{rule.name}</h4>
+                          <p className="mt-2 text-xs leading-relaxed text-ink-muted">{rule.oneLine}</p>
+                          <p className="mt-3 text-xs font-semibold text-stone">查看词条 -&gt;</p>
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {textRelatedRiskRules.length > 0 && (
+                  <div className="border border-border bg-canvas p-6">
+                    <p className="text-xs font-semibold uppercase tracking-widest text-stone">文本相关风险词条</p>
+                    <h3 className="mt-2 text-lg font-semibold text-ink">这些词条和你粘贴的报价文字有关。</h3>
+                    <div className="mt-5 grid gap-3 sm:grid-cols-2">
+                      {textRelatedRiskRules.map((rule) => (
                         <Link
                           key={rule.id}
                           href={`/risk-dictionary/${rule.slug}`}

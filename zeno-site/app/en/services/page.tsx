@@ -4,9 +4,9 @@ import Container from '@/components/Container'
 import StructuredData from '@/components/StructuredData'
 
 export const metadata: Metadata = {
-  title: 'Expert Quote Review | ZenoAIHome',
+  title: 'Expert Quote Review Before Signing | ZenoAIHome',
   description:
-    'English overview of ZenoAIHome expert quote review options: RMB 99 entry review, RMB 299 standard review, and RMB 699 pre-signing review for quote, contract, and payment milestones.',
+    'English overview of ZenoAIHome expert quote review options for homeowners in China: RMB 99 entry review, RMB 299 standard quote review, and RMB 699 pre-signing review for quote, contract, and payment milestones.',
   alternates: {
     canonical: 'https://zenoaihome.com/en/services',
     languages: {
@@ -20,7 +20,7 @@ const services = [
   {
     price: 'RMB 99',
     title: 'Entry Quote Risk Review',
-    bestFor: 'You only want to know whether a few important quote lines contain obvious risks.',
+    bestFor: 'You only want to know whether a few important quote lines contain obvious red flags.',
     includes: 'Checks up to 10 key quote lines, highlights 3 high-risk points, and gives 5 pre-signing questions.',
     boundary: 'Not a full quote review. No negotiation, and no shortcut judgment about whether a contractor is good.',
   },
@@ -66,10 +66,10 @@ export default function EnServicesPage() {
         <Container size="content">
           <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-stone">Expert Review</p>
           <h1 className="max-w-3xl text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">
-            Already have a renovation quote? Choose the review by how close you are to signing.
+            If you are close to signing, do not buy advice too early. Buy the right second look.
           </h1>
           <p className="mt-5 max-w-2xl text-base leading-8 text-ink-muted">
-            Do not buy expert review before there is something real to read. If you do not yet have a complete quote, use the free Quote Risk Check and checklists first. Human review is most useful when the quote, draft contract, and payment schedule are already in hand.
+            Expert review only works when there is something real to read. If you do not yet have a complete quote, use the free Quote Risk Check and checklists first. Human review is most useful when the quote, draft contract, and payment schedule are already in hand.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <Link href="/tools/quote-check" className="bg-stone px-5 py-3 text-sm font-semibold text-white hover:bg-stone/90">

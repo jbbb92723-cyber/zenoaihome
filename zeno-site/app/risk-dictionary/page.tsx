@@ -7,9 +7,9 @@ import StructuredData from '@/components/StructuredData'
 import { quoteRiskRules } from '@/data/quote-risk-rules'
 
 export const metadata: Metadata = {
-  title: '看报价 | 装修报价风险词典 | ZenoAIHome',
+  title: '装修报价风险词典｜按实结算、暂估、漏项和材料模糊风险',
   description:
-    '把装修报价单里容易引发增项、扯皮和后悔的风险词讲清楚。不是装修百科，只看签约前必须问清的风险边界。',
+    '装修报价风险词典解释按实结算、暂估、另计、材料品牌型号缺失、施工范围不清等签约前高频风险词，帮助业主看清报价边界。',
   alternates: {
     canonical: 'https://zenoaihome.com/risk-dictionary',
   },
@@ -20,6 +20,21 @@ const riskLevelClass: Record<string, string> = {
   中: 'border-amber-200 bg-amber-50 text-amber-700',
   低: 'border-stone/20 bg-stone-pale text-stone',
 }
+
+const faqs = [
+  {
+    question: '装修报价风险词典是做什么的？',
+    answer: '装修报价风险词典把按实结算、暂估、另计、同档替换等高频风险词讲清楚，帮助业主在签约前知道这些词可能对应什么增项口子。',
+  },
+  {
+    question: '看完风险词典就能判断报价能不能签吗？',
+    answer: '不能只靠词典决定是否签约。词典适合理解风险词含义，真正判断还要结合整份报价、合同、付款节点和装修方式一起看。',
+  },
+  {
+    question: '报价里出现“按实结算”一定不能签吗？',
+    answer: '不一定。按实结算可以存在，但签约前要写清计量方式、单价、上限、确认流程和谁来验收，否则后期金额很容易失控。',
+  },
+]
 
 export default function RiskDictionaryPage() {
   return (
@@ -40,6 +55,18 @@ export default function RiskDictionaryPage() {
               url: `https://zenoaihome.com/risk-dictionary/${rule.slug}`,
               termCode: rule.id,
               inDefinedTermSet: '装修报价风险词典',
+            })),
+          },
+          {
+            '@context': 'https://schema.org',
+            '@type': 'FAQPage',
+            mainEntity: faqs.map((item) => ({
+              '@type': 'Question',
+              name: item.question,
+              acceptedAnswer: {
+                '@type': 'Answer',
+                text: item.answer,
+              },
             })),
           },
         ]}
@@ -67,6 +94,18 @@ export default function RiskDictionaryPage() {
             报价单里很多风险不是藏在专业术语里，而是藏在“按实结算、暂估、以现场为准、另计、不含”这些看似普通的词里。
             这个词典把每个风险拆成触发词、常见项目、签约前追问和合同备注建议，方便你回到自己的报价单逐项核对。
           </p>
+          <div className="mt-6 grid gap-3 md:grid-cols-3">
+            {[
+              ['搜索意图', '适合搜索“装修报价按实结算什么意思”“报价暂估有什么风险”“材料同档替换怎么问”的业主。'],
+              ['页面关系', '词典负责解释风险词，报价初筛负责判断你自己的报价是否命中这些风险。'],
+              ['下一步动作', '看完词条后，把对应追问写进报价备注、合同附件或微信确认话术。'],
+            ].map(([title, body]) => (
+              <div key={title} className="border border-border bg-surface p-4">
+                <h3 className="text-sm font-semibold text-ink">{title}</h3>
+                <p className="mt-2 text-xs leading-relaxed text-ink-muted">{body}</p>
+              </div>
+            ))}
+          </div>
         </section>
 
         <section>
@@ -115,6 +154,18 @@ export default function RiskDictionaryPage() {
           <div className="mt-5 flex flex-wrap gap-3">
             <CTA href="/tools/quote-check" label="先做免费报价初筛" variant="primary" />
             <CTA href="/checklists" label="查看检查模板" variant="secondary" />
+          </div>
+        </section>
+
+        <section className="mt-10 border border-border bg-surface p-6 sm:p-8">
+          <p className="text-xs font-semibold uppercase tracking-widest text-stone">常见问题</p>
+          <div className="mt-5 grid gap-5 md:grid-cols-3">
+            {faqs.map((item) => (
+              <div key={item.question}>
+                <h2 className="text-sm font-semibold text-ink">{item.question}</h2>
+                <p className="mt-2 text-sm leading-7 text-ink-muted">{item.answer}</p>
+              </div>
+            ))}
           </div>
         </section>
       </Container>

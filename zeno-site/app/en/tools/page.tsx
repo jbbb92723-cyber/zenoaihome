@@ -4,9 +4,9 @@ import Container from '@/components/Container'
 import StructuredData from '@/components/StructuredData'
 
 export const metadata: Metadata = {
-  title: 'Quote Risk Check | ZenoAIHome',
+  title: 'Quote Risk Tools | ZenoAIHome',
   description:
-    'English overview of ZenoAIHome quote risk tools: quote risk check, risk language, pre-signing checklists, and project risk library for homeowners.',
+    'A selective English guide to ZenoAIHome quote risk tools: quote check, risky wording, pre-signing checklists, and project risk library for homeowners in China.',
   alternates: {
     canonical: 'https://zenoaihome.com/en/tools',
     languages: { 'zh-CN': 'https://zenoaihome.com/tools/quote-check', en: 'https://zenoaihome.com/en/tools' },
@@ -14,10 +14,10 @@ export const metadata: Metadata = {
 }
 
 const riskLanguage = [
-  ['Billed by actual quantity', 'Useful when the scope is genuinely uncertain, risky when the unit price, cap, and approval process are missing.'],
-  ['Same-grade substitute', 'A soft-sounding phrase that needs hard details: brand, model, specification, and written approval rules.'],
-  ['Subject to site conditions', 'Sometimes reasonable, but too open-ended if there is no process, upper limit, or written confirmation.'],
-  ['Payment milestone', 'A payment schedule should follow verified progress, not move too much money ahead of completed work.'],
+  ['Billed by actual quantity', 'Reasonable when the scope is truly unknown, dangerous when the unit price, cap, and approval step are missing.'],
+  ['Same-grade substitute', 'A gentle phrase that needs hard details: brand, model, specification, and written approval rules.'],
+  ['Subject to site conditions', 'Sometimes fair, often too elastic. Ask what counts as a change, who confirms it, and whether there is an upper limit.'],
+  ['Payment milestone', 'Money should follow verified progress. If payment runs ahead of leverage, every later correction gets harder.'],
 ]
 
 const checklists = [
@@ -62,7 +62,7 @@ export default function EnToolsPage() {
             A first pass before you sign, not another renovation calculator.
           </h1>
           <p className="mt-5 max-w-2xl text-base leading-8 text-ink-muted">
-            The Chinese tool helps homeowners check whether a renovation quote clearly states scope, materials, quantities, change-order rules, acceptance standards, warranty scope, and payment milestones. It does not score a contractor as good or bad; it tells you what still needs to be made clear.
+            The Chinese tool checks whether a renovation quote clearly states scope, materials, quantities, change-order rules, acceptance standards, warranty scope, and payment milestones. It does not decide whether a contractor is “good.” It tells you what is still too fuzzy to sign comfortably.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <Link href="/tools/quote-check" className="bg-stone px-5 py-3 text-sm font-semibold text-white hover:bg-stone/90">
@@ -79,7 +79,7 @@ export default function EnToolsPage() {
         <section id="risk-language" className="mb-14">
           <div className="mb-6 max-w-2xl">
             <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-stone">Risk Language</p>
-            <h2 className="text-2xl font-semibold tracking-tight text-ink">Terms that should make you pause before signing.</h2>
+            <h2 className="text-2xl font-semibold tracking-tight text-ink">Harmless-looking phrases that deserve a second look.</h2>
           </div>
           <div className="grid gap-4 md:grid-cols-2">
             {riskLanguage.map(([term, meaning]) => (
@@ -96,7 +96,7 @@ export default function EnToolsPage() {
             <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-stone">Checklists</p>
             <h2 className="text-2xl font-semibold tracking-tight text-ink">Questions you can actually ask, not downloadable clutter.</h2>
             <p className="mt-4 text-sm leading-7 text-ink-muted">
-              Each checklist is designed to help a homeowner ask clearer questions and move important promises out of the chat history and into the quote or contract.
+              Each checklist is designed to move important promises out of chat and into the quote, contract, or written addendum.
             </p>
           </div>
           <div className="grid gap-3 sm:grid-cols-2">
@@ -110,9 +110,9 @@ export default function EnToolsPage() {
 
         <section id="project-risks" className="border border-border bg-surface-warm p-6 sm:p-8">
           <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-stone">Project Risk Library</p>
-          <h2 className="text-2xl font-semibold tracking-tight text-ink">Every line item has a scope line.</h2>
+          <h2 className="text-2xl font-semibold tracking-tight text-ink">Every line item has a boundary.</h2>
           <p className="mt-4 max-w-3xl text-sm leading-7 text-ink-muted">
-            The project library is built for long-tail quote questions such as “What should waterproofing include?” or “How should plumbing and electrical work be priced?” It always comes back to quote clarity before signing, not construction tutorials.
+            The project library answers long-tail quote questions such as “What should waterproofing include?” or “How should plumbing and electrical work be priced?” It always comes back to quote clarity before signing, not construction tutorials.
           </p>
           <div className="mt-6 grid gap-2 sm:grid-cols-2 lg:grid-cols-5">
             {projectRisks.map((item) => (

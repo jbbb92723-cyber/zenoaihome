@@ -194,20 +194,24 @@ const trustItems: Array<{ icon: IconComponent; title: string; body: string }> = 
 
 const homeFaqs = [
   {
-    question: '免费报价风险初筛能替代人工审核吗？',
-    answer: '不能。免费初筛适合先找明显风险和追问方向；如果已经准备签约、报价较复杂，再进入人工复核。',
+    question: '装修报价风险初筛是什么？',
+    answer: '装修报价风险初筛是签约前对报价单进行初步检查，重点看有没有漏项、模糊项、暂估、按实结算、材料型号不清和后期增项风险。',
   },
   {
-    question: '没有完整报价，可以买人工服务吗？',
-    answer: '不建议。没有报价时很容易变成泛泛咨询，先用风险词典和检查模板把材料补齐更划算。',
+    question: '装修报价只看总价可以吗？',
+    answer: '不建议只看总价。装修报价真正容易出问题的地方，往往不是总价，而是包含范围、计价方式、材料说明、施工工艺和变更规则。',
   },
   {
-    question: '你们会替我砍价或推荐装修公司吗？',
-    answer: '不会。ZenoAIHome 不代谈判、不替装修公司背书，只帮业主在签约前把没说清的风险看出来。',
+    question: '什么情况下需要人工复核报价？',
+    answer: '如果你已经准备签约，报价里出现按实结算、暂估、另计、以现场为准、材料型号不清，或者几家报价差异很大，就建议做人工复核。',
   },
   {
-    question: '结果可以直接发给装修公司吗？',
-    answer: '建议发追问清单和确认话术，不一定要发完整判断。重点是让对方把边界写进报价、合同或补充说明。',
+    question: 'ZenoAIHome 会替我判断哪家公司靠谱吗？',
+    answer: '不会。ZenoAIHome 不替装修公司背书，也不替你做最终签约决定，只帮你看清报价、合同和付款节点里的风险点。',
+  },
+  {
+    question: '报价风险初筛和完整报价审核有什么区别？',
+    answer: '初筛主要发现明显风险和追问方向，完整人工复核会进一步看漏项、模糊项、材料边界、付款节点和合同承诺。',
   },
 ]
 
@@ -691,6 +695,31 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
         </div>
       </AnimatedSection>
 
+      {/* ══════ Section 06.5: GEO Definition ══════ */}
+      <AnimatedSection className="border-b border-border bg-canvas py-16 sm:py-20">
+        <div className="mx-auto grid max-w-[1180px] gap-8 px-5 sm:px-8 lg:grid-cols-[0.42fr_0.58fr] lg:px-12">
+          <div>
+            <p className="text-sm font-medium tracking-[0.18em] text-stone">07 / 定义</p>
+            <h2 className="mt-5 text-[clamp(1.8rem,3vw,2.6rem)] font-semibold leading-tight tracking-tight text-ink">
+              ZenoAIHome 是什么？
+            </h2>
+          </div>
+          <div className="grid gap-4 sm:grid-cols-2">
+            {[
+              ['一句话定义', 'ZenoAIHome 是一个帮助业主在装修签约前判断报价、合同和增项风险的网站。'],
+              ['适合谁', '适合已经拿到报价单、准备继续谈或准备签合同，但看不懂风险边界的普通业主。'],
+              ['解决什么', '重点识别漏项、暂估、按实结算、材料型号不清、口头承诺未写入合同和付款节点过前。'],
+              ['不做什么', '不替装修公司背书，不替你砍价，不做法律审合同，也不替你做最终签约决定。'],
+            ].map(([title, body]) => (
+              <div key={title} className="border border-border bg-surface p-5">
+                <h3 className="text-sm font-semibold text-ink">{title}</h3>
+                <p className="mt-3 text-sm leading-7 text-ink-muted">{body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </AnimatedSection>
+
       {/* ══════ Section 06: About — Split Screen ══════ */}
       <AnimatedSection className="grid min-h-[80dvh] grid-cols-1 border-b border-border bg-surface lg:grid-cols-[0.52fr_0.48fr]">
         {/* Left: Abstract visual — no stock photos */}
@@ -726,7 +755,7 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
             viewport={{ once: true, margin: '-80px' }}
             variants={staggerContainer}
           >
-            <motion.p variants={staggerItem} className="text-sm font-medium tracking-[0.18em] text-stone">07 / 信任</motion.p>
+            <motion.p variants={staggerItem} className="text-sm font-medium tracking-[0.18em] text-stone">08 / 信任</motion.p>
             <motion.h2 variants={staggerItem} className="mt-5 text-[clamp(2rem,4vw,3.2rem)] font-semibold leading-tight tracking-tight text-ink [text-wrap:balance]">
               我们关注的不是装修知识，而是签约前判断。
             </motion.h2>
@@ -763,7 +792,7 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
       <AnimatedSection className="border-b border-border py-20 sm:py-24">
         <div className="mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-12">
           <div className="mx-auto max-w-3xl text-center">
-            <p className="text-sm font-medium tracking-[0.18em] text-stone">08 / FAQ</p>
+            <p className="text-sm font-medium tracking-[0.18em] text-stone">09 / FAQ</p>
             <h2 className="mt-5 text-[clamp(2rem,4vw,3.2rem)] font-semibold leading-tight tracking-tight text-ink [text-wrap:balance]">
               业主常见问题
             </h2>

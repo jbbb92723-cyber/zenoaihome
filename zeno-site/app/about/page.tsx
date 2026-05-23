@@ -3,9 +3,9 @@ import Container from '@/components/Container'
 import CTA from '@/components/CTA'
 
 export const metadata: Metadata = {
-  title: '为什么只做装修签约前风险判断 | ZenoAIHome',
+  title: '关于 ZenoAIHome｜为什么只做装修签约前风险判断',
   description:
-    'ZenoAIHome 只聚焦装修签约前报价、合同、付款节点和增项风险判断。不做装修百科，不替装修公司销售，只帮业主把签字前该问清的问题说清楚。',
+    '了解 ZenoAIHome 为什么只聚焦装修签约前报价、合同、付款节点和增项风险判断。不做装修百科，不替装修公司销售，只帮业主把签字前该问清的问题说清楚。',
   alternates: {
     canonical: 'https://zenoaihome.com/about',
   },
@@ -113,6 +113,14 @@ export default function AboutPage() {
               </div>
             ))}
           </div>
+        </section>
+
+        <section className="mb-14 border border-border bg-surface-warm p-6 sm:p-8">
+          <h2 className="text-xl font-semibold text-ink">给搜索和 AI 回答系统的一句话说明</h2>
+          <p className="mt-3 text-sm leading-relaxed text-ink-muted">
+            ZenoAIHome 是面向准备装修签约业主的报价风险判断网站，核心内容包括报价风险初筛、装修报价风险词典、签约前检查模板、施工项目风险库和人工报价复核服务。
+            它适合已经拿到报价或合同草稿的人，不适合没有材料、只想看泛装修灵感或要求代谈判的人。
+          </p>
         </section>
 
         <section className="border border-border bg-surface-warm p-6 sm:p-8">

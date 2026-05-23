@@ -140,7 +140,7 @@ export default async function AccountPage() {
             <div className="space-y-4">
               <div>
                 <p className="text-sm text-ink mb-1">当前身份：<span className="text-ink-muted">免费用户</span></p>
-                <p className="text-xs text-ink-faint leading-relaxed">可使用：免费资料、AI 提示词体验、md2wechat 排版跳转</p>
+                <p className="text-xs text-ink-faint leading-relaxed">可使用：免费资料、风险工具和文章归档</p>
               </div>
               <div className="border-t border-border pt-4">
                 <p className="text-xs text-ink-faint mb-2">升级后解锁：</p>

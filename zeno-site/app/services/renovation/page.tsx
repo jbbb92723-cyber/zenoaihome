@@ -7,9 +7,9 @@ import StructuredData from '@/components/StructuredData'
 import { getServiceBySlug } from '@/data/services'
 
 export const metadata: Metadata = {
-  title: '签约前报价和合同人工复核 | ¥99、¥299、¥699 | ZenoAIHome',
+  title: '装修报价人工复核服务｜签约前报价、合同、付款节点风险判断',
   description:
-    'ZenoAIHome 签约前人工复核服务：¥99 报价风险初查、¥299 标准报价快审、¥699 签约前深度判断，帮业主看清报价、合同和付款节点里的风险。',
+    '适合已经拿到装修报价、合同草稿或付款节点的业主。ZenoAIHome 提供报价风险初查、标准报价快审和签约前深度判断，帮助你在签字前看清风险。',
   alternates: {
     canonical: 'https://zenoaihome.com/services/renovation',
   },
@@ -172,6 +172,23 @@ export default function RenovationServicesPage() {
       </section>
 
       <Container size="layout" className="py-section">
+        <section className="mb-14 border border-border bg-surface-warm p-6 sm:p-8">
+          <p className="text-xs font-semibold uppercase tracking-widest text-stone">服务定义</p>
+          <h2 className="mt-3 text-2xl font-semibold tracking-tight text-ink">人工复核不是砍价，也不是替你选装修公司。</h2>
+          <div className="mt-6 grid gap-3 md:grid-cols-3">
+            {[
+              ['适合谁', '已经拿到装修报价、合同草稿或付款节点，准备继续谈或临近签约的业主。'],
+              ['解决什么', '看清报价漏项、材料模糊、按实结算、暂估、增项流程和付款节点风险。'],
+              ['不适合谁', '还没有报价、只想问泛装修建议、希望代谈判或要求保证不被坑的人。'],
+            ].map(([title, body]) => (
+              <div key={title} className="border border-border bg-surface p-4">
+                <h3 className="text-sm font-semibold text-ink">{title}</h3>
+                <p className="mt-2 text-xs leading-relaxed text-ink-muted">{body}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
         <section className="mb-14">
           <div className="mb-6 max-w-3xl">
             <p className="text-xs font-semibold uppercase tracking-widest text-stone">选择路径</p>
