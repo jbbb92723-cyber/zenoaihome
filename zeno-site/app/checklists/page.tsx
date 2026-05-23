@@ -73,8 +73,8 @@ export default function ChecklistsPage() {
 
       <PageHero
         label="看合同"
-        title="销售说过的话，不等于合同里有保障。"
-        subtitle="围绕口头承诺、付款节点、延期责任、材料替换、质保范围和增项确认流程，签约前逐项对照。"
+        title="签约前装修检查清单"
+        subtitle="销售说过的话，不等于合同里有保障。围绕口头承诺、付款节点、延期责任、材料替换、质保范围和增项确认流程，签约前逐项对照。"
         size="content"
       />
 

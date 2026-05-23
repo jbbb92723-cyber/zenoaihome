@@ -165,10 +165,10 @@ export default function RenovationServicesPage() {
           <div className="max-w-4xl">
             <p className="page-label mb-4">装修签约前风险判断</p>
             <h1 className="text-[2.1rem] font-semibold leading-tight tracking-tight text-ink sm:text-5xl">
-              签约前，让我们帮你把报价和合同再看一遍
+              签约前报价和合同风险人工复核
             </h1>
             <p className="mt-5 max-w-3xl text-base leading-relaxed text-ink-muted sm:text-lg">
-              不是帮你砍价，也不是替你选装修公司，而是帮你看清报价、合同和付款节点里的风险。
+              签约前，让我们帮你把报价和合同再看一遍。不是帮你砍价，也不是替你选装修公司，而是帮你看清报价、合同和付款节点里的风险。
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <CTA href="/tools/quote-check" label="先做免费报价初筛" variant="primary" />

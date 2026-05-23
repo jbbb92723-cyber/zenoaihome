@@ -74,8 +74,8 @@ export default function RiskDictionaryPage() {
 
       <PageHero
         label="看报价"
-        title="报价单不是看总价，而是看边界。"
-        subtitle="按报价风险词、材料品牌型号、数量面积、漏项和低价陷阱，把签约前必须问清的报价边界先看懂。"
+        title="装修报价风险词典"
+        subtitle="报价单不是看总价，而是看边界。按报价风险词、材料品牌型号、数量面积、漏项和低价陷阱，把签约前必须问清的报价边界先看懂。"
         size="content"
       />
 

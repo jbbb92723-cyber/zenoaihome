@@ -66,8 +66,8 @@ export default function ProjectRisksPage() {
 
       <PageHero
         label="看增项"
-        title="很多增项不是施工中突然出现，而是报价阶段就留了口子。"
-        subtitle="按水电、拆改、找平、防水、定制接口和“现场为准”类风险，查看签约前应该约定清楚什么。"
+        title="装修项目增项风险库"
+        subtitle="很多增项不是施工中突然出现，而是报价阶段就留了口子。按水电、拆改、找平、防水、定制接口和“现场为准”类风险，查看签约前应该约定清楚什么。"
         size="content"
       />
 
