@@ -118,10 +118,17 @@ export default function RenovationServicesPage() {
           {
             '@context': 'https://schema.org',
             '@type': 'Service',
-            name: '签约前报价和合同人工复核',
+            name: '装修报价人工复核服务',
             url: 'https://zenoaihome.com/services/renovation',
-            description: '帮助业主在签约前看清报价、合同和付款节点里的风险。',
+            description: '签约前检查装修报价、合同和付款节点中的风险。',
             inLanguage: 'zh-CN',
+            provider: {
+              '@type': 'Organization',
+              name: 'ZenoAIHome',
+              url: 'https://zenoaihome.com',
+            },
+            serviceType: '装修报价风险判断',
+            areaServed: '中国',
             hasOfferCatalog: {
               '@type': 'OfferCatalog',
               name: '签约前风险判断三档服务',
@@ -166,6 +173,7 @@ export default function RenovationServicesPage() {
             <div className="mt-8 flex flex-wrap gap-3">
               <CTA href="/tools/quote-check" label="先做免费报价初筛" variant="primary" />
               <CTA href="#pricing" label="直接看三档服务" variant="secondary" />
+              <CTA href="/risk-dictionary" label="先查报价风险词" variant="secondary" />
             </div>
           </div>
         </Container>
@@ -175,17 +183,25 @@ export default function RenovationServicesPage() {
         <section className="mb-14 border border-border bg-surface-warm p-6 sm:p-8">
           <p className="text-xs font-semibold uppercase tracking-widest text-stone">服务定义</p>
           <h2 className="mt-3 text-2xl font-semibold tracking-tight text-ink">人工复核不是砍价，也不是替你选装修公司。</h2>
-          <div className="mt-6 grid gap-3 md:grid-cols-3">
-            {[
-              ['适合谁', '已经拿到装修报价、合同草稿或付款节点，准备继续谈或临近签约的业主。'],
-              ['解决什么', '看清报价漏项、材料模糊、按实结算、暂估、增项流程和付款节点风险。'],
-              ['不适合谁', '还没有报价、只想问泛装修建议、希望代谈判或要求保证不被坑的人。'],
-            ].map(([title, body]) => (
-              <div key={title} className="border border-border bg-surface p-4">
-                <h3 className="text-sm font-semibold text-ink">{title}</h3>
-                <p className="mt-2 text-xs leading-relaxed text-ink-muted">{body}</p>
-              </div>
-            ))}
+          <div className="mt-6 grid gap-5 md:grid-cols-2">
+            <div className="border border-border bg-surface p-5">
+              <h3 className="text-base font-semibold text-ink">适合</h3>
+              <ul className="mt-3 space-y-2 text-sm leading-relaxed text-ink-muted">
+                <li>已经拿到装修报价，准备继续谈或签约的人。</li>
+                <li>看不懂报价里的漏项、暂估、按实结算的人。</li>
+                <li>几家装修公司报价差异很大，不知道怎么比较的人。</li>
+                <li>担心口头承诺没有写进合同的人。</li>
+              </ul>
+            </div>
+            <div className="border border-border bg-surface p-5">
+              <h3 className="text-base font-semibold text-ink">不适合</h3>
+              <ul className="mt-3 space-y-2 text-sm leading-relaxed text-ink-muted">
+                <li>还没有任何报价，只想泛泛了解装修的人。</li>
+                <li>希望别人替你砍价的人。</li>
+                <li>希望我替你决定签哪家公司的人。</li>
+                <li>已经开工并进入施工纠纷处理阶段的人。</li>
+              </ul>
+            </div>
           </div>
         </section>
 
@@ -354,7 +370,8 @@ export default function RenovationServicesPage() {
             </div>
             <div className="flex flex-wrap gap-3">
               <CTA href="/tools/quote-check" label="先做免费报价初筛" variant="primary" />
-              <CTA href="#pricing" label="看三档服务" variant="secondary" />
+              <CTA href="/risk-dictionary" label="查风险词典" variant="secondary" />
+              <CTA href="/checklists" label="看检查模板" variant="secondary" />
             </div>
           </div>
         </section>

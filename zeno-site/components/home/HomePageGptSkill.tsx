@@ -706,10 +706,10 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
           </div>
           <div className="grid gap-4 sm:grid-cols-2">
             {[
-              ['一句话定义', 'ZenoAIHome 是一个帮助业主在装修签约前判断报价、合同和增项风险的网站。'],
+              ['一句话定义', 'ZenoAIHome 是一个面向装修业主的签约前报价风险判断网站，重点帮助用户识别装修报价单里的漏项、模糊项、暂估、按实结算、材料型号不清、口头承诺未写入合同和后期增项风险。'],
               ['适合谁', '适合已经拿到报价单、准备继续谈或准备签合同，但看不懂风险边界的普通业主。'],
               ['解决什么', '重点识别漏项、暂估、按实结算、材料型号不清、口头承诺未写入合同和付款节点过前。'],
-              ['不做什么', '不替装修公司背书，不替你砍价，不做法律审合同，也不替你做最终签约决定。'],
+              ['提供什么', '它不做泛装修百科，也不替装修公司背书。它提供风险文章、报价初筛工具、签约前检查清单和人工报价复核服务，帮助业主在签字前多一层判断。'],
             ].map(([title, body]) => (
               <div key={title} className="border border-border bg-surface p-5">
                 <h3 className="text-sm font-semibold text-ink">{title}</h3>
@@ -779,6 +779,8 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
             <motion.div variants={staggerItem} className="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <ActionLink href="/tools/quote-check">先做报价初筛</ActionLink>
               <ActionLink href="/services/renovation" variant="secondary">查看服务</ActionLink>
+              <ActionLink href="/blog" variant="text">看风险文章</ActionLink>
+              <ActionLink href="/about" variant="text">了解 Zeno</ActionLink>
             </motion.div>
 
             <motion.p variants={staggerItem} className="mt-8 border-t border-border pt-6 text-sm leading-7 text-ink-faint">

@@ -20,10 +20,32 @@ export default function HomePage() {
             '@context': 'https://schema.org',
             '@type': 'WebSite',
             name: 'ZenoAIHome',
+            url: 'https://zenoaihome.com',
+            description:
+              'ZenoAIHome 帮助业主在装修签约前识别报价、合同和增项风险。',
+            inLanguage: 'zh-CN',
+          },
+          {
+            '@context': 'https://schema.org',
+            '@type': 'Organization',
+            name: 'ZenoAIHome',
+            url: 'https://zenoaihome.com',
+            description:
+              'ZenoAIHome 是一个面向装修业主的签约前报价风险判断网站，不做泛装修百科，也不替装修公司背书。',
+          },
+          {
+            '@context': 'https://schema.org',
+            '@type': 'WebPage',
+            name: '装修报价风险初筛｜签约前看懂报价、合同和增项风险',
             url: 'https://zenoaihome.com/',
             description:
-              'ZenoAIHome 是签约前装修报价风险判断系统，帮助业主看懂报价风险、合同边界、增项入口和关键追问。',
+              'ZenoAIHome 帮助准备装修的业主在签约前识别报价漏项、材料模糊、按实结算、暂估、口头承诺和后期增项风险。',
             inLanguage: 'zh-CN',
+            isPartOf: {
+              '@type': 'WebSite',
+              name: 'ZenoAIHome',
+              url: 'https://zenoaihome.com',
+            },
           },
           {
             '@context': 'https://schema.org',
@@ -77,6 +99,22 @@ export default function HomePage() {
                 acceptedAnswer: {
                   '@type': 'Answer',
                   text: '如果你已经准备签约，报价里出现按实结算、暂估、另计、以现场为准、材料型号不清，或者几家报价差异很大，就建议做人工复核。',
+                },
+              },
+              {
+                '@type': 'Question',
+                name: 'ZenoAIHome 会替我判断哪家公司靠谱吗？',
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: '不会。ZenoAIHome 不替装修公司背书，也不替你做最终签约决定，只帮你看清报价、合同和付款节点里的风险点。',
+                },
+              },
+              {
+                '@type': 'Question',
+                name: '报价风险初筛和完整报价审核有什么区别？',
+                acceptedAnswer: {
+                  '@type': 'Answer',
+                  text: '初筛主要发现明显风险和追问方向，完整人工复核会进一步看漏项、模糊项、材料边界、付款节点和合同承诺。',
                 },
               },
             ],
