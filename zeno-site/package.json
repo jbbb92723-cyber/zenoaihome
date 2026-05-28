@@ -9,7 +9,9 @@
     "lint": "next lint",
     "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate dev",
-    "prisma:studio": "prisma studio"
+    "prisma:studio": "prisma studio",
+    "content:env-check": "node scripts/check-content-api-env.mjs",
+    "content:push-draft": "node scripts/push-website-draft.mjs"
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.11.2",
