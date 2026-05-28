@@ -1,0 +1,9 @@
+*.json
+*.png
+visual-dashboard.html
+operator-dashboard.md
+dry-run-outbox/
+outbox/
+publisher-outbox/
+website-draft-stage/
+wechat-draft-stage/

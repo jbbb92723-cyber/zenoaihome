@@ -11,7 +11,9 @@
     "prisma:migrate": "prisma migrate dev",
     "prisma:studio": "prisma studio",
     "content:env-check": "node scripts/check-content-api-env.mjs",
-    "content:push-draft": "node scripts/push-website-draft.mjs"
+    "content:push-draft": "node scripts/push-website-draft.mjs",
+    "content:hub": "node scripts/run-content-hub-command.mjs",
+    "content:dashboard": "node scripts/run-content-hub-command.mjs /可视化大屏"
   },
   "dependencies": {
     "@auth/prisma-adapter": "^2.11.2",
