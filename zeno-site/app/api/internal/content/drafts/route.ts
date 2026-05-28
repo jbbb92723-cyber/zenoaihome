@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
 import { verifyInternalApiRequest } from '@/lib/internal-api'
+import type { Prisma } from '@prisma/client'
 import { z } from 'zod'
 
 export const dynamic = 'force-dynamic'
@@ -30,6 +31,10 @@ const DraftSchema = z.object({
 
 function toNullable(value: string | null | undefined) {
   return value && value.trim() ? value.trim() : null
+}
+
+function toJsonPayload(value: Record<string, unknown> | null | undefined): Prisma.InputJsonObject | undefined {
+  return value ? (value as Prisma.InputJsonObject) : undefined
 }
 
 export async function POST(req: Request) {
@@ -68,7 +73,7 @@ export async function POST(req: Request) {
       canonicalUrl:    toNullable(data.canonicalUrl),
       previewPath:     toNullable(data.previewPath),
       publishedUrl:    toNullable(data.publishedUrl),
-      payload:         data.payload ?? undefined,
+      payload:         toJsonPayload(data.payload),
       stagedAt:        data.status === 'staged' ? now : null,
       approvedAt:      data.approvalStatus === 'approved' ? now : null,
       publishedAt:     data.status === 'published' ? now : null,
@@ -92,7 +97,7 @@ export async function POST(req: Request) {
       canonicalUrl:    toNullable(data.canonicalUrl),
       previewPath:     toNullable(data.previewPath),
       publishedUrl:    toNullable(data.publishedUrl),
-      payload:         data.payload ?? undefined,
+      payload:         toJsonPayload(data.payload),
       stagedAt:        data.status === 'staged' ? now : undefined,
       approvedAt:      data.approvalStatus === 'approved' ? now : undefined,
       publishedAt:     data.status === 'published' ? now : undefined,
