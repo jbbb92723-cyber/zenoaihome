@@ -373,6 +373,44 @@ model Note {
   @@map("notes")
 }
 
+// ─── 内容中台推送的网站草稿 ─────────────────────────────────────
+// 只用于承接 Feishu/Hermes/CLI 推送过来的草稿，不直接发布到前台。
+model WebsiteContentDraft {
+  id              String   @id @default(cuid())
+  contentId       String   @unique
+  briefId         String?
+  topicId         String?
+  title           String
+  slug            String
+  excerpt         String?
+  content         String
+  platform        String   @default("website")
+  status          String   @default("draft") // draft | staged | approved | returned | published | archived
+  approvalStatus  String   @default("pending") // pending | approved | returned
+  reviewScore     Int?
+  qualitySummary  String?
+  source          String   @default("content_hub")
+  adapterId       String?
+  metaTitle       String?
+  metaDescription String?
+  canonicalUrl    String?
+  previewPath     String?
+  publishedUrl    String?
+  payload         Json?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  stagedAt        DateTime?
+  approvedAt      DateTime?
+  publishedAt     DateTime?
+
+  @@index([briefId])
+  @@index([slug])
+  @@index([status])
+  @@index([approvalStatus])
+  @@index([createdAt])
+  @@map("website_content_drafts")
+}
+
 // ─── 后台操作日志 ─────────────────────────────────────────────
 model AdminLog {
   id        String   @id @default(cuid())

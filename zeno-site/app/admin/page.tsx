@@ -46,6 +46,13 @@ export default async function AdminPage() {
 
               <div className="space-y-2">
                 <Link
+                  href="/admin/content"
+                  className="flex items-center justify-between w-full px-4 py-3 border border-border hover:bg-surface-warm transition-colors text-sm text-ink"
+                >
+                  <span>内容草稿</span>
+                  <span className="text-ink-faint">→</span>
+                </Link>
+                <Link
                   href="/admin/publish"
                   className="flex items-center justify-between w-full px-4 py-3 border border-border hover:bg-surface-warm transition-colors text-sm text-ink"
                 >
