@@ -66,6 +66,24 @@ export async function updateServiceStatus(requestId: string, status: string) {
   revalidatePath('/admin/services')
 }
 
+// ─── 居住诊断状态 ─────────────────────────────────────────────
+export async function updateLivingDiagnosisStatus(diagnosisId: string, status: string) {
+  await requireAdmin()
+  const validStatuses = ['submitted', 'reviewing', 'report_draft', 'completed', 'archived']
+  if (!validStatuses.includes(status)) throw new Error('Invalid status')
+
+  await prisma.livingDiagnosis.update({ where: { id: diagnosisId }, data: { status } })
+  await prisma.adminLog.create({
+    data: {
+      action: 'update_living_diagnosis_status',
+      target: diagnosisId,
+      detail: { status },
+    },
+  })
+  revalidatePath('/admin/living-diagnoses')
+  revalidatePath(`/admin/living-diagnoses/${diagnosisId}`)
+}
+
 // ─── 兑换码 ──────────────────────────────────────────────────
 export async function createRedeemCode(data: {
   code: string; type: string; value?: string

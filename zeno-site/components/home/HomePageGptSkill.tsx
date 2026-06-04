@@ -66,6 +66,18 @@ const problemCards: Array<{
   href: string
 }> = [
   {
+    icon: HouseLine,
+    title: '说不清自己真正想怎么住',
+    body: '先把生活方式、家人关系、情绪需求和空间秩序说清，再谈风格和预算。',
+    href: '/living-diagnosis',
+  },
+  {
+    icon: Notebook,
+    title: '喜欢很多图，但不知道自己到底喜欢什么',
+    body: '灵感图不是答案，要翻译成色彩、材质、光线、收纳和动线判断。',
+    href: '/living-diagnosis',
+  },
+  {
     icon: MagnifyingGlass,
     title: '总价看起来低，但怕后面增项',
     body: '报价低不一定危险，真正要看哪些没包含、哪些暂估、哪些按实结算。',
@@ -103,18 +115,18 @@ const frameworkSteps: Array<{
   title: string
   body: string
 }> = [
-  { number: '01', icon: MagnifyingGlass, title: '看漏项', body: '识别哪些项目没写，后面容易变成增项。' },
-  { number: '02', icon: Calculator, title: '看模糊项', body: '材料、工艺、数量和面积有没有说清。' },
-  { number: '03', icon: FileText, title: '看风险词', body: '暂估、另计、按实结算和现场为准要重点追问。' },
-  { number: '04', icon: ClipboardText, title: '看付款节点', body: '付款有没有和验收绑定，尾款是否留得住。' },
-  { number: '05', icon: Notebook, title: '看合同边界', body: '口头承诺、替换规则、延期和质保有没有落字。' },
-  { number: '06', icon: ShieldCheck, title: '给追问清单', body: '把签约前必须问清的问题整理成可发出去的话。' },
+  { number: '01', icon: HouseLine, title: '看生活方式', body: '先判断这个家要支持什么样的一天。' },
+  { number: '02', icon: Notebook, title: '看空间秩序', body: '把动线、收纳、家务和家庭关系放在一起看。' },
+  { number: '03', icon: Calculator, title: '看预算取舍', body: '预算不是总价，而是哪些空间值得优先投入。' },
+  { number: '04', icon: MagnifyingGlass, title: '看报价边界', body: '识别哪些范围没写清，后面容易变成增项。' },
+  { number: '05', icon: FileText, title: '看合同风险', body: '口头承诺、材料替换和付款节点必须落字。' },
+  { number: '06', icon: ShieldCheck, title: '给下一步清单', body: '把该继续想、该追问、该复核的动作列清楚。' },
 ]
 
 const quoteSignals = [
-  { label: '常见漏项', value: '5 类', width: '72%', note: '水电、防水、找平、拆改、搬运——没写清就是增项入口', color: '#9a5424' },
-  { label: '追问清单', value: '12 项', width: '88%', note: '签字前该逐项问清的具体条目', color: '#3f6258' },
-  { label: '付款节点', value: '4 个', width: '56%', note: '开工、水电、泥木、竣工——每个都需要验收对齐', color: '#31485c' },
+  { label: '生活方式', value: '先判断', width: '82%', note: '家庭关系、情绪需求、工作学习和家务节奏要先说清', color: '#3f6258' },
+  { label: '预算取舍', value: '再排序', width: '68%', note: '预算不是总价，而是核心空间和可后置项目的优先级', color: '#9a5424' },
+  { label: '签约边界', value: '最后核对', width: '76%', note: '报价、合同和付款节点要能承接前面的真实需求', color: '#31485c' },
 ]
 
 const toolCards: Array<{
@@ -124,6 +136,13 @@ const toolCards: Array<{
   action: string
   href: string
 }> = [
+  {
+    icon: HouseLine,
+    title: 'AI 居住诊断',
+    body: '先判断生活方式、空间秩序、审美偏好、预算取舍和签约风险。',
+    action: '免费开始诊断',
+    href: '/living-diagnosis',
+  },
   {
     icon: ShieldCheck,
     title: '报价风险初筛',
@@ -187,31 +206,31 @@ const judgmentAssetCards: Array<{
 ]
 
 const trustItems: Array<{ icon: IconComponent; title: string; body: string }> = [
-  { icon: ShieldCheck, title: '不做泛装修百科', body: '我们只聚焦报价、合同和增项这些签约前最容易出问题的地方。' },
-  { icon: Wrench, title: '不替装修公司背书', body: '我们不判断哪家公司一定靠谱，只帮你看清报价和合同里的风险点。' },
-  { icon: UsersThree, title: '不制造焦虑', body: '每个风险都要落到可追问的问题上，而不是吓你不要装修。' },
+  { icon: HouseLine, title: '不做泛装修百科', body: '我们聚焦装修前最难判断的生活方式、空间秩序、预算取舍和签约风险。' },
+  { icon: Wrench, title: '不替装修公司背书', body: '我们不判断哪家公司一定靠谱，只帮你看清需求、报价和合同里的边界。' },
+  { icon: UsersThree, title: '不制造焦虑', body: '每个判断都要落到下一步动作上，而不是用术语吓你赶紧付费。' },
 ]
 
 const homeFaqs = [
   {
-    question: '装修报价风险初筛是什么？',
-    answer: '装修报价风险初筛是签约前对报价单进行初步检查，重点看有没有漏项、模糊项、暂估、按实结算、材料型号不清和后期增项风险。',
+    question: 'AI 居住诊断是什么？',
+    answer: 'AI 居住诊断不是风格测试，而是把生活方式、空间秩序、审美偏好、预算取舍和签约风险放在一起做初步判断。',
   },
   {
-    question: '装修报价只看总价可以吗？',
-    answer: '不建议只看总价。装修报价真正容易出问题的地方，往往不是总价，而是包含范围、计价方式、材料说明、施工工艺和变更规则。',
+    question: '为什么装修前要先看生活方式？',
+    answer: '因为风格、预算和施工方案都应该服务真实生活。先看清家庭关系、收纳秩序、家务动线和情绪需求，后面才不容易反复推翻。',
   },
   {
-    question: '什么情况下需要人工复核报价？',
-    answer: '如果你已经准备签约，报价里出现按实结算、暂估、另计、以现场为准、材料型号不清，或者几家报价差异很大，就建议做人工复核。',
+    question: '已有报价时还需要居住诊断吗？',
+    answer: '需要，但顺序会变。临近签约时，要把居住需求、预算取舍、报价边界和合同条款放在一起看，而不是继续只讨论风格。',
   },
   {
     question: 'ZenoAIHome 会替我判断哪家公司靠谱吗？',
     answer: '不会。ZenoAIHome 不替装修公司背书，也不替你做最终签约决定，只帮你看清报价、合同和付款节点里的风险点。',
   },
   {
-    question: '报价风险初筛和完整报价审核有什么区别？',
-    answer: '初筛主要发现明显风险和追问方向，完整人工复核会进一步看漏项、模糊项、材料边界、付款节点和合同承诺。',
+    question: '报价风险初筛还保留吗？',
+    answer: '保留。报价风险初筛仍然是临近签约用户的重要入口，用来检查漏项、模糊项、材料边界、付款节点和合同承诺。',
   },
 ]
 
@@ -303,21 +322,22 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
               variants={staggerItem}
               className="max-w-[22rem] text-[2.1rem] font-semibold leading-[1.16] tracking-tight text-ink sm:max-w-4xl sm:text-[4.25rem] xl:text-[5.25rem]"
             >
-              <span className="block">签约前，先看懂</span>
-              <span className="block">装修报价里的风险</span>
+              <span className="block">装修前，先看清</span>
+              <span className="block">你真正想怎样生活</span>
             </motion.h1>
 
             <motion.p variants={staggerItem} className="mt-7 max-w-[22rem] text-base leading-8 text-ink-muted sm:max-w-2xl sm:text-lg">
-              ZenoAIHome 帮你识别报价漏项、材料模糊、合同口头承诺和后期增项风险，让你在签字前多一层判断。
+              ZenoAIHome 用 AI 辅助分析和 16 年装修现场经验，帮你把居住需求、空间秩序、预算取舍、报价合同风险想清楚，再决定怎么装、花多少钱、能不能签。
             </motion.p>
 
             <motion.div variants={staggerItem} className="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-              <ActionLink href="/tools/quote-check">
-                <UploadSimple size={18} aria-hidden />
-                免费做报价风险初筛
+              <ActionLink href="/living-diagnosis">
+                <HouseLine size={18} aria-hidden />
+                开始 AI 居住诊断
               </ActionLink>
-              <ActionLink href="/risk-dictionary" variant="secondary">
-                查看常见报价风险
+              <ActionLink href="/tools/quote-check" variant="secondary">
+                <UploadSimple size={18} aria-hidden />
+                已有报价，先做风险初筛
               </ActionLink>
             </motion.div>
 
@@ -325,7 +345,7 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
               variants={staggerItem}
               className="mt-10 grid max-w-3xl grid-cols-2 gap-px border border-border bg-[#e8ddd1] sm:grid-cols-4"
             >
-              {['16 年\n装修现场', '5 个\n判断维度', '免费\n初筛入口', '边界\n先说清'].map((item) => {
+              {['16 年\n装修现场', '5 个\n判断维度', '免费\n居住诊断', '边界\n先说清'].map((item) => {
                 const [title, body] = item.split('\n')
                 return (
                   <div key={item} className="bg-surface/76 px-4 py-4">
@@ -353,11 +373,11 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
               >
                 <div className="flex items-start justify-between gap-5">
                   <div>
-                    <p className="text-xs font-semibold tracking-[0.18em] text-stone">QUOTE RISK</p>
-                    <h2 className="mt-3 text-xl font-semibold leading-snug text-ink [text-wrap:balance] sm:text-2xl">不是先判断贵不贵，先判断能不能签。</h2>
+                    <p className="text-xs font-semibold tracking-[0.18em] text-stone">LIVING JUDGMENT</p>
+                    <h2 className="mt-3 text-xl font-semibold leading-snug text-ink [text-wrap:balance] sm:text-2xl">不是先定风格，先判断这个家要支持怎样的生活。</h2>
                   </div>
                   <span className="flex h-12 w-12 shrink-0 items-center justify-center bg-surface-warm text-stone">
-                    <ShieldCheck size={26} weight="duotone" aria-hidden />
+                    <HouseLine size={26} weight="duotone" aria-hidden />
                   </span>
                 </div>
 
@@ -384,9 +404,9 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
                 </div>
 
                 <div className="mt-8 border-t border-border pt-6">
-                  <p className="text-sm font-semibold text-ink">初筛会输出什么</p>
+                  <p className="text-sm font-semibold text-ink">诊断会输出什么</p>
                   <div className="mt-4 grid gap-2 text-sm text-ink-muted sm:grid-cols-2">
-                    {['风险等级', '漏项提醒', '追问清单', '下一步建议'].map((item) => (
+                    {['居住类型', '空间优先级', '预算取舍', '下一步建议'].map((item) => (
                       <span key={item} className="border border-border bg-canvas px-3 py-2">{item}</span>
                     ))}
                   </div>
@@ -401,11 +421,11 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
       <AnimatedSection className="border-b border-border py-20 sm:py-24">
         <div className="mx-auto max-w-[1320px] px-5 sm:px-8 lg:px-12">
           <div className="mx-auto max-w-3xl text-center">
-            <p className="text-sm font-medium tracking-[0.18em] text-stone">02 / 签约前的坑</p>
-            <h2 className="mt-3 text-[clamp(2rem,4vw,3.2rem)] font-semibold leading-tight tracking-tight text-ink [text-wrap:balance]">
-              装修报价最危险的，不是贵，而是你看不懂它包含什么。
+            <p className="text-sm font-medium tracking-[0.18em] text-stone">02 / 装修前的判断</p>
+            <h2 className="mt-3 text-[2rem] font-semibold leading-tight tracking-tight text-ink [text-wrap:balance] sm:text-[2.75rem] lg:text-[3.2rem]">
+              最容易后悔的，不是风格选错，而是生活需求一开始就没想清。
             </h2>
-            <p className="mt-4 text-base leading-8 text-ink-muted">报价没看懂，合同没问清，增项边界没写清——后面就是一步接一步被动。</p>
+            <p className="mt-4 text-base leading-8 text-ink-muted">生活方式没说清，预算取舍没排序，报价合同也就很难判断。先把真实需求翻译成可以决策的问题。</p>
           </div>
 
           {/* Asymmetric: Row 1 → 2 cols (wider), Row 2 → 3 cols (narrower) */}
@@ -482,10 +502,10 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
               03 / 判断方法
               <span className="h-px w-28 bg-[#dfc5ac]" />
             </p>
-            <h2 className="mt-6 text-[clamp(2rem,4vw,3.2rem)] font-semibold leading-tight tracking-tight text-ink [text-wrap:balance]">
-              看报价、看合同、看增项。
+            <h2 className="mt-6 text-[2rem] font-semibold leading-tight tracking-tight text-ink [text-wrap:balance] sm:text-[2.75rem] lg:text-[3.2rem]">
+              看生活、看空间、看预算，再看报价和合同。
             </h2>
-            <p className="mt-4 text-base leading-8 text-ink-muted">先把漏项、模糊项、风险词、付款节点和合同边界看清，最后落到一份签约前追问清单。</p>
+            <p className="mt-4 text-base leading-8 text-ink-muted">先把生活方式、空间秩序和预算取舍说清，再把报价边界、合同风险和下一步动作落下来。</p>
           </div>
 
           <motion.div
@@ -526,10 +546,10 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
         <div className="mx-auto max-w-[1240px] px-5 sm:px-8 lg:px-12">
           <div className="mx-auto max-w-4xl text-center">
             <p className="text-sm font-medium tracking-[0.18em] text-stone">04 / 免费入口</p>
-            <h2 className="mt-5 text-[clamp(2rem,4vw,3.2rem)] font-semibold leading-tight tracking-tight text-ink [text-wrap:balance]">
-              先让你拿到具体东西，再决定要不要付费。
+            <h2 className="mt-5 text-[2rem] font-semibold leading-tight tracking-tight text-ink [text-wrap:balance] sm:text-[2.75rem] lg:text-[3.2rem]">
+              先用免费诊断和工具看清方向，再决定要不要付费。
             </h2>
-            <p className="mt-4 text-base leading-8 text-ink-muted">免费初筛先给结果，风险词典和模板补判断，人工服务只接工具解决不了的。</p>
+            <p className="mt-4 text-base leading-8 text-ink-muted">居住诊断负责前端判断，报价初筛负责签约边界，风险词典和模板补充可复用的追问依据。</p>
           </div>
 
           {/* Asymmetric: 1 featured + 3 stacked — NOT generic 4-equal cards */}
@@ -547,7 +567,7 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
                 className="group flex h-full flex-col border border-border bg-surface p-10 transition-all duration-200 hover:-translate-y-px hover:shadow-[0_26px_80px_rgba(67,45,26,0.11)] active:scale-[0.998]"
                 style={{ boxShadow: '0 18px 60px rgba(67,45,26,0.07)' }}
               >
-                <ShieldCheck size={56} weight="duotone" className="text-stone" aria-hidden />
+                <HouseLine size={56} weight="duotone" className="text-stone" aria-hidden />
                 <h3 className="mt-7 text-2xl font-semibold text-ink">{toolCards[0].title}</h3>
                 <p className="mt-4 max-w-[40ch] text-base leading-8 text-ink-muted">{toolCards[0].body}</p>
                 <span className="mt-auto inline-flex items-center gap-2 pt-8 text-sm font-medium text-stone transition-all duration-200 group-hover:gap-3">
@@ -596,7 +616,7 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
         <div className="mx-auto max-w-[1240px] px-5 sm:px-8 lg:px-12">
           <div className="mx-auto max-w-4xl text-center">
             <p className="text-sm font-medium tracking-[0.18em] text-stone">05 / 风险词</p>
-            <h2 className="mt-5 text-[clamp(2rem,4vw,3.2rem)] font-semibold leading-tight tracking-tight text-ink [text-wrap:balance]">
+            <h2 className="mt-5 text-[2rem] font-semibold leading-tight tracking-tight text-ink [text-wrap:balance] sm:text-[2.75rem] lg:text-[3.2rem]">
               签约前先看懂这些风险词。
             </h2>
             <p className="mt-4 text-base leading-8 text-ink-muted">
@@ -653,10 +673,10 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
         <div className="relative mx-auto max-w-[1320px] px-5 sm:px-8 lg:px-12">
           <div className="mx-auto max-w-4xl text-center">
             <p className="text-sm font-medium tracking-[0.18em] text-stone">06 / 服务</p>
-            <h2 className="mt-5 text-[clamp(2rem,4vw,3.2rem)] font-semibold leading-tight tracking-tight text-ink [text-wrap:balance]">
-              如果准备签约，可以让我们帮你再看一遍。
+            <h2 className="mt-5 text-[2rem] font-semibold leading-tight tracking-tight text-ink [text-wrap:balance] sm:text-[2.75rem] lg:text-[3.2rem]">
+              从居住需求洞察，到签约前风险判断。
             </h2>
-            <p className="mt-4 text-base leading-8 text-ink-muted">不是替你签字，也不是替你砍价。人工复核只做一件事：把报价、合同和付款节点里没说清的风险列出来。</p>
+            <p className="mt-4 text-base leading-8 text-ink-muted">还没定方案，先梳理生活方式和空间优先级；已经临近签约，再把报价、合同和付款节点里没说清的风险列出来。</p>
           </div>
 
           {/* 统一商业梯子：data/commercial-ladder.ts 是单一真源 */}
@@ -700,16 +720,16 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
         <div className="mx-auto grid max-w-[1180px] gap-8 px-5 sm:px-8 lg:grid-cols-[0.42fr_0.58fr] lg:px-12">
           <div>
             <p className="text-sm font-medium tracking-[0.18em] text-stone">07 / 定义</p>
-            <h2 className="mt-5 text-[clamp(1.8rem,3vw,2.6rem)] font-semibold leading-tight tracking-tight text-ink">
+            <h2 className="mt-5 text-[1.8rem] font-semibold leading-tight tracking-tight text-ink sm:text-[2.25rem] lg:text-[2.6rem]">
               ZenoAIHome 是什么？
             </h2>
           </div>
           <div className="grid gap-4 sm:grid-cols-2">
             {[
-              ['一句话定义', 'ZenoAIHome 是一个面向装修业主的签约前报价风险判断网站，重点帮助用户识别装修报价单里的漏项、模糊项、暂估、按实结算、材料型号不清、口头承诺未写入合同和后期增项风险。'],
-              ['适合谁', '适合已经拿到报价单、准备继续谈或准备签合同，但看不懂风险边界的普通业主。'],
-              ['解决什么', '重点识别漏项、暂估、按实结算、材料型号不清、口头承诺未写入合同和付款节点过前。'],
-              ['提供什么', '它不做泛装修百科，也不替装修公司背书。它提供风险文章、报价初筛工具、签约前检查清单和人工报价复核服务，帮助业主在签字前多一层判断。'],
+              ['一句话定义', 'ZenoAIHome 是一个面向自我成长型家庭的 AI 居住判断系统，帮助用户在装修前看清生活方式、空间秩序、预算取舍、审美偏好和签约风险。'],
+              ['适合谁', '适合正在重新理解生活质量、家庭关系、空间秩序和长期审美，也希望在签约前保留判断底气的家庭。'],
+              ['解决什么', '把模糊的“想要温馨、实用、高级、不乱”，翻译成空间优先级、预算取舍、报价边界和下一步清单。'],
+              ['提供什么', '它提供 AI 居住诊断、风险文章、报价初筛工具、签约前检查清单和人工复核服务，先帮你看清自己，再看清合同。'],
             ].map(([title, body]) => (
               <div key={title} className="border border-border bg-surface p-5">
                 <h3 className="text-sm font-semibold text-ink">{title}</h3>
@@ -756,12 +776,12 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
             variants={staggerContainer}
           >
             <motion.p variants={staggerItem} className="text-sm font-medium tracking-[0.18em] text-stone">08 / 信任</motion.p>
-            <motion.h2 variants={staggerItem} className="mt-5 text-[clamp(2rem,4vw,3.2rem)] font-semibold leading-tight tracking-tight text-ink [text-wrap:balance]">
-              我们关注的不是装修知识，而是签约前判断。
+            <motion.h2 variants={staggerItem} className="mt-5 text-[2rem] font-semibold leading-tight tracking-tight text-ink [text-wrap:balance] sm:text-[2.75rem] lg:text-[3.2rem]">
+              我们关注的不是装修知识，而是居住判断。
             </motion.h2>
             <motion.div variants={staggerItem} className="mt-7 space-y-5 text-base leading-9 text-ink-muted">
-              <p>很多装修问题，不是施工当天才出现的，而是在报价和合同阶段就已经埋下了。</p>
-              <p>ZenoAIHome 做的事情，是把这些风险提前翻译成普通业主能看懂的问题。不替你做所有决定，但在关键节点帮你看清风险和下一步。</p>
+              <p>很多装修问题，不是施工当天才出现的，而是在“我到底想怎样生活”还没说清时就已经埋下了。</p>
+              <p>ZenoAIHome 做的事情，是把模糊需求、预算取舍和签约风险提前翻译成普通家庭能看懂的问题。不替你做所有决定，但在关键节点帮你看清下一步。</p>
             </motion.div>
 
             <motion.div variants={staggerItem} className="mt-10 grid grid-cols-1 gap-px border border-border bg-[#e6d9cc] sm:grid-cols-3">
@@ -777,14 +797,14 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
             </motion.div>
 
             <motion.div variants={staggerItem} className="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-              <ActionLink href="/tools/quote-check">先做报价初筛</ActionLink>
+              <ActionLink href="/living-diagnosis">先做居住诊断</ActionLink>
               <ActionLink href="/services/renovation" variant="secondary">查看服务</ActionLink>
               <ActionLink href="/blog" variant="text">看风险文章</ActionLink>
               <ActionLink href="/about" variant="text">了解 Zeno</ActionLink>
             </motion.div>
 
             <motion.p variants={staggerItem} className="mt-8 border-t border-border pt-6 text-sm leading-7 text-ink-faint">
-              不做泛装修百科，不替装修公司背书，不制造焦虑；只帮你把签约前能问清的问题先问清。
+              不做泛装修百科，不替装修公司背书，不制造焦虑；只帮你把生活需求、预算取舍和签约前能问清的问题先问清。
             </motion.p>
           </motion.div>
         </div>
@@ -795,7 +815,7 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
         <div className="mx-auto max-w-[1080px] px-5 sm:px-8 lg:px-12">
           <div className="mx-auto max-w-3xl text-center">
             <p className="text-sm font-medium tracking-[0.18em] text-stone">09 / FAQ</p>
-            <h2 className="mt-5 text-[clamp(2rem,4vw,3.2rem)] font-semibold leading-tight tracking-tight text-ink [text-wrap:balance]">
+            <h2 className="mt-5 text-[2rem] font-semibold leading-tight tracking-tight text-ink [text-wrap:balance] sm:text-[2.75rem] lg:text-[3.2rem]">
               业主常见问题
             </h2>
             <p className="mt-4 text-base leading-8 text-ink-muted">先把边界说清楚，再决定要不要继续看、继续问、继续签。</p>

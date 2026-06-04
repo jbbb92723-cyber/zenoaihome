@@ -3,9 +3,9 @@ import HomePageGptSkill from '@/components/home/HomePageGptSkill'
 import StructuredData from '@/components/StructuredData'
 
 export const metadata: Metadata = {
-  title: '装修报价风险初筛｜签约前看懂报价、合同和增项风险｜ZenoAIHome',
+  title: 'AI 居住判断系统｜装修前看清生活方式、预算和签约风险｜ZenoAIHome',
   description:
-    'ZenoAIHome 帮助准备装修的业主在签约前识别报价漏项、材料模糊、按实结算、暂估、口头承诺和后期增项风险。先用免费报价风险初筛，再决定是否需要人工复核。',
+    'ZenoAIHome 面向自我成长型家庭，用 AI 辅助分析和 16 年装修现场经验，帮助你在装修前看清真实生活方式、空间秩序、预算取舍、报价合同和签约风险。',
   alternates: {
     canonical: 'https://zenoaihome.com/',
   },
@@ -22,7 +22,7 @@ export default function HomePage() {
             name: 'ZenoAIHome',
             url: 'https://zenoaihome.com',
             description:
-              'ZenoAIHome 帮助业主在装修签约前识别报价、合同和增项风险。',
+              'ZenoAIHome 帮助自我成长型家庭在装修前看清生活方式、空间秩序、预算取舍、报价合同和签约风险。',
             inLanguage: 'zh-CN',
           },
           {
@@ -31,15 +31,15 @@ export default function HomePage() {
             name: 'ZenoAIHome',
             url: 'https://zenoaihome.com',
             description:
-              'ZenoAIHome 是一个面向装修业主的签约前报价风险判断网站，不做泛装修百科，也不替装修公司背书。',
+              'ZenoAIHome 是一个面向自我成长型家庭的 AI 居住判断系统，不做泛装修百科，也不替装修公司背书。',
           },
           {
             '@context': 'https://schema.org',
             '@type': 'WebPage',
-            name: '装修报价风险初筛｜签约前看懂报价、合同和增项风险',
+            name: 'AI 居住判断系统｜装修前看清生活方式、预算和签约风险',
             url: 'https://zenoaihome.com/',
             description:
-              'ZenoAIHome 帮助准备装修的业主在签约前识别报价漏项、材料模糊、按实结算、暂估、口头承诺和后期增项风险。',
+              'ZenoAIHome 面向自我成长型家庭，用 AI 辅助分析和装修现场经验，帮助用户在装修前看清生活方式、空间秩序、预算取舍和签约风险。',
             inLanguage: 'zh-CN',
             isPartOf: {
               '@type': 'WebSite',
@@ -50,22 +50,23 @@ export default function HomePage() {
           {
             '@context': 'https://schema.org',
             '@type': 'Service',
-            name: '装修报价风险初筛与人工复核',
+            name: 'AI 居住诊断与装修签约前风险判断',
             provider: {
               '@type': 'Organization',
               name: 'ZenoAIHome',
               url: 'https://zenoaihome.com/',
             },
             areaServed: '中国',
-            serviceType: '装修签约前报价、合同和增项风险判断',
+            serviceType: '装修前生活方式、空间秩序、预算取舍、报价合同和签约风险判断',
             audience: {
               '@type': 'Audience',
-              audienceType: '准备签约的装修业主',
+              audienceType: '自我成长型装修家庭',
             },
             hasOfferCatalog: {
               '@type': 'OfferCatalog',
-              name: '签约前报价风险判断路径',
+              name: 'AI 居住判断与签约前风险路径',
               itemListElement: [
+                { '@type': 'Offer', name: '免费 AI 居住诊断', url: 'https://zenoaihome.com/living-diagnosis' },
                 { '@type': 'Offer', name: '免费报价风险初筛', url: 'https://zenoaihome.com/tools/quote-check' },
                 { '@type': 'Offer', name: '¥99 报价风险初查', url: 'https://zenoaihome.com/services/renovation#quote-entry' },
                 { '@type': 'Offer', name: '¥299 标准报价快审', url: 'https://zenoaihome.com/services/renovation#quote-standard' },
@@ -79,26 +80,26 @@ export default function HomePage() {
             mainEntity: [
               {
                 '@type': 'Question',
-                name: '装修报价风险初筛是什么？',
+                name: 'AI 居住诊断是什么？',
                 acceptedAnswer: {
                   '@type': 'Answer',
-                  text: '装修报价风险初筛是签约前对报价单进行初步检查，重点看有没有漏项、模糊项、暂估、按实结算、材料型号不清和后期增项风险。',
+                  text: 'AI 居住诊断不是风格测试，而是把生活方式、空间秩序、审美偏好、预算取舍和签约风险放在一起做初步判断。',
                 },
               },
               {
                 '@type': 'Question',
-                name: '装修报价只看总价可以吗？',
+                name: '为什么装修前要先看生活方式？',
                 acceptedAnswer: {
                   '@type': 'Answer',
-                  text: '不建议只看总价。装修报价真正容易出问题的地方，往往不是总价，而是包含范围、计价方式、材料说明、施工工艺和变更规则。',
+                  text: '因为风格、预算和施工方案都应该服务真实生活。先看清家庭关系、收纳秩序、家务动线和情绪需求，后面才不容易反复推翻。',
                 },
               },
               {
                 '@type': 'Question',
-                name: '什么情况下需要人工复核报价？',
+                name: '已有报价时还需要居住诊断吗？',
                 acceptedAnswer: {
                   '@type': 'Answer',
-                  text: '如果你已经准备签约，报价里出现按实结算、暂估、另计、以现场为准、材料型号不清，或者几家报价差异很大，就建议做人工复核。',
+                  text: '需要，但顺序会变。临近签约时，要把居住需求、预算取舍、报价边界和合同条款放在一起看，而不是继续只讨论风格。',
                 },
               },
               {
@@ -111,10 +112,10 @@ export default function HomePage() {
               },
               {
                 '@type': 'Question',
-                name: '报价风险初筛和完整报价审核有什么区别？',
+                name: '报价风险初筛还保留吗？',
                 acceptedAnswer: {
                   '@type': 'Answer',
-                  text: '初筛主要发现明显风险和追问方向，完整人工复核会进一步看漏项、模糊项、材料边界、付款节点和合同承诺。',
+                  text: '保留。报价风险初筛仍然是临近签约用户的重要入口，用来检查漏项、模糊项、材料边界、付款节点和合同承诺。',
                 },
               },
             ],

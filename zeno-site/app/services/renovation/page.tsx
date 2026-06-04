@@ -7,26 +7,33 @@ import StructuredData from '@/components/StructuredData'
 import { getServiceBySlug } from '@/data/services'
 
 export const metadata: Metadata = {
-  title: '装修报价人工复核服务｜签约前报价、合同、付款节点风险判断',
+  title: '装修前居住判断与签约风险服务｜ZenoAIHome',
   description:
-    '适合已经拿到装修报价、合同草稿或付款节点的业主。ZenoAIHome 提供报价风险初查、标准报价快审和签约前深度判断，帮助你在签字前看清风险。',
+    'ZenoAIHome 提供居住需求洞察、报价风险初查、标准报价快审和签约前深度判断，帮助你在装修前看清生活方式、预算取舍和签约风险。',
   alternates: {
     canonical: 'https://zenoaihome.com/services/renovation',
   },
 }
 
-const serviceSlugs = ['quote-entry', 'quote-standard', 'quote-deep']
+const serviceSlugs = ['living-insight-beta', 'quote-entry', 'quote-standard', 'quote-deep']
 const renovationServices = serviceSlugs
   .map((slug) => getServiceBySlug(slug))
   .filter((service): service is NonNullable<ReturnType<typeof getServiceBySlug>> => Boolean(service))
 
 const choiceCards = [
   {
-    label: '还没完整报价',
-    title: '免费初筛 + 检查模板',
-    description: '先不要买人工服务。把报价材料补齐，再决定是否需要人工判断。',
+    label: '需求还没想清',
+    title: 'AI 居住诊断 + 需求洞察报告',
+    description: '先看生活方式、空间秩序、审美偏好和预算取舍，不要急着定方案。',
+    href: '/living-diagnosis',
+    action: '先做居住诊断',
+  },
+  {
+    label: '已经拿到报价',
+    title: '免费报价初筛 + 检查模板',
+    description: '先看报价材料是否完整，再决定是否需要人工判断。',
     href: '/tools/quote-check',
-    action: '先做免费初筛',
+    action: '先做报价初筛',
   },
   {
     label: '只有几行重点报价',
@@ -70,8 +77,11 @@ const sampleReports = [
 ]
 
 const materialChecklist = [
-  '报价单 Excel / PDF / 截图',
-  '城市、面积、装修方式',
+  '家庭成员和生活场景',
+  '户型图 / 面积 / 城市',
+  '审美参考或关键词',
+  '预算范围和已知取舍',
+  '报价单 Excel / PDF / 截图（如有）',
   '是否准备签约',
   '合同草稿 / 付款节点截图',
   '你现在最担心的问题',
@@ -79,9 +89,14 @@ const materialChecklist = [
 
 const faqs = [
   {
-    question: '我没有报价能不能买？',
+    question: '我没有报价能不能买服务？',
     answer:
-      '不建议买人工服务。没有报价时，人工判断很容易变成泛泛咨询。先用免费初筛、检查模板和风险词典，把报价材料补齐。',
+      '可以先做 AI 居住诊断，必要时再进入《居住需求洞察报告 Beta》。但不建议购买报价复核类服务，因为没有报价时很难判断漏项、模糊项和合同边界。',
+  },
+  {
+    question: '居住需求洞察报告和设计方案有什么区别？',
+    answer:
+      '洞察报告不出施工图、效果图和材料清单，它先帮你把生活方式、空间优先级、审美偏好和预算取舍讲清楚，作为后续做方案或审报价的判断基础。',
   },
   {
     question: '¥99 和 ¥299 区别是什么？',
@@ -118,20 +133,20 @@ export default function RenovationServicesPage() {
           {
             '@context': 'https://schema.org',
             '@type': 'Service',
-            name: '装修报价人工复核服务',
+            name: '装修前居住判断与签约风险服务',
             url: 'https://zenoaihome.com/services/renovation',
-            description: '签约前检查装修报价、合同和付款节点中的风险。',
+            description: '装修前梳理居住需求、空间优先级、预算取舍，并在签约前检查装修报价、合同和付款节点中的风险。',
             inLanguage: 'zh-CN',
             provider: {
               '@type': 'Organization',
               name: 'ZenoAIHome',
               url: 'https://zenoaihome.com',
             },
-            serviceType: '装修报价风险判断',
+            serviceType: '装修前居住需求洞察与签约风险判断',
             areaServed: '中国',
             hasOfferCatalog: {
               '@type': 'OfferCatalog',
-              name: '签约前风险判断三档服务',
+              name: '居住需求洞察与签约前风险判断服务',
               itemListElement: renovationServices.map((service) => ({
                 '@type': 'Offer',
                 itemOffered: {
@@ -163,17 +178,17 @@ export default function RenovationServicesPage() {
       <section className="border-b border-border bg-surface-warm">
         <Container size="layout" className="py-14 sm:py-16">
           <div className="max-w-4xl">
-            <p className="page-label mb-4">装修签约前风险判断</p>
+            <p className="page-label mb-4">居住判断与签约风险</p>
             <h1 className="text-[2.1rem] font-semibold leading-tight tracking-tight text-ink sm:text-5xl">
-              签约前报价和合同风险人工复核
+              装修前居住判断与签约风险服务
             </h1>
             <p className="mt-5 max-w-3xl text-base leading-relaxed text-ink-muted sm:text-lg">
-              签约前，让我们帮你把报价和合同再看一遍。不是帮你砍价，也不是替你选装修公司，而是帮你看清报价、合同和付款节点里的风险。
+              服务分成三条线：先做居住需求洞察，再做报价风险快审，临近签约时把合同和付款节点一起判断。不是帮你砍价，也不是替你选装修公司，而是帮你看清需求、预算和边界。
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <CTA href="/tools/quote-check" label="先做免费报价初筛" variant="primary" />
-              <CTA href="#pricing" label="直接看三档服务" variant="secondary" />
-              <CTA href="/risk-dictionary" label="先查报价风险词" variant="secondary" />
+              <CTA href="/living-diagnosis" label="先做 AI 居住诊断" variant="primary" />
+              <CTA href="/tools/quote-check" label="已有报价，先初筛" variant="secondary" />
+              <CTA href="#pricing" label="直接看服务" variant="secondary" />
             </div>
           </div>
         </Container>
@@ -182,21 +197,22 @@ export default function RenovationServicesPage() {
       <Container size="layout" className="py-section">
         <section className="mb-14 border border-border bg-surface-warm p-6 sm:p-8">
           <p className="text-xs font-semibold uppercase tracking-widest text-stone">服务定义</p>
-          <h2 className="mt-3 text-2xl font-semibold tracking-tight text-ink">人工复核不是砍价，也不是替你选装修公司。</h2>
+          <h2 className="mt-3 text-2xl font-semibold tracking-tight text-ink">服务现在分三段：居住需求洞察、报价风险快审、签约前深度判断。</h2>
           <div className="mt-6 grid gap-5 md:grid-cols-2">
             <div className="border border-border bg-surface p-5">
               <h3 className="text-base font-semibold text-ink">适合</h3>
               <ul className="mt-3 space-y-2 text-sm leading-relaxed text-ink-muted">
+                <li>还没定方案，但想先看清生活方式和空间优先级的人。</li>
+                <li>攒了很多灵感图，却说不清长期审美偏好的人。</li>
                 <li>已经拿到装修报价，准备继续谈或签约的人。</li>
                 <li>看不懂报价里的漏项、暂估、按实结算的人。</li>
-                <li>几家装修公司报价差异很大，不知道怎么比较的人。</li>
-                <li>担心口头承诺没有写进合同的人。</li>
+                <li>担心口头承诺、付款节点和材料边界没有写进合同的人。</li>
               </ul>
             </div>
             <div className="border border-border bg-surface p-5">
               <h3 className="text-base font-semibold text-ink">不适合</h3>
               <ul className="mt-3 space-y-2 text-sm leading-relaxed text-ink-muted">
-                <li>还没有任何报价，只想泛泛了解装修的人。</li>
+                <li>只想要效果图、施工图或材料清单的人。</li>
                 <li>希望别人替你砍价的人。</li>
                 <li>希望我替你决定签哪家公司的人。</li>
                 <li>已经开工并进入施工纠纷处理阶段的人。</li>
@@ -210,7 +226,7 @@ export default function RenovationServicesPage() {
             <p className="text-xs font-semibold uppercase tracking-widest text-stone">选择路径</p>
             <h2 className="mt-3 text-2xl font-semibold tracking-tight text-ink">先看报价材料完整到哪一步，再决定要不要人工判断。</h2>
           </div>
-          <div className="grid gap-4 lg:grid-cols-4">
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
             {choiceCards.map((item) => (
               <Link
                 key={item.title}
@@ -228,14 +244,14 @@ export default function RenovationServicesPage() {
 
         <section id="pricing" className="mb-14 scroll-mt-24">
           <div className="mb-6 max-w-3xl">
-            <p className="text-xs font-semibold uppercase tracking-widest text-stone">三项服务</p>
-            <h2 className="mt-3 text-2xl font-semibold tracking-tight text-ink">只保留签约前最常用的三类判断。</h2>
+            <p className="text-xs font-semibold uppercase tracking-widest text-stone">四项服务</p>
+            <h2 className="mt-3 text-2xl font-semibold tracking-tight text-ink">前期先看需求，后期再看报价和合同。</h2>
             <p className="mt-3 text-sm leading-relaxed text-ink-muted">
-              不是把服务做复杂，而是把入口讲清楚：重点报价先初查，完整报价做快审，快签约再把合同和付款节点一起看。
+              不是把服务做复杂，而是把入口讲清楚：需求没想清先做洞察报告，重点报价先初查，完整报价做快审，快签约再把合同和付款节点一起看。
             </p>
           </div>
 
-          <div className="grid gap-6 lg:grid-cols-3">
+          <div className="grid gap-6 lg:grid-cols-2 xl:grid-cols-4">
             {renovationServices.map((service, index) => (
               <article key={service.slug} id={service.slug} className="scroll-mt-24 border border-border bg-surface">
                 <div className="border-b border-border bg-surface-warm p-5">
@@ -363,15 +379,15 @@ export default function RenovationServicesPage() {
           <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
             <div>
               <p className="text-xs font-semibold uppercase tracking-widest text-stone">下一步</p>
-              <h2 className="mt-3 text-xl font-semibold text-ink">如果你已经有报价，先做免费初筛。</h2>
+              <h2 className="mt-3 text-xl font-semibold text-ink">还没想清怎么住，先诊断；已经有报价，先初筛。</h2>
               <p className="mt-2 max-w-2xl text-sm leading-relaxed text-ink-muted">
-                如果结果显示高风险，再进入对应人工服务。这样不会一上来买错，也能先把真正该问的问题找出来。
+                如果诊断显示需求还没定型，先做居住需求洞察；如果报价初筛显示高风险，再进入对应人工服务。这样不会一上来买错，也能先把真正该问的问题找出来。
               </p>
             </div>
             <div className="flex flex-wrap gap-3">
-              <CTA href="/tools/quote-check" label="先做免费报价初筛" variant="primary" />
+              <CTA href="/living-diagnosis" label="先做 AI 居住诊断" variant="primary" />
+              <CTA href="/tools/quote-check" label="已有报价，先初筛" variant="secondary" />
               <CTA href="/risk-dictionary" label="查风险词典" variant="secondary" />
-              <CTA href="/checklists" label="看检查模板" variant="secondary" />
             </div>
           </div>
         </section>

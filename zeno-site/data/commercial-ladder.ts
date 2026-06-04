@@ -1,12 +1,12 @@
 /**
- * 全站唯一的"业主签约前报价风险判断"商业梯子。
+ * 全站唯一的"AI 居住判断 + 签约前报价风险判断"商业梯子。
  * 任何展示价格梯度的位置（首页、服务页、价格页、Footer CTA）都必须从这里读，
  * 不要在页面里再写一遍价格、文案、跳转。
  *
  * 维护规则：
  * - 改价格 / 改命名 / 增减档位 → 只动这个文件
  * - 三个 variant（compact / full / summary）由 CommercialLadder 组件统一渲染
- * - 主路径只保留：免费初筛 -> ¥99 报价风险初查 -> ¥299 标准报价快审 -> ¥699 签约前深度判断
+ * - 主路径：AI 居住诊断 -> 报价初筛 -> ¥99 报价风险初查 -> ¥299 标准报价快审 -> ¥699 签约前深度判断
  */
 
 export type LadderTier =
@@ -44,13 +44,25 @@ export const commercialLadder: LadderRung[] = [
     tier: 'free',
     price: '免费',
     priceNumeric: 0,
+    title: 'AI 居住诊断',
+    whoFor: '还没想清怎么住、怎么取舍的人',
+    delivers: '识别生活方式、空间优先级、预算取舍和下一步路径',
+    href: '/living-diagnosis',
+    cta: '先做居住诊断',
+    source: 'tool',
+    badge: '新主线起点',
+  },
+  {
+    tier: 'free',
+    price: '免费',
+    priceNumeric: 0,
     title: '报价初筛工具',
-    whoFor: '已经拿到报价，但还没签字',
+    whoFor: '已经拿到报价，但还没签字的人',
     delivers: '生成风险等级、可能存在的 3 个风险和签约前追问问题',
     href: '/tools/quote-check',
     cta: '先做免费初筛',
     source: 'tool',
-    badge: '主线起点',
+    badge: '签约前入口',
   },
   {
     tier: 'paid-low',
@@ -93,7 +105,7 @@ export const commercialLadder: LadderRung[] = [
 /** 仅取付费档（用于价格页主梯子展示） */
 export const paidLadder = commercialLadder.filter((r) => r.tier !== 'free')
 
-/** 首页展示完整主路径：免费初筛 -> 三档人工判断 */
+/** 首页展示完整主路径：居住诊断 -> 报价初筛 -> 三档人工判断 */
 export const homepageLadder: LadderRung[] = commercialLadder
 
 /** 主服务三档：报价风险初查 / 标准报价快审 / 签约前深度判断 */

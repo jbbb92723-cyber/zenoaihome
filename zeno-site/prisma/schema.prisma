@@ -22,16 +22,17 @@ model User {
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
 
-  accounts Account[]
-  sessions Session[]
-  membership        Membership?
-  resourceClaims    ResourceClaim[]
-  serviceRequests   ServiceRequest[]
-  orders            Order[]
-  couponClaims      CouponClaim[]
-  couponUsages      CouponUsage[]
-  redeemCodeUsages  RedeemCodeUsage[]
-  checkins          Checkin[]
+  accounts         Account[]
+  sessions         Session[]
+  membership       Membership?
+  resourceClaims   ResourceClaim[]
+  serviceRequests  ServiceRequest[]
+  orders           Order[]
+  couponClaims     CouponClaim[]
+  couponUsages     CouponUsage[]
+  redeemCodeUsages RedeemCodeUsage[]
+  checkins         Checkin[]
+  livingDiagnoses  LivingDiagnosis[]
 
   @@map("users")
 }
@@ -84,14 +85,14 @@ model VerificationToken {
 
 // ─── 邮箱验证码（注册 / 重置密码 / 修改密码）──────────────
 model VerificationCode {
-  id         String   @id @default(cuid())
+  id         String    @id @default(cuid())
   email      String
   codeHash   String
-  type       String   // register | reset_password | change_password
+  type       String // register | reset_password | change_password
   expiresAt  DateTime
   consumedAt DateTime?
-  attempts   Int      @default(0)
-  createdAt  DateTime @default(now())
+  attempts   Int       @default(0)
+  createdAt  DateTime  @default(now())
 
   @@index([email, type])
   @@map("verification_codes")
@@ -101,7 +102,7 @@ model VerificationCode {
 model Membership {
   id        String    @id @default(cuid())
   userId    String    @unique
-  plan      String    @default("free")   // free | creator
+  plan      String    @default("free") // free | creator
   status    String    @default("active") // active | expired | cancelled
   startedAt DateTime  @default(now())
   expiresAt DateTime?
@@ -152,8 +153,8 @@ model ServiceRequest {
 model Product {
   id          String   @id @default(cuid())
   name        String
-  type        String   // digital_resource | membership | consulting | service | course
-  price       Int      // 分
+  type        String // digital_resource | membership | consulting | service | course
+  price       Int // 分
   description String?
   isActive    Boolean  @default(true)
   createdAt   DateTime @default(now())
@@ -172,11 +173,11 @@ model Order {
   productId      String?
   productName    String
   productType    String
-  amount         Int       // 原价（分）
+  amount         Int // 原价（分）
   discountAmount Int       @default(0)
   paidAmount     Int
   status         String    @default("pending") // pending|paid|processing|completed|cancelled|refunded
-  paymentMethod  String?   // wechat|alipay|manual
+  paymentMethod  String? // wechat|alipay|manual
   couponId       String?
   redeemCodeId   String?
   source         String?
@@ -201,7 +202,7 @@ model Payment {
   id            String   @id @default(cuid())
   orderId       String
   amount        Int
-  method        String   // wechat|alipay|manual
+  method        String // wechat|alipay|manual
   status        String   @default("pending") // pending|success|failed
   transactionId String?
   createdAt     DateTime @default(now())
@@ -218,10 +219,10 @@ model Coupon {
   id        String    @id @default(cuid())
   code      String    @unique
   name      String
-  type      String    // fixed | percent
-  value     Int       // 固定减（分）或折扣（0-100 表示折扣百分比）
+  type      String // fixed | percent
+  value     Int // 固定减（分）或折扣（0-100 表示折扣百分比）
   minAmount Int       @default(0)
-  maxUses   Int?      // null = 不限
+  maxUses   Int? // null = 不限
   usedCount Int       @default(0)
   isActive  Boolean   @default(true)
   expiresAt DateTime?
@@ -264,8 +265,8 @@ model CouponUsage {
 model RedeemCode {
   id        String    @id @default(cuid())
   code      String    @unique
-  type      String    // membership | resource | coupon | service_discount
-  value     String?   // plan name / resource id / coupon code / discount amount
+  type      String // membership | resource | coupon | service_discount
+  value     String? // plan name / resource id / coupon code / discount amount
   maxUses   Int       @default(1)
   usedCount Int       @default(0)
   isActive  Boolean   @default(true)
@@ -356,17 +357,17 @@ enum NoteVisibility {
 }
 
 model Note {
-  id          String         @id @default(cuid())
-  title       String
-  slug        String         @unique
-  excerpt     String?
-  content     String
-  category    String?
-  tags        String[]
-  visibility  NoteVisibility @default(DRAFT)
-  featured    Boolean        @default(false)
-  createdAt   DateTime       @default(now())
-  updatedAt   DateTime       @updatedAt
+  id         String         @id @default(cuid())
+  title      String
+  slug       String         @unique
+  excerpt    String?
+  content    String
+  category   String?
+  tags       String[]
+  visibility NoteVisibility @default(DRAFT)
+  featured   Boolean        @default(false)
+  createdAt  DateTime       @default(now())
+  updatedAt  DateTime       @updatedAt
 
   @@index([visibility])
   @@index([createdAt])
@@ -376,20 +377,20 @@ model Note {
 // ─── 内容中台推送的网站草稿 ─────────────────────────────────────
 // 只用于承接 Feishu/Hermes/CLI 推送过来的草稿，不直接发布到前台。
 model WebsiteContentDraft {
-  id              String   @id @default(cuid())
-  contentId       String   @unique
+  id              String    @id @default(cuid())
+  contentId       String    @unique
   briefId         String?
   topicId         String?
   title           String
   slug            String
   excerpt         String?
   content         String
-  platform        String   @default("website")
-  status          String   @default("draft") // draft | staged | approved | returned | published | archived
-  approvalStatus  String   @default("pending") // pending | approved | returned
+  platform        String    @default("website")
+  status          String    @default("draft") // draft | staged | approved | returned | published | archived
+  approvalStatus  String    @default("pending") // pending | approved | returned
   reviewScore     Int?
   qualitySummary  String?
-  source          String   @default("content_hub")
+  source          String    @default("content_hub")
   adapterId       String?
   metaTitle       String?
   metaDescription String?
@@ -397,8 +398,8 @@ model WebsiteContentDraft {
   previewPath     String?
   publishedUrl    String?
   payload         Json?
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
   stagedAt        DateTime?
   approvedAt      DateTime?
   publishedAt     DateTime?
@@ -409,6 +410,59 @@ model WebsiteContentDraft {
   @@index([approvalStatus])
   @@index([createdAt])
   @@map("website_content_drafts")
+}
+
+// ─── AI 居住诊断记录 ─────────────────────────────────────────
+// 用于保存 /living-diagnosis 的公开诊断提交。
+// 第一阶段只做本地规则分析 + 后台人工审核，不直接自动发布报告。
+model LivingDiagnosis {
+  id            String   @id @default(cuid())
+  userId        String?
+  source        String   @default("living_diagnosis_page")
+  stage         String?
+  city          String?
+  homeType      String?
+  area          String?
+  budgetRange   String?
+  contactName   String?
+  contactWechat String?
+  contactEmail  String?
+  answers       Json
+  result        Json?
+  status        String   @default("submitted") // submitted | reviewing | report_draft | completed | archived
+  adminNote     String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  user   User?            @relation(fields: [userId], references: [id], onDelete: SetNull)
+  report DiagnosisReport?
+
+  @@index([userId])
+  @@index([status])
+  @@index([createdAt])
+  @@map("living_diagnoses")
+}
+
+// ─── 居住诊断报告草稿 ───────────────────────────────────────
+// 付费报告和公开报告页的预留模型；本阶段只建结构，不开放前台报告页。
+model DiagnosisReport {
+  id          String    @id @default(cuid())
+  diagnosisId String    @unique
+  title       String
+  status      String    @default("draft") // draft | reviewed | published | archived
+  aiSummary   String?
+  zenoReview  String?
+  report      Json
+  publicToken String?   @unique
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  publishedAt DateTime?
+
+  diagnosis LivingDiagnosis @relation(fields: [diagnosisId], references: [id], onDelete: Cascade)
+
+  @@index([status])
+  @@index([createdAt])
+  @@map("diagnosis_reports")
 }
 
 // ─── 后台操作日志 ─────────────────────────────────────────────
