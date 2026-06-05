@@ -1,0 +1,16 @@
+title: "这里写发布标题"
+slug: "yyyy-mm-dd-topic-slug"
+status: draft # draft / review / approved / published / archived
+owner: "Zeno"
+source_asset: "可填 Obsidian 原始内容资产路径"
+platforms:
+  - xiaohongshu
+  - wechat_oa
+  - website
+content_type: "图文/长文/网站文章/短视频脚本"
+cta: "低压 CTA：如 需要的话，可以先把报价单里看不懂的词圈出来。"
+publish_window: ""
+tags:
+  - 装修报价
+  - 签约前判断
+notes: "内部备注，不直接对外发布"
