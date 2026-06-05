@@ -67,7 +67,6 @@ WECHAT_APPID=你的appid
 WECHAT_APP_SECRET=你的secret
 ARK_API_KEY=你的key
 ARK_IMAGE_MODEL=doubao-seedream-3-0-t2i-250415
-ADMIN_TOKEN=随便设一个密码
 - 填入：`zeno-site`
 - 确认
 

@@ -26,21 +26,6 @@ export interface ConvertResult {
   estimatedReadTime: number
 }
 
-export interface DraftParams {
-  markdown: string
-  theme?: string
-  fontSize?: string
-  coverImageUrl?: string  // 必须是 HTTPS 公网链接
-}
-
-export interface DraftResult {
-  draftId: string
-  html: string
-  theme: string
-  fontSize: string
-  wordCount: number
-}
-
 // ─── 内部工具 ──────────────────────────────────────────────────
 
 function getBaseUrl(): string {
@@ -57,18 +42,6 @@ function getApiKey(): string {
     throw new Error('MD2WECHAT_API_KEY 环境变量未配置。')
   }
   return key
-}
-
-function getWechatHeaders(): Record<string, string> {
-  const appid  = process.env.WECHAT_APPID
-  const secret = process.env.WECHAT_APP_SECRET
-  if (!appid || !secret) {
-    throw new Error('WECHAT_APPID 或 WECHAT_APP_SECRET 未配置，草稿接口无法调用。')
-  }
-  return {
-    'Wechat-Appid':       appid,
-    'Wechat-App-Secret':  secret,
-  }
 }
 
 // ─── 公开 API ──────────────────────────────────────────────────
@@ -117,60 +90,12 @@ export async function convertMarkdownToWechat(params: ConvertParams): Promise<Co
 }
 
 /**
- * 在微信公众号后台创建图文草稿
- * 对应接口：POST /article-draft
- *
- * 注意：coverImageUrl 必须是 HTTPS 公网链接。
- */
-export async function createWechatDraft(params: DraftParams): Promise<DraftResult> {
-  const baseUrl = getBaseUrl()
-  const apiKey  = getApiKey()
-  const wechat  = getWechatHeaders()
-  const endpoint = process.env.MD2WECHAT_DRAFT_ENDPOINT || '/article-draft'
-
-  const res = await fetch(`${baseUrl}${endpoint}`, {
-    method:  'POST',
-    headers: {
-      'Content-Type':      'application/json',
-      'Md2wechat-API-Key': apiKey,
-      ...wechat,
-    },
-    body: JSON.stringify({
-      markdown:       params.markdown,
-      theme:          params.theme        ?? 'default',
-      fontSize:       params.fontSize     ?? 'medium',
-      coverImageUrl:  params.coverImageUrl ?? '',
-    }),
-  })
-
-  if (!res.ok) {
-    const text = await res.text().catch(() => '')
-    throw new Error(`md2wechat article-draft 请求失败 (${res.status})：${text}`)
-  }
-
-  const json = await res.json()
-
-  if (json.code !== 0) {
-    throw new Error(`md2wechat article-draft 返回错误：${json.message ?? JSON.stringify(json)}`)
-  }
-
-  return {
-    draftId:   json.data.draft_id         ?? '',
-    html:      json.data.html             ?? '',
-    theme:     json.data.theme            ?? params.theme ?? 'default',
-    fontSize:  json.data.fontSize         ?? 'medium',
-    wordCount: json.data.wordCount        ?? 0,
-  }
-}
-
-/**
  * 批量上传素材（预留，TODO：补充接口实现）
  * 对应接口：POST /batch-upload
  */
 export async function uploadAssets(_params: unknown): Promise<never> {
   // TODO：实现批量素材上传
   // 接口地址：POST /batch-upload
-  // 请求头：同 createWechatDraft
   // 参考文档：https://md2wechat.cn/api-docs
   throw new Error('uploadAssets 尚未实现，请参考 md2wechat 文档补充。')
 }

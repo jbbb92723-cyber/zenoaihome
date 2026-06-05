@@ -221,7 +221,6 @@ zeno-site/
 │   ├── Header.tsx                # 导航栏（含移动端折叠）
 │   ├── Footer.tsx                # 底部
 │   ├── ArticleCard.tsx           # 文章卡片（default + compact 两种）
-│   ├── SectionTitle.tsx          # 区块标题
 │   └── CTA.tsx                   # 按钮组件（primary/secondary/ghost）
 └── app/
     ├── layout.tsx                # 根布局 + SEO metadata + 字体
@@ -277,13 +276,7 @@ zeno-site/
 
 **修改或新增视频**
 
-视频不直接放进网站，只改链接：
-
-1. 把视频发布到 B站 / 视频号 / YouTube
-2. 打开 `data/videos.ts`
-3. 把 `url`、`embedUrl` 从 `【待补充】` 改成真实链接
-4. 把 `status` 改为 `'published'`
-5. 提交到 GitHub
+当前网站没有启用站内视频模块。视频先发布到 B站 / 视频号 / YouTube；等需要在网站展示时，再新增对应的数据文件和前台组件。不要把大视频文件直接放进 `public/`。
 
 **修改联系方式**
 

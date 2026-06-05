@@ -85,7 +85,6 @@ Authorization: Bearer {VOLCENGINE_ARK_API_KEY}
 | 项目 | 说明 | Vercel 环境变量名 | 状态 |
 |------|------|------------------|------|
 | 管理员邮箱 | 逗号分隔，拥有图片生成和草稿推送权限 | `ADMIN_EMAILS` | ⬜ 待填 |
-| 管理 Token（旧版） | 保护 /admin/publish 旧页面 | `ADMIN_TOKEN` | ⬜ 可选 |
 
 **管理员判断逻辑：**
 1. 用户必须已通过 IDC Flare OAuth 登录

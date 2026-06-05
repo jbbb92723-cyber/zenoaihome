@@ -16,6 +16,7 @@ zeno-site/.env.test.local
 zeno-site/.env.production.local
 node_modules
 .gstack/
+.skill_install_stage/
 
 # ─── Obsidian local settings / plugins（公开仓库不提交）────────────────
 赞诺内容资产系统/.obsidian/

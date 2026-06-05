@@ -54,7 +54,6 @@
 | `MD2WECHAT_BASE_URL` | 推荐 | md2wechat API 地址 |
 | `MD2WECHAT_API_KEY` | 推荐 | md2wechat API Key |
 | `MD2WECHAT_CONVERT_ENDPOINT` | 可选 | 默认 `/api/v1/convert` |
-| `MD2WECHAT_DRAFT_ENDPOINT` | 可选 | 默认 `/article-draft` |
 | `MD2WECHAT_UPLOAD_ENDPOINT` | 可选 | 图片上传端点 |
 
 ## 豆包图片生成（火山引擎）

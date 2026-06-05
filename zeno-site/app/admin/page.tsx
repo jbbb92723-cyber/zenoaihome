@@ -53,17 +53,10 @@ export default async function AdminPage() {
                   <span className="text-ink-faint">→</span>
                 </Link>
                 <Link
-                  href="/admin/publish"
+                  href="/tools/publish"
                   className="flex items-center justify-between w-full px-4 py-3 border border-border hover:bg-surface-warm transition-colors text-sm text-ink"
                 >
-                  <span>公众号草稿发布</span>
-                  <span className="text-ink-faint">→</span>
-                </Link>
-                <Link
-                  href="/admin/publish"
-                  className="flex items-center justify-between w-full px-4 py-3 border border-border hover:bg-surface-warm transition-colors text-sm text-ink"
-                >
-                  <span>发布工具</span>
+                  <span>公众号创作工作台</span>
                   <span className="text-ink-faint">→</span>
                 </Link>
               </div>

@@ -3,9 +3,7 @@
  *
  * 公众号创作工作台 — 推送草稿（含网站回流链接注入）
  *
- * 与 /api/wechat/draft 的区别：
- *   在 Markdown 末尾自动追加"阅读原文"回流链接，
- *   驱动公众号读者回到 zenoaihome.com。
+ * 在 Markdown 末尾自动追加"阅读原文"回流链接，驱动公众号读者回到 zenoaihome.com。
  *
  * 权限：仅管理员（admin_session cookie）
  * ⚠️  只创建草稿，不自动发布！

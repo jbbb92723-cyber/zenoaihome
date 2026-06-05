@@ -47,7 +47,6 @@
 | 变量名 | 默认值 | 说明 |
 |--------|--------|------|
 | `MD2WECHAT_CONVERT_ENDPOINT` | `/api/v1/convert` | Markdown 转换端点 |
-| `MD2WECHAT_DRAFT_ENDPOINT` | `/article-draft` | 草稿创建端点 |
 | `MD2WECHAT_UPLOAD_ENDPOINT` | （尚未接入） | 素材上传端点 |
 
 ## 微信公众号
@@ -74,11 +73,9 @@
 |--------|------|
 | `DATABASE_URL` | Supabase Postgres 连接串（当前未接入，可暂不填） |
 
-## 旧版兼容（可选）
+## 旧版兼容
 
-| 变量名 | 说明 |
-|--------|------|
-| `ADMIN_TOKEN` | 旧版 `/admin/publish` 页面的令牌（新版用 ADMIN_EMAILS 替代） |
+旧版 `/admin/publish` 与 `ADMIN_TOKEN` 头部认证链路已下线，不需要再配置 `ADMIN_TOKEN`。
 
 ---
 
