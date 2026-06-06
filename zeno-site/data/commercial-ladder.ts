@@ -6,7 +6,7 @@
  * 维护规则：
  * - 改价格 / 改命名 / 增减档位 → 只动这个文件
  * - 三个 variant（compact / full / summary）由 CommercialLadder 组件统一渲染
- * - 主路径：AI 居住诊断 -> 报价初筛 -> ¥99 报价风险初查 -> ¥299 标准报价快审 -> ¥699 签约前深度判断
+ * - 主路径：AI 居住诊断 -> ¥399-599 居住需求洞察报告 -> 报价初筛 -> ¥99/¥299/¥699 签约前风险判断
  */
 
 export type LadderTier =
@@ -51,6 +51,18 @@ export const commercialLadder: LadderRung[] = [
     cta: '先做居住诊断',
     source: 'tool',
     badge: '新主线起点',
+  },
+  {
+    tier: 'paid-mid',
+    price: '¥399-599',
+    priceNumeric: 399,
+    title: 'AI 居住需求洞察报告',
+    whoFor: '已经开始认真规划，但生活方式和空间优先级还没说清的人',
+    delivers: '输出居住类型、空间优先级、审美偏好、预算取舍和下一步判断清单',
+    href: '/services#living-insight-beta',
+    cta: '看洞察报告',
+    source: 'service',
+    badge: '核心产品',
   },
   {
     tier: 'free',
@@ -105,8 +117,8 @@ export const commercialLadder: LadderRung[] = [
 /** 仅取付费档（用于价格页主梯子展示） */
 export const paidLadder = commercialLadder.filter((r) => r.tier !== 'free')
 
-/** 首页展示完整主路径：居住诊断 -> 报价初筛 -> 三档人工判断 */
+/** 首页展示完整主路径：居住诊断 -> 居住需求洞察报告 -> 报价初筛 -> 三档人工判断 */
 export const homepageLadder: LadderRung[] = commercialLadder
 
-/** 主服务三档：报价风险初查 / 标准报价快审 / 签约前深度判断 */
+/** 主服务档：居住需求洞察报告 / 报价风险初查 / 标准报价快审 / 签约前深度判断 */
 export const serviceLadder: LadderRung[] = paidLadder

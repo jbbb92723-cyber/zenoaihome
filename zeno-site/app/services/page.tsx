@@ -12,15 +12,20 @@ import CommercialLadder from '@/components/CommercialLadder'
 import { serviceLadder } from '@/data/commercial-ladder'
 
 export const metadata: Metadata = {
-  title: '服务价格 | 签约前风险判断',
+  title: '服务价格 | AI 居住判断与签约前风险审查',
   description:
-    'ZenoAIHome 服务价格页。当前主线是装修签约前报价风险判断：免费初筛、¥99 报价风险初查、¥299 标准报价快审、¥699 签约前深度判断。',
+    'ZenoAIHome 服务价格页。先用 AI 居住诊断看清生活方式、空间秩序、审美偏好和预算取舍，再在临近签约时审查报价、合同和付款节点风险。',
   alternates: {
     canonical: 'https://zenoaihome.com/services',
   },
 }
 
 const serviceRelatedArticles: Record<string, { label: string; href: string }[]> = {
+  'living-insight-beta': [
+    { label: 'AI 居住诊断', href: '/living-diagnosis' },
+    { label: '居住需求地图', href: '/resources' },
+    { label: '案例复盘', href: '/cases' },
+  ],
   'quote-entry': [
     { label: '装修报价风险词典', href: '/risk-dictionary' },
     { label: '签约前检查模板', href: '/checklists' },
@@ -38,46 +43,65 @@ const serviceRelatedArticles: Record<string, { label: string; href: string }[]> 
   ],
 }
 
-const renovationSlugs = ['quote-entry', 'quote-standard', 'quote-deep']
+const coreServiceSlugs = ['living-insight-beta', 'quote-entry', 'quote-standard', 'quote-deep']
+const quoteServiceSlugs = ['quote-entry', 'quote-standard', 'quote-deep']
 
-const entryRoutes = [
+const decisionTracks = [
   {
-    label: '主线 / 装修签约前判断',
-    title: '你买的不是咨询时长，是签字前少后悔',
-    description: '先做免费初筛，再按报价材料完整度选择 ¥99 初查、¥299 快审或 ¥699 深度判断。',
-    href: '/services/renovation',
-    cta: '看装修签约前路径',
-    image: '/images/services/renovation-judgment-proof.svg',
+    label: '路径 A / 还没定方案',
+    title: '先做 AI 居住诊断，再选择 399-599 元的居住需求洞察报告。',
+    description: '适合已经开始认真规划，但生活方式、空间优先级、审美偏好和预算取舍还没说清的家庭。',
+    href: '/living-diagnosis',
+    cta: '开始诊断',
+    image: '/images/services/ai-workflow-proof.svg',
+  },
+  {
+    label: '路径 B / 已经拿到报价',
+    title: '先用免费报价初筛，把漏项、模糊项和增项口子找出来。',
+    description: '适合已经有报价材料，但还没判断报价边界、材料写法和付款节点是否清楚的人。',
+    href: '/tools/quote-check',
+    cta: '做报价初筛',
+  },
+  {
+    label: '路径 C / 快要签约',
+    title: '按材料完整度选择 ¥99 初查、¥299 快审或 ¥699 深度判断。',
+    description: '适合报价、合同草稿或付款节点都已经在手，需要在签字前把关键风险问清的人。',
+    href: '/services#quote-entry',
+    cta: '看风险服务',
   },
 ]
 
 const serviceFaqs = [
   {
-    question: '为什么服务页只保留三档主服务？',
+    question: '为什么新增居住需求洞察报告？',
     answer:
-      '当前网站先打穿签约前报价判断。三项服务分别对应“重点报价初查”“完整报价快审”“报价、合同和付款节点一起看”。',
+      '因为很多装修后悔不是报价阶段才出现的，而是在生活方式、空间秩序、审美偏好和预算取舍还没说清时就埋下了。报告先帮你建立判断，再进入方案、报价或签约。',
+  },
+  {
+    question: '报价风险判断还保留吗？',
+    answer:
+      '保留，而且仍然是临近签约用户的关键入口。新主线不是放弃报价风险，而是把它放回正确位置：先判断怎么住，再判断报价和合同能不能承接这个家。',
   },
   {
     question: '什么时候更适合先用工具，而不是直接找我？',
     answer:
-      '还没有具体材料，或者只是感觉有问题但说不清——先用工具把问题缩小。带着清单来问，比空着手咨询更划算。',
+      '还没有完整材料，或者只是感觉有问题但说不清时，先用 AI 居住诊断或报价初筛把问题缩小。带着判断结果来问，比空着手咨询更划算。',
   },
   {
-    question: '为什么把价格写出来？',
+    question: 'AI 会不会替我做最终决定？',
     answer:
-      '不写清楚，你不知道该买哪个，我也不知道哪个真有人要。按你现在的阶段选，别贪多。',
-  },
-  {
-    question: 'AI、课程、会员现在是不是主线？',
-    answer:
-      '不是。AI 只是辅助整理信息和生成清单。当前主线仍然是业主签约前的报价、合同和付款节点判断。',
+      '不会。AI 用来整理信息、提出追问和生成初步判断，最终风格、预算投入、施工方选择和签约决定必须由你和人工复核一起完成。',
   },
 ]
 
 export default function ServicesPage() {
-  const renovationServices = renovationSlugs
+  const coreServices = coreServiceSlugs
     .map((slug) => getServiceBySlug(slug))
     .filter((service): service is NonNullable<ReturnType<typeof getServiceBySlug>> => Boolean(service))
+  const quoteServices = quoteServiceSlugs
+    .map((slug) => getServiceBySlug(slug))
+    .filter((service): service is NonNullable<ReturnType<typeof getServiceBySlug>> => Boolean(service))
+  const livingInsightService = coreServices.find((service) => service.slug === 'living-insight-beta')
 
   return (
     <>
@@ -86,11 +110,11 @@ export default function ServicesPage() {
           {
             '@context': 'https://schema.org',
             '@type': 'CollectionPage',
-            name: '签约前报价判断服务价格',
+            name: 'AI 居住判断与签约前风险审查服务价格',
             url: 'https://zenoaihome.com/services',
-            description: '围绕签约前报价、合同和付款节点风险判断的三档人工服务。',
+            description: '围绕装修前居住需求洞察、报价、合同和付款节点风险判断的服务路径。',
             inLanguage: 'zh-CN',
-            hasPart: renovationServices.map((service) => ({
+            hasPart: coreServices.map((service) => ({
               '@type': 'Service',
               name: service.title,
               description: service.description,
@@ -119,9 +143,9 @@ export default function ServicesPage() {
 
       <PageHero
         label="服务价格"
-        title="签约前风险判断，只保留三项服务。"
-        subtitle="如果你是准备签约的业主，先看自己手里的报价材料到哪一步，再决定是否进入人工判断。"
-        note="还没有完整报价材料时，先用免费初筛，不要急着买人工服务。"
+        title="先做居住判断，再决定怎么装、花多少、能不能签。"
+        subtitle="ZenoAIHome 把装修前的服务分成两条路：还没想清生活方式时，先做居住需求洞察；已经拿到报价合同后，再做签约前风险判断。"
+        note="免费诊断先帮你分流，不急着买服务。"
         size="content"
       />
 
@@ -130,50 +154,52 @@ export default function ServicesPage() {
           <div className="overflow-hidden border border-border bg-surface">
             <div className="relative aspect-[16/10] border-b border-border bg-stone-pale/30">
               <Image
-                src="/images/services/renovation-judgment-proof.svg"
-                alt="装修签约前判断服务示意图"
+                src={decisionTracks[0].image ?? '/images/services/ai-workflow-proof.svg'}
+                alt="AI 居住判断服务示意图"
                 fill
                 className="object-cover"
                 sizes="(max-width: 1024px) 100vw, 720px"
               />
             </div>
             <div className="p-6 sm:p-7">
-              <p className="mb-3 text-[0.65rem] font-semibold uppercase tracking-widest text-stone">{entryRoutes[0].label}</p>
-              <h2 className="mb-3 max-w-2xl text-2xl font-semibold leading-tight tracking-tight text-ink">{entryRoutes[0].title}</h2>
-              <p className="mb-5 max-w-2xl text-sm leading-relaxed text-ink-muted">{entryRoutes[0].description}</p>
-              <CTA href={entryRoutes[0].href} label={entryRoutes[0].cta} variant="primary" />
+              <p className="mb-3 text-[0.65rem] font-semibold uppercase tracking-widest text-stone">{decisionTracks[0].label}</p>
+              <h2 className="mb-3 max-w-2xl text-2xl font-semibold leading-tight tracking-tight text-ink">{decisionTracks[0].title}</h2>
+              <p className="mb-5 max-w-2xl text-sm leading-relaxed text-ink-muted">{decisionTracks[0].description}</p>
+              <CTA href={decisionTracks[0].href} label={decisionTracks[0].cta} variant="primary" />
             </div>
           </div>
 
           <div className="grid gap-5">
-            {[
-              ['先做免费初筛', '把报价里没写清的地方先标出来。', '/tools/quote-check', '去初筛'],
-              ['再用风险资料补问题', '风险词典、项目风险库和检查模板，帮你把问题问具体。', '/risk-dictionary', '看风险词典'],
-              ['最后选服务', '¥99 报价风险初查、¥299 标准报价快审、¥699 签约前深度判断，按材料完整度选。', '/services/renovation', '看怎么选'],
-            ].map(([title, desc, href, action], index) => (
-              <Link key={title} href={href} className="group border border-border bg-surface p-6 transition-colors hover:border-stone hover:bg-surface-warm">
+            {decisionTracks.slice(1).map((track, index) => (
+              <Link key={track.title} href={track.href} className="group border border-border bg-surface p-6 transition-colors hover:border-stone hover:bg-surface-warm">
                 <p className="text-xs font-semibold uppercase tracking-widest text-stone">0{index + 1}</p>
-                <h3 className="mt-3 text-lg font-semibold text-ink">{title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-ink-muted">{desc}</p>
-                <p className="mt-5 text-xs font-semibold text-stone">{action} -&gt;</p>
+                <h3 className="mt-3 text-lg font-semibold text-ink">{track.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-ink-muted">{track.description}</p>
+                <p className="mt-5 text-xs font-semibold text-stone">{track.cta} -&gt;</p>
               </Link>
             ))}
+            <Link href="/risk-dictionary" className="group border border-border bg-surface p-6 transition-colors hover:border-stone hover:bg-surface-warm">
+              <p className="text-xs font-semibold uppercase tracking-widest text-stone">03</p>
+              <h3 className="mt-3 text-lg font-semibold text-ink">先用风险资料补问题</h3>
+              <p className="mt-3 text-sm leading-relaxed text-ink-muted">风险词典、项目风险库和检查模板，帮你把要问施工方的问题变具体。</p>
+              <p className="mt-5 text-xs font-semibold text-stone">看风险词典 -&gt;</p>
+            </Link>
           </div>
         </section>
 
         <section className="mb-14 border border-border bg-surface-warm p-6 sm:p-8">
           <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-ink-faint">主价格路径</p>
-          <h2 className="mb-3 text-lg font-semibold text-ink">报价看不懂，先从这条路走。</h2>
+          <h2 className="mb-3 text-lg font-semibold text-ink">这不是一串报价服务，而是一条装修前判断路径。</h2>
           <p className="mb-6 max-w-3xl text-sm leading-relaxed text-ink-muted">
-            免费初筛负责先找方向；¥99 初查看重点报价明显风险；¥299 快审看完整报价里的漏项、模糊项和增项口子；¥699 深度判断把报价、合同和付款节点一起看。
+            免费 AI 居住诊断负责先分流；399-599 元居住需求洞察报告负责把生活方式、空间优先级、审美偏好和预算取舍整理清楚；已经拿到报价后，再用免费报价初筛和三档签约前风险判断看清报价、合同和付款节点。
           </p>
 
           <div className="grid gap-8 lg:grid-cols-[2fr_0.9fr]">
             <div>
-              <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-stone">三档人工服务</p>
+              <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-stone">核心付费服务</p>
               <CommercialLadder variant="full" rungs={serviceLadder} />
               <div className="mt-4 border border-border bg-surface p-4 text-sm leading-relaxed text-ink-muted">
-                真正进入人工服务前，你应该已经有报价、合同草稿或多家报价材料。
+                如果还没定方案，优先选居住需求洞察报告；如果已经临近签约，再按报价、合同和付款节点材料完整度选择风险判断服务。
               </div>
             </div>
 
@@ -181,9 +207,11 @@ export default function ServicesPage() {
               <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-stone">怎么选</p>
               <div className="grid gap-3">
                 {[
-                  ['¥99 报价风险初查', '刚拿到报价，只想先看明显风险。'],
-                  ['¥299 标准报价快审', '已有完整报价，准备继续谈或签约。'],
-                  ['¥699 签约前深度判断', '报价、合同和付款节点都已经有，且临近签约。'],
+                  [
+                    livingInsightService ? `${livingInsightService.price} ${livingInsightService.title}` : '399-599 元 AI 居住需求洞察报告',
+                    '还没定方案，先把生活方式、空间优先级、审美偏好和预算取舍说清。',
+                  ],
+                  ...quoteServices.map((service) => [`${service.price.replace(' 元 / 次', '').replace(' 元 / 份', '')} ${service.title}`, service.tagline] as const),
                 ].map(([title, desc]) => (
                   <div key={title} className="border border-border bg-surface p-5">
                     <h3 className="text-base font-semibold text-ink">{title}</h3>
@@ -197,7 +225,7 @@ export default function ServicesPage() {
 
         <section className="mb-14 border border-border bg-surface-warm p-6 sm:p-8">
           <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-ink-faint">可验证的交付</p>
-          <p className="mb-6 text-sm leading-relaxed text-ink-muted">以下是脱敏样张。装修线付费服务交付的是基于你真实报价单生成的完整版文件。</p>
+          <p className="mb-6 text-sm leading-relaxed text-ink-muted">以下是脱敏样张。居住判断会输出需求和取舍清单；报价风险服务会基于你真实报价单生成完整版文件。</p>
           <div className="mb-6 grid gap-4 sm:grid-cols-3">
             {[
               { src: '/images/services/sample-risk-report.svg', label: '报价风险报告', desc: '风险等级 + 漏项 + 模糊项 + 异常单价' },
@@ -215,7 +243,7 @@ export default function ServicesPage() {
           </div>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {[
-              ['装修线交付', '报价风险、合同追问和付款节点提醒，最后落到一份能执行的清单。'],
+              ['服务交付', '居住需求、预算取舍、报价风险、合同追问和付款节点提醒，最后都要落到一份能执行的清单。'],
               ['AI 辅助边界', 'AI 可以整理信息和生成清单，但不替你判断能不能签。'],
               ['工作方式', '先看材料，再给书面建议；复杂情况再配微信或语音解读。'],
               ['明确不做', '不代砍价、不代施工、不做法律审查，也不替你做最终签约决定。'],
@@ -229,7 +257,7 @@ export default function ServicesPage() {
         </section>
 
         <div className="space-y-10">
-          {renovationServices.map((service, index) => (
+          {coreServices.map((service, index) => (
             <ServiceCard
               key={service.id}
               service={service}
@@ -247,7 +275,7 @@ export default function ServicesPage() {
               这里是站内服务申请入口。暂不做站内文件上传，你可以先放网盘链接、报价单说明、户型信息；提交后会进入你的用户记录。
             </p>
           </div>
-          <ServiceRequestForm services={renovationServices} />
+          <ServiceRequestForm services={coreServices} />
         </section>
 
         <div className="mt-12 border border-border p-6 sm:p-8">
@@ -261,14 +289,14 @@ export default function ServicesPage() {
 
         <div className="mt-6 flex flex-col items-start justify-between gap-5 border border-border bg-surface-warm p-6 sm:flex-row sm:items-center sm:p-8">
           <div>
-            <p className="text-sm font-medium text-ink">还没想好？先从免费初筛和检查模板开始。</p>
+            <p className="text-sm font-medium text-ink">还没想好？先从免费居住诊断和报价初筛开始。</p>
             <p className="mt-1 max-w-md text-xs text-ink-muted">
-              报价初筛、风险词典、检查模板和验收清单都可以先用。先建立判断，再决定是否需要服务。
+              AI 居住诊断、报价初筛、风险词典和检查模板都可以先用。先建立判断，再决定是否需要服务。
             </p>
           </div>
           <div className="flex flex-wrap gap-3">
-            <CTA href="/tools/quote-check" label="去报价初筛" variant="primary" />
-            <CTA href="/checklists" label="去检查模板" variant="secondary" />
+            <CTA href="/living-diagnosis" label="去居住诊断" variant="primary" />
+            <CTA href="/tools/quote-check" label="去报价初筛" variant="secondary" />
           </div>
         </div>
 
