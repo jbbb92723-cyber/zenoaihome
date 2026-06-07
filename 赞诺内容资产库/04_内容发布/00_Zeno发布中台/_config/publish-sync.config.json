@@ -1,8 +1,8 @@
 {
   "name": "Zeno本地发布中台同步配置",
   "version": "0.1.0",
-  "vault_root": "G:/Zenoaihome.com/赞诺内容资产系统",
-  "publish_center": "G:/Zenoaihome.com/赞诺内容资产系统/04_内容发布/00_Zeno发布中台",
+  "vault_root": "G:/Zenoaihome.com/赞诺内容资产库",
+  "publish_center": "G:/Zenoaihome.com/赞诺内容资产库/04_内容发布/00_Zeno发布中台",
   "scan_dirs": [
     "02_packages_发布包",
     "04_ready_待发布"

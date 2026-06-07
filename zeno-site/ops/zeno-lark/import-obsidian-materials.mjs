@@ -12,7 +12,7 @@ if (!materialsTable) throw new Error("materials_素材索引 not found in manife
 const vaultPath =
   process.argv[2] ||
   process.env.OBSIDIAN_VAULT_PATH ||
-  "G:/Zenoaihome.com/赞诺内容资产系统";
+  "G:/Zenoaihome.com/赞诺内容资产库";
 const limit = Number(process.argv[3] || 30);
 
 function sleep(ms) {

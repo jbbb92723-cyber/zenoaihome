@@ -10,7 +10,7 @@ Base Token: `MZEybml1aaBX4zsIUPwcVUHcnHc`
 - Operational views created for every table.
 - Key status fields converted to single select fields.
 - 8 default channel records inserted.
-- 30 Obsidian material index records imported from `G:/Zenoaihome.com/赞诺内容资产系统`.
+- 30 Obsidian material index records imported from `G:/Zenoaihome.com/赞诺内容资产库`.
 - Key views have filters/sorts for daily operations.
 
 ## Main Scripts

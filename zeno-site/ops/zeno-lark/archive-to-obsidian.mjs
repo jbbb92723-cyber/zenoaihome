@@ -15,7 +15,7 @@ const ids = {
   taskRuns: "tblNIeOvE10OF9Ml",
 };
 
-const vaultRoot = "G:/Zenoaihome.com/赞诺内容资产系统";
+const vaultRoot = "G:/Zenoaihome.com/赞诺内容资产库";
 
 function sleep(ms) {
   Atomics.wait(new Int32Array(new SharedArrayBuffer(4)), 0, 0, ms);

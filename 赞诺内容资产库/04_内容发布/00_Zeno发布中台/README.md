@@ -53,13 +53,13 @@ assets/        # 小红书图、公众号封面、网站图等发布素材
 脚本路径：
 
 ```bash
-python "G:/Zenoaihome.com/赞诺内容资产系统/04_内容发布/00_Zeno发布中台/_scripts/zeno_publish_sync.py" --dry-run
+python "G:/Zenoaihome.com/赞诺内容资产库/04_内容发布/00_Zeno发布中台/_scripts/zeno_publish_sync.py" --dry-run
 ```
 
 真正复制输出：
 
 ```bash
-python "G:/Zenoaihome.com/赞诺内容资产系统/04_内容发布/00_Zeno发布中台/_scripts/zeno_publish_sync.py" --apply
+python "G:/Zenoaihome.com/赞诺内容资产库/04_内容发布/00_Zeno发布中台/_scripts/zeno_publish_sync.py" --apply
 ```
 
 脚本默认只做三件事：
