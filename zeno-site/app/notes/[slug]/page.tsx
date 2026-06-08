@@ -3,8 +3,8 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
-import Container from '@/components/Container'
-import CopyLinkButton from '@/components/CopyLinkButton'
+import Container from '@/components/ui/Container'
+import CopyLinkButton from '@/components/ui/CopyLinkButton'
 import { getPublicNoteBySlug } from '@/lib/notes'
 
 interface Props {

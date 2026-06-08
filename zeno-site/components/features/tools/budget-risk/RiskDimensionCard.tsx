@@ -1,4 +1,4 @@
-import type { RiskSummary } from '@/data/budget-risk'
+import type { RiskSummary } from '@/data/tools/budget-risk'
 
 interface RiskDimensionCardProps {
   summary: RiskSummary

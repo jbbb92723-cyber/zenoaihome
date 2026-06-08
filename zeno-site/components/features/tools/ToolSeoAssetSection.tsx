@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import type { ToolSeoAsset } from '@/data/toolSeoAssets'
+import type { ToolSeoAsset } from '@/data/tools/toolSeoAssets'
 
 interface ToolSeoAssetSectionProps {
   asset: ToolSeoAsset

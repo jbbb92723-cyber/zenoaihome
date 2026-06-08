@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import Container from '@/components/Container'
+import Container from '@/components/ui/Container'
 
 export const metadata: Metadata = {
   title: "Why I Don't Want to Be Just a Renovation Blogger — Zeno",

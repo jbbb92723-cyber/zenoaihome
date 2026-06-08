@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
-import StageLayout from '@/components/StageLayout'
-import StructuredData from '@/components/StructuredData'
+import StageLayout from '@/components/features/start/StageLayout'
+import StructuredData from '@/components/ui/StructuredData'
 
 export const metadata: Metadata = {
   title: '看合同｜装修合同怎么审、口头承诺怎么落字 | 装修判断 03',

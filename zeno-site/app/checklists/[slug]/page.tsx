@@ -1,11 +1,11 @@
-﻿import type { Metadata } from 'next'
+import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
-import Container from '@/components/Container'
-import CTA from '@/components/CTA'
-import StructuredData from '@/components/StructuredData'
-import { checklistTemplates, getChecklistTemplateBySlug, type ChecklistTemplate } from '@/data/checklist-templates'
-import { getQuoteRiskRuleById, type QuoteRiskRule } from '@/data/quote-risk-rules'
+import Container from '@/components/ui/Container'
+import CTA from '@/components/ui/CTA'
+import StructuredData from '@/components/ui/StructuredData'
+import { checklistTemplates, getChecklistTemplateBySlug, type ChecklistTemplate } from '@/data/risk-control/checklist-templates'
+import { getQuoteRiskRuleById, type QuoteRiskRule } from '@/data/risk-control/quote-risk-rules'
 
 interface Props {
   params: { slug: string }

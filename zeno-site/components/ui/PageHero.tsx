@@ -1,4 +1,4 @@
-import Container from '@/components/Container'
+import Container from '@/components/ui/Container'
 
 interface PageHeroProps {
   /** 页面小标签，例如「关于我」「文章」 */

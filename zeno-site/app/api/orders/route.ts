@@ -8,7 +8,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { auth } from '@/auth'
 import { prisma } from '@/lib/prisma'
-import { getProductById } from '@/data/products'
+import { getProductById } from '@/data/services/products'
 import { z } from 'zod'
 
 const createOrderSchema = z.object({

@@ -1,10 +1,10 @@
 'use client'
 
 import { useState } from 'react'
-import ArticleCard from '@/components/ArticleCard'
-import PageHero from '@/components/PageHero'
-import Container from '@/components/Container'
-import { articles, categories } from '@/data/articles'
+import ArticleCard from '@/components/features/content/ArticleCard'
+import PageHero from '@/components/ui/PageHero'
+import Container from '@/components/ui/Container'
+import { articles, categories } from '@/data/content/articles'
 
 export default function BlogClient() {
   const [activeCategory, setActiveCategory] = useState<string>('全部')

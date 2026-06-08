@@ -1,9 +1,9 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import Container from '@/components/Container'
-import NoteCard from '@/components/NoteCard'
-import PageHero from '@/components/PageHero'
-import SectionHeader from '@/components/SectionHeader'
+import Container from '@/components/ui/Container'
+import NoteCard from '@/components/features/content/NoteCard'
+import PageHero from '@/components/ui/PageHero'
+import SectionHeader from '@/components/ui/SectionHeader'
 import { getPublicNotes, NOTE_CATEGORIES } from '@/lib/notes'
 
 export const metadata: Metadata = {

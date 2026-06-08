@@ -1,12 +1,12 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import Container from '@/components/Container'
-import StructuredData from '@/components/StructuredData'
+import Container from '@/components/ui/Container'
+import StructuredData from '@/components/ui/StructuredData'
 
 export const metadata: Metadata = {
-  title: 'Expert Quote Review Before Signing | ZenoAIHome',
+  title: 'Expert Residential Review Before Signing | ZenoAIHome',
   description:
-    'English overview of ZenoAIHome expert quote review options for homeowners in China: RMB 99 entry review, RMB 299 standard quote review, and RMB 699 pre-signing review for quote, contract, and payment milestones.',
+    'English overview of ZenoAIHome expert review options for homeowners in China: quote risk entry review, quote/contract review, and deeper residential judgment across plan, budget, quote, contract, and delivery risk.',
   alternates: {
     canonical: 'https://zenoaihome.com/en/services',
     languages: {
@@ -33,9 +33,9 @@ const services = [
   },
   {
     price: 'RMB 699',
-    title: 'Deep Pre-Signing Review',
-    bestFor: 'You are close to signing and already have a quote, draft contract, and payment schedule.',
-    includes: 'Quote risk report, contract/payment milestone reminders, question sequence, and a 30-minute WeChat voice explanation.',
+    title: 'Deep Residential Judgment Review',
+    bestFor: 'You are close to signing and already have a plan, quote, draft contract, and payment schedule.',
+    includes: 'Plan fit notes, quote risk report, contract/payment milestone reminders, question sequence, and a 30-minute WeChat voice explanation.',
     boundary: 'Not legal contract review. No signing on your behalf. I do not speak to the contractor for you.',
   },
 ]
@@ -54,7 +54,7 @@ export default function EnServicesPage() {
         data={{
           '@context': 'https://schema.org',
           '@type': 'Service',
-          name: 'ZenoAIHome Expert Quote Review',
+          name: 'ZenoAIHome Expert Residential Review',
           url: 'https://zenoaihome.com/en/services',
           description: metadata.description,
           inLanguage: 'en',
@@ -69,7 +69,7 @@ export default function EnServicesPage() {
             If you are close to signing, do not buy advice too early. Buy the right second look.
           </h1>
           <p className="mt-5 max-w-2xl text-base leading-8 text-ink-muted">
-            Expert review only works when there is something real to read. If you do not yet have a complete quote, use the free Quote Risk Check and checklists first. Human review is most useful when the quote, draft contract, and payment schedule are already in hand.
+            Expert review only works when there is something real to read. If you do not yet have a plan or quote, start with the Chinese living diagnosis and quote risk check. Human review is most useful when the plan, quote, draft contract, and payment schedule are already in hand.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <Link href="/tools/quote-check" className="bg-stone px-5 py-3 text-sm font-semibold text-white hover:bg-stone/90">
@@ -111,6 +111,7 @@ export default function EnServicesPage() {
           <div className="grid gap-3 sm:grid-cols-2">
             {[
               'Renovation quote: Excel, PDF, screenshot, or text',
+              'Floor plan or key design notes if available',
               'City, home size, and renovation method',
               'Whether you are preparing to sign',
               'Draft contract or payment milestone screenshot',

@@ -1,8 +1,8 @@
 'use client'
 
 import { useState } from 'react'
-import PageHero from '@/components/PageHero'
-import Container from '@/components/Container'
+import PageHero from '@/components/ui/PageHero'
+import Container from '@/components/ui/Container'
 import ArticleCardEn from '@/app/en/ArticleCardEn'
 import { getDictionary, getLocalizedArticles, getLocalizedCategories } from '@/lib/i18n'
 

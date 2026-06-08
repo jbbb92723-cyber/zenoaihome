@@ -1,10 +1,10 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import Container from '@/components/Container'
-import CTA from '@/components/CTA'
-import PageHero from '@/components/PageHero'
-import StructuredData from '@/components/StructuredData'
-import { renovationProjectRisks } from '@/data/renovation-project-risks'
+import Container from '@/components/ui/Container'
+import CTA from '@/components/ui/CTA'
+import PageHero from '@/components/ui/PageHero'
+import StructuredData from '@/components/ui/StructuredData'
+import { renovationProjectRisks } from '@/data/risk-control/renovation-project-risks'
 
 export const metadata: Metadata = {
   title: '施工项目报价风险库｜水电、防水、拆除、找平增项风险',

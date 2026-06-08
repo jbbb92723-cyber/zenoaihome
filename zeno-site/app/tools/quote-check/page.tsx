@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
-import QuoteCheckClient from '@/components/quote-check/QuoteCheckClient'
-import StructuredData from '@/components/StructuredData'
-import { buildToolStructuredData, toolSeoAssets } from '@/data/toolSeoAssets'
+import QuoteCheckClient from '@/components/features/quote-check/QuoteCheckClient'
+import StructuredData from '@/components/ui/StructuredData'
+import { buildToolStructuredData, toolSeoAssets } from '@/data/tools/toolSeoAssets'
 
 export const metadata: Metadata = {
   title: '装修报价风险初筛工具｜看报价能不能承接方案边界',

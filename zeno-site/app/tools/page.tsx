@@ -1,9 +1,9 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import Container from '@/components/Container'
-import CTA from '@/components/CTA'
-import PageHero from '@/components/PageHero'
-import StructuredData from '@/components/StructuredData'
+import Container from '@/components/ui/Container'
+import CTA from '@/components/ui/CTA'
+import PageHero from '@/components/ui/PageHero'
+import StructuredData from '@/components/ui/StructuredData'
 
 export const metadata: Metadata = {
   title: '居住诊断与报价初筛工具 | ZenoAIHome',

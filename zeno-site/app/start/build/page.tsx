@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
-import StageLayout from '@/components/StageLayout'
-import StructuredData from '@/components/StructuredData'
+import StageLayout from '@/components/features/start/StageLayout'
+import StructuredData from '@/components/ui/StructuredData'
 
 export const metadata: Metadata = {
   title: '看施工｜工地怎么盯、变更怎么留痕 | 装修判断 04',

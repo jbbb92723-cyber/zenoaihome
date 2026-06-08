@@ -1,18 +1,18 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
-import CTA from '@/components/CTA'
-import Container from '@/components/Container'
-import PageHero from '@/components/PageHero'
-import ResourceClaimButton from '@/components/resources/ResourceClaimButton'
-import StructuredData from '@/components/StructuredData'
-import { resources } from '@/data/resources'
+import CTA from '@/components/ui/CTA'
+import Container from '@/components/ui/Container'
+import PageHero from '@/components/ui/PageHero'
+import ResourceClaimButton from '@/components/features/resources/ResourceClaimButton'
+import StructuredData from '@/components/ui/StructuredData'
+import { resources } from '@/data/content/resources'
 import {
   projectRiskLibrary,
   quoteCheckTemplates,
   quoteRiskDictionary,
   quoteRiskRules,
-} from '@/data/quote-risk'
+} from '@/data/risk-control/quote-risk'
 
 export const metadata: Metadata = {
   title: '签约前报价风险资料库 | 风险词典、检查模板、报价清单',
@@ -29,7 +29,6 @@ const mainResources = resources.filter((resource) => mainResourceSlugs.includes(
 const tagClasses: Record<string, string> = {
   装修: 'bg-stone-pale text-stone border border-stone/20',
   居住: 'bg-stone-pale/60 text-stone border border-stone/20',
-  AI: 'bg-surface-warm text-stone border border-stone/20',
 }
 
 function ResourceCard({ resource }: { resource: (typeof resources)[number] }) {

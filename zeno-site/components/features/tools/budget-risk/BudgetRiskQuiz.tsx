@@ -7,7 +7,7 @@ import {
   budgetRiskQuestions,
   scoreAnswers,
   type BudgetRiskAnswers,
-} from '@/data/budget-risk'
+} from '@/data/tools/budget-risk'
 
 const storageKey = 'zeno.budget-risk.answers.v1'
 

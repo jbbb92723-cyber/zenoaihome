@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
-import StageLayout from '@/components/StageLayout'
-import StructuredData from '@/components/StructuredData'
+import StageLayout from '@/components/features/start/StageLayout'
+import StructuredData from '@/components/ui/StructuredData'
 
 export const metadata: Metadata = {
   title: '看居住｜装修对居住体验的影响、怎么避免住进去才后悔 | 装修判断 06',

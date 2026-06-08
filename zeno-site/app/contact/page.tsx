@@ -1,12 +1,12 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import PageHero from '@/components/PageHero'
-import Container from '@/components/Container'
+import PageHero from '@/components/ui/PageHero'
+import Container from '@/components/ui/Container'
 
 export const metadata: Metadata = {
   title: '联系我',
   description:
-    '联系 Zeno。优先处理签约前报价风险、合同和付款节点判断；AI 与内容交流属于延伸，不是主服务入口。',
+    '联系 Zeno。优先处理居住需求、装修方案、报价合同和付款节点判断；建造者手记与方法交流属于延伸，不是主服务入口。',
 }
 
 const contactChannels = [
@@ -38,7 +38,7 @@ const suitableFor = [
   { title: '¥99 报价风险初查',    desc: '刚拿到报价，只想先看明显风险。' },
   { title: '¥299 报价 / 合同快审',   desc: '已有完整报价、合同草稿或付款节点，准备继续谈或签约。' },
   { title: '¥699 居住方案综合判断',   desc: '方案、预算、报价、合同和付款节点都已经有，且临近签约。' },
-  { title: '内容或 AI 延伸交流', desc: '你读过文章或工具后，有明确问题想讨论。AI 交流暂时不是主服务入口。' },
+  { title: '建造者手记 / 方法交流', desc: '你读过文章或工具后，有明确问题想讨论。方法交流可以聊，但不是主服务入口。' },
   { title: '商务合作',          desc: '如果你的合作与网站主题高度相关，可以发邮件说明背景和具体想法。' },
 ]
 

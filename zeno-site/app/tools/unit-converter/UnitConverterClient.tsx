@@ -1,9 +1,9 @@
 'use client'
 
 import { useMemo, useState } from 'react'
-import ToolSeoAssetSection from '@/components/tools/ToolSeoAssetSection'
-import { BridgePanel, NumberInput, ResultPanel, ToolPageShell } from '@/components/tools/ToolPageShell'
-import { toolSeoAssets } from '@/data/toolSeoAssets'
+import ToolSeoAssetSection from '@/components/features/tools/ToolSeoAssetSection'
+import { BridgePanel, NumberInput, ResultPanel, ToolPageShell } from '@/components/features/tools/ToolPageShell'
+import { toolSeoAssets } from '@/data/tools/toolSeoAssets'
 
 const modes = {
   area: { label: '面积换算', unit: '㎡', hint: '常用于墙面、地面、瓷砖、乳胶漆。' },

@@ -9,7 +9,7 @@ import type { Metadata } from 'next'
 import { auth } from '@/auth'
 import { redirect } from 'next/navigation'
 import Link from 'next/link'
-import Container from '@/components/Container'
+import Container from '@/components/ui/Container'
 
 export const metadata: Metadata = {
   title: '我的订单',

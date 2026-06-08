@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
-import HomePageGptSkill from '@/components/home/HomePageGptSkill'
-import StructuredData from '@/components/StructuredData'
+import HomePageGptSkill from '@/components/features/home/HomePageGptSkill'
+import StructuredData from '@/components/ui/StructuredData'
 
 export const metadata: Metadata = {
   title: '美学与生活结合后的装修判断系统｜ZenoAIHome',

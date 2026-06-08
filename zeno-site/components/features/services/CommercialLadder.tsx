@@ -1,16 +1,17 @@
 import Link from 'next/link'
 import { ArrowRight } from '@phosphor-icons/react/dist/ssr'
-import { commercialLadder, type LadderRung } from '@/data/commercial-ladder'
+import { commercialLadder, type LadderRung } from '@/data/services/commercial-ladder'
 
 /**
  * 全站统一商业梯子渲染。三种 variant：
  * - compact：横向紧凑卡片，用于首页 CTA 区
  * - full  ：竖向完整卡片，用于服务页"装修签约前判断阶梯"
+ * - instrument：判断仪表路线，用于新版首页 / 服务页的系统视觉
  *
  * 数据源：data/commercial-ladder.ts。不要在调用处重复写价格和档位。
  */
 
-type Variant = 'compact' | 'full'
+type Variant = 'compact' | 'full' | 'instrument'
 
 type Props = {
   variant?: Variant
@@ -78,6 +79,56 @@ export default function CommercialLadder({
           </Link>
         ))}
       </div>
+    )
+  }
+
+  if (variant === 'instrument') {
+    return (
+      <ol className={`commercial-instrument-list grid gap-3 ${className}`}>
+        {items.map((r, idx) => (
+          <li key={r.title} className="group relative">
+            <Link
+              href={r.href}
+              className="grid gap-3 border border-border bg-canvas/86 p-4 transition-colors hover:border-stone hover:bg-surface sm:grid-cols-[auto_1fr_auto] sm:items-center"
+            >
+              <div className="flex items-center gap-3">
+                <span className="flex h-9 w-9 items-center justify-center bg-ink text-xs font-semibold text-white">
+                  {String(idx + 1).padStart(2, '0')}
+                </span>
+                <span
+                  className={`px-2 py-1 text-xs font-semibold ${tierAccent[r.tier]}`}
+                >
+                  {r.price}
+                </span>
+              </div>
+
+              <div>
+                <div className="flex flex-wrap items-center gap-2">
+                  <h3 className="text-sm font-semibold leading-snug text-ink">
+                    {r.title}
+                  </h3>
+                  {r.badge && (
+                    <span className="border border-stone-light px-2 py-0.5 text-[0.62rem] font-semibold uppercase tracking-widest text-stone">
+                      {r.badge}
+                    </span>
+                  )}
+                </div>
+                <p className="mt-1 text-xs leading-relaxed text-ink-muted">
+                  {r.whoFor}
+                </p>
+                <p className="mt-1 text-xs font-medium leading-relaxed text-stone-deep">
+                  {r.delivers}
+                </p>
+              </div>
+
+              <span className="inline-flex items-center gap-1 text-xs font-semibold text-stone transition-all group-hover:gap-2 sm:justify-self-end">
+                {r.cta}
+                <ArrowRight size={14} aria-hidden />
+              </span>
+            </Link>
+          </li>
+        ))}
+      </ol>
     )
   }
 

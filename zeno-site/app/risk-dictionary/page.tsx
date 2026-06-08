@@ -1,10 +1,10 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import Container from '@/components/Container'
-import CTA from '@/components/CTA'
-import PageHero from '@/components/PageHero'
-import StructuredData from '@/components/StructuredData'
-import { quoteRiskRules } from '@/data/quote-risk-rules'
+import Container from '@/components/ui/Container'
+import CTA from '@/components/ui/CTA'
+import PageHero from '@/components/ui/PageHero'
+import StructuredData from '@/components/ui/StructuredData'
+import { quoteRiskRules } from '@/data/risk-control/quote-risk-rules'
 
 export const metadata: Metadata = {
   title: '装修报价风险词典｜按实结算、暂估、漏项和材料模糊风险',

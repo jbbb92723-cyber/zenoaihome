@@ -2,11 +2,11 @@ import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: {
-    default: 'ZenoAIHome — Renovation Quote Risk Check',
+    default: 'ZenoAIHome — Residential Renovation Judgment',
     template: '%s · ZenoAIHome',
   },
   description:
-    'Selective English edition of ZenoAIHome. Before signing a renovation contract, see what your renovation quote leaves unclear.',
+    'Selective English edition of ZenoAIHome. Clarify lifestyle goals, spatial priorities, budget boundaries, quote risks, and contract responsibilities before renovation decisions harden.',
   // 英文页保留给 LLM 抓取做出海摘要，但不进搜索引擎索引，
   // 避免被判断为半成品 / 重复内容拖累中文站排名。
   robots: { index: false, follow: true },

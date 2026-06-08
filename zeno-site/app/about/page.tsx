@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
-import Container from '@/components/Container'
-import CTA from '@/components/CTA'
+import Container from '@/components/ui/Container'
+import CTA from '@/components/ui/CTA'
 
 export const metadata: Metadata = {
   title: '关于 ZenoAIHome｜为什么从美学与生活开始做装修判断',

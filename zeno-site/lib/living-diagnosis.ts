@@ -1,4 +1,4 @@
-import { livingDiagnosisQuestions } from '@/data/living-diagnosis'
+import { livingDiagnosisQuestions } from '@/data/diagnosis/living-diagnosis'
 
 export type LivingDiagnosisAnswer = {
   questionId: string

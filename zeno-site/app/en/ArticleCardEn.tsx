@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import type { Article } from '@/data/articles'
+import type { Article } from '@/data/content/articles'
 import { getDictionary } from '@/lib/i18n'
 
 interface Props {

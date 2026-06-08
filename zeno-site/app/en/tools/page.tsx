@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import Container from '@/components/Container'
-import StructuredData from '@/components/StructuredData'
+import Container from '@/components/ui/Container'
+import StructuredData from '@/components/ui/StructuredData'
 
 export const metadata: Metadata = {
   title: 'Quote Risk Tools | ZenoAIHome',

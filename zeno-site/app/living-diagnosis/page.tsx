@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
-import LivingDiagnosisClient from '@/components/living-diagnosis/LivingDiagnosisClient'
-import StructuredData from '@/components/StructuredData'
+import LivingDiagnosisClient from '@/components/features/living-diagnosis/LivingDiagnosisClient'
+import StructuredData from '@/components/ui/StructuredData'
 
 export const metadata: Metadata = {
   title: 'AI 居住诊断｜装修前先看清你真正想怎样生活',

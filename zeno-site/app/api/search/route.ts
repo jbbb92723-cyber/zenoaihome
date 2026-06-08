@@ -1,9 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { articles } from '@/data/articles'
-import { checklistTemplates } from '@/data/checklist-templates'
-import { renovationProjectRisks } from '@/data/renovation-project-risks'
-import { quoteRiskRules } from '@/data/quote-risk-rules'
-import { serviceLadder } from '@/data/commercial-ladder'
+import { articles } from '@/data/content/articles'
+import { checklistTemplates } from '@/data/risk-control/checklist-templates'
+import { renovationProjectRisks } from '@/data/risk-control/renovation-project-risks'
+import { quoteRiskRules } from '@/data/risk-control/quote-risk-rules'
+import { serviceLadder } from '@/data/services/commercial-ladder'
 import { prisma } from '@/lib/prisma'
 
 interface SearchResult {

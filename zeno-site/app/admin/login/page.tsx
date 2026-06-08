@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import Container from '@/components/Container'
+import Container from '@/components/ui/Container'
 
 export default function AdminLoginPage() {
   const [password, setPassword] = useState('')

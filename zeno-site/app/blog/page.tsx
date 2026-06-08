@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
-import StructuredData from '@/components/StructuredData'
-import { articles } from '@/data/articles'
+import StructuredData from '@/components/ui/StructuredData'
+import { articles } from '@/data/content/articles'
 import BlogClient from './BlogClient'
 
 export const metadata: Metadata = {

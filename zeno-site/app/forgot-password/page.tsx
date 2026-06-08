@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import Container from '@/components/Container'
+import Container from '@/components/ui/Container'
 
 export default function ForgotPasswordPage() {
   const router = useRouter()

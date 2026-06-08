@@ -1,12 +1,12 @@
 import type { Metadata } from 'next'
 import { Analytics } from '@vercel/analytics/react'
-import { ThemeProvider } from '@/components/ThemeProvider'
+import { ThemeProvider } from '@/components/layout/ThemeProvider'
 import { SessionProvider } from 'next-auth/react'
-import Header from '@/components/Header'
-import Footer from '@/components/Footer'
-import SearchDialog from '@/components/SearchDialog'
-import ConditionalAIWidget from '@/components/ConditionalAIWidget'
-import HashScrollHandler from '@/components/HashScrollHandler'
+import Header from '@/components/layout/Header'
+import Footer from '@/components/layout/Footer'
+import SearchDialog from '@/components/layout/SearchDialog'
+import ConditionalAIWidget from '@/components/layout/ConditionalAIWidget'
+import HashScrollHandler from '@/components/layout/HashScrollHandler'
 import '@/styles/globals.css'
 
 

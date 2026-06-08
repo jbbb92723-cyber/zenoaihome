@@ -10,7 +10,7 @@
  * - 如果英文内容不存在，fallback 到中文摘要 + "English version coming soon"
  */
 
-import { articles, type Article } from '@/data/articles'
+import { articles, type Article } from '@/data/content/articles'
 import type { Locale } from './config'
 
 // ── 本地化内容类型 ────────────────────────────────────

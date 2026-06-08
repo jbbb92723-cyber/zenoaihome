@@ -3,8 +3,8 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import Container from '@/components/Container'
-import PasswordInput from '@/components/PasswordInput'
+import Container from '@/components/ui/Container'
+import PasswordInput from '@/components/ui/PasswordInput'
 
 export default function EnRegisterPage() {
   const router = useRouter()

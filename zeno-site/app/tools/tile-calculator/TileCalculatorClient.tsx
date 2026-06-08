@@ -1,9 +1,9 @@
 'use client'
 
 import { useMemo, useState } from 'react'
-import ToolSeoAssetSection from '@/components/tools/ToolSeoAssetSection'
-import { BridgePanel, NumberInput, ResultPanel, ToolPageShell } from '@/components/tools/ToolPageShell'
-import { toolSeoAssets } from '@/data/toolSeoAssets'
+import ToolSeoAssetSection from '@/components/features/tools/ToolSeoAssetSection'
+import { BridgePanel, NumberInput, ResultPanel, ToolPageShell } from '@/components/features/tools/ToolPageShell'
+import { toolSeoAssets } from '@/data/tools/toolSeoAssets'
 
 const lossOptions = [
   { key: 'simple', label: '常规铺贴', desc: '客餐厅、卧室等规则空间', loss: 0.08 },

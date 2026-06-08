@@ -3,8 +3,8 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { useEffect, useMemo, useState } from 'react'
-import ToolSeoAssetSection from '@/components/tools/ToolSeoAssetSection'
-import { toolSeoAssets } from '@/data/toolSeoAssets'
+import ToolSeoAssetSection from '@/components/features/tools/ToolSeoAssetSection'
+import { toolSeoAssets } from '@/data/tools/toolSeoAssets'
 import {
   getQuoteRiskRuleById,
   projectRiskLibrary,
@@ -12,8 +12,8 @@ import {
   quoteRiskDictionary,
   quoteRiskDimensions,
   quoteRiskRules,
-} from '@/data/quote-risk'
-import type { QuoteRiskRule } from '@/data/quote-risk-rules'
+} from '@/data/risk-control/quote-risk'
+import type { QuoteRiskRule } from '@/data/risk-control/quote-risk-rules'
 
 type QuoteStage = 'firstQuote' | 'comparing' | 'readyToSign' | 'alreadyStarted'
 

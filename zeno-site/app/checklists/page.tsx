@@ -1,10 +1,10 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import Container from '@/components/Container'
-import CTA from '@/components/CTA'
-import PageHero from '@/components/PageHero'
-import StructuredData from '@/components/StructuredData'
-import { checklistTemplates } from '@/data/checklist-templates'
+import Container from '@/components/ui/Container'
+import CTA from '@/components/ui/CTA'
+import PageHero from '@/components/ui/PageHero'
+import StructuredData from '@/components/ui/StructuredData'
+import { checklistTemplates } from '@/data/risk-control/checklist-templates'
 
 export const metadata: Metadata = {
   title: '装修签约前检查模板｜报价、合同、水电和付款节点清单',

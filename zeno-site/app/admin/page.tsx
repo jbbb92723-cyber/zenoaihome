@@ -8,7 +8,7 @@
 import type { Metadata } from 'next'
 import { isAdminUser } from '@/lib/admin'
 import Link from 'next/link'
-import Container from '@/components/Container'
+import Container from '@/components/ui/Container'
 
 export const metadata: Metadata = {
   title: '管理入口',

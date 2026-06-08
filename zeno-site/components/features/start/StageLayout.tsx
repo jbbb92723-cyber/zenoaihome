@@ -1,6 +1,6 @@
 import Link from 'next/link'
-import Container from '@/components/Container'
-import CTA from '@/components/CTA'
+import Container from '@/components/ui/Container'
+import CTA from '@/components/ui/CTA'
 
 export interface StageNavItem {
   label: string

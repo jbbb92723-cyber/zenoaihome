@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
-import StructuredData from '@/components/StructuredData'
-import { buildToolStructuredData, toolSeoAssets } from '@/data/toolSeoAssets'
+import StructuredData from '@/components/ui/StructuredData'
+import { buildToolStructuredData, toolSeoAssets } from '@/data/tools/toolSeoAssets'
 import BudgetStructureClient from './BudgetStructureClient'
 
 export const metadata: Metadata = {

@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import { auth, signOut } from '@/auth'
 import { prisma } from '@/lib/prisma'
 import Link from 'next/link'
-import Avatar from '@/components/Avatar'
-import Container from '@/components/Container'
+import Avatar from '@/components/ui/Avatar'
+import Container from '@/components/ui/Container'
 
 export const metadata: Metadata = {
   title: '我的账号',
@@ -90,7 +90,7 @@ export default async function AccountPage() {
               <p className="text-sm text-ink-muted mt-1 truncate">{user.email ?? ''}</p>
               <p className="text-xs text-ink-faint mt-1">
                 {isMember ? (
-                  <span className="text-stone font-medium">创作会员</span>
+                  <span className="text-stone font-medium">权益用户</span>
                 ) : (
                   '免费用户'
                 )}
@@ -114,14 +114,14 @@ export default async function AccountPage() {
           </div>
         </section>
 
-        {/* ── 2. 会员权益 ───────────────────────────────────── */}
+        {/* ── 2. 权益与服务 ─────────────────────────────────── */}
         <section className="border border-border bg-surface p-6">
-          <p className="text-[0.65rem] text-ink-faint font-semibold uppercase tracking-widest mb-4">我的会员权益</p>
+          <p className="text-[0.65rem] text-ink-faint font-semibold uppercase tracking-widest mb-4">我的权益</p>
 
           {isMember ? (
             <div className="space-y-3">
               <div className="flex items-center gap-2">
-                <span className="text-xs font-semibold text-stone border border-stone/30 px-2 py-0.5">创作会员</span>
+                <span className="text-xs font-semibold text-stone border border-stone/30 px-2 py-0.5">权益用户</span>
               </div>
               {membership?.expiresAt && (
                 <p className="text-xs text-ink-muted">
@@ -129,11 +129,10 @@ export default async function AccountPage() {
                 </p>
               )}
               <ul className="text-xs text-ink-muted space-y-1 leading-relaxed">
-                <li className="flex items-center gap-2"><span className="text-stone">✓</span>选题库 &amp; 标题库</li>
-                <li className="flex items-center gap-2"><span className="text-stone">✓</span>文章结构模板</li>
-                <li className="flex items-center gap-2"><span className="text-stone">✓</span>AI 提示词包</li>
-                <li className="flex items-center gap-2"><span className="text-stone">✓</span>发布检查清单</li>
-                <li className="flex items-center gap-2"><span className="text-stone">✓</span>传统行业内容系统教程</li>
+                <li className="flex items-center gap-2"><span className="text-stone">✓</span>已领取资料长期查看</li>
+                <li className="flex items-center gap-2"><span className="text-stone">✓</span>服务申请记录</li>
+                <li className="flex items-center gap-2"><span className="text-stone">✓</span>风险工具和文章归档</li>
+                <li className="flex items-center gap-2"><span className="text-stone">✓</span>后续专属资料更新</li>
               </ul>
             </div>
           ) : (
@@ -143,17 +142,17 @@ export default async function AccountPage() {
                 <p className="text-xs text-ink-faint leading-relaxed">可使用：免费资料、风险工具和文章归档</p>
               </div>
               <div className="border-t border-border pt-4">
-                <p className="text-xs text-ink-faint mb-2">升级后解锁：</p>
+                <p className="text-xs text-ink-faint mb-2">更进一步可以：</p>
                 <ul className="text-xs text-ink-faint space-y-1 leading-relaxed">
-                  <li>选题库 &amp; 标题库 · 文章结构模板 · AI 提示词包</li>
-                  <li>发布检查清单 · 传统行业内容系统教程</li>
+                  <li>领取预算、报价、验收和居住自查资料</li>
+                  <li>按当前材料选择报价快审或综合判断服务</li>
                 </ul>
               </div>
               <Link
                 href="/services"
                 className="inline-block text-xs text-stone border border-stone/30 px-4 py-2 hover:bg-stone-pale/50 transition-colors"
               >
-                了解创作会员 →
+                查看服务路径 →
               </Link>
             </div>
           )}

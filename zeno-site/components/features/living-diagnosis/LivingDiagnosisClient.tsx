@@ -11,7 +11,7 @@ import {
   ShieldCheck,
   WarningCircle,
 } from '@phosphor-icons/react'
-import { livingDiagnosisQuestions } from '@/data/living-diagnosis'
+import { livingDiagnosisQuestions } from '@/data/diagnosis/living-diagnosis'
 import type { LivingDiagnosisResult } from '@/lib/living-diagnosis'
 
 type FormState = {

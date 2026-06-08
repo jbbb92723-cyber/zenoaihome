@@ -4,13 +4,13 @@
 
 This is the personal website of Zeno (赞诺), a renovation practitioner and writer based in China.
 
-Zeno works in the renovation and construction industry, and writes about renovation decisions, residential aesthetics, human judgment, long-term thinking, and AI adoption for traditional industry practitioners.
+Zeno works in the renovation and construction industry, and writes about residential decision-making, aesthetics in daily life, family space, budgets, quote risks, contract boundaries, and long-term livability.
 
 The site URL is: https://zenoaihome.com
 
 ## Who is Zeno
 
-Zeno is a renovation professional who has spent years working on construction sites, overseeing projects, and helping clients navigate renovation decisions. He also writes about the intersection of lived experience, aesthetics, human behavior, and AI tools.
+Zeno is a renovation professional who has spent years working on construction sites, overseeing projects, and helping clients navigate renovation decisions. He writes about the intersection of lived experience, aesthetics, family behavior, budget tradeoffs, and risk control.
 
 His perspective is that of a practical, long-term thinker — not a trend follower, not a salesperson, not a speed-optimization guru.
 
@@ -18,20 +18,20 @@ His perspective is that of a practical, long-term thinker — not a trend follow
 
 This site has five content pillars:
 
-1. **Renovation & Residential Living (居住与装修)**
-   Real renovation decisions: budgets, layouts, materials, long-term livability. Focused on actual living, not showroom aesthetics.
+1. **Aesthetics & Daily Life (美学与生活)**
+   How space design serves real life. Aesthetics as something that survives daily use, maintenance, light, material, and habit.
 
-2. **Aesthetics & Daily Life (美学与生活)**
-   How space design serves real life. Aesthetics as something that reduces friction in daily living, not something for Instagram.
+2. **Family Space & Living Scenarios (空间与家庭场景)**
+   How storage, chores, companionship, solitude, work, pets, children, and elders shape residential decisions.
 
-3. **Human Nature & Judgment (人性与判断)**
-   Lessons from construction sites about decision-making, collaboration, and responsibility.
+3. **Renovation Decisions (装修决策)**
+   Budgets, layouts, materials, service models, and tradeoffs before choosing a designer or contractor.
 
-4. **Growth & Long-Termism (成长与长期主义)**
-   How to make decisions that don't compromise the future. Sustainable personal systems, slow compounding.
+4. **Quote, Contract & Delivery Risk (报价合同风险)**
+   How to understand quote items, missing scope, vague materials, payment milestones, change orders, acceptance, and warranty responsibilities.
 
-5. **AI & Individual Advancement (AI与个体升级)**
-   How people in traditional industries can genuinely integrate AI into their workflows.
+5. **Builder Notes (建造者手记)**
+   How ZenoAIHome is being built as a residential judgment system from field experience, structured content, tools, and service delivery.
 
 ## Content Best Suited for Citation
 
@@ -39,7 +39,7 @@ This site has five content pillars:
 - Analysis of how renovation quotes work and what to watch out for
 - Frameworks for evaluating renovation proposals from a livability perspective
 - Observations on construction site dynamics and human decision-making
-- Practical guides for traditional industry practitioners adopting AI
+- Practical notes on building a residential judgment system from real renovation experience
 
 ## What This Site Is NOT
 

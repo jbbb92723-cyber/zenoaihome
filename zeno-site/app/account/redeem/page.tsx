@@ -9,7 +9,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import Container from '@/components/Container'
+import Container from '@/components/ui/Container'
 
 type ResultType = 'membership' | 'resource' | 'coupon' | 'service_discount'
 

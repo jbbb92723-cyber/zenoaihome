@@ -3,8 +3,8 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useEffect, useMemo, useRef, useState } from 'react'
-import ThemeToggle from '@/components/ThemeToggle'
-import LanguageToggle from '@/components/LanguageToggle'
+import ThemeToggle from '@/components/ui/ThemeToggle'
+import LanguageToggle from '@/components/ui/LanguageToggle'
 import { primaryNav } from '@/lib/navigation'
 
 type LocalizedLeaf = {

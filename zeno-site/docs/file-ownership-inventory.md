@@ -2,7 +2,7 @@
 
 日期：2026-06-08
 
-目标：先建立文件归属，不移动文件。后续整理必须以这份清单为依据，避免为了“看起来整齐”而做无效搬家。
+目标：建立文件归属，并作为后续分阶段整理依据，避免为了“看起来整齐”而做无效搬家。
 
 ## 归属标签
 
@@ -20,6 +20,8 @@
 | 旧入口 | 已下线但需要保留 301 的 URL | 保护旧链接和 SEO |
 
 ## app/ 路由归属
+
+本轮暂不移动 `app/` route groups。当前优先级是让组件和数据归属清楚，并清理旧定位残留；`app/(site)`、`app/(content)`、`app/(tools)` 等 route group 会触发大量文件重命名，但对用户路径没有即时收益，建议等下一次专门整理路由时再做。
 
 ### 官网前台
 
@@ -143,90 +145,94 @@
 
 ## components/ 归属
 
-### 未来应进入 `components/ui/`
+当前顶层保留四类目录：`admin/`、`features/`、`layout/`、`ui/`。
+
+### 当前 `components/ui/`
 
 | 当前文件 | 当前归属 | 说明 |
 | --- | --- | --- |
-| `components/Avatar.tsx` | 基础 UI | 头像组件 |
-| `components/CTA.tsx` | 基础 UI | 通用 CTA |
-| `components/Container.tsx` | 基础 UI | 通用容器 |
-| `components/CopyLinkButton.tsx` | 基础 UI | 通用复制按钮 |
-| `components/PageHero.tsx` | 基础 UI / 页面骨架 | 作为页面首屏模板 |
-| `components/PasswordInput.tsx` | 基础 UI / 用户系统 | 可放 UI，也可放 account feature |
-| `components/SectionHeader.tsx` | 基础 UI | 区块标题 |
-| `components/StructuredData.tsx` | 基础 UI / SEO | 结构化数据组件 |
-| `components/ThemeToggle.tsx` | 基础 UI | 主题切换 |
-| `components/LanguageToggle.tsx` | 基础 UI | 语言切换 |
+| `components/ui/Avatar.tsx` | 基础 UI | 头像组件 |
+| `components/ui/CTA.tsx` | 基础 UI | 通用 CTA |
+| `components/ui/Container.tsx` | 基础 UI | 通用容器 |
+| `components/ui/CopyLinkButton.tsx` | 基础 UI | 通用复制按钮 |
+| `components/ui/PageHero.tsx` | 基础 UI / 页面骨架 | 作为页面首屏模板 |
+| `components/ui/PasswordInput.tsx` | 基础 UI / 用户系统 | 可放 UI，也可放 account feature |
+| `components/ui/SectionHeader.tsx` | 基础 UI | 区块标题 |
+| `components/ui/StructuredData.tsx` | 基础 UI / SEO | 结构化数据组件 |
+| `components/ui/ThemeToggle.tsx` | 基础 UI | 主题切换 |
+| `components/ui/LanguageToggle.tsx` | 基础 UI | 语言切换 |
 
-### 未来应进入 `components/layout/`
+### 当前 `components/layout/`
 
 | 当前文件 | 当前归属 | 说明 |
 | --- | --- | --- |
-| `components/Header.tsx` | 基础设施 / 布局 | 主导航 |
-| `components/Footer.tsx` | 基础设施 / 布局 | 页脚 |
-| `components/SearchDialog.tsx` | 基础设施 / 搜索 | 全站搜索 |
-| `components/ThemeProvider.tsx` | 基础设施 / 布局 | 全站主题 |
-| `components/HashScrollHandler.tsx` | 基础设施 / 路由体验 | hash 滚动 |
-| `components/ConditionalAIWidget.tsx` | 基础设施 / 工具入口 | 全站浮窗条件控制 |
-| `components/AIChatWidget.tsx` | 工具系统 / 导航分流 | 可后续移到 `features/assistant` |
+| `components/layout/Header.tsx` | 基础设施 / 布局 | 主导航 |
+| `components/layout/Footer.tsx` | 基础设施 / 布局 | 页脚 |
+| `components/layout/SearchDialog.tsx` | 基础设施 / 搜索 | 全站搜索 |
+| `components/layout/ThemeProvider.tsx` | 基础设施 / 布局 | 全站主题 |
+| `components/layout/HashScrollHandler.tsx` | 基础设施 / 路由体验 | hash 滚动 |
+| `components/layout/ConditionalAIWidget.tsx` | 基础设施 / 工具入口 | 全站浮窗条件控制 |
+| `components/layout/AIChatWidget.tsx` | 工具系统 / 导航分流 | 由全局 layout 条件加载；可后续移到 `features/assistant` |
 
-### 未来应进入 `components/features/`
+### 当前 `components/features/`
 
 | 当前文件 | 建议归属 | 说明 |
 | --- | --- | --- |
-| `components/home/HomePageGptSkill.tsx` | `features/home` | 首页主组件 |
-| `components/living-diagnosis/LivingDiagnosisClient.tsx` | `features/living-diagnosis` | 居住诊断 |
-| `components/quote-check/QuoteCheckClient.tsx` | `features/quote-check` | 报价初筛 |
-| `components/budget-risk/BudgetRiskQuiz.tsx` | `features/tools/budget-risk` | 超预算自测 |
-| `components/budget-risk/RiskDimensionCard.tsx` | `features/tools/budget-risk` | 超预算结果卡 |
-| `components/tools/ToolPageShell.tsx` | `features/tools` | 工具页壳 |
-| `components/tools/ToolSeoAssetSection.tsx` | `features/tools` | 工具 SEO 内容区 |
-| `components/CommercialLadder.tsx` | `features/services` | 商业梯子 |
-| `components/ServiceCard.tsx` | `features/services` | 服务卡 |
-| `components/services/ServiceRequestForm.tsx` | `features/services` | 服务表单 |
-| `components/ArticleCard.tsx` | `features/content` | 文章卡 |
-| `components/ArticleCTA.tsx` | `features/content` | 文章 CTA |
-| `components/NoteCard.tsx` | `features/content` | 笔记卡 |
-| `components/StageLayout.tsx` | `features/start` | 装修判断阶段页布局 |
-| `components/resources/ResourceClaimButton.tsx` | `features/resources` | 资料领取 |
-| `components/admin/**` | `features/admin` 或保持 `components/admin` | 后台组件 |
+| `components/features/home/HomePageGptSkill.tsx` | `features/home` | 首页主组件 |
+| `components/features/living-diagnosis/LivingDiagnosisClient.tsx` | `features/living-diagnosis` | 居住诊断 |
+| `components/features/quote-check/QuoteCheckClient.tsx` | `features/quote-check` | 报价初筛 |
+| `components/features/tools/budget-risk/BudgetRiskQuiz.tsx` | `features/tools/budget-risk` | 超预算自测 |
+| `components/features/tools/budget-risk/RiskDimensionCard.tsx` | `features/tools/budget-risk` | 超预算结果卡 |
+| `components/features/tools/ToolPageShell.tsx` | `features/tools` | 工具页壳 |
+| `components/features/tools/ToolSeoAssetSection.tsx` | `features/tools` | 工具 SEO 内容区 |
+| `components/features/services/CommercialLadder.tsx` | `features/services` | 商业梯子 |
+| `components/features/services/ServiceCard.tsx` | `features/services` | 服务卡 |
+| `components/features/services/ServiceRequestForm.tsx` | `features/services` | 服务表单 |
+| `components/features/content/ArticleCard.tsx` | `features/content` | 文章卡 |
+| `components/features/content/ArticleCTA.tsx` | `features/content` | 文章 CTA |
+| `components/features/content/NoteCard.tsx` | `features/content` | 笔记卡 |
+| `components/features/start/StageLayout.tsx` | `features/start` | 装修判断阶段页布局 |
+| `components/features/resources/ResourceClaimButton.tsx` | `features/resources` | 资料领取 |
+| `components/admin/**` | 后台管理 | 后台组件，本轮保持现状 |
 
 ## data/ 归属
+
+当前顶层保留六类目录：`content/`、`risk-control/`、`services/`、`tools/`、`diagnosis/`、`archived/`。其中 `archived/` 是历史归档，本轮不参与正式数据域设计。
 
 ### 内容库
 
 | 当前文件 | 归属 | 后续建议 |
 | --- | --- | --- |
-| `data/articles.ts` | 内容库 | 最大复杂度来源；后续拆成 `data/content/articles/index.ts` + `data/content/articles/items/*` |
-| `data/article-54-content.ts` 到 `data/article-70-content.ts` | 内容库 / 增量文章 | 先确认是否仍由 `articles.ts` 引用；可迁到 `data/content/articles/items/` |
-| `data/topics.ts` | 内容库 | 迁到 `data/content/topics.ts` |
+| `data/content/articles.ts` | 内容库 | 最大复杂度来源；后续可拆成 `data/content/articles/index.ts` + `data/content/articles/items/*` |
+| `data/content/article-54-content.ts` 到 `data/content/article-70-content.ts` | 内容库 / 增量文章 | 当前由 `articles.ts` 相对引用；后续内容系统改造时再拆 items |
+| `data/content/topics.ts` | 内容库 | 当前保留 |
+| `data/content/resources.ts` | 内容库 / 商业转化 | 当前保留 |
 | `lib/i18n/articles.ts` | 英文内容映射 | 可保留在 `lib/i18n`，或迁到 `data/content/en/articles.ts` |
 
 ### 风险控制
 
 | 当前文件 | 归属 | 后续建议 |
 | --- | --- | --- |
-| `data/quote-risk.ts` | 风险控制 | 迁到 `data/risk-control/quote-risk.ts` |
-| `data/quote-risk-rules.ts` | 风险控制 | 迁到 `data/risk-control/quote-risk-rules.ts` |
-| `data/renovation-project-risks.ts` | 风险控制 | 迁到 `data/risk-control/project-risks.ts` |
-| `data/checklist-templates.ts` | 风险控制 | 迁到 `data/risk-control/checklist-templates.ts` |
+| `data/risk-control/quote-risk.ts` | 风险控制 | 当前作为风险控制聚合出口 |
+| `data/risk-control/quote-risk-rules.ts` | 风险控制 | 当前保留 |
+| `data/risk-control/renovation-project-risks.ts` | 风险控制 | 当前保留 |
+| `data/risk-control/checklist-templates.ts` | 风险控制 | 当前保留 |
 
 ### 工具系统与诊断
 
 | 当前文件 | 归属 | 后续建议 |
 | --- | --- | --- |
-| `data/living-diagnosis.ts` | 诊断 | 迁到 `data/diagnosis/living-diagnosis.ts` |
-| `data/budget-risk.ts` | 工具系统 | 迁到 `data/tools/budget-risk.ts` |
-| `data/toolSeoAssets.ts` | 工具系统 / SEO | 迁到 `data/tools/seo-assets.ts` |
+| `data/diagnosis/living-diagnosis.ts` | 诊断 | 当前保留 |
+| `data/tools/budget-risk.ts` | 工具系统 | 当前保留 |
+| `data/tools/toolSeoAssets.ts` | 工具系统 / SEO | 当前保留；后续可改名为 `tool-seo-assets.ts` |
 
-### 服务、商业与资源
+### 服务与商业转化
 
 | 当前文件 | 归属 | 后续建议 |
 | --- | --- | --- |
-| `data/services.ts` | 商业转化 | 迁到 `data/services/services.ts` |
-| `data/commercial-ladder.ts` | 商业转化 | 迁到 `data/services/commercial-ladder.ts` |
-| `data/products.ts` | 商业转化 / 支付 | 迁到 `data/commerce/products.ts` |
-| `data/resources.ts` | 内容库 / 商业转化 | 迁到 `data/resources/resources.ts` |
+| `data/services/index.ts` | 商业转化 | 服务主数据入口，引用路径为 `@/data/services` |
+| `data/services/commercial-ladder.ts` | 商业转化 | 当前保留 |
+| `data/services/products.ts` | 商业转化 / 支付 | 当前保留 |
 
 ## lib/ 归属
 
@@ -259,10 +265,7 @@
 | `images/resources/quote-checklist-preview.svg` | 资源资料 | 已引用 |
 | `images/resources/acceptance-checkpoints.svg` | 资源资料 | 已引用 |
 | `images/resources/living-needs-map.svg` | 资源资料 | 已引用 |
-| `images/resources/ai-prompt-pack.svg` | AI 内容资源 | 已引用，但不服务 C 端主路径；第四步判断是否清理 |
-| `images/resources/explainer-storyboard.svg` | 未明确归属 | 当前未引用；可删候选 |
-| `images/services/ai-workflow-proof.svg` | 服务页视觉 | 已引用，但命名偏旧 AI 叙事；可后续更名 |
-| `images/services/renovation-judgment-proof.svg` | 服务页视觉候选 | 当前未引用；可删候选 |
+| `images/services/renovation-judgment-proof.svg` | 服务页视觉 | 已引用 |
 | `images/services/sample-communication-script.svg` | 服务样张 | 已引用 |
 | `images/services/sample-followup-checklist.svg` | 服务样张 | 已引用 |
 | `images/services/sample-risk-report.svg` | 服务样张 | 已引用 |
@@ -325,4 +328,3 @@
 2. `data/` 建立新分层目录，但先用 barrel export 保持旧 import 可用，再逐步替换。
 3. 清理 AI 内容和旧报价单点定位残留。
 4. 最后再考虑 `app/` route groups，因为路由层改动虽然不改 URL，但文件移动面最大。
-

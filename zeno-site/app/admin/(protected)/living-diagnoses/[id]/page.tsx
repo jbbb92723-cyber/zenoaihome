@@ -1,9 +1,9 @@
-﻿import type { Metadata } from 'next'
+import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { prisma } from '@/lib/prisma'
 import { updateLivingDiagnosisStatus } from '@/lib/actions/admin'
-import { livingDiagnosisQuestions } from '@/data/living-diagnosis'
+import { livingDiagnosisQuestions } from '@/data/diagnosis/living-diagnosis'
 import type { LivingDiagnosisResult } from '@/lib/living-diagnosis'
 
 export const metadata: Metadata = { title: '居住诊断详情 · Admin' }

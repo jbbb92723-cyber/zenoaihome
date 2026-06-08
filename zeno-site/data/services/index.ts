@@ -276,41 +276,6 @@ export const services: Service[] = [
     contactNote: '微信联系：zanxiansheng2025，备注「居住场景」。',
     tag: '装修',
   },
-  {
-    id: '05',
-    slug: 'ai-neirong-xitong-zixun',
-    title: 'AI + 传统行业内容系统咨询',
-    tagline: '把 AI 真正用进工作，而不是只做演示',
-    description:
-      '来自传统行业，想把 AI 真正用进工作，而不是只看演示；想把客户问题、经验、内容和服务流程整理成能长期复用的系统。',
-    solves:
-      '针对你的具体工作场景，先找一个能落地的 AI 切入口，再整理内容系统和工作流框架，而不是给一套通用建议。',
-    forWho: [
-      '传统行业从业者（设计师、工长、销售、行业 KOL 等）',
-      '有内容创作需求，但缺乏系统化方法的人',
-      '想把 AI 工具用到实处，但不知道从哪个环节切入的人',
-    ],
-    notForWho: [
-      '只想要一套万能提示词的人',
-      '期望一次性搞定所有流程、不愿意自己动手迭代的人',
-    ],
-    youProvide: [
-      '你目前的工作场景描述',
-      '目前在用或了解过的 AI 工具',
-      '你最想解决的一个核心痛点',
-    ],
-    iDeliver: [
-      '一次深度咨询（约 60 分钟）',
-      '针对你场景的 AI 切入建议',
-      '初步工作流设计（文字版）',
-      '可直接使用的提示词框架（针对你的场景定制）',
-    ],
-    boundary:
-      '不提供技术开发、API 对接和自动化程序交付。建议和框架基于你提供的场景信息，落地执行需要你自己推进。每次咨询聚焦一个核心场景。',
-    price: '1999 元起',
-    contactNote: '微信联系：zanxiansheng2025，备注「AI咨询」，附一两句场景描述。',
-    tag: 'AI',
-  },
 ]
 
 export function getServiceBySlug(slug: string): Service | undefined {

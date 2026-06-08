@@ -1,8 +1,8 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import Container from '@/components/Container'
-import CTA from '@/components/CTA'
-import StructuredData from '@/components/StructuredData'
+import Container from '@/components/ui/Container'
+import CTA from '@/components/ui/CTA'
+import StructuredData from '@/components/ui/StructuredData'
 
 export const metadata: Metadata = {
   title: '签约前装修判断｜报价、合同和付款节点先看清',

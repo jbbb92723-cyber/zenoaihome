@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import Container from '@/components/Container'
+import Container from '@/components/ui/Container'
 import Link from 'next/link'
 
 export const metadata: Metadata = {

@@ -2,14 +2,14 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { getServiceBySlug } from '@/data/services'
-import PageHero from '@/components/PageHero'
-import Container from '@/components/Container'
-import CTA from '@/components/CTA'
-import ServiceCard from '@/components/ServiceCard'
-import ServiceRequestForm from '@/components/services/ServiceRequestForm'
-import StructuredData from '@/components/StructuredData'
-import CommercialLadder from '@/components/CommercialLadder'
-import { serviceLadder } from '@/data/commercial-ladder'
+import PageHero from '@/components/ui/PageHero'
+import Container from '@/components/ui/Container'
+import CTA from '@/components/ui/CTA'
+import ServiceCard from '@/components/features/services/ServiceCard'
+import ServiceRequestForm from '@/components/features/services/ServiceRequestForm'
+import StructuredData from '@/components/ui/StructuredData'
+import CommercialLadder from '@/components/features/services/CommercialLadder'
+import { serviceLadder } from '@/data/services/commercial-ladder'
 
 export const metadata: Metadata = {
   title: '服务路径 | 居住决策支持、报价合同快审与综合判断',
@@ -53,7 +53,7 @@ const decisionTracks = [
     description: '适合还没想清生活方式、美学偏好、空间优先级，或刚拿到报价只想先看明显边界的人。',
     href: '/living-diagnosis',
     cta: '开始免费诊断',
-    image: '/images/services/ai-workflow-proof.svg',
+    image: '/images/services/renovation-judgment-proof.svg',
   },
   {
     label: '轻服务 / 已经拿到材料',
@@ -154,7 +154,7 @@ export default function ServicesPage() {
           <div className="overflow-hidden border border-border bg-surface">
             <div className="relative aspect-[16/10] border-b border-border bg-stone-pale/30">
               <Image
-                src={decisionTracks[0].image ?? '/images/services/ai-workflow-proof.svg'}
+                src={decisionTracks[0].image ?? '/images/services/renovation-judgment-proof.svg'}
                 alt="居住决策支持服务示意图"
                 fill
                 className="object-cover"

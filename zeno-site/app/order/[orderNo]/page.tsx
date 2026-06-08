@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { auth } from '@/auth'
 import { prisma } from '@/lib/prisma'
-import Container from '@/components/Container'
-import { formatYuan } from '@/data/products'
+import Container from '@/components/ui/Container'
+import { formatYuan } from '@/data/services/products'
 import OrderActions from './OrderActions'
 
 export const metadata: Metadata = { title: '订单支付 · Zeno' }

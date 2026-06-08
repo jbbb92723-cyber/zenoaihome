@@ -1,5 +1,5 @@
 /**
- * data/products.ts
+ * data/services/products.ts
  *
  * 站内售卖商品静态定义
  * 价格单位：分（人民币）
@@ -16,7 +16,7 @@ export interface Product {
   originalPrice?: number // 划线价（分）
   description: string[]
   badge?:      string
-  category:    '装修判断' | 'AI 升级' | '内容资产'
+  category:    '装修判断'
   bestFor:     string
   deliverable: string
   isActive:    boolean
@@ -59,45 +59,6 @@ export const PRODUCTS: Product[] = [
       '报价、预算、合同三者怎么互相校验',
       '施工节点怎么留痕和验收',
       '什么时候该自己判断，什么时候该找人',
-    ],
-    isActive: true,
-  },
-  {
-    id:           'ai-workflow-course',
-    name:         '历史产品：AI 工作流小课',
-    tagline:      '历史产品，当前不作为主线销售',
-    type:         'resource',
-    value:        'ai-workflow-course|历史产品：AI 工作流小课|/tools/quote-check',
-    price:        19900,
-    originalPrice: 39900,
-    category:     'AI 升级',
-    bestFor:      '装修从业者、设计师、销售、内容创作者和一人公司。',
-    deliverable:  '5 个装修行业 AI 场景 + 输入模板 + 提示词框架。',
-    description:  [
-      '报价追问、客户沟通、施工留痕、内容选题四类场景',
-      '每个场景的输入模板和人工校准点',
-      '如何把一次提示词沉淀成 SOP',
-      '从工具使用走向内容、服务和数字产品',
-    ],
-    badge: '历史',
-    isActive: false,
-  },
-  {
-    id:           'creator-yearly',
-    name:         '内容资产会员年卡',
-    tagline:      '长期更新的选题、提示词和内容系统',
-    type:         'membership',
-    value:        'creator:365',
-    price:        19900,
-    originalPrice: 34800,
-    category:     '内容资产',
-    bestFor:      '已经决定长期写作和经营个人品牌的人。',
-    deliverable:  '全年内容资产库 + 提示词包 + 模板持续更新。',
-    description:  [
-      '选题库、标题库和文章结构模板',
-      'AI 提示词完整包持续更新',
-      '发布前检查清单',
-      '1 次 30 分钟创作问诊',
     ],
     isActive: true,
   },

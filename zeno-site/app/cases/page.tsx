@@ -1,9 +1,9 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import Container from '@/components/Container'
-import CTA from '@/components/CTA'
-import StructuredData from '@/components/StructuredData'
-import { getArticleBySlug } from '@/data/articles'
+import Container from '@/components/ui/Container'
+import CTA from '@/components/ui/CTA'
+import StructuredData from '@/components/ui/StructuredData'
+import { getArticleBySlug } from '@/data/content/articles'
 
 type JudgmentSample = {
   code: string

@@ -118,30 +118,6 @@ export const resources: Resource[] = [
     previewAlt: '实住派装修自查表预览图',
     accessLevel: 'login',
   },
-  {
-    id: '05',
-    slug: 'ai-neirong-gongzuoliu-tishici-bao',
-    title: 'AI 内容工作流提示词包',
-    subtitle: '先建立自己的方法，再让工具放大效率',
-    description:
-      '一套面向传统行业内容创作者的提示词集合，覆盖选题策划、内容结构、表达打磨、复盘整理四个环节，帮你把 AI 用成真正的协作工具，而不是只产出通用废话。',
-    forWho: '传统行业里想用 AI 提升内容效率，但用来用去感觉不像自己的人。',
-    solves: '把"AI 产出的内容不是我想要的"变成"AI 帮我产出更像我的内容"。',
-    howToUse: [
-      '先选择对应你当前任务的提示词模块',
-      '按说明填入你的背景信息和具体场景',
-      '把 AI 输出作为草稿，不直接使用',
-      '根据自己的判断修改，保留你的语气和立场',
-    ],
-    howToGet: '登录后可在网页端领取，领取记录会进入用户中心。',
-    caveats:
-      '提示词是框架，不是魔法。最终让内容有价值的，还是你的真实经历和判断。工具放大的是你，不是它自己。',
-    relatedArticleSlugs: ['04-wei-shenme-wo-kaishi-renzheng-xue-ai', '01-wo-wei-shenme-bu-xiang-zhi-zuo-jiaoren-zhuangxiu'],
-    tag: 'AI',
-    previewImage: '/images/resources/ai-prompt-pack.svg',
-    previewAlt: 'AI 内容工作流提示词包预览图',
-    accessLevel: 'login',
-  },
 ]
 
 export function getResourceBySlug(slug: string): Resource | undefined {

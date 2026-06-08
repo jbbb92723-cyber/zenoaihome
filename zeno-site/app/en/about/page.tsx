@@ -1,11 +1,11 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import Container from '@/components/Container'
+import Container from '@/components/ui/Container'
 
 export const metadata: Metadata = {
-  title: 'About Zeno | Pre-Signing Renovation Judgment',
+  title: 'About Zeno | Residential Renovation Judgment',
   description:
-    'Zeno is a renovation practitioner in China with 16 years on site, building ZenoAIHome to help homeowners clarify quote risks before signing.',
+    'Zeno is a renovation practitioner in China with 16 years on site, building ZenoAIHome to help homeowners connect lifestyle goals, spatial choices, budget boundaries, quote risks, and contract responsibilities.',
   alternates: {
     canonical: 'https://zenoaihome.com/en/about',
     languages: { 'zh-CN': 'https://zenoaihome.com/about', en: 'https://zenoaihome.com/en/about' },
@@ -19,14 +19,14 @@ const sections = [
       'I am Zeno, a renovation practitioner based in China. I have spent more than 16 years on real renovation sites: reading quotes, coordinating work, handling scope changes, and seeing the awkward parts that never make it into a showroom photo.',
   },
   {
-    title: 'Why quote risk matters',
+    title: 'Why residential judgment starts before the quote',
     content:
-      'A renovation quote is not just a price list. It is a responsibility map for future work. If scope, materials, quantities, change-order rules, acceptance standards, warranty terms, and payment milestones are unclear before signing, later disputes are not surprising; they are baked in.',
+      'A renovation decision is not only a style choice or a price comparison. Lifestyle, family rhythm, storage, chores, solitude, guests, materials, budget, quote scope, contract wording, and delivery responsibilities all have to support each other.',
   },
   {
     title: 'What ZenoAIHome is building',
     content:
-      'ZenoAIHome turns field experience into practical pre-signing judgment assets: a quote risk check, a risk dictionary, checklists, a project risk library, and focused expert review. AI helps sort the paperwork; it does not replace the judgment of what must be written down.',
+      'ZenoAIHome turns field experience into practical residential judgment assets: a living diagnosis, quote risk check, risk dictionary, checklists, project risk library, and focused expert review. AI helps organize questions; it does not replace the judgment of what must be chosen, paid for, and written down.',
   },
   {
     title: 'What I do not do',
@@ -47,10 +47,10 @@ export default function EnAboutPage() {
         <Container size="content">
           <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-stone">About</p>
           <h1 className="max-w-3xl text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">
-            Sixteen years on site, turned into pre-signing judgment.
+            Sixteen years on site, turned into residential judgment.
           </h1>
           <p className="mt-5 max-w-2xl text-base leading-8 text-ink-muted">
-            ZenoAIHome exists for one practical moment: before a homeowner signs a renovation contract and needs to know what the quote still has not clearly said.
+            ZenoAIHome exists to help homeowners connect the life they want with the plan, budget, quote, contract, and delivery responsibilities that must carry it.
           </p>
         </Container>
       </section>
@@ -74,7 +74,7 @@ export default function EnAboutPage() {
 
           <div className="border-t border-border pt-8 flex flex-wrap gap-3">
             <Link href="/en/tools" className="bg-stone px-4 py-2 text-sm font-semibold text-white hover:bg-stone/90">
-              Explore quote risk tools
+              Explore judgment tools
             </Link>
             <Link href="/en/services" className="border border-border px-4 py-2 text-sm font-semibold text-ink hover:border-stone">
               See review options

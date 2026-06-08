@@ -1,22 +1,22 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import Container from '@/components/Container'
-import StructuredData from '@/components/StructuredData'
+import Container from '@/components/ui/Container'
+import StructuredData from '@/components/ui/StructuredData'
 import ArticleCardEn from './ArticleCardEn'
 import { getRecentLocalizedArticles } from '@/lib/i18n'
 
 export const metadata: Metadata = {
-  title: 'ZenoAIHome | Renovation Quote Risk Check Before You Sign',
+  title: 'ZenoAIHome | Residential Judgment Before Renovation',
   description:
-    'A selective English edition of ZenoAIHome for homeowners in China. Before you sign a renovation contract, see what your quote leaves unclear: scope gaps, vague materials, open-ended change orders, payment milestones, and verbal promises.',
+    'A selective English edition of ZenoAIHome for homeowners in China. Clarify lifestyle goals, spatial priorities, budget boundaries, quote risks, contract terms, and delivery responsibilities before renovation decisions become expensive.',
   openGraph: {
     type: 'website',
     locale: 'en',
     url: 'https://zenoaihome.com/en',
     siteName: 'ZenoAIHome',
-    title: 'ZenoAIHome | Renovation Quote Risk Check Before You Sign',
+    title: 'ZenoAIHome | Residential Judgment Before Renovation',
     description:
-      'A practical pre-signing quote risk check, built from 16 years of real renovation-site experience in China.',
+      'A practical residential judgment system built from 16 years of real renovation-site experience in China.',
   },
   alternates: {
     canonical: 'https://zenoaihome.com/en',
@@ -25,16 +25,16 @@ export const metadata: Metadata = {
 }
 
 const riskSignals = [
-  'Scope that quietly slips out of the quote',
-  'Change orders with no approval process',
-  'Materials described too loosely',
-  'Payments scheduled before real leverage',
+  'Lifestyle goals that never become spatial priorities',
+  'Aesthetic choices that fail in daily maintenance',
+  'Quote scope that cannot carry the design intent',
+  'Contract and payment terms that leave delivery fuzzy',
 ]
 
 const assets = [
   {
-    title: 'Quote Risk Check',
-    body: 'Paste the obvious parts, answer a few plain questions, and get a sharper list of what to ask before you sign.',
+    title: 'Living Diagnosis',
+    body: 'Start from how the home will be lived in: family rhythm, storage, chores, solitude, guests, aesthetics, and budget tradeoffs.',
     href: '/en/tools',
   },
   {
@@ -49,7 +49,7 @@ const assets = [
   },
   {
     title: 'Expert Review',
-    body: 'When the quote, draft contract, and payment schedule are already on your desk, a human second look helps you see what is still fuzzy.',
+    body: 'When the plan, quote, draft contract, and payment schedule are already on your desk, a human second look helps you see what is still fuzzy.',
     href: '/en/services',
   },
 ]
@@ -78,14 +78,14 @@ export default function EnHomePage() {
                 Selective English Edition
               </p>
               <h1 className="max-w-3xl text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-5xl">
-                Before you sign, find the things your renovation quote has not really said.
+                Before renovation decisions harden, see whether the life you want can actually be carried by the plan, quote, and contract.
               </h1>
               <p className="mt-6 max-w-2xl text-base leading-8 text-ink-muted">
-                ZenoAIHome helps homeowners in China check renovation quotes before signing. This is not about chasing the cheapest number. It is about spotting vague scope, soft material wording, open-ended add-ons, payment pressure, and promises that still live only in chat.
+                ZenoAIHome helps homeowners in China translate ideal living into spatial priorities, aesthetic tradeoffs, budget boundaries, quote clarity, contract wording, and delivery responsibilities. Quote risk still matters, but it is only one part of whether the home can truly work.
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <Link href="/en/tools" className="bg-stone px-5 py-3 text-sm font-semibold text-white hover:bg-stone/90">
-                  Start with the quote risk check
+                  Start with the living diagnosis
                 </Link>
                 <Link href="/en/services" className="border border-border px-5 py-3 text-sm font-semibold text-ink hover:border-stone">
                   See expert review options
@@ -103,7 +103,7 @@ export default function EnHomePage() {
                 ))}
               </div>
               <p className="mt-5 text-sm leading-7 text-ink-muted">
-                Built from 16 years on real renovation sites. AI can help sort the paperwork, but the real work is still judgment: what is included, what is not, and what should be written down before anyone picks up a hammer.
+                Built from 16 years on real renovation sites. AI can help organize questions, but the real work is judgment: what life the space should support, what the quote includes, and what must be written down before anyone picks up a hammer.
               </p>
             </div>
           </div>
@@ -115,7 +115,7 @@ export default function EnHomePage() {
           <div className="mb-10 max-w-3xl">
             <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-stone">Judgment Assets</p>
             <h2 className="text-2xl font-semibold tracking-tight text-ink sm:text-3xl">
-              Not a renovation encyclopedia. More like a pre-signing smoke detector.
+              Not a renovation encyclopedia. More like a decision system for a home that has to be lived in.
             </h2>
             <p className="mt-4 text-sm leading-7 text-ink-muted">
               The Chinese site contains the full toolset and data library. This English edition is intentionally selective: fewer pages, cleaner wording, and no machine-translation fog. It explains the system without pretending every local detail travels perfectly across languages.

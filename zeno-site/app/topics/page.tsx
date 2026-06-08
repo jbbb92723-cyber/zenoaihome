@@ -1,24 +1,24 @@
-﻿import type { Metadata } from 'next'
+import type { Metadata } from 'next'
 import Link from 'next/link'
-import { topics } from '@/data/topics'
-import { getArticleBySlug } from '@/data/articles'
-import PageHero from '@/components/PageHero'
-import Container from '@/components/Container'
-import CTA from '@/components/CTA'
-import StructuredData from '@/components/StructuredData'
+import { topics } from '@/data/content/topics'
+import { getArticleBySlug } from '@/data/content/articles'
+import PageHero from '@/components/ui/PageHero'
+import Container from '@/components/ui/Container'
+import CTA from '@/components/ui/CTA'
+import StructuredData from '@/components/ui/StructuredData'
 
 export const metadata: Metadata = {
   title: '居住判断专题 | ZenoAIHome',
   description:
-    '按问题进入 ZenoAIHome 的长期专题：美学与生活、空间与家庭场景、装修决策、报价合同风险、AI 与一人公司建造记录。',
+    '按问题进入 ZenoAIHome 的长期专题：美学与生活、空间与家庭场景、装修决策、报价合同风险和建造者手记。',
 }
 
 const topicAccents: Record<string, string> = {
-  'shi-zhu-pai-zhuangxiu':            '#8B7355',
-  'chuantong-hangyeren-zenme-yong-ai':'#7A6B8A',
-  'meixue-yu-shenghuo':               '#8A6B5B',
-  'changqi-zhuyi-shenghuo':           '#5B6E8A',
-  'cong-gongdi-kan-shijie':           '#6B7A5E',
+  'shi-zhu-pai-zhuangxiu':       '#8B7355',
+  'kongjian-yu-jiating-changjing':'#7A6B8A',
+  'zhuangxiu-juece':             '#6B7A5E',
+  'baojia-hetong-fengxian':      '#8A6B5B',
+  'jianzaozhe-shouji':           '#5B6E8A',
 }
 
 export default function TopicsPage() {
@@ -31,7 +31,7 @@ export default function TopicsPage() {
           name: '按问题看 5 个长期专题',
           url: 'https://zenoaihome.com/topics',
           description:
-            '从美学与生活开始，继续看空间方案、装修决策、报价合同风险和建造者手记。',
+            '从美学与生活开始，继续看空间与家庭场景、装修决策、报价合同风险和建造者手记。',
           inLanguage: 'zh-CN',
           mainEntity: {
             '@type': 'ItemList',
@@ -49,7 +49,7 @@ export default function TopicsPage() {
       <PageHero
         label="问题专题"
         title="按问题看这 5 个长期专题"
-        subtitle="如果你不想在文章列表里碎片化跳转，就从专题开始。先看美学与生活，再看空间、决策、报价合同风险和建造者手记。"
+        subtitle="如果你不想在文章列表里碎片化跳转，就从专题开始。先看美学与生活，再看空间与家庭场景、装修决策、报价合同风险和建造者手记。"
         size="content"
       />
 
@@ -70,8 +70,8 @@ export default function TopicsPage() {
               　再看「报价合同风险」，用词典、项目风险库和检查模板补问题
             </p>
             <p>
-              <span className="text-stone font-medium">想做自己的事</span>
-              　看「一人公司」和「判断与生活」
+              <span className="text-stone font-medium">想看方法</span>
+              　看「建造者手记」，理解这个判断系统怎么被搭出来
             </p>
           </div>
         </div>

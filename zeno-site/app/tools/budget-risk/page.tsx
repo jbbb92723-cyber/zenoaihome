@@ -1,9 +1,9 @@
 import type { Metadata } from 'next'
-import Container from '@/components/Container'
-import CTA from '@/components/CTA'
-import PageHero from '@/components/PageHero'
-import StructuredData from '@/components/StructuredData'
-import BudgetRiskQuiz from '@/components/budget-risk/BudgetRiskQuiz'
+import Container from '@/components/ui/Container'
+import CTA from '@/components/ui/CTA'
+import PageHero from '@/components/ui/PageHero'
+import StructuredData from '@/components/ui/StructuredData'
+import BudgetRiskQuiz from '@/components/features/tools/budget-risk/BudgetRiskQuiz'
 
 export const metadata: Metadata = {
   title: '超预算原因自测',

@@ -4,8 +4,8 @@ import { Suspense, useState } from 'react'
 import { signIn } from 'next-auth/react'
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
-import Container from '@/components/Container'
-import PasswordInput from '@/components/PasswordInput'
+import Container from '@/components/ui/Container'
+import PasswordInput from '@/components/ui/PasswordInput'
 
 /** 把 Auth.js URL error 参数映射成可读的中文提示 */
 function mapAuthError(error: string | null): string {

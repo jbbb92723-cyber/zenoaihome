@@ -1,9 +1,9 @@
 'use client'
 
 import { useMemo, useState } from 'react'
-import ToolSeoAssetSection from '@/components/tools/ToolSeoAssetSection'
-import { BridgePanel, NumberInput, ResultPanel, ToolPageShell } from '@/components/tools/ToolPageShell'
-import { toolSeoAssets } from '@/data/toolSeoAssets'
+import ToolSeoAssetSection from '@/components/features/tools/ToolSeoAssetSection'
+import { BridgePanel, NumberInput, ResultPanel, ToolPageShell } from '@/components/features/tools/ToolPageShell'
+import { toolSeoAssets } from '@/data/tools/toolSeoAssets'
 
 const wallAreaPresets = [
   { label: '80㎡房子粗估', value: '170' },

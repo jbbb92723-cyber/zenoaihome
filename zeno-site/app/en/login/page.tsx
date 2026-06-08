@@ -4,8 +4,8 @@ import { Suspense, useState } from 'react'
 import { signIn } from 'next-auth/react'
 import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
-import Container from '@/components/Container'
-import PasswordInput from '@/components/PasswordInput'
+import Container from '@/components/ui/Container'
+import PasswordInput from '@/components/ui/PasswordInput'
 
 function mapAuthError(error: string | null): string {
   if (!error) return ''

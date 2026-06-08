@@ -1,11 +1,11 @@
 import type { Metadata } from 'next'
-import Container from '@/components/Container'
-import CopyLinkButton from '@/components/CopyLinkButton'
-import CTA from '@/components/CTA'
-import PageHero from '@/components/PageHero'
-import StructuredData from '@/components/StructuredData'
-import RiskDimensionCard from '@/components/budget-risk/RiskDimensionCard'
-import { parseScoreQuery, riskSummaries } from '@/data/budget-risk'
+import Container from '@/components/ui/Container'
+import CopyLinkButton from '@/components/ui/CopyLinkButton'
+import CTA from '@/components/ui/CTA'
+import PageHero from '@/components/ui/PageHero'
+import StructuredData from '@/components/ui/StructuredData'
+import RiskDimensionCard from '@/components/features/tools/budget-risk/RiskDimensionCard'
+import { parseScoreQuery, riskSummaries } from '@/data/tools/budget-risk'
 
 export const metadata: Metadata = {
   title: '你的超预算原因自测结果',

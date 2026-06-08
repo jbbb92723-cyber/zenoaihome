@@ -4,8 +4,8 @@ import { Suspense, useState } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
-import Container from '@/components/Container'
-import PasswordInput from '@/components/PasswordInput'
+import Container from '@/components/ui/Container'
+import PasswordInput from '@/components/ui/PasswordInput'
 
 function ResetPasswordForm() {
   const searchParams = useSearchParams()
