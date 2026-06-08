@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   },
 }
 
-const mainResourceSlugs = ['baojia-shenhe-qingdan', 'zhuangxiu-yusuan-moban', 'yanshou-qingdan'] as const
+const mainResourceSlugs = ['baojia-shenhe-qingdan', 'zhuangxiu-yusuan-moban', 'yanshou-qingdan', 'shizhu-pai-zijian-biao'] as const
 const mainResources = resources.filter((resource) => mainResourceSlugs.includes(resource.slug as (typeof mainResourceSlugs)[number]))
 
 const tagClasses: Record<string, string> = {

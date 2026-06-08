@@ -82,7 +82,7 @@ export default function LivingStagePage() {
         ]}
         tools={[
           { label: '居住场景自查表', href: '/resources#shizhu-pai-zijian-biao' },
-          { label: '入住前后复盘表', href: '/resources#living-beyond-completion' },
+          { label: '判断样张库', href: '/cases' },
         ]}
         services={[]}
         prev={{ label: '再看验收：交工时收什么', href: '/start/inspect' }}

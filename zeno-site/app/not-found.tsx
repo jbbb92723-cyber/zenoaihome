@@ -42,7 +42,7 @@ export default function NotFound() {
               Read Blog
             </Link>
             <Link
-              href="/en/resources"
+              href="/en/tools"
               className="px-5 py-2.5 border border-border text-sm text-ink hover:bg-surface-warm transition-colors"
             >
               View Resources

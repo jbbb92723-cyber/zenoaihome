@@ -111,7 +111,7 @@ export default async function EnNotesPage() {
             <Link href="/en/blog" className="text-sm text-stone hover:underline underline-offset-2">
               Read articles →
             </Link>
-            <Link href="/en/resources" className="text-sm text-ink-muted hover:text-stone transition-colors">
+            <Link href="/en/tools" className="text-sm text-ink-muted hover:text-stone transition-colors">
               Tools & Resources
             </Link>
           </div>

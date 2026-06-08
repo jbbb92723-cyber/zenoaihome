@@ -93,7 +93,7 @@ export const primaryNav: PrimaryNavItem[] = [
         en: { label: 'Method Assets', desc: 'How space, budget, and risk affect each other.' },
         items: [
           { key: 'cases', zh: { label: '案例复盘', href: '/cases', desc: '从模糊需求到签约问题' }, en: { label: 'Case Notes', href: '/en/blog', desc: 'From vague needs to contract questions.' } },
-          { key: 'resources', zh: { label: '方法与资料', href: '/resources', desc: '判断框架和可复用清单' }, en: { label: 'Resources', href: '/en/resources', desc: 'Frameworks and checklists.' } },
+          { key: 'resources', zh: { label: '方法与资料', href: '/resources', desc: '判断框架和可复用清单' }, en: { label: 'Resources', href: '/en/tools', desc: 'Frameworks and checklists.' } },
           { key: 'risk-dictionary', zh: { label: '风险词典', href: '/risk-dictionary', desc: '看懂报价合同里的高频风险词' }, en: { label: 'Risk Dictionary', href: '/en/tools', desc: 'Common quote and contract terms.' } },
           { key: 'checklists', zh: { label: '检查模板', href: '/checklists', desc: '签约前逐项追问' }, en: { label: 'Checklists', href: '/en/tools', desc: 'Questions before signing.' } },
         ],
@@ -149,8 +149,7 @@ const CN_TO_EN: Record<string, string> = {
   '/cases':      '/en/blog',
   '/living-diagnosis': '/en/services',
   '/tools':      '/en/tools',
-  '/topics':     '/en/topics',
-  '/tools/prompts': '/en/tools',
+  '/topics':     '/en/tools',
   '/tools/quote-check': '/en/tools',
   '/tools/budget-structure': '/en/tools',
   '/tools/budget-risk': '/en/tools',
@@ -162,7 +161,7 @@ const CN_TO_EN: Record<string, string> = {
   '/risk-dictionary': '/en',
   '/checklists': '/en',
   '/project-risks': '/en',
-  '/resources':  '/en/resources',
+  '/resources':  '/en/tools',
   '/services':   '/en/services',
   '/contact':    '/en/about',
   '/notes':      '/en/notes',
@@ -175,9 +174,6 @@ const EN_TO_CN: Record<string, string> = {
   '/en/about':      '/about',
   '/en/blog':       '/blog',
   '/en/tools':      '/tools',
-  '/en/tools/prompts': '/tools/quote-check',
-  '/en/topics':     '/topics',
-  '/en/resources':  '/resources',
   '/en/services':   '/services',
   '/en/notes':      '/notes',
   '/en/login':      '/login',
@@ -195,7 +191,7 @@ export function getLangHref(pathname: string, isEn: boolean): string {
     if (pathname.startsWith('/en/blog/')) return '/blog'
     if (pathname.startsWith('/en/articles/')) return '/blog'
     const cnPath = pathname.replace(/^\/en/, '') || '/'
-    const knownCn = ['/', '/start', '/about', '/blog', '/cases', '/living-diagnosis', '/tools', '/tools/prompts', '/tools/quote-check', '/tools/budget-structure', '/tools/budget-risk', '/tools/unit-converter', '/tools/tile-calculator', '/tools/paint-calculator', '/tools/inspection-guide', '/risk-dictionary', '/checklists', '/project-risks', '/topics', '/resources', '/services', '/contact', '/login', '/register']
+    const knownCn = ['/', '/start', '/about', '/blog', '/cases', '/living-diagnosis', '/tools', '/tools/quote-check', '/tools/budget-structure', '/tools/budget-risk', '/tools/unit-converter', '/tools/tile-calculator', '/tools/paint-calculator', '/tools/inspection-guide', '/risk-dictionary', '/checklists', '/project-risks', '/topics', '/resources', '/services', '/contact', '/login', '/register']
     if (knownCn.includes(cnPath)) return cnPath
     return '/'
   } else {

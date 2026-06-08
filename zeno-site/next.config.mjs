@@ -40,6 +40,31 @@ const nextConfig = {
         permanent: true,
       },
       {
+        source: '/tools/content-brain',
+        destination: '/tools/quote-check',
+        permanent: true,
+      },
+      {
+        source: '/tools/prompts',
+        destination: '/tools/quote-check',
+        permanent: true,
+      },
+      {
+        source: '/en/tools/prompts',
+        destination: '/en/tools',
+        permanent: true,
+      },
+      {
+        source: '/en/resources',
+        destination: '/en/tools',
+        permanent: true,
+      },
+      {
+        source: '/en/topics',
+        destination: '/en/tools',
+        permanent: true,
+      },
+      {
         source: '/en/pricing',
         destination: '/en/services',
         permanent: true,

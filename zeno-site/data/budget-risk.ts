@@ -131,7 +131,7 @@ export const riskSummaries: Record<RiskKey, RiskSummary> = {
     description: '你未必是预算算错了，而是施工过程的确认、留痕和节点检查太弱，问题都堆到后面才发现。',
     whyItMatters: '流程没有控制点时，返工、拖延和责任不清会一起出现。',
     firstStep: '先把当前施工节点该看什么列出来，再把后续变更改成可确认、可留痕。',
-    resource: { label: '先拿施工节点验收清单', href: '/resources#construction-checkpoints' },
+    resource: { label: '先拿施工节点验收清单', href: '/resources#yanshou-qingdan' },
     article: { label: '先看从工地看世界', href: '/blog/03-cong-gongdi-kan-shijie' },
     service: { label: '先看装修判断服务边界', href: '/services' },
   },

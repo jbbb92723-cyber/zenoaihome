@@ -392,7 +392,7 @@ const KNOWLEDGE_EN: Array<{ pattern: RegExp; intent: IntentKey; payload: ChatRep
       ],
       actions: [
         { label: 'View services', href: '/en/services', kind: 'service' },
-        { label: 'Open resources', href: '/en/resources', kind: 'resource' },
+        { label: 'Open resources', href: '/en/tools', kind: 'resource' },
         { label: 'About Zeno', href: '/en/about', kind: 'contact' },
       ],
       followUps: FOLLOW_UPS_EN.service,
@@ -410,7 +410,7 @@ const KNOWLEDGE_EN: Array<{ pattern: RegExp; intent: IntentKey; payload: ChatRep
       ],
       actions: [
         { label: 'Open tools', href: '/en/tools', kind: 'tool' },
-        { label: 'Try the prompt tool', href: '/en/tools/prompts', kind: 'tool' },
+        { label: 'Open quote check', href: '/en/tools', kind: 'tool' },
         { label: 'View services', href: '/en/services', kind: 'service' },
       ],
       followUps: FOLLOW_UPS_EN.ai,
@@ -427,7 +427,7 @@ const KNOWLEDGE_EN: Array<{ pattern: RegExp; intent: IntentKey; payload: ChatRep
         'Escalate to service only after the problem is clearer.',
       ],
       actions: [
-        { label: 'Open resources', href: '/en/resources', kind: 'resource' },
+        { label: 'Open resources', href: '/en/tools', kind: 'resource' },
         { label: 'Open tools', href: '/en/tools', kind: 'tool' },
         { label: 'Run the budget self-check', href: '/tools/budget-risk', kind: 'tool' },
       ],
@@ -447,7 +447,7 @@ const KNOWLEDGE_EN: Array<{ pattern: RegExp; intent: IntentKey; payload: ChatRep
       actions: [
         { label: 'About Zeno', href: '/en/about', kind: 'page' },
         { label: 'Read related articles', href: '/en/articles', kind: 'article' },
-        { label: 'Open resources', href: '/en/resources', kind: 'resource' },
+        { label: 'Open resources', href: '/en/tools', kind: 'resource' },
       ],
       followUps: FOLLOW_UPS_EN.about,
     },
@@ -464,7 +464,7 @@ const KNOWLEDGE_EN: Array<{ pattern: RegExp; intent: IntentKey; payload: ChatRep
       actions: [
         { label: 'About Zeno', href: '/en/about', kind: 'contact' },
         { label: 'View services', href: '/en/services', kind: 'service' },
-        { label: 'Open resources', href: '/en/resources', kind: 'resource' },
+        { label: 'Open resources', href: '/en/tools', kind: 'resource' },
       ],
       followUps: FOLLOW_UPS_EN.contact,
     },
@@ -550,7 +550,7 @@ function fallbackAnswer(message: string, locale: 'zh' | 'en'): ChatReplyPayload 
           'If this is about a specific case, prepare a short background before contacting.',
         ],
         actions: [
-          { label: 'Open resources', href: '/en/resources', kind: 'resource' },
+          { label: 'Open resources', href: '/en/tools', kind: 'resource' },
           { label: 'Open tools', href: '/en/tools', kind: 'tool' },
           { label: 'About Zeno', href: '/en/about', kind: 'contact' },
         ],

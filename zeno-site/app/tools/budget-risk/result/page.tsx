@@ -86,7 +86,7 @@ export default function BudgetRiskResultPage({
           <section className="border border-border bg-surface-warm p-6 sm:p-8">
             <div className="flex flex-wrap gap-3">
               <CTA href="/tools/budget-risk" label="回去做自测" variant="primary" />
-              <CTA href="/resources#sign-before-contract" label="直接去签约前入口" variant="secondary" />
+              <CTA href="/resources#baojia-shenhe-qingdan" label="直接看报价审核清单" variant="secondary" />
             </div>
           </section>
         ) : (
