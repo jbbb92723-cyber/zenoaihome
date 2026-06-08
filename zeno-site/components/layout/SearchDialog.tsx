@@ -186,9 +186,9 @@ export default function SearchDialog() {
                   type="button"
                   onClick={() => handleSelect(result)}
                   onMouseEnter={() => setSelectedIndex(index)}
-                  className={`group flex w-full items-start gap-4 border px-4 py-4 text-left transition-all duration-150 ${
+                  className={`group motion-surface flex w-full items-start gap-4 border px-4 py-4 text-left ${
                     index === selectedIndex
-                      ? 'border-stone bg-surface-warm shadow-[0_12px_30px_rgba(42,39,35,0.06)]'
+                      ? 'border-stone bg-surface-warm shadow-[0_12px_30px_rgba(17,17,17,0.06)]'
                       : 'border-border bg-surface hover:border-stone/40 hover:bg-surface-warm'
                   }`}
                 >
@@ -199,7 +199,7 @@ export default function SearchDialog() {
                     <span className="block text-base font-semibold text-ink group-hover:text-stone">{result.title}</span>
                     {result.excerpt && <span className="mt-1 block text-sm leading-relaxed text-ink-muted">{result.excerpt}</span>}
                   </span>
-                  <span className="mt-1 text-sm text-stone transition-transform group-hover:translate-x-1">-&gt;</span>
+                  <span className="motion-arrow mt-1 text-sm text-stone">-&gt;</span>
                 </button>
               ))}
             </div>
@@ -210,13 +210,13 @@ export default function SearchDialog() {
               {isEn ? 'Shortcut' : '快捷动作'}
             </p>
             <div className="mt-4 space-y-3 text-sm">
-              <button type="button" onClick={() => handleSelect({ title: 'AI 居住诊断', href: '/living-diagnosis', type: 'tool' })} className="block w-full text-left text-ink-muted hover:text-ink">
+              <button type="button" onClick={() => handleSelect({ title: 'AI 居住诊断', href: '/living-diagnosis', type: 'tool' })} className="motion-press block w-full text-left text-ink-muted hover:text-ink">
                 {isEn ? 'Living diagnosis' : '做居住诊断'}
               </button>
-              <button type="button" onClick={() => handleSelect({ title: '报价初筛工具', href: '/tools/quote-check', type: 'tool' })} className="block w-full text-left text-ink-muted hover:text-ink">
+              <button type="button" onClick={() => handleSelect({ title: '报价初筛工具', href: '/tools/quote-check', type: 'tool' })} className="motion-press block w-full text-left text-ink-muted hover:text-ink">
                 {isEn ? 'Quote screening' : '做报价初筛'}
               </button>
-              <button type="button" onClick={() => handleSelect({ title: '签约前检查模板', href: '/checklists', type: 'checklist' })} className="block w-full text-left text-ink-muted hover:text-ink">
+              <button type="button" onClick={() => handleSelect({ title: '签约前检查模板', href: '/checklists', type: 'checklist' })} className="motion-press block w-full text-left text-ink-muted hover:text-ink">
                 {isEn ? 'Checklists' : '看检查模板'}
               </button>
               <button type="button" onClick={() => handleSelect({ title: '装修报价风险词典', href: '/risk-dictionary', type: 'resource' })} className="block w-full text-left text-ink-muted hover:text-ink">

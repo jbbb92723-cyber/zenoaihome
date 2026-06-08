@@ -15,9 +15,9 @@ import {
 } from '@/data/risk-control/quote-risk'
 
 export const metadata: Metadata = {
-  title: '签约前报价风险资料库 | 风险词典、检查模板、报价清单',
+  title: '签约前判断资料库 | 报价合同风险、检查模板、项目边界',
   description:
-    'ZenoAIHome 的签约前报价风险资料库：风险词典、风险规则库、检查模板、施工项目风险库和报价审核清单，帮助业主在签装修合同前看清边界。',
+    'ZenoAIHome 的签约前判断资料库：把报价合同风险、风险词典、检查模板、施工项目边界和追问清单组织起来，帮助业主在签装修合同前看清边界。',
   alternates: {
     canonical: 'https://zenoaihome.com/resources',
   },
@@ -81,9 +81,9 @@ export default function ResourcesPage() {
           {
             '@context': 'https://schema.org',
             '@type': 'CollectionPage',
-            name: '签约前报价风险资料库',
+            name: '签约前判断资料库',
             url: 'https://zenoaihome.com/resources',
-            description: '围绕签约前报价、合同和付款节点风险沉淀的词典、规则、模板和清单。',
+            description: '围绕签约前生活目标、报价合同、付款节点和施工项目边界沉淀的词典、规则、模板和清单。',
             inLanguage: 'zh-CN',
             hasPart: [
               ...quoteRiskDictionary.map((item) => ({
@@ -103,9 +103,9 @@ export default function ResourcesPage() {
       />
 
       <PageHero
-        label="签约前报价风险资料库"
-        title="资料库只服务一件事：签约前把报价风险看清。"
-        subtitle="这里不是装修百科。风险词典、规则库、检查模板和项目风险库，都围绕报价、合同、付款节点有没有说清。"
+        label="签约前判断资料库"
+        title="资料库只服务一件事：把签约前看不清的边界拆开。"
+        subtitle="这里不是装修百科。风险词典、规则库、检查模板和项目风险库，都围绕生活目标、报价、合同、付款节点和交付责任有没有说清。"
         size="content"
       />
 
@@ -114,11 +114,11 @@ export default function ResourcesPage() {
           <p className="text-xs font-semibold uppercase tracking-widest text-stone">先走主路径</p>
           <h2 className="mt-3 text-xl font-semibold tracking-tight text-ink">如果你手上已经有报价，先不要乱翻资料。</h2>
           <p className="mt-3 text-sm leading-relaxed text-ink-muted">
-            先做免费报价初筛，再用风险词典和检查模板补问题；如果仍然看不明白，再按材料情况进入 ¥99 初查、¥299 快审或 ¥699 深度判断。
+            已经拿到报价，先做免费报价初筛，再用风险词典和检查模板补问题；如果还没有方案，先回到居住诊断，把生活目标和空间优先级说清。
           </p>
           <div className="mt-5 flex flex-wrap gap-3">
             <CTA href="/tools/quote-check" label="先做报价初筛" variant="primary" />
-            <CTA href="/checklists/quote-initial-check" label="看报价单初查模板" variant="secondary" />
+            <CTA href="/living-diagnosis" label="还没定方案，先做居住诊断" variant="secondary" />
             <CTA href="/services" label="看三档人工服务" variant="ghost" />
           </div>
         </section>

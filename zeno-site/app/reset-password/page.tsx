@@ -57,12 +57,12 @@ function ResetPasswordForm() {
         </div>
 
         {error && (
-          <div className="mb-4 px-4 py-3 border border-red-200 bg-red-50 dark:bg-red-950/30 dark:border-red-800 text-sm text-red-700 dark:text-red-400">
+          <div className="mb-4 border border-ink/25 bg-stone-pale/70 px-4 py-3 text-sm text-ink">
             {error}
           </div>
         )}
         {success && (
-          <div className="mb-4 px-4 py-3 border border-green-200 bg-green-50 dark:bg-green-950/30 dark:border-green-800 text-sm text-green-700 dark:text-green-400">
+          <div className="mb-4 border border-stone-light bg-stone-pale/70 px-4 py-3 text-sm text-ink">
             {success}
           </div>
         )}

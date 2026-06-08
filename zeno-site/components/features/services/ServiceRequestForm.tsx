@@ -181,8 +181,8 @@ export default function ServiceRequestForm({ services }: { services: Service[] }
         </label>
       </div>
 
-      {error && <p className="mt-4 text-sm text-red-700">{error}</p>}
-      {status === 'success' && <p className="mt-4 text-sm text-stone">已提交。你可以在用户中心保留这条服务申请记录。</p>}
+      {error && <p className="mt-4 border border-ink/25 bg-stone-pale/70 px-3 py-2 text-sm text-ink">{error}</p>}
+      {status === 'success' && <p className="mt-4 border border-stone-light bg-stone-pale/70 px-3 py-2 text-sm text-ink">已提交。你可以在用户中心保留这条服务申请记录。</p>}
       {status === 'login' && (
         <p className="mt-4 text-sm text-ink-muted">
           提交服务需求需要先登录。<Link href="/login" className="text-stone underline underline-offset-4">去登录</Link>

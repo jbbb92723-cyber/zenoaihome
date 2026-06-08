@@ -21,16 +21,17 @@ export default function PageHero({
   size = 'content',
 }: PageHeroProps) {
   return (
-    <div className="relative overflow-hidden border-b border-border bg-canvas system-grid">
-      <div className="absolute inset-0 bg-[linear-gradient(120deg,rgba(255,255,252,0.94),rgba(247,247,243,0.82)),radial-gradient(circle_at_82%_18%,rgba(63,98,88,0.12),transparent_34%)]" aria-hidden />
-      <Container size={size} className="relative py-12 sm:py-16">
+    <div className="relative overflow-hidden border-b border-border bg-canvas">
+      <Container size={size} className="motion-hero relative py-14 sm:py-20">
         <p className="system-label mb-4">{label}</p>
-        <h1 className="page-title mb-5 max-w-3xl">{title}</h1>
-        <p className="max-w-2xl text-base leading-[1.7] text-ink-muted sm:text-lg">
+        <h1 className="editorial-display mb-5 max-w-4xl text-[2.35rem] leading-[1.12] text-ink sm:text-[3.35rem]">
+          {title}
+        </h1>
+        <p className="max-w-2xl text-base leading-8 text-ink-muted sm:text-lg">
           {subtitle}
         </p>
         {note && (
-          <p className="mt-4 max-w-xl border-l-2 border-stone/40 pl-4 text-sm leading-relaxed text-ink-faint">{note}</p>
+          <p className="mt-5 max-w-xl border-l border-ink/25 pl-4 text-sm leading-7 text-ink-faint">{note}</p>
         )}
       </Container>
     </div>

@@ -16,9 +16,9 @@ export const metadata: Metadata = {
 }
 
 const riskLevelClass: Record<string, string> = {
-  高: 'border-red-200 bg-red-50 text-red-700',
-  中: 'border-amber-200 bg-amber-50 text-amber-700',
-  低: 'border-stone/20 bg-stone-pale text-stone',
+  高: 'border-ink bg-ink text-canvas',
+  中: 'border-stone-light bg-stone-pale text-ink',
+  低: 'border-border bg-canvas text-ink-muted',
 }
 
 const faqs = [
@@ -46,7 +46,7 @@ export default function RiskDictionaryPage() {
             '@type': 'CollectionPage',
             name: '装修报价风险词典',
             url: 'https://zenoaihome.com/risk-dictionary',
-            description: '围绕装修签约前报价风险、合同边界和增项口子整理的风险词典。',
+            description: '围绕签约前报价边界、合同责任和增项口子整理的风险词典。',
             inLanguage: 'zh-CN',
             hasPart: quoteRiskRules.map((rule) => ({
               '@type': 'DefinedTerm',
@@ -75,7 +75,7 @@ export default function RiskDictionaryPage() {
       <PageHero
         label="看报价"
         title="装修报价风险词典"
-        subtitle="报价单不是看总价，而是看边界。按报价风险词、材料品牌型号、数量面积、漏项和低价陷阱，把签约前必须问清的报价边界先看懂。"
+        subtitle="报价单不是看总价，而是看边界。按风险词、材料品牌型号、数量面积、漏项和低价背后的责任口径，把签约前必须问清的报价边界先看懂。"
         size="content"
       />
 

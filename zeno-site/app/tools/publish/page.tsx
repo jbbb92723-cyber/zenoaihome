@@ -55,7 +55,7 @@ export default async function PublishPage() {
             { label: '微信公众号草稿 API',     ok: isWechatConfigured },
           ].map(item => (
             <div key={item.label} className="flex items-center gap-2 text-xs text-ink-muted">
-              <span className={item.ok ? 'text-emerald-500' : 'text-red-400'}>
+              <span className={item.ok ? 'text-stone' : 'text-ink-faint'}>
                 {item.ok ? '✓' : '✗'}
               </span>
               {item.label}

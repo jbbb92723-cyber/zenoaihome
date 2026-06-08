@@ -91,7 +91,7 @@ export default function EnRegisterPage() {
         </div>
 
         {emailDown && (
-          <div className="mb-6 px-4 py-4 border border-amber-300 bg-amber-50 dark:bg-amber-950/30 dark:border-amber-700 text-sm text-amber-800 dark:text-amber-300 leading-relaxed">
+          <div className="mb-6 border border-stone-light bg-stone-pale/70 px-4 py-4 text-sm leading-relaxed text-ink">
             <p className="font-medium mb-1">Registration temporarily unavailable</p>
             <p className="text-xs opacity-80">
               The email verification service is currently under maintenance. Please try again later or{' '}
@@ -100,12 +100,12 @@ export default function EnRegisterPage() {
           </div>
         )}
         {error && (
-          <div className="mb-4 px-4 py-3 border border-red-200 bg-red-50 dark:bg-red-950/30 dark:border-red-800 text-sm text-red-700 dark:text-red-400">
+          <div className="mb-4 border border-ink/25 bg-stone-pale/70 px-4 py-3 text-sm text-ink">
             {error}
           </div>
         )}
         {success && (
-          <div className="mb-4 px-4 py-3 border border-green-200 bg-green-50 dark:bg-green-950/30 dark:border-green-800 text-sm text-green-700 dark:text-green-400">
+          <div className="mb-4 border border-stone-light bg-stone-pale/70 px-4 py-3 text-sm text-ink">
             {success}
           </div>
         )}

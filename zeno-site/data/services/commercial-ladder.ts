@@ -57,7 +57,7 @@ export const commercialLadder: LadderRung[] = [
     price: '¥399-599',
     priceNumeric: 399,
     title: '居住需求洞察报告',
-    whoFor: '不只是想避坑，还想把理想生活翻译成空间和预算判断的人',
+    whoFor: '不只是想看风险，还想把理想生活翻译成空间和预算判断的人',
     delivers: '输出生活方式、空间优先级、审美偏好、预算取舍和方案追问清单',
     href: '/services#living-insight-beta',
     cta: '看洞察报告',

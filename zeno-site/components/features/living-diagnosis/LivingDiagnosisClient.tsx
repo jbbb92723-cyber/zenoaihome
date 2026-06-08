@@ -38,6 +38,7 @@ const emptyForm: FormState = {
 
 const homeTypeOptions = ['新房毛坯', '二手房翻新', '精装房改造', '局部更新', '还没确定']
 const budgetOptions = ['20 万以内', '20-40 万', '40-80 万', '80 万以上', '还没拆预算']
+const diagnosisProcessSteps = ['读取生活输入', '拆分家庭场景', '标记预算边界', '生成判断报告']
 
 function getRiskLabel(level: LivingDiagnosisResult['riskLevel']) {
   if (level === 'high') return '高优先级'
@@ -144,7 +145,7 @@ export default function LivingDiagnosisClient() {
   return (
     <main className="min-h-screen bg-canvas text-ink">
       <section className="relative overflow-hidden border-b border-border bg-canvas system-grid">
-        <div className="absolute inset-0 bg-[linear-gradient(120deg,rgba(255,255,252,0.92),rgba(247,247,243,0.82)),radial-gradient(circle_at_82%_18%,rgba(49,72,92,0.12),transparent_34%)]" aria-hidden />
+        <div className="absolute inset-0 bg-[linear-gradient(120deg,rgba(244,241,232,0.96),rgba(244,241,232,0.78)),radial-gradient(circle_at_82%_18%,rgba(222,210,190,0.3),transparent_34%)]" aria-hidden />
         <div className="mx-auto grid max-w-7xl gap-8 px-5 py-14 sm:px-8 lg:grid-cols-[0.58fr_0.42fr] lg:px-12 lg:py-20">
           <div className="relative min-w-0">
             <p className="system-label">AI Living Diagnosis</p>
@@ -155,11 +156,11 @@ export default function LivingDiagnosisClient() {
               这不是风格测试，而是把生活方式、美学偏好、家庭场景、空间秩序、预算取舍和签约风险放在一起看。结果会告诉你：现在更应该先整理需求，还是先核对报价合同。
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <a href="#diagnosis-form" className="inline-flex min-h-11 items-center gap-2 bg-stone px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-stone/90">
+              <a href="#diagnosis-form" className="motion-press inline-flex min-h-11 items-center gap-2 bg-stone px-5 py-3 text-sm font-semibold text-white hover:bg-stone/90">
                 开始诊断
-                <ArrowRight size={16} aria-hidden />
+                <ArrowRight size={16} className="motion-arrow" aria-hidden />
               </a>
-              <Link href="/tools/quote-check" className="inline-flex min-h-11 items-center border border-border bg-surface px-5 py-3 text-sm font-semibold text-ink transition-colors hover:border-stone">
+              <Link href="/tools/quote-check" className="motion-press inline-flex min-h-11 items-center border border-border bg-surface px-5 py-3 text-sm font-semibold text-ink hover:border-stone">
                 已有报价，先看风险
               </Link>
             </div>
@@ -273,10 +274,10 @@ export default function LivingDiagnosisClient() {
                     return (
                       <label
                         key={option.value}
-                        className={`group flex cursor-pointer items-start gap-3 border p-4 transition-all duration-150 ${
+                        className={`group motion-surface flex cursor-pointer items-start gap-3 border p-4 ${
                           isActive
-                            ? 'border-stone bg-stone-pale shadow-[0_12px_30px_rgba(42,39,35,0.06)]'
-                            : 'border-border bg-canvas hover:-translate-y-px hover:border-stone/60 hover:bg-surface-warm'
+                            ? 'border-stone bg-stone-pale shadow-[0_12px_30px_rgba(17,17,17,0.06)]'
+                            : 'border-border bg-canvas hover:border-stone/60 hover:bg-surface-warm'
                         }`}
                       >
                         <input
@@ -335,21 +336,21 @@ export default function LivingDiagnosisClient() {
           </section>
 
           {error && (
-            <p className="border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">{error}</p>
+            <p className="border border-ink/25 bg-stone-pale/70 px-4 py-3 text-sm text-ink">{error}</p>
           )}
 
           <div className="flex flex-wrap items-center gap-3 border border-border bg-surface-warm p-5">
             <button
               type="submit"
               disabled={!isComplete || status === 'loading'}
-              className={`inline-flex min-h-11 items-center gap-2 px-5 py-3 text-sm font-semibold transition-colors ${
+              className={`motion-press inline-flex min-h-11 items-center gap-2 px-5 py-3 text-sm font-semibold ${
                 isComplete && status !== 'loading'
                   ? 'bg-stone text-white hover:bg-stone/90'
                   : 'cursor-not-allowed bg-stone/35 text-white'
               }`}
             >
               {status === 'loading' ? '生成中...' : '生成居住判断'}
-              <ArrowRight size={16} aria-hidden />
+              <ArrowRight size={16} className="motion-arrow" aria-hidden />
             </button>
             <p className="text-xs leading-6 text-ink-muted">当前完成 {answeredCount} / {livingDiagnosisQuestions.length}。生成后优先展示判断结果；如成功生成记录编号，后续人工复核会更顺手。</p>
           </div>
@@ -365,7 +366,7 @@ export default function LivingDiagnosisClient() {
               <span className="text-2xl font-semibold text-stone">{progress}%</span>
             </div>
             <div className="mt-4 h-1.5 bg-stone-pale">
-              <div className="h-full bg-stone transition-all duration-200" style={{ width: `${progress}%` }} />
+              <div className="h-full bg-stone transition-all duration-300" style={{ width: `${progress}%` }} />
             </div>
             {previewItems.length > 0 && (
               <div className="mt-5 space-y-3">
@@ -379,7 +380,25 @@ export default function LivingDiagnosisClient() {
             )}
           </section>
 
-          {result ? (
+          {status === 'loading' ? (
+            <section className="report-sheet p-5">
+              <p className="system-label">Generating / Living Report</p>
+              <h2 className="mt-2 text-xl font-semibold leading-tight text-ink">正在把输入拆成判断顺序。</h2>
+              <div className="mt-5 space-y-3">
+                {diagnosisProcessSteps.map((item, index) => (
+                  <div key={item} className="grid grid-cols-[auto_1fr] items-center gap-3 border border-border bg-canvas p-3">
+                    <span className="flex h-6 w-6 items-center justify-center bg-stone text-[0.68rem] font-semibold text-white tabular-nums">{index + 1}</span>
+                    <span>
+                      <span className="block text-sm font-semibold text-ink">{item}</span>
+                      <span className="mt-2 block h-1 overflow-hidden bg-stone-pale">
+                        <span className="motion-line-grow block h-full bg-stone" style={{ animationDelay: `${index * 160}ms` }} />
+                      </span>
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </section>
+          ) : result ? (
             <section className="report-sheet p-5">
               <div className="flex items-start justify-between gap-4">
                 <div>
@@ -410,7 +429,7 @@ export default function LivingDiagnosisClient() {
               </div>
               {diagnosisId && <p className="mt-4 border border-border bg-canvas px-3 py-2 text-xs leading-6 text-ink-faint">诊断记录：{diagnosisId}</p>}
               {persisted === false && (
-                <p className="mt-4 border border-amber-200 bg-amber-50 px-3 py-2 text-xs leading-6 text-amber-800">
+                <p className="mt-4 border border-stone-light bg-stone-pale/70 px-3 py-2 text-xs leading-6 text-ink-muted">
                   本次判断已生成，但暂未生成记录编号。需要人工复核时，请稍后重新提交或从服务页继续联系。
                 </p>
               )}
@@ -422,12 +441,12 @@ export default function LivingDiagnosisClient() {
                     key={item.href + item.label}
                     href={item.href}
                     className={index === 0
-                      ? 'group flex items-center justify-between gap-3 bg-stone px-4 py-3 text-sm font-semibold text-white transition-colors hover:bg-stone/90'
-                      : 'group flex items-center justify-between gap-3 border border-border bg-canvas px-4 py-3 text-sm font-semibold text-ink transition-colors hover:border-stone'
+                      ? 'group motion-press flex items-center justify-between gap-3 bg-stone px-4 py-3 text-sm font-semibold text-white hover:bg-stone/90'
+                      : 'group motion-press flex items-center justify-between gap-3 border border-border bg-canvas px-4 py-3 text-sm font-semibold text-ink hover:border-stone'
                     }
                   >
                     {item.label}
-                    <ArrowRight size={16} className="shrink-0 transition-transform group-hover:translate-x-1" aria-hidden />
+                    <ArrowRight size={16} className="motion-arrow shrink-0" aria-hidden />
                   </Link>
                 ))}
                 </div>
@@ -436,7 +455,7 @@ export default function LivingDiagnosisClient() {
                   className="mt-3 flex items-center justify-between gap-3 border border-stone-light bg-stone-pale/45 px-4 py-3 text-sm font-semibold text-ink transition-colors hover:border-stone"
                 >
                   升级为人工《居住需求洞察报告》
-                  <ArrowRight size={16} className="shrink-0 text-stone" aria-hidden />
+                  <ArrowRight size={16} className="motion-arrow shrink-0 text-stone" aria-hidden />
                 </Link>
               </div>
             </section>
@@ -452,7 +471,7 @@ export default function LivingDiagnosisClient() {
           )}
 
           {status === 'error' && (
-            <section className="border border-red-200 bg-red-50 p-5 text-sm leading-7 text-red-700">
+            <section className="border border-ink/25 bg-stone-pale/70 p-5 text-sm leading-7 text-ink">
               <WarningCircle size={22} weight="duotone" className="mb-2" aria-hidden />
               {error || '提交失败，请稍后再试。'}
             </section>

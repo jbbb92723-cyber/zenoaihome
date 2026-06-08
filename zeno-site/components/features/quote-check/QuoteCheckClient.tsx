@@ -155,6 +155,7 @@ const textRiskRules: Array<{
 ]
 
 const maxScore = checks.reduce((sum, item) => sum + item.weight, 0)
+const quoteScanSteps = ['读取报价阶段', '核对边界字段', '标记文本信号', '生成追问清单']
 
 function analyzeQuoteText(text: string): TextRiskSignal[] {
   const normalized = text.replace(/\s+/g, '')
@@ -260,6 +261,7 @@ export default function QuoteCheckClient() {
   const [form, setForm] = useState<QuoteFormState>(defaultState)
   const [fileName, setFileName] = useState('')
   const [showResult, setShowResult] = useState(false)
+  const [isScanning, setIsScanning] = useState(false)
   const [copied, setCopied] = useState(false)
   const [copiedQuestions, setCopiedQuestions] = useState(false)
 
@@ -307,7 +309,17 @@ export default function QuoteCheckClient() {
     setForm(defaultState)
     setFileName('')
     setShowResult(false)
+    setIsScanning(false)
     window.localStorage.removeItem(storageKey)
+  }
+
+  function generateResult() {
+    setShowResult(false)
+    setIsScanning(true)
+    window.setTimeout(() => {
+      setIsScanning(false)
+      setShowResult(true)
+    }, 900)
   }
 
   async function copyResultSummary() {
@@ -345,7 +357,7 @@ export default function QuoteCheckClient() {
   return (
     <main className="min-h-screen bg-canvas">
       <section className="relative overflow-hidden border-b border-border bg-canvas system-grid">
-        <div className="absolute inset-0 bg-[linear-gradient(120deg,rgba(255,255,252,0.94),rgba(247,247,243,0.82)),radial-gradient(circle_at_82%_16%,rgba(154,84,36,0.12),transparent_32%)]" aria-hidden />
+        <div className="absolute inset-0 bg-[linear-gradient(120deg,rgba(244,241,232,0.96),rgba(244,241,232,0.78)),radial-gradient(circle_at_82%_16%,rgba(222,210,190,0.3),transparent_32%)]" aria-hidden />
         <div className="relative mx-auto grid max-w-6xl gap-8 px-5 py-14 sm:px-8 lg:grid-cols-[0.62fr_0.38fr] lg:py-16">
           <div className="min-w-0">
             <p className="system-label">Quote Boundary Check</p>
@@ -356,7 +368,7 @@ export default function QuoteCheckClient() {
               报价不是单独看的。它应该能承接你的空间选择、材料工艺、预算边界、付款节点、验收标准和交付责任。这个工具先帮你把没写清的地方拆出来。
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <a href="#quote-form" className="inline-flex h-11 items-center bg-stone px-5 text-sm font-semibold text-white transition-colors hover:bg-stone/90">
+              <a href="#quote-form" className="motion-press inline-flex h-11 items-center bg-stone px-5 text-sm font-semibold text-white hover:bg-stone/90">
                 开始初筛
               </a>
               <Link href="/checklists" className="inline-flex h-11 items-center border border-border px-5 text-sm font-semibold text-ink transition-colors hover:border-stone">
@@ -497,7 +509,7 @@ export default function QuoteCheckClient() {
             <h2 className="mt-2 text-lg font-semibold text-ink">对照报价单，勾选已经写清的部分</h2>
             <div className="mt-5 space-y-3">
               {checks.map((item) => (
-                <label key={item.key} className="flex cursor-pointer items-start gap-3 border border-border bg-canvas p-3 transition-colors hover:border-stone/60">
+                <label key={item.key} className="motion-surface flex cursor-pointer items-start gap-3 border border-border bg-canvas p-3 hover:border-stone/60">
                   <input
                     type="checkbox"
                     checked={Boolean(form[item.key])}
@@ -515,10 +527,10 @@ export default function QuoteCheckClient() {
           </div>
 
           <div className="flex flex-wrap gap-3">
-            <button type="button" onClick={() => setShowResult(true)} className="inline-flex h-11 items-center bg-stone px-5 text-sm font-semibold text-white transition-colors hover:bg-stone/90">
-              生成初筛结果
+            <button type="button" onClick={generateResult} disabled={isScanning} className="motion-press inline-flex h-11 items-center bg-stone px-5 text-sm font-semibold text-white hover:bg-stone/90 disabled:cursor-not-allowed disabled:bg-stone/45">
+              {isScanning ? '生成中...' : '生成初筛结果'}
             </button>
-            <button type="button" onClick={reset} className="inline-flex h-11 items-center border border-border px-5 text-sm font-semibold text-ink transition-colors hover:border-stone">
+            <button type="button" onClick={reset} className="motion-press inline-flex h-11 items-center border border-border px-5 text-sm font-semibold text-ink hover:border-stone">
               重新填写
             </button>
           </div>
@@ -564,6 +576,28 @@ export default function QuoteCheckClient() {
         </aside>
       </section>
 
+      {isScanning && (
+        <section className="border-y border-border bg-surface-warm system-grid">
+          <div className="mx-auto max-w-6xl px-5 py-10 sm:px-8">
+            <div className="report-sheet decision-scan p-6">
+              <p className="system-label">Scanning / Quote Boundary</p>
+              <h2 className="mt-3 text-2xl font-semibold leading-tight text-ink">正在把报价拆成签约前追问。</h2>
+              <div className="mt-6 grid gap-3 sm:grid-cols-4">
+                {quoteScanSteps.map((step, index) => (
+                  <div key={step} className="border border-border bg-canvas p-4">
+                    <span className="text-xs font-semibold text-stone tabular-nums">0{index + 1}</span>
+                    <p className="mt-2 text-sm font-semibold leading-6 text-ink">{step}</p>
+                    <span className="mt-3 block h-1 overflow-hidden bg-stone-pale">
+                      <span className="motion-line-grow block h-full bg-stone" style={{ animationDelay: `${index * 140}ms` }} />
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
       {showResult && (
         <section className="border-y border-border bg-surface-warm system-grid">
           <div className="mx-auto max-w-6xl px-5 py-12 sm:px-8">
@@ -596,10 +630,10 @@ export default function QuoteCheckClient() {
                 </div>
 
                 <div className="mt-6 flex flex-wrap gap-3">
-                  <button type="button" onClick={copyResultSummary} className="inline-flex h-10 items-center bg-stone px-4 text-sm font-semibold text-white transition-colors hover:bg-stone/90">
+                  <button type="button" onClick={copyResultSummary} className="motion-press inline-flex h-10 items-center bg-stone px-4 text-sm font-semibold text-white hover:bg-stone/90">
                     {copied ? '已复制摘要' : '复制结果摘要'}
                   </button>
-                  <button type="button" onClick={copyQuestionList} className="inline-flex h-10 items-center border border-stone px-4 text-sm font-semibold text-stone transition-colors hover:bg-stone-pale">
+                  <button type="button" onClick={copyQuestionList} className="motion-press inline-flex h-10 items-center border border-stone px-4 text-sm font-semibold text-stone hover:bg-stone-pale">
                     {copiedQuestions ? '已复制追问' : '复制追问清单'}
                   </button>
                 </div>

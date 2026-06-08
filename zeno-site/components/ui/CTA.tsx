@@ -8,17 +8,15 @@ interface CTAProps {
 }
 
 export default function CTA({ href, label, variant = 'primary', external = false }: CTAProps) {
-  // 改了什么：去掉 rounded-sm
-  // 为什么改：全站设计语言是直角，CTA 不应例外
-  const base = 'inline-flex items-center text-sm transition-all duration-150'
+  const base = 'motion-press inline-flex min-h-10 items-center justify-center rounded-[7px] text-sm font-semibold'
 
   const variants = {
     primary:
-      'bg-stone text-white px-5 py-2.5 hover:bg-stone/90 font-medium',
+      'bg-ink px-5 py-2.5 text-white hover:bg-ink/88 hover:shadow-[0_14px_32px_rgba(17,17,17,0.14)]',
     secondary:
-      'border border-stone text-stone px-5 py-2.5 hover:bg-stone-pale font-medium',
+      'border border-ink/18 bg-surface px-5 py-2.5 text-ink hover:border-ink/40 hover:bg-surface-warm/70',
     ghost:
-      'text-stone underline decoration-stone-light underline-offset-2 hover:decoration-stone px-0 py-0',
+      'text-ink underline decoration-ink/25 underline-offset-4 hover:decoration-ink px-0 py-0',
   }
 
   const className = `${base} ${variants[variant]}`

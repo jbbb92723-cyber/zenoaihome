@@ -212,7 +212,7 @@ export default function AIChatWidget() {
         <button
           type="button"
           onClick={() => setOpen(true)}
-          className="fixed bottom-4 right-4 z-[75] inline-flex h-12 w-12 items-center justify-center border border-white/25 bg-stone p-0 text-left text-white shadow-[0_18px_48px_rgba(42,39,35,0.26)] transition-all duration-200 hover:-translate-y-1 hover:bg-stone/95 hover:shadow-[0_24px_70px_rgba(42,39,35,0.32)] sm:bottom-7 sm:right-7 sm:h-auto sm:w-auto sm:min-h-[4.5rem] sm:gap-3 sm:px-6 sm:py-3 animate-zeno-pulse-once"
+          className="motion-press fixed bottom-4 right-4 z-[75] inline-flex h-12 w-12 items-center justify-center border border-white/25 bg-stone p-0 text-left text-white shadow-[0_18px_48px_rgba(17,17,17,0.26)] hover:bg-stone/95 hover:shadow-[0_24px_70px_rgba(17,17,17,0.32)] sm:bottom-7 sm:right-7 sm:h-auto sm:w-auto sm:min-h-[4.5rem] sm:gap-3 sm:px-6 sm:py-3 animate-zeno-pulse-once"
           aria-label={isEn ? 'Ask Zeno' : '问 Zeno'}
         >
           <span className="flex h-9 w-9 shrink-0 items-center justify-center bg-white/12 ring-1 ring-white/20 sm:h-10 sm:w-10">
@@ -228,7 +228,7 @@ export default function AIChatWidget() {
       )}
 
       {open && (
-        <div className="fixed bottom-4 right-4 z-[80] flex h-[min(680px,calc(100vh-2rem))] w-[min(460px,calc(100vw-2rem))] flex-col border border-border bg-canvas shadow-[0_28px_90px_rgba(42,39,35,0.26)] animate-surface-in sm:bottom-6 sm:right-6">
+        <div className="fixed bottom-4 right-4 z-[80] flex h-[min(680px,calc(100vh-2rem))] w-[min(460px,calc(100vw-2rem))] flex-col border border-border bg-canvas shadow-[0_28px_90px_rgba(17,17,17,0.26)] animate-surface-in sm:bottom-6 sm:right-6">
           <div className="flex shrink-0 items-center justify-between border-b border-border bg-surface-warm px-4 py-3">
             <div className="flex items-center gap-3">
               <div className="flex h-8 w-8 items-center justify-center bg-stone-pale text-xs font-semibold text-stone">Z</div>
@@ -279,7 +279,7 @@ export default function AIChatWidget() {
 
                 <div className="mt-4 grid gap-3">
                   {quickEntries.map((entry) => (
-                    <div key={entry.label} className="border border-border bg-surface p-3">
+                    <div key={entry.label} className="motion-surface border border-border bg-surface p-3">
                       <button type="button" onClick={() => handleSend(entry.prompt)} className="block w-full text-left text-sm font-semibold text-ink hover:text-stone">
                         {entry.label}
                       </button>
@@ -301,7 +301,7 @@ export default function AIChatWidget() {
                 <div className={`max-w-[88%] px-3 py-2 text-sm leading-relaxed ${
                   message.role === 'user'
                     ? 'bg-stone text-white'
-                    : 'border border-border bg-surface text-ink shadow-[0_12px_30px_rgba(42,39,35,0.06)]'
+                    : 'border border-border bg-surface text-ink shadow-[0_12px_30px_rgba(17,17,17,0.06)]'
                 }`}>
                   <div className="whitespace-pre-wrap">{message.content}</div>
 

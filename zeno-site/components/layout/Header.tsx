@@ -108,15 +108,15 @@ export default function Header() {
 
   return (
     <header
-      className={`sticky top-0 z-[90] border-b border-border bg-canvas transition-all duration-200 ${
-        scrolled ? 'shadow-[0_10px_30px_rgba(42,39,35,0.05)]' : 'shadow-none'
+      className={`sticky top-0 z-[90] border-b border-border bg-canvas/95 backdrop-blur-sm transition-all duration-200 ${
+        scrolled ? 'shadow-[0_10px_30px_rgba(20,20,20,0.04)]' : 'shadow-none'
       }`}
     >
-      <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
-        <div className="flex h-16 items-center justify-between">
+      <div className="mx-auto max-w-[1440px] px-5 sm:px-8 lg:px-12">
+        <div className="flex h-14 items-center justify-between">
           <Link
             href={logoHref}
-            className="shrink-0 text-[0.9375rem] font-semibold tracking-tight text-ink transition-colors hover:text-stone"
+            className="shrink-0 text-[0.92rem] font-black uppercase tracking-[0.14em] text-ink transition-colors hover:text-stone"
           >
             ZenoAIHome
           </Link>
@@ -132,9 +132,9 @@ export default function Header() {
                 <Link
                   href={item.href}
                   onFocus={() => item.groups && setActiveMenu(item.key)}
-                  className={`group/nav relative inline-flex items-center gap-1 px-3 py-2 text-sm transition-colors ${
+                  className={`group/nav relative inline-flex items-center gap-1 px-3 py-2 text-xs font-medium transition-colors ${
                     isActive(item.href)
-                      ? 'text-stone font-semibold'
+                      ? 'font-semibold text-ink'
                       : 'text-ink-muted hover:text-ink'
                   }`}
                 >
@@ -149,13 +149,13 @@ export default function Header() {
 
                 {item.groups && activeMenu === item.key && (
                   <>
-                    <div className={`pointer-events-none fixed inset-x-0 bottom-0 z-[64] bg-canvas/80 backdrop-blur-sm ${scrolled ? 'top-14' : 'top-16'}`} />
+                    <div className="pointer-events-none fixed inset-x-0 bottom-0 top-14 z-[64] bg-canvas/80 backdrop-blur-sm" />
                     <div
-                      className={`fixed left-1/2 z-[70] -translate-x-1/2 pt-3 animate-menu-in ${scrolled ? 'top-14' : 'top-16'} ${item.groups.length === 1 ? 'w-[min(460px,calc(100vw-3rem))]' : 'w-[min(900px,calc(100vw-3rem))]'}`}
+                      className={`fixed left-1/2 top-14 z-[70] -translate-x-1/2 pt-3 animate-menu-in ${item.groups.length === 1 ? 'w-[min(460px,calc(100vw-3rem))]' : 'w-[min(900px,calc(100vw-3rem))]'}`}
                       onMouseEnter={() => handleMenuEnter(item.key)}
                       onMouseLeave={handleMenuLeave}
                     >
-                      <div className="border border-border/60 bg-canvas shadow-[0_20px_56px_rgba(42,39,35,0.15)]">
+                      <div className="decision-scan border border-border/60 bg-canvas shadow-[0_20px_56px_rgba(17,17,17,0.14)]">
                         {/* top bar */}
                         <div className="flex items-center justify-between border-b border-border/50 px-6 py-3">
                           <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-stone">{item.label}</p>
@@ -175,7 +175,7 @@ export default function Header() {
                                 <Link
                                   key={leaf.key}
                                   href={leaf.href}
-                                  className="group flex flex-col border-l-2 border-transparent py-2.5 pl-3 transition-colors duration-100 hover:border-stone/50 hover:bg-surface-warm"
+                                  className="group motion-surface flex flex-col border-l-2 border-transparent py-2.5 pl-3 hover:border-stone/50 hover:bg-surface-warm"
                                 >
                                   <span className="text-sm font-medium leading-snug text-ink group-hover:text-stone">{leaf.label}</span>
                                   {leaf.desc && <span className="mt-0.5 text-[11px] leading-snug text-ink-faint">{leaf.desc}</span>}
@@ -200,7 +200,7 @@ export default function Header() {
                                     <Link
                                       key={leaf.key}
                                       href={leaf.href}
-                                      className="group flex flex-col border-l-2 border-transparent py-2 pl-3 transition-colors duration-100 hover:border-stone/50 hover:bg-surface-warm"
+                                      className="group motion-surface flex flex-col border-l-2 border-transparent py-2 pl-3 hover:border-stone/50 hover:bg-surface-warm"
                                     >
                                       <span className="text-sm leading-snug text-ink group-hover:text-stone">{leaf.label}</span>
                                       {leaf.desc && <span className="mt-0.5 text-[11px] leading-snug text-ink-faint">{leaf.desc}</span>}
@@ -230,12 +230,12 @@ export default function Header() {
             </button>
             <LanguageToggle />
             <ThemeToggle />
-            <Link href={loginHref} className="px-2 py-2 text-sm text-ink-muted transition-colors hover:text-ink">
+            <Link href={loginHref} className="px-2 py-2 text-xs font-medium text-ink-muted transition-colors hover:text-ink">
               {loginLabel}
             </Link>
             <Link
               href={uploadHref}
-              className="ml-1 inline-flex h-9 items-center bg-stone px-4 text-sm font-medium text-white transition-all duration-200 hover:-translate-y-px hover:bg-stone/90 hover:shadow-[0_12px_28px_rgba(139,115,85,0.20)] active:scale-[0.97] active:translate-y-0"
+              className="motion-press ml-1 inline-flex h-9 items-center rounded-[8px] bg-ink px-4 text-xs font-semibold text-white hover:bg-stone-deep hover:shadow-[0_12px_28px_rgba(20,20,20,0.18)]"
             >
               {uploadLabel}
             </Link>
@@ -266,14 +266,14 @@ export default function Header() {
       </div>
 
       {menuOpen && (
-        <div className="fixed inset-x-0 bottom-0 top-16 z-[95] overflow-y-auto border-t border-border bg-canvas shadow-[0_24px_80px_rgba(42,39,35,0.18)] lg:hidden">
+        <div className="fixed inset-x-0 bottom-0 top-14 z-[95] overflow-y-auto border-t border-border bg-canvas shadow-[0_24px_80px_rgba(17,17,17,0.18)] lg:hidden">
           <nav className="mx-auto max-w-3xl px-5 py-5" aria-label={isEn ? 'Mobile navigation' : '移动端导航'}>
             {navItems.map((item) => (
               <MobileNavGroup key={item.key} item={item} isEn={isEn} onNavigate={() => setMenuOpen(false)} />
             ))}
 
             <div className="mt-6 grid gap-3 border-t border-border pt-5">
-              <Link href={uploadHref} onClick={() => setMenuOpen(false)} className="inline-flex h-11 items-center justify-center bg-stone px-4 text-sm font-medium text-white">
+              <Link href={uploadHref} onClick={() => setMenuOpen(false)} className="motion-press inline-flex h-11 items-center justify-center bg-stone px-4 text-sm font-medium text-white">
                 {uploadLabel}
               </Link>
               <div className="flex items-center justify-between">

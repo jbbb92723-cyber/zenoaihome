@@ -85,7 +85,7 @@ const decisionLevels = [
     code: '04',
     label: '方案也要一起判断',
     title: '把美学、生活、预算、报价、合同和交付风险合并判断',
-    body: '适合临近签约，不只是怕被坑，也想知道这套方案是否适合长期居住的人。',
+    body: '适合临近签约，不只是想看风险，也想知道这套方案是否适合长期居住的人。',
     output: '居住方案综合判断',
     href: '/services#quote-deep',
     cta: '看综合判断',
@@ -184,15 +184,15 @@ export default function ServicesPage() {
       />
 
       <section className="relative isolate overflow-hidden border-b border-border bg-canvas system-grid">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_82%_18%,rgba(216,179,106,0.22),transparent_30%),radial-gradient(circle_at_18%_12%,rgba(63,98,88,0.18),transparent_34%),linear-gradient(120deg,rgba(255,255,252,0.92),rgba(247,247,243,0.72))]" aria-hidden />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_82%_18%,rgba(222,210,190,0.34),transparent_30%),linear-gradient(120deg,rgba(244,241,232,0.96),rgba(244,241,232,0.78))]" aria-hidden />
         <div className="relative mx-auto grid max-w-[1320px] gap-10 px-5 py-14 sm:px-8 lg:min-h-[calc(82dvh-64px)] lg:grid-cols-[0.92fr_1.08fr] lg:px-12 lg:py-16">
           <div className="flex flex-col justify-center">
             <p className="system-label">Service Decision Console</p>
-            <h1 className="mt-5 max-w-4xl text-[2.55rem] font-semibold leading-[1.04] tracking-tight text-ink sm:text-[4.25rem] lg:text-[5rem]">
+            <h1 className="editorial-display mt-5 max-w-4xl text-[2.6rem] leading-[1.12] text-ink sm:text-[4.3rem] lg:text-[5rem]">
               你现在最需要判断的是哪一层？
             </h1>
             <p className="mt-7 max-w-2xl text-base leading-8 text-ink-muted sm:text-lg">
-              ZenoAIHome 的服务不是一串报价项目。它按你手里的材料和决策阶段分层：先看生活目标，再看空间和预算，最后看报价、合同和交付边界。
+              服务不是一串报价项目，而是按你的材料和决策阶段逐层判断：先看生活目标，再看空间和预算，最后看报价、合同和交付边界。
             </p>
             <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <CTA href="/living-diagnosis" label="先做免费居住诊断" variant="primary" />
@@ -204,7 +204,7 @@ export default function ServicesPage() {
           </div>
 
           <div className="service-route-console p-4 sm:p-5">
-            <div className="border border-border bg-surface/94 p-5 shadow-[0_28px_90px_rgba(28,34,31,0.1)] sm:p-6">
+            <div className="border border-border bg-surface/94 p-5 shadow-[0_28px_90px_rgba(17,17,17,0.1)] sm:p-6">
               <div className="flex items-start justify-between gap-4 border-b border-border pb-4">
                 <div>
                   <p className="text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-stone">Judgment Depth</p>
@@ -242,7 +242,7 @@ export default function ServicesPage() {
         <section className="mb-16 grid gap-10 lg:grid-cols-[0.42fr_0.58fr]">
           <div>
             <p className="system-label">Layer Finder</p>
-            <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">
+            <h2 className="editorial-display mt-4 text-3xl leading-[1.2] text-ink sm:text-4xl">
               先判断你卡在哪一层，再选服务。
             </h2>
             <p className="mt-4 text-sm leading-7 text-ink-muted">
@@ -274,7 +274,7 @@ export default function ServicesPage() {
           <div className="grid gap-8 border border-border bg-surface/94 p-5 sm:p-7 lg:grid-cols-[1.5fr_0.9fr]">
             <div>
               <p className="system-label">Core Services</p>
-              <h2 className="mt-3 text-2xl font-semibold leading-tight text-ink">核心付费服务，是判断深度的递进。</h2>
+              <h2 className="editorial-display mt-3 text-2xl leading-tight text-ink">核心付费服务，是判断深度的递进。</h2>
               <p className="mt-3 max-w-3xl text-sm leading-7 text-ink-muted">
                 居住需求洞察报告负责把生活方式、空间优先级、审美偏好和预算边界说清；报价 / 合同服务负责签约前边界；综合判断负责把方案、预算、报价、合同和交付风险放在一起看。
               </p>

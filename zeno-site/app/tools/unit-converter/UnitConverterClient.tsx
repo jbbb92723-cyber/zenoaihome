@@ -45,7 +45,7 @@ export default function UnitConverterClient() {
     if (!number) return ['先输入一个大于 0 的数字。', '这个工具只做口径换算，不直接判断贵不贵。']
     if (mode === 'area') return [`${number} ㎡ = ${(number * 10.7639).toFixed(1)} ft²`, `${number} ㎡ ≈ ${(number / 3.3058).toFixed(1)} 坪`, '房屋面积、铺贴面积和墙面面积不是同一个数，报价里要问清楚口径。']
     if (mode === 'length') return [`${number} m = ${(number * 100).toFixed(0)} cm`, `${number} m = ${(number * 1000).toFixed(0)} mm`, '延米常见于柜体、台面、踢脚线，不能直接和平方米单价比较。']
-    if (!areaNumber) return ['做单方换算时，还需要填写房屋面积。', '单方只是粗看预算压力，不能替代报价审核。']
+    if (!areaNumber) return ['做单方换算时，还需要填写房屋面积。', '单方只是粗看预算压力，不能替代报价边界判断。']
     return [`总价 ${number.toLocaleString()} 元 / ${areaNumber} ㎡ = ${Math.round(number / areaNumber).toLocaleString()} 元/㎡`, '单方只能粗看预算压力，不能判断报价是否合理。', '还要继续看漏项、材料、工艺、工程量和增项边界。']
   }, [mode, number, areaNumber])
 

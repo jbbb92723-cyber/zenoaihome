@@ -41,11 +41,11 @@ const BTN_SECONDARY = 'text-sm text-ink-muted border border-border px-4 py-2 hov
 function StatusMsg({ msg, type }: { msg: string; type: 'error' | 'success' | 'info' }) {
   if (!msg) return null
   const cls = type === 'error'
-    ? 'text-red-500'
+    ? 'border-ink/25 bg-stone-pale/70 text-ink'
     : type === 'success'
-    ? 'text-emerald-600'
-    : 'text-ink-muted'
-  return <p className={`text-xs mt-2 ${cls}`}>{msg}</p>
+    ? 'border-stone-light bg-stone-pale/70 text-ink'
+    : 'border-border bg-surface text-ink-muted'
+  return <p className={`mt-2 border px-3 py-2 text-xs ${cls}`}>{msg}</p>
 }
 
 function StepLabel({ children }: { children: React.ReactNode }) {

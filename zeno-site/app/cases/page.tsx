@@ -69,7 +69,7 @@ const judgmentSamples: JudgmentSample[] = [
     code: 'Sample 03',
     title: '方案、预算、报价和合同都在手，应该怎么一起判断？',
     scene: '方案基本确定，报价和合同也有了，但仍然担心后期返工、增项和交付扯皮。',
-    livingGoal: '不只是怕被坑，还想确认这套方案是否适合长期居住和家庭关系。',
+    livingGoal: '不只是想看风险，还想确认这套方案是否适合长期居住和家庭关系。',
     judgment: [
       '先看方案是否回应真实生活，而不是只看效果图表达。',
       '再看预算是否投向高频使用、长期接触和难返工的部分。',
@@ -102,7 +102,7 @@ export default function CasesPage() {
 
       <main className="bg-canvas text-ink">
         <section className="relative overflow-hidden border-b border-border bg-canvas system-grid">
-          <div className="absolute inset-0 bg-[linear-gradient(120deg,rgba(255,255,252,0.94),rgba(247,247,243,0.82)),radial-gradient(circle_at_82%_18%,rgba(63,98,88,0.14),transparent_34%)]" aria-hidden />
+          <div className="absolute inset-0 bg-[linear-gradient(120deg,rgba(244,241,232,0.96),rgba(244,241,232,0.78)),radial-gradient(circle_at_82%_18%,rgba(222,210,190,0.3),transparent_34%)]" aria-hidden />
           <Container size="layout" className="relative py-16 sm:py-20">
             <div className="max-w-4xl">
               <p className="system-label">Judgment Samples</p>

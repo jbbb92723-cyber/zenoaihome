@@ -16,21 +16,26 @@ export default function Footer() {
   const navLinks = mainNav.map((item) => ({ key: item.key, ...(isEn ? item.en : item.zh) }))
 
   return (
-    <footer className="border-t border-border mt-20">
-      <div className="max-w-6xl mx-auto px-5 sm:px-8 lg:px-10 py-12 sm:py-14">
+    <footer className="mt-20 border-t border-border bg-canvas">
+      <div className="mx-auto max-w-[1320px] px-5 py-14 sm:px-8 sm:py-16 lg:px-12">
 
         {/* 主体三列 */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-10">
+        <div className="grid grid-cols-1 gap-10 sm:grid-cols-[1.2fr_0.55fr_0.75fr]">
 
           {/* 品牌 + 定位 */}
           <div className="sm:col-span-1">
-            <Link href={isEn ? '/en' : '/'} className="text-ink font-semibold text-[0.9375rem] hover:text-stone transition-colors">
+            <Link href={isEn ? '/en' : '/'} className="text-[0.82rem] font-black uppercase tracking-[0.16em] text-ink transition-colors hover:text-ink-muted">
               {isEn ? 'ZenoAIHome' : 'ZenoAIHome'}
             </Link>
-            <p className="mt-3 text-[0.8125rem] text-ink-muted leading-relaxed max-w-[220px]">
+            <p className="editorial-serif mt-4 max-w-[320px] text-[1.55rem] leading-[1.28] text-ink">
               {isEn
-                ? 'Pre-signing renovation quote risk checks for homeowners who need clear scope before signing.'
-                : '从 16 年装修现场出发，帮业主在签约前看清报价、合同和付款节点里没说清的风险。'}
+                ? 'A living decision system before renovation contracts.'
+                : '把看不清的地方拆开，再进入装修决定。'}
+            </p>
+            <p className="mt-4 max-w-[300px] text-sm leading-7 text-ink-muted">
+              {isEn
+                ? 'From life goals to space order, budget boundaries, quote terms and delivery risk.'
+                : '从生活方式、空间秩序、预算边界，到报价合同和交付风险。'}
             </p>
           </div>
 
@@ -87,7 +92,7 @@ export default function Footer() {
         </div>
 
         {/* 版权栏 */}
-        <div className="mt-10 pt-6 border-t border-border flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
+        <div className="mt-12 flex flex-col items-start justify-between gap-2 border-t border-border pt-6 sm:flex-row sm:items-center">
           <p className="text-[0.75rem] text-ink-faint">
             © {year} ZenoAIHome · zenoaihome.com
           </p>

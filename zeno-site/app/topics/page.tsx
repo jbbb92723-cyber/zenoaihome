@@ -13,14 +13,6 @@ export const metadata: Metadata = {
     '按问题进入 ZenoAIHome 的长期专题：美学与生活、空间与家庭场景、装修决策、报价合同风险和建造者手记。',
 }
 
-const topicAccents: Record<string, string> = {
-  'shi-zhu-pai-zhuangxiu':       '#8B7355',
-  'kongjian-yu-jiating-changjing':'#7A6B8A',
-  'zhuangxiu-juece':             '#6B7A5E',
-  'baojia-hetong-fengxian':      '#8A6B5B',
-  'jianzaozhe-shouji':           '#5B6E8A',
-}
-
 export default function TopicsPage() {
   return (
     <>
@@ -79,7 +71,6 @@ export default function TopicsPage() {
         {/* 专题列表 */}
         <div className="space-y-10">
           {topics.map((topic, index) => {
-            const accent = topicAccents[topic.slug] ?? '#8B7355'
             const relatedArticles = topic.relatedSlugs
               .map((slug) => getArticleBySlug(slug))
               .filter(Boolean)
@@ -92,16 +83,14 @@ export default function TopicsPage() {
               >
                 {/* 卡片头部 */}
                 <div
-                  className="px-6 py-5 border-b border-border flex items-start gap-4"
-                  style={{ borderLeftWidth: '3px', borderLeftColor: accent }}
+                  className="flex items-start gap-4 border-b border-l-[3px] border-border border-l-ink bg-surface px-6 py-5"
                 >
-                  <span className="text-2xl font-light leading-none shrink-0 mt-0.5"
-                    style={{ color: `${accent}40`, fontVariantNumeric: 'tabular-nums' }}>
+                  <span className="mt-0.5 shrink-0 text-2xl font-light leading-none text-stone-light tabular-nums">
                     {String(index + 1).padStart(2, '0')}
                   </span>
                   <div>
                     <h2 className="section-heading">{topic.title}</h2>
-                    <p className="text-sm mt-1.5" style={{ color: accent }}>{topic.tagline}</p>
+                    <p className="mt-1.5 text-sm text-ink-muted">{topic.tagline}</p>
                   </div>
                 </div>
 
@@ -109,7 +98,7 @@ export default function TopicsPage() {
                 <div className="px-6 py-6 space-y-5">
 
                   {/* 核心问题 */}
-                  <div className="border-l-2 pl-4" style={{ borderColor: `${accent}50` }}>
+                  <div className="border-l-2 border-stone-light pl-4">
                     <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-1.5">
                       核心问题
                     </p>

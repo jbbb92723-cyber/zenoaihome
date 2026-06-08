@@ -49,7 +49,7 @@ export const resources: Resource[] = [
   {
     id: '02',
     slug: 'baojia-shenhe-qingdan',
-    title: '报价风险审核清单',
+    title: '报价边界检查清单',
     subtitle: '快速识别报价单里的常见模糊项和风险项',
     description:
       '一份针对装修报价单的审查框架，帮你在签合同前找到最容易被忽略的风险点，减少后期扯皮的概率。',
@@ -67,7 +67,7 @@ export const resources: Resource[] = [
     relatedArticleSlugs: ['02-jia-bu-shi-yangban-jian', '03-cong-gongdi-kan-shijie'],
     tag: '装修',
     previewImage: '/images/resources/quote-checklist-preview.svg',
-    previewAlt: '报价审核清单预览图',
+    previewAlt: '报价边界检查清单预览图',
     accessLevel: 'login',
   },
   {

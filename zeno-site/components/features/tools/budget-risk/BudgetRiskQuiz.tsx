@@ -61,7 +61,7 @@ export default function BudgetRiskQuiz() {
 
   return (
     <div className="space-y-8">
-      <div className="sticky top-16 z-20 border border-border bg-canvas/95 p-4 shadow-[0_14px_36px_rgba(42,39,35,0.06)] backdrop-blur">
+      <div className="sticky top-16 z-20 border border-border bg-canvas/95 p-4 shadow-[0_14px_36px_rgba(17,17,17,0.06)] backdrop-blur">
         <div className="flex items-center justify-between gap-4">
           <div>
             <p className="text-sm font-semibold text-ink">超预算原因自测进度</p>
@@ -94,7 +94,7 @@ export default function BudgetRiskQuiz() {
                   onClick={() => handleAnswerChange(question.id, option.value)}
                   className={`w-full text-left border px-4 py-3 transition-all duration-150 ${
                     isActive
-                      ? 'border-stone bg-stone/5 shadow-[0_10px_24px_rgba(42,39,35,0.06)]'
+                      ? 'border-stone bg-stone/5 shadow-[0_10px_24px_rgba(17,17,17,0.06)]'
                       : 'border-border bg-surface hover:-translate-y-px hover:border-stone/40 hover:bg-surface-warm'
                   }`}
                 >

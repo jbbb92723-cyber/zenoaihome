@@ -79,7 +79,7 @@ export default function BudgetRiskToolPage() {
         <div className="mt-12 border border-border bg-surface-warm p-6 sm:p-8">
           <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-3">还不想做自测？</p>
           <div className="flex flex-wrap gap-3">
-            <CTA href="/resources#baojia-shenhe-qingdan" label="先看报价审核清单" variant="secondary" />
+            <CTA href="/resources#baojia-shenhe-qingdan" label="先看报价边界检查清单" variant="secondary" />
             <CTA href="/services" label="直接看装修服务边界" variant="ghost" />
           </div>
         </div>

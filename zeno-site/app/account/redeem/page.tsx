@@ -132,7 +132,7 @@ export default function RedeemPage() {
 
             {/* 错误提示 */}
             {result?.error && (
-              <div className="px-4 py-3 border border-red-200 bg-red-50/60 text-sm text-red-700 leading-relaxed">
+              <div className="border border-ink/25 bg-stone-pale/70 px-4 py-3 text-sm leading-relaxed text-ink">
                 {result.error}
               </div>
             )}

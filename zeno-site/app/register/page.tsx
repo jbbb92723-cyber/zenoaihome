@@ -91,18 +91,18 @@ export default function RegisterPage() {
         </div>
 
         {emailDown && (
-          <div className="mb-6 px-4 py-4 border border-amber-300 bg-amber-50 dark:bg-amber-950/30 dark:border-amber-700 text-sm text-amber-800 dark:text-amber-300 leading-relaxed">
+          <div className="mb-6 border border-stone-light bg-stone-pale/70 px-4 py-4 text-sm leading-relaxed text-ink">
             <p className="font-medium mb-1">注册功能暂时不可用</p>
             <p className="text-xs opacity-80">邮箱验证服务正在维护中，暂时无法发送验证码。请稍后再试。</p>
           </div>
         )}
         {error && (
-          <div className="mb-4 px-4 py-3 border border-red-200 bg-red-50 dark:bg-red-950/30 dark:border-red-800 text-sm text-red-700 dark:text-red-400">
+          <div className="mb-4 border border-ink/25 bg-stone-pale/70 px-4 py-3 text-sm text-ink">
             {error}
           </div>
         )}
         {success && (
-          <div className="mb-4 px-4 py-3 border border-green-200 bg-green-50 dark:bg-green-950/30 dark:border-green-800 text-sm text-green-700 dark:text-green-400">
+          <div className="mb-4 border border-stone-light bg-stone-pale/70 px-4 py-3 text-sm text-ink">
             {success}
           </div>
         )}

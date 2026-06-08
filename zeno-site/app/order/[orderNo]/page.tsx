@@ -9,11 +9,11 @@ import OrderActions from './OrderActions'
 export const metadata: Metadata = { title: '订单支付 · Zeno' }
 
 const STATUS_LABEL: Record<string, { label: string; color: string }> = {
-  pending:               { label: '待付款', color: 'text-amber-500' },
-  pending_confirmation:  { label: '待人工确认', color: 'text-blue-500' },
-  paid:                  { label: '已付款', color: 'text-green-500' },
-  processing:            { label: '处理中', color: 'text-blue-500' },
-  completed:             { label: '已完成', color: 'text-green-500' },
+  pending:               { label: '待付款', color: 'text-ink' },
+  pending_confirmation:  { label: '待人工确认', color: 'text-stone' },
+  paid:                  { label: '已付款', color: 'text-stone' },
+  processing:            { label: '处理中', color: 'text-stone' },
+  completed:             { label: '已完成', color: 'text-stone' },
   cancelled:             { label: '已取消', color: 'text-ink-muted' },
   refunded:              { label: '已退款', color: 'text-ink-muted' },
 }

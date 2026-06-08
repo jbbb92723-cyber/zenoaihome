@@ -40,7 +40,7 @@ export default function OrderActions({ orderNo, status }: Props) {
   if (status === 'completed') {
     return (
       <div className="space-y-3">
-        <div className="px-4 py-3 border border-green-200 bg-green-50 dark:bg-green-950/30 dark:border-green-800 text-sm text-green-700 dark:text-green-400">
+        <div className="border border-stone-light bg-stone-pale/70 px-4 py-3 text-sm text-ink">
           权益已开通，感谢支持！
         </div>
         <Link
@@ -56,7 +56,7 @@ export default function OrderActions({ orderNo, status }: Props) {
   if (status === 'pending_confirmation' || done) {
     return (
       <div className="space-y-3">
-        <div className="px-4 py-3 border border-blue-200 bg-blue-50 dark:bg-blue-950/30 dark:border-blue-800 text-sm text-blue-700 dark:text-blue-400">
+        <div className="border border-stone-light bg-stone-pale/70 px-4 py-3 text-sm text-ink">
           已收到付款通知，将在 24 小时内人工确认并开通权益。
         </div>
         <Link
@@ -81,7 +81,7 @@ export default function OrderActions({ orderNo, status }: Props) {
   return (
     <div className="space-y-2">
       {error && (
-        <p className="text-xs text-red-500">{error}</p>
+        <p className="border border-ink/25 bg-stone-pale/70 px-3 py-2 text-xs text-ink">{error}</p>
       )}
       <button
         onClick={handleNotify}

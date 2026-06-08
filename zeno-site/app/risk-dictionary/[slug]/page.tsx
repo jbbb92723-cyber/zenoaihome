@@ -11,9 +11,9 @@ interface Props {
 }
 
 const riskLevelClass: Record<string, string> = {
-  高: 'border-red-200 bg-red-50 text-red-700',
-  中: 'border-amber-200 bg-amber-50 text-amber-700',
-  低: 'border-stone/20 bg-stone-pale text-stone',
+  高: 'border-ink bg-ink text-canvas',
+  中: 'border-stone-light bg-stone-pale text-ink',
+  低: 'border-border bg-canvas text-ink-muted',
 }
 
 export function generateStaticParams() {
