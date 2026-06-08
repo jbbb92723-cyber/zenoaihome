@@ -2,7 +2,6 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { getServiceBySlug } from '@/data/services'
-import PageHero from '@/components/ui/PageHero'
 import Container from '@/components/ui/Container'
 import CTA from '@/components/ui/CTA'
 import ServiceCard from '@/components/features/services/ServiceCard'
@@ -44,31 +43,78 @@ const serviceRelatedArticles: Record<string, { label: string; href: string }[]> 
 }
 
 const coreServiceSlugs = ['living-insight-beta', 'quote-entry', 'quote-standard', 'quote-deep']
-const quoteServiceSlugs = ['quote-entry', 'quote-standard', 'quote-deep']
 
-const decisionTracks = [
+const decisionLevels = [
   {
-    label: '免费 / 还没定方向',
-    title: '先用 AI 居住诊断和报价初筛，把问题缩小。',
-    description: '适合还没想清生活方式、美学偏好、空间优先级，或刚拿到报价只想先看明显边界的人。',
+    code: '00',
+    label: '还没定方向',
+    title: '先判断生活方式、审美偏好和空间优先级',
+    body: '适合刚开始认真规划装修，还没有完整方案、报价或合同的人。',
+    output: 'AI 居住诊断 / 居住需求洞察报告',
     href: '/living-diagnosis',
-    cta: '开始免费诊断',
-    image: '/images/services/renovation-judgment-proof.svg',
+    cta: '先做免费诊断',
   },
   {
-    label: '轻服务 / 已经拿到材料',
-    title: '报价 / 合同快审：看哪份更稳，哪些承诺必须落字。',
-    description: '适合已经比较 2-3 家装修公司，有完整报价、合同草稿或付款节点，准备继续谈或签约的人。',
+    code: '01',
+    label: '已经有初步方案',
+    title: '看方案是否承接家庭结构、长期审美和预算边界',
+    body: '适合有户型、灵感图或初步平面方案，但不确定取舍是否合理的人。',
+    output: '居住需求洞察报告',
+    href: '/services#living-insight-beta',
+    cta: '看洞察报告',
+  },
+  {
+    code: '02',
+    label: '刚拿到报价',
+    title: '先查明显漏项、模糊项和增项入口',
+    body: '适合材料还不完整，但想快速知道这份报价是否值得继续谈的人。',
+    output: '报价风险初筛 / 报价风险初查',
+    href: '/tools/quote-check',
+    cta: '先做报价初筛',
+  },
+  {
+    code: '03',
+    label: '准备继续谈或签约',
+    title: '把报价、合同草稿和付款节点放在一起看',
+    body: '适合已经比较 2-3 家，想知道哪份更稳、哪些承诺必须落字的人。',
+    output: '报价 / 合同快审',
     href: '/services#quote-standard',
     cta: '看快审服务',
   },
   {
-    label: '深服务 / 方案也要一起看',
-    title: '居住方案综合判断：把美学、生活、预算、报价、合同和交付放在一起看。',
-    description: '适合不只是怕被坑，还想判断方案是否适合家庭结构、生活方式、审美偏好、预算能力和长期居住的人。',
+    code: '04',
+    label: '方案也要一起判断',
+    title: '把美学、生活、预算、报价、合同和交付风险合并判断',
+    body: '适合临近签约，不只是怕被坑，也想知道这套方案是否适合长期居住的人。',
+    output: '居住方案综合判断',
     href: '/services#quote-deep',
     cta: '看综合判断',
   },
+]
+
+const deliverableSamples = [
+  {
+    src: '/images/services/sample-risk-report.svg',
+    label: '判断报告',
+    desc: '方案适配、报价边界、合同与交付风险放在同一份报告里。',
+  },
+  {
+    src: '/images/services/sample-followup-checklist.svg',
+    label: '追问清单',
+    desc: '逐项列出签约前需要向设计师、装修公司或施工方确认的问题。',
+  },
+  {
+    src: '/images/services/sample-communication-script.svg',
+    label: '沟通文字',
+    desc: '把难开口的问题整理成可以直接发送或复制调整的确认文字。',
+  },
+]
+
+const boundaryItems = [
+  ['服务交付', '美学取舍、居住需求、预算边界、报价风险、合同追问和交付提醒，最后都要落到一份能执行的清单。'],
+  ['AI 辅助边界', 'AI 可以整理信息、提出追问和生成初稿，但复杂判断必须由人工复核。'],
+  ['工作方式', '先看材料，再给书面建议；复杂情况再配微信或语音解读。'],
+  ['明确不做', '不代砍价、不代施工、不做法律审查，不制造业主与装修公司的对立，也不替你做最终签约决定。'],
 ]
 
 const serviceFaqs = [
@@ -98,10 +144,6 @@ export default function ServicesPage() {
   const coreServices = coreServiceSlugs
     .map((slug) => getServiceBySlug(slug))
     .filter((service): service is NonNullable<ReturnType<typeof getServiceBySlug>> => Boolean(service))
-  const quoteServices = quoteServiceSlugs
-    .map((slug) => getServiceBySlug(slug))
-    .filter((service): service is NonNullable<ReturnType<typeof getServiceBySlug>> => Boolean(service))
-  const livingInsightService = coreServices.find((service) => service.slug === 'living-insight-beta')
 
   return (
     <>
@@ -141,81 +183,116 @@ export default function ServicesPage() {
         ]}
       />
 
-      <PageHero
-        label="服务路径"
-        title="你现在最需要判断的是哪一层？"
-        subtitle="ZenoAIHome 把服务分成三层：免费工具先帮你缩小问题；轻服务看报价、合同和预算边界；深服务把居住方案、报价、合同和交付风险放在一起判断。"
-        note="不急着买服务，先看清你卡在哪一层。"
-        size="content"
-      />
-
-      <Container size="content" className="py-section">
-        <section className="mb-14 grid gap-5 lg:grid-cols-[1.18fr_0.82fr]">
-          <div className="overflow-hidden border border-border bg-surface">
-            <div className="relative aspect-[16/10] border-b border-border bg-stone-pale/30">
-              <Image
-                src={decisionTracks[0].image ?? '/images/services/renovation-judgment-proof.svg'}
-                alt="居住决策支持服务示意图"
-                fill
-                className="object-cover"
-                sizes="(max-width: 1024px) 100vw, 720px"
-              />
+      <section className="relative isolate overflow-hidden border-b border-border bg-canvas system-grid">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_82%_18%,rgba(216,179,106,0.22),transparent_30%),radial-gradient(circle_at_18%_12%,rgba(63,98,88,0.18),transparent_34%),linear-gradient(120deg,rgba(255,255,252,0.92),rgba(247,247,243,0.72))]" aria-hidden />
+        <div className="relative mx-auto grid max-w-[1320px] gap-10 px-5 py-14 sm:px-8 lg:min-h-[calc(82dvh-64px)] lg:grid-cols-[0.92fr_1.08fr] lg:px-12 lg:py-16">
+          <div className="flex flex-col justify-center">
+            <p className="system-label">Service Decision Console</p>
+            <h1 className="mt-5 max-w-4xl text-[2.55rem] font-semibold leading-[1.04] tracking-tight text-ink sm:text-[4.25rem] lg:text-[5rem]">
+              你现在最需要判断的是哪一层？
+            </h1>
+            <p className="mt-7 max-w-2xl text-base leading-8 text-ink-muted sm:text-lg">
+              ZenoAIHome 的服务不是一串报价项目。它按你手里的材料和决策阶段分层：先看生活目标，再看空间和预算，最后看报价、合同和交付边界。
+            </p>
+            <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+              <CTA href="/living-diagnosis" label="先做免费居住诊断" variant="primary" />
+              <CTA href="/tools/quote-check" label="已有报价，先做初筛" variant="secondary" />
             </div>
-            <div className="p-6 sm:p-7">
-              <p className="mb-3 text-[0.65rem] font-semibold uppercase tracking-widest text-stone">{decisionTracks[0].label}</p>
-              <h2 className="mb-3 max-w-2xl text-2xl font-semibold leading-tight tracking-tight text-ink">{decisionTracks[0].title}</h2>
-              <p className="mb-5 max-w-2xl text-sm leading-relaxed text-ink-muted">{decisionTracks[0].description}</p>
-              <CTA href={decisionTracks[0].href} label={decisionTracks[0].cta} variant="primary" />
-            </div>
+            <p className="mt-6 max-w-xl text-sm leading-7 text-ink-faint">
+              不急着购买服务。先确认你卡在方向、方案、报价、合同，还是交付风险。
+            </p>
           </div>
 
-          <div className="grid gap-5">
-            {decisionTracks.slice(1).map((track, index) => (
-              <Link key={track.title} href={track.href} className="group border border-border bg-surface p-6 transition-colors hover:border-stone hover:bg-surface-warm">
-                <p className="text-xs font-semibold uppercase tracking-widest text-stone">0{index + 1}</p>
-                <h3 className="mt-3 text-lg font-semibold text-ink">{track.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-ink-muted">{track.description}</p>
-                <p className="mt-5 text-xs font-semibold text-stone">{track.cta} -&gt;</p>
+          <div className="service-route-console p-4 sm:p-5">
+            <div className="border border-border bg-surface/94 p-5 shadow-[0_28px_90px_rgba(28,34,31,0.1)] sm:p-6">
+              <div className="flex items-start justify-between gap-4 border-b border-border pb-4">
+                <div>
+                  <p className="text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-stone">Judgment Depth</p>
+                  <h2 className="mt-2 text-2xl font-semibold text-ink">服务分层控制台</h2>
+                </div>
+                <div className="border border-stone-light px-3 py-2 text-right">
+                  <p className="text-[0.62rem] uppercase tracking-[0.16em] text-ink-faint">mode</p>
+                  <p className="text-sm font-semibold text-stone">签约前判断</p>
+                </div>
+              </div>
+
+              <div className="mt-5 grid gap-2">
+                {decisionLevels.map((level) => (
+                  <Link
+                    key={level.code}
+                    href={level.href}
+                    className="group grid gap-3 border border-border bg-canvas/84 p-4 transition-colors hover:border-stone hover:bg-surface sm:grid-cols-[auto_1fr_auto] sm:items-center"
+                  >
+                    <span className="flex h-9 w-9 items-center justify-center bg-ink text-xs font-semibold text-white">{level.code}</span>
+                    <div>
+                      <p className="text-[0.65rem] font-semibold uppercase tracking-[0.16em] text-stone">{level.label}</p>
+                      <h3 className="mt-1 text-sm font-semibold leading-snug text-ink">{level.title}</h3>
+                      <p className="mt-1 text-xs leading-5 text-ink-muted">{level.output}</p>
+                    </div>
+                    <span className="text-xs font-semibold text-stone transition-all group-hover:translate-x-1">{level.cta}</span>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <Container size="content" className="py-section">
+        <section className="mb-16 grid gap-10 lg:grid-cols-[0.42fr_0.58fr]">
+          <div>
+            <p className="system-label">Layer Finder</p>
+            <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">
+              先判断你卡在哪一层，再选服务。
+            </h2>
+            <p className="mt-4 text-sm leading-7 text-ink-muted">
+              不是所有人都需要深服务。材料越少，越应该先用工具和低成本判断把问题缩小；材料越完整，越适合进入人工复核。
+            </p>
+          </div>
+
+          <div className="grid gap-3">
+            {decisionLevels.map((level) => (
+              <Link
+                key={level.code}
+                href={level.href}
+                className="group grid gap-4 border border-border bg-surface p-5 transition-colors hover:border-stone hover:bg-surface-warm sm:grid-cols-[auto_1fr_auto] sm:items-center"
+              >
+                <span className="text-xs font-semibold text-ink-faint">{level.code}</span>
+                <div>
+                  <p className="text-xs font-semibold tracking-[0.16em] text-stone">{level.label}</p>
+                  <h3 className="mt-2 text-lg font-semibold leading-tight text-ink">{level.title}</h3>
+                  <p className="mt-2 text-sm leading-7 text-ink-muted">{level.body}</p>
+                  <p className="mt-2 text-xs font-semibold text-stone">{level.output}</p>
+                </div>
+                <span className="text-xs font-semibold text-stone transition-all group-hover:translate-x-1">{level.cta}</span>
               </Link>
             ))}
-            <Link href="/risk-dictionary" className="group border border-border bg-surface p-6 transition-colors hover:border-stone hover:bg-surface-warm">
-              <p className="text-xs font-semibold uppercase tracking-widest text-stone">03</p>
-              <h3 className="mt-3 text-lg font-semibold text-ink">先用风险资料补问题</h3>
-              <p className="mt-3 text-sm leading-relaxed text-ink-muted">风险词典、项目风险库和检查模板，帮你把要问施工方的问题变具体。</p>
-              <p className="mt-5 text-xs font-semibold text-stone">看风险词典 -&gt;</p>
-            </Link>
           </div>
         </section>
 
-        <section className="mb-14 border border-border bg-surface-warm p-6 sm:p-8">
-          <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-ink-faint">居住决策支持路径</p>
-          <h2 className="mb-3 text-lg font-semibold text-ink">这不是一串报价服务，而是从生活目标到签约交付的判断路径。</h2>
-          <p className="mb-6 max-w-3xl text-sm leading-relaxed text-ink-muted">
-            免费 AI 居住诊断和报价初筛负责先分流；399-599 元居住需求洞察报告负责把美学、生活方式、空间优先级和预算取舍整理清楚；报价 / 合同快审负责签约前边界；居住方案综合判断负责把方案、预算、报价、合同和交付风险放在一起看。
-          </p>
-
-          <div className="grid gap-8 lg:grid-cols-[2fr_0.9fr]">
+        <section className="mb-16 service-route-console p-4 sm:p-5">
+          <div className="grid gap-8 border border-border bg-surface/94 p-5 sm:p-7 lg:grid-cols-[1.5fr_0.9fr]">
             <div>
-              <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-stone">核心付费服务</p>
-              <CommercialLadder variant="full" rungs={serviceLadder} />
-              <div className="mt-4 border border-border bg-surface p-4 text-sm leading-relaxed text-ink-muted">
-                如果还没定方案，优先看居住需求洞察报告；如果已经临近签约，再按报价、合同、付款节点和方案材料完整度选择快审或综合判断。
-              </div>
+              <p className="system-label">Core Services</p>
+              <h2 className="mt-3 text-2xl font-semibold leading-tight text-ink">核心付费服务，是判断深度的递进。</h2>
+              <p className="mt-3 max-w-3xl text-sm leading-7 text-ink-muted">
+                居住需求洞察报告负责把生活方式、空间优先级、审美偏好和预算边界说清；报价 / 合同服务负责签约前边界；综合判断负责把方案、预算、报价、合同和交付风险放在一起看。
+              </p>
+              <CommercialLadder variant="instrument" rungs={serviceLadder} className="mt-6" />
             </div>
 
-            <div>
-              <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-stone">怎么选</p>
-              <div className="grid gap-3">
+            <div className="border border-border bg-canvas p-5">
+              <p className="text-xs font-semibold uppercase tracking-widest text-stone">提交服务前，请先准备</p>
+              <div className="mt-5 grid gap-3">
                 {[
-                  [
-                    livingInsightService ? `${livingInsightService.price} ${livingInsightService.title}` : '399-599 元 居住需求洞察报告',
-                    '还没定方案，先把生活方式、空间优先级、审美偏好和预算边界说清。',
-                  ],
-                  ...quoteServices.map((service) => [`${service.price.replace(' 元 / 次', '').replace(' 元 / 份', '')} ${service.title}`, service.tagline] as const),
+                  ['生活材料', '家庭成员、日常场景、审美参考、预算范围'],
+                  ['方案材料', '户型图、平面方案、核心设计说明'],
+                  ['签约材料', '报价单、合同草稿、付款节点和销售承诺'],
+                  ['你的问题', '最担心的 3 个问题，比“帮我看看”更有效'],
                 ].map(([title, desc]) => (
-                  <div key={title} className="border border-border bg-surface p-5">
-                    <h3 className="text-base font-semibold text-ink">{title}</h3>
-                    <p className="mt-3 text-sm leading-relaxed text-ink-muted">{desc}</p>
+                  <div key={title} className="border-l-2 border-stone-light pl-4">
+                    <h3 className="text-sm font-semibold text-ink">{title}</h3>
+                    <p className="mt-1 text-xs leading-5 text-ink-muted">{desc}</p>
                   </div>
                 ))}
               </div>
@@ -223,31 +300,31 @@ export default function ServicesPage() {
           </div>
         </section>
 
-        <section className="mb-14 border border-border bg-surface-warm p-6 sm:p-8">
-          <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-ink-faint">可验证的交付</p>
-          <p className="mb-6 text-sm leading-relaxed text-ink-muted">以下是脱敏样张。居住判断会输出需求和取舍清单；报价合同服务会基于你真实材料生成风险、追问和沟通文件。</p>
-          <div className="mb-6 grid gap-4 sm:grid-cols-3">
-            {[
-              { src: '/images/services/sample-risk-report.svg', label: '判断报告', desc: '方案适配 + 报价边界 + 合同交付风险' },
-              { src: '/images/services/sample-followup-checklist.svg', label: '追问清单', desc: '逐项列出签约前该问清的具体问题' },
-              { src: '/images/services/sample-communication-script.svg', label: '沟通文字', desc: '可以发给设计师、装修公司或施工方的确认文字' },
-            ].map((item) => (
-              <div key={item.label} className="overflow-hidden border border-border bg-surface">
-                <Image src={item.src} alt={`${item.label}脱敏样张`} width={340} height={255} className="w-full object-cover" />
-                <div className="p-4">
-                  <p className="text-xs font-semibold uppercase tracking-widest text-stone">{item.label}</p>
-                  <p className="mt-1 text-xs leading-relaxed text-ink-muted">{item.desc}</p>
+        <section className="mb-16 border border-border bg-surface-warm p-6 sm:p-8">
+          <div className="grid gap-8 lg:grid-cols-[0.38fr_0.62fr]">
+            <div>
+              <p className="system-label">Deliverables</p>
+              <h2 className="mt-4 text-3xl font-semibold leading-tight text-ink">交付物必须能拿去沟通，而不是停留在建议。</h2>
+              <p className="mt-4 text-sm leading-7 text-ink-muted">
+                居住判断会输出需求和取舍清单；报价合同服务会基于你真实材料生成风险、追问和沟通文件。
+              </p>
+            </div>
+
+            <div className="grid gap-4 sm:grid-cols-3">
+              {deliverableSamples.map((item) => (
+                <div key={item.label} className="overflow-hidden border border-border bg-surface">
+                  <Image src={item.src} alt={`${item.label}脱敏样张`} width={340} height={255} className="w-full object-cover" />
+                  <div className="p-4">
+                    <p className="text-xs font-semibold uppercase tracking-widest text-stone">{item.label}</p>
+                    <p className="mt-2 text-xs leading-relaxed text-ink-muted">{item.desc}</p>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {[
-              ['服务交付', '美学取舍、居住需求、预算边界、报价风险、合同追问和交付提醒，最后都要落到一份能执行的清单。'],
-              ['AI 辅助边界', 'AI 可以整理信息和生成清单，但不替你决定风格、施工方或能不能签。'],
-              ['工作方式', '先看材料，再给书面建议；复杂情况再配微信或语音解读。'],
-              ['明确不做', '不代砍价、不代施工、不做法律审查，不制造业主与装修公司的对立，也不替你做最终签约决定。'],
-            ].map(([title, desc]) => (
+
+          <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {boundaryItems.map(([title, desc]) => (
               <div key={title} className="border border-border bg-surface p-5">
                 <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-ink-faint">{title}</p>
                 <p className="text-sm leading-relaxed text-ink">{desc}</p>
@@ -256,18 +333,28 @@ export default function ServicesPage() {
           </div>
         </section>
 
-        <div className="space-y-10">
-          {coreServices.map((service, index) => (
-            <ServiceCard
-              key={service.id}
-              service={service}
-              index={index}
-              relatedArticles={serviceRelatedArticles[service.slug]}
-            />
-          ))}
-        </div>
+        <section className="mb-16">
+          <div className="mb-7 max-w-3xl">
+            <p className="system-label">Service Details</p>
+            <h2 className="mt-4 text-3xl font-semibold leading-tight text-ink">每项服务的适用场景、输入材料和边界。</h2>
+            <p className="mt-4 text-sm leading-7 text-ink-muted">
+              下面保留完整服务卡，因为真正付费前，必须把“适合谁、不适合谁、需要提供什么、不会做什么”说清楚。
+            </p>
+          </div>
 
-        <section id="service-form" className="mt-16 scroll-mt-24">
+          <div className="space-y-10">
+            {coreServices.map((service, index) => (
+              <ServiceCard
+                key={service.id}
+                service={service}
+                index={index}
+                relatedArticles={serviceRelatedArticles[service.slug]}
+              />
+            ))}
+          </div>
+        </section>
+
+        <section id="service-form" className="scroll-mt-24">
           <div className="mb-6">
             <p className="mb-2 text-xs font-semibold uppercase tracking-widest text-ink-faint">提交资料</p>
             <h2 className="text-lg font-semibold text-ink">先把材料和问题说清楚，再决定是否适合进入服务</h2>
@@ -302,7 +389,7 @@ export default function ServicesPage() {
 
         <div className="mt-10">
           <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-ink-faint">常见问题</p>
-          <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
+          <div className="grid grid-cols-1 gap-4 lg:grid-cols-4">
             {serviceFaqs.map((item) => (
               <div key={item.question} className="border border-border bg-surface p-5">
                 <h2 className="mb-2 text-sm font-semibold text-ink">{item.question}</h2>

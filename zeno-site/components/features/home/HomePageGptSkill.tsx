@@ -5,7 +5,6 @@ import { useRef, type ReactNode } from 'react'
 import { motion, useInView } from 'framer-motion'
 import {
   ArrowRight,
-  Calculator,
   ClipboardText,
   FileText,
   HouseLine,
@@ -281,9 +280,6 @@ function LivingDecisionInstrument() {
                 <span className="hidden border border-[#b7cbbc]/30 px-2 py-1 text-[0.65rem] font-semibold text-[#b7cbbc] sm:block">
                   {stage.status}
                 </span>
-                {index < instrumentStages.length - 1 && (
-                  <span className="absolute" aria-hidden />
-                )}
               </div>
             ))}
           </div>
