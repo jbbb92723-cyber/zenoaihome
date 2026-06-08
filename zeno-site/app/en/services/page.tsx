@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   alternates: {
     canonical: 'https://zenoaihome.com/en/services',
     languages: {
-      'zh-CN': 'https://zenoaihome.com/services/renovation',
+      'zh-CN': 'https://zenoaihome.com/services',
       en: 'https://zenoaihome.com/en/services',
     },
   },
@@ -75,7 +75,7 @@ export default function EnServicesPage() {
             <Link href="/tools/quote-check" className="bg-stone px-5 py-3 text-sm font-semibold text-white hover:bg-stone/90">
               Start with the Chinese Quote Risk Check
             </Link>
-            <Link href="/services/renovation" className="border border-border px-5 py-3 text-sm font-semibold text-ink hover:border-stone">
+            <Link href="/services" className="border border-border px-5 py-3 text-sm font-semibold text-ink hover:border-stone">
               Open the Chinese service page
             </Link>
           </div>

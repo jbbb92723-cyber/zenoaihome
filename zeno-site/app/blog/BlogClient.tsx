@@ -10,7 +10,20 @@ export default function BlogClient() {
   const [activeCategory, setActiveCategory] = useState<string>('全部')
 
   const allCategories = ['全部', ...categories]
-  const getCategoryLabel = (category: string) => (category === '真实居住' ? '居住场景' : category)
+  const getCategoryLabel = (category: string) => {
+    const labels: Record<string, string> = {
+      真实居住: '美学与生活',
+      判断与生活: '装修决策',
+      工具与产品: '报价合同风险',
+    }
+    return labels[category] ?? category
+  }
+  const contentSystem = [
+    ['美学与生活', '什么样的美能长期住，效果图和真实生活之间差在哪里。'],
+    ['空间与家庭场景', '老人同住、孩子成长、居家办公、亲友来访和家务动线怎么放进空间。'],
+    ['装修决策', '设计师、装修公司、半包全包、预算分配和伪需求怎么判断。'],
+    ['报价合同风险', '漏项、模糊项、按实结算、材料型号、付款节点和售后责任怎么问清。'],
+  ]
   const prioritySlugs = [
     'baojiadan-an-shiji-zengjian-jiesuan-qianyueqian-wenqing',
     'baojiadan-lingji-jiagong-zangu-yinggai-zenme-kan',
@@ -39,24 +52,34 @@ export default function BlogClient() {
     <>
       <PageHero
         label="文章 / 判断库"
-        title="签约前，先看懂这些报价和合同风险"
-        subtitle="这里优先整理具体风险词、具体后果和签约前动作：按实结算、暂估、漏项、口头承诺、付款节点和材料替换。"
+        title="从美学与生活，到装修决策和签约风险"
+        subtitle="这里不是装修知识大全，也不是随机更新的流量池。文章按四类问题组织：美学与生活、空间与家庭场景、装修决策、报价合同风险。"
+        note="先按你当前要判断的问题进入，而不是从最新文章开始刷。"
       />
 
       <Container size="content" className="py-12 sm:py-16">
-        <section className="mb-10 border border-border bg-surface-warm p-5 sm:p-6">
-          <h2 className="text-lg font-semibold text-ink">这个文章库怎么用</h2>
+        <section className="mb-10 report-sheet p-5 sm:p-6">
+          <p className="system-label">How to use</p>
+          <h2 className="mt-2 text-lg font-semibold text-ink">这个文章库怎么用</h2>
           <p className="mt-3 text-sm leading-relaxed text-ink-muted">
-            先看具体风险词和具体后果，再回到你的报价单、合同草稿或付款节点截图。文章不替代报价初筛和人工复核，但能帮你知道该问什么。
+            先判断你的问题属于哪一层：生活方式、美学取舍、空间场景、装修决策，还是报价合同风险。文章不替代诊断、报价初筛和人工复核，但能帮你知道下一步该问什么。
           </p>
+          <div className="mt-5 grid gap-3 sm:grid-cols-2">
+            {contentSystem.map(([title, desc]) => (
+              <div key={title} className="border border-border bg-surface/92 px-4 py-3">
+                <h3 className="text-sm font-semibold text-ink">{title}</h3>
+                <p className="mt-2 text-xs leading-relaxed text-ink-muted">{desc}</p>
+              </div>
+            ))}
+          </div>
         </section>
 
-        <div className="mb-10 flex flex-wrap gap-2">
+        <div className="mb-10 flex flex-wrap gap-2 border-b border-border pb-6">
           {allCategories.map((cat) => (
             <button
               key={cat}
               onClick={() => setActiveCategory(cat)}
-              className={`text-sm px-4 py-1.5 border transition-colors ${
+              className={`min-h-10 border px-4 py-1.5 text-sm transition-colors ${
                 activeCategory === cat
                   ? 'border-stone bg-stone text-white'
                   : 'border-border text-ink-muted hover:border-stone hover:text-stone'

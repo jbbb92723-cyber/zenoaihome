@@ -192,7 +192,7 @@ export default function BudgetStructureClient() {
         <BridgePanel items={[
           { label: '拿装修预算模板', href: '/resources#zhuangxiu-yusuan-moban', desc: '把这套结构填进表格，继续追踪版本。' },
           { label: '查超预算原因', href: '/tools/budget-risk', desc: '如果你还是怕失控，再判断问题来自报价、流程还是需求。' },
-          { label: '标准报价快审', href: '/services/renovation#quote-standard', desc: '预算越算越乱时，先回到完整报价，看漏项、模糊项和增项口子。' },
+          { label: '报价 / 合同快审', href: '/services#quote-standard', desc: '预算越算越乱时，先回到完整报价和合同边界，看漏项、模糊项和增项口子。' },
         ]} />
       </section>
       <ToolSeoAssetSection asset={toolSeoAssets.budgetStructure} />

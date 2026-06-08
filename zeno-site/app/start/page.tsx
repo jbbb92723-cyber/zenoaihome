@@ -95,18 +95,18 @@ export default function StartPage() {
           <p className="page-label mb-5">装修判断</p>
           <h1 className="page-title mb-6">
             旧版装修判断路线，<br className="hidden sm:block" />
-            当前先回到报价风险
+            当前回到居住决策主线
           </h1>
           <p className="text-base sm:text-lg text-ink-muted leading-[1.8] max-w-2xl">
-            这个页面保留旧版 6 步判断框架，方便历史访问。但现在网站主线已经收窄：
-            签装修合同前，先看清报价里哪些没包含、哪些按实结算、哪些口头承诺没写进合同。
+            这个页面保留旧版 6 步判断框架，方便历史访问。现在网站主线已经升级：
+            先看清生活方式、审美取舍和空间优先级，再判断报价、合同和交付边界能不能承接。
           </p>
           <p className="mt-5 text-sm text-ink-faint leading-relaxed max-w-xl">
-            如果你已经拿到报价单，先做免费初筛，再看风险词典和检查模板。
+            如果还没定方案，先做居住诊断；如果已经拿到报价单，再做免费初筛。
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <CTA href="/tools/quote-check" label="先做免费报价初筛" variant="primary" />
-            <CTA href="/risk-dictionary" label="查看风险词典" variant="secondary" />
+            <CTA href="/living-diagnosis" label="先做居住诊断" variant="primary" />
+            <CTA href="/tools/quote-check" label="已有报价，做初筛" variant="secondary" />
           </div>
         </Container>
       </div>
@@ -164,21 +164,21 @@ export default function StartPage() {
               <p className="text-[11px] font-semibold uppercase tracking-widest text-ink-faint mb-3">
                 主路径
               </p>
-              <h3 className="text-lg font-semibold text-ink mb-3">先把报价里的边界找出来</h3>
+              <h3 className="text-lg font-semibold text-ink mb-3">先把生活和空间优先级说清</h3>
               <p className="text-sm text-ink-muted leading-relaxed mb-5">
-                免费初筛先帮你找漏项、模糊项、增项口子和付款节点风险，再决定要不要继续人工判断。
+                居住诊断先帮你看清家庭场景、审美偏好、空间优先级和预算取舍，再决定要不要继续看报价。
               </p>
-              <CTA href="/tools/quote-check" label="做报价初筛" variant="secondary" />
+              <CTA href="/living-diagnosis" label="做居住诊断" variant="secondary" />
             </div>
             <div className="bg-surface p-6 sm:p-8">
               <p className="text-[11px] font-semibold uppercase tracking-widest text-ink-faint mb-3">
                 承接层
               </p>
-              <h3 className="text-lg font-semibold text-ink mb-3">卡住了，再进入三档人工判断</h3>
+              <h3 className="text-lg font-semibold text-ink mb-3">卡住了，再进入对应人工判断</h3>
               <p className="text-sm text-ink-muted leading-relaxed mb-5">
-                只有几行重点报价，看 ¥99 初查；已有完整报价，看 ¥299 快审；报价、合同和付款节点都齐了，再看 ¥699 深度判断。
+                还没定方案，看居住需求洞察报告；已有完整报价和合同，看报价 / 合同快审；方案、预算、合同和交付都要一起看，再进入综合判断。
               </p>
-              <CTA href="/services/renovation" label="看服务价格" variant="secondary" />
+              <CTA href="/services" label="看服务路径" variant="secondary" />
             </div>
           </div>
         </Container>

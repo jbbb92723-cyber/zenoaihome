@@ -143,15 +143,16 @@ export default function LivingDiagnosisClient() {
 
   return (
     <main className="min-h-screen bg-canvas text-ink">
-      <section className="border-b border-border bg-surface-warm">
+      <section className="relative overflow-hidden border-b border-border bg-canvas system-grid">
+        <div className="absolute inset-0 bg-[linear-gradient(120deg,rgba(255,255,252,0.92),rgba(247,247,243,0.82)),radial-gradient(circle_at_82%_18%,rgba(49,72,92,0.12),transparent_34%)]" aria-hidden />
         <div className="mx-auto grid max-w-7xl gap-8 px-5 py-14 sm:px-8 lg:grid-cols-[0.58fr_0.42fr] lg:px-12 lg:py-20">
-          <div className="min-w-0">
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-stone">AI Living Diagnosis</p>
-            <h1 className="mt-4 max-w-[24rem] text-[2.35rem] font-semibold leading-tight tracking-tight text-ink sm:max-w-4xl sm:text-6xl">
-              装修前，先看清你真正想怎样生活。
+          <div className="relative min-w-0">
+            <p className="system-label">AI Living Diagnosis</p>
+            <h1 className="mt-4 max-w-[27rem] text-[2.35rem] font-semibold leading-tight tracking-tight text-ink sm:max-w-4xl sm:text-6xl">
+              先把生活判断清楚，再进入方案和报价。
             </h1>
             <p className="mt-6 max-w-[42rem] text-base leading-8 text-ink-muted sm:text-lg">
-              这不是风格测试，而是把生活方式、空间秩序、审美偏好、预算取舍和签约风险放在一起看。
+              这不是风格测试，而是把生活方式、美学偏好、家庭场景、空间秩序、预算取舍和签约风险放在一起看。结果会告诉你：现在更应该先整理需求，还是先核对报价合同。
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <a href="#diagnosis-form" className="inline-flex min-h-11 items-center gap-2 bg-stone px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-stone/90">
@@ -164,10 +165,10 @@ export default function LivingDiagnosisClient() {
             </div>
           </div>
 
-          <div className="border border-border bg-surface p-5 sm:p-6">
+          <div className="relative blueprint-panel p-5 sm:p-6">
             <div className="flex items-start justify-between gap-5">
               <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-stone">判断口径</p>
+                <p className="system-label">判断口径</p>
                 <h2 className="mt-3 text-xl font-semibold leading-snug text-ink">不是给你一个风格标签，而是先分清下一步该处理什么。</h2>
               </div>
               <span className="flex h-12 w-12 shrink-0 items-center justify-center border border-border bg-canvas text-stone">
@@ -301,7 +302,7 @@ export default function LivingDiagnosisClient() {
           <section className="border border-border bg-surface p-5 sm:p-6">
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-stone">Optional</p>
             <h2 className="mt-2 text-xl font-semibold text-ink">需要人工整理报告时再留下联系方式</h2>
-            <p className="mt-2 text-sm leading-7 text-ink-muted">免费诊断不强制留资。想继续拿《居住需求洞察报告 Beta》时，填写微信或邮箱即可。</p>
+            <p className="mt-2 text-sm leading-7 text-ink-muted">免费诊断不强制留资。想继续拿《AI 居住需求洞察报告》时，填写微信或邮箱即可。</p>
             <div className="mt-5 grid gap-4 sm:grid-cols-3">
               <label className="text-sm font-medium text-ink">
                 称呼
@@ -379,24 +380,27 @@ export default function LivingDiagnosisClient() {
           </section>
 
           {result ? (
-            <section className="border border-stone bg-surface p-5 shadow-[0_18px_56px_rgba(67,45,26,0.09)]">
+            <section className="report-sheet p-5">
               <div className="flex items-start justify-between gap-4">
                 <div>
-                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-stone">Result</p>
-                  <h2 className="mt-2 text-2xl font-semibold text-ink">{result.primaryType}</h2>
+                  <p className="system-label">Living Report / Summary</p>
+                  <h2 className="mt-2 text-2xl font-semibold leading-tight text-ink">{result.primaryType}</h2>
                 </div>
-                <span className="border border-border bg-canvas px-3 py-1 text-xs font-semibold text-stone">
+                <span className="border border-stone/40 bg-stone-pale px-3 py-1 text-xs font-semibold text-stone">
                   {getRiskLabel(result.riskLevel)}
                 </span>
               </div>
               <p className="mt-4 text-sm leading-7 text-ink-muted">{result.summary}</p>
-              <div className="mt-5 grid gap-px bg-border">
+              <div className="mt-5 grid gap-px bg-border sm:grid-cols-2 lg:grid-cols-1">
                 <div className="bg-canvas p-4">
-                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-ink-faint">判断分</p>
-                  <p className="mt-1 text-xl font-semibold text-ink">{result.totalScore}</p>
+                  <p className="system-label text-ink-faint">判断分</p>
+                  <div className="mt-2 flex items-end justify-between gap-4">
+                    <p className="text-3xl font-semibold tracking-tight text-ink">{result.totalScore}</p>
+                    <p className="text-xs leading-5 text-ink-faint">分数越高，说明现在越需要先拆清需求或签约边界。</p>
+                  </div>
                 </div>
                 <div className="bg-canvas p-4">
-                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-ink-faint">优先级</p>
+                  <p className="system-label text-ink-faint">优先级</p>
                   <div className="mt-2 flex flex-wrap gap-2">
                     {result.priorities.map((item) => (
                       <span key={item} className="border border-border bg-surface px-2.5 py-1 text-xs font-semibold text-stone">{item}</span>
@@ -404,13 +408,15 @@ export default function LivingDiagnosisClient() {
                   </div>
                 </div>
               </div>
-              {diagnosisId && <p className="mt-4 text-xs leading-6 text-ink-faint">诊断记录：{diagnosisId}</p>}
+              {diagnosisId && <p className="mt-4 border border-border bg-canvas px-3 py-2 text-xs leading-6 text-ink-faint">诊断记录：{diagnosisId}</p>}
               {persisted === false && (
                 <p className="mt-4 border border-amber-200 bg-amber-50 px-3 py-2 text-xs leading-6 text-amber-800">
                   本次判断已生成，但暂未生成记录编号。需要人工复核时，请稍后重新提交或从服务页继续联系。
                 </p>
               )}
-              <div className="mt-5 grid gap-3">
+              <div className="mt-5 border-t border-border pt-5">
+                <p className="mb-3 text-sm font-semibold text-ink">建议下一步</p>
+                <div className="grid gap-3">
                 {result.nextSteps.map((item, index) => (
                   <Link
                     key={item.href + item.label}
@@ -424,6 +430,14 @@ export default function LivingDiagnosisClient() {
                     <ArrowRight size={16} className="shrink-0 transition-transform group-hover:translate-x-1" aria-hidden />
                   </Link>
                 ))}
+                </div>
+                <Link
+                  href="/services#living-insight-beta"
+                  className="mt-3 flex items-center justify-between gap-3 border border-stone-light bg-stone-pale/45 px-4 py-3 text-sm font-semibold text-ink transition-colors hover:border-stone"
+                >
+                  升级为人工《居住需求洞察报告》
+                  <ArrowRight size={16} className="shrink-0 text-stone" aria-hidden />
+                </Link>
               </div>
             </section>
           ) : (

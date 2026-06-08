@@ -91,10 +91,10 @@ export default function OrderActions({ orderNo, status }: Props) {
         {loading ? '提交中…' : '我已完成付款，等待确认'}
       </button>
       <Link
-        href="/pricing"
+        href="/services"
         className="block w-full text-center text-xs text-ink-faint hover:text-ink-muted py-1"
       >
-        返回选择套餐
+        返回服务路径
       </Link>
     </div>
   )

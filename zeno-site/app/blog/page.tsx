@@ -4,9 +4,9 @@ import { articles } from '@/data/articles'
 import BlogClient from './BlogClient'
 
 export const metadata: Metadata = {
-  title: '装修报价风险文章｜签约前看懂合同、增项和付款节点',
+  title: '居住判断文章｜美学、生活、装修决策与报价合同风险',
   description:
-    'ZenoAIHome 文章库优先整理装修报价风险、合同边界、增项风险、付款节点和签约前追问方法，帮助业主在签字前看懂具体风险。',
+    'ZenoAIHome 文章库按四类问题组织：美学与生活、空间与家庭场景、装修决策、报价合同风险。帮助业主把理想生活落到方案、预算、签约和交付判断。',
   alternates: {
     canonical: 'https://zenoaihome.com/blog',
   },
@@ -21,7 +21,7 @@ export default function BlogPage() {
         data={{
           '@context': 'https://schema.org',
           '@type': 'CollectionPage',
-          name: '装修报价风险文章',
+          name: '居住判断文章库',
           url: 'https://zenoaihome.com/blog',
           description: metadata.description,
           inLanguage: 'zh-CN',

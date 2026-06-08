@@ -109,7 +109,7 @@ export const riskSummaries: Record<RiskKey, RiskSummary> = {
     firstStep: '先把报价里的模糊项、漏项和追问清单列出来，再决定谈不谈价格。',
     resource: { label: '先看报价单初查模板', href: '/checklists/quote-initial-check' },
     article: { label: '先看装修预算为什么总超', href: '/blog/zhuangxiu-yusuan-weishenme-zongchao' },
-    service: { label: '直接看报价风险初查', href: '/services/renovation#quote-entry' },
+    service: { label: '直接看报价风险初查', href: '/services#quote-entry' },
   },
   R2: {
     key: 'R2',
@@ -121,7 +121,7 @@ export const riskSummaries: Record<RiskKey, RiskSummary> = {
     firstStep: '先把总预算拆成几份钱，再看哪些不能动、哪些可以晚点买、哪些只是想要。',
     resource: { label: '先拿装修预算模板', href: '/resources#zhuangxiu-yusuan-moban' },
     article: { label: '先看预算为什么总超', href: '/blog/zhuangxiu-yusuan-weishenme-zongchao' },
-    service: { label: '直接看标准报价快审', href: '/services/renovation#quote-standard' },
+    service: { label: '直接看报价 / 合同快审', href: '/services#quote-standard' },
   },
   R3: {
     key: 'R3',
@@ -133,19 +133,19 @@ export const riskSummaries: Record<RiskKey, RiskSummary> = {
     firstStep: '先把当前施工节点该看什么列出来，再把后续变更改成可确认、可留痕。',
     resource: { label: '先拿施工节点验收清单', href: '/resources#construction-checkpoints' },
     article: { label: '先看从工地看世界', href: '/blog/03-cong-gongdi-kan-shijie' },
-    service: { label: '先看装修判断服务边界', href: '/services/renovation' },
+    service: { label: '先看装修判断服务边界', href: '/services' },
   },
   R4: {
     key: 'R4',
     name: '居住风险',
     shortName: '真实需求没厘清',
-    headline: '你现在最该先盯的，是报价和合同有没有把边界说清。',
+    headline: '你现在最该先盯的，是真实需求有没有被方案和报价承接。',
     description: '如果你现在主要靠网图、风格词或短期展示感做选择，住进去后的摩擦往往会在后面慢慢显现。',
     whyItMatters: '需求顺序一旦错了，后面的预算、材料和方案讨论都会被带偏。',
     firstStep: '先把家庭成员、作息、收纳、做饭、办公这些真实需求写出来，再回头看方案。',
-    resource: { label: '先看合同签约前检查模板', href: '/checklists/contract-pre-signing-check' },
+    resource: { label: '先做 AI 居住诊断', href: '/living-diagnosis' },
     article: { label: '先看家不是样板间', href: '/blog/02-jia-bu-shi-yangban-jian' },
-    service: { label: '先看签约前深度判断', href: '/services/renovation#quote-deep' },
+    service: { label: '先看居住方案综合判断', href: '/services#quote-deep' },
   },
 }
 

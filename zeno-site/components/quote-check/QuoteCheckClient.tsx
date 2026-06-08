@@ -229,17 +229,17 @@ function getPrimaryNextStep(score: number, stage: QuoteStage) {
   if (score >= 8) {
     return {
       label: '查看人工复核服务',
-      href: '/services/renovation',
+      href: '/services',
       desc: '这份报价不建议直接签。先把缺失边界补齐，再谈价格和优惠。',
-      reviewNote: '如果你已经准备签约，建议做一次人工报价复核。',
+      reviewNote: '如果你已经准备签约，建议做一次报价 / 合同快审；如果方案也不确定，再看综合判断。',
     }
   }
   if (score >= 4) {
     return {
       label: '查看人工复核服务',
-      href: '/services/renovation',
+      href: '/services',
       desc: '可以继续谈，但要先把这些追问问清楚。',
-      reviewNote: '如果你已经准备签约，建议做一次人工报价复核。',
+      reviewNote: '如果你已经准备签约，可以考虑报价 / 合同快审。',
     }
   }
   return {
@@ -344,15 +344,16 @@ export default function QuoteCheckClient() {
 
   return (
     <main className="min-h-screen bg-canvas">
-      <section className="border-b border-border bg-surface-warm">
-        <div className="mx-auto grid max-w-6xl gap-8 px-5 py-14 sm:px-8 lg:grid-cols-[0.62fr_0.38fr] lg:py-16">
+      <section className="relative overflow-hidden border-b border-border bg-canvas system-grid">
+        <div className="absolute inset-0 bg-[linear-gradient(120deg,rgba(255,255,252,0.94),rgba(247,247,243,0.82)),radial-gradient(circle_at_82%_16%,rgba(154,84,36,0.12),transparent_32%)]" aria-hidden />
+        <div className="relative mx-auto grid max-w-6xl gap-8 px-5 py-14 sm:px-8 lg:grid-cols-[0.62fr_0.38fr] lg:py-16">
           <div className="min-w-0">
-            <p className="text-xs font-semibold uppercase tracking-widest text-stone">签约前风险工具</p>
-            <h1 className="mt-4 max-w-[22rem] text-[2rem] font-semibold leading-tight tracking-tight text-ink sm:max-w-3xl sm:text-5xl">
-              装修报价风险初筛
+            <p className="system-label">Quote Boundary Check</p>
+            <h1 className="mt-4 max-w-[25rem] text-[2.35rem] font-semibold leading-tight tracking-tight text-ink sm:max-w-3xl sm:text-5xl">
+              看报价能不能承接你的方案和生活目标。
             </h1>
             <p className="mt-5 max-w-[22rem] text-base leading-relaxed text-ink-muted sm:max-w-2xl sm:text-lg">
-              不用懂装修术语。你只需要回答几个问题，我们会帮你判断这份报价里可能存在的漏项、模糊项和增项风险。
+              报价不是单独看的。它应该能承接你的空间选择、材料工艺、预算边界、付款节点、验收标准和交付责任。这个工具先帮你把没写清的地方拆出来。
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <a href="#quote-form" className="inline-flex h-11 items-center bg-stone px-5 text-sm font-semibold text-white transition-colors hover:bg-stone/90">
@@ -364,14 +365,14 @@ export default function QuoteCheckClient() {
             </div>
           </div>
 
-          <div className="border border-border bg-surface p-5">
-            <p className="text-xs font-semibold uppercase tracking-widest text-stone">结果会给你什么</p>
+          <div className="blueprint-panel p-5">
+            <p className="system-label">结果会给你什么</p>
             <div className="mt-5 grid gap-3">
               {[
                 ['风险等级', '低 / 中 / 高，不直接替你拍板'],
                 ['3 个风险', '先看最可能影响签约的缺口'],
                 ['3 个追问', '先问最影响签约判断的问题'],
-                ['是否复核', '判断是否建议进入人工报价复核'],
+                ['是否快审', '判断是否建议进入报价 / 合同快审或综合判断'],
               ].map(([title, desc]) => (
                 <div key={title} className="border border-border bg-canvas px-4 py-3">
                   <p className="text-sm font-semibold text-ink">{title}</p>
@@ -564,27 +565,34 @@ export default function QuoteCheckClient() {
       </section>
 
       {showResult && (
-        <section className="border-y border-border bg-surface-warm">
+        <section className="border-y border-border bg-surface-warm system-grid">
           <div className="mx-auto max-w-6xl px-5 py-12 sm:px-8">
             <div className="grid gap-6 lg:grid-cols-[0.38fr_0.62fr]">
-              <div className="border border-border bg-canvas p-6">
-                <p className="text-xs font-semibold uppercase tracking-widest text-stone">Result</p>
+              <div className="report-sheet p-6">
+                <p className="system-label">Quote Report / Summary</p>
                 <h2 className="mt-3 text-4xl font-semibold tracking-tight text-ink">{riskLevel}</h2>
                 <p className="mt-3 text-sm leading-relaxed text-ink-muted">{riskCopy}</p>
 
                 <div className="mt-6 grid gap-px bg-border sm:grid-cols-3 lg:grid-cols-1">
                   <div className="bg-surface p-4">
-                    <p className="text-xs font-semibold uppercase tracking-widest text-ink-faint">签约阶段</p>
+                    <p className="system-label text-ink-faint">签约阶段</p>
                     <p className="mt-1 text-sm font-semibold text-ink">{getStageLabel(form.quoteStage)}</p>
                   </div>
                   <div className="bg-surface p-4">
-                    <p className="text-xs font-semibold uppercase tracking-widest text-ink-faint">可能风险</p>
+                    <p className="system-label text-ink-faint">可能风险</p>
                     <p className="mt-1 text-sm font-semibold text-ink">{Math.min(riskItems.length, 3)} 个重点风险</p>
                   </div>
                   <div className="bg-surface p-4">
-                    <p className="text-xs font-semibold uppercase tracking-widest text-ink-faint">人工复核</p>
+                    <p className="system-label text-ink-faint">人工复核</p>
                     <p className="mt-1 text-sm font-semibold text-ink">{riskScore >= 4 && form.quoteStage !== 'alreadyStarted' ? '建议准备签约前复核' : '可先自查合同和付款节点'}</p>
                   </div>
+                </div>
+
+                <div className="mt-6 border border-stone-light bg-stone-pale/45 p-4">
+                  <p className="text-sm font-semibold text-ink">报告判断口径</p>
+                  <p className="mt-2 text-xs leading-6 text-ink-muted">
+                    这不是审价，也不承诺最低价。它只判断报价、合同和付款节点里哪些边界还没有承接你的空间选择和生活目标。
+                  </p>
                 </div>
 
                 <div className="mt-6 flex flex-wrap gap-3">
@@ -598,11 +606,11 @@ export default function QuoteCheckClient() {
               </div>
 
               <div className="space-y-5">
-                <div className="border border-border bg-canvas p-6">
+                <div className="report-sheet p-6">
                   <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-start">
                     <div>
-                      <p className="text-xs font-semibold uppercase tracking-widest text-stone">3 个风险 + 3 个追问</p>
-                      <h3 className="mt-2 text-lg font-semibold text-ink">先看风险，再问问题，不要一上来只谈优惠。</h3>
+                      <p className="system-label">3 个风险 + 3 个追问</p>
+                      <h3 className="mt-2 text-lg font-semibold text-ink">先看边界，再问问题，不要一上来只谈优惠。</h3>
                     </div>
                     <span className="w-fit bg-stone-pale px-3 py-1 text-xs font-semibold text-stone">{riskScore}/{maxScore} 风险分</span>
                   </div>
@@ -613,7 +621,7 @@ export default function QuoteCheckClient() {
                         关键边界已经相对清楚。下一步可以把报价内容放进合同、付款节点和验收节点里交叉检查。
                       </div>
                     ) : topQuestions.map((item, index) => (
-                      <div key={item.key} className="border border-border bg-surface p-5">
+                      <div key={item.key} className="border border-border bg-surface/92 p-5">
                         <div className="flex items-start gap-3">
                           <span className="flex h-7 w-7 shrink-0 items-center justify-center bg-stone text-xs font-semibold text-white">{index + 1}</span>
                           <div>
@@ -660,9 +668,9 @@ export default function QuoteCheckClient() {
 
                   <div className="grid gap-3">
                     {[
+                      { label: '查看报价 / 合同快审', href: '/services#quote-standard' },
+                      { label: '查看居住方案综合判断', href: '/services#quote-deep' },
                       { label: '查看风险词典', href: '/risk-dictionary' },
-                      { label: '查看检查模板', href: '/checklists' },
-                      { label: '查看服务', href: '/services/renovation' },
                     ].map((item) => (
                       <Link key={item.href} href={item.href} className="flex items-center justify-between border border-border bg-canvas px-4 py-3 text-sm font-semibold text-ink transition-colors hover:border-stone">
                         {item.label}
@@ -720,15 +728,15 @@ export default function QuoteCheckClient() {
       <section className="mx-auto max-w-6xl px-5 py-12 sm:px-8">
         <div className="grid gap-5 border border-border bg-surface p-6 sm:p-8 lg:grid-cols-[0.34fr_0.66fr]">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-widest text-stone">价格梯子</p>
-            <h2 className="mt-3 text-2xl font-semibold tracking-tight text-ink">看不明白时，再进入付费。</h2>
+            <p className="text-xs font-semibold uppercase tracking-widest text-stone">服务路径</p>
+            <h2 className="mt-3 text-2xl font-semibold tracking-tight text-ink">看不明白时，再进入对应人工判断。</h2>
           </div>
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {[
-              ['免费', '报价初筛', '先知道哪里没写清'],
+              ['免费', '报价初筛', '先知道边界哪里没写清'],
               ['¥99', '报价风险初查', '3 个高风险点 + 5 个追问问题'],
-              ['¥299', '标准报价快审', '漏项、模糊项、增项口子'],
-              ['¥699', '签约前深度判断', '报价、合同、付款节点一起看'],
+              ['¥299', '报价 / 合同快审', '报价、合同、付款节点一起看'],
+              ['¥699', '居住方案综合判断', '方案、预算、报价、合同和交付一起看'],
             ].map(([price, title, desc]) => (
               <div key={title} className="border border-border bg-canvas p-4">
                 <p className="text-xs font-semibold uppercase tracking-widest text-stone">{price}</p>
@@ -744,10 +752,10 @@ export default function QuoteCheckClient() {
       <section className="border-t border-border bg-canvas">
         <div className="mx-auto max-w-5xl px-5 py-14 sm:px-8">
           <p className="text-xs font-semibold uppercase tracking-widest text-stone">付费服务你会拿到什么</p>
-          <h2 className="mt-3 text-xl font-semibold text-ink">以下是脱敏样张，实际基于你的报价单生成。</h2>
+          <h2 className="mt-3 text-xl font-semibold text-ink">以下是脱敏样张，实际基于你的报价、合同或方案材料生成。</h2>
           <div className="mt-6 grid gap-4 sm:grid-cols-3">
             {[
-              { src: '/images/services/sample-risk-report.svg', label: '报价风险报告' },
+              { src: '/images/services/sample-risk-report.svg', label: '判断报告' },
               { src: '/images/services/sample-followup-checklist.svg', label: '追问清单' },
               { src: '/images/services/sample-communication-script.svg', label: '话术示例' },
             ].map((item) => (
@@ -766,7 +774,7 @@ export default function QuoteCheckClient() {
             ))}
           </div>
           <div className="mt-6">
-            <Link href="/services/renovation" className="text-sm font-semibold text-stone hover:underline underline-offset-2">
+            <Link href="/services" className="text-sm font-semibold text-stone hover:underline underline-offset-2">
               查看服务 →
             </Link>
           </div>
@@ -780,7 +788,7 @@ export default function QuoteCheckClient() {
               <p className="text-xs font-semibold uppercase tracking-widest text-stone">结构化资产</p>
               <h2 className="mt-3 text-2xl font-semibold tracking-tight text-ink">风险词典、规则和项目库，会持续沉淀。</h2>
               <p className="mt-4 text-sm leading-relaxed text-ink-muted">
-                这部分不是装修百科，而是给签约前报价判断用的数据资产。人能看懂，未来 AI 工具和搜索引擎也能读取。
+                这部分不是装修百科，而是给报价、合同和交付边界判断用的数据资产。人能看懂，未来 AI 工具和搜索引擎也能读取。
               </p>
             </div>
 

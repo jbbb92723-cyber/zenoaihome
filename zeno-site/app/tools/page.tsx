@@ -6,9 +6,9 @@ import PageHero from '@/components/PageHero'
 import StructuredData from '@/components/StructuredData'
 
 export const metadata: Metadata = {
-  title: '报价初筛与签约前判断工具 | ZenoAIHome',
+  title: '居住诊断与报价初筛工具 | ZenoAIHome',
   description:
-    'ZenoAIHome 工具入口已收窄为装修签约前报价风险判断：先做报价初筛，再查看风险词典、检查模板和施工项目风险库。',
+    'ZenoAIHome 工具入口按装修决策阶段组织：先用 AI 居住诊断看清生活方式、审美取舍和空间优先级；已经拿到报价时，再用报价初筛检查材料、工艺、范围、责任和交付边界。',
   alternates: {
     canonical: 'https://zenoaihome.com/tools',
   },
@@ -16,10 +16,17 @@ export const metadata: Metadata = {
 
 const mainEntries = [
   {
+    title: 'AI 居住诊断',
+    href: '/living-diagnosis',
+    label: '第一入口',
+    desc: '还没定方案时，先看生活方式、审美取舍、家庭场景、空间优先级和预算边界。',
+    action: '开始居住诊断',
+  },
+  {
     title: '报价初筛工具',
     href: '/tools/quote-check',
-    label: '主入口',
-    desc: '拿到报价单后，先判断哪些边界没写清、哪些地方需要签约前追问。',
+    label: '签约前入口',
+    desc: '拿到报价单后，判断它有没有承接方案的材料、工艺、范围、责任和交付边界。',
     action: '开始免费初筛',
   },
   {
@@ -62,9 +69,9 @@ export default function ToolsPage() {
           {
             '@context': 'https://schema.org',
             '@type': 'CollectionPage',
-            name: '报价初筛与签约前判断工具',
+            name: '居住诊断与报价初筛工具',
             url: 'https://zenoaihome.com/tools',
-            description: '围绕装修签约前报价风险判断的工具和结构化资产入口。',
+            description: '围绕装修前居住判断、报价初筛、风险词典、检查模板和项目风险库的结构化工具入口。',
             inLanguage: 'zh-CN',
             hasPart: mainEntries.map((item) => ({
               '@type': 'WebPage',
@@ -77,33 +84,33 @@ export default function ToolsPage() {
       />
 
       <PageHero
-        label="报价初筛工具"
-        title="工具页只保留一条主线：先看报价能不能签。"
-        subtitle="如果你已经拿到装修报价单，先做免费初筛。预算、计算器和验收工具只是辅助，不再作为主路径。"
+        label="工具 / 判断入口"
+        title="先看这套家怎么住，再看报价能不能承接。"
+        subtitle="还没定方向，先做 AI 居住诊断；已经拿到报价，再做免费报价初筛。预算、计算器和验收工具只是辅助，不作为主路径。"
         size="content"
       />
 
       <Container size="content" className="pt-8">
         <div className="flex flex-wrap gap-3">
-          <CTA href="/tools/quote-check" label="开始免费报价初筛" variant="primary" />
-          <CTA href="/risk-dictionary" label="查看风险词典" variant="secondary" />
+          <CTA href="/living-diagnosis" label="开始 AI 居住诊断" variant="primary" />
+          <CTA href="/tools/quote-check" label="已有报价，做初筛" variant="secondary" />
         </div>
       </Container>
 
       <Container size="layout" className="py-section">
         <section className="mb-14 grid gap-5 lg:grid-cols-[1.15fr_0.85fr]">
           <Link
-            href="/tools/quote-check"
+            href="/living-diagnosis"
             className="group flex min-h-[22rem] flex-col border border-stone bg-stone p-7 text-white transition-colors hover:bg-stone/90 sm:p-9"
           >
-            <p className="text-xs font-semibold uppercase tracking-widest text-white/65">主入口</p>
+            <p className="text-xs font-semibold uppercase tracking-widest text-white/65">第一入口</p>
             <h2 className="mt-4 max-w-2xl text-3xl font-semibold leading-tight tracking-tight sm:text-4xl">
-              拿到报价单，先生成一份签约前追问清单。
+              还没定方案，先把生活方式和空间优先级说清。
             </h2>
             <p className="mt-5 max-w-2xl text-sm leading-relaxed text-white/78">
-              初筛不替你拍板，也不自动审文件。它只做第一步：把报价里没写清的材料、工艺、数量、增项和付款节点先标出来。
+              居住诊断不替你选风格。它先把家庭成员、日常动线、收纳家务、陪伴独处、审美偏好和预算取舍整理成下一步判断。
             </p>
-            <span className="mt-auto pt-8 text-sm font-semibold">开始免费初筛 -&gt;</span>
+            <span className="mt-auto pt-8 text-sm font-semibold">开始居住诊断 -&gt;</span>
           </Link>
 
           <div className="grid gap-4">
@@ -124,13 +131,13 @@ export default function ToolsPage() {
 
         <section className="mb-14 border border-border bg-surface-warm p-6 sm:p-8">
           <p className="text-xs font-semibold uppercase tracking-widest text-stone">怎么走</p>
-          <h2 className="mt-3 text-2xl font-semibold tracking-tight text-ink">不要从工具堆里挑，按签约前顺序走。</h2>
+          <h2 className="mt-3 text-2xl font-semibold tracking-tight text-ink">不要从工具堆里挑，按装修决策阶段走。</h2>
           <div className="mt-6 grid gap-4 md:grid-cols-4">
             {[
-              ['1. 先初筛', '用报价初筛找出没写清的边界。'],
-              ['2. 查词典', '看风险词是什么意思，为什么危险。'],
-              ['3. 套模板', '把问题整理成可复制的追问清单。'],
-              ['4. 必要时快审', '临近签约、材料复杂时进入三档人工判断。'],
+              ['1. 先看生活', '用居住诊断看清审美、家庭场景和空间优先级。'],
+              ['2. 再看报价', '已有报价时，用初筛找出没写清的边界。'],
+              ['3. 查词典和模板', '把风险词和追问问题整理成可沟通清单。'],
+              ['4. 必要时快审', '方案或签约材料复杂时进入人工判断。'],
             ].map(([title, desc]) => (
               <div key={title} className="border border-border bg-surface p-5">
                 <h3 className="text-sm font-semibold text-ink">{title}</h3>
@@ -144,7 +151,7 @@ export default function ToolsPage() {
           <div className="mb-5 border-l-2 border-stone/40 pl-4">
             <p className="text-xs font-semibold uppercase tracking-widest text-stone">辅助工具</p>
             <p className="mt-2 text-sm leading-relaxed text-ink-muted">
-              这些页面先保留给历史用户和长尾搜索，但不再作为网站主路径。签约前判断仍以报价初筛为入口。
+              这些页面保留给历史用户和长尾搜索，但不作为网站主路径。主线仍是：居住诊断、报价初筛、风险资料、必要时人工判断。
             </p>
           </div>
           <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
@@ -163,13 +170,13 @@ export default function ToolsPage() {
 
         <section className="border border-border bg-surface-warm p-6 sm:p-8">
           <p className="text-xs font-semibold uppercase tracking-widest text-stone">下一步</p>
-          <h2 className="mt-3 text-2xl font-semibold tracking-tight text-ink">工具看完，回到你的报价单。</h2>
+          <h2 className="mt-3 text-2xl font-semibold tracking-tight text-ink">工具看完，回到你的真实材料。</h2>
           <p className="mt-3 max-w-3xl text-sm leading-relaxed text-ink-muted">
-            如果初筛结果显示高风险，先要求施工方把缺失边界补齐；如果仍然看不明白，再进入标准报价快审或对应人工服务。
+            如果还没定方案，先补生活方式、空间优先级和预算取舍；如果初筛显示高风险，先要求施工方把缺失边界补齐。仍然看不明白时，再进入报价 / 合同快审或居住方案综合判断。
           </p>
           <div className="mt-5 flex flex-wrap gap-3">
-            <CTA href="/tools/quote-check" label="做免费报价初筛" variant="primary" />
-            <CTA href="/services/renovation" label="查看服务" variant="secondary" />
+            <CTA href="/living-diagnosis" label="做居住诊断" variant="primary" />
+            <CTA href="/services" label="查看服务" variant="secondary" />
           </div>
         </section>
       </Container>

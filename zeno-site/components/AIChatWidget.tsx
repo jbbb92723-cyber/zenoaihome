@@ -49,8 +49,17 @@ const actionKindLabels: Record<'zh' | 'en', Record<ChatActionKind, string>> = {
 
 const quickEntriesZh = [
   {
+    label: '我还没定方案',
+    prompt: '我还没定装修方案，请先帮我判断：我应该从生活方式、审美偏好、家庭场景、预算边界还是报价风险开始整理？',
+    links: [
+      { label: 'AI 居住诊断', href: '/living-diagnosis' },
+      { label: '居住需求洞察报告', href: '/services#living-insight-beta' },
+      { label: '文章判断库', href: '/blog' },
+    ],
+  },
+  {
     label: '我在看报价单',
-    prompt: '我正在看装修报价单，请先帮我分流：我应该先看哪些风险、用哪个工具、拿哪份检查模板，什么时候需要 ¥99 初查、¥299 快审或 ¥699 深度判断？',
+    prompt: '我正在看装修报价单，请先帮我分流：它能不能承接方案边界，我应该先看哪些风险、用哪个工具、拿哪份检查模板，什么时候需要报价 / 合同快审或综合判断？',
     links: [
       { label: '报价初筛工具', href: '/tools/quote-check' },
       { label: '风险词典', href: '/risk-dictionary' },
@@ -72,16 +81,16 @@ const quickEntriesZh = [
     links: [
       { label: '合同检查模板', href: '/checklists/contract-pre-signing-check' },
       { label: '付款节点检查模板', href: '/checklists/payment-milestone-check' },
-      { label: '签约前深度判断', href: '/services/renovation#quote-deep' },
+      { label: '居住方案综合判断', href: '/services#quote-deep' },
     ],
   },
   {
     label: '我想人工看一遍',
-    prompt: '我已经有报价材料了，请帮我判断应该选 ¥99 报价风险初查、¥299 标准报价快审，还是 ¥699 签约前深度判断。',
+    prompt: '我已经有方案、报价或合同材料了，请帮我判断应该选居住需求洞察报告、¥99 报价风险初查、¥299 报价 / 合同快审，还是 ¥699 居住方案综合判断。',
     links: [
-      { label: '服务价格', href: '/services/renovation' },
-      { label: '报价风险初查', href: '/services/renovation#quote-entry' },
-      { label: '标准报价快审', href: '/services/renovation#quote-standard' },
+      { label: '服务路径', href: '/services' },
+      { label: '居住需求报告', href: '/services#living-insight-beta' },
+      { label: '报价 / 合同快审', href: '/services#quote-standard' },
     ],
   },
   {

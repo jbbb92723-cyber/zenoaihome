@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+﻿import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { prisma } from '@/lib/prisma'
@@ -149,7 +149,7 @@ export default async function LivingDiagnosisDetailPage({
               <Link href="/tools/quote-check" className="border border-[#3A3530] px-3 py-2 text-xs text-[#A09890] hover:border-[#C4A882]/50 hover:text-[#C4A882]">
                 前台报价风险初筛
               </Link>
-              <Link href="/services/renovation" className="border border-[#3A3530] px-3 py-2 text-xs text-[#A09890] hover:border-[#C4A882]/50 hover:text-[#C4A882]">
+              <Link href="/services" className="border border-[#3A3530] px-3 py-2 text-xs text-[#A09890] hover:border-[#C4A882]/50 hover:text-[#C4A882]">
                 前台服务页
               </Link>
             </div>

@@ -28,7 +28,7 @@ export const PRODUCTS: Product[] = [
     name:         '装修报价风险自查指南',
     tagline:      '签约前先把报价看明白',
     type:         'resource',
-    value:        'quote-guide-pack|装修报价风险自查指南|/pricing',
+    value:        'quote-guide-pack|装修报价风险自查指南|/services',
     price:        3900,
     originalPrice: 9900,
     category:     '装修判断',
@@ -41,7 +41,7 @@ export const PRODUCTS: Product[] = [
       '合同前最后一轮核对顺序',
     ],
     badge: '入门',
-    isActive: true,
+    isActive: false,
   },
   {
     id:           'renovation-judgment-course',

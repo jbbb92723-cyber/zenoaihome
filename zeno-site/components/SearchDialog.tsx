@@ -13,11 +13,11 @@ interface SearchResult {
 }
 
 const recommendedZh: SearchResult[] = [
-  { title: '报价初筛工具', href: '/tools/quote-check', type: 'tool', excerpt: '先做一轮风险初筛，看看哪里没写清。' },
+  { title: 'AI 居住诊断', href: '/living-diagnosis', type: 'tool', excerpt: '先看生活方式、审美取舍、家庭场景和空间优先级。' },
+  { title: '报价初筛工具', href: '/tools/quote-check', type: 'tool', excerpt: '已有报价时，看它有没有承接方案边界。' },
   { title: '装修报价风险词典', href: '/risk-dictionary', type: 'resource', excerpt: '查报价里容易引发增项和扯皮的词。' },
   { title: '签约前检查模板', href: '/checklists', type: 'checklist', excerpt: '报价、合同、付款节点可以逐项对照。' },
-  { title: '施工项目风险库', href: '/project-risks', type: 'resource', excerpt: '按水电、防水、拆除等项目看报价里该写清什么。' },
-  { title: '签约前风险判断服务', href: '/services/renovation', type: 'service', excerpt: '¥99 初查、¥299 快审、¥699 深度判断。' },
+  { title: '居住决策支持服务', href: '/services', type: 'service', excerpt: '居住需求报告、报价/合同快审和综合判断。' },
 ]
 
 const recommendedEn: SearchResult[] = [
@@ -137,7 +137,7 @@ export default function SearchDialog() {
               {isEn ? 'Search ZenoAIHome' : '搜索 ZenoAIHome'}
             </p>
             <p className="mt-1 text-sm text-ink-muted">
-              {isEn ? 'Quote risk, tools, checklists and services.' : '先找报价风险、清单和服务入口。'}
+              {isEn ? 'Living judgment, quote risk, checklists and services.' : '先找居住诊断、报价风险、清单和服务入口。'}
             </p>
           </div>
           <button type="button" onClick={() => setOpen(false)} className="text-sm text-ink-muted hover:text-ink">
@@ -155,7 +155,7 @@ export default function SearchDialog() {
               value={query}
               onChange={(event) => setQuery(event.target.value)}
               onKeyDown={handleInputKeyDown}
-              placeholder={isEn ? 'Search quote risk, checklist, service...' : '搜索报价风险、清单、服务...'}
+              placeholder={isEn ? 'Search living judgment, quote risk, service...' : '搜索居住判断、报价风险、服务...'}
               className="w-full bg-transparent text-2xl font-medium text-ink outline-none placeholder:text-ink-faint sm:text-4xl"
             />
             <kbd className="hidden shrink-0 border border-border px-2 py-1 text-xs text-ink-faint sm:inline-flex">
@@ -210,6 +210,9 @@ export default function SearchDialog() {
               {isEn ? 'Shortcut' : '快捷动作'}
             </p>
             <div className="mt-4 space-y-3 text-sm">
+              <button type="button" onClick={() => handleSelect({ title: 'AI 居住诊断', href: '/living-diagnosis', type: 'tool' })} className="block w-full text-left text-ink-muted hover:text-ink">
+                {isEn ? 'Living diagnosis' : '做居住诊断'}
+              </button>
               <button type="button" onClick={() => handleSelect({ title: '报价初筛工具', href: '/tools/quote-check', type: 'tool' })} className="block w-full text-left text-ink-muted hover:text-ink">
                 {isEn ? 'Quote screening' : '做报价初筛'}
               </button>
@@ -222,8 +225,8 @@ export default function SearchDialog() {
               <button type="button" onClick={() => handleSelect({ title: '施工项目风险库', href: '/project-risks', type: 'resource' })} className="block w-full text-left text-ink-muted hover:text-ink">
                 {isEn ? 'Project risks' : '看项目风险库'}
               </button>
-              <button type="button" onClick={() => handleSelect({ title: '三档人工判断', href: '/services/renovation', type: 'service' })} className="block w-full text-left text-ink-muted hover:text-ink">
-                {isEn ? 'Human review services' : '看人工服务'}
+              <button type="button" onClick={() => handleSelect({ title: '居住决策支持服务', href: '/services', type: 'service' })} className="block w-full text-left text-ink-muted hover:text-ink">
+                {isEn ? 'Decision support services' : '看服务路径'}
               </button>
             </div>
             <p className="mt-6 border-t border-border pt-4 text-xs leading-relaxed text-ink-muted">

@@ -80,7 +80,7 @@ export default function BudgetRiskToolPage() {
           <p className="text-xs text-ink-faint font-semibold uppercase tracking-widest mb-3">还不想做自测？</p>
           <div className="flex flex-wrap gap-3">
             <CTA href="/resources#sign-before-contract" label="先去签约前入口" variant="secondary" />
-            <CTA href="/services/renovation" label="直接看装修服务边界" variant="ghost" />
+            <CTA href="/services" label="直接看装修服务边界" variant="ghost" />
           </div>
         </div>
       </Container>

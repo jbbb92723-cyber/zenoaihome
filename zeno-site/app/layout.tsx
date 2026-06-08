@@ -12,27 +12,27 @@ import '@/styles/globals.css'
 
 export const metadata: Metadata = {
   title: {
-    default: 'ZenoAIHome — 装修签约前，先把报价风险看清楚',
+    default: 'ZenoAIHome — 美学与生活结合后的装修判断系统',
     template: '%s · ZenoAIHome',
   },
   description:
-    'ZenoAIHome 帮业主在签约前看懂装修报价、合同和增项风险。先做免费初筛，再按材料进入 ¥99 报价风险初查、¥299 标准报价快审或 ¥699 签约前深度判断。',
-  keywords: ['装修报价', '装修签约', '报价风险', '装修预算', '装修合同', '报价审核', '签约前判断'],
+    'ZenoAIHome 帮业主把理想生活翻译成可落地的空间方案、装修决策、预算边界、合同约定和交付风险控制。先看生活与美学，再看报价合同能不能承接。',
+  keywords: ['居住判断', '装修决策', '美学与生活', '装修报价', '装修预算', '装修合同', '报价风险', '签约前判断'],
   authors: [{ name: 'Zeno' }],
   openGraph: {
     type: 'website',
     locale: 'zh_CN',
     url: 'https://zenoaihome.com',
     siteName: 'ZenoAIHome',
-    title: 'ZenoAIHome — 装修签约前，先把报价风险看清楚',
+    title: 'ZenoAIHome — 美学与生活结合后的装修判断系统',
     description:
-      'ZenoAIHome 帮业主在签约前看懂装修报价、合同和增项风险。先做免费初筛，再按材料进入 ¥99 初查、¥299 快审或 ¥699 深度判断。',
+      '把生活方式、审美取舍、空间方案、预算边界、报价合同和交付风险放在一起判断。',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'ZenoAIHome — 装修签约前，先把报价风险看清楚',
+    title: 'ZenoAIHome — 美学与生活结合后的装修判断系统',
     description:
-      '帮业主在签约前看懂报价漏项、合同边界和付款节点。免费初筛后，再按情况选择 ¥99 初查、¥299 快审或 ¥699 深度判断。',
+      '从想要的生活开始，判断空间方案、装修决策、预算报价、合同约定和交付风险能不能真正落地。',
   },
   robots: {
     index: true,

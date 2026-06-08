@@ -120,7 +120,7 @@ export default function ResourcesPage() {
           <div className="mt-5 flex flex-wrap gap-3">
             <CTA href="/tools/quote-check" label="先做报价初筛" variant="primary" />
             <CTA href="/checklists/quote-initial-check" label="看报价单初查模板" variant="secondary" />
-            <CTA href="/services/renovation" label="看三档人工服务" variant="ghost" />
+            <CTA href="/services" label="看三档人工服务" variant="ghost" />
           </div>
         </section>
 
@@ -232,14 +232,14 @@ export default function ResourcesPage() {
 
         <section className="border border-border bg-surface-warm p-6 sm:p-8">
           <p className="text-xs font-semibold uppercase tracking-widest text-stone">下一步</p>
-          <h2 className="mt-3 text-2xl font-semibold tracking-tight text-ink">资料看完，还是要回到你的报价单。</h2>
+          <h2 className="mt-3 text-2xl font-semibold tracking-tight text-ink">资料看完，还是要回到你的真实材料。</h2>
           <p className="mt-3 max-w-3xl text-sm leading-relaxed text-ink-muted">
-            词典和模板只能帮你知道该看什么。真正决定能不能签，还是要看你手上那份报价和合同有没有把边界写清。
+            词典和模板只能帮你知道该看什么。真正决定能不能往下走，还是要看你的方案、报价和合同有没有把边界写清。
           </p>
           <div className="mt-5 flex flex-wrap gap-3">
             <CTA href="/tools/quote-check" label="回到报价初筛" variant="primary" />
             <CTA href="/checklists" label="看检查模板" variant="secondary" />
-            <CTA href="/services/renovation#quote-standard" label="看标准报价快审" variant="ghost" />
+            <CTA href="/services#quote-standard" label="看报价 / 合同快审" variant="ghost" />
           </div>
         </section>
       </Container>

@@ -154,7 +154,7 @@ export default function RiskDictionaryPage() {
           <div className="mt-5 flex flex-wrap gap-3">
             <CTA href="/tools/quote-check" label="先做免费报价初筛" variant="primary" />
             <CTA href="/checklists" label="查看检查模板" variant="secondary" />
-            <CTA href="/services/renovation" label="查看人工报价复核" variant="secondary" />
+            <CTA href="/services" label="查看人工报价复核" variant="secondary" />
           </div>
         </section>
 

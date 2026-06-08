@@ -212,7 +212,7 @@ export default async function AccountPage() {
               { href: '/tools/quote-check', label: '报价初筛工具' },
               { href: '/risk-dictionary', label: '风险词典' },
               { href: '/checklists', label: '检查模板' },
-              { href: '/services/renovation', label: '服务价格' },
+              { href: '/services', label: '服务路径' },
             ].map(item => (
               <Link
                 key={item.href}
@@ -229,13 +229,13 @@ export default async function AccountPage() {
         <section className="border border-border bg-surface p-6">
           <div className="flex items-center justify-between mb-4">
             <p className="text-[0.65rem] text-ink-faint font-semibold uppercase tracking-widest">服务申请</p>
-            <Link href="/services/renovation" className="text-xs text-stone hover:underline underline-offset-2">查看服务</Link>
+            <Link href="/services" className="text-xs text-stone hover:underline underline-offset-2">查看服务</Link>
           </div>
 
           {serviceRequests.length === 0 ? (
             <div className="py-6 text-center">
               <p className="text-sm text-ink-muted mb-3">暂无服务申请记录</p>
-              <Link href="/services/renovation" className="text-xs text-stone border border-stone/30 px-4 py-2 hover:bg-stone-pale/50 transition-colors">
+              <Link href="/services" className="text-xs text-stone border border-stone/30 px-4 py-2 hover:bg-stone-pale/50 transition-colors">
                 查看 Zeno 服务
               </Link>
             </div>

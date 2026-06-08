@@ -8,9 +8,9 @@ import CTA from '@/components/CTA'
 import StructuredData from '@/components/StructuredData'
 
 export const metadata: Metadata = {
-  title: '报价风险判断专题 | ZenoAIHome',
+  title: '居住判断专题 | ZenoAIHome',
   description:
-    '按问题进入 ZenoAIHome 的长期专题。第一主线是签约前报价风险判断，AI、工具和一人公司内容只作为延伸。',
+    '按问题进入 ZenoAIHome 的长期专题：美学与生活、空间与家庭场景、装修决策、报价合同风险、AI 与一人公司建造记录。',
 }
 
 const topicAccents: Record<string, string> = {
@@ -31,7 +31,7 @@ export default function TopicsPage() {
           name: '按问题看 5 个长期专题',
           url: 'https://zenoaihome.com/topics',
           description:
-            '第一主线是签约前报价风险判断，其他内容作为延伸阅读。',
+            '从美学与生活开始，继续看空间方案、装修决策、报价合同风险和建造者手记。',
           inLanguage: 'zh-CN',
           mainEntity: {
             '@type': 'ItemList',
@@ -49,7 +49,7 @@ export default function TopicsPage() {
       <PageHero
         label="问题专题"
         title="按问题看这 5 个长期专题"
-        subtitle="如果你不想在文章列表里碎片化跳转，就从专题开始。第一主线是签约前报价风险判断，其他内容只作为延伸。"
+        subtitle="如果你不想在文章列表里碎片化跳转，就从专题开始。先看美学与生活，再看空间、决策、报价合同风险和建造者手记。"
         size="content"
       />
 
@@ -63,11 +63,11 @@ export default function TopicsPage() {
           <div className="space-y-1.5 text-sm text-ink-muted">
             <p>
               <span className="text-stone font-medium">新读者</span>
-              　先看「报价风险判断」，从签约前最关键的问题开始
+              　先看「美学与生活」，从长期居住的问题开始
             </p>
             <p>
               <span className="text-stone font-medium">想查资料</span>
-              　再看「风险工具与模板」，用词典、项目风险库和检查模板补问题
+              　再看「报价合同风险」，用词典、项目风险库和检查模板补问题
             </p>
             <p>
               <span className="text-stone font-medium">想做自己的事</span>

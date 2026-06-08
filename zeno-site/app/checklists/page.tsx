@@ -145,7 +145,7 @@ export default function ChecklistsPage() {
           </p>
           <div className="mt-5 flex flex-wrap gap-3">
             <CTA href="/tools/quote-check" label="先做免费报价初筛" variant="primary" />
-            <CTA href="/services/renovation" label="查看服务" variant="secondary" />
+            <CTA href="/services" label="查看服务" variant="secondary" />
           </div>
         </section>
 

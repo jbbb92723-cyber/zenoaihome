@@ -6,7 +6,7 @@ import AIChatWidget from './AIChatWidget'
 /**
  * 路径级懒挂载。
  *
- * 业主主线保持干净：报价初筛、风险词典、检查模板、服务价格
+ * 业主主线保持干净：居住诊断、报价初筛、风险词典、检查模板、服务路径
  * 不再默认出现 AI 悬浮窗。
  */
 const ALLOW_PREFIXES = [

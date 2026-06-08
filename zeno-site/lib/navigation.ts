@@ -42,41 +42,68 @@ export const primaryNav: PrimaryNavItem[] = [
     en: { label: 'Home', href: '/en' },
   },
   {
-    key: 'quote-risk',
-    zh: { label: '看报价', href: '/risk-dictionary' },
-    en: { label: 'Quote Risks', href: '/en/tools' },
-  },
-  {
-    key: 'contract-risk',
-    zh: { label: '看合同', href: '/checklists' },
-    en: { label: 'Contract Checks', href: '/en/tools#checklists' },
-  },
-  {
-    key: 'addon-risk',
-    zh: { label: '看增项', href: '/project-risks' },
-    en: { label: 'Add-On Risks', href: '/en/tools#project-risks' },
-  },
-  {
-    key: 'risk-tools',
-    zh: { label: '风险工具', href: '/tools/quote-check' },
-    en: { label: 'Risk Tool', href: '/en/tools' },
-  },
-  {
-    key: 'services',
-    zh: { label: '服务', href: '/services/renovation' },
-    en: { label: 'Services', href: '/en/services' },
+    key: 'living-judgment',
+    zh: { label: '居住判断', href: '/living-diagnosis' },
+    en: { label: 'Living Judgment', href: '/en/services' },
     groups: [
       {
-        key: 'all-services',
-        zh: { label: '签约前人工判断', desc: '从重点初查到深度判断，按材料完整度选择' },
-        en: { label: 'Expert Review', desc: 'Use the free check first. Review only when the paperwork is ready.' },
+        key: 'living-method',
+        zh: { label: '先看生活', desc: '把审美、家庭关系、空间秩序和预算取舍放在一起判断' },
+        en: { label: 'Living Method', desc: 'Lifestyle, aesthetics, family scenes, and budget tradeoffs.' },
         items: [
-          { key: 'quote-risk-initial', zh: { label: '¥99 报价风险初查', href: '/services/renovation#quote-entry', desc: '10 行以内重点报价，先看明显风险' }, en: { label: 'Quote Risk First Pass', href: '/en/services', desc: 'A quick look at the obvious risks' } },
-          { key: 'quote-fast', zh: { label: '¥299 标准报价快审', href: '/services/renovation#quote-standard', desc: '完整报价，找漏项、模糊项和增项口子' }, en: { label: 'Standard Quote Review', href: '/en/services', desc: 'For a complete renovation quote' } },
-          { key: 'decision-pack', zh: { label: '¥699 签约前深度判断', href: '/services/renovation#quote-deep', desc: '报价、合同、付款节点一起看' }, en: { label: 'Deep Pre-Signing Review', href: '/en/services', desc: 'Quote, contract, and payment milestones together' } },
+          { key: 'diagnosis', zh: { label: 'AI 居住诊断', href: '/living-diagnosis', desc: '从生活方式和空间问题开始' }, en: { label: 'AI Living Diagnosis', href: '/en/services', desc: 'Start from how the home will be lived in.' } },
+          { key: 'living-report', zh: { label: '居住需求洞察报告', href: '/services#living-insight-beta', desc: '把模糊需求整理成判断清单' }, en: { label: 'Living Insight Report', href: '/en/services', desc: 'Turn vague needs into a decision brief.' } },
+          { key: 'cases', zh: { label: '案例复盘', href: '/cases', desc: '看需求如何落到报价和交付' }, en: { label: 'Case Notes', href: '/en/blog', desc: 'How needs turn into decisions.' } },
+          { key: 'living-articles', zh: { label: '美学与生活文章', href: '/blog', desc: '好看也要经得起日常' }, en: { label: 'Writing', href: '/en/blog', desc: 'Aesthetics that survive daily life.' } },
         ],
       },
     ],
+  },
+  {
+    key: 'quote-check',
+    zh: { label: '报价初筛', href: '/tools/quote-check' },
+    en: { label: 'Quote Check', href: '/en/tools' },
+  },
+  {
+    key: 'services',
+    zh: { label: '服务', href: '/services' },
+    en: { label: 'Services', href: '/en/services' },
+    groups: [
+      {
+        key: 'decision-services',
+        zh: { label: '居住决策支持', desc: '按你现在最需要判断的层级选择，不急着购买服务' },
+        en: { label: 'Decision Support', desc: 'Choose the level of judgment you need now.' },
+        items: [
+          { key: 'living-insight', zh: { label: '¥399-599 居住需求洞察报告', href: '/services#living-insight-beta', desc: '还没定方案，先把生活和审美说清' }, en: { label: 'Living Insight Report', href: '/en/services', desc: 'Clarify lifestyle and aesthetic direction.' } },
+          { key: 'quote-risk-initial', zh: { label: '¥99 报价风险初查', href: '/services#quote-entry', desc: '重点报价先看明显风险' }, en: { label: 'Quote Risk First Pass', href: '/en/services', desc: 'A quick look at the obvious risks.' } },
+          { key: 'quote-fast', zh: { label: '¥299 报价 / 合同快审', href: '/services#quote-standard', desc: '报价、合同和付款节点一起看' }, en: { label: 'Quote & Contract Review', href: '/en/services', desc: 'Quote, contract, and payment milestones.' } },
+          { key: 'decision-pack', zh: { label: '¥699 综合判断', href: '/services#quote-deep', desc: '方案、预算、报价、合同和交付风险一起看' }, en: { label: 'Integrated Decision Review', href: '/en/services', desc: 'Lifestyle, budget, quote, contract, and delivery risk.' } },
+        ],
+      },
+    ],
+  },
+  {
+    key: 'method',
+    zh: { label: '案例方法', href: '/cases' },
+    en: { label: 'Cases', href: '/en/blog' },
+    groups: [
+      {
+        key: 'method-group',
+        zh: { label: '方法资产', desc: '用真实问题看清空间、预算和风险如何互相影响' },
+        en: { label: 'Method Assets', desc: 'How space, budget, and risk affect each other.' },
+        items: [
+          { key: 'cases', zh: { label: '案例复盘', href: '/cases', desc: '从模糊需求到签约问题' }, en: { label: 'Case Notes', href: '/en/blog', desc: 'From vague needs to contract questions.' } },
+          { key: 'resources', zh: { label: '方法与资料', href: '/resources', desc: '判断框架和可复用清单' }, en: { label: 'Resources', href: '/en/resources', desc: 'Frameworks and checklists.' } },
+          { key: 'risk-dictionary', zh: { label: '风险词典', href: '/risk-dictionary', desc: '看懂报价合同里的高频风险词' }, en: { label: 'Risk Dictionary', href: '/en/tools', desc: 'Common quote and contract terms.' } },
+          { key: 'checklists', zh: { label: '检查模板', href: '/checklists', desc: '签约前逐项追问' }, en: { label: 'Checklists', href: '/en/tools', desc: 'Questions before signing.' } },
+        ],
+      },
+    ],
+  },
+  {
+    key: 'blog',
+    zh: { label: '文章', href: '/blog' },
+    en: { label: 'Writing', href: '/en/blog' },
   },
   {
     key: 'about',
@@ -89,7 +116,7 @@ export const primaryNav: PrimaryNavItem[] = [
         en: { label: 'About' },
         items: [
           { key: 'about-zeno', zh: { label: '我是谁', href: '/about', desc: '16 年装修现场' }, en: { label: 'Who I Am', href: '/en/about', desc: '16 years on-site' } },
-          { key: 'blog', zh: { label: '文章与记录', href: '/blog', desc: '报价风险、装修判断、工地观察' }, en: { label: 'Writing', href: '/en/blog', desc: 'Field notes & articles' } },
+          { key: 'blog', zh: { label: '文章与记录', href: '/blog', desc: '美学、生活、决策和风险' }, en: { label: 'Writing', href: '/en/blog', desc: 'Field notes & articles' } },
           { key: 'contact', zh: { label: '联系我', href: '/contact', desc: '微信 / 邮箱' }, en: { label: 'Contact', href: '/en/about', desc: 'WeChat / Email' } },
         ],
       },
@@ -120,7 +147,7 @@ const CN_TO_EN: Record<string, string> = {
   '/about':      '/en/about',
   '/blog':       '/en/blog',
   '/cases':      '/en/blog',
-  '/ai':         '/en',
+  '/living-diagnosis': '/en/services',
   '/tools':      '/en/tools',
   '/topics':     '/en/topics',
   '/tools/prompts': '/en/tools',
@@ -137,8 +164,6 @@ const CN_TO_EN: Record<string, string> = {
   '/project-risks': '/en',
   '/resources':  '/en/resources',
   '/services':   '/en/services',
-  '/services/renovation': '/en/services',
-  '/services/ai-workflow': '/en/services',
   '/contact':    '/en/about',
   '/notes':      '/en/notes',
   '/login':      '/en/login',
@@ -170,7 +195,7 @@ export function getLangHref(pathname: string, isEn: boolean): string {
     if (pathname.startsWith('/en/blog/')) return '/blog'
     if (pathname.startsWith('/en/articles/')) return '/blog'
     const cnPath = pathname.replace(/^\/en/, '') || '/'
-    const knownCn = ['/', '/start', '/about', '/blog', '/cases', '/ai', '/tools', '/tools/prompts', '/tools/quote-check', '/tools/budget-structure', '/tools/budget-risk', '/tools/unit-converter', '/tools/tile-calculator', '/tools/paint-calculator', '/tools/inspection-guide', '/risk-dictionary', '/checklists', '/project-risks', '/topics', '/resources', '/services', '/services/renovation', '/contact', '/login', '/register']
+    const knownCn = ['/', '/start', '/about', '/blog', '/cases', '/living-diagnosis', '/tools', '/tools/prompts', '/tools/quote-check', '/tools/budget-structure', '/tools/budget-risk', '/tools/unit-converter', '/tools/tile-calculator', '/tools/paint-calculator', '/tools/inspection-guide', '/risk-dictionary', '/checklists', '/project-risks', '/topics', '/resources', '/services', '/contact', '/login', '/register']
     if (knownCn.includes(cnPath)) return cnPath
     return '/'
   } else {

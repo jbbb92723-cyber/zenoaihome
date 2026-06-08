@@ -23,18 +23,18 @@ type CTAConfig = {
 const RENO_CTA: CTAConfig = {
   title: '你这篇看完了，下一步可以——',
   description:
-    '如果你手里已经有报价，先用免费初筛把风险缩小，再决定要不要进入对应的人工判断。',
-  primary: { label: '先做免费报价初筛', href: '/tools/quote-check' },
-  secondary: { label: '查看签约前检查模板', href: '/checklists' },
+    '如果你还在判断方向，先做居住诊断；如果手里已经有报价，再用免费初筛看它有没有承接方案边界。',
+  primary: { label: '先做 AI 居住诊断', href: '/living-diagnosis' },
+  secondary: { label: '已有报价，做免费初筛', href: '/tools/quote-check' },
 }
 
 // AI / 一人公司相关分类
 const AI_CTA: CTAConfig = {
   title: '如果你想先看当前主线——',
   description:
-    'AI 现在只做辅助层。网站主线已经收窄为签约前报价风险判断。',
-  primary: { label: '进入报价初筛', href: '/tools/quote-check' },
-  secondary: { label: '查看风险词典', href: '/risk-dictionary' },
+    'AI 在这里是辅助层，主线是把经验沉淀成居住判断、工具和服务，帮助业主把生活目标落到装修决策。',
+  primary: { label: '查看服务路径', href: '/services' },
+  secondary: { label: '回到文章库', href: '/blog' },
 }
 
 // 分类映射：哪些归装修、哪些归 AI / 一人公司

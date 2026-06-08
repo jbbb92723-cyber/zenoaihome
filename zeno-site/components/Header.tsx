@@ -52,8 +52,8 @@ export default function Header() {
   const logoHref = isEn ? '/en' : '/'
   const loginLabel = isEn ? 'Log in' : '登录'
   const loginHref = isEn ? '/en/login' : '/login'
-  const uploadHref = isEn ? '/en/tools' : '/tools/quote-check'
-  const uploadLabel = isEn ? 'Start Quote Check' : '先看报价'
+  const uploadHref = isEn ? '/en/services' : '/living-diagnosis'
+  const uploadLabel = isEn ? 'Start Diagnosis' : '先做诊断'
 
   const navItems = useMemo<LocalizedPrimary[]>(() => primaryNav.map((item) => ({
     key: item.key,

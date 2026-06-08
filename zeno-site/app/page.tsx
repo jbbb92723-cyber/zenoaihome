@@ -3,9 +3,9 @@ import HomePageGptSkill from '@/components/home/HomePageGptSkill'
 import StructuredData from '@/components/StructuredData'
 
 export const metadata: Metadata = {
-  title: 'AI 居住判断系统｜装修前看清生活方式、预算和签约风险｜ZenoAIHome',
+  title: '美学与生活结合后的装修判断系统｜ZenoAIHome',
   description:
-    'ZenoAIHome 面向自我成长型家庭，用 AI 辅助分析和 16 年装修现场经验，帮助你在装修前看清真实生活方式、空间秩序、预算取舍、报价合同和签约风险。',
+    'ZenoAIHome 帮助业主把理想生活翻译成空间方案、装修决策、预算边界、合同约定和交付风险控制。报价风险是落地判断的一部分，不是全部。',
   alternates: {
     canonical: 'https://zenoaihome.com/',
   },
@@ -22,7 +22,7 @@ export default function HomePage() {
             name: 'ZenoAIHome',
             url: 'https://zenoaihome.com',
             description:
-              'ZenoAIHome 帮助自我成长型家庭在装修前看清生活方式、空间秩序、预算取舍、报价合同和签约风险。',
+              'ZenoAIHome 帮助业主把生活方式、审美取舍、空间方案、预算边界、报价合同和交付风险放在一起判断。',
             inLanguage: 'zh-CN',
           },
           {
@@ -31,15 +31,15 @@ export default function HomePage() {
             name: 'ZenoAIHome',
             url: 'https://zenoaihome.com',
             description:
-              'ZenoAIHome 是一个面向自我成长型家庭的 AI 居住判断系统，不做泛装修百科，也不替装修公司背书。',
+              'ZenoAIHome 是一个美学与生活结合后的装修判断系统，不做泛装修百科，也不替装修公司背书。',
           },
           {
             '@context': 'https://schema.org',
             '@type': 'WebPage',
-            name: 'AI 居住判断系统｜装修前看清生活方式、预算和签约风险',
+            name: '美学与生活结合后的装修判断系统',
             url: 'https://zenoaihome.com/',
             description:
-              'ZenoAIHome 面向自我成长型家庭，用 AI 辅助分析和装修现场经验，帮助用户在装修前看清生活方式、空间秩序、预算取舍和签约风险。',
+              'ZenoAIHome 帮助用户在装修前看清生活方式、审美取舍、空间方案、预算边界、报价合同和交付风险。',
             inLanguage: 'zh-CN',
             isPartOf: {
               '@type': 'WebSite',
@@ -50,27 +50,28 @@ export default function HomePage() {
           {
             '@context': 'https://schema.org',
             '@type': 'Service',
-            name: 'AI 居住诊断与装修签约前风险判断',
+            name: '居住决策支持与装修风险控制',
             provider: {
               '@type': 'Organization',
               name: 'ZenoAIHome',
               url: 'https://zenoaihome.com/',
             },
             areaServed: '中国',
-            serviceType: '装修前生活方式、空间秩序、预算取舍、报价合同和签约风险判断',
+            serviceType: '装修前生活方式、审美取舍、空间方案、预算报价、合同约定和交付风险判断',
             audience: {
               '@type': 'Audience',
               audienceType: '自我成长型装修家庭',
             },
             hasOfferCatalog: {
               '@type': 'OfferCatalog',
-              name: 'AI 居住判断与签约前风险路径',
+              name: '居住判断、报价初筛与人工服务路径',
               itemListElement: [
                 { '@type': 'Offer', name: '免费 AI 居住诊断', url: 'https://zenoaihome.com/living-diagnosis' },
                 { '@type': 'Offer', name: '免费报价风险初筛', url: 'https://zenoaihome.com/tools/quote-check' },
-                { '@type': 'Offer', name: '¥99 报价风险初查', url: 'https://zenoaihome.com/services/renovation#quote-entry' },
-                { '@type': 'Offer', name: '¥299 标准报价快审', url: 'https://zenoaihome.com/services/renovation#quote-standard' },
-                { '@type': 'Offer', name: '¥699 签约前深度判断', url: 'https://zenoaihome.com/services/renovation#quote-deep' },
+                { '@type': 'Offer', name: '¥399-599 居住需求洞察报告', url: 'https://zenoaihome.com/services#living-insight-beta' },
+                { '@type': 'Offer', name: '¥99 报价风险初查', url: 'https://zenoaihome.com/services#quote-entry' },
+                { '@type': 'Offer', name: '¥299 报价 / 合同快审', url: 'https://zenoaihome.com/services#quote-standard' },
+                { '@type': 'Offer', name: '¥699 居住方案综合判断', url: 'https://zenoaihome.com/services#quote-deep' },
               ],
             },
           },
@@ -83,7 +84,7 @@ export default function HomePage() {
                 name: 'AI 居住诊断是什么？',
                 acceptedAnswer: {
                   '@type': 'Answer',
-                  text: 'AI 居住诊断不是风格测试，而是把生活方式、空间秩序、审美偏好、预算取舍和签约风险放在一起做初步判断。',
+                  text: 'AI 居住诊断不是风格测试，而是把生活方式、空间秩序、审美偏好、预算取舍和后续签约边界放在一起做初步判断。',
                 },
               },
               {
@@ -99,7 +100,7 @@ export default function HomePage() {
                 name: '已有报价时还需要居住诊断吗？',
                 acceptedAnswer: {
                   '@type': 'Answer',
-                  text: '需要，但顺序会变。临近签约时，要把居住需求、预算取舍、报价边界和合同条款放在一起看，而不是继续只讨论风格。',
+                  text: '需要，但顺序会变。临近签约时，要把居住需求、空间选择、预算取舍、报价边界和合同条款放在一起看，而不是继续只讨论风格。',
                 },
               },
               {
@@ -107,7 +108,7 @@ export default function HomePage() {
                 name: 'ZenoAIHome 会替我判断哪家公司靠谱吗？',
                 acceptedAnswer: {
                   '@type': 'Answer',
-                  text: '不会。ZenoAIHome 不替装修公司背书，也不替你做最终签约决定，只帮你看清报价、合同和付款节点里的风险点。',
+                  text: '不会。ZenoAIHome 不替装修公司背书，也不替你做最终签约决定，只帮你看清方案、预算、报价、合同和付款节点里的风险点。',
                 },
               },
               {

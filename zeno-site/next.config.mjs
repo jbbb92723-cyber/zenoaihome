@@ -12,6 +12,45 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
+  async redirects() {
+    return [
+      {
+        source: '/ai',
+        destination: '/living-diagnosis',
+        permanent: true,
+      },
+      {
+        source: '/services/ai-workflow',
+        destination: '/services',
+        permanent: true,
+      },
+      {
+        source: '/services/renovation',
+        destination: '/services',
+        permanent: true,
+      },
+      {
+        source: '/pricing',
+        destination: '/services',
+        permanent: true,
+      },
+      {
+        source: '/pricing/baojia-guide',
+        destination: '/services',
+        permanent: true,
+      },
+      {
+        source: '/en/pricing',
+        destination: '/en/services',
+        permanent: true,
+      },
+      {
+        source: '/en/pricing/baojia-guide',
+        destination: '/en/services',
+        permanent: true,
+      },
+    ]
+  },
 }
 
 export default nextConfig

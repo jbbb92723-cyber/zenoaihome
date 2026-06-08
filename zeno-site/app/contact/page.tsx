@@ -34,9 +34,10 @@ const contactChannels = [
 ]
 
 const suitableFor = [
+  { title: '居住需求洞察报告', desc: '还没定方案，需要先把生活方式、审美偏好、空间优先级和预算边界说清。' },
   { title: '¥99 报价风险初查',    desc: '刚拿到报价，只想先看明显风险。' },
-  { title: '¥299 标准报价快审',   desc: '已有完整报价，准备继续谈或签约。' },
-  { title: '¥699 签约前深度判断',   desc: '报价、合同和付款节点都已经有，且临近签约。' },
+  { title: '¥299 报价 / 合同快审',   desc: '已有完整报价、合同草稿或付款节点，准备继续谈或签约。' },
+  { title: '¥699 居住方案综合判断',   desc: '方案、预算、报价、合同和付款节点都已经有，且临近签约。' },
   { title: '内容或 AI 延伸交流', desc: '你读过文章或工具后，有明确问题想讨论。AI 交流暂时不是主服务入口。' },
   { title: '商务合作',          desc: '如果你的合作与网站主题高度相关，可以发邮件说明背景和具体想法。' },
 ]
@@ -69,7 +70,7 @@ export default function ContactPage() {
               <p className="text-xs text-ink-muted leading-relaxed mb-4">
                 手里有报价单、合同草稿、预算上限，或者一两周内准备签约——直接看服务页更高效。
               </p>
-              <Link href="/services/renovation" className="text-sm text-stone hover:underline underline-offset-2 decoration-stone/40">
+              <Link href="/services" className="text-sm text-stone hover:underline underline-offset-2 decoration-stone/40">
                 查看服务 →
               </Link>
             </div>

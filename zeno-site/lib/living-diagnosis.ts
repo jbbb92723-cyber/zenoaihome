@@ -34,7 +34,7 @@ export function analyzeLivingDiagnosis(answers: LivingDiagnosisAnswer[]): Living
       priorities: ['报价边界', '预算取舍', '口头承诺落字'],
       nextSteps: [
         { label: '先做报价风险初筛', href: '/tools/quote-check' },
-        { label: '查看签约前服务', href: '/services/renovation' },
+        { label: '查看签约前服务', href: '/services' },
       ],
     }
   }
