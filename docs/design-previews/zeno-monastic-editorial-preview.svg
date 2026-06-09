@@ -1,0 +1,153 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="2200" viewBox="0 0 1440 2200">
+  <defs>
+    <style>
+      .bg { fill: #F4F1E8; }
+      .ink { fill: #111111; }
+      .sand { fill: #DED2BE; }
+      .line { stroke: #111111; stroke-opacity: .14; fill: none; }
+      .whiteLine { stroke: #F4F1E8; stroke-width: 4; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+      .thinWhite { stroke: #F4F1E8; stroke-width: 1.5; fill: none; opacity: .7; }
+      .cnDisplay { font-family: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "SimSun", serif; font-weight: 500; letter-spacing: 2px; }
+      .sans { font-family: "Noto Sans SC", "Microsoft YaHei", Arial, sans-serif; }
+      .small { font-size: 18px; }
+      .meta { font-size: 13px; letter-spacing: 2px; font-weight: 700; }
+    </style>
+  </defs>
+
+  <rect class="bg" width="1440" height="2200"/>
+
+  <!-- Header -->
+  <g transform="translate(124 38)">
+    <text class="ink sans" x="0" y="24" font-size="20" font-weight="900" letter-spacing="3">ZENOAIHOME</text>
+    <text class="ink sans" x="720" y="22" font-size="15">首页</text>
+    <text class="ink sans" x="790" y="22" font-size="15" opacity=".72">居住判断</text>
+    <text class="ink sans" x="900" y="22" font-size="15" opacity=".72">报价风险</text>
+    <text class="ink sans" x="1010" y="22" font-size="15" opacity=".72">服务</text>
+    <text class="ink sans" x="1080" y="22" font-size="15" opacity=".72">文章</text>
+    <rect x="1160" y="-7" width="108" height="38" rx="8" fill="#111111"/>
+    <text x="1190" y="17" fill="#F4F1E8" class="sans" font-size="14" font-weight="700">先判断</text>
+  </g>
+
+  <!-- Hero -->
+  <g transform="translate(124 250)">
+    <text class="cnDisplay ink" x="0" y="0" font-size="54">
+      <tspan x="0" dy="0">装修不是把房子装完，</tspan>
+      <tspan x="0" dy="74">而是让美学、生活方式、</tspan>
+      <tspan x="0" dy="74">空间秩序、预算边界</tspan>
+      <tspan x="0" dy="74">和交付风险互相承接。</tspan>
+    </text>
+    <text class="cnDisplay ink" x="800" y="82" font-size="26" opacity=".92">
+      <tspan x="800" dy="0">ZenoAIHome 是一个</tspan>
+      <tspan x="800" dy="42">居住判断系统。</tspan>
+      <tspan x="800" dy="42">先看生活，再看方案；</tspan>
+      <tspan x="800" dy="42">先看边界，再进入签约。</tspan>
+    </text>
+    <rect x="780" y="248" width="206" height="54" rx="8" fill="#111111"/>
+    <text x="822" y="282" fill="#F4F1E8" class="sans" font-size="17" font-weight="800">开始居住诊断</text>
+    <rect x="1010" y="248" width="206" height="54" rx="8" fill="#F4F1E8" stroke="#111111" stroke-opacity=".18"/>
+    <text x="1046" y="282" fill="#111111" class="sans" font-size="17" font-weight="800">已有报价先初筛</text>
+  </g>
+
+  <!-- Feature black panel -->
+  <g transform="translate(260 640)">
+    <rect width="920" height="420" rx="16" fill="#111111"/>
+    <text x="70" y="94" fill="#DED2BE" class="sans meta">LIVING DECISION SYSTEM</text>
+    <text class="cnDisplay" x="70" y="168" fill="#F4F1E8" font-size="60">
+      <tspan x="70" dy="0">生活到交付</tspan>
+      <tspan x="70" dy="72">判断系统</tspan>
+    </text>
+    <text x="70" y="312" fill="#F4F1E8" opacity=".72" class="sans" font-size="18">
+      <tspan x="70" dy="0">把理想生活、空间秩序、预算边界、报价合同</tspan>
+      <tspan x="70" dy="30">和交付风险放在同一张判断图里。</tspan>
+    </text>
+    <rect x="70" y="350" width="84" height="32" rx="6" fill="#F4F1E8"/>
+    <text x="90" y="371" fill="#111111" class="sans" font-size="14" font-weight="800">开始判断</text>
+
+    <!-- Abstract spatial map -->
+    <rect x="560" y="64" width="300" height="300" fill="#111111"/>
+    <path class="whiteLine" d="M588 96 650 70 724 110 790 74 846 132 820 214 848 298 760 342 674 300 610 342 584 240 616 170Z"/>
+    <path class="whiteLine" d="M650 70 656 188 724 110 760 342"/>
+    <path class="whiteLine" d="M790 74 744 204 820 214"/>
+    <path class="whiteLine" d="M616 170 674 300 744 204 656 188"/>
+    <path class="thinWhite" d="M588 96 616 170 584 240"/>
+    <circle cx="650" cy="70" r="4" fill="#DED2BE"/>
+    <circle cx="724" cy="110" r="4" fill="#DED2BE"/>
+    <circle cx="790" cy="74" r="4" fill="#DED2BE"/>
+    <circle cx="744" cy="204" r="4" fill="#DED2BE"/>
+  </g>
+
+  <!-- Cards -->
+  <g transform="translate(220 1160)">
+    <text class="ink sans" x="0" y="0" font-size="20" font-weight="800">判断入口</text>
+    <g transform="translate(0 42)">
+      <rect class="sand" width="330" height="310" rx="12"/>
+      <text class="ink sans" x="34" y="54" font-size="25" font-weight="800">居住诊断</text>
+      <text class="ink sans small" x="34" y="92"><tspan x="34" dy="0">先把生活方式、审美偏好、</tspan><tspan x="34" dy="28">家庭场景和预算边界说清。</tspan></text>
+      <line class="line" x1="34" y1="208" x2="296" y2="208"/>
+      <text class="ink sans meta" x="34" y="238">阶段</text><text class="ink sans" x="250" y="238" font-size="15">入口一</text>
+      <line class="line" x1="34" y1="254" x2="296" y2="254"/>
+      <rect x="34" y="274" width="92" height="34" rx="6" fill="#111111"/>
+      <text x="52" y="296" fill="#F4F1E8" class="sans" font-size="14" font-weight="800">开始诊断</text>
+    </g>
+    <g transform="translate(365 42)">
+      <rect class="sand" width="330" height="310" rx="12"/>
+      <text class="ink sans" x="34" y="54" font-size="25" font-weight="800">报价风险初筛</text>
+      <text class="ink sans small" x="34" y="92"><tspan x="34" dy="0">已有报价时，先看材料、工艺、</tspan><tspan x="34" dy="28">数量、付款节点和责任边界。</tspan></text>
+      <line class="line" x1="34" y1="208" x2="296" y2="208"/>
+      <text class="ink sans meta" x="34" y="238">阶段</text><text class="ink sans" x="250" y="238" font-size="15">入口二</text>
+      <line class="line" x1="34" y1="254" x2="296" y2="254"/>
+      <rect x="34" y="274" width="74" height="34" rx="6" fill="#111111"/>
+      <text x="54" y="296" fill="#F4F1E8" class="sans" font-size="14" font-weight="800">初筛</text>
+    </g>
+    <g transform="translate(730 42)">
+      <rect class="sand" width="330" height="310" rx="12"/>
+      <text class="ink sans" x="34" y="54" font-size="25" font-weight="800">居住方案综合判断</text>
+      <text class="ink sans small" x="34" y="92"><tspan x="34" dy="0">把美学、生活、预算、报价、</tspan><tspan x="34" dy="28">合同和交付风险放在一起看。</tspan></text>
+      <line class="line" x1="34" y1="208" x2="296" y2="208"/>
+      <text class="ink sans meta" x="34" y="238">阶段</text><text class="ink sans" x="250" y="238" font-size="15">深服务</text>
+      <line class="line" x1="34" y1="254" x2="296" y2="254"/>
+      <rect x="34" y="274" width="74" height="34" rx="6" fill="#111111"/>
+      <text x="54" y="296" fill="#F4F1E8" class="sans" font-size="14" font-weight="800">查看</text>
+    </g>
+  </g>
+
+  <!-- Dimension section -->
+  <g transform="translate(220 1590)">
+    <text class="ink sans meta" x="0" y="0">判断维度</text>
+    <text class="cnDisplay ink" x="0" y="70" font-size="48">
+      <tspan x="0" dy="0">不先判断，装修就会</tspan>
+      <tspan x="0" dy="74">变成一堆孤立选择。</tspan>
+    </text>
+    <text class="ink sans small" x="0" y="230" opacity=".74">
+      <tspan x="0" dy="0">风格、收纳、预算、报价和合同不是分开的。</tspan>
+      <tspan x="0" dy="30">一个家的问题，往往是在这些选择彼此没有承接时出现。</tspan>
+    </text>
+
+    <g transform="translate(610 -10)">
+      <rect x="0" y="0" width="520" height="76" rx="10" fill="#DED2BE" fill-opacity=".28" stroke="#111111" stroke-opacity=".12"/>
+      <text x="38" y="32" class="ink sans" font-size="20" font-weight="800">01　美学与生活融合</text>
+      <text x="38" y="56" class="ink sans" font-size="14" opacity=".68">长期审美、材质控制和维护边界</text>
+      <rect x="0" y="86" width="520" height="76" rx="10" fill="#DED2BE" fill-opacity=".28" stroke="#111111" stroke-opacity=".12"/>
+      <text x="38" y="118" class="ink sans" font-size="20" font-weight="800">02　个性化实现</text>
+      <text x="38" y="142" class="ink sans" font-size="14" opacity=".68">色彩、比例、材质、收纳和预算优先级</text>
+      <rect x="0" y="172" width="520" height="76" rx="10" fill="#DED2BE" fill-opacity=".28" stroke="#111111" stroke-opacity=".12"/>
+      <text x="38" y="204" class="ink sans" font-size="20" font-weight="800">03　空间赋能</text>
+      <text x="38" y="228" class="ink sans" font-size="14" opacity=".68">空间冲突点和功能排序</text>
+      <rect x="0" y="258" width="520" height="76" rx="10" fill="#DED2BE" fill-opacity=".28" stroke="#111111" stroke-opacity=".12"/>
+      <text x="38" y="290" class="ink sans" font-size="20" font-weight="800">04　报价 / 合同 / 交付风险</text>
+      <text x="38" y="314" class="ink sans" font-size="14" opacity=".68">风险点、追问清单和签前边界</text>
+    </g>
+  </g>
+
+  <!-- Footer note -->
+  <g transform="translate(220 2050)">
+    <line class="line" x1="0" y1="0" x2="1060" y2="0"/>
+    <text class="ink sans meta" x="0" y="52">THREE MAIN COLORS ONLY</text>
+    <circle cx="360" cy="47" r="18" fill="#F4F1E8" stroke="#111111" stroke-opacity=".18"/>
+    <text x="388" y="53" class="ink sans" font-size="16">Bone Paper #F4F1E8</text>
+    <circle cx="590" cy="47" r="18" fill="#111111"/>
+    <text x="618" y="53" class="ink sans" font-size="16">Carbon Ink #111111</text>
+    <circle cx="820" cy="47" r="18" fill="#DED2BE" stroke="#111111" stroke-opacity=".12"/>
+    <text x="848" y="53" class="ink sans" font-size="16">Warm Sand #DED2BE</text>
+  </g>
+</svg>

@@ -17,6 +17,10 @@ zeno-site/.env.production.local
 node_modules
 .gstack/
 .skill_install_stage/
+_local/
+hs_err_pid*.log
+replay_pid*.log
+zeno-site/public/design-previews/
 
 # ─── Obsidian / Agent local settings（公开仓库不提交）────────────────
 赞诺内容资产系统/**/.obsidian/
