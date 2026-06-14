@@ -179,7 +179,7 @@ export default function StageLayout({
 
           {services.length > 0 && (
             <div className="px-6 sm:px-7 py-5">
-              <p className="text-xs text-ink-faint mb-3">需要人工判断时（付费服务）</p>
+              <p className="text-xs text-ink-faint mb-3">需要人工判断时</p>
               <div className="flex flex-wrap gap-3">
                 {services.map((s, i) => (
                   <CTA key={i} href={s.href} label={s.label} variant="ghost" />

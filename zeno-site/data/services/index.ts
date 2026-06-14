@@ -61,7 +61,7 @@ export const services: Service[] = [
     ],
     boundary:
       '不是设计方案，不出施工图，不做装修报价，不替你决定最终风格、设计师或施工方。',
-    price: '399-599 元 / 份',
+    price: '免费',
     contactNote: '先完成 AI 居住诊断，再联系微信 zanxiansheng2025，备注「居住报告」，我会判断是否适合整理成正式报告。',
     tag: '居住判断',
   },
@@ -102,7 +102,7 @@ export const services: Service[] = [
     ],
     boundary:
       '不做完整报价审查，不替你谈判，不判断谁一定靠谱。',
-    price: '99 元 / 次',
+    price: '免费',
     contactNote: '微信联系：zanxiansheng2025，备注「报价初查」，同时发送重点报价材料。',
     tag: '装修',
   },
@@ -150,7 +150,7 @@ export const services: Service[] = [
     ],
     boundary:
       '不代谈判，不承诺最低价，不替你做最终签约决定。',
-    price: '299 元 / 份',
+    price: '免费',
     contactNote: '微信联系：zanxiansheng2025，备注「报价合同快审」，同时发送完整报价、合同草稿或付款节点材料。',
     tag: '装修',
   },
@@ -198,7 +198,7 @@ export const services: Service[] = [
     ],
     boundary:
       '不是设计方案，不出施工图，不做法律审合同，不代谈判，不代签约，不制造业主与装修公司的对立。',
-    price: '699 元 / 次',
+    price: '免费',
     contactNote: '微信联系：zanxiansheng2025，备注「综合判断」，同时发送方案、报价、合同草稿和付款节点。',
     tag: '装修',
   },
@@ -234,7 +234,7 @@ export const services: Service[] = [
     ],
     boundary:
       '不含具体材料品牌推荐，不替你做最终消费决定，不承诺实际成交价。建议是预算取舍框架，最终执行仍以你拿到的报价和现场条件为准。',
-    price: '399 元 / 次',
+    price: '免费',
     contactNote: '微信联系：zanxiansheng2025，备注「预算取舍诊断」。',
     tag: '装修',
   },
@@ -272,7 +272,7 @@ export const services: Service[] = [
     ],
     boundary:
       '服务范围：南宁市区。服务容量有限，不是所有需求都能接受。详细合作方式需初步沟通后确定。',
-    price: '单独评估（南宁本地，非主线）',
+    price: '免费（南宁本地，非主线）',
     contactNote: '微信联系：zanxiansheng2025，备注「居住场景」。',
     tag: '装修',
   },

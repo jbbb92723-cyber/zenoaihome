@@ -768,9 +768,9 @@ export default function QuoteCheckClient() {
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {[
               ['免费', '报价初筛', '先知道边界哪里没写清'],
-              ['¥99', '报价风险初查', '3 个高风险点 + 5 个追问问题'],
-              ['¥299', '报价 / 合同快审', '报价、合同、付款节点一起看'],
-              ['¥699', '居住方案综合判断', '方案、预算、报价、合同和交付一起看'],
+              ['免费', '报价风险初查', '3 个高风险点 + 5 个追问问题'],
+              ['免费', '报价 / 合同快审', '报价、合同、付款节点一起看'],
+              ['免费', '居住方案综合判断', '方案、预算、报价、合同和交付一起看'],
             ].map(([price, title, desc]) => (
               <div key={title} className="border border-border bg-canvas p-4">
                 <p className="text-xs font-semibold uppercase tracking-widest text-stone">{price}</p>
@@ -785,7 +785,7 @@ export default function QuoteCheckClient() {
       {/* ── 样张预览 ── */}
       <section className="border-t border-border bg-canvas">
         <div className="mx-auto max-w-5xl px-5 py-14 sm:px-8">
-          <p className="text-xs font-semibold uppercase tracking-widest text-stone">付费服务你会拿到什么</p>
+          <p className="text-xs font-semibold uppercase tracking-widest text-stone">人工服务你会拿到什么</p>
           <h2 className="mt-3 text-xl font-semibold text-ink">以下是脱敏样张，实际基于你的报价、合同或方案材料生成。</h2>
           <div className="mt-6 grid gap-4 sm:grid-cols-3">
             {[

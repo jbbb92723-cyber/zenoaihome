@@ -274,9 +274,9 @@ export default function ServicesPage() {
           <div className="grid gap-8 border border-border bg-surface/94 p-5 sm:p-7 lg:grid-cols-[1.5fr_0.9fr]">
             <div>
               <p className="system-label">Core Services</p>
-              <h2 className="editorial-display mt-3 text-2xl leading-tight text-ink">核心付费服务，是判断深度的递进。</h2>
+              <h2 className="editorial-display mt-3 text-2xl leading-tight text-ink">核心服务，是判断深度的递进。</h2>
               <p className="mt-3 max-w-3xl text-sm leading-7 text-ink-muted">
-                居住需求洞察报告负责把生活方式、空间优先级、审美偏好和预算边界说清；报价 / 合同服务负责签约前边界；综合判断负责把方案、预算、报价、合同和交付风险放在一起看。
+                居住需求洞察报告负责把生活方式、空间优先级、审美偏好和预算边界说清；报价 / 合同服务负责签约前边界；综合判断负责把方案、预算、报价、合同和交付风险放在一起看。全部免费。
               </p>
               <CommercialLadder variant="instrument" rungs={serviceLadder} className="mt-6" />
             </div>
@@ -338,7 +338,7 @@ export default function ServicesPage() {
             <p className="system-label">Service Details</p>
             <h2 className="mt-4 text-3xl font-semibold leading-tight text-ink">每项服务的适用场景、输入材料和边界。</h2>
             <p className="mt-4 text-sm leading-7 text-ink-muted">
-              下面保留完整服务卡，因为真正付费前，必须把“适合谁、不适合谁、需要提供什么、不会做什么”说清楚。
+              下面保留完整服务卡，把”适合谁、不适合谁、需要提供什么、不会做什么”说清楚。
             </p>
           </div>
 

@@ -37,7 +37,7 @@ export default async function AccountOrdersPage() {
         <div className="mb-8">
           <h1 className="text-2xl font-semibold text-ink tracking-tight">我的订单</h1>
           <p className="text-sm text-ink-muted mt-2">
-            查看付费内容和服务的购买记录。
+            查看内容和服务的提交记录。
           </p>
         </div>
 
