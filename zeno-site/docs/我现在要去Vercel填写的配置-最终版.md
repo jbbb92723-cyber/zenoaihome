@@ -91,3 +91,6 @@
 ## 验证
 
 配置完成后访问 `/tools/md2wechat/status` 页面检查所有配置项状态。
+---
+
+## LLM / AI Chat（DeepSeek）
