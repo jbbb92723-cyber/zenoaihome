@@ -14,7 +14,7 @@ const NAV = [
   ]},
   { group: '内容与服务', items: [
     { href: '/admin/content',           label: '内容草稿' },
-    { href: '/admin/notes',             label: '思考札记' },
+    { href: '/admin/notes',             label: '判断笔记' },
     { href: '/admin/living-diagnoses',  label: '居住诊断' },
     { href: '/admin/services',          label: '服务申请' },
     { href: '/admin/resources/claims',  label: '资料领取' },
@@ -23,7 +23,8 @@ const NAV = [
     { href: '/admin/redeem-codes', label: '兑换码' },
     { href: '/admin/coupons',      label: '优惠券' },
   ]},
-  { group: '分析', items: [
+  { group: '系统', items: [
+    { href: '/admin/logs',   label: '操作日志' },
     { href: '/admin/events', label: '行为事件' },
   ]},
 ]
