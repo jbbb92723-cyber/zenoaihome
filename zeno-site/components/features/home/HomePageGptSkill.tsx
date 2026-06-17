@@ -330,6 +330,9 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
             >
               <span className="headline-underline">居住判断</span>和工具，把<span className="headline-underline">理想生活</span>放到签约前。
             </motion.h1>
+            <motion.p variants={staggerItem} className="mt-4 text-xs font-semibold uppercase tracking-[0.18em] text-stone">
+              今天在看的：南宁第 38 份水电没有上限的报价——和 2018 年第一份一样。
+            </motion.p>
           </motion.div>
 
           <motion.div initial="hidden" animate="visible" variants={staggerContainer} className="max-w-[34rem] lg:pb-6">

@@ -56,6 +56,46 @@ export default function AboutPage() {
 
       <Container size="content" className="py-14 sm:py-16">
         <section className="mb-14">
+          <h2 className="section-heading mb-5">我的判断年表</h2>
+          <p className="mb-6 text-sm leading-relaxed text-ink-muted">
+            下面不是简历。是一个人在什么时间、在哪个坑里、改掉了哪个判断习惯。有些判断是在水泥地上跪着改的。
+          </p>
+          <div className="grid gap-4 md:grid-cols-3">
+            {[
+              {
+                year: '2018',
+                place: '南宁，第一个独立负责的工地',
+                mistake: '业主说"都可以"，我以为真的都可以，按默认做了。',
+                changed: '从此不再接受"都可以"这三个字。"都可以"的意思通常是——我自己也说不清，但我做完之后会知道我不想要什么。现在每次听到这三个字，我会停下来，把选项拆开，让他们必须选一个。不选，不往下走。',
+              },
+              {
+                year: '2021',
+                place: '南宁青秀区，一个水电暂估的坑',
+                mistake: '报价单上水电写"按实结算，暂估 1.2 万"。我签了。四个月后结算 3.7 万。多了 2.5 万，其中 4000 块是一根本来就在原户型里的排水管。',
+                changed: '从那天起，每一份报价单我看水电那行的顺序变了——先找"上限"两个字，再找"计量规则"，最后才看金额。没有上限的暂估不是估价，是一张空白支票。',
+              },
+              {
+                year: '2023',
+                place: '开始用 AI 辅助装修判断',
+                mistake: '以为 AI 能替我做判断。把一个客户的方案需求扔给 AI，它给了很漂亮的回答——逻辑通、格式好、方向也对。但客户看完说"这不是我的家，这是一份正确的作业"。',
+                changed: '从此把 AI 固定在"帮我整理、对比、查漏"的位置上，不放在"替我想"的位置上。AI 可以告诉我七个品牌的防水涂料参数对比，但它不知道业主每天早上在厨房窗边站五分钟看什么。那五分钟，才是我要判断的东西。',
+              },
+            ].map((entry) => (
+              <div key={entry.year} className="border border-border bg-surface p-5">
+                <p className="text-2xl font-bold tracking-tight text-ink">{entry.year}</p>
+                <p className="mt-2 text-xs font-semibold uppercase tracking-widest text-stone">{entry.place}</p>
+                <p className="mt-3 text-sm leading-relaxed text-ink-muted">
+                  <span className="font-semibold text-stone">当时的错误：</span>{entry.mistake}
+                </p>
+                <p className="mt-3 text-sm leading-relaxed text-ink">
+                  <span className="font-semibold text-ink">改掉的判断习惯：</span>{entry.changed}
+                </p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="mb-14">
           <h2 className="section-heading mb-5">1. 为什么不能只从报价开始</h2>
           <div className="space-y-4 text-base leading-[1.85] text-ink">
             <p>

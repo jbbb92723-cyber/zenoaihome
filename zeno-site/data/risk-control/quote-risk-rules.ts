@@ -14,6 +14,8 @@ export type QuoteRiskRule = {
   contractSuggestion: string
   suitableFor: string[]
   relatedRiskIds: string[]
+  /** 一个真实的现场经历——让这一条从"定义"变成"全息内容" */
+  zenoSaw: string
   /** legacy compatibility for existing pages */
   title?: string
   trigger?: string
@@ -53,6 +55,7 @@ function defineRule(rule: Omit<QuoteRiskRule, 'title' | 'trigger' | 'why' | 'ask
     trigger: rule.triggerTerms.slice(0, 4).join(' / '),
     why: rule.whyItMatters,
     ask: rule.preSigningQuestions[0] ?? '',
+    zenoSaw: rule.zenoSaw,
   }
 }
 
@@ -73,6 +76,7 @@ export const quoteRiskRules: QuoteRiskRule[] = [
     contractSuggestion: '按实结算项目需列明范围、单价、上限及书面确认流程，未经书面确认不得施工。',
     suitableFor: ['第一次装修的人', '预算卡得比较紧的人', '临近签约的人'],
     relatedRiskIds: ['qr-05', 'qr-06', 'qr-13', 'qr-14'],
+    zenoSaw: '我在南宁见过最坏的一次：预算水电写 2.3 万暂估，结算 11.7 万。施工方解释"您家水路确实复杂"。但复杂不复杂，应该是量完才说的，不是做完才说的。',
   }),
   defineRule({
     id: 'qr-02',
@@ -90,6 +94,7 @@ export const quoteRiskRules: QuoteRiskRule[] = [
     contractSuggestion: '材料须写明品牌、型号、规格、环保等级及替换规则，替换需提前书面确认。',
     suitableFor: ['追求材料配置的人', '准备对比几家报价的人', '一口气看懂总价的人'],
     relatedRiskIds: ['qr-08', 'qr-16', 'qr-19'],
+    zenoSaw: '一个业主的报价写"多乐士乳胶漆"。刷完了问色号，师傅说"反正是白色的"。后来发现是工程漆——同一个牌子，价格差了将近一半。她站在刷好的白墙前面，不是心疼钱，是发现自己根本没有决定过。',
   }),
   defineRule({
     id: 'qr-03',
@@ -107,6 +112,7 @@ export const quoteRiskRules: QuoteRiskRule[] = [
     contractSuggestion: '关键工艺应写明基层处理、施工步骤、遍数/厚度和验收标准，不以口头说明替代。',
     suitableFor: ['没有监理的人', '第一次装修的人', '对质量最敏感的人'],
     relatedRiskIds: ['qr-11', 'qr-12', 'qr-17'],
+    zenoSaw: '在南宁一个工地，报价写"防水按规范施工"。楼下渗水后施工方说"我们按规范做了，是排水管的问题"。没有写在合同里的"规范"，等于没有规范——你拿什么去争？',
   }),
   defineRule({
     id: 'qr-04',
@@ -124,6 +130,7 @@ export const quoteRiskRules: QuoteRiskRule[] = [
     contractSuggestion: '报价应同时列明包含项、不包含项和边界项，边界项必须书面确认后才执行。',
     suitableFor: ['半包/全包都在比的人', '项目多的家庭', '和多个施工方对比的人'],
     relatedRiskIds: ['qr-01', 'qr-06', 'qr-07', 'qr-08'],
+    zenoSaw: '一个业主签了全包，做到一半才发现：阳台收口不含、窗台保护不含、拆旧垃圾清运不含。三样加了一万四。她没有错，是她对"全包"的理解和施工方的理解之间，隔着一整个边界。',
   }),
   defineRule({
     id: 'qr-05',
@@ -141,6 +148,7 @@ export const quoteRiskRules: QuoteRiskRule[] = [
     contractSuggestion: '工程量需附计算依据和复尺规则，暂估项目应约定上限和复核方式。',
     suitableFor: ['预算敏感的人', '面积较大的房子', '有多个空间要做的人'],
     relatedRiskIds: ['qr-01', 'qr-06', 'qr-10'],
+    zenoSaw: '见过一份报价，瓷砖铺贴报了 82 平，实际铺了 107 平。单价不贵，25 块一平。多出来的 25 平一加——6250 块。业主只核了单价，没核面积。施工方没有骗她，是她不知道面积需要自己核。',
   }),
   defineRule({
     id: 'qr-06',
@@ -158,6 +166,7 @@ export const quoteRiskRules: QuoteRiskRule[] = [
     contractSuggestion: '未列明项目不得默认后补；后补项必须先报价、先确认再执行。',
     suitableFor: ['第一次看报价的人', '比到最后一轮的人', '嫌麻烦不想细看的人'],
     relatedRiskIds: ['qr-01', 'qr-04', 'qr-14'],
+    zenoSaw: '最典型的一次：报价里没有垃圾清运。开工第三天物业通知垃圾必须清，施工方说"这本不在报价里"。4000 块，当场付。后面成品保护、开关面板、打孔——都是开工后一个一个补出来的。',
   }),
   defineRule({
     id: 'qr-07',
@@ -175,6 +184,7 @@ export const quoteRiskRules: QuoteRiskRule[] = [
     contractSuggestion: '套餐须列明包含范围、升级项和另计项，不能只写套餐名称。',
     suitableFor: ['看整装/全包的人', '想图省事的人', '刚入门的业主'],
     relatedRiskIds: ['qr-04', 'qr-08', 'qr-16'],
+    zenoSaw: '见过一份"798 全包套餐"——不含拆除、不含水电改造、不含柜体、不含美缝、不含保洁。去掉这些"不含"，实际包到的只有一小半。业主签的时候觉得省心，做的时候发现每周去工地都在加钱。',
   }),
   defineRule({
     id: 'qr-08',
@@ -192,6 +202,7 @@ export const quoteRiskRules: QuoteRiskRule[] = [
     contractSuggestion: '主材与辅材应分别列明范围、品牌型号和是否另计，避免混写。',
     suitableFor: ['重视材料配置的人', '喜欢比品牌的人', '看起来报价不差的人'],
     relatedRiskIds: ['qr-02', 'qr-16', 'qr-07'],
+    zenoSaw: '一个业主自己买了很好的瓷砖，施工方把瓷砖胶从指定品牌换成了杂牌。不到一年空鼓了十几块。施工方说"瓷砖胶是辅材，报价没写具体品牌"。砖是自己的好砖，掉下来也是自己碎。',
   }),
   defineRule({
     id: 'qr-09',
@@ -209,6 +220,7 @@ export const quoteRiskRules: QuoteRiskRule[] = [
     contractSuggestion: '拆改类项目应单列可预见项与不可预见项，发现新问题必须先确认再施工。',
     suitableFor: ['二手房/旧房业主', '拆改面积大的项目', '预算紧但变化多的项目'],
     relatedRiskIds: ['qr-01', 'qr-06', 'qr-20'],
+    zenoSaw: '二手房拆改。一面墙拆开，发现后面是旧烟道，和邻居共用，不能动。原定厨房布局全推翻。施工方说"现场发现的，得加钱"。多花 8000 改方案，工期多了三周。业主说：我不怕花钱，我怕每次到工地都有新的"发现"。',
   }),
   defineRule({
     id: 'qr-10',
@@ -226,6 +238,7 @@ export const quoteRiskRules: QuoteRiskRule[] = [
     contractSuggestion: '水电需约定点位、开槽、回填、恢复和封顶上限，防止现场扩张。',
     suitableFor: ['二手房改造', '点位很多的家庭', '怕超预算的人'],
     relatedRiskIds: ['qr-01', 'qr-05', 'qr-14'],
+    zenoSaw: '见过一分水电从 2 万变成 4.6 万的。不是施工方黑——业主一路加：这里多一个插座、那里加一排灯、阳台走热水管。每次加一点，最后连施工方都有点不好意思。水电是真正的"说多就多，没有尽头"。',
   }),
   defineRule({
     id: 'qr-11',
@@ -243,6 +256,7 @@ export const quoteRiskRules: QuoteRiskRule[] = [
     contractSuggestion: '防水应写清施工遍数、闭水时长、验收标准和漏水责任归属。',
     suitableFor: ['旧房和新房都需要的人', '特别怕返工的人', '要住很多年的家庭'],
     relatedRiskIds: ['qr-03', 'qr-17', 'qr-19'],
+    zenoSaw: '一个业主家卫生间漏水到楼下。施工方说他只做了防水层，管根和地漏周边不属于他。开发商说过了保修期。物业说这是装修的事。三方推了两个月，楼下邻居天天打电话。最后业主自己花 7000 多重新做。',
   }),
   defineRule({
     id: 'qr-12',
@@ -260,6 +274,7 @@ export const quoteRiskRules: QuoteRiskRule[] = [
     contractSuggestion: '找平应约定面积、厚度范围、计价方式和局部修补规则。',
     suitableFor: ['老房翻新的人', '铺木地板的人', '对平整度要求高的人'],
     relatedRiskIds: ['qr-05', 'qr-03', 'qr-17'],
+    zenoSaw: '报价写"地面找平，30 一平"。实际有的地方差了 5 公分。施工方说超厚加钱——找平从 5000 变成了 9000。业主说：我的地不平，怎么变成我的错了？不，是报价没写厚度上限的错。',
   }),
   defineRule({
     id: 'qr-13',
@@ -277,6 +292,7 @@ export const quoteRiskRules: QuoteRiskRule[] = [
     contractSuggestion: '付款节点应与验收节点绑定，前期付款比例不宜过高，尾款须保留足够整改空间。',
     suitableFor: ['快签约的人', '担心被拿捏的人', '不熟悉装修流程的人'],
     relatedRiskIds: ['qr-01', 'qr-14', 'qr-18'],
+    zenoSaw: '见过一份合同首付 60%。工期到一半业主对质量不满意，但钱已付了大半。施工方不急，业主急。每次催整改都被回"快了快了"。最后她自己算了——继续吵下去的时间精力，比忍了更贵。她忍了。',
   }),
   defineRule({
     id: 'qr-14',
@@ -294,6 +310,7 @@ export const quoteRiskRules: QuoteRiskRule[] = [
     contractSuggestion: '所有增减项必须先书面报价、先确认、再施工，未确认部分不得结算。',
     suitableFor: ['经常改方案的人', '边做边想的人', '很担心预算失控的人'],
     relatedRiskIds: ['qr-01', 'qr-06', 'qr-13'],
+    zenoSaw: '一个业主装修过程中加了 37 个增项——没有一个是书面确认的。全是"师傅说这里需要加"、"工头说这个不包含"。结算时增项总价超出原报价两倍。每一笔都不大，37 笔堆在一起，谁都会懵。',
   }),
   defineRule({
     id: 'qr-15',
@@ -311,6 +328,7 @@ export const quoteRiskRules: QuoteRiskRule[] = [
     contractSuggestion: '所有口头承诺都应转成合同正文或补充协议，并写明数量、规格和交付时间。',
     suitableFor: ['第一次签装修合同的人', '怕被忽悠的人', '对赠送内容敏感的人'],
     relatedRiskIds: ['qr-07', 'qr-16', 'qr-19'],
+    zenoSaw: '最典型的一次：销售说"送全屋美缝"。写进合同了吗？没有。工期快结束时，业主问美缝什么时候做，施工方说"报价里没包美缝"。销售已离职，微信记录换手机丢了。业主自己掏了 3000。这不是个例，这是装修的常态。',
   }),
   defineRule({
     id: 'qr-16',
@@ -328,6 +346,7 @@ export const quoteRiskRules: QuoteRiskRule[] = [
     contractSuggestion: '材料替换须写明可替换条件、替换级别和替换前确认方式，避免口径漂移。',
     suitableFor: ['重视配置的人', '材料预算高的人', '喜欢比配置的人'],
     relatedRiskIds: ['qr-02', 'qr-08', 'qr-19'],
+    zenoSaw: '合同写的是"德国进口五金"，装上去的是国产的一个德国牌子授权产品——品牌确实带个德国名字，工厂在国内。合同没写"替换规则"，施工方说"这个就是进口品牌"。法律上挑不出错，但你知道这不是你要的。',
   }),
   defineRule({
     id: 'qr-17',
@@ -345,6 +364,7 @@ export const quoteRiskRules: QuoteRiskRule[] = [
     contractSuggestion: '验收标准应在签约前附入合同或附件，节点未通过不得进入下一步付款。',
     suitableFor: ['怕扯皮的人', '想把流程走稳的人', '没有监理的人'],
     relatedRiskIds: ['qr-03', 'qr-11', 'qr-13'],
+    zenoSaw: '水电验收时业主去工地看了一眼——水管有，电线有，觉得行了。入住半年水压不稳。回头找施工方，说"当时你验收签了字的"。签了，但签的时候不知道要测水压。验收不是"看一看"，是"按标准测"。',
   }),
   defineRule({
     id: 'qr-18',
@@ -362,6 +382,7 @@ export const quoteRiskRules: QuoteRiskRule[] = [
     contractSuggestion: '合同需明确开竣工日期、顺延条件、延期责任与赔付规则。',
     suitableFor: ['要搬家的家庭', '有入住时间压力的人', '旧房改造项目'],
     relatedRiskIds: ['qr-09', 'qr-13', 'qr-17'],
+    zenoSaw: '合同写"工期 90 天"，130 天还没完。施工方说"等材料、等定制、等你的确认——都是合理顺延"。合同只写了总工期，没写哪些算延期、哪些不算、延期了怎么赔。业主只能继续等。',
   }),
   defineRule({
     id: 'qr-19',
@@ -379,6 +400,7 @@ export const quoteRiskRules: QuoteRiskRule[] = [
     contractSuggestion: '售后应单列保修项目、保修期限、除外责任和处理流程，不接受口头笼统承诺。',
     suitableFor: ['长期居住家庭', '对售后很在意的人', '材料和隐蔽工程多的项目'],
     relatedRiskIds: ['qr-11', 'qr-16', 'qr-17'],
+    zenoSaw: '入住一年后墙面开裂。联系施工方，说"墙面开裂不在保修范围，是房屋沉降造成的"。合同写"保修两年"，但没写保什么、不保什么。两行空字，换不回一面墙。',
   }),
   defineRule({
     id: 'qr-20',
@@ -396,6 +418,7 @@ export const quoteRiskRules: QuoteRiskRule[] = [
     contractSuggestion: '成品保护责任应写明保护范围、保护方式、损坏赔偿和责任划分。',
     suitableFor: ['已装部分较多的项目', '边住边装的人', '怕现场损坏的人'],
     relatedRiskIds: ['qr-04', 'qr-09', 'qr-18'],
+    zenoSaw: '铺完地砖还没干透，安装柜子的师傅直接把工具车推进去。刮花了三块。谁赔？安装方说施工方没做保护，施工方说安装方操作不当。最后业主找人换了三块砖——花色接不上，一眼就能看出来换过。保护责任没写名字，等于所有人都不认。',
   }),
 ]
 

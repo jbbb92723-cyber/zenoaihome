@@ -196,6 +196,12 @@ export default async function RiskDictionaryDetailPage({ params }: Props) {
             <p>{rule.whyItMatters}</p>
           </Section>
 
+          <Section title="我见过">
+            <div className="border-l-2 border-stone bg-stone/5 p-4 text-ink">
+              <p className="text-sm leading-relaxed">{rule.zenoSaw}</p>
+            </div>
+          </Section>
+
           <Section title="报价里常见触发词">
             <Tags items={rule.triggerTerms} />
           </Section>

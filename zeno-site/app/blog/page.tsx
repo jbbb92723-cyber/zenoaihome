@@ -4,9 +4,9 @@ import { articles } from '@/data/content/articles'
 import BlogClient from './BlogClient'
 
 export const metadata: Metadata = {
-  title: '居住判断文章｜美学、生活、装修决策与报价合同风险',
+  title: '判断文章库｜生活判断、方案判断、报价交付判断、AI与个体判断',
   description:
-    'ZenoAIHome 文章库按四类问题组织：美学与生活、空间与家庭场景、装修决策、报价合同风险。帮助业主把理想生活落到方案、预算、签约和交付判断。',
+    'ZenoAIHome 文章库按四类判断域组织：生活判断、方案与空间判断、报价与交付判断、AI与个体判断。帮助业主建立装修判断力，也帮助个体在 AI 时代建立判断力。',
   alternates: {
     canonical: 'https://zenoaihome.com/blog',
   },

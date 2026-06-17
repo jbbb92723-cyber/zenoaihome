@@ -106,17 +106,18 @@ export const primaryNav: PrimaryNavItem[] = [
     en: { label: 'Writing', href: '/en/blog' },
   },
   {
-    key: 'about',
-    zh: { label: '关于 Zeno', href: '/about' },
-    en: { label: 'About', href: '/en/about' },
+    key: 'judgment',
+    zh: { label: 'Zeno 的判断', href: '/notes' },
+    en: { label: 'Judgment Notes', href: '/en/notes' },
     groups: [
       {
-        key: 'about-group',
-        zh: { label: '关于' },
-        en: { label: 'About' },
+        key: 'judgment-group',
+        zh: { label: '一个人的判断系统', desc: '不是关于我的介绍，是我的判断习惯被公开的痕迹' },
+        en: { label: 'Judgment System', desc: 'How one person makes decisions, made visible.' },
         items: [
-          { key: 'about-zeno', zh: { label: '我是谁', href: '/about', desc: '16 年装修现场' }, en: { label: 'Who I Am', href: '/en/about', desc: '16 years on-site' } },
-          { key: 'blog', zh: { label: '文章与记录', href: '/blog', desc: '美学、生活、决策和风险' }, en: { label: 'Writing', href: '/en/blog', desc: 'Field notes & articles' } },
+          { key: 'notes', zh: { label: '判断笔记', href: '/notes', desc: '日常判断记录——比文章轻，比朋友圈重' }, en: { label: 'Judgment Notes', href: '/en/notes', desc: 'Real-time judgment traces.' } },
+          { key: 'cases', zh: { label: '判断样张', href: '/cases', desc: '三个完整的判断过程复盘' }, en: { label: 'Case Notes', href: '/en/blog', desc: 'Full judgment walkthroughs.' } },
+          { key: 'about-zeno', zh: { label: '我的判断年表', href: '/about', desc: '哪一年、哪个坑、改了哪个判断习惯' }, en: { label: 'Judgment Timeline', href: '/en/about', desc: 'When my judgment changed, and why.' } },
           { key: 'contact', zh: { label: '联系我', href: '/contact', desc: '微信 / 邮箱' }, en: { label: 'Contact', href: '/en/about', desc: 'WeChat / Email' } },
         ],
       },

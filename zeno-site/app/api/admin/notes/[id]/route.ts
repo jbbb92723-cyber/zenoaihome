@@ -7,6 +7,7 @@
 import { NextResponse } from 'next/server'
 import { isAdminUser } from '@/lib/admin'
 import { prisma } from '@/lib/prisma'
+import { getClientIp } from '@/lib/rateLimit'
 import type { NoteVisibility } from '@prisma/client'
 
 export const dynamic = 'force-dynamic'
@@ -62,6 +63,16 @@ export async function PUT(req: Request, { params }: Ctx) {
         featured: Boolean(featured),
       },
     })
+
+    await prisma.adminLog.create({
+      data: {
+        action: 'update_note',
+        target: id,
+        detail: { title: note.title, slug: note.slug, visibility: note.visibility },
+        ip: getClientIp(req),
+      },
+    })
+
     return NextResponse.json(note)
   } catch (err: unknown) {
     if (
@@ -86,7 +97,7 @@ export async function PUT(req: Request, { params }: Ctx) {
 }
 
 // ─── DELETE /api/admin/notes/[id] ────────────────────────────
-export async function DELETE(_req: Request, { params }: Ctx) {
+export async function DELETE(req: Request, { params }: Ctx) {
   if (!(await isAdminUser())) {
     return NextResponse.json({ error: '未授权' }, { status: 401 })
   }
@@ -94,6 +105,13 @@ export async function DELETE(_req: Request, { params }: Ctx) {
   const { id } = await params
   try {
     await prisma.note.delete({ where: { id } })
+    await prisma.adminLog.create({
+      data: {
+        action: 'delete_note',
+        target: id,
+        ip: getClientIp(req),
+      },
+    })
     return NextResponse.json({ message: '已删除' })
   } catch (err: unknown) {
     if (

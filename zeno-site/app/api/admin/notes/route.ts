@@ -8,6 +8,7 @@
 import { NextResponse } from 'next/server'
 import { isAdminUser } from '@/lib/admin'
 import { prisma } from '@/lib/prisma'
+import { getClientIp } from '@/lib/rateLimit'
 import type { NoteVisibility } from '@prisma/client'
 
 export const dynamic = 'force-dynamic'
@@ -69,6 +70,17 @@ export async function POST(req: Request) {
         featured: Boolean(featured),
       },
     })
+
+    // 记录操作日志
+    await prisma.adminLog.create({
+      data: {
+        action: 'create_note',
+        target: note.id,
+        detail: { title: note.title, slug: note.slug, visibility: note.visibility },
+        ip: getClientIp(req),
+      },
+    })
+
     return NextResponse.json(note, { status: 201 })
   } catch (err: unknown) {
     // Prisma unique constraint 违反（slug 重复）
