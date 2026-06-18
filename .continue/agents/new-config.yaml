@@ -1,0 +1,14 @@
+# ZenoAIHome Continue agent configuration
+# To learn more, see the full config.yaml reference: https://docs.continue.dev/reference
+
+name: DeepSeek V4 Pro
+version: 1.0.0
+schema: v1
+
+# Define which models can be used
+# https://docs.continue.dev/customization/models
+models:
+  - name: DeepSeek V4 Pro
+    provider: deepseek
+    model: deepseek-v4-pro
+    apiKey: ${{ secrets.DEEPSEEK_API_KEY }}

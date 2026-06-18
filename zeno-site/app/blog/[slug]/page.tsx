@@ -213,7 +213,7 @@ export default async function ArticlePage({ params }: Props) {
 
       {/* 按分类显示不同 CTA */}
       <div className="max-w-reading mx-auto px-5 sm:px-8">
-        <ArticleCTA category={article.category} />
+        <ArticleCTA category={article.category} parentCategorySlug={article.parentCategory} />
       </div>
 
       {/* ───── 下一步行动 ───── */}

@@ -3,9 +3,9 @@ import HomePageGptSkill from '@/components/features/home/HomePageGptSkill'
 import StructuredData from '@/components/ui/StructuredData'
 
 export const metadata: Metadata = {
-  title: '美学与生活结合后的装修判断系统｜ZenoAIHome',
+  title: '16年床垫与装修老兵，只说真话的家居避坑指南｜ZenoAIHome',
   description:
-    'ZenoAIHome 帮助业主把理想生活翻译成空间方案、装修决策、预算边界、合同约定和交付风险控制。报价风险是落地判断的一部分，不是全部。',
+    '赞诺的个人网站。装修避坑、床垫干货、生活方式、IP方法论、AI实战、OPC社群——16年真金白银换来的经验，全部公开。',
   alternates: {
     canonical: 'https://zenoaihome.com/',
   },
@@ -22,7 +22,7 @@ export default function HomePage() {
             name: 'ZenoAIHome',
             url: 'https://zenoaihome.com',
             description:
-              'ZenoAIHome 帮助业主把生活方式、审美取舍、空间方案、预算边界、报价合同和交付风险放在一起判断。',
+              '16年床垫与装修老兵赞诺的个人网站。装修避坑、床垫干货、生活方式、IP方法论、AI实战、OPC社群。',
             inLanguage: 'zh-CN',
           },
           {
@@ -31,15 +31,15 @@ export default function HomePage() {
             name: 'ZenoAIHome',
             url: 'https://zenoaihome.com',
             description:
-              'ZenoAIHome 是一个美学与生活结合后的装修判断系统，不做泛装修百科，也不替装修公司背书。',
+              'ZenoAIHome 是赞诺的私人自留地——16年床垫与装修老兵，只说真话，不卖货。',
           },
           {
             '@context': 'https://schema.org',
             '@type': 'WebPage',
-            name: '美学与生活结合后的装修判断系统',
+            name: '16年床垫与装修老兵，只说真话的家居避坑指南',
             url: 'https://zenoaihome.com/',
             description:
-              'ZenoAIHome 帮助用户在装修前看清生活方式、审美取舍、空间方案、预算边界、报价合同和交付风险。',
+              '装修避坑、床垫干货、生活方式、IP方法论、AI实战、OPC社群——赞诺的私人自留地。',
             inLanguage: 'zh-CN',
             isPartOf: {
               '@type': 'WebSite',

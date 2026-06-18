@@ -94,7 +94,7 @@ export default function Footer() {
         {/* 版权栏 */}
         <div className="mt-12 flex flex-col items-start justify-between gap-2 border-t border-border pt-6 sm:flex-row sm:items-center">
           <p className="text-[0.75rem] text-ink-faint">
-            © {year} ZenoAIHome · zenoaihome.com
+            © {year} ZenoAIHome.com | 赞诺的私人自留地 | 所有内容均为个人观点
           </p>
           <p className="text-[0.75rem] text-ink-faint">
             {isEn

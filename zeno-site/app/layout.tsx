@@ -12,27 +12,27 @@ import '@/styles/globals.css'
 
 export const metadata: Metadata = {
   title: {
-    default: 'ZenoAIHome — 美学与生活结合后的装修判断系统',
+    default: 'ZenoAIHome | 16年床垫与装修老兵，只说真话的家居避坑指南',
     template: '%s · ZenoAIHome',
   },
   description:
-    'ZenoAIHome 帮业主把理想生活翻译成可落地的空间方案、装修决策、预算边界、合同约定和交付风险控制。先看生活与美学，再看报价合同能不能承接。',
-  keywords: ['居住判断', '装修决策', '美学与生活', '装修报价', '装修预算', '装修合同', '报价风险', '签约前判断'],
-  authors: [{ name: 'Zeno' }],
+    '16年床垫与装修老兵赞诺的个人网站。装修避坑、床垫干货、生活方式、IP方法论、AI实战、OPC社群——只说真话，不卖货。',
+  keywords: ['装修避坑', '床垫干货', '家居避坑', '装修合同', '床垫选购', '生活方式', 'AI实战', '一人公司', '赞诺', 'Zeno'],
+  authors: [{ name: 'Zeno · 赞诺' }],
   openGraph: {
     type: 'website',
     locale: 'zh_CN',
     url: 'https://zenoaihome.com',
     siteName: 'ZenoAIHome',
-    title: 'ZenoAIHome — 美学与生活结合后的装修判断系统',
+    title: 'ZenoAIHome | 16年床垫与装修老兵，只说真话的家居避坑指南',
     description:
-      '把生活方式、审美取舍、空间方案、预算边界、报价合同和交付风险放在一起判断。',
+      '装修避坑、床垫干货、生活方式、IP方法论、AI实战、OPC社群——16年行业老兵赞诺，把真金白银换来的经验全部公开。',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'ZenoAIHome — 美学与生活结合后的装修判断系统',
+    title: 'ZenoAIHome | 16年床垫与装修老兵，只说真话的家居避坑指南',
     description:
-      '从想要的生活开始，判断空间方案、装修决策、预算报价、合同约定和交付风险能不能真正落地。',
+      '装修避坑、床垫干货、生活方式、IP方法论、AI实战、OPC社群——16年行业老兵赞诺的私人自留地。',
   },
   robots: {
     index: true,
