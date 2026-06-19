@@ -7,7 +7,8 @@
       "Bash(node -e \"process.stdout.write\\('“锚住”'\\)\")",
       "Bash(node -e \"require\\('fs'\\).readFileSync\\('g:/Zenoaihome.com/zeno-site/scripts/polish-articles.js','utf-8'\\).substring\\(1790, 1920\\)\")",
       "PowerShell(\\(Get-Content \"g:\\\\Zenoaihome.com\\\\zeno-site\\\\scripts\\\\polish-articles.js\" -Encoding UTF8\\)[59])",
-      "Bash(node \"g:/Zenoaihome.com/zeno-site/scripts/analyze-long-sentences.js\")"
+      "Bash(node \"g:/Zenoaihome.com/zeno-site/scripts/analyze-long-sentences.js\")",
+      "Bash(node -e ' *)"
     ]
   }
 }
