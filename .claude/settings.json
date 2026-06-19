@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node -e \"console.log\\('test: “锚住”'\\)\")",
+      "Bash(node -e \"const s = '“锚住”'; for\\(let i=0; i<s.length; i++\\) console.log\\(i, s.charCodeAt\\(i\\).toString\\(16\\), s[i]\\)\")",
+      "Bash(node -pe \"const fs=require\\('fs'\\); const s=fs.readFileSync\\('g:/Zenoaihome.com/zeno-site/scripts/polish-articles.js','utf-8'\\); const lines=s.split\\('\\\\n'\\); console.log\\(JSON.stringify\\(lines[59]\\)\\)\")",
+      "Bash(node -e \"process.stdout.write\\('“锚住”'\\)\")",
+      "Bash(node -e \"require\\('fs'\\).readFileSync\\('g:/Zenoaihome.com/zeno-site/scripts/polish-articles.js','utf-8'\\).substring\\(1790, 1920\\)\")",
+      "PowerShell(\\(Get-Content \"g:\\\\Zenoaihome.com\\\\zeno-site\\\\scripts\\\\polish-articles.js\" -Encoding UTF8\\)[59])",
+      "Bash(node \"g:/Zenoaihome.com/zeno-site/scripts/analyze-long-sentences.js\")"
+    ]
+  }
+}
