@@ -64,7 +64,11 @@ for (const art of idMap) {
   while (pos < cleaned.length) {
     if (cleaned[pos] === "\\") { pos += 2; continue; }
     if (cleaned[pos] === "\x60") {
-      const afterBT = cleaned.substring(pos + 1, pos + 8).trimStart();
+      // This backtick must be followed by `,\n` or `,\r\n` or `}\n` (not a backtick inside content)
+      // Check that the backtick is NOT preceded by a space (it's the closing one)
+      const before = cleaned[pos - 1];
+      // Content can contain backticks, so verify this is the end-of-template-literal one
+      const afterBT = cleaned.substring(pos + 1, pos + 10).replace(/^\s+/, "");
       if (afterBT.startsWith(",") || afterBT.startsWith("}")) {
         contentClosePositions.push({ id: art.id, cat: art.cat, closePos: pos });
         found = true;
