@@ -9,7 +9,9 @@
       "PowerShell(\\(Get-Content \"g:\\\\Zenoaihome.com\\\\zeno-site\\\\scripts\\\\polish-articles.js\" -Encoding UTF8\\)[59])",
       "Bash(node \"g:/Zenoaihome.com/zeno-site/scripts/analyze-long-sentences.js\")",
       "Bash(node -e ' *)",
-      "Bash(node \"g:/Zenoaihome.com/zeno-site/scripts/fix-endings.js\")"
+      "Bash(node \"g:/Zenoaihome.com/zeno-site/scripts/fix-endings.js\")",
+      "Bash(node \"g:/Zenoaihome.com/zeno-site/scripts/fix-endings-v2.js\")",
+      "Bash(node \"g:/Zenoaihome.com/zeno-site/scripts/fix-endings-v3.js\")"
     ]
   }
 }
