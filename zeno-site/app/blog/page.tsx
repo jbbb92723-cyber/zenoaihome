@@ -1,3 +1,4 @@
+import { Suspense } from 'react'
 import type { Metadata } from 'next'
 import StructuredData from '@/components/ui/StructuredData'
 import { articles } from '@/data/content/articles'
@@ -34,7 +35,9 @@ export default function BlogPage() {
           })),
         }}
       />
-      <BlogClient />
+      <Suspense fallback={<div className="py-20 text-center text-ink-muted">加载中…</div>}>
+        <BlogClient />
+      </Suspense>
     </>
   )
 }

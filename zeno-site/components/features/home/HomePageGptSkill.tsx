@@ -337,7 +337,7 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
 
           <motion.div initial="hidden" animate="visible" variants={staggerContainer} className="max-w-[34rem] lg:pb-6">
             <motion.p variants={staggerItem} className="editorial-serif text-2xl leading-[1.18] text-ink sm:text-[2rem]">
-              我做了16年装修。最深的体会是：大部分问题不是施工做错了，是签约前该想清楚的没人帮你想。
+              装修做了16年，床垫卖了十几年。最深的体会：大部分坑不是施工做错了，是签合同之前该看清楚的东西没人帮你看。
             </motion.p>
             <motion.div variants={staggerItem} className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <ActionLink href="/living-diagnosis">
