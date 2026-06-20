@@ -41,11 +41,11 @@ const staggerItem = {
 }
 
 const instrumentStages = [
-  { code: '01', title: '理想生活', body: '这个家要支持怎样的一天', status: '先说清' },
-  { code: '02', title: '空间秩序', body: '动线、收纳、陪伴、独处如何共存', status: '待排序' },
-  { code: '03', title: '预算边界', body: '钱应该先投给哪些长期体验', status: '要取舍' },
-  { code: '04', title: '报价合同', body: '材料、工艺、数量和责任是否落字', status: '需追问' },
-  { code: '05', title: '交付风险', body: '验收、延期、售后和变更怎么确认', status: '签前看' },
+  { code: '01', title: '想过什么日子', body: '家里几口人、每天怎么过，先写下来', status: '第一步' },
+  { code: '02', title: '空间怎么用', body: '动线顺不顺、东西放哪、谁在哪待着', status: '排顺序' },
+  { code: '03', title: '钱往哪花', body: '哪些地方不能省、哪些可以晚点买', status: '做取舍' },
+  { code: '04', title: '报价看清楚', body: '材料写没写全、数量对不对、责任在谁', status: '逐条问' },
+  { code: '05', title: '签之前确认', body: '验收怎么验、拖工期怎么办、售后谁管', status: '落纸上' },
 ]
 
 const dimensionRows: Array<{
@@ -57,43 +57,43 @@ const dimensionRows: Array<{
 }> = [
   {
     icon: HouseLine,
-    title: '美学与生活融合',
-    question: '效果图好看，日常光线、材质维护和生活习惯能不能长期成立？',
-    output: '长期审美、材质控制和维护边界',
+    title: '好看能不能经得住日常',
+    question: '效果图漂亮，住进去三个月以后呢？光线、材质、清洁、孩子和宠物——这些才是每天的考题。',
+    output: '长期审美、材质和维护边界',
     href: '/living-diagnosis',
   },
   {
     icon: Notebook,
-    title: '个性化实现',
-    question: '你攒下来的灵感图，背后真正稳定的偏好是什么？',
-    output: '色彩、比例、材质、收纳和预算优先级',
+    title: '你真正喜欢的是什么',
+    question: '攒了一堆灵感图。把那些图放一起看，反复出现的颜色、材质、空间感觉——那才是你真正想要的。',
+    output: '色彩、比例、材质和预算优先级',
     href: '/living-diagnosis',
   },
   {
     icon: Wrench,
-    title: '空间赋能',
-    question: '空间是在堆功能，还是让家务、收纳、工作、陪伴和社交更顺？',
+    title: '空间是助手还是阻碍',
+    question: '厨房做饭顺不顺手、客厅能不能让人放松、阳台晾衣服方不方便——空间应该帮你省力，不是给你添麻烦。',
     output: '空间冲突点和功能排序',
     href: '/cases',
   },
   {
     icon: UsersThree,
-    title: '家庭关系与社交',
-    question: '餐桌、客厅、厨房、书房和阳台，会怎样改变陪伴与边界？',
+    title: '家会怎么改变你们的关系',
+    question: '餐桌不只是吃饭的地方，客厅不只是看电视的地方。这些空间每天在塑造你们怎么相处。',
     output: '家庭场景和社交尺度',
     href: '/blog',
   },
   {
     icon: ShieldCheck,
-    title: '情绪价值与心理需求',
-    question: '这个家是否承接放松、独处、安全感、秩序感和恢复感？',
+    title: '回到家能松下来吗',
+    question: '有的人需要安静角落，有的人需要秩序感，有的人需要一个不被打扰的地方。你的家接得住这些吗？',
     output: '情绪场景和空间节奏',
     href: '/living-diagnosis',
   },
   {
     icon: MagnifyingGlass,
-    title: '报价 / 合同 / 交付风险',
-    question: '报价和合同能不能承接前面的生活目标、方案选择和预算边界？',
+    title: '报价和合同能兜住前面的决定吗',
+    question: '前面想清楚了生活怎么过，报价和合同能不能把这些想法接住？还是看完报价发现完全对不上？',
     output: '风险点、追问清单和签前边界',
     href: '/tools/quote-check',
   },
@@ -102,25 +102,25 @@ const dimensionRows: Array<{
 const releaseCards = [
   {
     title: '居住诊断',
-    body: '先把家庭生活、审美偏好、空间优先级和预算边界说清。',
-    meta: 'FREE TOOL',
-    date: '入口一',
+    body: '还没想清楚要装成什么样？先别急着看图。把你的生活方式、审美偏好、空间需求和预算一起捋一遍。',
+    meta: '免费工具',
+    date: '起点',
     href: '/living-diagnosis',
     cta: '开始诊断',
   },
   {
     title: '报价风险初筛',
-    body: '已有报价时，先看材料、工艺、数量、付款节点和责任边界。',
-    meta: 'RISK CONTROL',
-    date: '入口二',
+    body: '已经拿到报价了？先别急着签。发给我帮你看看材料、工艺、数量和付款方式有没有坑。',
+    meta: '风险筛查',
+    date: '签约前',
     href: '/tools/quote-check',
     cta: '做初筛',
   },
   {
     title: '居住方案综合判断',
-    body: '把美学、生活、预算、报价、合同和交付风险放在一起看。',
-    meta: 'SERVICE',
-    date: '深服务',
+    body: '想把生活方式、预算、报价、合同和交付这些事放在一起看？我来帮你做一份完整的方案和风险判断。',
+    meta: '深度服务',
+    date: '决策包',
     href: '/services#quote-deep',
     cta: '看服务',
   },
@@ -129,33 +129,33 @@ const releaseCards = [
 const riskSignals = [
   {
     title: '按实结算',
-    body: '它不一定有问题，但数量、范围和最终金额不能留到施工后才说。',
+    body: '写"按实结算"本身不是问题。问题是数量、范围和最终金额不能等到施工做完了你才知道。',
     href: '/risk-dictionary/actual-settlement-change-order-risk',
   },
   {
-    title: '材料品牌型号缺失',
-    body: '只写品牌或同档材料，不写型号规格，后期替换时很难判断是否缩水。',
+    title: '材料只写了品牌没写型号',
+    body: '"品牌乳胶漆"四个字不够。同一个品牌下面十几条产品线，价格能差好几倍。型号要写进合同。',
     href: '/risk-dictionary/missing-material-brand-model',
   },
   {
-    title: '口头承诺未写入合同',
-    body: '销售说过、群里聊过，都不等于合同有保障，关键承诺要落成附件。',
+    title: '口头承诺没写进合同',
+    body: '销售说的、微信聊的，都不等于合同里有。开工前把重要的承诺写成合同附件，双方签字。',
     href: '/risk-dictionary/oral-promise-not-written',
   },
 ]
 
 const homeFaqs = [
   {
-    question: 'AI 居住诊断是什么？',
-    answer: '它不是风格测试，而是把生活方式、审美偏好、家庭场景、空间优先级、预算取舍和签约风险放在一起做初步判断。',
+    question: '你这个居住诊断是干什么的？',
+    answer: '不是风格测试。是把你的生活方式、审美偏好、家庭场景、空间优先级、预算底线放在一起看一遍，帮你在找装修公司之前先把方向搞清楚。',
   },
   {
-    question: '为什么报价风险不是首页唯一入口？',
-    answer: '因为报价应该承接前面的生活目标和空间选择。只看报价，容易错过更早埋下的方案、预算和交付问题。',
+    question: '为什么不直接把报价工具放最前面？',
+    answer: '因为报价不是孤立的。它应该能接住你前面想清楚的生活方式。先想清楚自己要什么，再看报价，顺序反了容易踩坑。',
   },
   {
-    question: 'ZenoAIHome 会替我做最终决定吗？',
-    answer: '不会。它帮助你看清风险和取舍，不替你选择施工方，不承诺最低价，也不代替法律审查。',
+    question: '你能替我做最终决定吗？',
+    answer: '不能。我不会替你选施工方，不承诺最低价，也不代替律师审合同。我帮你的是：把看不清的地方拆开，把风险提前标出来，把取舍说清楚。决定还是你做。',
   },
 ]
 
@@ -251,13 +251,13 @@ function FeaturePanel({ fontClassName }: Props) {
       >
         <motion.div variants={staggerItem} className="flex min-h-[34rem] flex-col items-start justify-center px-7 py-14 text-center sm:px-12 lg:px-16">
           <p className="mx-auto text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-[#DED2BE] lg:mx-0">
-            Living Decision System
+            从生活到交付，五步看清楚
           </p>
           <h2 className="editorial-display mx-auto mt-7 max-w-[28rem] text-[3.35rem] leading-[0.98] sm:text-[5rem] lg:mx-0 lg:text-left">
-            生活到交付判断系统
+            先判断，再装修
           </h2>
           <p className="mx-auto mt-6 max-w-[18rem] text-base leading-7 text-[#DED2BE] lg:mx-0 lg:text-left">
-            从想要的生活开始，向后核对空间、预算、报价合同和交付风险。
+            从你想要的日常开始，一步步对到报价和合同。
           </p>
           <div className="mt-7 w-full max-w-[28rem] space-y-2">
             {instrumentStages.map((stage, index) => (
@@ -328,7 +328,7 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
               variants={staggerItem}
               className="editorial-display max-w-[13ch] text-[3.05rem] leading-[1.06] text-ink sm:text-[5rem] lg:text-[5.9rem]"
             >
-              <span className="headline-underline">居住判断</span>和工具，把<span className="headline-underline">理想生活</span>放到签约前。
+              在<span className="headline-underline">签约之前</span>，把<span className="headline-underline">你的生活</span>想清楚。
             </motion.h1>
             <motion.p variants={staggerItem} className="mt-4 text-xs font-semibold uppercase tracking-[0.18em] text-stone">
               今天在看的：南宁第 38 份水电没有上限的报价——和 2018 年第一份一样。
@@ -337,7 +337,7 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
 
           <motion.div initial="hidden" animate="visible" variants={staggerContainer} className="max-w-[34rem] lg:pb-6">
             <motion.p variants={staggerItem} className="editorial-serif text-2xl leading-[1.18] text-ink sm:text-[2rem]">
-              装修不是把房子装完，而是让美学、生活方式、空间秩序、预算边界和交付风险互相承接。
+              我做了16年装修。最深的体会是：大部分问题不是施工做错了，是签约前该想清楚的没人帮你想。
             </motion.p>
             <motion.div variants={staggerItem} className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <ActionLink href="/living-diagnosis">
@@ -357,7 +357,7 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
 
       <AnimatedSection className="border-b border-border px-5 py-16 sm:px-8 sm:py-20 lg:px-12">
         <div className="mx-auto max-w-[1320px]">
-          <h2 className="mb-6 text-xl font-semibold text-ink">判断入口</h2>
+          <h2 className="mb-6 text-xl font-semibold text-ink">从哪开始</h2>
           <div className="grid gap-6 lg:grid-cols-3">
             {releaseCards.map((card) => (
               <Link
@@ -390,9 +390,9 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
       <AnimatedSection className="border-b border-border px-5 py-16 sm:px-8 sm:py-20 lg:px-12">
         <div className="mx-auto grid max-w-[1320px] gap-12 lg:grid-cols-[0.42fr_0.58fr]">
           <SectionTitle
-            eyebrow="判断维度"
-            title="不先判断，装修就会变成一堆孤立选择。"
-            body="风格、收纳、预算、报价和合同不是分开的。一个家的问题，往往是在这些选择彼此没有承接时出现。"
+            eyebrow="六个维度"
+            title="装修不是一堆孤立的选择，它们之间互相关联。"
+            body="风格、收纳、预算、报价和合同——单独看每件事可能都没问题，但放在一起，裂缝就出来了。"
           />
           <div className="grid gap-px overflow-hidden rounded-[8px] border border-border bg-border">
             {dimensionRows.map((row, index) => {
@@ -421,12 +421,12 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
       <AnimatedSection className="border-b border-border bg-[#111111] px-5 py-16 text-[#F4F1E8] sm:px-8 sm:py-20 lg:px-12">
         <div className="mx-auto grid max-w-[1320px] gap-12 lg:grid-cols-[0.44fr_0.56fr]">
           <div>
-            <p className="text-sm font-semibold tracking-[0.18em] text-[#DED2BE]">签约前风险</p>
+            <p className="text-sm font-semibold tracking-[0.18em] text-[#DED2BE]">签约前必看</p>
             <h2 className="editorial-display mt-4 max-w-xl text-[2.2rem] leading-[1.12] sm:text-[3.3rem]">
-              报价风险，是理想生活落地时必须经过的关口。
+              报价里的坑，签之前都能看出来。
             </h2>
             <p className="mt-5 max-w-md text-base leading-8 text-[#DED2BE]">
-              风险不是用来制造焦虑的。它的价值，是把签约前需要写清楚、问清楚、确认清楚的地方提前列出来。
+              不是吓你。做了16年，这三类问题几乎每份报价都会出现——看完再签，不迟。
             </p>
           </div>
           <div className="grid gap-4">
@@ -455,9 +455,9 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
       <AnimatedSection className="border-b border-border px-5 py-16 sm:px-8 sm:py-20 lg:px-12">
         <div className="mx-auto grid max-w-[1320px] gap-10 lg:grid-cols-[0.4fr_0.6fr]">
           <SectionTitle
-            eyebrow="服务路径"
-            title="服务不是价格列表，而是判断深度。"
-            body="从免费诊断到综合判断，每一层都对应你当前材料的完整度和签约风险。"
+            eyebrow="服务"
+            title="从免费诊断到深度判断，按你的情况来。"
+            body="不催你付费。先看看你现在手里有什么材料，缺什么，再看需要我帮你到哪一步。"
           />
           <div className="rounded-[8px] bg-surface-warm p-5 sm:p-7">
             <CommercialLadder variant="instrument" />
@@ -468,9 +468,9 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
       <AnimatedSection className="px-5 py-16 sm:px-8 sm:py-20 lg:px-12">
         <div className="mx-auto grid max-w-[1320px] gap-10 lg:grid-cols-[0.42fr_0.58fr]">
           <div>
-            <p className="text-sm font-semibold tracking-[0.18em] text-ink">边界</p>
+            <p className="text-sm font-semibold tracking-[0.18em] text-ink">说清楚</p>
             <h2 className="editorial-display mt-4 max-w-xl text-[2.2rem] leading-[1.12] text-ink sm:text-[3.3rem]">
-              ZenoAIHome 只做一件事：把看不清的地方拆开。
+              我只做一件事：把你看不清的地方拆开。
             </h2>
           </div>
           <div className="grid gap-4 sm:grid-cols-3">
