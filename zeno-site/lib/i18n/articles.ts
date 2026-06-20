@@ -219,6 +219,102 @@ Starting from renovation, I saw spaces and people. Looking further ahead, I see 
 If you're in a traditional industry and want to put AI to practical use, start with one small workflow. You don't need to go big all at once. I'll keep sharing the workflow templates I've tested in the resource library — take what works and adapt it to your own rhythm.`,
     },
   },
+  {
+    articleId: '71',
+    en: {
+      slug: 'mattress-not-about-price',
+      title: 'An Expensive Mattress Doesn\'t Mean a Better Sleep',
+      excerpt: '16 years selling and tearing down mattresses. What I learned: the expensive one and the right one are rarely the same. Most of what you pay for has nothing to do with your back.',
+      category: 'Mattress',
+      tags: ['mattress', 'buying guide', 'materials', 'pricing', 'sleep trial'],
+      coverAlt: 'Mattress buying guide',
+      content: '',
+    },
+  },
+  {
+    articleId: '72',
+    en: {
+      slug: 'mattress-renovation-same-pricing-tricks',
+      title: 'The Mattress Industry Uses the Same Pricing Tricks as Renovation',
+      excerpt: 'After 16 years in renovation and years selling mattresses, I can tell you: both industries play the exact same games. Vague quotes, step-up selling, optional features shown as standard.',
+      category: 'Mattress',
+      tags: ['mattress', 'industry insider', 'pricing', 'sales tactics', 'renovation'],
+      coverAlt: 'Mattress industry pricing tricks',
+      content: '',
+    },
+  },
+  {
+    articleId: '73',
+    en: {
+      slug: 'ten-minute-sleep-trial-lie',
+      title: 'A 10-Minute Store Trial and a Full Night\'s Sleep Are Two Different Worlds',
+      excerpt: 'You lie down for 10 minutes in a showroom and think "this feels good." A month later, your back hurts every morning. Your body can\'t judge a mattress in 10 minutes.',
+      category: 'Mattress',
+      tags: ['mattress', 'sleep trial', 'buying guide', 'sleep position', 'returns'],
+      coverAlt: 'Mattress sleep trial reality',
+      content: '',
+    },
+  },
+  {
+    articleId: '74',
+    en: {
+      slug: 'mattress-materials-marketing-vs-reality',
+      title: 'Mattress Materials: What Sounds Premium vs. What Actually Affects Your Sleep',
+      excerpt: 'Space memory foam. High-purity natural latex. Gel-infused cooling layer. Each one sounds like it\'s worth 2000 yuan. Taken apart, most of it is marketing vocabulary.',
+      category: 'Mattress',
+      tags: ['mattress', 'materials', 'springs', 'latex', 'memory foam', 'fabric'],
+      coverAlt: 'Mattress materials explained',
+      content: '',
+    },
+  },
+  {
+    articleId: '75',
+    en: {
+      slug: 'mattress-sags-after-three-years',
+      title: 'Your Mattress Sagged After Three Years. It Might Not Be a Quality Problem.',
+      excerpt: 'Your mattress has a dent. The store says it\'s normal wear and tear. Sometimes it is. Sometimes it isn\'t. More often, the things you did wrong hurt the mattress more than the materials.',
+      category: 'Mattress',
+      tags: ['mattress', 'maintenance', 'rotation', 'lifespan', 'replacement'],
+      coverAlt: 'Mattress sagging after three years',
+      content: '',
+    },
+  },
+  {
+    articleId: '76',
+    en: {
+      slug: 'about-zeno',
+      title: 'From Job Site to Solo Business — This Is Zeno',
+      excerpt: '16 years in renovation and mattresses. Not a renovation company. Not a designer. I help you translate the life you want into actionable plans and clear judgment.',
+      category: 'About',
+      tags: ['about', 'Zeno', 'solo business', 'residential judgment'],
+      coverAlt: 'About Zeno',
+      content: '',
+    },
+  },
+  {
+    articleId: '77',
+    en: {
+      slug: 'traditional-industry-personal-brand',
+      title: 'For Traditional Industry People, Your Hard-Earned Lessons Are Your Biggest Asset',
+      excerpt: 'Building a personal brand isn\'t about becoming an influencer. It\'s about turning the mistakes you\'ve made, the traps you\'ve seen, and the judgment you\'ve built into something that helps others.',
+      category: 'Personal Brand',
+      tags: ['personal brand', 'traditional industry', 'content creation', 'trust'],
+      coverAlt: 'Traditional industry personal brand',
+      content: '',
+    },
+  },
+  {
+    articleId: '78',
+    en: {
+      slug: 'two-years-of-ai-real-value',
+      title: 'After Two Years With AI, the Biggest Value Isn\'t Speed — It\'s Clarity of Judgment',
+      excerpt: 'AI didn\'t make me faster. It made me clearer. It helps me organize scattered experience into reusable judgment frameworks. But it can never do the thinking for me.',
+      category: 'AI in Practice',
+      tags: ['AI', 'workflow', 'judgment', 'traditional industry', 'experience systematization'],
+      coverAlt: 'Two years of AI real experience',
+      content: '',
+    },
+  },
 ]
 
 // ── 查询方法 ────────────────────────────────────────────

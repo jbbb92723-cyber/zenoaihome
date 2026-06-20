@@ -43,7 +43,7 @@ export const primaryCategories: ContentCategory[] = [
   {
     slug: 'opc',
     name: 'OPC·同行有你',
-    description: '一人公司模式、实战项目、社群动态、AI新学社',
+    description: '一人公司模式、实战项目、社群动态、AI成长营',
   },
   {
     slug: 'about',
@@ -64,7 +64,7 @@ export const subcategories: ContentCategory[] = [
   { slug: 'solo-method', name: '一人公司方法论', parentSlug: 'opc' },
   { slug: 'projects', name: '实战项目', parentSlug: 'opc' },
   { slug: 'community', name: '社群动态', parentSlug: 'opc' },
-  { slug: 'ai-school', name: 'AI新学社', parentSlug: 'opc' },
+  { slug: 'ai-school', name: 'AI成长营', parentSlug: 'opc' },
 ]
 
 /* ─── 查找辅助函数 ──────────────────────────────────── */
@@ -133,5 +133,5 @@ export const categoryNameToSlug: Record<string, string> = {
   '一人公司方法论': 'solo-method',
   '实战项目': 'projects',
   '社群动态': 'community',
-  'AI新学社': 'ai-school',
+  'AI成长营': 'ai-school',
 }

@@ -92,7 +92,7 @@ export const primaryNav: PrimaryNavItem[] = [
           { key: 'solo-method', zh: { label: '一人公司方法论', href: '/blog?category=opc&sub=solo-method', desc: '怎么干、怎么管、怎么分钱' }, en: { label: 'Solo Method', href: '/en/blog', desc: 'How to run a one-person business.' } },
           { key: 'projects', zh: { label: '实战项目', href: '/blog?category=opc&sub=projects', desc: '茉莉花出海、跨境电商、AI短剧复盘' }, en: { label: 'Projects', href: '/en/blog', desc: 'Real project reviews.' } },
           { key: 'community', zh: { label: '社群动态', href: '/blog?category=opc&sub=community', desc: '活动、公约、成员故事' }, en: { label: 'Community', href: '/en/blog', desc: 'Events, guidelines, and stories.' } },
-          { key: 'ai-school', zh: { label: 'AI新学社', href: '/blog?category=opc&sub=ai-school', desc: '轻培训、轻陪跑、新手转型' }, en: { label: 'AI School', href: '/en/blog', desc: 'Light training and mentoring.' } },
+          { key: 'ai-school', zh: { label: 'AI成长营', href: '/blog?category=opc&sub=ai-school', desc: '轻培训、轻陪跑、新手转型' }, en: { label: 'AI School', href: '/en/blog', desc: 'Light training and mentoring.' } },
         ],
       },
     ],

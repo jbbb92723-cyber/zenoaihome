@@ -15,6 +15,14 @@ import { article67Content } from './article-67-content'
 import { article68Content } from './article-68-content'
 import { article69Content } from './article-69-content'
 import { article70Content } from './article-70-content'
+import { article71Content } from './article-71-content'
+import { article72Content } from './article-72-content'
+import { article73Content } from './article-73-content'
+import { article74Content } from './article-74-content'
+import { article75Content } from './article-75-content'
+import { article76Content } from './article-76-content'
+import { article77Content } from './article-77-content'
+import { article78Content } from './article-78-content'
 
 export interface Article {
   id: string
@@ -6806,6 +6814,114 @@ AI不是魔法。它是一个工具——能帮你整理、对比、查漏，但
     coverImage: '',
     coverAlt: '传统行业人用AI的真正机会不是转型而是把经验系统化',
     content: article66Content,
+  },
+  {
+    id: '71',
+    slug: 'chuangdian-bu-shi-yue-gui-yue-hao',
+    title: '床垫不是越贵越好，先搞清楚你真正需要什么',
+    excerpt: '16年卖床垫拆床垫的经验：贵的和适合你的，经常不是同一个。花的钱大部分跟你的腰没关系。',
+    category: '床垫干货',
+    parentCategory: 'mattress',
+    tags: ['床垫', '选购', '材料', '定价', '试睡'],
+    date: '2026-06-19',
+    coverImage: '',
+    coverAlt: '床垫不是越贵越好',
+    content: article71Content,
+  },
+  {
+    id: '72',
+    slug: 'chuangdian-hangye-zhuangxiu-taolu',
+    title: '床垫行业和装修行业的定价套路，本质上是同一件事',
+    excerpt: '做了16年装修又卖了多年床垫，发现两个行业的定价套路一模一样：模糊报价、阶梯升级、选配当标配。消费者保护自己的方式只有一种——进店之前搞清楚自己要什么。',
+    category: '床垫干货',
+    parentCategory: 'mattress',
+    subcategory: 'insider',
+    tags: ['床垫', '行业内幕', '定价', '销售套路', '装修'],
+    date: '2026-06-19',
+    coverImage: '',
+    coverAlt: '床垫行业和装修行业定价套路',
+    content: article72Content,
+  },
+  {
+    id: '73',
+    slug: 'shishui-shifenzhong-pianju',
+    title: '试睡10分钟和睡一整晚，差距比你想象的大得多',
+    excerpt: '展厅里躺10分钟觉得舒服，回家睡一个月腰酸。身体的真实反馈不在展厅，在你的卧室。',
+    category: '床垫干货',
+    parentCategory: 'mattress',
+    subcategory: 'buying',
+    tags: ['床垫', '试睡', '选购', '睡姿', '退货'],
+    date: '2026-06-19',
+    coverImage: '',
+    coverAlt: '试睡10分钟骗局',
+    content: article73Content,
+  },
+  {
+    id: '74',
+    slug: 'chuangdian-cailiao-zhenxiang',
+    title: '床垫材料里的"高级感"和"真正影响睡眠"是两回事',
+    excerpt: '太空记忆棉、高纯度天然乳胶、恒温凝胶层——听上去每一项值两千块。拆开看，大部分是营销词汇。',
+    category: '床垫干货',
+    parentCategory: 'mattress',
+    subcategory: 'material',
+    tags: ['床垫', '材料', '弹簧', '乳胶', '记忆棉', '面料'],
+    date: '2026-06-19',
+    coverImage: '',
+    coverAlt: '床垫材料真相',
+    content: article74Content,
+  },
+  {
+    id: '75',
+    slug: 'chuangdian-yong-sannian-ta',
+    title: '床垫用三年就塌，不一定是质量问题',
+    excerpt: '床垫塌了，商家说正常损耗。有些是，有些不是。你做错的几件事，可能比材料本身更伤床垫。',
+    category: '床垫干货',
+    parentCategory: 'mattress',
+    subcategory: 'care',
+    tags: ['床垫', '保养', '翻面', '寿命', '更换'],
+    date: '2026-06-19',
+    coverImage: '',
+    coverAlt: '床垫用三年就塌',
+    content: article75Content,
+  },
+  {
+    id: '76',
+    slug: 'about-zeno-cong-gongdi-dao-yiren-gongsi',
+    title: '从装修现场到一人公司——我是赞诺',
+    excerpt: '16年装修和床垫从业者。不是装修公司，不是设计师。帮你把想要的生活翻译成可落地的方案和判断。',
+    category: '关于我',
+    parentCategory: 'about',
+    tags: ['关于我', '赞诺', '一人公司', '居住判断'],
+    date: '2026-06-19',
+    coverImage: '',
+    coverAlt: '关于赞诺',
+    content: article76Content,
+  },
+  {
+    id: '77',
+    slug: 'chuantong-hangye-ren-zuo-ip-zhenzheng-zichan',
+    title: '传统行业人做IP，你吃过的亏才是最大的资产',
+    excerpt: '做IP不是搞自媒体。是把你在工地、在店里、在跟客户打交道时积累的真实经验，变成能帮到别人的内容。你的经历，AI编不出来。',
+    category: 'IP方法论',
+    parentCategory: 'ip',
+    tags: ['IP', '个人品牌', '传统行业', '内容创作', '信任'],
+    date: '2026-06-19',
+    coverImage: '',
+    coverAlt: '传统行业人做IP',
+    content: article77Content,
+  },
+  {
+    id: '78',
+    slug: 'ai-liangnian-zui-zhiqian-de-bushi-xiaolv',
+    title: '用了两年AI，最值钱的不是效率提升，是判断框架变清晰了',
+    excerpt: 'AI给我的不是快，是清楚。帮我把散在微信、语音、脑子里的经验整理成可复用的判断笔记。但不能让它替我想。',
+    category: 'AI 实践',
+    parentCategory: 'ai',
+    tags: ['AI', '工作流', '判断力', '传统行业', '经验系统化'],
+    date: '2026-06-19',
+    coverImage: '',
+    coverAlt: 'AI两年真实体验',
+    content: article78Content,
   },
 ]
 

@@ -6,17 +6,17 @@ import ArticleCardEn from './ArticleCardEn'
 import { getRecentLocalizedArticles } from '@/lib/i18n'
 
 export const metadata: Metadata = {
-  title: 'ZenoAIHome | Residential Judgment Before Renovation',
+  title: 'ZenoAIHome | Think Before You Sign',
   description:
-    'A selective English edition of ZenoAIHome for homeowners in China. Clarify lifestyle goals, spatial priorities, budget boundaries, quote risks, contract terms, and delivery responsibilities before renovation decisions become expensive.',
+    '16 years in renovation and mattresses. I help you figure out what you actually need — before the quote, before the contract, before the regret.',
   openGraph: {
     type: 'website',
     locale: 'en',
     url: 'https://zenoaihome.com/en',
     siteName: 'ZenoAIHome',
-    title: 'ZenoAIHome | Residential Judgment Before Renovation',
+    title: 'ZenoAIHome | Think Before You Sign',
     description:
-      'A practical residential judgment system built from 16 years of real renovation-site experience in China.',
+      'Real judgment from 16 years on job sites. Not a renovation company. Not a designer. Just someone who has seen enough to help you see clearly.',
   },
   alternates: {
     canonical: 'https://zenoaihome.com/en',
@@ -78,10 +78,10 @@ export default function EnHomePage() {
                 Selective English Edition
               </p>
               <h1 className="max-w-3xl text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-5xl">
-                Before renovation decisions harden, see whether the life you want can actually be carried by the plan, quote, and contract.
+                Before you sign, figure out what you actually want.
               </h1>
               <p className="mt-6 max-w-2xl text-base leading-8 text-ink-muted">
-                ZenoAIHome helps homeowners in China translate ideal living into spatial priorities, aesthetic tradeoffs, budget boundaries, quote clarity, contract wording, and delivery responsibilities. Quote risk still matters, but it is only one part of whether the home can truly work.
+                I've spent 16 years on renovation sites and in mattress showrooms. Most problems I've seen weren't construction mistakes. They were decisions made before anyone asked the right questions. This site is where I help you ask them.
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <Link href="/en/tools" className="bg-stone px-5 py-3 text-sm font-semibold text-white hover:bg-stone/90">
