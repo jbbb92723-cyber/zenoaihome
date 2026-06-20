@@ -12,27 +12,27 @@ import '@/styles/globals.css'
 
 export const metadata: Metadata = {
   title: {
-    default: 'ZenoAIHome | 16年床垫与装修老兵，只说真话的家居避坑指南',
-    template: '%s · ZenoAIHome',
+    default: '赞诺｜装修判断·床垫干货·AI实战·一人公司',
+    template: '%s · 赞诺',
   },
   description:
-    '16年床垫与装修老兵赞诺的个人网站。装修避坑、床垫干货、生活方式、IP方法论、AI实战、OPC社群——只说真话，不卖货。',
-  keywords: ['装修避坑', '床垫干货', '家居避坑', '装修合同', '床垫选购', '生活方式', 'AI实战', '一人公司', '赞诺', 'Zeno'],
-  authors: [{ name: 'Zeno · 赞诺' }],
+    '从装修和床垫出发，用AI把16年经验变成判断、内容和一人公司模式。装修避坑、床垫选购、报价审核、合同把关——只说真话。',
+  keywords: ['赞诺', '装修避坑', '床垫干货', '报价审核', '合同把关', 'AI实战', '一人公司', 'IP方法论', '生活方式'],
+  authors: [{ name: '赞诺 Zeno' }],
   openGraph: {
     type: 'website',
     locale: 'zh_CN',
     url: 'https://zenoaihome.com',
-    siteName: 'ZenoAIHome',
-    title: 'ZenoAIHome | 16年床垫与装修老兵，只说真话的家居避坑指南',
+    siteName: '赞诺',
+    title: '赞诺｜装修判断·床垫干货·AI实战·一人公司',
     description:
-      '装修避坑、床垫干货、生活方式、IP方法论、AI实战、OPC社群——16年行业老兵赞诺，把真金白银换来的经验全部公开。',
+      '从装修和床垫出发，用AI把16年经验变成判断、内容和一人公司模式。装修判断、床垫选购、报价审核——16年经验只说真话。',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'ZenoAIHome | 16年床垫与装修老兵，只说真话的家居避坑指南',
+    title: '赞诺｜装修判断·床垫干货·AI实战·一人公司',
     description:
-      '装修避坑、床垫干货、生活方式、IP方法论、AI实战、OPC社群——16年行业老兵赞诺的私人自留地。',
+      '从装修和床垫出发，用AI把16年经验变成判断、内容和一人公司模式。',
   },
   robots: {
     index: true,

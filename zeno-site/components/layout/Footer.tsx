@@ -25,17 +25,17 @@ export default function Footer() {
           {/* 品牌 + 定位 */}
           <div className="sm:col-span-1">
             <Link href={isEn ? '/en' : '/'} className="text-[0.82rem] font-black uppercase tracking-[0.16em] text-ink transition-colors hover:text-ink-muted">
-              {isEn ? 'ZenoAIHome' : 'ZenoAIHome'}
+              赞诺
             </Link>
             <p className="editorial-serif mt-4 max-w-[320px] text-[1.55rem] leading-[1.28] text-ink">
               {isEn
-                ? 'A living decision system before renovation contracts.'
-                : '把看不清的地方拆开，再进入装修决定。'}
+                ? '16 years in renovation and mattresses. Judgment, content, and a one-person company.'
+                : '从装修和床垫出发，用AI把16年经验变成判断、内容和一人公司模式。'}
             </p>
             <p className="mt-4 max-w-[300px] text-sm leading-7 text-ink-muted">
               {isEn
-                ? 'From life goals to space order, budget boundaries, quote terms and delivery risk.'
-                : '从生活方式、空间秩序、预算边界，到报价合同和交付风险。'}
+                ? 'Renovation judgment · Mattress guide · AI practice · Solo business methodology.'
+                : '装修判断 · 床垫干货 · AI实战 · 一人公司方法论'}
             </p>
           </div>
 

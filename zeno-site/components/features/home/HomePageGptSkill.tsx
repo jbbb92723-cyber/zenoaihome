@@ -328,7 +328,7 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
               variants={staggerItem}
               className="editorial-display max-w-[13ch] text-[3.05rem] leading-[1.06] text-ink sm:text-[5rem] lg:text-[5.9rem]"
             >
-              在<span className="headline-underline">签约之前</span>，把<span className="headline-underline">你的生活</span>想清楚。
+              <span className="headline-underline">赞诺</span>
             </motion.h1>
             <motion.p variants={staggerItem} className="mt-4 text-xs font-semibold uppercase tracking-[0.18em] text-stone">
               今天在看的：南宁第 38 份水电没有上限的报价——和 2018 年第一份一样。
@@ -337,7 +337,7 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
 
           <motion.div initial="hidden" animate="visible" variants={staggerContainer} className="max-w-[34rem] lg:pb-6">
             <motion.p variants={staggerItem} className="editorial-serif text-2xl leading-[1.18] text-ink sm:text-[2rem]">
-              装修做了16年，床垫卖了十几年。最深的体会：大部分坑不是施工做错了，是签合同之前该看清楚的东西没人帮你看。
+              从装修和床垫出发，用AI把16年经验变成判断、内容和一人公司模式。
             </motion.p>
             <motion.div variants={staggerItem} className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <ActionLink href="/living-diagnosis">

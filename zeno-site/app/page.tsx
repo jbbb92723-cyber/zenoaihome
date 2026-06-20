@@ -3,9 +3,9 @@ import HomePageGptSkill from '@/components/features/home/HomePageGptSkill'
 import StructuredData from '@/components/ui/StructuredData'
 
 export const metadata: Metadata = {
-  title: '16年床垫与装修老兵，只说真话的家居避坑指南｜ZenoAIHome',
+  title: '赞诺｜装修判断·床垫干货·AI实战·一人公司',
   description:
-    '赞诺的个人网站。装修避坑、床垫干货、生活方式、IP方法论、AI实战、OPC社群——16年真金白银换来的经验，全部公开。',
+    '从装修和床垫出发，用AI把16年经验变成判断、内容和一人公司模式。',
   alternates: {
     canonical: 'https://zenoaihome.com/',
   },
@@ -19,10 +19,10 @@ export default function HomePage() {
           {
             '@context': 'https://schema.org',
             '@type': 'WebSite',
-            name: 'ZenoAIHome',
+            name: '赞诺',
             url: 'https://zenoaihome.com',
             description:
-              '16年床垫与装修老兵赞诺的个人网站。装修避坑、床垫干货、生活方式、IP方法论、AI实战、OPC社群。',
+              '从装修和床垫出发，用AI把16年经验变成判断、内容和一人公司模式。',
             inLanguage: 'zh-CN',
           },
           {
