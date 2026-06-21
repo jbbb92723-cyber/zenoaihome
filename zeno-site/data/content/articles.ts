@@ -23,6 +23,33 @@ import { article75Content } from './article-75-content'
 import { article76Content } from './article-76-content'
 import { article77Content } from './article-77-content'
 import { article78Content } from './article-78-content'
+import { article79Content } from './article-79-content'
+import { article80Content } from './article-80-content'
+import { article81Content } from './article-81-content'
+import { article82Content } from './article-82-content'
+import { article83Content } from './article-83-content'
+import { article84Content } from './article-84-content'
+import { article85Content } from './article-85-content'
+import { article86Content } from './article-86-content'
+import { article87Content } from './article-87-content'
+import { article88Content } from './article-88-content'
+import { article89Content } from './article-89-content'
+import { article90Content } from './article-90-content'
+import { article91Content } from './article-91-content'
+import { article92Content } from './article-92-content'
+import { article93Content } from './article-93-content'
+import { article94Content } from './article-94-content'
+import { article95Content } from './article-95-content'
+import { article96Content } from './article-96-content'
+import { article97Content } from './article-97-content'
+import { article98Content } from './article-98-content'
+import { article99Content } from './article-99-content'
+import { article100Content } from './article-100-content'
+import { article101Content } from './article-101-content'
+import { article102Content } from './article-102-content'
+import { article103Content } from './article-103-content'
+import { article104Content } from './article-104-content'
+import { article105Content } from './article-105-content'
 
 export interface Article {
   id: string
@@ -6984,6 +7011,236 @@ AI不是魔法。它是一个工具——能帮你整理、对比、查漏，但
     coverImage: '',
     coverAlt: 'AI两年真实体验',
     content: article78Content,
+  },
+  {
+    id: '79',
+    slug: 'chuangdian-xuangou-wu-ge-wenti',
+    title: '进床垫店之前，先在家想清楚这五个问题',
+    excerpt: '卖过很多年床垫的我，最常被问"买哪款"。但你先得回答我几个问题——想清楚了进店就不会被导购带着走。',
+    category: '床垫干货',
+    parentCategory: 'mattress',
+    subcategory: 'buying',
+    tags: ['床垫', '选购', '弹簧', '软硬度', '预算'],
+    date: '2026-06-20',
+    coverImage: '',
+    coverAlt: '床垫选购五问',
+    content: article79Content,
+  },
+  {
+    id: '80',
+    slug: 'duli-daizhuang-zhengtan-tanhuang',
+    title: '独立袋装弹簧和整网弹簧，多花的钱到底值不值',
+    excerpt: '独立袋装弹簧比整网贵一倍多。拆开看，差别在哪？哪种人不需要多花这些钱？16年床垫经验告诉你。',
+    category: '床垫干货',
+    parentCategory: 'mattress',
+    subcategory: 'material',
+    tags: ['床垫', '弹簧', '独立袋装', '整网', '选购'],
+    date: '2026-06-20',
+    coverImage: '',
+    coverAlt: '弹簧类型对比',
+    content: article80Content,
+  },
+  {
+    id: '81',
+    slug: 'chuangdian-chai-jie-limian',
+    title: '一万块的床垫拆开，里面到底长什么样',
+    excerpt: '我拆过从999到两万多的床垫。拆完之后最大的感受不是贵的果然好——而是有些贵的和便宜的长得真像。',
+    category: '床垫干货',
+    parentCategory: 'mattress',
+    subcategory: 'insider',
+    tags: ['床垫', '拆解', '成本', '定价', '行业内幕'],
+    date: '2026-06-20',
+    coverImage: '',
+    coverAlt: '床垫拆解内幕',
+    content: article81Content,
+  },
+  {
+    id: '82',
+    slug: 'chuantong-hangye-ren-zenme-kaishi-yong-ai',
+    title: '传统行业的人，怎么开始用AI——从零到上手的最简路径',
+    excerpt: '不需要学编程，不需要懂技术。会打字就会用AI。从你每天最烦的重复性工作开始——一两周就能上手。',
+    category: 'AI 实践',
+    parentCategory: 'ai',
+    tags: ['AI', '传统行业', '入门', '工具', '工作流'],
+    date: '2026-06-20',
+    coverImage: '',
+    coverAlt: '传统行业人AI入门',
+    content: article82Content,
+  },
+  {
+    id: '83',
+    slug: 'yiren-gongsi-bu-shi-yigeren-ganhuo',
+    title: '一人公司不是"一个人干活"，是只做非你不可的那件事',
+    excerpt: '干了两年一人公司。不是省钱，是选择——把你最值钱的判断留下来自己做，剩下的全交给AI和外包。',
+    category: '一人公司',
+    parentCategory: 'opc',
+    subcategory: 'solo-method',
+    tags: ['一人公司', '外包', 'AI', '判断力', 'OPC'],
+    date: '2026-06-20',
+    coverImage: '',
+    coverAlt: '一人公司真相',
+    content: article83Content,
+  },
+  {
+    id: '84',
+    slug: 'chuangdian-tuihuo-zhengce',
+    title: '床垫退货政策：买之前不问清楚这几句话，退的时候全是坑',
+    excerpt: '大部分床垫专卖店，拆了塑料膜就不让退。有些号称100天试睡——但你仔细看条件，跟没退差不多。买之前问清楚这几句话。',
+    category: '床垫干货',
+    parentCategory: 'mattress',
+    subcategory: 'buying',
+    tags: ['床垫', '退货', '试睡', '选购', '消费者权益'],
+    date: '2026-06-20',
+    coverImage: '',
+    coverAlt: '床垫退货政策',
+    content: article84Content,
+  },
+  {
+    id: '85',
+    slug: 'yiren-gongsi-diyibu-zuo-shenme',
+    title: '想做一人公司，第一步不是注册公司，是找到你非做不可的那件事',
+    excerpt: '很多人想做一人公司，第一件事就去注册公司。错了。你应该先找到那件离了你的判断就没法做的事——其他的一切都可以外包。',
+    category: '一人公司',
+    parentCategory: 'opc',
+    subcategory: 'solo-method',
+    tags: ['一人公司', '起步', '定位', '判断力'],
+    date: '2026-06-20',
+    coverImage: '',
+    coverAlt: '想做一人公司第一步不是注册公司',
+    content: article85Content,
+  },
+  {
+    id: '86',
+    slug: 'ai-gongzuoliu-zhenshi-anli',
+    title: '用AI帮我看报价单：一个真实的工作流程',
+    excerpt: '我把用AI辅助报价审核的完整流程写出来——从拿到报价单到输出风险清单，每一步怎么做。不是理论，是我的日常工作。',
+    category: 'AI 实践',
+    parentCategory: 'ai',
+    tags: ['AI', '工作流', '报价审核', '工具', '实操'],
+    date: '2026-06-20',
+    coverImage: '',
+    coverAlt: '用AI帮我看报价单',
+    content: article86Content,
+  },
+  {
+    id: '87',
+    slug: 'ai-bu-shi-tishen-bupannen',
+    title: 'AI是我的助手，不是我的替身——用AI两年后的边界感',
+    excerpt: '用AI两年，最大的收获不是效率，是搞清楚了一件事：什么可以交给AI，什么必须自己做。这份边界感比任何工具都值钱。',
+    category: 'AI 实践',
+    parentCategory: 'ai',
+    tags: ['AI', '判断力', '工作流', '经验', '工具'],
+    date: '2026-06-21',
+    coverImage: '',
+    coverAlt: 'AI助手不是替身',
+    content: article87Content,
+  },
+  {
+    id: '88',
+    slug: 'chuantong-hangye-ren-ai-sange-jieduan',
+    title: '一个传统行业的人走AI这条路，大概经过三个阶段',
+    excerpt: '从怀疑→试用→依赖→警惕→找到边界。每个阶段都有坑。我把这三个阶段和你可能会犯的错全部写出来。',
+    category: 'AI 实践',
+    parentCategory: 'ai',
+    tags: ['AI', '学习路径', '传统行业', '阶段', '经验'],
+    date: '2026-06-21',
+    coverImage: '',
+    coverAlt: 'AI三个阶段',
+    content: article88Content,
+  },
+  {
+    id: '89',
+    slug: 'ai-mianfei-gongju-bijiao',
+    title: '我用过的AI工具——不推荐贵的，只讲我用顺手的',
+    excerpt: '市面上一堆AI工具推荐，大部分在带货。我把自己用了一年以上的工具列出来，不追新，不好用就换。',
+    category: 'AI 实践',
+    parentCategory: 'ai',
+    tags: ['AI', '工具', '性价比', '工作流', '实操'],
+    date: '2026-06-21',
+    coverImage: '',
+    coverAlt: 'AI工具推荐',
+    content: article89Content,
+  },
+  {
+    id: '90',
+    slug: 'yiren-gongsi-dingjia',
+    title: '一人公司怎么给自己的服务定价——别再按小时算了',
+    excerpt: '一人公司最怕的不是没客户，是接了客户但价格亏了。别按小时算，按客户从你这里拿走的价值算。',
+    category: '一人公司',
+    parentCategory: 'opc',
+    subcategory: 'solo-method',
+    tags: ['一人公司', '定价', '服务', '商业模式'],
+    date: '2026-06-21',
+    coverImage: '',
+    coverAlt: '一人公司定价',
+    content: article90Content,
+  },
+  {
+    id: '91',
+    slug: 'yiren-gongsi-huo-kequdao',
+    title: '一人公司从哪获客——社交媒体、搜索还是老客户推荐',
+    excerpt: '一人公司不需要投广告，不需要花钱买流量。你需要的是让需要你的人找到你。三条渠道说清楚。',
+    category: '一人公司',
+    parentCategory: 'opc',
+    subcategory: 'solo-method',
+    tags: ['一人公司', '获客', '内容营销', 'SEO', '口碑'],
+    date: '2026-06-21',
+    coverImage: '',
+    coverAlt: '一人公司获客',
+    content: article91Content,
+  },
+  {
+    id: '92',
+    slug: 'yiren-gongsi-shijian-guanli',
+    title: '一人公司的时间管理：最重要的事只有一件',
+    excerpt: '一人公司的最大成本不是钱，是注意力。把一天里最重要的事在早上做完——其他全是次要的。',
+    category: '一人公司',
+    parentCategory: 'opc',
+    subcategory: 'solo-method',
+    tags: ['一人公司', '时间管理', '注意力', '效率', '工作方法'],
+    date: '2026-06-21',
+    coverImage: '',
+    coverAlt: '一人公司时间管理',
+    content: article92Content,
+  },
+  {
+    id: '93', slug: 'ai-tigao-bushi-mudi', title: '提高效率不是用AI的目的，把经验变成资产才是', excerpt: '用AI两年，效率提升是副产品。真正的收获是把散在脑子里、微信里、笔记本里的经验变成了结构化的、可复用的资产。', category: 'AI 实践', parentCategory: 'ai', tags: ['AI','效率','经验','资产','传统行业'], date: '2026-06-21', coverImage: '', coverAlt: 'AI提高效率不是目的', content: article93Content,
+  },
+  {
+    id: '94', slug: 'ai-zhongwen-ziran', title: '为什么有些AI写的中文读起来不对劲', excerpt: '用AI写中文最大的问题是：它太客气了。永远用非常值得良好这种词，永远不会说还行凑合就这样吧。', category: 'AI 实践', parentCategory: 'ai', tags: ['AI','中文','表达','写作','工具'], date: '2026-06-21', coverImage: '', coverAlt: 'AI中文问题', content: article94Content,
+  },
+  {
+    id: '95', slug: 'ai-hangye-jingyan', title: '把16年行业经验喂给AI之后，我发现了什么', excerpt: '我把16年积累的案例整理后让AI辅助分析，发现了一些我自己凭直觉知道但从来没说清楚过的东西。', category: 'AI 实践', parentCategory: 'ai', tags: ['AI','经验','系统化','案例','判断'], date: '2026-06-21', coverImage: '', coverAlt: '16年经验喂给AI', content: article95Content,
+  },
+  {
+    id: '96', slug: 'ai-yeji-xitonghua', title: '我做了一个AI辅助的业务复盘系统', excerpt: '每次项目做完，花15分钟做一次结构化复盘。AI帮我整理、分类、提炼规律。一年下来，这套系统替代了我大部分的管理经验。', category: 'AI 实践', parentCategory: 'ai', tags: ['AI','复盘','系统','方法论','传统行业'], date: '2026-06-21', coverImage: '', coverAlt: 'AI复盘系统', content: article96Content,
+  },
+  {
+    id: '97', slug: 'ai-duiyu-butong-hangye', title: '装修行业的AI用法和床垫行业完全不一样', excerpt: '我在装修和床垫两个行业用AI，发现它们对AI的需求几乎是反的。装修需要判断辅助，床垫需要信息整理。', category: 'AI 实践', parentCategory: 'ai', tags: ['AI','行业差异','装修','床垫','应用'], date: '2026-06-21', coverImage: '', coverAlt: '装修和床垫AI不同用法', content: article97Content,
+  },
+  {
+    id: '98', slug: 'yiren-gongsi-zhenshi-shouru', title: '一人公司的真实收入——我自己的账', excerpt: '不是每一个做一人公司的人都年入百万。我把自己两年的收入结构拆开给你们看——真实的账，不美化。', category: '一人公司', parentCategory: 'opc', subcategory: 'solo-method', tags: ['一人公司','收入','透明','财务','真实'], date: '2026-06-21', coverImage: '', coverAlt: '一人公司真实收入', content: article98Content,
+  },
+  {
+    id: '99', slug: 'yiren-gongsi-bu-zuo-shenme', title: '一人公司最该学的不是做什么，是不做什么', excerpt: '一人公司最大的成本不是你付出去的钱，是你做了一件不该做的事之后要收拾的摊子。', category: '一人公司', parentCategory: 'opc', subcategory: 'solo-method', tags: ['一人公司','决策','取舍','定位','减法'], date: '2026-06-21', coverImage: '', coverAlt: '一人公司不做什么', content: article99Content,
+  },
+  {
+    id: '100', slug: 'ai-chuantong-hangye-kunnan', title: '传统行业的人用AI，最难的不是学，是改变工作习惯', excerpt: '学AI不难。难的是你做了十几年的工作方式突然要改。最难的不是按键在哪——是你脑子里的肌肉记忆。', category: 'AI 实践', parentCategory: 'ai', tags: ['AI','传统行业','习惯','改变','入门'], date: '2026-06-21', coverImage: '', coverAlt: 'AI最难的是改变习惯', content: article100Content,
+  },
+  {
+    id: '101', slug: 'ai-quan-zidong-bu-xianshi', title: '不要指望AI全自动——人机协作才是传统行业的真实路径', excerpt: 'AI全自动化是一句广告语。在装修和床垫这种行业，真正可行的是AI做70%的整理工作，你做30%的判断工作。', category: 'AI 实践', parentCategory: 'ai', tags: ['AI','自动化','人机协作','真实','工作流'], date: '2026-06-21', coverImage: '', coverAlt: 'AI不要全自动', content: article101Content,
+  },
+  {
+    id: '102', slug: 'ai-gaodian-xiufu', title: 'AI给你的草稿，怎么改成你自己的话——五步修复法', excerpt: 'AI写的东西读起来不对劲。不是写得不好，是不像你。我把改AI草稿的经验总结成了五步法——每步只做一件事。', category: 'AI 实践', parentCategory: 'ai', tags: ['AI','写作','修改','表达','技巧'], date: '2026-06-21', coverImage: '', coverAlt: 'AI草稿五步修复法', content: article102Content,
+  },
+  {
+    id: '103', slug: 'yiren-gongsi-chanpinhua', title: '一人公司的产品化——把你的一次性服务变成可重复的产品', excerpt: '你帮一个人看报价收一次钱。你能不能把这个能力变成一份清单、一个工具、一个模板——让别人自己也能用？产品化是一人公司从接活到建资产的关键一步。', category: '一人公司', parentCategory: 'opc', subcategory: 'solo-method', tags: ['一人公司','产品化','服务','可复用','系统'], date: '2026-06-21', coverImage: '', coverAlt: '一人公司产品化', content: article103Content,
+  },
+  {
+    id: '104', slug: 'yiren-gongsi-fengxian-guankong', title: '一人公司的风险管理——客户没付钱之前你在裸奔', excerpt: '一人公司没有社保、没有公积金、没有公司在后面撑着。你最大的风险不是赚不到钱——是客户不付钱。', category: '一人公司', parentCategory: 'opc', subcategory: 'solo-method', tags: ['一人公司','风险','收款','合同','安全'], date: '2026-06-21', coverImage: '', coverAlt: '一人公司风险管理', content: article104Content,
+  },
+  {
+    id: '105', slug: 'yiren-gongsi-dongli', title: '一人公司的动力系统——没有老板没有KPI你怎么不偷懒', excerpt: '没人催你、没人考核你、没人盯着你。一人公司最大的敌人不是市场——是自己的惰性。我用了两年找到了三样东西维持动力。', category: '一人公司', parentCategory: 'opc', subcategory: 'solo-method', tags: ['一人公司','自律','动力','习惯','方法'], date: '2026-06-21', coverImage: '', coverAlt: '一人公司动力系统', content: article105Content,
   },
 ]
 
