@@ -3,7 +3,7 @@ import HomePageGptSkill from '@/components/features/home/HomePageGptSkill'
 import StructuredData from '@/components/ui/StructuredData'
 
 export const metadata: Metadata = {
-  title: '赞诺｜装修判断·床垫干货·AI实战·一人公司',
+  title: '赞诺｜装修判断·居住决策',
   description:
     '从装修和床垫出发，用AI把16年经验变成判断、内容和一人公司模式。',
   alternates: {

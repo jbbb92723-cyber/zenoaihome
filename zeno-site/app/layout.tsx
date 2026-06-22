@@ -12,7 +12,7 @@ import '@/styles/globals.css'
 
 export const metadata: Metadata = {
   title: {
-    default: '赞诺｜装修判断·床垫干货·AI实战·一人公司',
+    default: '赞诺｜装修判断·居住决策',
     template: '%s · 赞诺',
   },
   description:
@@ -24,15 +24,24 @@ export const metadata: Metadata = {
     locale: 'zh_CN',
     url: 'https://zenoaihome.com',
     siteName: '赞诺',
-    title: '赞诺｜装修判断·床垫干货·AI实战·一人公司',
+    title: '赞诺｜装修判断·居住决策',
     description:
       '从装修和床垫出发，用AI把16年经验变成判断、内容和一人公司模式。装修判断、床垫选购、报价审核——16年经验只说真话。',
+    images: [
+      {
+        url: 'https://zenoaihome.com/images/og-default.png',
+        width: 1200,
+        height: 630,
+        alt: '赞诺｜装修判断·居住决策',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: '赞诺｜装修判断·床垫干货·AI实战·一人公司',
+    title: '赞诺｜装修判断·居住决策',
     description:
       '从装修和床垫出发，用AI把16年经验变成判断、内容和一人公司模式。',
+    images: ['https://zenoaihome.com/images/og-default.png'],
   },
   robots: {
     index: true,
