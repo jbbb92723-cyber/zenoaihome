@@ -247,44 +247,43 @@ function FeaturePanel({ fontClassName }: Props) {
         initial="hidden"
         animate="visible"
         variants={staggerContainer}
-        className="anthropic-feature decision-scan grid overflow-hidden rounded-t-[8px] bg-[#111111] text-[#F4F1E8] lg:grid-cols-[0.48fr_0.52fr]"
+        className="grid overflow-hidden rounded-[8px] border border-border bg-surface lg:grid-cols-[0.48fr_0.52fr]"
       >
         <motion.div variants={staggerItem} className="flex min-h-[34rem] flex-col items-start justify-center px-7 py-14 text-center sm:px-12 lg:px-16">
-          <p className="mx-auto text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-[#DED2BE] lg:mx-0">
+          <p className="mx-auto text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-ink-muted lg:mx-0">
             从生活到交付，五步看清楚
           </p>
-          <h2 className="editorial-display mx-auto mt-7 max-w-[28rem] text-[3.35rem] leading-[0.98] sm:text-[5rem] lg:mx-0 lg:text-left">
+          <h2 className="editorial-display mx-auto mt-7 max-w-[28rem] text-[3.35rem] leading-[0.98] text-ink sm:text-[5rem] lg:mx-0 lg:text-left">
             先判断，再装修
           </h2>
-          <p className="mx-auto mt-6 max-w-[18rem] text-base leading-7 text-[#DED2BE] lg:mx-0 lg:text-left">
+          <p className="mx-auto mt-6 max-w-[18rem] text-base leading-7 text-ink-muted lg:mx-0 lg:text-left">
             从你想要的日常开始，一步步对到报价和合同。
           </p>
           <div className="mt-7 w-full max-w-[28rem] space-y-2">
             {instrumentStages.map((stage, index) => (
               <div
                 key={stage.code}
-                className="group grid grid-cols-[auto_1fr_auto] items-center gap-3 border border-[#F4F1E8]/12 bg-[#F4F1E8]/[0.035] px-3 py-2.5 motion-surface"
+                className="group grid grid-cols-[auto_1fr_auto] items-center gap-3 border border-border-subtle bg-canvas px-3 py-2.5 motion-surface"
                 style={{ animationDelay: `${index * 90}ms` }}
               >
-                <span className={`${fontClassName} text-[0.68rem] font-semibold text-[#DED2BE] tabular-nums`}>{stage.code}</span>
+                <span className={`${fontClassName} text-[0.68rem] font-semibold text-ink-faint tabular-nums`}>{stage.code}</span>
                 <span>
-                  <span className="block text-left text-sm font-semibold text-[#F4F1E8]">{stage.title}</span>
-                  <span className="block text-left text-xs leading-5 text-[#DED2BE]">{stage.body}</span>
+                  <span className="block text-left text-sm font-semibold text-ink">{stage.title}</span>
+                  <span className="block text-left text-xs leading-5 text-ink-muted">{stage.body}</span>
                 </span>
-                <span className="text-[0.68rem] font-semibold text-[#DED2BE] opacity-70 transition-opacity group-hover:opacity-100">{stage.status}</span>
+                <span className="text-[0.68rem] font-semibold text-ink-faint opacity-70 transition-opacity group-hover:opacity-100">{stage.status}</span>
               </div>
             ))}
           </div>
           <Link
             href="/living-diagnosis"
-            className="motion-press mx-auto mt-8 inline-flex h-10 items-center rounded-[7px] bg-[#F4F1E8] px-4 text-sm font-semibold text-[#111111] hover:bg-[#DED2BE] lg:mx-0"
+            className="motion-press mx-auto mt-8 inline-flex h-10 items-center rounded-[7px] bg-ink px-4 text-sm font-semibold text-white hover:bg-stone-deep lg:mx-0"
           >
             开始判断
           </Link>
         </motion.div>
 
-        <motion.div variants={staggerItem} className="relative min-h-[32rem] overflow-hidden px-6 pb-12 lg:px-10 lg:py-12">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(222,210,190,0.18),transparent_44%)]" aria-hidden />
+        <motion.div variants={staggerItem} className="relative min-h-[32rem] overflow-hidden bg-surface-warm px-6 pb-12 lg:px-10 lg:py-12">
           <div className="relative mx-auto h-[26rem] max-w-[34rem] lg:h-full">
             <SpatialMap />
           </div>
