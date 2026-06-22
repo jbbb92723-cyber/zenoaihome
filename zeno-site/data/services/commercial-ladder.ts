@@ -118,4 +118,4 @@ export const commercialLadder: LadderRung[] = [
 export const homepageLadder: LadderRung[] = commercialLadder
 
 /** 主服务档：全部免费，保留完整路径 */
-export const serviceLadder: LadderRung[] = commercialLadder.filter((r) => r.tier === 'free')
+export const serviceLadder: LadderRung[] = commercialLadder.filter((r) => r.tier !== 'paid-flagship')
