@@ -321,16 +321,16 @@ type Props = {
 export default function HomePageGptSkill({ fontClassName }: Props) {
   return (
     <main className="bg-canvas text-ink">
-      <section className="px-5 pb-12 pt-20 sm:px-8 sm:pb-16 sm:pt-28 lg:px-12 lg:pb-20 lg:pt-36">
+      <section className="px-5 pb-16 pt-24 sm:px-8 sm:pb-20 sm:pt-32 lg:px-12 lg:pb-24 lg:pt-40">
         <div className="mx-auto grid max-w-[1320px] gap-12 lg:grid-cols-[0.58fr_0.42fr] lg:items-end">
           <motion.div initial="hidden" animate="visible" variants={staggerContainer}>
             <motion.h1
               variants={staggerItem}
-              className="editorial-display max-w-[13ch] text-[3.05rem] leading-[1.06] text-ink sm:text-[5rem] lg:text-[5.9rem]"
+              className="editorial-display max-w-[13ch] text-[3.4rem] leading-[1.04] text-ink sm:text-[5.6rem] lg:text-[6.8rem]"
             >
               <span className="headline-underline">赞诺</span>
             </motion.h1>
-            <motion.p variants={staggerItem} className="mt-4 text-xs font-semibold uppercase tracking-[0.18em] text-stone">
+            <motion.p variants={staggerItem} className="mt-5 max-w-[32ch] text-xs font-semibold uppercase tracking-[0.18em] text-stone">
               今天在看的：南宁第 38 份水电没有上限的报价——和 2018 年第一份一样。
             </motion.p>
           </motion.div>
