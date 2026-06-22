@@ -191,6 +191,58 @@ body {
   font-feature-settings: "kern" 1;
 }
 
+/* ── 编辑细节：衬线数字（用于卡片/关键数字）── */
+.editorial-num {
+  font-family: "Noto Serif SC", "Source Han Serif SC", Georgia, serif;
+  font-weight: 500;
+  font-feature-settings: "lnum" 1, "kern" 1;
+}
+
+/* ── 编辑细节：首字母下沉（仅首页关键段落）── */
+.drop-cap::first-letter {
+  float: left;
+  font-family: "Noto Serif SC", "Source Han Serif SC", Georgia, serif;
+  font-size: 3.4em;
+  font-weight: 500;
+  line-height: 0.82;
+  margin-right: 0.14em;
+  margin-top: 0.04em;
+  color: var(--color-ink);
+}
+
+/* ── 编辑细节：标题底线装饰（克制，仅关键标题）── */
+.headline-rule {
+  position: relative;
+  padding-bottom: 0.5em;
+}
+
+.headline-rule::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 2.4em;
+  height: 2px;
+  background: var(--color-warm);
+  border-radius: 1px;
+}
+
+/* ── 铜色点缀（Warm Sand 的更深变体，用于品牌点缀）── */
+:root {
+  --color-copper: #C4A67A;
+  --color-copper-rgb: 196 166 122;
+}
+
+.dark {
+  --color-copper: #D4BA8A;
+  --color-copper-rgb: 212 186 138;
+}
+
+.eye {
+  --color-copper: #C0A074;
+  --color-copper-rgb: 192 160 116;
+}
+
 .headline-underline {
   text-decoration-line: underline;
   text-decoration-thickness: 0.06em;
@@ -338,25 +390,27 @@ body {
    H1 → 内页标题 / 首页更大
 ───────────────────────────────────────── */
 
-/* 内页 H1 */
+/* 内页 H1 — 编辑感衬线 */
 .page-title {
+  font-family: "Noto Serif SC", "Source Han Serif SC", "Songti SC", Georgia, serif;
+  font-weight: 500;
   font-size: 1.875rem; /* 30px */
-  font-weight: 600;
   line-height: 1.18;
-  letter-spacing: 0;
+  letter-spacing: 0.01em;
   color: var(--color-ink);
 }
 
-/* 首页 Hero — 克制个人站 */
+/* 首页 Hero — 克制个人站，衬线显品味 */
 .hero-title {
+  font-family: "Noto Serif SC", "Source Han Serif SC", "Songti SC", Georgia, serif;
+  font-weight: 500;
   font-size: 1.75rem; /* 28px */
-  font-weight: 600;
   line-height: 1.25;
-  letter-spacing: 0;
+  letter-spacing: 0.012em;
   color: var(--color-ink);
 }
 
-/* 区块标题 H2 */
+/* 区块标题 H2 — 保持Sans简洁，Serif留给Hero/内页标题 */
 .section-heading {
   font-size: 1.25rem; /* 20px */
   font-weight: 600;
