@@ -43,9 +43,9 @@ const config: Config = {
         prose:  ['1.125rem', { lineHeight: '1.9'  }],                          // 18px
       },
       spacing: {
-        section:  '5rem',    // 80px  大区块上下
-        'section-sm': '3rem',// 48px  小区块
-        block:    '2rem',    // 32px  块内间距
+        section:  '7rem',    // 112px  大区块上下 (奢侈留白)
+        'section-sm': '4rem',// 64px  小区块 (原3rem)
+        block:    '2.5rem',  // 40px  块内间距 (原2rem)
       },
       maxWidth: {
         reading: '680px',   // 长文阅读

@@ -48,8 +48,8 @@
   --color-warm:        rgb(var(--color-warm-rgb));
 
   /* 间距节奏 */
-  --section-y: 5rem;
-  --section-y-sm: 3rem;
+  --section-y: 7rem;
+  --section-y-sm: 4rem;
 
   /* 动效语义变量 — 判断仪器式交互 */
   --motion-fast: 140ms;
@@ -559,14 +559,15 @@ img {
 /* ─────────────────────────────────────────
    卡片 hover 过渡
 ───────────────────────────────────────── */
-/* 改了什么：卡片 hover 加 translateY 微移 */
-/* 为什么改：微交互提升质感，不夸张 */
+/* 改了什么：卡片 hover 加 translateY 微移 + shadow 加深 */
+/* 为什么改：微交互提升质感，不夸张。奢侈感来自细节。 */
 .card-hover {
-  transition: border-color var(--motion-fast) var(--motion-ease), transform var(--motion-fast) var(--motion-ease);
+  transition: border-color var(--motion-fast) var(--motion-ease), transform var(--motion-fast) var(--motion-ease), box-shadow var(--motion-base) var(--motion-ease);
 }
 .card-hover:hover {
   border-color: var(--color-ink);
   transform: translateY(-1px);
+  box-shadow: 0 6px 28px rgb(17 17 17 / 0.08);
 }
 
 /* ─────────────────────────────────────────
@@ -641,8 +642,8 @@ img {
 }
 
 .motion-surface:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 14px 42px rgb(17 17 17 / 0.06);
+  transform: translateY(-2px);
+  box-shadow: 0 18px 52px rgb(17 17 17 / 0.09);
 }
 
 .motion-press {
