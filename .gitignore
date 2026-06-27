@@ -49,3 +49,6 @@ zeno-site/public/design-previews/
 赞诺内容资产库/**/身份证/
 赞诺内容资产库/**/银行卡/
 赞诺内容资产库/**/微信聊天截图/
+
+Zeno-Tools/.claude/settings.local.json
+tmp/
