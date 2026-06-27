@@ -1,4 +1,4 @@
-# AGENTS.md｜ZenoAIHome 工作区协作规则
+﻿# AGENTS.md｜ZenoAIHome 工作区协作规则
 
 > 本文件给 Codex、Claude、Hermes 以及其他 Agent 读取。它定义 `G:/Zenoaihome.com` 工作区的边界、写入规则、验证规则和提交纪律。
 
@@ -6,11 +6,11 @@
 
 本工作区同时包含：
 
-- `zeno-site/`：ZenoAIHome 官网代码，当前仍保留在根目录。
-- `Zeno-Code/`：正式代码整理区，预留给后续源码统一迁移。
+- `Zeno-Code/zeno-site/`：ZenoAIHome 官网代码。
+- `Zeno-Code/`：正式代码整理区，官网代码已迁入其中。
 - `Zeno-Content/`：内容资产、阶段方案、审计记录、架构文档。
 - `Zeno-Tools/`：脚本、Agent 协作配置、工具链、辅助工具。
-- `赞诺内容资产库/`：Zeno 的内容资产、Obsidian 知识库、内容结构化系统。
+- `Zeno-Content/赞诺内容资产库/`：Zeno 的内容资产、Obsidian 知识库、内容结构化系统。
 
 不要把内容资产库当成网站源码。不要把网站临时设计预览当成线上资产。不要把本地运行日志当成项目内容。
 
@@ -28,13 +28,13 @@
 
 ## 3. 目录边界
 
-### `zeno-site/`
+### `Zeno-Code/zeno-site/`
 
 官网 Next.js 项目。只在任务明确涉及官网、页面、组件、数据、样式、构建、部署时修改。
 
 ### `Zeno-Code/`
 
-代码整理与预留区。当前正式官网仍在 `zeno-site/`，未经明确确认前不要把线上站点移动进来。
+代码整理与官网承载区。正式官网在 `Zeno-Code/zeno-site/`。
 
 ### `Zeno-Content/`
 
@@ -44,11 +44,11 @@
 
 脚本、自动化、Agent 配置、技能和辅助工具区。适合放本地工具脚本与协作配置。
 
-### `赞诺内容资产库/`
+### `Zeno-Content/赞诺内容资产库/`
 
 内容资产与知识结构系统。处理原则是保留来源、结构化沉淀、可追溯、可重组。不得把这里的素材当成可以随意清理的临时文件。
 
-### `zeno-site/public/design-previews/`
+### `Zeno-Code/zeno-site/public/design-previews/`
 
 设计预览资产。未被线上页面引用时，默认不提交、不部署、不当作生产资源。
 
@@ -92,7 +92,7 @@
 
 ## 6. 官网验证规则
 
-修改 `zeno-site/` 代码后，优先运行：
+修改 `Zeno-Code/zeno-site/` 代码后，优先运行：
 
 ```bash
 npx.cmd tsc --noEmit

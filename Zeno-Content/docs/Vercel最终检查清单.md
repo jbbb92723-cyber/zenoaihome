@@ -8,7 +8,7 @@
 
 | 配置项 | 正确值 | 说明 |
 |--------|--------|------|
-| Root Directory | `zeno-site` | 代码在仓库 `/zeno-site` 子目录 |
+| Root Directory | `Zeno-Code/zeno-site` | 代码在仓库 `/Zeno-Code/zeno-site` 子目录 |
 | Build Command | `next build`（默认） | 无需自定义 |
 | Install Command | `npm install`（默认） | 无需自定义 |
 | Output Directory | 默认（`.next`） | 不需要改 |

@@ -4,7 +4,7 @@
 
 ## 一、Vercel 项目设置
 
-- [ ] Root Directory = `zeno-site`
+- [ ] Root Directory = `Zeno-Code/zeno-site`
 - [ ] Framework Preset = `Next.js`
 - [ ] Build Command = `npm run build`（默认）
 - [ ] Output Directory = `.next`（默认）
@@ -65,6 +65,6 @@
 | 问题 | 解决 |
 |---|---|
 | Build 失败 | 检查 `npx tsc --noEmit`，修复类型错误 |
-| 页面 404 | 确认 Root Directory = `zeno-site` |
+| 页面 404 | 确认 Root Directory = `Zeno-Code/zeno-site` |
 | 登录不工作 | 确认 AUTH 相关环境变量已配置 |
 | 工具页无法转换 | 确认 `MD2WECHAT_BASE_URL` 和 API Key |

@@ -1,6 +1,6 @@
-zeno-site/.next/
-zeno-site/out/
-zeno-site/node_modules/
+Zeno-Code/zeno-site/.next/
+Zeno-Code/zeno-site/out/
+Zeno-Code/zeno-site/node_modules/
 *.tsbuildinfo
 
 # ─── 环境变量（绝不提交到仓库）────────────────────────────
@@ -9,18 +9,18 @@ zeno-site/node_modules/
 .env.development.local
 .env.test.local
 .env.production.local
-zeno-site/.env
-zeno-site/.env.local
-zeno-site/.env.development.local
-zeno-site/.env.test.local
-zeno-site/.env.production.local
+Zeno-Code/zeno-site/.env
+Zeno-Code/zeno-site/.env.local
+Zeno-Code/zeno-site/.env.development.local
+Zeno-Code/zeno-site/.env.test.local
+Zeno-Code/zeno-site/.env.production.local
 node_modules
 .gstack/
 .skill_install_stage/
 _local/
 hs_err_pid*.log
 replay_pid*.log
-zeno-site/public/design-previews/
+Zeno-Code/zeno-site/public/design-previews/
 
 # ─── Obsidian / Agent local settings（公开仓库不提交）────────────────
 赞诺内容资产系统/**/.obsidian/
@@ -28,11 +28,11 @@ zeno-site/public/design-previews/
 赞诺内容资产系统/**/.claudian/
 赞诺内容资产系统/**/.codex/
 赞诺内容资产系统/**/.agents/
-赞诺内容资产库/**/.obsidian/
-赞诺内容资产库/**/.claude/
-赞诺内容资产库/**/.claudian/
-赞诺内容资产库/**/.codex/
-赞诺内容资产库/**/.agents/
+Zeno-Content/赞诺内容资产库/**/.obsidian/
+Zeno-Content/赞诺内容资产库/**/.claude/
+Zeno-Content/赞诺内容资产库/**/.claudian/
+Zeno-Content/赞诺内容资产库/**/.codex/
+Zeno-Content/赞诺内容资产库/**/.agents/
 
 # ─── Private renovation/client material（公开仓库不提交）───────────────
 赞诺内容资产系统/99_私密资料/
@@ -42,13 +42,13 @@ zeno-site/public/design-previews/
 赞诺内容资产系统/**/身份证/
 赞诺内容资产系统/**/银行卡/
 赞诺内容资产系统/**/微信聊天截图/
-赞诺内容资产库/99_私密资料/
-赞诺内容资产库/**/客户资料/
-赞诺内容资产库/**/报价单原件/
-赞诺内容资产库/**/合同原件/
-赞诺内容资产库/**/身份证/
-赞诺内容资产库/**/银行卡/
-赞诺内容资产库/**/微信聊天截图/
+Zeno-Content/赞诺内容资产库/99_私密资料/
+Zeno-Content/赞诺内容资产库/**/客户资料/
+Zeno-Content/赞诺内容资产库/**/报价单原件/
+Zeno-Content/赞诺内容资产库/**/合同原件/
+Zeno-Content/赞诺内容资产库/**/身份证/
+Zeno-Content/赞诺内容资产库/**/银行卡/
+Zeno-Content/赞诺内容资产库/**/微信聊天截图/
 
 Zeno-Tools/.claude/settings.local.json
 tmp/

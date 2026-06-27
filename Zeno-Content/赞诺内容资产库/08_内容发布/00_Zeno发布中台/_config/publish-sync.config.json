@@ -1,0 +1,28 @@
+﻿{
+  "name": "Zeno本地发布中台同步配置",
+  "version": "0.1.0",
+  "vault_root": "G:/Zenoaihome.com/Zeno-Content/赞诺内容资产库",
+  "publish_center": "G:/Zenoaihome.com/Zeno-Content/赞诺内容资产库/08_内容发布/00_Zeno发布中台",
+  "scan_dirs": [
+    "02_packages_发布包",
+    "04_ready_待发布"
+  ],
+  "approved_status": [
+    "approved",
+    "ready"
+  ],
+  "platform_outputs": {
+    "xiaohongshu": "_synced/xiaohongshu",
+    "wechat_oa": "_synced/wechat_oa",
+    "website": "_synced/website"
+  },
+  "website_public_images_dir": "G:/Zenoaihome.com/Zeno-Code/zeno-site/public/images/articles",
+  "rules": {
+    "dry_run_default": true,
+    "copy_assets": true,
+    "overwrite_existing": false,
+    "require_human_publish": true,
+    "never_publish_directly": true
+  }
+}
+
