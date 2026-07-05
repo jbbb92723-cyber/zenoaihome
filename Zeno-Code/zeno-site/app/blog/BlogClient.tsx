@@ -73,8 +73,8 @@ export default function BlogClient() {
     <>
       <PageHero
         label="文章库"
-        title="装修美学、AI知识库、AI工具、IP孵化、OPC社群"
-        subtitle="这里不是装修知识大全，也不是AI百科。每篇文章都从真实经历出发——16年一线经验，拆成你能用的判断。"
+        title="AI实战、装修判断、IP孵化、OPC社群"
+        subtitle="不是装修知识大全，也不是AI百科。17年一线经验，拆成你能用的判断和方法。"
         note="先选你关心的版块，再看有什么。不用按时间刷。"
       />
 

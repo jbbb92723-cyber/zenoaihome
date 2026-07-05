@@ -5,7 +5,7 @@ import Container from '@/components/ui/Container'
 export const metadata: Metadata = {
   title: 'About Zeno | Residential Renovation Judgment',
   description:
-    'Zeno is a renovation practitioner in China with 16 years on site, building ZenoAIHome to help homeowners connect lifestyle goals, spatial choices, budget boundaries, quote risks, and contract responsibilities.',
+    'Zeno is a renovation practitioner in China with 17 years on site, building ZenoAIHome to help homeowners connect lifestyle goals, spatial choices, budget boundaries, quote risks, and contract responsibilities.',
   alternates: {
     canonical: 'https://zenoaihome.com/en/about',
     languages: { 'zh-CN': 'https://zenoaihome.com/about', en: 'https://zenoaihome.com/en/about' },
@@ -16,7 +16,7 @@ const sections = [
   {
     title: 'Who I am',
     content:
-      'I am Zeno, a renovation practitioner based in China. I have spent more than 16 years on real renovation sites: reading quotes, coordinating work, handling scope changes, and seeing the awkward parts that never make it into a showroom photo.',
+      'I am Zeno, a renovation practitioner based in China. I have spent more than 17 years on real renovation sites: reading quotes, coordinating work, handling scope changes, and seeing the awkward parts that never make it into a showroom photo.',
   },
   {
     title: 'Why residential judgment starts before the quote',

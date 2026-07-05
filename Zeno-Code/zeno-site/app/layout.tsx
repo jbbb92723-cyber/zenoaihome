@@ -12,35 +12,35 @@ import '@/styles/globals.css'
 
 export const metadata: Metadata = {
   title: {
-    default: '赞诺｜装修判断·居住决策',
+    default: '赞诺｜传统行业 × AI 实战',
     template: '%s · 赞诺',
   },
   description:
-    '从装修美学到AI实战，用16年经验把居住判断变成内容和工具。装修美学、AI知识库、AI工具、IP孵化——只说真话。',
-  keywords: ['赞诺', '装修美学', 'AI知识库', 'AI工具', 'IP孵化', '报价审核', '合同把关', '一人公司', 'OPC社群'],
+    '17年装修老兵，用AI把自己重做了一遍。装修我都翻得过来，你做的事应该也能。',
+  keywords: ['赞诺', 'AI培训', '传统行业AI', 'AI实战', '装修判断', '一人公司', 'OPC社群'],
   authors: [{ name: '赞诺 Zeno' }],
   openGraph: {
     type: 'website',
     locale: 'zh_CN',
     url: 'https://zenoaihome.com',
     siteName: '赞诺',
-    title: '赞诺｜装修判断·居住决策',
+    title: '赞诺｜传统行业 × AI 实战',
     description:
-      '从装修美学到AI实战，用16年经验把居住判断变成内容和工具。装修判断、AI知识库、报价审核——16年经验只说真话。',
+      '17年装修老兵，用AI把自己重做了一遍。装修我都翻得过来，你做的事应该也能。',
     images: [
       {
         url: 'https://zenoaihome.com/images/og-default.png',
         width: 1200,
         height: 630,
-        alt: '赞诺｜装修判断·居住决策',
+        alt: '赞诺｜传统行业 × AI 实战',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: '赞诺｜装修判断·居住决策',
+    title: '赞诺｜传统行业 × AI 实战',
     description:
-      '从装修美学到AI实战，用16年经验把居住判断变成内容和工具。',
+      '17年装修老兵，用AI把自己重做了一遍。装修我都翻得过来，你做的事应该也能。',
     images: ['https://zenoaihome.com/images/og-default.png'],
   },
   robots: {

@@ -5,7 +5,7 @@ import Container from '@/components/ui/Container'
 export const metadata: Metadata = {
   title: '咨询服务｜赞诺的一对一选购建议',
   description:
-    '16年床垫与装修经验，帮你做一对一的选购判断。简单问题免费看，完整方案按需付费——只为你，不为任何品牌。',
+    '17年床垫与装修经验，帮你做一对一的选购判断。简单问题免费看，完整方案按需付费——只为你，不为任何品牌。',
   alternates: {
     canonical: 'https://zenoaihome.com/consulting',
   },
@@ -34,7 +34,7 @@ const FAQS = [
   },
   {
     q: '装修问题呢？你也看吗？',
-    a: '看。装修是我做了16年的老本行。报价、合同、预算、施工标准、验收——这些我比床垫还熟。加微信说清楚你的阶段和需求。',
+    a: '看。装修是我做了17年的老本行。报价、合同、预算、施工标准、验收——这些我比床垫还熟。加微信说清楚你的阶段和需求。',
   },
 ]
 
@@ -44,7 +44,7 @@ export default function ConsultingPage() {
       <section className="border-b border-border bg-surface-warm">
         <Container size="content" className="py-14 sm:py-16">
           <p className="page-label mb-4">咨询服务</p>
-          <h1 className="page-title mb-5">睡了16年床垫，我比你自己更清楚你适合什么</h1>
+          <h1 className="page-title mb-5">睡了17年床垫，我比你自己更清楚你适合什么</h1>
           <p className="max-w-2xl text-base leading-[1.85] text-ink-muted sm:text-lg">
             如果你正在几款床垫之间纠结，拿不定主意；腰不舒服，不知道什么样的床垫能帮到你；看完了我的文章，还是不确定自己的判断对不对——可以找我聊聊。
           </p>

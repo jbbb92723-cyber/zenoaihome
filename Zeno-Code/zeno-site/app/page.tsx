@@ -3,9 +3,9 @@ import HomePageGptSkill from '@/components/features/home/HomePageGptSkill'
 import StructuredData from '@/components/ui/StructuredData'
 
 export const metadata: Metadata = {
-  title: '赞诺｜装修判断·居住决策',
+  title: '赞诺｜传统行业 × AI 实战',
   description:
-    '从装修美学到AI实战，用16年经验把居住判断变成内容和工具。',
+    '17年装修老兵，用AI把自己重做了一遍。装修这么传统的行业我都能翻过来，你的应该也行。',
   alternates: {
     canonical: 'https://zenoaihome.com/',
   },
@@ -22,7 +22,7 @@ export default function HomePage() {
             name: '赞诺',
             url: 'https://zenoaihome.com',
             description:
-              '从装修美学到AI实战，用16年经验把居住判断变成内容和工具。',
+              '17年装修老兵，用AI把自己重做了一遍。装修这么传统的行业我都能翻过来，你的应该也行。',
             inLanguage: 'zh-CN',
           },
           {
@@ -31,15 +31,15 @@ export default function HomePage() {
             name: 'ZenoAIHome',
             url: 'https://zenoaihome.com',
             description:
-              'ZenoAIHome 是赞诺的私人自留地——16年装修老兵，只说真话，不卖货。',
+              'ZenoAIHome 是赞诺的私人自留地——17年装修老兵，只说真话，不卖货。',
           },
           {
             '@context': 'https://schema.org',
             '@type': 'WebPage',
-            name: '16年装修老兵，只说真话的居住判断指南',
+            name: '17年装修老兵，传统行业×AI实战的方法论',
             url: 'https://zenoaihome.com/',
             description:
-              '装修美学、AI知识库、AI工具、IP孵化、OPC社群——赞诺的私人自留地。',
+              '传统行业×AI实战、装修判断、IP孵化、OPC社群——赞诺的私人自留地。',
             inLanguage: 'zh-CN',
             isPartOf: {
               '@type': 'WebSite',

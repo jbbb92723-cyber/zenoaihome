@@ -8,7 +8,7 @@ import { getRecentLocalizedArticles } from '@/lib/i18n'
 export const metadata: Metadata = {
   title: 'ZenoAIHome | Think Before You Sign',
   description:
-    '16 years in renovation and mattresses. I help you figure out what you actually need — before the quote, before the contract, before the regret.',
+    '17 years in renovation and mattresses. I help you figure out what you actually need — before the quote, before the contract, before the regret.',
   openGraph: {
     type: 'website',
     locale: 'en',
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     siteName: 'ZenoAIHome',
     title: 'ZenoAIHome | Think Before You Sign',
     description:
-      'Real judgment from 16 years on job sites. Not a renovation company. Not a designer. Just someone who has seen enough to help you see clearly.',
+      'Real judgment from 17 years on job sites. Not a renovation company. Not a designer. Just someone who has seen enough to help you see clearly.',
   },
   alternates: {
     canonical: 'https://zenoaihome.com/en',
@@ -81,7 +81,7 @@ export default function EnHomePage() {
                 Before you sign, figure out what you actually want.
               </h1>
               <p className="mt-6 max-w-2xl text-base leading-8 text-ink-muted">
-                I've spent 16 years on renovation sites and in mattress showrooms. Most problems I've seen weren't construction mistakes. They were decisions made before anyone asked the right questions. This site is where I help you ask them.
+                I've spent 17 years on renovation sites and in mattress showrooms. Most problems I've seen weren't construction mistakes. They were decisions made before anyone asked the right questions. This site is where I help you ask them.
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <Link href="/en/tools" className="bg-stone px-5 py-3 text-sm font-semibold text-white hover:bg-stone/90">
@@ -103,7 +103,7 @@ export default function EnHomePage() {
                 ))}
               </div>
               <p className="mt-5 text-sm leading-7 text-ink-muted">
-                Built from 16 years on real renovation sites. AI can help organize questions, but the real work is judgment: what life the space should support, what the quote includes, and what must be written down before anyone picks up a hammer.
+                Built from 17 years on real renovation sites. AI can help organize questions, but the real work is judgment: what life the space should support, what the quote includes, and what must be written down before anyone picks up a hammer.
               </p>
             </div>
           </div>

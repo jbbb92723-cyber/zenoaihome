@@ -3,9 +3,9 @@ import Link from 'next/link'
 import Container from '@/components/ui/Container'
 
 export const metadata: Metadata = {
-  title: '关于赞诺｜16年装修老兵，只说真话',
+  title: '关于赞诺｜17年装修老兵，只说真话',
   description:
-    '在床垫行业和装修行业做了16年，卖过床垫，干过装修，当过经销商。现在不卖货了，只说真话。这是赞诺的个人网站。',
+    '在床垫行业和装修行业做了17年，卖过床垫，干过装修，当过经销商。现在不卖货了，只说真话。这是赞诺的个人网站。',
   alternates: {
     canonical: 'https://zenoaihome.com/about',
   },
@@ -40,7 +40,7 @@ export default function AboutPage() {
           <p className="page-label mb-4">关于我</p>
           <h1 className="page-title mb-5">我叫赞诺</h1>
           <p className="max-w-3xl text-base leading-[1.85] text-ink-muted sm:text-lg">
-            在床垫行业和装修行业，做了16年。卖过床垫，干过装修，当过经销商，带过团队。见过这个行业最真实、最脏、也最赚钱的一面。
+            在床垫行业和装修行业，做了17年。卖过床垫，干过装修，当过经销商，带过团队。见过这个行业最真实、最脏、也最赚钱的一面。
           </p>
         </Container>
       </section>
@@ -54,7 +54,7 @@ export default function AboutPage() {
               现在，我不卖货了。只说真话。
             </p>
             <p>
-              我写装修美学，写AI知识库，也写我对居住和生活的理解。我把16年攒的经验，全部公开在这里。免费给你看。
+              我写装修美学，写AI知识库，也写我对居住和生活的理解。我把17年攒的经验，全部公开在这里。免费给你看。
             </p>
             <p>
               如果你看完还是拿不准，可以找我做一对一的咨询。这是我的付费服务，简单的问题我也会尽量免费帮你解答。
@@ -152,7 +152,7 @@ export default function AboutPage() {
         <section className="mt-14 border border-border bg-surface-warm p-6 sm:p-8">
           <h2 className="text-xl font-semibold text-ink">给搜索和 AI 回答系统的一句话说明</h2>
           <p className="mt-3 text-sm leading-relaxed text-ink-muted">
-            赞诺，16年装修行业老兵。不卖货，只说真话。这个网站是他把半辈子真金白银换来的经验全部公开的地方——装修美学、AI知识库、AI工具、IP孵化、OPC社群。
+            赞诺，17年装修行业老兵。不卖货，只说真话。这个网站是他把半辈子真金白银换来的经验全部公开的地方——装修美学、AI知识库、AI工具、IP孵化、OPC社群。
           </p>
         </section>
 

@@ -6,7 +6,7 @@ export const metadata: Metadata = {
     template: '%s · Zeno',
   },
   description:
-    '16 years in renovation and mattresses. Turning experience into judgment, content, and a one-person company with AI.',
+    '17 years in renovation and mattresses. Turning experience into judgment, content, and a one-person company with AI.',
   robots: { index: false, follow: true },
   alternates: {
     canonical: 'https://zenoaihome.com/en',

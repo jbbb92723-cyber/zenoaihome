@@ -224,7 +224,7 @@ If you're in a traditional industry and want to put AI to practical use, start w
     en: {
       slug: 'mattress-not-about-price',
       title: 'An Expensive Mattress Doesn\'t Mean a Better Sleep',
-      excerpt: '16 years selling and tearing down mattresses. What I learned: the expensive one and the right one are rarely the same. Most of what you pay for has nothing to do with your back.',
+      excerpt: '17 years selling and tearing down mattresses. What I learned: the expensive one and the right one are rarely the same. Most of what you pay for has nothing to do with your back.',
       category: 'Mattress',
       tags: ['mattress', 'buying guide', 'materials', 'pricing', 'sleep trial'],
       coverAlt: 'Mattress buying guide',
@@ -236,7 +236,7 @@ If you're in a traditional industry and want to put AI to practical use, start w
     en: {
       slug: 'mattress-renovation-same-pricing-tricks',
       title: 'The Mattress Industry Uses the Same Pricing Tricks as Renovation',
-      excerpt: 'After 16 years in renovation and years selling mattresses, I can tell you: both industries play the exact same games. Vague quotes, step-up selling, optional features shown as standard.',
+      excerpt: 'After 17 years in renovation and years selling mattresses, I can tell you: both industries play the exact same games. Vague quotes, step-up selling, optional features shown as standard.',
       category: 'Mattress',
       tags: ['mattress', 'industry insider', 'pricing', 'sales tactics', 'renovation'],
       coverAlt: 'Mattress industry pricing tricks',
@@ -284,7 +284,7 @@ If you're in a traditional industry and want to put AI to practical use, start w
     en: {
       slug: 'about-zeno',
       title: 'From Job Site to Solo Business — This Is Zeno',
-      excerpt: '16 years in renovation and mattresses. Not a renovation company. Not a designer. I help you translate the life you want into actionable plans and clear judgment.',
+      excerpt: '17 years in renovation and mattresses. Not a renovation company. Not a designer. I help you translate the life you want into actionable plans and clear judgment.',
       category: 'About',
       tags: ['about', 'Zeno', 'solo business', 'residential judgment'],
       coverAlt: 'About Zeno',

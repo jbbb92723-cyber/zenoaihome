@@ -330,7 +330,7 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
               赞诺
             </motion.h1>
             <motion.p variants={staggerItem} className="mt-8 max-w-[38ch] text-base font-medium leading-7 text-ink-muted">
-              从装修和床垫出发，用AI把16年经验变成判断、内容和一人公司模式。
+              从装修和床垫出发，用AI把17年经验变成判断、内容和一人公司模式。
             </motion.p>
             <motion.p variants={staggerItem} className="mt-3 text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-ink-faint">
               今天在看的：南宁第 38 份水电没有上限的报价——和 2018 年第一份一样。
@@ -418,7 +418,7 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
               报价里的坑，签之前都能看出来。
             </h2>
             <p className="mt-5 max-w-md text-base leading-8 text-ink-muted">
-              不是吓你。做了16年，这三类问题几乎每份报价都会出现——看完再签，不迟。
+              不是吓你。做了17年，这三类问题几乎每份报价都会出现——看完再签，不迟。
             </p>
           </div>
           <div className="grid gap-3">
