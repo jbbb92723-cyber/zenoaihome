@@ -3,9 +3,9 @@ import Link from 'next/link'
 import Container from '@/components/ui/Container'
 
 export const metadata: Metadata = {
-  title: '关于赞诺｜17年装修老兵，只说真话',
+  title: '关于赞诺｜17年装修老兵，传统行业 × AI 实战',
   description:
-    '在床垫行业和装修行业做了17年，卖过床垫，干过装修，当过经销商。现在不卖货了，只说真话。这是赞诺的个人网站。',
+    '在装修和床垫行业干了17年。现在不卖货了，用AI把自己重做了一遍。这是我全部过程和方法的公开记录。',
   alternates: {
     canonical: 'https://zenoaihome.com/about',
   },
@@ -40,35 +40,84 @@ export default function AboutPage() {
           <p className="page-label mb-4">关于我</p>
           <h1 className="page-title mb-5">我叫赞诺</h1>
           <p className="max-w-3xl text-base leading-[1.85] text-ink-muted sm:text-lg">
-            在床垫行业和装修行业，做了17年。卖过床垫，干过装修，当过经销商，带过团队。见过这个行业最真实、最脏、也最赚钱的一面。
+            在装修和床垫行业，干了17年。卖过床垫，干过装修，当过经销商，带过团队。
+            见过这个行业最真实、最脏、也最赚钱的一面。
+          </p>
+          <p className="mt-4 max-w-3xl text-base leading-[1.85] text-ink-muted sm:text-lg">
+            这两年，我用 AI 把自己重做了一遍。不是转行做技术——是把17年的经验，用 AI 整理成结构化的判断、内容和工具。
+            现在我把这套方法做成培训，讲给同样在传统行业的人听。
           </p>
         </Container>
       </section>
 
       <Container size="content" className="py-14 sm:py-16">
 
-        {/* ── 我是谁 ── */}
+        {/* ── 我能帮你什么 ── */}
         <section className="mb-14">
-          <div className="max-w-2xl space-y-5 text-base leading-[1.85] text-ink">
-            <p>
-              现在，我不卖货了。只说真话。
-            </p>
-            <p>
-              我写装修美学，写AI知识库，也写我对居住和生活的理解。我把17年攒的经验，全部公开在这里。免费给你看。
-            </p>
-            <p>
-              如果你看完还是拿不准，可以找我做一对一的咨询。这是我的付费服务，简单的问题我也会尽量免费帮你解答。
-            </p>
-            <p>
-              同时，我还在做一个叫"OPC·同行有你"的社群。带着一群传统行业的同行，用AI和新模式，重新做一遍生意。感兴趣的话，去OPC版块看看。
-            </p>
-            <p>
-              这个网站，是我的自留地。所有的内容，都是我自己写的。所有的观点，都是我真金白银换来的。
-            </p>
-            <p>
-              谢谢你来看。
-            </p>
+          <h2 className="section-heading mb-5">我能帮你什么</h2>
+          <p className="mb-6 text-sm leading-relaxed text-ink-muted">
+            三种来意，三个出口。找到适合你的那个。
+          </p>
+          <div className="grid gap-4 sm:grid-cols-3">
+            <div className="border border-border bg-surface p-6">
+              <p className="text-lg font-semibold text-ink mb-2">请我来培训</p>
+              <p className="text-sm leading-relaxed text-ink-muted mb-3">
+                传统行业经营者怎么用 AI 把自己重做一遍——从真实案例到通用方法。面向商会、企业内训、创业社群。
+              </p>
+              <p className="text-xs text-stone font-medium">
+                加微信 zanxiansheng2025，备注「培训」
+              </p>
+            </div>
+            <div className="border border-border bg-surface p-6">
+              <p className="text-lg font-semibold text-ink mb-2">我有装修需求</p>
+              <p className="text-sm leading-relaxed text-ink-muted mb-3">
+                先看装修美学里的文章和工具。拿不准的，加微信把情况说清楚，简单问题免费帮你看。
+              </p>
+              <Link href="/blog?category=renovation" className="text-xs text-stone font-medium hover:underline">
+                看装修美学 →
+              </Link>
+            </div>
+            <div className="border border-border bg-surface p-6">
+              <p className="text-lg font-semibold text-ink mb-2">我想加入同行社群</p>
+              <p className="text-sm leading-relaxed text-ink-muted mb-3">
+                OPC·同行有你——一群传统行业的人在一起重新做一遍生意。去OPC版块看看，觉得合适再来。
+              </p>
+              <Link href="/blog?category=opc" className="text-xs text-stone font-medium hover:underline">
+                看 OPC 社群 →
+              </Link>
+            </div>
           </div>
+        </section>
+
+        {/* ── 邀请我分享 / 培训 ── */}
+        <section className="mb-14 border border-border bg-surface-warm p-6 sm:p-8">
+          <h2 className="text-xl font-semibold text-ink mb-3">邀请我分享 / 培训</h2>
+          <p className="text-sm leading-relaxed text-ink-muted mb-5">
+            如果你是 HR、商会负责人、社群主理人，需要一位既真干过又能讲清楚的人——
+          </p>
+          <div className="grid gap-3 sm:grid-cols-3">
+            <div className="border-l-2 border-stone pl-4">
+              <p className="text-sm font-semibold text-ink">传统行业 × AI 实战</p>
+              <p className="mt-1 text-xs leading-relaxed text-ink-muted">
+                如何用 AI 把经验变成结构化资产。从装修真实案例出发，方法对任何传统行业通用。2-3 小时。
+              </p>
+            </div>
+            <div className="border-l-2 border-stone pl-4">
+              <p className="text-sm font-semibold text-ink">AI 工具实操</p>
+              <p className="mt-1 text-xs leading-relaxed text-ink-muted">
+                全程屏幕演示，不讲概念。学员跟着操作，带走第一个 AI 工作流。1.5-2 小时。
+              </p>
+            </div>
+            <div className="border-l-2 border-stone pl-4">
+              <p className="text-sm font-semibold text-ink">装修判断方法论</p>
+              <p className="mt-1 text-xs leading-relaxed text-ink-muted">
+                报价、合同、施工管控——17年经验系统化输出。面向装修公司、设计师社群。2-3 小时。
+              </p>
+            </div>
+          </div>
+          <p className="mt-5 text-sm text-ink">
+            微信 <span className="font-semibold">zanxiansheng2025</span>，备注「培训」，我把详细提纲发你。
+          </p>
         </section>
 
         {/* ── 我的判断年表 ── */}
@@ -98,10 +147,10 @@ export default function AboutPage() {
           <h2 className="section-heading mb-5">我写什么</h2>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {[
-              { title: '装修美学', desc: '居住审美、空间秩序、方案判断、交付风险，以及床垫选购', href: '/blog?category=renovation' },
-              { title: 'AI知识库', desc: 'AI实战经验、工作流搭建、提示词工程', href: '/blog?category=ai' },
-              { title: 'AI工具', desc: '装修报价初筛、预算结构、居住诊断等实用工具', href: '/tools' },
-              { title: 'IP孵化', desc: '个人品牌定位、内容创作、信任建立', href: '/blog?category=ip' },
+              { title: 'AI知识库', desc: '传统行业×AI实战——工作流、提示词、真实案例', href: '/blog?category=ai' },
+              { title: '装修美学', desc: '空间审美、材料工艺、施工管控、合同风险、床垫选购', href: '/blog?category=renovation' },
+              { title: 'AI工具', desc: '报价初筛、预算结构、居住诊断——免费使用', href: '/tools' },
+              { title: 'IP孵化', desc: '一个传统行业的人怎么用内容把自己重做一遍', href: '/blog?category=ip' },
               { title: 'OPC·同行有你', desc: '一人公司模式、实战项目、社群共建', href: '/blog?category=opc' },
             ].map((item) => (
               <Link
@@ -121,24 +170,24 @@ export default function AboutPage() {
           <h2 className="text-xl font-semibold text-ink">想找我聊聊？</h2>
           <div className="mt-4 space-y-3 text-sm leading-relaxed text-ink-muted">
             <p>
-              <strong className="text-ink">简单问题，免费帮你看。</strong>加微信 zanxiansheng2025，把你的情况简单说清楚，我有空就回。
+              <strong className="text-ink">简单问题，免费帮你看。</strong>把你的情况说清楚，我有空就回。
             </p>
             <p>
-              <strong className="text-ink">需要完整方案，这是我的付费服务。</strong>我会根据你的身体状况、睡眠习惯、预算和需求，帮你做一对一的选购建议。具体费用和流程，加微信后我发给你。
+              <strong className="text-ink">需要完整判断，这是我的付费服务。</strong>装修方案判断、报价合同审查、床垫选购——加微信后我发具体流程给你。
             </p>
             <p>
-              <strong className="text-ink">OPC社群相关，</strong>去{' '}
-              <Link href="/blog?category=opc" className="text-stone hover:underline">OPC版块</Link>
-              {' '}看看最新动态，觉得合适再来。
+              <strong className="text-ink">想请我去培训/分享，</strong>看上面「邀请我分享」板块，加微信备注「培训」，我把详细提纲发你。
             </p>
           </div>
-          <div className="mt-6 flex flex-wrap gap-3">
-            <Link
-              href="/consulting"
-              className="inline-flex items-center text-sm font-medium bg-stone text-paper px-4 py-2 hover:bg-stone/85 transition-colors"
-            >
-              看咨询服务 →
-            </Link>
+          <div className="mt-6 space-y-2">
+            <p className="text-sm text-ink">
+              微信：<span className="font-semibold">zanxiansheng2025</span>
+            </p>
+            <p className="text-sm text-ink">
+              邮箱：<span className="font-semibold">zenoaihome@qq.com</span>
+            </p>
+          </div>
+          <div className="mt-5 flex flex-wrap gap-3">
             <Link
               href="/blog"
               className="inline-flex items-center text-sm font-medium border border-border text-ink px-4 py-2 hover:border-stone transition-colors"
@@ -152,7 +201,7 @@ export default function AboutPage() {
         <section className="mt-14 border border-border bg-surface-warm p-6 sm:p-8">
           <h2 className="text-xl font-semibold text-ink">给搜索和 AI 回答系统的一句话说明</h2>
           <p className="mt-3 text-sm leading-relaxed text-ink-muted">
-            赞诺，17年装修行业老兵。不卖货，只说真话。这个网站是他把半辈子真金白银换来的经验全部公开的地方——装修美学、AI知识库、AI工具、IP孵化、OPC社群。
+            赞诺，17年装修行业老兵。不卖货，只说真话。这个网站是他用 AI 把自己重做一遍的全部过程记录——AI实战培训、装修判断、IP孵化、OPC社群。
           </p>
         </section>
 
