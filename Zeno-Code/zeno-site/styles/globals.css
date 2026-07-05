@@ -386,57 +386,6 @@ body {
 }
 
 /* ─────────────────────────────────────────
-   字体层级系统
-   H1 → 内页标题 / 首页更大
-───────────────────────────────────────── */
-
-/* 内页 H1 — 编辑感衬线 */
-.page-title {
-  font-family: "Noto Serif SC", "Source Han Serif SC", "Songti SC", Georgia, serif;
-  font-weight: 500;
-  font-size: 1.875rem; /* 30px */
-  line-height: 1.18;
-  letter-spacing: 0.01em;
-  color: var(--color-ink);
-}
-
-/* 首页 Hero — 克制个人站，衬线显品味 */
-.hero-title {
-  font-family: "Noto Serif SC", "Source Han Serif SC", "Songti SC", Georgia, serif;
-  font-weight: 500;
-  font-size: 1.75rem; /* 28px */
-  line-height: 1.25;
-  letter-spacing: 0.012em;
-  color: var(--color-ink);
-}
-
-/* 区块标题 H2 — 保持Sans简洁，Serif留给Hero/内页标题 */
-.section-heading {
-  font-size: 1.25rem; /* 20px */
-  font-weight: 600;
-  line-height: 1.25;
-  letter-spacing: 0;
-  color: var(--color-ink);
-}
-
-/* 卡片标题 */
-.card-title {
-  font-size: 1.0625rem; /* 17px */
-  font-weight: 600;
-  line-height: 1.4;
-  color: var(--color-ink);
-}
-
-/* 小标签（页面类型） */
-.page-label {
-  font-size: 0.75rem;   /* 12px */
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--color-stone);
-}
-
-/* ─────────────────────────────────────────
    中文正文阅读优化
 ───────────────────────────────────────── */
 .prose-zh {
@@ -518,34 +467,6 @@ a {
   outline-offset: 3px;
   border-radius: 4px;
   box-shadow: 0 0 0 4px rgb(var(--color-surface-warm-rgb) / 0.42);
-}
-
-@media (min-width: 640px) {
-  .page-title {
-    font-size: 2.25rem; /* 36px */
-  }
-
-  .hero-title {
-    font-size: 2.125rem; /* 34px */
-  }
-
-  .section-heading {
-    font-size: 1.5rem; /* 24px */
-  }
-}
-
-@media (min-width: 1024px) {
-  .page-title {
-    font-size: 2.75rem; /* 44px */
-  }
-
-  .hero-title {
-    font-size: 2.5rem; /* 40px */
-  }
-
-  .section-heading {
-    font-size: 1.625rem; /* 26px */
-  }
 }
 
 /* ─────────────────────────────────────────

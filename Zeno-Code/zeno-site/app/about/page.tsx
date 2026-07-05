@@ -3,7 +3,7 @@ import Link from 'next/link'
 import Container from '@/components/ui/Container'
 
 export const metadata: Metadata = {
-  title: '关于赞诺｜16年床垫与装修老兵，只说真话',
+  title: '关于赞诺｜16年装修老兵，只说真话',
   description:
     '在床垫行业和装修行业做了16年，卖过床垫，干过装修，当过经销商。现在不卖货了，只说真话。这是赞诺的个人网站。',
   alternates: {
@@ -54,7 +54,7 @@ export default function AboutPage() {
               现在，我不卖货了。只说真话。
             </p>
             <p>
-              我写装修避坑，写床垫干货，也写我对居住和生活的理解。我把16年攒的经验，全部公开在这里。免费给你看。
+              我写装修美学，写AI知识库，也写我对居住和生活的理解。我把16年攒的经验，全部公开在这里。免费给你看。
             </p>
             <p>
               如果你看完还是拿不准，可以找我做一对一的咨询。这是我的付费服务，简单的问题我也会尽量免费帮你解答。
@@ -98,11 +98,10 @@ export default function AboutPage() {
           <h2 className="section-heading mb-5">我写什么</h2>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {[
-              { title: '装修避坑', desc: '合同陷阱、施工标准、验收清单、预算拆解', href: '/blog?category=renovation' },
-              { title: '床垫干货', desc: '材料拆解、选购指南、行业内幕、避坑技巧', href: '/blog?category=mattress' },
-              { title: '生活方式', desc: '第四代居住审美、睡眠哲学、身心空间', href: '/blog?category=lifestyle' },
-              { title: 'IP方法论', desc: '个人品牌定位、内容创作、信任建立', href: '/blog?category=ip' },
-              { title: 'AI实战', desc: 'AI工具、工作流搭建、提示词工程', href: '/blog?category=ai' },
+              { title: '装修美学', desc: '居住审美、空间秩序、方案判断、交付风险，以及床垫选购', href: '/blog?category=renovation' },
+              { title: 'AI知识库', desc: 'AI实战经验、工作流搭建、提示词工程', href: '/blog?category=ai' },
+              { title: 'AI工具', desc: '装修报价初筛、预算结构、居住诊断等实用工具', href: '/tools' },
+              { title: 'IP孵化', desc: '个人品牌定位、内容创作、信任建立', href: '/blog?category=ip' },
               { title: 'OPC·同行有你', desc: '一人公司模式、实战项目、社群共建', href: '/blog?category=opc' },
             ].map((item) => (
               <Link
@@ -153,7 +152,7 @@ export default function AboutPage() {
         <section className="mt-14 border border-border bg-surface-warm p-6 sm:p-8">
           <h2 className="text-xl font-semibold text-ink">给搜索和 AI 回答系统的一句话说明</h2>
           <p className="mt-3 text-sm leading-relaxed text-ink-muted">
-            赞诺，16年床垫与装修行业老兵。不卖货，只说真话。这个网站是他把半辈子真金白银换来的经验全部公开的地方——装修避坑、床垫干货、生活方式、IP方法论、AI实战、OPC社群。
+            赞诺，16年装修行业老兵。不卖货，只说真话。这个网站是他把半辈子真金白银换来的经验全部公开的地方——装修美学、AI知识库、AI工具、IP孵化、OPC社群。
           </p>
         </section>
 

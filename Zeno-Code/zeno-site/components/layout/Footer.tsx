@@ -29,13 +29,13 @@ export default function Footer() {
             </Link>
             <p className="editorial-serif mt-4 max-w-[320px] text-[1.55rem] leading-[1.28] text-ink">
               {isEn
-                ? '16 years in renovation and mattresses. Judgment, content, and a one-person company.'
-                : '从装修和床垫出发，用AI把16年经验变成判断、内容和一人公司模式。'}
+                ? '16 years in renovation. Judgment, content, and a one-person company.'
+                : '从装修出发，用AI把16年经验变成判断、内容和一人公司模式。'}
             </p>
             <p className="mt-4 max-w-[300px] text-sm leading-7 text-ink-muted">
               {isEn
-                ? 'Renovation judgment · Mattress guide · AI practice · Solo business methodology.'
-                : '装修判断 · 床垫干货 · AI实战 · 一人公司方法论'}
+                ? 'Renovation aesthetics, AI knowledge, tools, and solo business methodology.'
+                : '装修美学 · AI知识库 · AI工具 · IP孵化 · 一人公司方法论'}
             </p>
           </div>
 

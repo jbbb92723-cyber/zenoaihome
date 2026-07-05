@@ -73,8 +73,8 @@ export default function BlogClient() {
     <>
       <PageHero
         label="文章库"
-        title="装修避坑、床垫干货、生活方式、IP方法论、AI实战、OPC社群"
-        subtitle="这里不是装修知识大全，也不是床垫百科。每篇文章都从真实经历出发——16年一线经验，拆成你能用的判断。"
+        title="装修美学、AI知识库、AI工具、IP孵化、OPC社群"
+        subtitle="这里不是装修知识大全，也不是AI百科。每篇文章都从真实经历出发——16年一线经验，拆成你能用的判断。"
         note="先选你关心的版块，再看有什么。不用按时间刷。"
       />
 
@@ -84,7 +84,7 @@ export default function BlogClient() {
           <p className="system-label">内容版块</p>
           <h2 className="mt-2 text-lg font-semibold text-ink">这个文章库怎么用</h2>
           <p className="mt-3 text-sm leading-relaxed text-ink-muted">
-            六个版块各有侧重。选你当前最关心的方向，从那里开始。每篇文章结尾有统一的行动建议——看完知道下一步该做什么。
+            五个版块各有侧重。选你当前最关心的方向，从那里开始。每篇文章结尾有统一的行动建议——看完知道下一步该做什么。
           </p>
           <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {contentSystem.map(([title, desc]) => (

@@ -16,7 +16,7 @@ type CTAConfig = {
   secondary: { label: string; href: string }
 }
 
-// 装修避坑 → 报价初筛 / 服务
+// 装修美学 → 报价初筛 / 服务
 const RENO_CTA: CTAConfig = {
   title: '看完这篇，下一步可以——',
   description: '如果你手里已经有报价或合同，先做免费初筛看风险；还没定方案，先看服务路径选对入口。',
@@ -40,10 +40,10 @@ const LIFESTYLE_CTA: CTAConfig = {
   secondary: { label: '联系我', href: '/contact' },
 }
 
-// IP方法论 / AI实战 / OPC → 咨询服务 / OPC版块
+// IP孵化 / AI知识库 / OPC → 咨询服务 / OPC版块
 const AI_CTA: CTAConfig = {
   title: '如果你想看更多实战内容——',
-  description: 'AI 实战、IP 方法论和一人公司案例都在持续更新。OPC 社群里有一群和你一样的人。',
+  description: 'AI 知识库、IP 孵化和一人公司案例都在持续更新。OPC 社群里有一群和你一样的人。',
   primary: { label: '看 OPC 社群', href: '/blog?category=opc' },
   secondary: { label: '回到文章库', href: '/blog' },
 }

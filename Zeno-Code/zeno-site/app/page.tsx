@@ -5,7 +5,7 @@ import StructuredData from '@/components/ui/StructuredData'
 export const metadata: Metadata = {
   title: '赞诺｜装修判断·居住决策',
   description:
-    '从装修和床垫出发，用AI把16年经验变成判断、内容和一人公司模式。',
+    '从装修美学到AI实战，用16年经验把居住判断变成内容和工具。',
   alternates: {
     canonical: 'https://zenoaihome.com/',
   },
@@ -22,7 +22,7 @@ export default function HomePage() {
             name: '赞诺',
             url: 'https://zenoaihome.com',
             description:
-              '从装修和床垫出发，用AI把16年经验变成判断、内容和一人公司模式。',
+              '从装修美学到AI实战，用16年经验把居住判断变成内容和工具。',
             inLanguage: 'zh-CN',
           },
           {
@@ -31,15 +31,15 @@ export default function HomePage() {
             name: 'ZenoAIHome',
             url: 'https://zenoaihome.com',
             description:
-              'ZenoAIHome 是赞诺的私人自留地——16年床垫与装修老兵，只说真话，不卖货。',
+              'ZenoAIHome 是赞诺的私人自留地——16年装修老兵，只说真话，不卖货。',
           },
           {
             '@context': 'https://schema.org',
             '@type': 'WebPage',
-            name: '16年床垫与装修老兵，只说真话的家居避坑指南',
+            name: '16年装修老兵，只说真话的居住判断指南',
             url: 'https://zenoaihome.com/',
             description:
-              '装修避坑、床垫干货、生活方式、IP方法论、AI实战、OPC社群——赞诺的私人自留地。',
+              '装修美学、AI知识库、AI工具、IP孵化、OPC社群——赞诺的私人自留地。',
             inLanguage: 'zh-CN',
             isPartOf: {
               '@type': 'WebSite',
