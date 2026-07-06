@@ -38,38 +38,32 @@ export default function ArticleCard({ article, variant = 'default' }: ArticleCar
   return (
     <Link
       href={`/blog/${article.slug}`}
-      className="group block py-6 border-b border-border last:border-0"
+      className="group block py-10 border-b border-border last:border-0"
     >
       {hasCover && (
-        <div className="relative w-full aspect-[16/7] overflow-hidden mb-4">
+        <div className="relative w-full aspect-[3/1] overflow-hidden mb-6">
           <Image
             src={article.coverImage!}
             alt={article.coverAlt || article.title}
             fill
-            className="object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+            className="object-cover transition-transform duration-500 group-hover:scale-[1.01]"
             sizes="(max-width: 768px) 100vw, 800px"
           />
         </div>
       )}
-      <div className="flex items-center gap-2 mb-2">
-        <span className="text-xs text-stone font-medium">{article.category}</span>
-        <span className="text-border">·</span>
-        <time className="text-xs text-ink-muted">{formattedDate}</time>
+      <div className="flex items-center gap-3 mb-3">
+        <span className="text-xs font-medium uppercase tracking-widest text-stone">
+          {article.category}
+        </span>
+        <span className="text-border text-xs">·</span>
+        <time className="text-xs text-ink-faint">{formattedDate}</time>
       </div>
-      <h2 className="text-base sm:text-lg font-medium text-ink group-hover:text-stone transition-colors leading-snug mb-2">
+      <h2 className="text-xl sm:text-2xl font-medium text-ink group-hover:text-stone transition-colors leading-tight mb-3 max-w-3xl">
         {article.title}
       </h2>
-      <p className="text-sm text-ink-muted leading-relaxed line-clamp-2">
+      <p className="text-sm text-ink-muted leading-relaxed line-clamp-3 max-w-2xl">
         {article.excerpt}
       </p>
-      <div className="flex items-center gap-1 mt-3">
-        <span className="text-xs text-stone group-hover:underline transition-all">
-          阅读全文
-        </span>
-        <span className="text-xs text-stone opacity-0 group-hover:opacity-100 transition-opacity">
-          →
-        </span>
-      </div>
     </Link>
   )
 }

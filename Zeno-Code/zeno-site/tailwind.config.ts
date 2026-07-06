@@ -38,9 +38,9 @@ const config: Config = {
         // 语义化字号别名
         label:  ['0.75rem',  { lineHeight: '1.4', letterSpacing: '0.06em' }], // 12px
         caption:['0.8125rem',{ lineHeight: '1.5' }],                           // 13px
-        body:   ['1rem',     { lineHeight: '1.75' }],                          // 16px
-        'body-lg':['1.0625rem',{ lineHeight: '1.85' }],                        // 17px
-        prose:  ['1.125rem', { lineHeight: '1.9'  }],                          // 18px
+        body:   ['1rem',     { lineHeight: '1.85' }],                          // 16px
+        'body-lg':['1.0625rem',{ lineHeight: '1.9' }],                         // 17px
+        prose:  ['1.125rem', { lineHeight: '1.95' }],                          // 18px
       },
       spacing: {
         section:  '7rem',    // 112px  大区块上下 (奢侈留白)
