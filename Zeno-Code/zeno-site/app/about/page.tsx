@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 import Container from '@/components/ui/Container'
 
@@ -40,10 +41,14 @@ export default function AboutPage() {
           <p className="page-label mb-4">关于我</p>
           <div className="flex flex-col sm:flex-row sm:items-start gap-6 sm:gap-10">
             <div className="shrink-0">
-              {/* 替换 src 为你的照片路径，建议放在 public/images/brand/ */}
-              <div className="w-28 h-28 sm:w-36 sm:h-36 bg-stone/10 border border-border flex items-center justify-center text-ink-faint text-xs">
-                你的照片
-              </div>
+              <Image
+                src="/images/brand/zeno-portrait.jpg"
+                alt="赞诺"
+                width={160}
+                height={160}
+                className="w-32 h-32 sm:w-40 sm:h-40 rounded-[4px] object-cover"
+                priority
+              />
             </div>
             <div>
               <h1 className="page-title mb-5">我叫赞诺</h1>
