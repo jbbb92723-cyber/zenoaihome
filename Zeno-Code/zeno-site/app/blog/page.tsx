@@ -5,9 +5,9 @@ import { articles } from '@/data/content/articles'
 import BlogClient from './BlogClient'
 
 export const metadata: Metadata = {
-  title: '全部文章｜AI实战、装修判断、IP孵化、OPC社群',
+  title: '全部文章｜AI 落地判断、装修全案判断、OPC·同行有你',
   description:
-    '赞诺的文章库。按AI实战、装修判断、IP孵化、OPC·同行有你四个方向组织——17年一线经验里长出来的真实内容。',
+    '赞诺的文章库。按 AI 落地判断、装修全案判断、OPC·同行有你三个判断方向组织——17 年一线经验里长出来的真实内容。',
   alternates: {
     canonical: 'https://zenoaihome.com/blog',
   },

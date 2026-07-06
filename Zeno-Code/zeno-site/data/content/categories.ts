@@ -2,7 +2,9 @@
  * data/content/categories.ts
  *
  * ZenoAIHome 网站内容分类体系。
- * 7 个一级分类 + 床垫干货 & OPC 的二级子分类。
+ * 6 个一级分类，对齐「判断框架」而非「主题标签」。
+ * 每个分类回答的不是「我写过什么话题」，
+ * 而是「我能在这个领域提供什么判断」。
  */
 
 export interface ContentCategory {
@@ -17,54 +19,54 @@ export interface ContentCategory {
 export const primaryCategories: ContentCategory[] = [
   {
     slug: 'renovation',
-    name: '装修避坑',
-    description: '装修合同陷阱、施工标准、验收清单、预算拆解',
+    name: '装修全案判断',
+    description: '从空间方案到交付风险，17 年全链条判断——合同审查、施工标准、预算拆解、验收清单',
   },
   {
     slug: 'mattress',
-    name: '床垫干货',
-    description: '床垫材料拆解、选购指南、行业内幕、避坑技巧',
+    name: '床垫选购判断',
+    description: '床垫材料拆解、选购方法、定价逻辑、使用与保养',
   },
   {
     slug: 'lifestyle',
-    name: '生活方式',
+    name: '居住方式',
     description: '第四代居住审美、睡眠哲学、身心空间、消费观',
   },
   {
     slug: 'ip',
-    name: 'IP方法论',
-    description: '个人品牌定位、内容创作、信任建立、变现路径',
+    name: '把自己重做一遍',
+    description: '一个传统行业的人怎么用内容和 AI 重建自己——定位、表达、信任建立',
   },
   {
     slug: 'ai',
-    name: 'AI实战',
-    description: 'AI工具清单、工作流搭建、提示词工程、传统行业应用',
+    name: 'AI 落地判断',
+    description: '哪些能用、哪些是坑——传统行业 × AI 实战、工作流搭建、真实案例',
   },
   {
     slug: 'opc',
     name: 'OPC·同行有你',
-    description: '一人公司模式、实战项目、社群动态、AI成长营',
+    description: '一人公司模式、工程方法、实战项目、社群共建',
   },
   {
     slug: 'about',
     name: '关于我',
-    description: '我的转型故事、从业经历、联系方式',
+    description: '我的转型故事、从业经历、判断年表、联系方式',
   },
 ]
 
 /* ─── 二级分类 ─────────────────────────────────────── */
 
 export const subcategories: ContentCategory[] = [
-  // 床垫干货的子分类
+  // 床垫选购判断的子分类
   { slug: 'buying', name: '选购认知', parentSlug: 'mattress' },
   { slug: 'material', name: '材料拆解', parentSlug: 'mattress' },
-  { slug: 'insider', name: '行业内幕', parentSlug: 'mattress' },
+  { slug: 'insider', name: '买手经验', parentSlug: 'mattress' },
   { slug: 'care', name: '保养与使用', parentSlug: 'mattress' },
   // OPC·同行有你的子分类
-  { slug: 'solo-method', name: '一人公司方法论', parentSlug: 'opc' },
+  { slug: 'solo-method', name: '一人公司工程方法', parentSlug: 'opc' },
   { slug: 'projects', name: '实战项目', parentSlug: 'opc' },
-  { slug: 'community', name: '社群动态', parentSlug: 'opc' },
-  { slug: 'ai-school', name: 'AI成长营', parentSlug: 'opc' },
+  { slug: 'community', name: '同行社群', parentSlug: 'opc' },
+  { slug: 'ai-school', name: 'AI 成长营', parentSlug: 'opc' },
 ]
 
 /* ─── 查找辅助函数 ──────────────────────────────────── */
@@ -119,19 +121,31 @@ export function mapLegacyCategoryToName(legacyCategory: string): string {
 /* ─── 分类中文名 → slug 映射（用于 category 字段和 url 参数） ─── */
 
 export const categoryNameToSlug: Record<string, string> = {
+  // 新标签名（判断框架）
+  '装修全案判断': 'renovation',
+  '床垫选购判断': 'mattress',
+  '居住方式': 'lifestyle',
+  '把自己重做一遍': 'ip',
+  'AI 落地判断': 'ai',
+  'OPC·同行有你': 'opc',
+  '关于我': 'about',
+  // 旧标签名（向后兼容存量文章数据）
   '装修避坑': 'renovation',
+  '装修美学': 'renovation',
   '床垫干货': 'mattress',
   '生活方式': 'lifestyle',
   'IP方法论': 'ip',
+  'IP孵化': 'ip',
   'AI实战': 'ai',
-  'OPC·同行有你': 'opc',
-  '关于我': 'about',
+  'AI知识库': 'ai',
+  '行业内幕': 'insider',
+  // 二级分类
   '选购认知': 'buying',
   '材料拆解': 'material',
-  '行业内幕': 'insider',
+  '买手经验': 'insider',
   '保养与使用': 'care',
-  '一人公司方法论': 'solo-method',
+  '一人公司工程方法': 'solo-method',
   '实战项目': 'projects',
-  '社群动态': 'community',
-  'AI成长营': 'ai-school',
+  '同行社群': 'community',
+  'AI 成长营': 'ai-school',
 }

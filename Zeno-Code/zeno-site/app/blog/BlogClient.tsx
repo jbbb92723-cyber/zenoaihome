@@ -73,7 +73,7 @@ export default function BlogClient() {
     <>
       <PageHero
         label="文章库"
-        title="AI实战、装修判断、IP孵化、OPC社群"
+        title="AI 落地判断、装修全案判断、OPC·同行有你"
         subtitle="不是装修知识大全，也不是AI百科。17年一线经验，拆成你能用的判断和方法。"
         note="先选你关心的版块，再看有什么。不用按时间刷。"
       />

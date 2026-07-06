@@ -39,7 +39,7 @@ export default function HomePage() {
             name: '17年装修老兵，传统行业×AI实战的方法论',
             url: 'https://zenoaihome.com/',
             description:
-              '传统行业×AI实战、装修判断、IP孵化、OPC社群——赞诺的私人自留地。',
+              'AI 落地判断、装修全案判断、OPC·同行有你、AI 培训与企业服务——赞诺的私人自留地。',
             inLanguage: 'zh-CN',
             isPartOf: {
               '@type': 'WebSite',

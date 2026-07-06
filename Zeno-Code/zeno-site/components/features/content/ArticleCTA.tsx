@@ -16,7 +16,7 @@ type CTAConfig = {
   secondary: { label: string; href: string }
 }
 
-// 装修美学 → 报价初筛 / 服务
+// 装修全案判断 → 报价初筛 / 服务
 const RENO_CTA: CTAConfig = {
   title: '看完这篇，下一步可以——',
   description: '如果你手里已经有报价或合同，先做免费初筛看风险；还没定方案，先看服务路径选对入口。',
@@ -24,7 +24,7 @@ const RENO_CTA: CTAConfig = {
   secondary: { label: '查看服务路径', href: '/services' },
 }
 
-// 床垫干货 → 咨询服务
+// 床垫选购判断 → 咨询服务
 const MATTRESS_CTA: CTAConfig = {
   title: '看完这篇，还是拿不准？',
   description: '如果你正在几款床垫之间纠结，或者不确定自己的判断对不对——可以找我聊聊。',
@@ -40,7 +40,7 @@ const LIFESTYLE_CTA: CTAConfig = {
   secondary: { label: '联系我', href: '/contact' },
 }
 
-// IP孵化 / AI知识库 / OPC → 咨询服务 / OPC版块
+// 把自己重做一遍 / AI 落地判断 / OPC → 咨询服务 / OPC 版块
 const AI_CTA: CTAConfig = {
   title: '如果你想看更多实战内容——',
   description: 'AI 知识库、IP 孵化和一人公司案例都在持续更新。OPC 社群里有一群和你一样的人。',
