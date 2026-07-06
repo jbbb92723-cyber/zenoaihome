@@ -117,6 +117,14 @@ const releaseCards = [
     cta: '做初筛',
   },
   {
+    title: 'AI 培训与企业服务',
+    body: '传统行业团队怎么用 AI 把经验变成资产？不讲概念，讲怎么用——面向商会、企业内训、创业社群。',
+    meta: '培训服务',
+    date: '团队',
+    href: '/training',
+    cta: '看培训',
+  },
+  {
     title: '居住方案综合判断',
     body: '想把生活方式、预算、报价、合同和交付这些事放在一起看？我来帮你做一份完整的方案和风险判断。',
     meta: '深度服务',
@@ -330,10 +338,10 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
               赞诺
             </motion.h1>
             <motion.p variants={staggerItem} className="mt-8 max-w-[38ch] text-base font-medium leading-7 text-ink-muted">
-              从装修和床垫出发，用AI把17年经验变成判断、内容和一人公司模式。
+              17 年工地经验 × AI 实战。不卖焦虑，卖判断——装修全案、AI 落地、一人公司、企业培训。
             </motion.p>
             <motion.p variants={staggerItem} className="mt-3 text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-ink-faint">
-              今天在看的：南宁第 38 份水电没有上限的报价——和 2018 年第一份一样。
+              今天在看的：南宁第 38 份水电没有上限的报价——和 2018 年第一份一样。判断不会过时。
             </motion.p>
             <motion.div variants={staggerItem} className="mt-10 flex flex-col gap-3 sm:flex-row">
               <ActionLink href="/living-diagnosis">
@@ -354,7 +362,7 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
       <AnimatedSection className="border-b border-border px-5 py-16 sm:px-8 sm:py-20 lg:px-12">
         <div className="mx-auto max-w-[1320px]">
           <h2 className="mb-6 text-xl font-semibold text-ink">从哪开始</h2>
-          <div className="grid gap-6 lg:grid-cols-3">
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {releaseCards.map((card) => (
               <Link
                 key={card.title}
