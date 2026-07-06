@@ -50,6 +50,7 @@ import { article102Content } from './article-102-content'
 import { article103Content } from './article-103-content'
 import { article104Content } from './article-104-content'
 import { article105Content } from './article-105-content'
+import { article106Content } from './article-106-content'
 
 export interface Article {
   id: string
@@ -6755,6 +6756,9 @@ AI不是魔法。它是一个工具——能帮你整理、对比、查漏，但
   },
   {
     id: '105', slug: 'yiren-gongsi-dongli', title: '一人公司的动力系统——没有老板没有KPI你怎么不偷懒', excerpt: '没人催你、没人考核你、没人盯着你。一人公司最大的敌人不是市场——是自己的惰性。我用了两年找到了三样东西维持动力。', category: '一人公司', parentCategory: 'opc', subcategory: 'solo-method', tags: ['一人公司','自律','动力','习惯','方法'], date: '2026-06-21', coverImage: '', coverAlt: '一人公司动力系统', content: article105Content,
+  },
+  {
+    id: '106', slug: 'cong-zhuangxiu-boke-dao-panduan-caozuo-xitong', title: '我把网站从装修博客改成了判断操作系统', excerpt: '导航标签不是给搜索引擎看的，是给那个第一次来你网站、在五秒内决定要不要继续看下去的人看的。这五秒里你要回答的问题不是我写过什么，而是我能帮你省掉什么代价。', category: '一人公司', parentCategory: 'opc', subcategory: 'solo-method', tags: ['一人公司','判断','网站','个人品牌','内容创作','定位'], date: '2026-07-06', coverImage: '', coverAlt: '从装修博客到判断操作系统', content: article106Content,
   },
 ]
 
