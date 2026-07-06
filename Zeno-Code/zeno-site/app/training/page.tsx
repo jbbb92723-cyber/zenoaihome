@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Link from 'next/link'
 import Container from '@/components/ui/Container'
 
 export const metadata: Metadata = {
@@ -15,6 +16,7 @@ const trainingModules = [
     title: '传统行业 × AI 实战',
     duration: '2-3 小时',
     audience: '商会、企业内训、创业社群',
+    price: '企业内训 ¥8,000-15,000',
     description:
       '不是讲 AI 概念，是讲一个在装修行业干了 17 年的人，怎么用 AI 把经验整理成结构化资产。从真实踩坑案例出发，方法对任何传统行业通用。',
     takeaways: [
@@ -27,6 +29,7 @@ const trainingModules = [
     title: 'AI 工具实操',
     duration: '1.5-2 小时',
     audience: '企业团队、创业社群、小班教学',
+    price: '小班 ¥299-499 / 人（10 人起）',
     description:
       '全程屏幕演示，不讲概念。学员打开电脑跟着操作，走之前带走第一个能用的 AI 工作流。',
     takeaways: [
@@ -39,6 +42,7 @@ const trainingModules = [
     title: '装修全案判断方法论',
     duration: '2-3 小时',
     audience: '装修公司、设计师社群、家居行业从业者',
+    price: '企业内训 ¥5,000-12,000',
     description:
       '17 年工地经验系统化输出——报价、合同、施工管控、材料判断。不是讲知识，是讲判断习惯怎么养成。',
     takeaways: [
@@ -68,6 +72,13 @@ const whoIsThisFor = [
   },
 ]
 
+const serviceFlow = [
+  { step: '01', title: '加微信说明需求', desc: '告诉我你的团队规模、行业背景、想解决什么问题。' },
+  { step: '02', title: '我发详细提纲', desc: '根据你的情况推荐最合适的模块和时长，附过往案例和参考价格。' },
+  { step: '03', title: '确认时间与形式', desc: '线上或线下，确定日期、设备和学员准备事项。' },
+  { step: '04', title: '交付 + 课后资料', desc: '培训结束后发完整的操作手册和 AI 工作流模板，学员可以立刻用起来。' },
+]
+
 export default function TrainingPage() {
   return (
     <>
@@ -91,15 +102,16 @@ export default function TrainingPage() {
           <h2 className="section-heading mb-6">培训模块</h2>
           <div className="grid gap-5 md:grid-cols-3">
             {trainingModules.map((mod) => (
-              <div key={mod.title} className="border border-border bg-surface p-6">
+              <div key={mod.title} className="border border-border bg-surface p-6 flex flex-col">
                 <p className="text-xs font-semibold uppercase tracking-widest text-stone">
                   {mod.duration} · {mod.audience}
                 </p>
                 <h3 className="mt-3 text-lg font-semibold text-ink">{mod.title}</h3>
+                <p className="mt-1 text-sm font-medium text-stone">{mod.price}</p>
                 <p className="mt-3 text-sm leading-relaxed text-ink-muted">
                   {mod.description}
                 </p>
-                <ul className="mt-4 space-y-2">
+                <ul className="mt-4 space-y-2 flex-1">
                   {mod.takeaways.map((item) => (
                     <li key={item} className="flex items-start gap-2 text-sm text-ink-muted">
                       <span className="mt-1.5 block h-1 w-1 shrink-0 rounded-full bg-stone" />
@@ -107,6 +119,23 @@ export default function TrainingPage() {
                     </li>
                   ))}
                 </ul>
+              </div>
+            ))}
+          </div>
+          <p className="mt-4 text-xs text-ink-muted">
+            以上为参考价格区间，具体根据人数、形式和企业需求调整。加微信获取正式报价。
+          </p>
+        </section>
+
+        {/* 服务流程 */}
+        <section className="mb-14 border border-border bg-surface-warm p-6 sm:p-8">
+          <h2 className="text-xl font-semibold text-ink mb-5">合作流程</h2>
+          <div className="grid gap-4 sm:grid-cols-4">
+            {serviceFlow.map((item) => (
+              <div key={item.step}>
+                <p className="text-2xl font-bold text-stone">{item.step}</p>
+                <p className="mt-2 text-sm font-semibold text-ink">{item.title}</p>
+                <p className="mt-1 text-xs leading-relaxed text-ink-muted">{item.desc}</p>
               </div>
             ))}
           </div>
@@ -145,11 +174,41 @@ export default function TrainingPage() {
           </div>
         </section>
 
+        {/* 自助工具 */}
+        <section className="mb-14 border border-border bg-surface-warm p-6 sm:p-8">
+          <h2 className="text-xl font-semibold text-ink mb-3">暂时不需要培训？</h2>
+          <p className="text-sm leading-relaxed text-ink-muted mb-4 max-w-xl">
+            如果你的团队还没准备好接受培训，或者你个人想先自己试试——这里有我 17 年经验浓缩成的自助工具。
+          </p>
+          <Link
+            href="/tools/quote-checklist"
+            className="inline-flex items-center text-sm font-medium border border-border text-ink px-4 py-2 hover:border-stone transition-colors"
+          >
+            装修报价自检清单（¥99）→
+          </Link>
+        </section>
+
+        {/* 讲过的地方 */}
+        <section className="mb-14">
+          <h2 className="section-heading mb-5">讲过的地方</h2>
+          <p className="mb-5 text-sm leading-relaxed text-ink-muted">
+            每讲一次，迭代一次。下面的空白等着你来填——第一次培训之后，这里会变成最有说服力的区域。
+          </p>
+          <div className="border border-dashed border-stone bg-surface-warm p-8 text-center">
+            <p className="text-sm text-ink-muted">
+              如果你是我培训过的第一个客户——你的企业名字会第一个出现在这里。
+            </p>
+            <p className="mt-2 text-xs text-stone">
+              这也意味着你会得到最用心的交付。
+            </p>
+          </div>
+        </section>
+
         {/* CTA */}
         <section className="border border-border bg-surface p-6 sm:p-8 text-center">
           <h2 className="text-xl font-semibold text-ink mb-3">邀请我来培训</h2>
           <p className="mb-5 text-sm leading-relaxed text-ink-muted max-w-lg mx-auto">
-            如果你是 HR、商会负责人、社群主理人，需要一位既真干过又能讲清楚的人——加微信，我把详细提纲和过往案例发你。
+            加微信，告诉我你的团队情况。我把详细提纲、过往案例和参考报价发你。不是销售——你看完觉得合适再聊下一步。
           </p>
           <p className="text-base text-ink">
             微信：<span className="font-semibold">zanxiansheng2025</span>
