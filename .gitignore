@@ -52,3 +52,6 @@ Zeno-Content/赞诺内容资产库/**/微信聊天截图/
 
 Zeno-Tools/.claude/settings.local.json
 tmp/
+
+# ─── 大型PDF原件（已提取为txt，不提交源文件）────────────
+待归类文件夹/**/*.pdf
