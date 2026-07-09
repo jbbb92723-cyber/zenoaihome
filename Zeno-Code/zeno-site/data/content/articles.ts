@@ -51,6 +51,7 @@ import { article103Content } from './article-103-content'
 import { article104Content } from './article-104-content'
 import { article105Content } from './article-105-content'
 import { article106Content } from './article-106-content'
+import { article107Content } from './article-107-content'
 
 export interface Article {
   id: string
@@ -6759,6 +6760,9 @@ AI不是魔法。它是一个工具——能帮你整理、对比、查漏，但
   },
   {
     id: '106', slug: 'cong-zhuangxiu-boke-dao-panduan-caozuo-xitong', title: '我把网站从装修博客改成了判断操作系统', excerpt: '导航标签不是给搜索引擎看的，是给那个第一次来你网站、在五秒内决定要不要继续看下去的人看的。这五秒里你要回答的问题不是我写过什么，而是我能帮你省掉什么代价。', category: 'OPC·同行有你', parentCategory: 'opc', subcategory: 'solo-method', tags: ['一人公司','判断','网站','个人品牌','内容创作','定位'], date: '2026-07-06', coverImage: '', coverAlt: '从装修博客到判断操作系统', content: article106Content,
+  },
+  {
+    id: '107', slug: 'yue-bu-dong-yue-gan-kan-jia', title: '为什么越不懂装修的人越敢砍价——达克效应正在让你多花钱', excerpt: '拿到报价单扫一眼总价就砍，却说不出来哪项贵了。你不是难搞，你是困在了一条心理曲线里，自己都不知道。', category: '装修全案判断', parentCategory: 'renovation', tags: ['达克效应','判断力','沟通','倾听','报价','砍价'], date: '2026-07-09', coverImage: '', coverAlt: '越不懂装修越敢砍价', content: article107Content,
   },
 ]
 
