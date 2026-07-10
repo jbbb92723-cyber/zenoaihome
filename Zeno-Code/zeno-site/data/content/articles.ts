@@ -52,6 +52,12 @@ import { article104Content } from './article-104-content'
 import { article105Content } from './article-105-content'
 import { article106Content } from './article-106-content'
 import { article107Content } from './article-107-content'
+import { article108Content } from './article-108-content'
+import { article109Content } from './article-109-content'
+import { article110Content } from './article-110-content'
+import { article111Content } from './article-111-content'
+import { article112Content } from './article-112-content'
+import { article113Content } from './article-113-content'
 
 export interface Article {
   id: string
@@ -6763,6 +6769,24 @@ AI不是魔法。它是一个工具——能帮你整理、对比、查漏，但
   },
   {
     id: '107', slug: 'yue-bu-dong-yue-gan-kan-jia', title: '为什么越不懂装修的人越敢砍价——达克效应正在让你多花钱', excerpt: '拿到报价单扫一眼总价就砍，却说不出来哪项贵了。你不是难搞，你是困在了一条心理曲线里，自己都不知道。', category: '装修全案判断', parentCategory: 'renovation', tags: ['达克效应','判断力','沟通','倾听','报价','砍价'], date: '2026-07-09', coverImage: '', coverAlt: '越不懂装修越敢砍价', content: article107Content,
+  },
+  {
+    id: '108', slug: 'wo-shi-shui-17-nian-gongdi', title: '我是谁——一个在工地上站了17年的人', excerpt: '2008年第一天进工地，师傅递给我一把铲子。17年后我才明白，大多数业主在装修里吃的亏，不是因为被骗——是因为不敢问。', category: 'OPC·同行有你', parentCategory: 'opc', tags: ['关于我','装修','信任','判断力','一人公司'], date: '2026-07-10', coverImage: '', coverAlt: '我是谁——一个在工地上站了17年的人', content: article108Content,
+  },
+  {
+    id: '109', slug: 'baojiadan-zeren-bianjie-biao', title: '报价单不是价格表，是责任边界表——你比的是价格，对方看的是边界', excerpt: '你翻开报价单只看总价，对方看的是边界。签约前多问一句，施工中少争一次。这6个词，每一个都在提醒你：这里还没讲清楚。', category: '装修全案判断', parentCategory: 'renovation', tags: ['报价','责任边界','签约','合同','暂估','按实结算','判断力'], date: '2026-07-10', coverImage: '', coverAlt: '报价单不是价格表是责任边界表', content: article109Content,
+  },
+  {
+    id: '110', slug: 'pianyi-baojia-zui-gui', title: '便宜报价往往最贵——你省的那1.5万，后面5万买了回来', excerpt: '比了三家选了最便宜的。三个月后花了19万——不是对方骗了你，是没写的东西后来都要加钱。判断报价不是看总价，是看缺了什么。', category: '装修全案判断', parentCategory: 'renovation', tags: ['报价','比价','增项','按实结算','判断力','省钱陷阱'], date: '2026-07-10', coverImage: '', coverAlt: '便宜报价往往最贵', content: article110Content,
+  },
+  {
+    id: '111', slug: 'an-shi-jie-suan-qi-ge-zi', title: '「按实际结算」七个字——底下应该跟着半页纸的规则', excerpt: '你签了合同，翻到最后一页看到这行小字。七个字，金额栏空着。你不知道的是——这行字后面还应该有五个东西。少一个，就是开工后一张空白支票。', category: '装修全案判断', parentCategory: 'renovation', tags: ['按实结算','合同','增项','签约','规则','模板'], date: '2026-07-10', coverImage: '', coverAlt: '按实际结算七个字背后的规则', content: article111Content,
+  },
+  {
+    id: '112', slug: 'fukuan-jiedian-zhudongquan', title: '付款节点不是财务细节，是主动权安排——你的钱给出去了，话语权也给出去了', excerpt: '签约付了60%，开工第一周工头说加钱。你说不——但你的60%在他手里。真正的安全付款，是让你的钱跟着你验证过的进度走。', category: '装修全案判断', parentCategory: 'renovation', tags: ['付款','主动权','合同','签约','验收'], date: '2026-07-10', coverImage: '', coverAlt: '付款节点主动权安排', content: article112Content,
+  },
+  {
+    id: '113', slug: 'xinxicha-zui-yinbi-de-chengben', title: '装修里最贵的是你不知道的事——信息差，比任何材料都贵', excerpt: '水电走了15米，同样的户型有人只走了3米。差的不是材料，是不知道可以按点位算。装修预算里15-25%是信息差的成本——花¥199买判断力，省下这笔钱。', category: '装修全案判断', parentCategory: 'renovation', tags: ['信息差','判断力','报价','预算','信任'], date: '2026-07-10', coverImage: '', coverAlt: '信息差最隐蔽的成本', content: article113Content,
   },
 ]
 

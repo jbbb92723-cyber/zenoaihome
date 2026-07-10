@@ -166,6 +166,13 @@ export default function ContactPage() {
           </div>
         </section>
 
+        {/* ── 快速入口 ── */}
+        <section className="mb-14 border-2 border-stone bg-surface-warm p-6 sm:p-8 text-center">
+          <h2 className="text-lg font-semibold text-ink mb-2">报价单拿不准？直接发给我</h2>
+          <p className="text-sm text-ink-muted mb-3">¥199一次，24小时出结果。审不出关键问题全额退款。</p>
+          <CTA href="/services/quote-review" label="¥199 报价快审 →" variant="primary" />
+        </section>
+
         {/* ── 回复说明 ── */}
         <section className="border-t border-border pt-10">
           <p className="text-sm text-ink-muted leading-relaxed mb-3">

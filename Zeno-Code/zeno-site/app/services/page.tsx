@@ -192,14 +192,14 @@ export default function ServicesPage() {
               你现在最需要判断的是哪一层？
             </h1>
             <p className="mt-7 max-w-2xl text-base leading-8 text-ink-muted sm:text-lg">
-              服务不是一串报价项目，而是按你的材料和决策阶段逐层判断：先看生活目标，再看空间和预算，最后看报价、合同和交付边界。
+              服务不是一串报价项目，而是按你的材料和决策阶段逐层判断。
             </p>
             <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-              <CTA href="/living-diagnosis" label="先做免费居住诊断" variant="primary" />
-              <CTA href="/tools/quote-check" label="已有报价，先做初筛" variant="secondary" />
+              <CTA href="/services/quote-review" label="¥199 报价快审 → 24小时出结果" variant="primary" />
+              <CTA href="/living-diagnosis" label="先做免费居住诊断" variant="secondary" />
             </div>
             <p className="mt-6 max-w-xl text-sm leading-7 text-ink-faint">
-              不急着购买服务。先确认你卡在方向、方案、报价、合同，还是交付风险。
+              审不出关键问题，全额退款。17年经验担保。
             </p>
           </div>
 

@@ -65,6 +65,18 @@ export const commercialLadder: LadderRung[] = [
     badge: '签约前入口',
   },
   {
+    tier: 'paid-flagship',
+    price: '¥2,500',
+    priceNumeric: 250000,
+    title: '装修报价零加价保障审查',
+    whoFor: '准备签约了，需要一个人把报价单的每一行都审过去——13个风险边界逐项排查，审过的项目出了问题帮你追回。',
+    delivers: '13边界逐项审核报告（24h内）+ 施工前3个月微信答疑 + 装修合同避雷指南 + 入住后1年售后咨询。保证：审过的项目变相加价，帮你追回——追不回，全额退款。',
+    href: '/services#quote-flagship',
+    cta: '提交报价单',
+    source: 'service',
+    badge: '旗舰',
+  },
+  {
     tier: 'paid-low',
     price: '¥199',
     priceNumeric: 19900,
