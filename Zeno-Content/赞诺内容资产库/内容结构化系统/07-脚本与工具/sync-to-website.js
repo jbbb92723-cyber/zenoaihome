@@ -168,33 +168,48 @@ export const article${idStr}Content = \`${content}\`;
 }
 
 function updateInlineArticle(articlesTsPath, articleId, content) {
+  // 为内联文章（IDs 1-53）创建外部 content 文件，
+  // 更新 articles.ts 用 import 引用，与 IDs 54+ 统一。
+
+  const idStr = String(articleId).padStart(2, '0');
+  const contentPath = path.join(WEBSITE_CONTENT_DIR, `article-${idStr}-content.ts`);
+
+  // 1. 写入外部 content 文件
+  const tsExport = `// Article ${idStr}: Auto-synced from Obsidian\nexport const article${idStr}Content = \`${content}\`;\n`;
+
   if (DRY_RUN) {
-    console.log(`  [DRY RUN] Would update article ${articleId} in articles.ts`);
+    console.log(`  [DRY RUN] Would create ${contentPath} and update articles.ts import`);
     return true;
   }
 
-  let fileContent = fs.readFileSync(articlesTsPath, 'utf-8');
+  fs.writeFileSync(contentPath, tsExport, 'utf-8');
 
-  // 找到对应 ID 的文章条目并替换 content 字段
-  // IDs 可能是 '01' 或 '1' 两种格式
-  const idStr = String(articleId);
-  const idStrPad = String(articleId).padStart(2, '0');
-  const idPattern = new RegExp(
-    `(id:\\s*['"](${idStr}|${idStrPad})['"][\\s\\S]*?content:\\s*)` +
-    `\`[\\s\\S]*?\`(;?\\s*\\},)`,
-    'g'
+  // 2. 更新 articles.ts：内联 content → import 引用
+  let articlesContent = fs.readFileSync(articlesTsPath, 'utf-8');
+  const importName = `article${idStr}Content`;
+  const importPath = `./article-${idStr}-content`;
+
+  // 添加 import（如果不存在）
+  if (!articlesContent.includes(`import { ${importName} }`)) {
+    const lastImport = articlesContent.lastIndexOf('import { article');
+    const endOfLine = articlesContent.indexOf('\n', lastImport);
+    articlesContent =
+      articlesContent.slice(0, endOfLine + 1) +
+      `import { ${importName} } from '${importPath}';\n` +
+      articlesContent.slice(endOfLine + 1);
+  }
+
+  // 替换 inline content 为 import 引用
+  const idNum = String(articleId);
+  const idPad = String(articleId).padStart(2, '0');
+  const entryPattern = new RegExp(
+    `(id:\\s*['"](${idNum}|${idPad})['"][\\s\\S]*?)content:\\s*` + '`[\\s\\S]*?`\\s*(,\\n\\s*\\},)',
+    'm'
   );
 
-  const replacement = `$1\`${content}\`$2`;
-
-  if (idPattern.test(fileContent)) {
-    fileContent = fileContent.replace(idPattern, replacement);
-    fs.writeFileSync(articlesTsPath, fileContent, 'utf-8');
-    return true;
-  }
-
-  console.error(`  ❌ Could not find article ${articleId} in articles.ts`);
-  return false;
+  articlesContent = articlesContent.replace(entryPattern, `$1content: ${importName}$3`);
+  fs.writeFileSync(articlesTsPath, articlesContent, 'utf-8');
+  return true;
 }
 
 // ─── 主流程 ───
