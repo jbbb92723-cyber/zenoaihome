@@ -22,7 +22,7 @@ const path = require('path');
 
 // ─── 路径配置 ───
 const OBSIDIAN_DIR = path.resolve(__dirname, '..', '06-选题装配');
-const WEBSITE_CONTENT_DIR = path.resolve(__dirname, '..', '..', '..', 'Zeno-Code', 'zeno-site', 'data', 'content');
+const WEBSITE_CONTENT_DIR = path.resolve(__dirname, '..', '..', '..', '..', 'Zeno-Code', 'zeno-site', 'data', 'content');
 const ARTICLES_TS = path.join(WEBSITE_CONTENT_DIR, 'articles.ts');
 
 const DRY_RUN = process.argv.includes('--dry-run');
@@ -176,8 +176,11 @@ function updateInlineArticle(articlesTsPath, articleId, content) {
   let fileContent = fs.readFileSync(articlesTsPath, 'utf-8');
 
   // 找到对应 ID 的文章条目并替换 content 字段
+  // IDs 可能是 '01' 或 '1' 两种格式
+  const idStr = String(articleId);
+  const idStrPad = String(articleId).padStart(2, '0');
   const idPattern = new RegExp(
-    `(id:\\s*['"]${articleId}['"][\\s\\S]*?content:\\s*)` +
+    `(id:\\s*['"](${idStr}|${idStrPad})['"][\\s\\S]*?content:\\s*)` +
     `\`[\\s\\S]*?\`(;?\\s*\\},)`,
     'g'
   );
