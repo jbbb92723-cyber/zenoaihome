@@ -4355,6 +4355,18 @@ AI不是魔法。它是一个工具——能帮你整理、对比、查漏，但
     coverAlt: '人工贵还是材料贵',
   },
   {
+    id: '116',
+    slug: 'bushi-dayi-shi-bangren-xiadinglun',
+    title: '你做的不是答疑，是帮人下定论',
+    excerpt: '做了十几年装修才看清：那些答不完的问题，不是在找答案。是在等你帮他们下一个不用行动的定论。',
+    category: 'OPC·同行有你',
+    parentCategory: 'opc',
+    tags: ['一人公司', '客户筛选', '商业判断', '装修咨询', 'OPC'],
+    date: '2026-07-12',
+    coverImage: '',
+    coverAlt: '你做的不是答疑，是帮人下定论',
+  },
+  {
   },
   {
   },
