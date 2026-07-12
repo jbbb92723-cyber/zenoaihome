@@ -6,17 +6,17 @@
  * 维护规则：
  * - 改路径 / 改命名 / 增减档位 → 只动这个文件
  * - 两个 variant（compact / full）由 CommercialLadder 组件统一渲染
- * - 精简原则（2026-07-13 评审团共识）：
- *   免费层接流量 → ¥199 信任入口筛选 → ¥2,500 旗舰交付 → 节点顾问锁定长期
- *   砍掉：¥499 快审（和 199 边界模糊）、¥1,999 综合（无人下单）、¥299 床垫（分散注意力）
+ * - 精简原则（2026-07-13）：
+ *   免费层接流量 → ¥2,500 旗舰交付 → 节点顾问锁定长期 → 床垫延长客户关系
+ *   砍掉：¥199 信任入口（免费工具已足够筛选）、¥499 快审（和旗舰边界模糊）、
+ *         ¥1,999 综合（无人下单）
  */
 
 export type LadderTier =
   | 'free'
-  | 'paid-low'
-  | 'paid-mid'
-  | 'paid-high'
   | 'paid-flagship'
+  | 'paid-high'
+  | 'paid-low'
 
 export type LadderRung = {
   tier: LadderTier
@@ -57,19 +57,6 @@ export const commercialLadder: LadderRung[] = [
     source: 'tool',
     badge: '签约前入口',
   },
-  // ── 信任入口：第一次付钱买判断 ──────────────────
-  {
-    tier: 'paid-low',
-    price: '¥199',
-    priceNumeric: 19900,
-    title: '装修基础诊断',
-    whoFor: '手上有报价了，想先听一个专业判断——这房子该花多少钱、大头在哪、值不值得往下走。',
-    delivers: '3 个核心判断（预算是否合理 + 大头该花在哪 + 值不值得继续谈）+ 微信语音发你结果',
-    href: '/contact',
-    cta: '发报价聊聊',
-    source: 'service',
-    badge: '信任入口',
-  },
   // ── 旗舰层：零加价保障审查 ──────────────────
   {
     tier: 'paid-flagship',
@@ -95,6 +82,19 @@ export const commercialLadder: LadderRung[] = [
     cta: '看节点顾问',
     source: 'service',
     badge: '进阶',
+  },
+  // ── 延长关系：床垫直售 ──────────────────
+  {
+    tier: 'paid-low',
+    price: '¥299起',
+    priceNumeric: 29900,
+    title: 'Zeno 严选床垫',
+    whoFor: '装完入住，最后一件大事——选一张能睡十几年的床垫。',
+    delivers: '内部结构保50年。不是代购，是我自己选品自己卖——17年行业经验帮你筛掉了市面上90%的坑。',
+    href: '/mattress',
+    cta: '选床垫',
+    source: 'product',
+    badge: '自有产品',
   },
 ]
 
