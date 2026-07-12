@@ -9,6 +9,8 @@ import { prisma } from '@/lib/prisma'
 import { classify, suggestArticles } from '@/lib/classifier'
 import { matchTemplate, getTemplatesByCategory } from '@/lib/template-matcher'
 import { ActionPanel } from './actions'
+import ReviewPanel from '@/components/admin/ReviewPanel'
+import { REVIEW_PANEL } from '@/lib/review-panel'
 
 export const metadata: Metadata = { title: '服务详情 · Admin' }
 export const dynamic = 'force-dynamic'
@@ -159,6 +161,14 @@ export default async function ServiceDetailPage({
             </div>
           </div>
         </div>
+      </div>
+
+      {/* ── 八人评审团 ──────────────────────── */}
+      <div className="border border-[#3A3530] bg-[#1f1d1a] p-5">
+        <h2 className="text-sm font-semibold text-[#E8E2DA] mb-4">
+          八人评审团 · 逐一审视
+        </h2>
+        <ReviewPanel reviewers={REVIEW_PANEL} />
       </div>
 
       {/* ── 回复编辑区 ──────────────────────── */}
