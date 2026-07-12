@@ -16,7 +16,10 @@
 | `app/admin/(protected)/ai-reply/page.tsx` | OA 后台「智能回复」入口页 |
 | `app/api/admin/ai-draft/route.ts` | AI 回复 API。RAG 模式：先搜 knowledge_entries 关键词匹配 → 注入 DeepSeek prompt → 返回回复+匹配知识来源。无 API key 时降级为纯模板模式 |
 | `app/api/admin/knowledge/seed/route.ts` | 一键预置 5 条种子知识(预算/效果/避坑/报价/合同审查) |
-| `components/admin/AiReplyClient.tsx` | 智能回复前端：左侧模板库(10个模板+分类筛选)、中间预览、右侧 AI 草稿+匹配知识展示+预置按钮 |
+| `components/admin/ServiceDeskClient.tsx` | OA 服务待办工作台。四状态Tab(全部/待处理/处理中/已完成)+左侧列表+右侧详情面板。支持AI一键分类、AI生成回复、人工编辑保存| **「线索→成交」主流程**：之前服务页只是列表，现在是一台服务处理机器 |
+| `app/api/admin/ai-classify/route.ts` | 服务智能分类 API。DeepSeek 将业主问题分6类(报价/合同/预算/施工/诊断/综合)，无key降级为关键词规则| 服务申请进来后自动分类，不用手动看 |
+| `app/api/admin/services/update/route.ts` | 服务状态更新 API。支持更新 status/aiCategory/responseText，reviewedAt自动记录| 状态流转+回复保存需要后端支持 |
+| `app/admin/(protected)/services/page.tsx` | 重写为 Server Component → 传递数据给 ServiceDeskClient | 改为客户端待办工作台模式 |
 | `data/content/article-116-content.ts` | 文章 116 "你做的不是答疑，是帮人下定论" |
 
 ### 修改文件
