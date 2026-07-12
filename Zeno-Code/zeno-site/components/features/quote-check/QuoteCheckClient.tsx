@@ -778,6 +778,19 @@ export default function QuoteCheckClient() {
               </div>
             ))}
           </div>
+
+          {/* 工具→微信 CTA */}
+          <div className="mt-6 border-2 border-stone bg-stone/5 p-6 text-center">
+            <p className="text-base font-semibold text-ink mb-2">
+              扫完还是拿不准？
+            </p>
+            <p className="text-sm text-ink-muted mb-4 max-w-lg mx-auto">
+              把初筛结果截图发我微信，我帮你看下一步该做什么。
+              不用钱，花 2 分钟。拿不准的事情有个人帮你看一眼，比自己做决定稳。
+            </p>
+            <p className="text-lg font-bold text-stone mb-1">zanxiansheng2025</p>
+            <p className="text-xs text-ink-muted">备注「初筛结果」</p>
+          </div>
         </div>
       </section>
 
