@@ -59,7 +59,17 @@
       "Bash(python -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\('ok:', d.get\\('ok'\\)\\); print\\('feishu:', d.get\\('feishuConnected'\\)\\); [print\\(f'  {s[\\\\\"label\\\\\"]}: {s[\\\\\"count\\\\\"]}'\\) for s in d.get\\('funnel',[]\\)]; print\\('pendingApprovals:', d.get\\('pendingApprovals'\\)\\)\")",
       "Bash(npx.cmd prisma *)",
       "PowerShell(Stop-Process -Force -ErrorAction SilentlyContinue)",
-      "Bash(mkdir -p \"g:/Zenoaihome.com/Zeno-Code/zeno-site/app/api/service-requests/[id]/classify\" \"g:/Zenoaihome.com/Zeno-Code/zeno-site/app/api/service-requests/[id]/match-template\" \"g:/Zenoaihome.com/Zeno-Code/zeno-site/app/api/service-requests/[id]/confirm\" \"g:/Zenoaihome.com/Zeno-Code/zeno-site/app/admin/\\(protected\\)/services/[id]\" && echo \"dirs created\")"
+      "Bash(mkdir -p \"g:/Zenoaihome.com/Zeno-Code/zeno-site/app/api/service-requests/[id]/classify\" \"g:/Zenoaihome.com/Zeno-Code/zeno-site/app/api/service-requests/[id]/match-template\" \"g:/Zenoaihome.com/Zeno-Code/zeno-site/app/api/service-requests/[id]/confirm\" \"g:/Zenoaihome.com/Zeno-Code/zeno-site/app/admin/\\(protected\\)/services/[id]\" && echo \"dirs created\")",
+      "Read(//c/Users/WG/.claude/**)",
+      "Read(//c/Users/WG/.claude/projects/g--HermesAgentWorkspace/memory/**)",
+      "Bash(ls \"C:/Users/WG/.claude/projects/g--HermesAgentWorkspace/memory/\" 2>&1)",
+      "Read(//g/Hermes智能体/.hermes/skills/guo-chunlin-perspective/**)",
+      "Read(//g/Hermes智能体/.hermes/skills/shengcaiyoushu-perspective/**)",
+      "Bash(nslookup aws-1-ap-southeast-1.pooler.supabase.com)",
+      "Bash(psql --version)",
+      "PowerShell(Set-Location \"g:\\\\Zenoaihome.com\\\\Zeno-Code\\\\zeno-site\"; $env:DATABASE_URL=\"postgresql://postgres.mvpbqkdqsziwxrkhgvzq:OVH4CTd55LOnxnwd@aws-0-ap-southeast-2.pooler.supabase.com:6543/postgres\"; $env:DIRECT_URL=\"postgresql://postgres.mvpbqkdqsziwxrkhgvzq:OVH4CTd55LOnxnwd@db.mvpbqkdqsziwxrkhgvzq.supabase.co:5432/postgres\"; .\\\\node_modules\\\\.bin\\\\prisma.cmd db push 2>&1)",
+      "PowerShell(Set-Location \"g:\\\\Zenoaihome.com\\\\Zeno-Code\\\\zeno-site\"; $env:DATABASE_URL=\"postgresql://postgres.mvpbqkdqsziwxrkhgvzq:OVH4CTd55LOnxnwd@aws-0-ap-southeast-2.pooler.supabase.com:6543/postgres\"; $env:DIRECT_URL=\"postgresql://postgres.mvpbqkdqsziwxrkhgvzq:OVH4CTd55LOnxnwd@aws-0-ap-southeast-2.pooler.supabase.com:6543/postgres\"; .\\\\node_modules\\\\.bin\\\\prisma.cmd db push 2>&1)",
+      "Bash(node scripts/init-db.mjs)"
     ],
     "additionalDirectories": [
       "g:\\Zenoaihome.com\\Zeno-Code\\zeno-site\\app\\api\\service-requests\\[id]"

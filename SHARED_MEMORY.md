@@ -10,7 +10,8 @@
 - 2026-07-13 | Claude | 统一模板库 `lib/templates.ts` — Claude 的8条 + Hermes 的12条合并为17条，双轨分类(UI+系统)
 - 2026-07-13 | Claude | `AiReplyClient.tsx` 不再硬编码模板，改为从 `lib/templates.ts` 导入
 - 2026-07-13 | Claude | `template-matcher.ts` 改为从 `lib/templates.ts` 匹配，保留变量填充
-- 2026-07-13 | Claude | 确认 `lib/review-panel.ts`(八人评审团) 和 `.hermes/skills/` 两份评审团不冲突——前者给 Zeno OS UI 用，后者给 Hermes 自己调用用
+- 2026-07-13 | Claude | 确认 `lib/review-panel.ts`(八人评审团) 和 `.hermes/skills/` 两份评审团不冲突
+- 2026-07-13 | Claude | Supabase 数据库已修复！新项目 mvpbqkdqsziwxrkhgvzq，29张表全部建好。DATABASE_URL 用 Pooler(6543)，直连5432被墙。**所有后台功能现在有真实数据库了。**
 
 ---
 

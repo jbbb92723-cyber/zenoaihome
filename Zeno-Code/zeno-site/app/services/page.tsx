@@ -25,11 +25,6 @@ const serviceRelatedArticles: Record<string, { label: string; href: string }[]> 
     { label: '方法与资料', href: '/resources' },
     { label: '案例复盘', href: '/cases' },
   ],
-  'quote-entry': [
-    { label: '装修报价风险词典', href: '/risk-dictionary' },
-    { label: '签约前检查模板', href: '/checklists' },
-    { label: '施工项目风险库', href: '/project-risks' },
-  ],
   'quote-standard': [
     { label: '装修报价风险词典', href: '/risk-dictionary' },
     { label: '合同签约前检查模板', href: '/checklists/contract-pre-signing-check' },
@@ -42,7 +37,7 @@ const serviceRelatedArticles: Record<string, { label: string; href: string }[]> 
   ],
 }
 
-const coreServiceSlugs = ['living-insight-beta', 'quote-entry', 'quote-standard', 'quote-deep']
+const coreServiceSlugs = ['living-insight-beta', 'quote-standard', 'quote-deep']
 
 const decisionLevels = [
   {

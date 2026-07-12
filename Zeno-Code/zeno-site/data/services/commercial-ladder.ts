@@ -77,18 +77,6 @@ export const commercialLadder: LadderRung[] = [
     badge: '旗舰',
   },
   {
-    tier: 'paid-low',
-    price: '¥199',
-    priceNumeric: 19900,
-    title: '报价风险初查',
-    whoFor: '刚拿到第一份重点报价，想快速扫一眼有没有明显问题。',
-    delivers: '3 个高风险点 + 5 个签约前必须问清楚的问题 + 微信发你结果',
-    href: '/services#quote-entry',
-    cta: '提交报价初查',
-    source: 'service',
-    badge: '低门槛',
-  },
-  {
     tier: 'paid-mid',
     price: '¥499',
     priceNumeric: 49900,
