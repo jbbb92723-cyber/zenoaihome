@@ -16,6 +16,7 @@
 | 111 | `/blog/an-shi-jie-suan-qi-ge-zi` | 按实际结算七个字背后的规则.md | 合同风险 |
 | 112 | `/blog/fukuan-jiedian-zhudongquan` | 付款节点主动权安排.md | 付款安全 |
 | 113 | `/blog/xinxicha-zui-yinbi-de-chengben` | 信息差最隐蔽的成本.md | 元叙事 |
+| 114 | `/blog/zhuangxiu-zeren-zhenkong` | 2026-07-09_装修里的责任真空.md | 责任真空Hub |
 
 另5篇未在Obsidian中有对应草稿：
 

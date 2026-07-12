@@ -1,5 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // === Windows 构建内存优化 ===
+  // 跳过生产压缩节省内存
+  webpack: (config, { isServer }) => {
+    if (!isServer) {
+      config.optimization.minimize = false;
+    }
+    return config;
+  },
   // ⚠️ 重要：已移除 output: 'export'（静态导出）
   // 原因：Auth.js v5 需要服务端运行时才能处理 OAuth 回调和 Session
   //       API Routes（/api/auth, /api/comments, /api/orders, /api/payments）

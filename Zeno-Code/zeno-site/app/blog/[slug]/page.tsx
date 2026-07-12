@@ -6,6 +6,7 @@ import Avatar from '@/components/ui/Avatar'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import { articles, getArticleBySlug, getRecentArticles } from '@/data/content/articles'
+import { getArticleContent } from '@/lib/content-loader'
 import { getAlternateSlug } from '@/lib/i18n'
 import ArticleCard from '@/components/features/content/ArticleCard'
 import CopyLinkButton from '@/components/ui/CopyLinkButton'
@@ -49,6 +50,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function ArticlePage({ params }: Props) {
   const article = getArticleBySlug(params.slug)
   if (!article) notFound()
+
+  const content = await getArticleContent(article.id)
 
   const articleUrl = `https://zenoaihome.com/blog/${article.slug}`
   const articleImage = article.coverImage
@@ -162,7 +165,7 @@ export default async function ArticlePage({ params }: Props) {
           [&_hr]:border-border [&_hr]:my-10
           [&_blockquote]:border-l-2 [&_blockquote]:border-stone-light [&_blockquote]:pl-4 [&_blockquote]:text-ink-muted
         ">
-          <ReactMarkdown remarkPlugins={[remarkGfm]}>{article.content}</ReactMarkdown>
+          <ReactMarkdown remarkPlugins={[remarkGfm]}>{content}</ReactMarkdown>
         </div>
 
         {/* 作者介绍 */}

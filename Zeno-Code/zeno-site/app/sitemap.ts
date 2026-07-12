@@ -19,6 +19,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/risk-dictionary`, changeFrequency: 'monthly', priority: 0.85 },
     { url: `${baseUrl}/project-risks`, changeFrequency: 'monthly', priority: 0.75 },
     { url: `${baseUrl}/checklists`, changeFrequency: 'monthly', priority: 0.75 },
+    { url: `${baseUrl}/zeno-os`, changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${baseUrl}/services/quote-review`, changeFrequency: 'monthly', priority: 0.95 },
+    { url: `${baseUrl}/services/quote-standard`, changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${baseUrl}/services/node-advisor`, changeFrequency: 'monthly', priority: 0.85 },
     { url: `${baseUrl}/consulting`, changeFrequency: 'monthly', priority: 0.7 },
     { url: `${baseUrl}/notes`, changeFrequency: 'weekly', priority: 0.6 },
   ]

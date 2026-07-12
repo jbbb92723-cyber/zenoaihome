@@ -169,8 +169,9 @@ export default function ContactPage() {
         {/* ── 快速入口 ── */}
         <section className="mb-14 border-2 border-stone bg-surface-warm p-6 sm:p-8 text-center">
           <h2 className="text-lg font-semibold text-ink mb-2">报价单拿不准？直接发给我</h2>
-          <p className="text-sm text-ink-muted mb-3">¥199一次，24小时出结果。审不出关键问题全额退款。</p>
-          <CTA href="/services/quote-review" label="¥199 报价快审 →" variant="primary" />
+          <p className="text-sm text-ink-muted mb-3">¥2,500一次，13个风险边界逐项审核。审过的项目施工中被加价，我帮你追回——追不回，全额退款。</p>
+          <CTA href="/services/quote-review" label="看完整服务 →" variant="primary" />
+          <p className="mt-4 text-xs text-ink-muted">想先免费扫一眼？<a href="/tools/quote-check" className="text-stone underline underline-offset-2">用报价初筛工具 →</a></p>
         </section>
 
         {/* ── 回复说明 ── */}

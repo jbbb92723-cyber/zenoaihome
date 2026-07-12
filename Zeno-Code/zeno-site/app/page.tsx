@@ -69,7 +69,7 @@ export default function HomePage() {
                 { '@type': 'Offer', name: '免费 AI 居住诊断', url: 'https://zenoaihome.com/living-diagnosis' },
                 { '@type': 'Offer', name: '免费报价风险初筛', url: 'https://zenoaihome.com/tools/quote-check' },
                 { '@type': 'Offer', name: '免费 居住需求洞察报告', url: 'https://zenoaihome.com/services#living-insight-beta' },
-                { '@type': 'Offer', name: '免费 报价风险初查', url: 'https://zenoaihome.com/services#quote-entry' },
+                { '@type': 'Offer', name: '¥2,500 装修报价零加价保障审查', url: 'https://zenoaihome.com/services/quote-review' },
                 { '@type': 'Offer', name: '免费 报价 / 合同快审', url: 'https://zenoaihome.com/services#quote-standard' },
                 { '@type': 'Offer', name: '免费 居住方案综合判断', url: 'https://zenoaihome.com/services#quote-deep' },
               ],

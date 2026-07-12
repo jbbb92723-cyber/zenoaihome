@@ -16,12 +16,12 @@ type CTAConfig = {
   secondary: { label: string; href: string }
 }
 
-// 装修全案判断 → 报价初筛 / 服务
+// 装修全案判断 → 报价审核 / 免费初筛
 const RENO_CTA: CTAConfig = {
-  title: '看完这篇，下一步可以——',
-  description: '如果你手里已经有报价或合同，先做免费初筛看风险；还没定方案，先看服务路径选对入口。',
-  primary: { label: '已有报价，做免费初筛', href: '/tools/quote-check' },
-  secondary: { label: '查看服务路径', href: '/services' },
+  title: '报价单在手，下一步可以——',
+  description: '直接把报价单拍照发给我，24小时内出13边界逐项审核报告。审过的项目被加价帮你追回。想先自己扫一眼？免费初筛工具2分钟出风险热力图。',
+  primary: { label: '¥2,500 完整审核 →', href: '/services/quote-review' },
+  secondary: { label: '先做免费初筛 →', href: '/tools/quote-check' },
 }
 
 // 床垫选购判断 → 咨询服务

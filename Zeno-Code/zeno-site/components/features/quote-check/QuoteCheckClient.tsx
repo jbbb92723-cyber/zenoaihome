@@ -702,7 +702,7 @@ export default function QuoteCheckClient() {
 
                   <div className="grid gap-3">
                     {[
-                      { label: '查看报价 / 合同快审', href: '/services#quote-standard' },
+                      { label: '查看报价 / 合同快审', href: '/services/quote-standard' },
                       { label: '查看居住方案综合判断', href: '/services#quote-deep' },
                       { label: '查看风险词典', href: '/risk-dictionary' },
                     ].map((item) => (
@@ -768,9 +768,9 @@ export default function QuoteCheckClient() {
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {[
               ['免费', '报价初筛', '先知道边界哪里没写清'],
-              ['免费', '报价风险初查', '3 个高风险点 + 5 个追问问题'],
-              ['免费', '报价 / 合同快审', '报价、合同、付款节点一起看'],
-              ['免费', '居住方案综合判断', '方案、预算、报价、合同和交付一起看'],
+              ['¥199', '报价风险初查', '3 个高风险点 + 5 个追问问题'],
+              ['¥499', '报价 / 合同快审', '报价、合同、付款节点一起看'],
+              ['¥1,999', '居住方案综合判断', '方案、预算、报价、合同和交付一起看'],
             ].map(([price, title, desc]) => (
               <div key={title} className="border border-border bg-canvas p-4">
                 <p className="text-xs font-semibold uppercase tracking-widest text-stone">{price}</p>

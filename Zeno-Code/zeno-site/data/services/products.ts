@@ -24,6 +24,26 @@ export interface Product {
 
 export const PRODUCTS: Product[] = [
   {
+    id:           'quote-self-check-kit',
+    name:         '装修报价自查工具包',
+    tagline:      '¥49，对着清单自己审一遍——13个边界、3个真实案例、一步步来',
+    type:         'resource',
+    value:        'quote-self-check-kit|装修报价自查工具包|/resources',
+    price:        4900,
+    originalPrice: 9900,
+    category:     '装修判断',
+    bestFor:      '刚拿到报价单，想自己先审一遍、有一定学习意愿的人。',
+    deliverable:  '13边界逐项检查清单(PDF) + 15分钟视频讲解 + 3个真实报价单标注案例。',
+    description:  [
+      '13边界逐项检查清单（可打印，对着你的报价单逐项打勾）',
+      '15分钟视频讲解（每个边界具体看报价单上的什么位置）',
+      '3个真实报价单的标注案例（看看Zeno是怎么标注问题的）',
+      '审完还不确定？¥2,500 完整审核等你升级',
+    ],
+    badge: '自助',
+    isActive: true,
+  },
+  {
     id:           'quote-guide-pack',
     name:         '装修报价风险自查指南',
     tagline:      '签约前先把报价看明白',

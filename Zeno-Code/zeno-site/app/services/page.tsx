@@ -78,7 +78,7 @@ const decisionLevels = [
     title: '把报价、合同草稿和付款节点放在一起看',
     body: '适合已经比较 2-3 家，想知道哪份更稳、哪些承诺必须落字的人。',
     output: '报价 / 合同快审',
-    href: '/services#quote-standard',
+    href: '/services/quote-standard',
     cta: '看快审服务',
   },
   {
@@ -195,7 +195,7 @@ export default function ServicesPage() {
               服务不是一串报价项目，而是按你的材料和决策阶段逐层判断。
             </p>
             <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-              <CTA href="/services/quote-review" label="¥199 报价快审 → 24小时出结果" variant="primary" />
+              <CTA href="/services/quote-review" label="¥2,500 零加价保障审查 → 24小时出结果" variant="primary" />
               <CTA href="/living-diagnosis" label="先做免费居住诊断" variant="secondary" />
             </div>
             <p className="mt-6 max-w-xl text-sm leading-7 text-ink-faint">
