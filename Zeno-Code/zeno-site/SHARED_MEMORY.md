@@ -130,3 +130,61 @@ npx prisma db push
 
 ### 转化漏斗面板
 访问 `/admin/dashboard` 查看新的转化漏斗 + 速览面板 + 操作日志面板
+
+---
+
+## 2026-07-12 会话 2：AI 回复系统 RAG 升级 + 知识库
+
+### API：`/api/admin/ai-draft` → RAG 模式
+**改了什么**：`app/api/admin/ai-draft/route.ts` — 完全重写
+**为什么改**：原来的 AI 回复只调 DeepSeek，没有专业内容支撑。现在先搜 knowledge_entries 表（关键词匹配打分），把 top 3 匹配内容注入 DeepSeek prompt。无 API key 时降级为纯知识库匹配模式，不依赖外部服务也能用。
+**关键设计**：
+- 关键词匹配算法：标签命中 +3 分，标题命中 +2 分，内容匹配 +1 分
+- 取 top 3，得分≥5 标记"高"相关，≥3"中"，否则"低"
+- 返回 matchedKnowledge 数组供前端展示来源
+
+### 知识库预置接口：`/api/admin/knowledge/seed`
+**改了什么**：新建 `app/api/admin/knowledge/seed/route.ts`
+**为什么改**：知识库初始为空，点一下按钮就能灌 5 条核心知识，不用手动录入。
+**5 条种子**：预算区间/效果对应/避坑清单/报价检查/合同审查（全是 Zeno 真实经验，不是通用 AI 生成）
+
+### Prisma：KnowledgeEntry 模型
+**改了什么**：`prisma/schema.prisma` — 新增 KnowledgeEntry 模型
+**字段**：title, category, content, tags[], priority, isActive
+**分类**：budget | effect | pitfall | quote | contract | process | material | other
+
+### AI 回复前端：知识库匹配展示
+**改了什么**：`components/admin/AiReplyClient.tsx`
+**为什么改**：AI 回复不能是"黑箱"——Zeno 需要看到 AI 引用了哪条知识。现在生成回复后，底部显示匹配的知识条目 + 相关度标签（高/中/低）
+**新增**：「预置知识库」按钮
+
+### AdminSidebar：新增 AI 工具组
+**改了什么**：`components/admin/AdminSidebar.tsx`
+**新增**：「AI 工具」→ 智能回复
+
+### OA 后台架构总结（本次会话完整改造）
+```
+📊 数字大屏      — 新增转化漏斗/在施工地/速览面板/操作日志面板
+👥 用户运营      — 用户/会员/订单（已成熟）
+📝 内容与服务    — 草稿/笔记/诊断/申请/资料（已成熟）
+🏗️ 项目交付      — 工地总览/详情/节点追踪/照片/备注（全新）
+🤖 AI 工具      — 智能回复（模板库+RAG AI草稿）（全新）
+🎯 营销工具      — 兑换码/优惠券（已成熟）
+⚙️ 系统         — 日志/事件/内容管道（已成熟）
+```
+
+### API 清单
+| 路径 | 方法 | 功能 | 状态 |
+|------|------|------|------|
+| `/api/admin/ai-draft` | POST | RAG 模式 AI 生成回复 | ✅ |
+| `/api/admin/knowledge/seed` | POST | 预置知识库种子数据 | ✅ |
+| `/api/admin/services/[id]` | PATCH | 更新服务申请状态/分类/回复 | ✅ |
+| `/api/admin/stats/conversion` | GET | 转化漏斗统计数据 | ✅ |
+
+### 商业模式决策
+- ¥199 风险初查已砍——和 ¥2,500 之间信任断层太大
+- ¥1,999 综合判断已砍——产品定位模糊
+- 核心产品线只有 3 个：免费工具 → ¥499 快审 → ¥2,500 全审
+- Zeno 确认接工地做施工案例——"顾问+交付"战略转型
+- 每个工地 = 内容生产线
+- 新 OA 结构已确认：5 大模块（数字大屏/用户运营/内容服务/项目交付/AI工具/营销/系统）
