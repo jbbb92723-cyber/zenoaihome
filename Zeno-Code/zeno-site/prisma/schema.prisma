@@ -140,6 +140,10 @@ model ServiceRequest {
   email       String?
   message     String?
   status      String   @default("submitted") // submitted | reviewing | completed | rejected
+  aiCategory  String?  // AI 分类：quote_review / contract_review / living_diagnosis / budget / general
+  responseText String? // 最终回复文本
+  reviewedAt  DateTime?
+  savedToKnowledge Boolean @default(false)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 

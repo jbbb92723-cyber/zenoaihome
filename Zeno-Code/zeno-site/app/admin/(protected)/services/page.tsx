@@ -66,7 +66,7 @@ export default async function ServicesPage({
             <div className="flex items-start justify-between mb-3">
               <div>
                 <div className="flex items-center gap-3">
-                  <p className="text-sm font-medium text-[#E8E2DA]">{r.serviceType}</p>
+                  <Link href={`/admin/services/${r.id}`} className="text-sm font-medium text-[#E8E2DA] hover:text-[#C4A882] transition-colors">{r.serviceType}</Link>
                   <span className={`text-xs ${STATUS_COLOR[r.status] ?? 'text-[#706860]'}`}>
                     {STATUS_LABEL[r.status] ?? r.status}
                   </span>
