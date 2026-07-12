@@ -1,112 +1,72 @@
-# SHARED MEMORY · ZenoAIHome 改动日志
+# ZenoAIHome 改动日志
 
-> 每条记录写清楚：改了什么文件、为什么改、当前状态。
-> 手机上的 Hermes 不用翻代码就能知道上下文。
-
----
-
-## 2026-07-13 · Claude 会话
-
-- 2026-07-13 | Claude | 统一模板库 `lib/templates.ts` — Claude 的8条 + Hermes 的12条合并为17条，双轨分类(UI+系统)
-- 2026-07-13 | Claude | `AiReplyClient.tsx` 不再硬编码模板，改为从 `lib/templates.ts` 导入
-- 2026-07-13 | Claude | `template-matcher.ts` 改为从 `lib/templates.ts` 匹配，保留变量填充
-- 2026-07-13 | Claude | 确认 `lib/review-panel.ts`(八人评审团) 和 `.hermes/skills/` 两份评审团不冲突
-- 2026-07-13 | Claude | Supabase 数据库已修复！新项目 mvpbqkdqsziwxrkhgvzq，29张表全部建好。DATABASE_URL 用 Pooler(6543)，直连5432被墙。**所有后台功能现在有真实数据库了。**
+> 2026-07-12 会话 · 由 Hermes + Zeno 协作
 
 ---
 
-## 2026-07-13 · Hermes Desktop 会话
+## 网站 (zeno-site)
 
-### 1. 修复 QuoteCheckClient 底部服务路径价格 bug
-- **文件**：`components/features/quote-check/QuoteCheckClient.tsx`
-- **改动**：第 769-774 行，将服务路径卡片中 ¥199/¥499/¥1,999 的价格从"免费"改为正确价格
-- **原因**：旧代码把三个付费服务全标成了"免费"，损害定价感知
-- **已部署**：✅
+### 新增文件
 
-### 2. 新增 ¥499 报价/合同快审产品页
-- **文件**：`app/services/quote-standard/page.tsx`（新建）
-- **改动**：完整的 Hormozi 式产品页——Hero/审查范围/快审vs全审对比/赠品/退款保证/ROI计算/FAQ/交叉引流
-- **原因**：之前 commercial-ladder.ts 里 ¥499 只有页面锚点，没有独立产品页，转化链路断裂
-- **已部署**：✅
+| 文件 | 改动原因 |
+|------|---------|
+| `app/services/quote-standard/page.tsx` | ¥499 报价/合同快审独立产品页。之前只有 `/services#quote-standard` 锚点，免费工具的结果页引导到这里但点过去只是 services 页的一个卡片。现在有完整 Hormozi 式产品页：审查范围/赠品堆叠/风险逆转/FAQ/交叉引流 |
+| `app/admin/(protected)/projects/page.tsx` | OA 后台「工地总览」——项目列表+状态+进度条+照片计数+KPI卡片 |
+| `app/admin/(protected)/projects/[id]/page.tsx` | OA 后台「工地详情」——基本信息+7节点追踪+照片归档+沟通备注。新建自动创建7个默认节点(水电→防水→木工→贴砖→油漆→安装→竣工) |
+| `app/admin/(protected)/ai-reply/page.tsx` | OA 后台「智能回复」入口页 |
+| `app/api/admin/ai-draft/route.ts` | AI 回复 API。RAG 模式：先搜 knowledge_entries 关键词匹配 → 注入 DeepSeek prompt → 返回回复+匹配知识来源。无 API key 时降级为纯模板模式 |
+| `app/api/admin/knowledge/seed/route.ts` | 一键预置 5 条种子知识(预算/效果/避坑/报价/合同审查) |
+| `components/admin/AiReplyClient.tsx` | 智能回复前端：左侧模板库(10个模板+分类筛选)、中间预览、右侧 AI 草稿+匹配知识展示+预置按钮 |
+| `data/content/article-116-content.ts` | 文章 116 "你做的不是答疑，是帮人下定论" |
 
-### 3. 更新 commercial-ladder.ts、services页、sitemap
-- **文件**：
-  - `data/services/commercial-ladder.ts` — ¥499 href 从 `/services#quote-standard` 改为 `/services/quote-standard`
-  - `app/services/page.tsx` — 决策路径"准备继续谈或签约"跳转同步更新
-  - `app/sitemap.ts` — 新增 `/services/quote-standard` URL
-- **原因**：让新页面的导航、SEO、梯子数据全部对齐
-- **已部署**：✅
+### 修改文件
 
-### 4. 发布文章 #116「你做的不是答疑，是帮人下定论」
-- **文件**：
-  - `data/content/article-116-content.ts`（新建）
-  - `data/content/articles.ts`（注册 id='116'）
-- **内容**：OPC 一人公司类文章，讲客户筛选——情绪的钱 vs 商业的钱
-- **原因**：Zeno 从 don哥方法论吸收后用自己的装修语言重写
-- **已部署**：✅
-
-### 5. 蒸馏郭春林 → perspective skill
-- **文件**：
-  - `G:/Hermes智能体/.hermes/skills/guo-chunlin-perspective/SKILL.md`（新建）
-  - `Zeno-Content/赞诺内容资产库/perspective-skills/guo-chunlin-perspective-SKILL.md`（备份）
-- **核心框架**：概念→逻辑→系统、降维视角、思想重构、人生十智
-- **原因**：第八个视角 skill，补充"概念清晰+系统思维"维度
-- **状态**：✅ 可用
-
-### 6. 蒸馏生财有术 → perspective skill
-- **文件**：
-  - `G:/Hermes智能体/.hermes/skills/shengcaiyoushu-perspective/SKILL.md`（新建）
-  - `Zeno-Content/赞诺内容资产库/perspective-skills/shengcaiyoushu-perspective-SKILL.md`（备份）
-- **核心框架**：多方受益、龙珠激励、航海实战、12个赚钱思维
-- **原因**：第九个视角，主题型 skill（社群运营+赚钱方法论）
-- **状态**：✅ 可用
-
-### 7. OA 后台新增「项目交付」模块
-- **文件**：
-  - `prisma/schema.prisma` — 新增 Project/ProjectNode/ProjectPhoto/ProjectNote 四模型
-  - `components/admin/AdminSidebar.tsx` — 新增"项目交付"导航组
-  - `app/admin/(protected)/projects/page.tsx`（新建）— 工地总览列表页
-  - `app/admin/(protected)/projects/[id]/page.tsx`（新建）— 工地详情页
-  - `app/admin/(protected)/dashboard/page.tsx` — 大屏加项目统计卡片
-  - `lib/dashboard-stats.ts` — 新增 projects.active/total 查询
-- **功能**：工地管理（7节点追踪/照片归档/沟通备注）、大屏统计
-- **原因**：Zeno 要接工地做案例，OA 缺少项目管理模块
-- **状态**：⚠️ 代码已 push，但 Prisma migrate 需要手动跑（本机连不上 Supabase）
-
-### 8. OA 新增「智能回复」系统
-- **文件**：
-  - `app/admin/(protected)/ai-reply/page.tsx`（新建）
-  - `components/admin/AiReplyClient.tsx`（新建）
-  - `components/admin/AdminSidebar.tsx` — 新增"AI 工具"导航组
-- **功能**：10个预设回复模板（效果/预算/避坑/报价/合同/施工/微信开场）、分类筛选、一键复制
-- **原因**：Zeno 在微信上回复业主问题，需要快速调用标准回复
-- **已部署**：✅
-
-### 9. AI 回复升级 RAG 模式
-- **文件**：
-  - `app/api/admin/ai-draft/route.ts`（重写）— RAG: 先搜 knowledge_entries → 注入 prompt → DeepSeek 生成
-  - `prisma/schema.prisma` — 新增 KnowledgeEntry 模型
-  - `app/api/admin/knowledge/seed/route.ts`（新建）— 一键预置5条种子知识
-  - `components/admin/AiReplyClient.tsx` — 显示匹配知识+置信度、预置按钮
-- **种子知识**：预算区间参考、效果对应、避坑清单、报价检查、合同审查
-- **原因**：AI 回复不能只靠模型幻觉，需要 Zeno 自己的专业知识做「判断」层
-- **状态**：⚠️ 代码已 push，需要：① `npx prisma db push` 建表 ② POST `/api/admin/knowledge/seed` 预置 ③ Vercel 环境变量加 `DEEPSEEK_API_KEY`
-
-### 10. 飞书定位讨论
-- **结论**：飞书只做内容审批中控台（选题审批+稿件状态+团队协作）
-- **不做**：Obsidian 替代品、网站编辑器、git 替代、双向同步
-- **精简建议**：15张表 → 4张（选题池/稿件状态/发布记录/SOP）
+| 文件 | 改了什么 | 为什么改 |
+|------|---------|---------|
+| `components/features/quote-check/QuoteCheckClient.tsx` | 底部服务路径区域：¥199/¥499/¥1,999 之前都标成"免费"→改为正确价格；结果页"查看报价/合同快审"链接从 `/services#quote-standard` 改为 `/services/quote-standard` | **Bug 修复**：免费工具页在教用户"人工服务不值钱"，商业自伤。链接更新是因为产品页已经独立 |
+| `data/services/commercial-ladder.ts` | ¥499 快审的 href 从 `/services#quote-standard` 改为 `/services/quote-standard` | 产品页从页面锚点升级为独立页面 |
+| `app/services/page.tsx` | 决策路径 code 03 的 href 同步更新 | 同上 |
+| `app/sitemap.ts` | 添加 `/services/quote-standard` 到 static pages | SEO：新产品页需要被搜索引擎收录 |
+| `components/admin/AdminSidebar.tsx` | 新增两个导航组：「项目交付」（工地总览）、「AI 工具」（智能回复） | OA 新增了这两个模块 |
+| `lib/dashboard-stats.ts` | 接口加 `projects: { active: number; total: number }`，查询也加上了；三个 fallback 都更新了 | Dashboard 大屏要显示项目统计 |
+| `app/admin/(protected)/dashboard/page.tsx` | 加 import Link，加项目交付统计卡片+快捷入口 | 大屏概览更完整 |
+| `prisma/schema.prisma` | 新增 5 个模型：`Project`, `ProjectNode`, `ProjectPhoto`, `ProjectNote`, `KnowledgeEntry`；`ServiceRequest` 加 `aiCategory`/`responseText`/`reviewedAt`/`savedToKnowledge` 字段 | 支撑项目交付模块和 AI 知识库 |
 
 ---
 
-## ⚠️ 待处理
+## Hermes Skills
 
-1. **Prisma migrate**：本机 Windows 连不上 Supabase（5432 端口被墙，6543 池化认证失败）。Project/ProjectNode/ProjectPhoto/ProjectNote/KnowledgeEntry 五张新表需要手动 migrate。建议：Zeno 在本地能连 Supabase 的电脑上跑 `npx prisma db push`
+| Skill | 位置 | 为什么创建 |
+|-------|------|-----------|
+| `guo-chunlin-perspective` | Hermes skills + Obsidian vault | 蒸馏郭春林的认知操作系统。概念-逻辑-系统三层思辨框架、降维视角、企业家思想重构。Zeno 的第八个视角，用于战略诊断和认知升级 |
+| `shengcaiyoushu-perspective` | Hermes skills + Obsidian vault | 蒸馏生财有术社群的实战赚钱框架。12个赚钱思维、龙珠激励机制、航海实战模型。Zeno 的第九个视角，用于项目评估和社群运营设计 |
 
-2. **DEEPSEEK_API_KEY**：Vercel 环境变量未配置。部署后 AI 回复可用模板，但不能生成新回复。需要 key
+---
 
-3. **¥199 产品页**：评审团建议砍掉 ¥199。Zeno 未最终决定。¥499 页面已上线
+## Obsidian 内容资产
 
-4. **¥1,999 综合判断**：缺少独立产品页，href 仍是 `/services#quote-deep` 锚点
+| 文件 | 用途 |
+|------|------|
+| `02-方法卡/情绪的钱vs商业的钱-客户筛选二元法.md` | don哥方法吸收：把"赚情绪的钱 vs 赚商业的钱"二元分法迁移到 Zeno 的装修咨询场景 |
+| `06-选题装配/2026-07-12_情绪的钱vs商业的钱.md` | 选题草稿 → 最终发行为 article 116 |
 
-5. **飞书精简**：15 张表待精简到 4 张核心表
+---
+
+## 待部署/待操作
+
+- [ ] Vercel build 成功后，在 Vercel 环境变量加 `DEEPSEEK_API_KEY`（AI 回复功能需要）
+- [ ] Vercel 部署后进入 OA → 智能回复 → 点「预置知识库」
+- [ ] 本机跑 `npx prisma db push`（新增 5 张表到 Supabase）
+- [ ] ¥199 和 ¥1,999 产品页仍为空锚点（`/services#quote-entry` 和 `/services#quote-deep`），已决定砍掉 ¥199
+- [ ] 飞书多维表格精简到 4 张：选题池、稿件状态、发布记录、SOP
+
+---
+
+## 关键决策记录
+
+1. **¥199 砍掉，¥499 保留**：Zeno 决定自己接工地做案例后，¥199 的"3个风险点快扫"承诺太薄，没有存在价值。¥499 作为"比价入口"保留
+2. **产品梯子变为"判断+交付一体化"**：免费工具→¥499快审→¥2,500全审→Zeno自己做工地→节点顾问。判断和交付不再分离
+3. **改写规则**：所有他人内容必须完全变成 Zeno 自己的语言，不留痕迹——用自己的案例、自己的表达、自己的经历做论证。不引用原作者
+4. **Zeno 发素材不提问，直接处理**：默认动作链=存档方法卡+提取机制+映射到Zeno业务+标记文章潜力
+5. **OA 新模块 "项目交付"**：用 Prisma 模型管理工地+节点+照片+备注，Dashboard 卡片显示统计
+6. **AI 回复采用 RAG 模式**：先搜知识库再调 DeepSeek，不是裸调。知识库是可维护的、Zeno 自己的专业知识
