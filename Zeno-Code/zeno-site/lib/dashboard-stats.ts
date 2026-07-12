@@ -355,6 +355,8 @@ async function getBusinessStats() {
     claimsToday,
     totalNotes,
     publishedNotes,
+    activeProjects,
+    totalProjects,
   ] = await Promise.all([
     prisma.user.count(),
     prisma.user.count({ where: { createdAt: { gte: today } } }),
@@ -667,6 +669,7 @@ export async function getDashboardStats(): Promise<DashboardStats> {
         diagnoses: { pending: 0, total: 0 },
         resources: { claimsToday: 0 },
         notes: { total: 0, published: 0 },
+        projects: { active: 0, total: 0 },
       },
       code: {
         pages: 0, components: 0, apiRoutes: 0,

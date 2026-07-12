@@ -477,3 +477,85 @@ model AdminLog {
   @@index([createdAt])
   @@map("admin_logs")
 }
+
+// ─── 项目交付：工地管理 ───────────────────────────────────────
+model Project {
+  id          String    @id @default(cuid())
+  name        String                    // 项目名称，如"张先生 南宁 120平"
+  clientName  String?                   // 业主姓名
+  clientPhone String?                   // 业主电话
+  clientWechat String?                  // 业主微信
+  city        String?                   // 城市
+  address     String?                   // 详细地址
+  area        Float?                    // 面积（㎡）
+  budget      Int?                      // 装修预算（分）
+  homeType    String?                   // 户型：毛坯/旧房翻新/精装修改造
+  style       String?                   // 风格
+  source      String?                   // 来源：网站/微信/转介绍/其他
+  status      String    @default("active") // active | completed | paused | cancelled
+  startedAt   DateTime?                 // 开工日期
+  completedAt DateTime?                 // 竣工日期
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  nodes       ProjectNode[]
+  photos      ProjectPhoto[]
+  notes       ProjectNote[]
+
+  @@index([status])
+  @@index([createdAt])
+  @@map("projects")
+}
+
+model ProjectNode {
+  id          String    @id @default(cuid())
+  projectId   String
+  name        String                    // 节点名称：水电验收/防水验收/贴砖验收...
+  sortOrder   Int       @default(0)     // 排序
+  status      String    @default("pending") // pending | in_progress | submitted | reviewed | passed | failed
+  scheduledAt DateTime?                 // 计划验收日期
+  submittedAt DateTime?                 // 业主提交照片日期
+  reviewedAt  DateTime?                 // Zeno 审核日期
+  zenoFeedback String?                  // Zeno 的审核反馈
+  result      String?                   // pass | fail | conditional
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  project Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  photos  ProjectPhoto[]
+
+  @@index([projectId])
+  @@index([status])
+  @@map("project_nodes")
+}
+
+model ProjectPhoto {
+  id        String   @id @default(cuid())
+  projectId String
+  nodeId    String?
+  url       String
+  caption   String?
+  takenAt   DateTime?
+  createdAt DateTime @default(now())
+
+  project Project      @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  node    ProjectNode? @relation(fields: [nodeId], references: [id], onDelete: SetNull)
+
+  @@index([projectId])
+  @@index([nodeId])
+  @@map("project_photos")
+}
+
+model ProjectNote {
+  id        String   @id @default(cuid())
+  projectId String
+  content   String
+  type      String   @default("general") // general | client_comm | change_order | settlement
+  createdAt DateTime @default(now())
+
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  @@index([projectId])
+  @@index([createdAt])
+  @@map("project_notes")
+}

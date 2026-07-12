@@ -4,6 +4,7 @@
  */
 
 import type { Metadata } from 'next'
+import Link from 'next/link'
 import dynamicImport from 'next/dynamic'
 import { getDashboardStats } from '@/lib/dashboard-stats'
 import StatCard from '@/components/admin/StatCard'
@@ -151,6 +152,33 @@ export default async function DashboardPage() {
           subtitle={pipeline.totalDrafts > 0 ? `共 ${pipeline.totalDrafts} 篇` : '暂无管道数据'}
           tone={pipeline.pendingDrafts > 0 ? 'coral' : 'neutral'}
         />
+      </div>
+
+      {/* ── 项目交付 ──────────────────────────── */}
+      <div className="grid grid-cols-2 gap-3">
+        <StatCard
+          label="在施工地"
+          value={stats.business.projects.active}
+          subtitle={`共 ${stats.business.projects.total} 个项目`}
+          tone={stats.business.projects.active > 0 ? 'green' : 'neutral'}
+        />
+        {stats.business.projects.active > 0 ? (
+          <Link href="/admin/projects" className="border border-[#3A3530] bg-[#1f1d1a] p-4 flex items-center justify-between hover:bg-[#252320] transition-colors group">
+            <div>
+              <p className="text-sm font-semibold text-[#E8E2DA]">管理工地</p>
+              <p className="text-xs text-[#706860] mt-1">节点追踪 · 照片归档 · 案例沉淀</p>
+            </div>
+            <span className="text-[#C4A882] group-hover:translate-x-1 transition-transform">→</span>
+          </Link>
+        ) : (
+          <Link href="/admin/projects" className="border border-dashed border-[#504840] bg-[#1f1d1a] p-4 flex items-center justify-between hover:border-[#C4A882]/50 transition-colors group">
+            <div>
+              <p className="text-sm text-[#706860]">还没有工地项目</p>
+              <p className="text-xs text-[#504840] mt-1">创建第一个，开始记录</p>
+            </div>
+            <span className="text-[#706860] group-hover:text-[#C4A882] transition-colors">+</span>
+          </Link>
+        )}
       </div>
 
       {/* ── 文章分类分布 ────────────────────────── */}
