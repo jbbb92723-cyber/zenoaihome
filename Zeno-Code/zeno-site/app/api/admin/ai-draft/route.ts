@@ -1,7 +1,8 @@
 import { NextResponse } from 'next/server'
+import { prisma } from '@/lib/prisma'
 
 // Zeno 的回复风格提示词
-const SYSTEM_PROMPT = `你是赞诺Zeno的智能回复助手。你帮Zeno草拟给装修业主的微信回复。
+const SYSTEM_PROMPT_BASE = `你是赞诺Zeno的智能回复助手。你帮Zeno草拟给装修业主的微信回复。
 
 回复要求：
 - 自然、真诚、不油腻、不AI腔
@@ -27,21 +28,86 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: '请输入内容' }, { status: 400 })
     }
 
-    // 调用 DeepSeek（和 Hermes 用同一个 provider）
     const apiKey = process.env.DEEPSEEK_API_KEY
-    if (!apiKey) {
-      return NextResponse.json({
-        reply: `【AI 草稿暂不可用 — 请手动编写回复】
 
-业主问："${prompt}"
+    // ── RAG: 搜索匹配的知识库条目 ────────────────────
+    let knowledgeContext = ''
+    let matchedKnowledge: Array<{ id: string; title: string; category: string; relevance: string }> = []
 
-建议回复方向：
-1. 先确认对方的核心顾虑是什么（预算？效果？信任？）
-2. 用自己的经验给一个具体的判断，而不是泛泛而谈
-3. 如果合适，引导到免费初筛工具让对方先试试
-
-（配置 DEEPSEEK_API_KEY 环境变量后可使用 AI 自动生成）`
+    try {
+      const allKnowledge = await prisma.knowledgeEntry.findMany({
+        where: { isActive: true },
+        orderBy: { priority: 'desc' },
       })
+
+      // 关键词匹配打分
+      const keywords = prompt.toLowerCase()
+      const scored = allKnowledge.map((entry) => {
+        let score = 0
+        const content = `${entry.title} ${entry.tags.join(' ')} ${entry.content}`.toLowerCase()
+
+        // 标签命中加分
+        entry.tags.forEach((tag) => {
+          if (keywords.includes(tag.toLowerCase())) score += 3
+        })
+        // 标题命中加分
+        if (keywords.includes(entry.title.toLowerCase())) score += 2
+        // 内容关键词匹配
+        const words = keywords.split(/\s+/)
+        words.forEach((w) => {
+          if (w.length >= 2 && content.includes(w)) score += 1
+        })
+
+        return { entry, score }
+      })
+
+      // 取 top 3 匹配
+      const topMatches = scored
+        .filter((s) => s.score > 0)
+        .sort((a, b) => b.score - a.score)
+        .slice(0, 3)
+
+      if (topMatches.length > 0) {
+        knowledgeContext = topMatches
+          .map(
+            (m) => `【${m.entry.title}】（分类：${m.entry.category}）
+${m.entry.content.slice(0, 800)}`
+          )
+          .join('\n\n---\n\n')
+
+        matchedKnowledge = topMatches.map((m) => ({
+          id: m.entry.id,
+          title: m.entry.title,
+          category: m.entry.category,
+          relevance: m.score >= 5 ? '高' : m.score >= 3 ? '中' : '低',
+        }))
+      }
+    } catch (e) {
+      // 知识库不可用时降级为纯 AI 模式
+      console.warn('Knowledge base unavailable, using AI-only mode:', e)
+    }
+
+    // ── 构建 prompt ──────────────────────────────────
+    const knowledgeBlock = knowledgeContext
+      ? `\n\n以下是Zeno的知识库中与这个问题相关的内容，请基于这些知识来回复（但不要直接复制，用Zeno的口语化风格重述）：\n\n${knowledgeContext}\n\n请用Zeno的口吻基于以上知识回复业主。`
+      : ''
+
+    if (!apiKey) {
+      const fallbackLines = ['【AI 草稿暂不可用 — 请手动编写回复】', '', `业主问："${prompt}"`, '']
+      if (matchedKnowledge.length > 0) {
+        fallbackLines.push('📚 匹配到的知识库内容：')
+        matchedKnowledge.forEach((k) => {
+          fallbackLines.push(`  · ${k.title} (相关度: ${k.relevance})`)
+        })
+        fallbackLines.push('', '（配置 DEEPSEEK_API_KEY 后可使用 AI 自动生成回复）')
+      } else {
+        fallbackLines.push('建议回复方向：')
+        fallbackLines.push('1. 先确认对方的核心顾虑是什么（预算？效果？信任？）')
+        fallbackLines.push('2. 用自己的经验给一个具体的判断，而不是泛泛而谈')
+        fallbackLines.push('3. 如果合适，引导到免费初筛工具让对方先试试')
+        fallbackLines.push('', '（配置 DEEPSEEK_API_KEY 环境变量后可使用 AI 自动生成）')
+      }
+      return NextResponse.json({ reply: fallbackLines.join('\n'), matchedKnowledge })
     }
 
     const res = await fetch('https://api.deepseek.com/v1/chat/completions', {
@@ -53,10 +119,13 @@ export async function POST(request: Request) {
       body: JSON.stringify({
         model: 'deepseek-chat',
         messages: [
-          { role: 'system', content: SYSTEM_PROMPT },
-          { role: 'user', content: `请帮Zeno草拟一段微信回复，回答业主的这个问题：${prompt}
+          { role: 'system', content: SYSTEM_PROMPT_BASE + knowledgeBlock },
+          {
+            role: 'user',
+            content: `请帮Zeno草拟一段微信回复，回答业主的这个问题：${prompt}
 
-要求：100-300字，口语化，像朋友聊天。可以提一句免费初筛工具或对应的付费服务，但自然一点，不要硬推。` },
+要求：100-300字，口语化，像朋友聊天。可以提一句免费初筛工具或对应的付费服务，但自然一点，不要硬推。`,
+          },
         ],
         temperature: 0.7,
         max_tokens: 600,
@@ -66,9 +135,9 @@ export async function POST(request: Request) {
     const data = await res.json()
     const reply = data.choices?.[0]?.message?.content || '生成失败，请重试'
 
-    return NextResponse.json({ reply })
+    return NextResponse.json({ reply, matchedKnowledge })
   } catch (error) {
     console.error('AI draft error:', error)
-    return NextResponse.json({ reply: '生成出错，请重试' }, { status: 500 })
+    return NextResponse.json({ reply: '生成出错，请重试', matchedKnowledge: [] }, { status: 500 })
   }
 }

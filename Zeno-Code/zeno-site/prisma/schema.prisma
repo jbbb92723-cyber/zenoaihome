@@ -563,3 +563,20 @@ model ProjectNote {
   @@index([createdAt])
   @@map("project_notes")
 }
+
+// ─── AI 知识库 ───────────────────────────────────────────────
+model KnowledgeEntry {
+  id        String   @id @default(cuid())
+  title     String                     // 标题，如"装修预算合理区间参考"
+  category  String                     // 分类：budget | effect | pitfall | quote | contract | process | material | other
+  content   String                     // 知识正文（Markdown）
+  tags      String[]                   // 标签
+  priority  Int      @default(0)       // 排序权重，越高越靠前
+  isActive  Boolean  @default(true)    // 是否启用
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([category])
+  @@index([isActive])
+  @@map("knowledge_entries")
+}

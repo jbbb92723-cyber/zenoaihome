@@ -202,6 +202,8 @@ export default function AiReplyClient() {
   const [aiPrompt, setAiPrompt] = useState('')
   const [aiResult, setAiResult] = useState('')
   const [aiLoading, setAiLoading] = useState(false)
+  const [matchedKnowledge, setMatchedKnowledge] = useState<Array<{ id: string; title: string; category: string; relevance: string }>>([])
+  const [seeding, setSeeding] = useState(false)
 
   const filteredTemplates = activeCategory === 'all'
     ? TEMPLATES
@@ -217,6 +219,7 @@ export default function AiReplyClient() {
     if (!aiPrompt.trim()) return
     setAiLoading(true)
     setAiResult('')
+    setMatchedKnowledge([])
     try {
       const res = await fetch('/api/admin/ai-draft', {
         method: 'POST',
@@ -225,10 +228,26 @@ export default function AiReplyClient() {
       })
       const data = await res.json()
       setAiResult(data.reply || '生成失败，请重试')
+      if (data.matchedKnowledge?.length > 0) {
+        setMatchedKnowledge(data.matchedKnowledge)
+      }
     } catch {
       setAiResult('网络错误，请重试')
     } finally {
       setAiLoading(false)
+    }
+  }
+
+  async function seedKnowledge() {
+    setSeeding(true)
+    try {
+      const res = await fetch('/api/admin/knowledge/seed', { method: 'POST' })
+      const data = await res.json()
+      alert(`已预置 ${data.seeded} 条知识条目`)
+    } catch {
+      alert('预置失败')
+    } finally {
+      setSeeding(false)
     }
   }
 
@@ -300,9 +319,18 @@ export default function AiReplyClient() {
       {/* 右侧：AI 草稿 */}
       <div className="space-y-4">
         <div className="border border-[#3A3530] bg-[#1f1d1a] p-5">
-          <h2 className="text-sm font-semibold text-[#E8E2DA] mb-3">AI 草稿</h2>
+          <div className="flex items-center justify-between mb-3">
+            <h2 className="text-sm font-semibold text-[#E8E2DA]">AI 草稿</h2>
+            <button
+              onClick={seedKnowledge}
+              disabled={seeding}
+              className="text-xs px-2 py-1 border border-[#504840] text-[#706860] hover:border-[#C4A882] hover:text-[#C4A882] transition-colors disabled:opacity-40"
+            >
+              {seeding ? '预置中...' : '预置知识库'}
+            </button>
+          </div>
           <p className="text-xs text-[#706860] mb-3">
-            输入业主的问题或场景，AI 生成一段回复草稿。基于 Zeno 的内容风格和专业知识。
+            输入业主的问题或场景，AI 自动匹配知识库 + 生成回复草稿。
           </p>
           <textarea
             value={aiPrompt}
@@ -332,6 +360,26 @@ export default function AiReplyClient() {
               </button>
             </div>
             <div className="text-sm text-[#A09890] leading-relaxed whitespace-pre-wrap">{aiResult}</div>
+
+            {matchedKnowledge.length > 0 && (
+              <div className="mt-4 pt-4 border-t border-[#3A3530]">
+                <h4 className="text-xs font-semibold text-[#68aeb0] uppercase tracking-widest mb-2">
+                  📚 匹配知识库 · {matchedKnowledge.length} 条
+                </h4>
+                <div className="space-y-2">
+                  {matchedKnowledge.map(k => (
+                    <div key={k.id} className="border border-[#3A3530] bg-[#252320] p-2 flex items-center gap-2">
+                      <span className={`text-[0.6rem] px-1.5 py-0.5 rounded-sm font-semibold ${
+                        k.relevance === '高' ? 'bg-green-400/15 text-green-400' :
+                        k.relevance === '中' ? 'bg-[#C4A882]/15 text-[#C4A882]' :
+                        'bg-[#504840]/30 text-[#706860]'
+                      }`}>{k.relevance}</span>
+                      <span className="text-xs text-[#A09890]">{k.title}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         )}
       </div>
