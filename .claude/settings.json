@@ -56,7 +56,8 @@
       "Bash(node -e \"const {spawnSync} = require\\('child_process'\\); const r = spawnSync\\('lark-cli', ['base','+record-list','--base-token','MZEybml1aaBX4zsIUPwcVUHcnHc','--table-id','tblWqjt7QMwWpusg','--as','bot','--limit','3','--format','json'], {encoding:'utf8',timeout:15000}\\); console.log\\('stdout:', \\(r.stdout||''\\).slice\\(0,200\\)\\); console.log\\('stderr:', \\(r.stderr||''\\).slice\\(0,200\\)\\); console.log\\('status:', r.status\\)\")",
       "Bash(lark-cli --version)",
       "Bash(python -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\('ok:', d.get\\('ok'\\)\\); c=d.get\\('counts',{}\\); [print\\(f'  {k}: {v}'\\) for k,v in c.items\\(\\)]\")",
-      "Bash(python -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\('ok:', d.get\\('ok'\\)\\); print\\('feishu:', d.get\\('feishuConnected'\\)\\); [print\\(f'  {s[\\\\\"label\\\\\"]}: {s[\\\\\"count\\\\\"]}'\\) for s in d.get\\('funnel',[]\\)]; print\\('pendingApprovals:', d.get\\('pendingApprovals'\\)\\)\")"
+      "Bash(python -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\('ok:', d.get\\('ok'\\)\\); print\\('feishu:', d.get\\('feishuConnected'\\)\\); [print\\(f'  {s[\\\\\"label\\\\\"]}: {s[\\\\\"count\\\\\"]}'\\) for s in d.get\\('funnel',[]\\)]; print\\('pendingApprovals:', d.get\\('pendingApprovals'\\)\\)\")",
+      "Bash(npx.cmd prisma *)"
     ]
   }
 }

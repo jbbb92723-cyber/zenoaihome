@@ -23,6 +23,9 @@ const NAV = [
   { group: '项目交付', items: [
     { href: '/admin/projects', label: '工地总览' },
   ]},
+  { group: 'AI 工具', items: [
+    { href: '/admin/ai-reply', label: '智能回复' },
+  ]},
   { group: '营销工具', items: [
     { href: '/admin/redeem-codes', label: '兑换码' },
     { href: '/admin/coupons',      label: '优惠券' },
