@@ -54,7 +54,7 @@ function jsonArg(name, data) {
 }
 
 function listFields(tableId) {
-  return runLark(["base", "+field-list", "--base-token", baseToken, "--table-id", tableId, "--as", "user"]).data.fields || [];
+  return runLark(["base", "+field-list", "--base-token", baseToken, "--table-id", tableId, "--as", "bot"]).data.fields || [];
 }
 
 function ensureField(tableId, field) {
@@ -70,8 +70,7 @@ function ensureField(tableId, field) {
     tableId,
     "--json",
     jsonArg(`field-wechat-stage-${field.name}`, field),
-    "--as",
-    "user",
+    "--as","bot",
   ]);
   return { name: field.name, status: "created" };
 }
@@ -84,8 +83,7 @@ function recordList(tableId, limit = 500) {
     baseToken,
     "--table-id",
     tableId,
-    "--as",
-    "user",
+    "--as","bot",
     "--limit",
     String(limit),
     "--format",
@@ -118,8 +116,7 @@ function batchUpdate(tableId, recordIds, patch, label) {
     tableId,
     "--json",
     jsonArg(`update-${label}`, { record_id_list: recordIds, patch }),
-    "--as",
-    "user",
+    "--as","bot",
   ]);
   return { label, status: "updated", count: recordIds.length };
 }
@@ -136,8 +133,7 @@ function batchCreate(tableId, fields, rows, label) {
     tableId,
     "--json",
     jsonArg(`records-${label}`, { fields, rows }),
-    "--as",
-    "user",
+    "--as","bot",
   ]);
   return { label, status: "created", count: rows.length };
 }

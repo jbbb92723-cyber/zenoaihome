@@ -124,8 +124,7 @@ function existingMaterialIds() {
     baseToken,
     "--table-id",
     materialsTable,
-    "--as",
-    "user",
+    "--as","bot",
     "--limit",
     "200",
     "--format",
@@ -185,8 +184,7 @@ if (rows.length) {
       fields: ["material_id", "标题", "Obsidian路径", "类型", "关键词", "适用场景", "可信度", "最后同步时间"],
       rows,
     }),
-    "--as",
-    "user",
+    "--as","bot",
   ]);
 }
 

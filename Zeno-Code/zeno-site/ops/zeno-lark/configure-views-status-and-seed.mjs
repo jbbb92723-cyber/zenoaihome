@@ -53,11 +53,11 @@ function table(name) {
 }
 
 function listViews(tableId) {
-  return runLark(["base", "+view-list", "--base-token", baseToken, "--table-id", tableId, "--as", "user"]).data.views || [];
+  return runLark(["base", "+view-list", "--base-token", baseToken, "--table-id", tableId, "--as", "bot"]).data.views || [];
 }
 
 function listFields(tableId) {
-  return runLark(["base", "+field-list", "--base-token", baseToken, "--table-id", tableId, "--as", "user"]).data.fields || [];
+  return runLark(["base", "+field-list", "--base-token", baseToken, "--table-id", tableId, "--as", "bot"]).data.fields || [];
 }
 
 function createView(tableId, name, type = "grid") {
@@ -74,8 +74,7 @@ function createView(tableId, name, type = "grid") {
     tableId,
     "--json",
     jsonArg(`view-${tableId}-${name}`, { name, type }),
-    "--as",
-    "user",
+    "--as","bot",
   ]);
   const view = created?.data?.view || created?.data?.views?.[0] || {};
   return { name, id: view.id || null, status: "created" };
@@ -108,8 +107,7 @@ function updateSelectField(tableId, fieldName, options) {
       "--json",
       jsonArg(`field-update-${tableId}-${fieldName}`, payload),
       "--yes",
-      "--as",
-      "user",
+      "--as","bot",
     ]);
     return { fieldName, status: "updated-select" };
   } catch (error) {
@@ -125,8 +123,7 @@ function recordList(tableId, limit = 200) {
     baseToken,
     "--table-id",
     tableId,
-    "--as",
-    "user",
+    "--as","bot",
     "--limit",
     String(limit),
     "--format",
@@ -146,8 +143,7 @@ function batchCreate(tableId, fields, rows, label) {
     tableId,
     "--json",
     jsonArg(`records-${label}`, { fields, rows }),
-    "--as",
-    "user",
+    "--as","bot",
   ]);
   return { label, status: "created", count: rows.length };
 }

@@ -48,15 +48,15 @@ function jsonArg(name, data) {
 }
 
 function listTables() {
-  return runLark(["base", "+table-list", "--base-token", baseToken, "--as", "user"]).data.tables || [];
+  return runLark(["base", "+table-list", "--base-token", baseToken, "--as", "bot"]).data.tables || [];
 }
 
 function listFields(tableId) {
-  return runLark(["base", "+field-list", "--base-token", baseToken, "--table-id", tableId, "--as", "user"]).data.fields || [];
+  return runLark(["base", "+field-list", "--base-token", baseToken, "--table-id", tableId, "--as", "bot"]).data.fields || [];
 }
 
 function listViews(tableId) {
-  return runLark(["base", "+view-list", "--base-token", baseToken, "--table-id", tableId, "--as", "user"]).data.views || [];
+  return runLark(["base", "+view-list", "--base-token", baseToken, "--table-id", tableId, "--as", "bot"]).data.views || [];
 }
 
 function tableId(name) {
@@ -68,7 +68,7 @@ function tableId(name) {
 function ensureTable(name) {
   let found = listTables().find((item) => item.name === name);
   if (found) return { id: found.id, status: "existing" };
-  const created = runLark(["base", "+table-create", "--base-token", baseToken, "--name", name, "--as", "user"]);
+  const created = runLark(["base", "+table-create", "--base-token", baseToken, "--name", name, "--as", "bot"]);
   found = created?.data?.table || {};
   const id = found.id || found.table_id || listTables().find((item) => item.name === name)?.id;
   if (!id) throw new Error(`Could not create table: ${name}`);
@@ -89,8 +89,7 @@ function ensureField(tableId, field) {
     tableId,
     "--json",
     jsonArg(`field-source-${tableId}-${field.name}`, field),
-    "--as",
-    "user",
+    "--as","bot",
   ]);
   return { name: field.name, status: "created" };
 }
@@ -116,8 +115,7 @@ function updateSelectField(tableId, fieldName, options) {
       options: options.map((name) => ({ name })),
     }),
     "--yes",
-    "--as",
-    "user",
+    "--as","bot",
   ]);
   return { fieldName, status: "updated-select" };
 }
@@ -134,8 +132,7 @@ function createView(tableId, name) {
     tableId,
     "--json",
     jsonArg(`view-source-${tableId}-${name}`, { name, type: "grid" }),
-    "--as",
-    "user",
+    "--as","bot",
   ]);
   return { name, id: created?.data?.view?.id || null, status: "created" };
 }
@@ -154,8 +151,7 @@ function setFilter(tableId, viewName, conditions) {
     view.id,
     "--json",
     jsonArg(`filter-source-${tableId}-${view.id}`, { logic: "and", conditions }),
-    "--as",
-    "user",
+    "--as","bot",
   ]);
   return { viewName, status: "filter-set" };
 }
@@ -168,8 +164,7 @@ function recordList(tableId, limit = 200) {
     baseToken,
     "--table-id",
     tableId,
-    "--as",
-    "user",
+    "--as","bot",
     "--limit",
     String(limit),
     "--format",
@@ -188,8 +183,7 @@ function batchCreate(tableId, fields, rows, label) {
     tableId,
     "--json",
     jsonArg(`records-${label}`, { fields, rows }),
-    "--as",
-    "user",
+    "--as","bot",
   ]);
   return { label, status: "created", count: rows.length };
 }

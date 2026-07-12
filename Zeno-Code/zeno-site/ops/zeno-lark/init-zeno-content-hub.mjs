@@ -48,7 +48,7 @@ function runLark(args) {
 }
 
 function listTables(baseToken) {
-  return runLark(["base", "+table-list", "--base-token", baseToken, "--as", "user"]).data.tables || [];
+  return runLark(["base", "+table-list", "--base-token", baseToken, "--as", "bot"]).data.tables || [];
 }
 
 function listFields(baseToken, tableId) {
@@ -59,8 +59,7 @@ function listFields(baseToken, tableId) {
     baseToken,
     "--table-id",
     tableId,
-    "--as",
-    "user",
+    "--as","bot",
   ]).data.fields || [];
 }
 
@@ -76,8 +75,7 @@ function createField(baseToken, tableId, field, index) {
     tableId,
     "--json",
     `@${fileName}`,
-    "--as",
-    "user",
+    "--as","bot",
   ]);
 }
 
@@ -94,8 +92,7 @@ function createTextFieldFallback(baseToken, tableId, field, index) {
     tableId,
     "--json",
     `@${fileName}`,
-    "--as",
-    "user",
+    "--as","bot",
   ]);
 }
 
@@ -129,8 +126,7 @@ for (let i = 0; i < schema.tables.length; i += 1) {
       schema.defaultTableId,
       "--name",
       tableSpec.name,
-      "--as",
-      "user",
+      "--as","bot",
     ]);
     table = { id: schema.defaultTableId, name: tableSpec.name };
     tableStatus = "renamed-default";
@@ -145,8 +141,7 @@ for (let i = 0; i < schema.tables.length; i += 1) {
       baseToken,
       "--name",
       tableSpec.name,
-      "--as",
-      "user",
+      "--as","bot",
     ]);
     table = { id: getTableId(created), name: tableSpec.name };
     if (!table.id) {

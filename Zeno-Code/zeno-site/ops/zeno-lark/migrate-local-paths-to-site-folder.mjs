@@ -62,8 +62,7 @@ function recordList(tableId, limit = 500) {
     baseToken,
     "--table-id",
     tableId,
-    "--as",
-    "user",
+    "--as","bot",
     "--limit",
     String(limit),
     "--format",
@@ -92,8 +91,7 @@ function batchUpdate(tableId, recordIds, patch, label) {
     tableId,
     "--json",
     jsonArg(`update-${label}`, { record_id_list: recordIds, patch }),
-    "--as",
-    "user",
+    "--as","bot",
   ]);
   return { label, status: "updated", count: recordIds.length };
 }

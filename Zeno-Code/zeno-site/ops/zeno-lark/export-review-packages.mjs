@@ -62,8 +62,7 @@ function recordList(tableId, limit = 500) {
     baseToken,
     "--table-id",
     tableId,
-    "--as",
-    "user",
+    "--as","bot",
     "--limit",
     String(limit),
     "--format",
@@ -96,8 +95,7 @@ function batchCreate(tableId, fields, rows, label) {
     tableId,
     "--json",
     jsonArg(`records-${label}`, { fields, rows }),
-    "--as",
-    "user",
+    "--as","bot",
   ]);
   return { label, status: "created", count: rows.length };
 }

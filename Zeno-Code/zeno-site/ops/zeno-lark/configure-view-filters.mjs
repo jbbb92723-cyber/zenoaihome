@@ -53,11 +53,11 @@ function tableId(name) {
 }
 
 function listViews(tableId) {
-  return runLark(["base", "+view-list", "--base-token", baseToken, "--table-id", tableId, "--as", "user"]).data.views || [];
+  return runLark(["base", "+view-list", "--base-token", baseToken, "--table-id", tableId, "--as", "bot"]).data.views || [];
 }
 
 function listFields(tableId) {
-  return runLark(["base", "+field-list", "--base-token", baseToken, "--table-id", tableId, "--as", "user"]).data.fields || [];
+  return runLark(["base", "+field-list", "--base-token", baseToken, "--table-id", tableId, "--as", "bot"]).data.fields || [];
 }
 
 function ids(tableName) {
@@ -82,8 +82,7 @@ function setFilter(tableName, viewName, conditions) {
     viewId,
     "--json",
     jsonArg(`filter-${tid}-${viewId}`, { logic: "and", conditions }),
-    "--as",
-    "user",
+    "--as","bot",
   ]);
   return { table: tableName, view: viewName, status: "filter-set" };
 }
@@ -103,8 +102,7 @@ function setSort(tableName, viewName, sortConfig) {
     viewId,
     "--json",
     jsonArg(`sort-${tid}-${viewId}`, { sort_config: sortConfig }),
-    "--as",
-    "user",
+    "--as","bot",
   ]);
   return { table: tableName, view: viewName, status: "sort-set" };
 }
