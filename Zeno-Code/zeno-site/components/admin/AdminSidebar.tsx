@@ -42,7 +42,7 @@ export default function AdminSidebar() {
       {/* logo */}
       <div className="px-5 py-4 border-b border-[#3A3530]">
         <Link href="/admin/dashboard" className="text-sm font-semibold text-[#E8E2DA] tracking-tight">
-          Zeno 后台
+          Zeno OS
         </Link>
         <p className="text-[0.65rem] text-[#706860] mt-0.5">Admin Panel</p>
       </div>
