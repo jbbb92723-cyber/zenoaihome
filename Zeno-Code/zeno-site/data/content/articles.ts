@@ -12,6 +12,7 @@ export interface Article {
   tags: string[]
   date: string
   /** 内容现在通过 getArticleContent(id) 按需加载，不再在编译期捆绑全部文章 */
+  content?: string
   coverImage?: string
   coverAlt?: string
   relatedImages?: { src: string; alt: string }[]
@@ -4365,48 +4366,6 @@ AI不是魔法。它是一个工具——能帮你整理、对比、查漏，但
     date: '2026-07-12',
     coverImage: '',
     coverAlt: '你做的不是答疑，是帮人下定论',
-  },
-  {
-  },
-  {
-  },
-  {
-  },
-  {
-  },
-  {
-  },
-  {
-  },
-  {
-  },
-  {
-  },
-  {
-  },
-  {
-  },
-  {
-  },
-  {
-  },
-  {
-  },
-  {
-  },
-  {
-  },
-  {
-  },
-  {
-  },
-  {
-  },
-  {
-  },
-  {
-  },
-  {
   },
 ]
 

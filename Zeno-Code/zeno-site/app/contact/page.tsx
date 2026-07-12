@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import PageHero from '@/components/ui/PageHero'
 import Container from '@/components/ui/Container'
+import CTA from '@/components/ui/CTA'
 
 export const metadata: Metadata = {
   title: '联系我',

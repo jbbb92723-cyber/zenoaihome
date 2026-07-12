@@ -1,11 +1,11 @@
-'use client'
+﻿'use client'
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
 const NAV = [
   { group: '概览', items: [
-    { href: '/admin/dashboard', label: '数据看板' },
+    { href: '/admin/dashboard', label: '数字资产大屏' },
   ]},
   { group: '用户运营', items: [
     { href: '/admin/users',   label: '用户管理' },
