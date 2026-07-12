@@ -1,6 +1,8 @@
 ﻿# AGENTS.md｜ZenoAIHome 工作区协作规则
 
 > 本文件给 Codex、Claude、Hermes 以及其他 Agent 读取。它定义 `G:/Zenoaihome.com` 工作区的边界、写入规则、验证规则和提交纪律。
+>
+> **启动时先读 `SHARED_MEMORY.md`**：了解上次其他 Agent 做了什么、当前系统状态、关键数据。做完实质性变更后，在该文件末尾追加一条记录。格式：`YYYY-MM-DD | Agent | 事实`
 
 ## 1. 工作区定位
 
