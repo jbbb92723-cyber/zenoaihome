@@ -65,6 +65,7 @@ export interface DashboardStats {
     diagnoses: { pending: number; total: number }
     resources: { claimsToday: number }
     notes: { total: number; published: number }
+    projects: { active: number; total: number }
   }
 
   code: {
@@ -382,6 +383,8 @@ async function getBusinessStats() {
     prisma.resourceClaim.count({ where: { claimedAt: { gte: today } } }),
     prisma.note.count(),
     prisma.note.count({ where: { visibility: 'PUBLIC' } }),
+    prisma.project.count({ where: { status: 'active' } }),
+    prisma.project.count(),
   ])
 
   return {
@@ -420,6 +423,10 @@ async function getBusinessStats() {
       total: totalNotes,
       published: publishedNotes,
     },
+    projects: {
+      active: activeProjects,
+      total: totalProjects,
+    },
   }
   } catch {
     // Prisma 数据库不可用时返回空
@@ -432,6 +439,7 @@ async function getBusinessStats() {
       diagnoses: { pending: 0, total: 0 },
       resources: { claimsToday: 0 },
       notes: { total: 0, published: 0 },
+      projects: { active: 0, total: 0 },
     }
   }
 }

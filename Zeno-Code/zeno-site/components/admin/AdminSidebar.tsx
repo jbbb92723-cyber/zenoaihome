@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation'
 const NAV = [
   { group: '概览', items: [
     { href: '/admin/dashboard', label: '数字资产大屏' },
+    { href: '/admin/pipeline', label: '内容管道' },
   ]},
   { group: '用户运营', items: [
     { href: '/admin/users',   label: '用户管理' },
@@ -18,6 +19,9 @@ const NAV = [
     { href: '/admin/living-diagnoses',  label: '居住诊断' },
     { href: '/admin/services',          label: '服务申请' },
     { href: '/admin/resources/claims',  label: '资料领取' },
+  ]},
+  { group: '项目交付', items: [
+    { href: '/admin/projects', label: '工地总览' },
   ]},
   { group: '营销工具', items: [
     { href: '/admin/redeem-codes', label: '兑换码' },
