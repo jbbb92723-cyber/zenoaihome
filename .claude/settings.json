@@ -27,7 +27,9 @@
       "PowerShell(Get-Process -Name \"node\" -ErrorAction SilentlyContinue)",
       "Bash(curl -s -w \"\\\\nHTTP %{http_code}\" http://localhost:3000/admin/login)",
       "PowerShell(Set-Location \"g:\\\\Zenoaihome.com\\\\Zeno-Code\\\\zeno-site\"; git add app/admin/\\(protected\\)/dashboard/page.tsx app/admin/\\(protected\\)/dashboard/charts.tsx app/contact/page.tsx components/admin/AdminSidebar.tsx components/admin/BarList.tsx components/admin/StatCard.tsx data/content/articles.ts lib/dashboard-stats.ts package.json package-lock.json; git status --short)",
-      "Bash(curl -s -b /tmp/cookies.txt -w \"\\\\nHTTP %{http_code}\" http://localhost:3000/admin/logs)"
+      "Bash(curl -s -b /tmp/cookies.txt -w \"\\\\nHTTP %{http_code}\" http://localhost:3000/admin/logs)",
+      "PowerShell(Get-Process -Name \"node\" -ErrorAction SilentlyContinue | Where-Object { $_.StartTime -gt \\(Get-Date\\).AddHours\\(-2\\) } | Stop-Process -Force; Write-Output \"Killed recent node processes\")",
+      "Bash(curl -s -c /tmp/cookies2.txt -X POST http://localhost:3000/api/admin/login -H 'Content-Type: application/json' -d '{\"password\":\"your_admin_password_here\"}' -w \"login: %{http_code}\\\\n\")"
     ]
   }
 }

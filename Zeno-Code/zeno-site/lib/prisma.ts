@@ -1,25 +1,27 @@
 /**
  * lib/prisma.ts
  *
- * Prisma Client 单例（防止开发模式热重载时重复创建连接）
+ * Prisma Client 单例 — 容错版
+ *
+ * - DATABASE_URL 存在时：使用真实 PrismaClient，但查询失败时返回空数据
+ * - DATABASE_URL 不存在时：使用通用 stub（构建时不依赖数据库）
+ *
+ * 任何情况下都不会因为数据库不可用导致页面 500。
  */
 
 import { PrismaClient } from '@prisma/client'
 
 const globalForPrisma = globalThis as unknown as { prisma?: PrismaClient }
 
-// 导出 prisma 变量。若未配置 DATABASE_URL，导出一个安全的 stub
-// 以避免在构建时抛出错误（例如 Vercel 构建环境未设置数据库时）。
-let prisma: PrismaClient
-
-if (process.env.DATABASE_URL) {
+function createRealClient(): PrismaClient {
   const client = globalForPrisma.prisma ?? new PrismaClient()
   if (process.env.NODE_ENV !== 'production') {
     globalForPrisma.prisma = client
   }
-  prisma = client
-} else {
-  // 当没有 DATABASE_URL 时，返回一个通用的 stub：任何模型方法调用都返回空数组
+  return client
+}
+
+function createFallbackStub(): PrismaClient {
   const stubHandler: ProxyHandler<any> = {
     get() {
       return new Proxy(() => {}, {
@@ -32,23 +34,66 @@ if (process.env.DATABASE_URL) {
       })
     },
   }
-
-  // @ts-ignore: runtime stub to avoid build-time DB requirement
-  // 将 stub 断言为 PrismaClient 类型，这样 TypeScript 能识别模型方法的类型
-  // 在运行时 stub 会返回空数组，避免构建时访问真实数据库。
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
-  prisma = new Proxy({}, stubHandler) as unknown as PrismaClient
+  return new Proxy({}, stubHandler) as unknown as PrismaClient
+}
 
+/**
+ * 包装 PrismaClient，所有模型方法调用失败时返回空数据而非抛出异常。
+ * 这样任何一个后台页面都不会因为数据库不可用而白屏。
+ */
+function wrapResilient(client: PrismaClient): PrismaClient {
+  const handler: ProxyHandler<PrismaClient> = {
+    get(target, prop) {
+      const original = (target as any)[prop]
+
+      // 非模型属性直接返回（$connect, $disconnect, $on, $transaction 等）
+      if (typeof original !== 'object' || original === null) {
+        return original
+      }
+
+      // 模型代理：拦截所有方法调用，失败返回空
+      return new Proxy(original, {
+        get(modelTarget, methodName) {
+          const method = modelTarget[methodName]
+          if (typeof method !== 'function') return method
+
+          return async (...args: any[]) => {
+            try {
+              return await method.apply(modelTarget, args)
+            } catch (error) {
+              // 数据库不可用时静默降级，不阻塞页面渲染
+              if (process.env.NODE_ENV !== 'production') {
+                console.warn(
+                  `[prisma] 数据库查询失败 (${String(prop)}.${String(methodName)}):`,
+                  (error as Error).message?.split('\n')[0]
+                )
+              }
+              // 根据方法名返回合理的空值
+              if (String(methodName) === 'count') return 0
+              if (String(methodName) === 'findMany') return []
+              if (String(methodName) === 'findUnique' || String(methodName) === 'findFirst') return null
+              if (String(methodName).startsWith('aggregate')) return { _sum: {}, _count: {} }
+              if (String(methodName).startsWith('create') || String(methodName).startsWith('update') || String(methodName).startsWith('delete') || String(methodName).startsWith('upsert')) return {}
+              return []
+            }
+          }
+        },
+      })
+    },
+  }
+
+  return new Proxy(client, handler) as unknown as PrismaClient
+}
+
+let prisma: PrismaClient
+
+if (process.env.DATABASE_URL) {
+  prisma = wrapResilient(createRealClient())
+} else {
+  prisma = createFallbackStub()
   if (process.env.NODE_ENV !== 'production') {
-    // 在开发 / 构建日志中给出提示，说明现在使用 stub
-    // 这样 Vercel 的构建不会因为缺失 DATABASE_URL 而失败
-    // 真实生产环境请在 Vercel 项目设置中添加 DATABASE_URL
-    //（示例：postgresql://user:pass@host:5432/dbname）
-    // 注意：stub 会导致 admin 页面在无 DB 环境下显示为空数据。
-    // 如果需要真实数据，请在 Vercel 中配置 DATABASE_URL 并重新部署。
-    // eslint-disable-next-line no-console
-    console.warn('数据库环境变量 DATABASE_URL 未配置，Prisma 使用 stub（构建时将返回空数据）。')
+    console.warn('[prisma] DATABASE_URL 未配置，使用 stub（所有查询返回空数据）')
   }
 }
 
