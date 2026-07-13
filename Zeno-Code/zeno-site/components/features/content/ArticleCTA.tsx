@@ -16,19 +16,19 @@ type CTAConfig = {
   secondary: { label: string; href: string }
 }
 
-// 装修全案判断 → 免费初筛 → ¥499 快审
+// 装修全案判断 → 免费初筛 → 旗舰审查
 const RENO_CTA: CTAConfig = {
   title: '报价单拿不准？先免费扫一眼——',
   description: '2 分钟勾几个框，至少知道你的报价有没有明显雷。扫完把结果发我微信，我帮你看下一步该做什么。',
   primary: { label: '免费初筛 →', href: '/tools/quote-check' },
-  secondary: { label: '或直接 ¥499 快审 →', href: '/services/quote-standard' },
+  secondary: { label: '直接 ¥2,500 旗舰审查 →', href: '/services/quote-review' },
 }
 
-// 床垫选购判断 → 咨询服务
+// 床垫选购判断 → 严选床垫产品
 const MATTRESS_CTA: CTAConfig = {
   title: '看完这篇，还是拿不准？',
-  description: '如果你正在几款床垫之间纠结，或者不确定自己的判断对不对——可以找我聊聊。',
-  primary: { label: '看咨询服务', href: '/consulting' },
+  description: '如果你在几款床垫之间纠结，或者不确定自己的判断对不对——去看看我的严选系列。¥299起，内部结构保50年，不是代购，是我自己选的、自己卖的。',
+  primary: { label: '看严选床垫 →', href: '/mattress' },
   secondary: { label: '先看更多床垫文章', href: '/blog?category=mattress' },
 }
 

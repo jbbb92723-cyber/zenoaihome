@@ -31,7 +31,7 @@ export default function HomePage() {
             name: 'ZenoAIHome',
             url: 'https://zenoaihome.com',
             description:
-              'ZenoAIHome 是赞诺的私人自留地——17年装修老兵，只说真话，不卖货。',
+              'ZenoAIHome 是赞诺的私人自留地——17年装修老兵，帮你在装修和居住上做对判断。',
           },
           {
             '@context': 'https://schema.org',
