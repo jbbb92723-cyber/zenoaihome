@@ -24,12 +24,12 @@ const RENO_CTA: CTAConfig = {
   secondary: { label: '直接 ¥2,500 旗舰审查 →', href: '/services/quote-review' },
 }
 
-// 床垫选购判断 → 严选床垫产品
+// 床垫选购判断 → 装修判断体系（床垫不卖咨询，算在装修判断里面）
 const MATTRESS_CTA: CTAConfig = {
   title: '看完这篇，还是拿不准？',
-  description: '如果你在几款床垫之间纠结，或者不确定自己的判断对不对——去看看我的严选系列。¥299起，内部结构保50年，不是代购，是我自己选的、自己卖的。',
-  primary: { label: '看严选床垫 →', href: '/mattress' },
-  secondary: { label: '先看更多床垫文章', href: '/blog?category=mattress' },
+  description: '床垫不是单独一个东西——它跟你睡的姿势、腰的情况、卧室的大小都有关系。拿不准的话，先从免费初筛开始，我帮你看整体。',
+  primary: { label: '免费初筛 →', href: '/tools/quote-check' },
+  secondary: { label: '直接看严选床垫 →', href: '/mattress' },
 }
 
 // 生活方式 → 关于页 / 联系

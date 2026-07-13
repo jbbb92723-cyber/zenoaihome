@@ -6,6 +6,14 @@
 
 ## 2026-07-13 本轮改动
 
+### 上线前全站审查 + P0修复
+
+**审查发现6个P0问题，全部修复：**
+- `components/features/content/ArticleCTA.tsx` — RENO_CTA次动作 ¥499快审→¥2,500旗舰；MATTRESS_CTA主动作 /consulting→/mattress
+- `app/page.tsx` — StructuredData 移除"不卖货"文案（现在自有床垫直销）
+- `app/consulting/page.tsx` — "你不是卖床垫的吧"FAQ改为"你卖床垫吗"，对齐新策略
+- `app/sitemap.ts` — 移除已砍 /services/quote-standard，新增 /mattress (priority 0.9)
+
 ### 文章117：装修公司上AI搞错了顺序
 
 **改了什么**：
