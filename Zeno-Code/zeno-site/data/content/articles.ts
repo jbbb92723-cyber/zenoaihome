@@ -4367,6 +4367,18 @@ AI不是魔法。它是一个工具——能帮你整理、对比、查漏，但
     coverImage: '',
     coverAlt: '你做的不是答疑，是帮人下定论',
   },
+  {
+    id: '117',
+    slug: 'zhuangxiu-gongsi-shang-ai-gaocuole-shunxu',
+    title: '装修公司上AI，大部分人搞错了顺序',
+    excerpt: '做了十几年装修，见过太多同行急着上AI——但方向不对，上得越多，组织越重。真正该解决的不是"用没用AI"，是"等没等"。',
+    category: 'OPC·同行有你',
+    parentCategory: 'opc',
+    tags: ['AI', '装修公司', '组织效率', '一人公司', 'OPC'],
+    date: '2026-07-13',
+    coverImage: '',
+    coverAlt: '装修公司上AI，大部分人搞错了顺序',
+  },
 ]
 
 export const categories = [
