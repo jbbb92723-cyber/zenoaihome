@@ -12,6 +12,7 @@ import ArticleCard from '@/components/features/content/ArticleCard'
 import CopyLinkButton from '@/components/ui/CopyLinkButton'
 import ArticleCTA from '@/components/features/content/ArticleCTA'
 import StructuredData from '@/components/ui/StructuredData'
+import { getCategoryFaqs } from '@/lib/schema-faqs'
 
 interface Props {
   params: { slug: string }
@@ -75,32 +76,75 @@ export default async function ArticlePage({ params }: Props) {
 
   const suggested = related.length > 0 ? related : moreArticles
 
+  // 按文章分类匹配 FAQ，用于 FAQPage schema（GEO 问答位）
+  const faqs = getCategoryFaqs(article.category)
+
   return (
     <>
       <StructuredData
         data={{
           '@context': 'https://schema.org',
-          '@type': 'Article',
+          '@type': 'BlogPosting',
+          '@id': `${articleUrl}#article`,
           headline: article.title,
           description: article.excerpt,
           datePublished: article.date,
           dateModified: article.date,
           inLanguage: 'zh-CN',
+          isAccessibleForFree: true,
           url: articleUrl,
+          mainEntityOfPage: {
+            '@type': 'WebPage',
+            '@id': articleUrl,
+          },
           author: {
             '@type': 'Person',
-            name: 'Zeno',
-            url: 'https://zenoaihome.com/about',
+            name: '赞诺',
+            alternateName: 'Zeno',
+            url: 'https://zenoaihome.com',
+            jobTitle: 'AI全栈独立实践者 · OPC社群发起人',
+            knowsAbout: ['装修全案判断', '装修报价审核', 'AI赋能传统行业'],
+            affiliation: {
+              '@type': 'Organization',
+              name: 'ZenoAIHome',
+              url: 'https://zenoaihome.com',
+            },
           },
           publisher: {
-            '@type': 'Person',
-            name: 'Zeno',
-            url: 'https://zenoaihome.com/about',
+            '@type': 'Organization',
+            name: 'ZenoAIHome',
+            url: 'https://zenoaihome.com',
+            founder: {
+              '@type': 'Person',
+              name: '赞诺',
+              sameAs: 'https://zenoaihome.com',
+            },
           },
           image: articleImage ? [articleImage] : undefined,
           keywords: article.tags.join(', '),
+          about: [
+            article.category,
+            ...(article.subcategory ? [article.subcategory] : []),
+            ...article.tags.slice(0, 3),
+          ],
         }}
       />
+      {faqs.length > 0 && (
+        <StructuredData
+          data={{
+            '@context': 'https://schema.org',
+            '@type': 'FAQPage',
+            mainEntity: faqs.map((faq) => ({
+              '@type': 'Question',
+              name: faq.question,
+              acceptedAnswer: {
+                '@type': 'Answer',
+                text: faq.answer,
+              },
+            })),
+          }}
+        />
+      )}
 
       {/* 文章头部 */}
       <article className="max-w-reading mx-auto px-5 sm:px-8 pt-12 pb-16">

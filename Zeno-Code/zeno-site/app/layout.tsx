@@ -12,35 +12,35 @@ import '@/styles/globals.css'
 
 export const metadata: Metadata = {
   title: {
-    default: '赞诺｜传统行业 × AI 实战',
-    template: '%s · 赞诺',
+    default: 'Zeno · 家装不该靠运气',
+    template: '%s · Zeno',
   },
   description:
-    '17年装修老兵，用AI把自己重做了一遍。装修我都翻得过来，你做的事应该也能。',
-  keywords: ['赞诺', 'AI培训', '传统行业AI', 'AI实战', '装修判断', '一人公司', 'OPC社群'],
-  authors: [{ name: '赞诺 Zeno' }],
+    '17年装修老兵转型AI全栈。家装平权实践者——C端打破信息不对称，B端为好工长连接好业主。家装不该靠运气。',
+  keywords: ['Zeno', '赞诺', '家装平权', '装修判断', 'AI装修', '装修报价审核', '传统行业AI', '一人公司', 'OPC社群'],
+  authors: [{ name: 'Zeno', url: 'https://zenoaihome.com' }],
   openGraph: {
     type: 'website',
     locale: 'zh_CN',
     url: 'https://zenoaihome.com',
-    siteName: '赞诺',
-    title: '赞诺｜传统行业 × AI 实战',
+    siteName: 'Zeno',
+    title: 'Zeno · 家装不该靠运气',
     description:
-      '17年装修老兵，用AI把自己重做了一遍。装修我都翻得过来，你做的事应该也能。',
+      '17年装修老兵转型AI全栈。家装平权实践者——C端打破信息不对称，B端为好工长连接好业主。家装不该靠运气。',
     images: [
       {
         url: 'https://zenoaihome.com/images/og-default.png',
         width: 1200,
         height: 630,
-        alt: '赞诺｜传统行业 × AI 实战',
+        alt: 'Zeno · 家装不该靠运气',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: '赞诺｜传统行业 × AI 实战',
+    title: 'Zeno · 家装不该靠运气',
     description:
-      '17年装修老兵，用AI把自己重做了一遍。装修我都翻得过来，你做的事应该也能。',
+      '17年装修老兵转型AI全栈。家装平权实践者——C端打破信息不对称，B端为好工长连接好业主。家装不该靠运气。',
     images: ['https://zenoaihome.com/images/og-default.png'],
   },
   robots: {

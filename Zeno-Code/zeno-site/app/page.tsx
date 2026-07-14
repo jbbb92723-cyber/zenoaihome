@@ -3,9 +3,9 @@ import HomePageGptSkill from '@/components/features/home/HomePageGptSkill'
 import StructuredData from '@/components/ui/StructuredData'
 
 export const metadata: Metadata = {
-  title: '赞诺｜传统行业 × AI 实战',
+  title: 'Zeno · 家装不该靠运气',
   description:
-    '17年装修老兵，用AI把自己重做了一遍。装修这么传统的行业我都能翻过来，你的应该也行。',
+    '17年装修老兵转型AI全栈。家装平权实践者——C端打破信息不对称，B端为好工长连接好业主。家装不该靠运气。',
   alternates: {
     canonical: 'https://zenoaihome.com/',
   },
@@ -16,35 +16,97 @@ export default function HomePage() {
     <>
       <StructuredData
         data={[
+          // 0. Person — GEO 最核心信号：让 AI 知道 Zeno 是谁
+          {
+            '@context': 'https://schema.org',
+            '@type': 'Person',
+            name: '赞诺',
+            alternateName: ['Zeno', '赞诺 Zeno'],
+            url: 'https://zenoaihome.com',
+            description:
+              '17年装修从业者，从传统装修行业转型为AI全栈独立实践者，OPC·同行有你社群发起人。专注于装修判断、AI赋能传统行业、一人公司实践。',
+            jobTitle: 'AI全栈独立实践者 · OPC社群发起人',
+            knowsAbout: [
+              '装修全案判断',
+              '装修报价审核',
+              '装修合同风险控制',
+              '居住空间规划',
+              'AI赋能传统行业',
+              '一人公司经营',
+              '独立开发者实践',
+            ],
+            hasCredential: {
+              '@type': 'EducationalOccupationalCredential',
+              credentialCategory: '17年装修施工与项目管理现场经验',
+            },
+            sameAs: [
+              'https://zenoaihome.com',
+              'https://zenoaihome.com/about',
+            ],
+            affiliation: {
+              '@type': 'Organization',
+              name: 'ZenoAIHome',
+              url: 'https://zenoaihome.com',
+            },
+            knowsLanguage: ['zh-CN', 'en'],
+            nationality: {
+              '@type': 'Country',
+              name: '中国',
+            },
+            homeLocation: {
+              '@type': 'Place',
+              name: '广西南宁',
+            },
+          },
           {
             '@context': 'https://schema.org',
             '@type': 'WebSite',
             name: '赞诺',
             url: 'https://zenoaihome.com',
             description:
-              '17年装修老兵，用AI把自己重做了一遍。装修这么传统的行业我都能翻过来，你的应该也行。',
+              '17年装修老兵，用AI把自己重做了一遍。家装平权实践者——C端打破信息不对称，B端为好工长连接好业主。',
             inLanguage: 'zh-CN',
           },
+          // 2. Organization — 关联 Person 为 founder，增加 sameAs 和 knowsAbout
           {
             '@context': 'https://schema.org',
             '@type': 'Organization',
             name: 'ZenoAIHome',
             url: 'https://zenoaihome.com',
             description:
-              'ZenoAIHome 是赞诺的私人自留地——17年装修老兵，帮你在装修和居住上做对判断。',
+              '赞诺的个人实践基地——家装平权站。C端帮业主打破装修信息不对称，B端帮好工长连接对的人。',
+            founder: {
+              '@type': 'Person',
+              name: '赞诺',
+              sameAs: 'https://zenoaihome.com',
+            },
+            sameAs: [
+              'https://zenoaihome.com',
+            ],
+            knowsAbout: [
+              '居住判断',
+              '装修风险控制',
+              'AI赋能传统行业',
+              '一人公司实践',
+            ],
           },
           {
             '@context': 'https://schema.org',
             '@type': 'WebPage',
-            name: '17年装修老兵，传统行业×AI实战的方法论',
+            name: '赞诺｜传统行业 × AI 实战 · 家装平权',
             url: 'https://zenoaihome.com/',
             description:
-              'AI 落地判断、装修全案判断、OPC·同行有你、AI 培训与企业服务——赞诺的私人自留地。',
+              '17年装修老兵转型AI全栈。家装平权站——C端打破信息不对称，B端为好工长连接好业主。',
             inLanguage: 'zh-CN',
             isPartOf: {
               '@type': 'WebSite',
               name: 'ZenoAIHome',
               url: 'https://zenoaihome.com',
+            },
+            about: {
+              '@type': 'Person',
+              name: '赞诺',
+              sameAs: 'https://zenoaihome.com',
             },
           },
           {
