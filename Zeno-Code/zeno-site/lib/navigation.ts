@@ -103,19 +103,13 @@ export const primaryNav: PrimaryNavItem[] = [
           { key: 'self-rebuild', zh: { label: '把自己重做一遍', href: '/blog?category=ip', desc: '一个传统行业的人怎么用内容重建自己' }, en: { label: 'Rebuild Yourself', href: '/en/blog', desc: 'Rebuilding yourself with content.' } },
           { key: 'solo-method', zh: { label: '一人公司工程方法', href: '/blog?category=opc&sub=solo-method', desc: '定价、获客、SOP、不做什么' }, en: { label: 'Solo Method', href: '/en/blog', desc: 'Pricing, acquisition, SOPs.' } },
           { key: 'community', zh: { label: '同行社群', href: '/blog?category=opc&sub=community', desc: '活动、公约、成员故事' }, en: { label: 'Community', href: '/en/blog', desc: 'Events, guidelines, member stories.' } },
-          { key: 'ai-school', zh: { label: 'AI 成长营', href: '/blog?category=opc&sub=ai-school', desc: '轻培训、轻陪跑、新手转型' }, en: { label: 'AI School', href: '/en/blog', desc: 'Light training and mentoring.' } },
         ],
       },
     ],
   },
   {
-    key: 'training',
-    zh: { label: 'AI 培训与企业服务', href: '/training' },
-    en: { label: 'AI Training', href: '/en/training' },
-  },
-  {
     key: 'about',
-    zh: { label: '关于我', href: '/about' },
+    zh: { label: '关于Zeno', href: '/about' },
     en: { label: 'About', href: '/en/about' },
   },
 ]

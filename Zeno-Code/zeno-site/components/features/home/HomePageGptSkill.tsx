@@ -117,12 +117,12 @@ const releaseCards = [
     cta: '做初筛',
   },
   {
-    title: 'AI 培训与企业服务',
-    body: '传统行业团队怎么用 AI 把经验变成资产？不讲概念，讲怎么用——面向商会、企业内训、创业社群。',
-    meta: '培训服务',
-    date: '团队',
-    href: '/training',
-    cta: '看培训',
+    title: 'OPC·同行有你',
+    body: '不是课堂，是战场。一群用 AI 重做自己的独立实践者，在一起联合作战。实干、利他、极致、同频、连接。',
+    meta: 'AI能量圈',
+    date: '社群',
+    href: '/blog?category=opc',
+    cta: '了解社群',
   },
   {
     title: '居住方案综合判断',
@@ -335,10 +335,13 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
               variants={staggerItem}
               className="editorial-display text-[3.4rem] leading-[1.02] text-ink sm:text-[5.6rem] lg:text-[7.2rem]"
             >
-              赞诺
+              Zeno
             </motion.h1>
+            <motion.p variants={staggerItem} className="mt-3 text-[0.85rem] font-medium tracking-[0.08em] text-stone">
+              家装不该靠运气。
+            </motion.p>
             <motion.p variants={staggerItem} className="mt-8 max-w-[38ch] text-base font-medium leading-7 text-ink-muted">
-              17 年工地经验 × AI 实战。不卖焦虑，卖判断——装修全案、AI 落地、一人公司、企业培训。
+              17 年装修老兵，用 AI 把自己重做了一遍。C 端打破信息不对称，B 端为好工长连接好业主。
             </motion.p>
             <motion.p variants={staggerItem} className="mt-3 text-[0.7rem] font-semibold uppercase tracking-[0.2em] text-ink-faint">
               今天在看的：南宁第 38 份水电没有上限的报价——和 2018 年第一份一样。判断不会过时。
@@ -346,7 +349,7 @@ export default function HomePageGptSkill({ fontClassName }: Props) {
             <motion.div variants={staggerItem} className="mt-10 flex flex-col gap-3 sm:flex-row">
               <ActionLink href="/living-diagnosis">
                 <HouseLine size={18} aria-hidden />
-                开始居住诊断
+                你卡在哪一步？
               </ActionLink>
               <ActionLink href="/tools/quote-check" variant="secondary">
                 <UploadSimple size={18} aria-hidden />

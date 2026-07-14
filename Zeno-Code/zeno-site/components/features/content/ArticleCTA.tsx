@@ -40,20 +40,20 @@ const LIFESTYLE_CTA: CTAConfig = {
   secondary: { label: '联系我', href: '/contact' },
 }
 
-// 把自己重做一遍 / AI 落地判断 / OPC → 咨询服务 / OPC 版块
+// AI 落地判断 / OPC / 把自己重做一遍 → OPC 社群
 const AI_CTA: CTAConfig = {
-  title: '如果你想看更多实战内容——',
-  description: 'AI 知识库、IP 孵化和一人公司案例都在持续更新。OPC 社群里有一群和你一样的人。',
-  primary: { label: '看 OPC 社群', href: '/blog?category=opc' },
-  secondary: { label: '回到文章库', href: '/blog' },
+  title: '这些内容来自一个真实的人的实践——',
+  description: 'Zeno 是从传统装修行业走出来的 AI 全栈实践者。OPC·同行有你社群聚集了一群同样在用自己的方式重建自己的人。不是课堂，是同行的战场。',
+  primary: { label: '了解 OPC 社群', href: '/blog?category=opc' },
+  secondary: { label: '联系 Zeno', href: '/contact' },
 }
 
 // 默认（暂无分类匹配）
 const DEFAULT_CTA: CTAConfig = {
-  title: '如果还想继续看——',
-  description: '去文章库按你关心的版块找，或者直接联系我聊聊你的具体情况。',
-  primary: { label: '浏览文章库', href: '/blog' },
-  secondary: { label: '联系我', href: '/contact' },
+  title: '拿不准下一步该做什么？',
+  description: '不是你的问题——装修这件事本来就不该靠运气。直接告诉我你的情况，我帮你看下一步该做什么。',
+  primary: { label: '免费居住诊断 →', href: '/living-diagnosis' },
+  secondary: { label: '联系 Zeno', href: '/contact' },
 }
 
 /**

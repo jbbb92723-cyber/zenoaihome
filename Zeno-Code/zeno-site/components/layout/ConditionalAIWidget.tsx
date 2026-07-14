@@ -4,21 +4,19 @@ import { usePathname } from 'next/navigation'
 import AIChatWidget from './AIChatWidget'
 
 /**
- * 路径级懒挂载。
+ * AI 悬浮窗全站开放（2026-07-14）。
  *
- * 业主主线保持干净：居住诊断、报价初筛、风险词典、检查模板、服务路径
- * 不再默认出现 AI 悬浮窗。
+ * 之前只允许 /notes 和一个博客页，注释写「业主主线保持干净」——
+ * 但家装平权站的 AI 不是噪音，是情境预判入口。
+ * 仅屏蔽 /admin 和 /en（英文站无中文 quick entries）。
  */
-const ALLOW_PREFIXES = [
-  '/notes',
-  '/blog/04-wei-shenme-wo-kaishi-renzheng-xue-ai',
-]
+const BLOCK_PREFIXES = ['/admin']
 
 export default function ConditionalAIWidget() {
   const path = usePathname() ?? ''
-  // /en 英文站全部屏蔽（widget 内部仅中文 quick entries）
+  // 英文站全部屏蔽（widget 内部仅中文 quick entries）
   if (path.startsWith('/en')) return null
-  const allowed = ALLOW_PREFIXES.some((p) => path === p || path.startsWith(`${p}/`))
-  if (!allowed) return null
+  // 后台不显示
+  if (BLOCK_PREFIXES.some((p) => path.startsWith(p))) return null
   return <AIChatWidget />
 }

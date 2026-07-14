@@ -155,7 +155,7 @@ export default function Header() {
                       onMouseEnter={() => handleMenuEnter(item.key)}
                       onMouseLeave={handleMenuLeave}
                     >
-                      <div className="decision-scan border border-border/60 bg-canvas shadow-[0_20px_56px_rgba(17,17,17,0.14)]">
+                      <div className="border border-border/60 bg-canvas shadow-[0_20px_56px_rgba(17,17,17,0.14)]">
                         {/* top bar */}
                         <div className="flex items-center justify-between border-b border-border/50 px-6 py-3">
                           <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-stone">{item.label}</p>
