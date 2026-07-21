@@ -52,8 +52,8 @@ export default function Header() {
   const logoHref = isEn ? '/en' : '/'
   const loginLabel = isEn ? 'Log in' : '登录'
   const loginHref = isEn ? '/en/login' : '/login'
-  const uploadHref = isEn ? '/en/services' : '/living-diagnosis'
-  const uploadLabel = isEn ? 'Start Diagnosis' : '先做诊断'
+  const uploadHref = isEn ? '/en/services' : '/services'
+  const uploadLabel = isEn ? 'Work with Zeno' : '查看合作方式'
 
   const navItems = useMemo<LocalizedPrimary[]>(() => primaryNav.map((item) => ({
     key: item.key,
@@ -118,7 +118,7 @@ export default function Header() {
             href={logoHref}
             className="shrink-0 text-[0.92rem] font-black uppercase tracking-[0.14em] text-ink transition-colors hover:text-stone"
           >
-            ZenoAIHome
+            Zeno 赞诺
           </Link>
 
           <nav className="hidden items-center gap-1 lg:flex" aria-label={isEn ? 'Primary navigation' : '主导航'}>

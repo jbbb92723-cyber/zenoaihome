@@ -46,66 +46,64 @@ export const primaryNav: PrimaryNavItem[] = [
     en: { label: 'Home', href: '/en' },
   },
   {
+    key: 'services',
+    zh: { label: '服务合作', href: '/services' },
+    en: { label: 'Services', href: '/en/services' },
+    groups: [
+      {
+        key: 'ai-services',
+        zh: { label: 'AI 实战服务', desc: '从培训到项目交付，先把问题和边界说清楚' },
+        en: { label: 'AI Services', desc: 'Training and scoped implementation for real work.' },
+        items: [
+          { key: 'training', zh: { label: 'AI 培训与内训', href: '/training', desc: '传统行业视角，现场完成一次真实操作' }, en: { label: 'AI Training', href: '/en/services', desc: 'Practical training for traditional businesses.' } },
+          { key: 'workflow', zh: { label: 'AI 工具与工作流', href: '/services#ai-workflow', desc: '把重复工作整理成可执行流程' }, en: { label: 'AI Workflows', href: '/en/services', desc: 'Turn repeated work into usable workflows.' } },
+          { key: 'knowledge-base', zh: { label: '企业 AI 知识库', href: '/services#knowledge-base', desc: '整理资料、规则和经验，建立可检索入口' }, en: { label: 'AI Knowledge Base', href: '/en/services', desc: 'Structure internal knowledge for retrieval.' } },
+          { key: 'agent', zh: { label: 'AI 智能体', href: '/services#ai-agent', desc: '围绕明确任务设计、测试和交接' }, en: { label: 'AI Agents', href: '/en/services', desc: 'Scoped agents for clearly defined tasks.' } },
+          { key: 'website', zh: { label: '网站开发', href: '/services#website', desc: '从信息架构到上线交接' }, en: { label: 'Website Development', href: '/en/services', desc: 'From information architecture to launch.' } },
+        ],
+      },
+    ],
+  },
+  {
+    key: 'content',
+    zh: { label: '内容与实践', href: '/blog' },
+    en: { label: 'Notes & Practice', href: '/en/blog' },
+    groups: [
+      {
+        key: 'content-tracks',
+        zh: { label: '公开记录', desc: '把实践过程、判断和方法持续公开' },
+        en: { label: 'Public Notes', desc: 'Work, judgment, and methods documented in public.' },
+        items: [
+          { key: 'ai-practice', zh: { label: '传统行业 × AI', href: '/blog?category=ai', desc: '工具、工作流、内容系统和真实复盘' }, en: { label: 'Traditional Industry × AI', href: '/en/blog', desc: 'Tools, workflows, and field notes.' } },
+          { key: 'renovation-content', zh: { label: '装修实践', href: '/blog?category=renovation', desc: '17 年一线经验沉淀的判断' }, en: { label: 'Renovation Practice', href: '/en/blog', desc: 'Judgment built from 17 years of field work.' } },
+          { key: 'solo-company', zh: { label: '一人公司', href: '/blog?category=opc', desc: '转型、产品、协作与共同体实验' }, en: { label: 'Solo Business', href: '/en/blog', desc: 'Transformation, products, and collaboration.' } },
+          { key: 'notes', zh: { label: '判断笔记', href: '/notes', desc: '比文章短，比动态重' }, en: { label: 'Notes', href: '/en/notes', desc: 'Shorter than essays, heavier than posts.' } },
+        ],
+      },
+    ],
+  },
+  {
     key: 'renovation',
-    zh: { label: '装修全案判断', href: '/blog?category=renovation' },
-    en: { label: 'Renovation Judgment', href: '/en/blog' },
+    zh: { label: '装修判断', href: '/tools' },
+    en: { label: 'Renovation', href: '/en/tools' },
     groups: [
       {
-        key: 'renovation-judgment',
-        zh: { label: '装修全案判断', desc: '从空间方案到交付风险，17 年全链条判断' },
-        en: { label: 'Renovation Judgment', desc: 'Full-chain judgment from spatial design to delivery risk.' },
+        key: 'renovation-assets',
+        zh: { label: '装修判断资产', desc: '保留为赞诺最完整的垂直实践样本' },
+        en: { label: 'Renovation Assets', desc: 'Zeno\'s most complete vertical proof.' },
         items: [
-          { key: 'space', zh: { label: '空间方案与审美', href: '/blog?category=renovation&sub=space', desc: '生活方式、空间秩序、居住场景' }, en: { label: 'Space & Aesthetics', href: '/en/blog', desc: 'Lifestyle, spatial order, living scenarios.' } },
-          { key: 'material', zh: { label: '材料与工艺判断', href: '/blog?category=renovation&sub=material', desc: '主材辅材、施工工艺、收口标准' }, en: { label: 'Materials & Craft', href: '/en/blog', desc: 'Materials, workmanship, and finishing standards.' } },
-          { key: 'construction', zh: { label: '施工过程管控', href: '/blog?category=renovation&sub=construction', desc: '选对人、说对话、盯对点' }, en: { label: 'Construction Control', href: '/en/blog', desc: 'Choosing the right people and staying on critical points.' } },
-          { key: 'contract', zh: { label: '合同与交付风险', href: '/blog?category=renovation&sub=contract', desc: '报价审核、合同边界、付款节点、验收标准' }, en: { label: 'Contract & Risk', href: '/en/blog', desc: 'Quote review, contract boundaries, payment milestones.' } },
-        ],
-      },
-      {
-        key: 'mattress-guide',
-        zh: { label: '床垫选购判断', desc: '从材料到合同，把床垫买明白' },
-        en: { label: 'Mattress Guide', desc: 'Materials, selection, and buying judgment.' },
-        items: [
-          { key: 'mattress-buying', zh: { label: '选购认知', href: '/blog?category=mattress&sub=buying', desc: '怎么选、怎么看、怎么比' }, en: { label: 'Buying Tips', href: '/en/blog', desc: 'How to choose and compare.' } },
-          { key: 'mattress-material', zh: { label: '材料拆解', href: '/blog?category=mattress&sub=material', desc: '弹簧、乳胶、海绵、面料拆开看' }, en: { label: 'Materials', href: '/en/blog', desc: 'Springs, latex, foam, and fabric.' } },
-          { key: 'mattress-insider', zh: { label: '买手经验', href: '/blog?category=mattress&sub=insider', desc: '导购不会告诉你的定价逻辑和选购方法' }, en: { label: 'Buyer Experience', href: '/en/blog', desc: 'Pricing logic and selection methods.' } },
-          { key: 'mattress-care', zh: { label: '保养与使用', href: '/blog?category=mattress&sub=care', desc: '延长寿命、清洁、翻面、更换时机' }, en: { label: 'Care', href: '/en/blog', desc: 'Maintenance and replacement.' } },
+          { key: 'tools', zh: { label: '装修判断工具', href: '/tools', desc: '居住诊断、报价初筛和计算工具' }, en: { label: 'Decision Tools', href: '/en/tools', desc: 'Diagnosis and quote-screening tools.' } },
+          { key: 'cases', zh: { label: '判断样张', href: '/cases', desc: '先看判断过程，再决定怎么做' }, en: { label: 'Samples', href: '/en/blog', desc: 'See the judgment process.' } },
+          { key: 'risk-dictionary', zh: { label: '风险词典', href: '/risk-dictionary', desc: '把报价和合同中的模糊词拆开' }, en: { label: 'Risk Dictionary', href: '/en/tools', desc: 'Decode ambiguous quote language.' } },
+          { key: 'zeno-os', zh: { label: 'Zeno OS', href: '/zeno-os', desc: '装修风险判断的公开方法' }, en: { label: 'Zeno OS', href: '/en/tools', desc: 'Open renovation judgment methods.' } },
         ],
       },
     ],
   },
   {
-    key: 'ai',
-    zh: { label: 'AI 落地判断', href: '/blog?category=ai' },
-    en: { label: 'AI in Practice', href: '/en/blog' },
-    groups: [
-      {
-        key: 'ai-sub',
-        zh: { label: 'AI 落地判断', desc: '哪些能用、哪些是坑——交了学费的判断' },
-        en: { label: 'AI in Practice', desc: 'What works and what doesn\'t — paid-for judgment.' },
-        items: [
-          { key: 'ai-practice', zh: { label: '传统行业 × AI 实战', href: '/blog?category=ai', desc: '工作流、提示词、真实案例' }, en: { label: 'Traditional Industry × AI', href: '/en/blog', desc: 'Workflows, prompts, real cases.' } },
-          { key: 'ai-tools', zh: { label: 'AI 工具', href: '/tools', desc: '报价初筛、预算结构、居住诊断——免费使用' }, en: { label: 'AI Tools', href: '/en/tools', desc: 'Free renovation decision tools.' } },
-        ],
-      },
-    ],
-  },
-  {
-    key: 'opc',
-    zh: { label: 'OPC·同行有你', href: '/blog?category=opc' },
-    en: { label: 'OPC Community', href: '/en/blog' },
-    groups: [
-      {
-        key: 'opc-sub',
-        zh: { label: '一人公司', desc: '一个人不是孤独干活，是只做只有你能做的事' },
-        en: { label: 'One Person Company', desc: 'Do only what only you can do.' },
-        items: [
-          { key: 'self-rebuild', zh: { label: '把自己重做一遍', href: '/blog?category=ip', desc: '一个传统行业的人怎么用内容重建自己' }, en: { label: 'Rebuild Yourself', href: '/en/blog', desc: 'Rebuilding yourself with content.' } },
-          { key: 'solo-method', zh: { label: '一人公司工程方法', href: '/blog?category=opc&sub=solo-method', desc: '定价、获客、SOP、不做什么' }, en: { label: 'Solo Method', href: '/en/blog', desc: 'Pricing, acquisition, SOPs.' } },
-          { key: 'community', zh: { label: '同行社群', href: '/blog?category=opc&sub=community', desc: '活动、公约、成员故事' }, en: { label: 'Community', href: '/en/blog', desc: 'Events, guidelines, member stories.' } },
-        ],
-      },
-    ],
+    key: 'community',
+    zh: { label: '星火者共同体', href: '/community' },
+    en: { label: 'Spark Community', href: '/en/blog' },
   },
   {
     key: 'about',

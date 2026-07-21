@@ -238,7 +238,7 @@ export default function ResourcesPage() {
           <div className="mt-5 flex flex-wrap gap-3">
             <CTA href="/tools/quote-check" label="回到报价初筛" variant="primary" />
             <CTA href="/checklists" label="看检查模板" variant="secondary" />
-            <CTA href="/services#quote-standard" label="看报价 / 合同快审" variant="ghost" />
+            <CTA href="/services/quote-review" label="看报价 / 合同人工审查" variant="ghost" />
           </div>
         </section>
       </Container>

@@ -1,11 +1,11 @@
 import type { Metadata } from 'next'
-import HomePageGptSkill from '@/components/features/home/HomePageGptSkill'
+import HomePageBrandHub from '@/components/features/home/HomePageBrandHub'
 import StructuredData from '@/components/ui/StructuredData'
 
 export const metadata: Metadata = {
-  title: 'Zeno · 家装不该靠运气',
+  title: 'Zeno 赞诺｜传统行业 × AI 实战',
   description:
-    '17年装修老兵转型AI全栈。家装平权实践者——C端打破信息不对称，B端为好工长连接好业主。家装不该靠运气。',
+    '赞诺的个人品牌与商业入口。17年传统行业经营与项目经验，提供AI培训、AI工具与工作流、企业知识库、智能体和网站开发。',
   alternates: {
     canonical: 'https://zenoaihome.com/',
   },
@@ -24,20 +24,21 @@ export default function HomePage() {
             alternateName: ['Zeno', '赞诺 Zeno'],
             url: 'https://zenoaihome.com',
             description:
-              '17年装修从业者，从传统装修行业转型为AI全栈独立实践者，OPC·同行有你社群发起人。专注于装修判断、AI赋能传统行业、一人公司实践。',
-            jobTitle: 'AI全栈独立实践者 · OPC社群发起人',
+              '17年传统行业经营与项目经验，从家居和装修行业转向AI实践，正在提供AI培训、工作流、企业知识库、智能体和网站开发服务，并发起赞诺·星火者共同体。',
+            jobTitle: '传统行业AI实践者 · 星火者共同体发起人',
             knowsAbout: [
-              '装修全案判断',
-              '装修报价审核',
-              '装修合同风险控制',
-              '居住空间规划',
-              'AI赋能传统行业',
+              'AI培训',
+              'AI工具与工作流',
+              '企业AI知识库',
+              'AI智能体',
+              '网站开发',
+              '传统行业AI实践',
               '一人公司经营',
-              '独立开发者实践',
+              '装修判断',
             ],
             hasCredential: {
               '@type': 'EducationalOccupationalCredential',
-              credentialCategory: '17年装修施工与项目管理现场经验',
+              credentialCategory: '17年传统行业经营、销售与项目管理经验',
             },
             sameAs: [
               'https://zenoaihome.com',
@@ -45,7 +46,7 @@ export default function HomePage() {
             ],
             affiliation: {
               '@type': 'Organization',
-              name: 'ZenoAIHome',
+              name: 'Zeno 赞诺',
               url: 'https://zenoaihome.com',
             },
             knowsLanguage: ['zh-CN', 'en'],
@@ -61,20 +62,20 @@ export default function HomePage() {
           {
             '@context': 'https://schema.org',
             '@type': 'WebSite',
-            name: '赞诺',
+            name: 'Zeno 赞诺',
             url: 'https://zenoaihome.com',
             description:
-              '17年装修老兵，用AI把自己重做了一遍。家装平权实践者——C端打破信息不对称，B端为好工长连接好业主。',
+              '赞诺的个人品牌与商业入口，记录传统行业转向AI的实践，并提供培训、知识库、智能体和网站项目合作。',
             inLanguage: 'zh-CN',
           },
           // 2. Organization — 关联 Person 为 founder，增加 sameAs 和 knowsAbout
           {
             '@context': 'https://schema.org',
             '@type': 'Organization',
-            name: 'ZenoAIHome',
+            name: 'Zeno 赞诺',
             url: 'https://zenoaihome.com',
             description:
-              '赞诺的个人实践基地——家装平权站。C端帮业主打破装修信息不对称，B端帮好工长连接对的人。',
+              '赞诺的个人实践与商业入口，围绕传统行业AI应用、项目交付、公开内容和星火者共同体展开。',
             founder: {
               '@type': 'Person',
               name: '赞诺',
@@ -84,23 +85,25 @@ export default function HomePage() {
               'https://zenoaihome.com',
             ],
             knowsAbout: [
-              '居住判断',
-              '装修风险控制',
-              'AI赋能传统行业',
+              'AI培训',
+              '企业AI知识库',
+              'AI智能体',
+              '网站开发',
+              '装修判断',
               '一人公司实践',
             ],
           },
           {
             '@context': 'https://schema.org',
             '@type': 'WebPage',
-            name: '赞诺｜传统行业 × AI 实战 · 家装平权',
+            name: 'Zeno 赞诺｜传统行业 × AI 实战',
             url: 'https://zenoaihome.com/',
             description:
-              '17年装修老兵转型AI全栈。家装平权站——C端打破信息不对称，B端为好工长连接好业主。',
+              '17年传统行业经营与项目经验，提供AI培训、AI工具与工作流、企业知识库、智能体和网站开发。',
             inLanguage: 'zh-CN',
             isPartOf: {
               '@type': 'WebSite',
-              name: 'ZenoAIHome',
+              name: 'Zeno 赞诺',
               url: 'https://zenoaihome.com',
             },
             about: {
@@ -112,28 +115,27 @@ export default function HomePage() {
           {
             '@context': 'https://schema.org',
             '@type': 'Service',
-            name: '居住决策支持与装修风险控制',
+            name: '传统行业 AI 实战服务',
             provider: {
               '@type': 'Organization',
-              name: 'ZenoAIHome',
+              name: 'Zeno 赞诺',
               url: 'https://zenoaihome.com/',
             },
             areaServed: '中国',
-            serviceType: '装修前生活方式、审美取舍、空间方案、预算报价、合同约定和交付风险判断',
+            serviceType: 'AI培训、AI工具与工作流、企业知识库、AI智能体和网站开发',
             audience: {
               '@type': 'Audience',
-              audienceType: '自我成长型装修家庭',
+              audienceType: '传统行业企业、创业团队与一人公司',
             },
             hasOfferCatalog: {
               '@type': 'OfferCatalog',
-              name: '居住判断、报价初筛与人工服务路径',
+              name: 'AI 实战服务与项目合作',
               itemListElement: [
-                { '@type': 'Offer', name: '免费 AI 居住诊断', url: 'https://zenoaihome.com/living-diagnosis' },
-                { '@type': 'Offer', name: '免费报价风险初筛', url: 'https://zenoaihome.com/tools/quote-check' },
-                { '@type': 'Offer', name: '免费 居住需求洞察报告', url: 'https://zenoaihome.com/services#living-insight-beta' },
-                { '@type': 'Offer', name: '¥2,500 装修报价零加价保障审查', url: 'https://zenoaihome.com/services/quote-review' },
-                { '@type': 'Offer', name: '免费 报价 / 合同快审', url: 'https://zenoaihome.com/services#quote-standard' },
-                { '@type': 'Offer', name: '免费 居住方案综合判断', url: 'https://zenoaihome.com/services#quote-deep' },
+                { '@type': 'Offer', name: 'AI培训与企业内训', url: 'https://zenoaihome.com/training' },
+                { '@type': 'Offer', name: 'AI工具与工作流', url: 'https://zenoaihome.com/services#ai-workflow' },
+                { '@type': 'Offer', name: '企业AI知识库', url: 'https://zenoaihome.com/services#knowledge-base' },
+                { '@type': 'Offer', name: 'AI智能体', url: 'https://zenoaihome.com/services#ai-agent' },
+                { '@type': 'Offer', name: '网站开发', url: 'https://zenoaihome.com/services#website' },
               ],
             },
           },
@@ -143,49 +145,41 @@ export default function HomePage() {
             mainEntity: [
               {
                 '@type': 'Question',
-                name: 'AI 居住诊断是什么？',
+                name: '赞诺目前提供哪些服务？',
                 acceptedAnswer: {
                   '@type': 'Answer',
-                  text: 'AI 居住诊断不是风格测试，而是把生活方式、空间秩序、审美偏好、预算取舍和后续签约边界放在一起做初步判断。',
+                  text: '目前可合作方向包括AI培训与企业内训、AI工具与工作流、企业AI知识库、AI智能体和网站开发。',
                 },
               },
               {
                 '@type': 'Question',
-                name: '为什么装修前要先看生活方式？',
+                name: 'AI项目有统一价格吗？',
                 acceptedAnswer: {
                   '@type': 'Answer',
-                  text: '因为风格、预算和施工方案都应该服务真实生活。先看清家庭关系、收纳秩序、家务动线和情绪需求，后面才不容易反复推翻。',
+                  text: '目前采用项目制合作。先确认真实问题、现有材料、交付物和验收边界，再根据范围给出报价。',
                 },
               },
               {
                 '@type': 'Question',
-                name: '已有报价时还需要居住诊断吗？',
+                name: '原来的装修内容还保留吗？',
                 acceptedAnswer: {
                   '@type': 'Answer',
-                  text: '需要，但顺序会变。临近签约时，要把居住需求、空间选择、预算取舍、报价边界和合同条款放在一起看，而不是继续只讨论风格。',
+                  text: '保留。装修判断、报价初筛、风险词典和案例样张是赞诺最完整的垂直实践，会继续更新，但不再代表整个网站。',
                 },
               },
               {
                 '@type': 'Question',
-                name: 'ZenoAIHome 会替我判断哪家公司靠谱吗？',
+                name: '星火者共同体是什么？',
                 acceptedAnswer: {
                   '@type': 'Answer',
-                  text: '不会。ZenoAIHome 不替装修公司背书，也不替你做最终签约决定，只帮你看清方案、预算、报价、合同和付款节点里的风险点。',
-                },
-              },
-              {
-                '@type': 'Question',
-                name: '报价风险初筛还保留吗？',
-                acceptedAnswer: {
-                  '@type': 'Answer',
-                  text: '保留。报价风险初筛仍然是临近签约用户的重要入口，用来检查漏项、模糊项、材料边界、付款节点和合同承诺。',
+                  text: '赞诺发起、但希望能够独立运转的成员共同体，面向AI时代的一人公司、转型创业者和独立实践者。',
                 },
               },
             ],
           },
         ]}
       />
-      <HomePageGptSkill fontClassName="" />
+      <HomePageBrandHub />
     </>
   )
 }

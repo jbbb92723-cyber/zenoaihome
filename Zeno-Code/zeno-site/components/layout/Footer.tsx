@@ -29,13 +29,13 @@ export default function Footer() {
             </Link>
             <p className="editorial-serif mt-4 max-w-[320px] text-[1.55rem] leading-[1.28] text-ink">
               {isEn
-                ? '17 years in renovation. Rebuilt everything with AI. If I can do it in construction, you can do it in yours.'
-                : '17年装修老兵，用AI把自己重做了一遍。这个网站，就是我做的过程。'}
+                ? '17 years in traditional business. Turning AI into work that can be delivered.'
+                : '17年传统行业经营与项目经验。现在把AI变成能交付的工作。'}
             </p>
             <p className="mt-4 max-w-[300px] text-sm leading-7 text-ink-muted">
               {isEn
-                ? 'AI training for traditional industries / renovation judgment / solo business / community'
-                : 'AI实战培训 · 装修判断 · 一人公司 · OPC社群'}
+                ? 'AI training / knowledge bases / agents / websites / solo business'
+                : 'AI培训 · 知识库 · 智能体 · 网站开发 · 星火者共同体'}
             </p>
           </div>
 
@@ -94,12 +94,12 @@ export default function Footer() {
         {/* 版权栏 */}
         <div className="mt-12 flex flex-col items-start justify-between gap-2 border-t border-border pt-6 sm:flex-row sm:items-center">
           <p className="text-[0.75rem] text-ink-faint">
-            © {year} ZenoAIHome.com | 赞诺的私人自留地 | 所有内容均为个人观点
+            © {year} ZenoAIHome.com | Zeno 赞诺 | 所有内容均为个人观点
           </p>
           <p className="text-[0.75rem] text-ink-faint">
             {isEn
-              ? 'Clarify the quote before you sign.'
-              : '先建立判断力，再做装修决定。'}
+              ? 'Start with a real problem.'
+              : '从真实问题开始，把边界和交付说清楚。'}
           </p>
         </div>
 

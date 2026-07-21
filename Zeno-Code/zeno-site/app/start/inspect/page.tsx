@@ -85,7 +85,7 @@ export default function InspectStagePage() {
           { label: '质保售后落字模板', href: '/resources' },
         ]}
         services={[
-          { label: '居住方案综合判断（含付款和质保提醒）', href: '/services#quote-deep' },
+          { label: '联系赞诺说明方案情况', href: '/contact' },
         ]}
         prev={{ label: '再看施工：开工后盯什么', href: '/start/build' }}
         next={{ label: '再看居住：住进去顺不顺手', href: '/start/living' }}

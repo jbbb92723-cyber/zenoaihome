@@ -123,8 +123,7 @@ const ROUTE_LABELS: Record<'zh' | 'en', Record<string, string>> = {
     '/living-diagnosis': '先做 AI 居住诊断',
     '/services': '看服务路径',
     '/services#quote-entry': '了解报价风险初查',
-    '/services#quote-standard': '了解报价 / 合同快审',
-    '/services#quote-deep': '了解居住方案综合判断',
+    '/services/quote-review': '了解报价 / 合同人工审查',
     '/tools/quote-check': '先做报价初筛',
   },
   en: {
@@ -194,7 +193,7 @@ const KNOWLEDGE_ZH: Array<{ pattern: RegExp; intent: IntentKey; payload: ChatRep
       ],
       actions: [
         { label: '先做 AI 居住诊断', href: '/living-diagnosis', kind: 'tool' },
-        { label: '看居住需求洞察报告', href: '/services#living-insight-beta', kind: 'service' },
+        { label: '继续做居住诊断', href: '/living-diagnosis', kind: 'service' },
         { label: '看文章判断库', href: '/blog', kind: 'article' },
       ],
       followUps: FOLLOW_UPS_ZH.living,

@@ -44,7 +44,7 @@ const judgmentSamples: JudgmentSample[] = [
     ],
     articleSlugs: ['jia-bu-shi-yangban-jian', 'article-01-01', 'article-01-02'],
     tool: { label: '先做 AI 居住诊断', href: '/living-diagnosis' },
-    service: { label: '看居住需求洞察报告', href: '/services#living-insight-beta' },
+    service: { label: '继续做居住诊断', href: '/living-diagnosis' },
   },
   {
     code: 'Sample 02',
@@ -63,7 +63,7 @@ const judgmentSamples: JudgmentSample[] = [
     ],
     articleSlugs: ['baojia-dan-zenme-kan', 'article-03-04', 'article-03-02'],
     tool: { label: '做免费报价初筛', href: '/tools/quote-check' },
-    service: { label: '看报价 / 合同快审', href: '/services#quote-standard' },
+    service: { label: '看报价 / 合同人工审查', href: '/services/quote-review' },
   },
   {
     code: 'Sample 03',
@@ -82,7 +82,7 @@ const judgmentSamples: JudgmentSample[] = [
     ],
     articleSlugs: ['zhuangxiu-yusuan-weishenme-zongchao', 'shuidian-gongcheng-zongchao-yusuan', 'zhuangxiu-hou-hue-de-wu-jian'],
     tool: { label: '看签约前检查模板', href: '/checklists' },
-    service: { label: '看居住方案综合判断', href: '/services#quote-deep' },
+    service: { label: '联系赞诺说明情况', href: '/contact' },
   },
 ]
 

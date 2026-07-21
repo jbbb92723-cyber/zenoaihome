@@ -83,7 +83,7 @@ export default function BudgetStagePage() {
         ]}
         services={[
           { label: '报价风险初查', href: '/services#quote-entry' },
-          { label: '报价 / 合同快审', href: '/services#quote-standard' },
+          { label: '报价 / 合同人工审查', href: '/services/quote-review' },
         ]}
         prev={{ label: '先看人：装修公司 / 工长 / 师傅', href: '/start/people' }}
         next={{ label: '再看合同：签约前必须改什么', href: '/start/contract' }}

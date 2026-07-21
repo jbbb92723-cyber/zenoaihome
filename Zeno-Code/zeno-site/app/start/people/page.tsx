@@ -81,7 +81,7 @@ export default function PeopleStagePage() {
           { label: '看工地现场记录模板', href: '/resources' },
         ]}
         services={[
-          { label: '帮你过一遍候选名单（咨询服务）', href: '/services#quote-deep' },
+          { label: '联系赞诺说明候选情况', href: '/contact' },
         ]}
         next={{ label: '再看钱：预算 + 报价', href: '/start/budget' }}
       />

@@ -2,191 +2,126 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import PageHero from '@/components/ui/PageHero'
 import Container from '@/components/ui/Container'
-import CTA from '@/components/ui/CTA'
 
 export const metadata: Metadata = {
-  title: '联系我',
-  description:
-    '联系 Zeno。优先处理居住需求、装修方案、报价合同和付款节点判断；建造者手记与方法交流属于延伸，不是主服务入口。',
+  title: '联系赞诺｜培训、AI项目与星火者共同体',
+  description: '联系赞诺。适用于AI培训、工作流、企业知识库、智能体、网站开发、星火者共同体和装修判断相关沟通。',
+  alternates: { canonical: 'https://zenoaihome.com/contact' },
 }
 
-const contactChannels = [
+const directions = [
   {
-    id: 'wechat-official',
-    title: '公众号',
-    desc: '最主要的内容发布渠道。关注后回复关键词可领取资料，也可以在文章下留言互动。',
-    value: 'Zeno AI装修笔记',
-    tag: '内容',
+    title: 'AI 培训',
+    body: '请说明行业、人数、形式、团队使用过的工具，以及最希望解决的三个工作场景。',
+    note: '微信备注：培训',
+    href: '/training',
   },
   {
-    id: 'wechat',
-    title: '微信',
-    desc: '签约前报价边界、合同和付款节点追问的主要联系渠道。加微信时请备注来意，便于判断是否能帮到你。',
-    value: 'zanxiansheng2025',
-    tag: '咨询',
+    title: 'AI 项目',
+    body: '请说明现在怎么做、卡在哪里、已有资料和希望交付的结果。知识库、智能体和网站需求都适用。',
+    note: '微信备注：AI项目',
+    href: '/services',
   },
   {
-    id: 'email',
-    title: '邮箱',
-    desc: '适合内容合作、长篇问题讨论，或希望保留完整对话记录的交流场景。',
-    value: 'zenoaihome@qq.com',
-    tag: '合作',
+    title: '星火者共同体',
+    body: '请先介绍你是谁、正在做什么、能提供什么、目前需要什么。共同体仍处于发起阶段。',
+    note: '微信备注：星火者',
+    href: '/community',
+  },
+  {
+    title: '装修判断',
+    body: '请提供城市、面积、装修阶段，以及已有的户型、报价或合同材料。也可以先使用站内免费工具。',
+    note: '微信备注：装修',
+    href: '/tools',
   },
 ]
 
-const suitableFor = [
-  { title: '居住需求洞察报告', desc: '还没定方案，需要先把生活方式、审美偏好、空间优先级和预算边界说清。' },
-  { title: '报价风险初查',    desc: '刚拿到报价，只想先看明显风险。' },
-  { title: '报价 / 合同快审',   desc: '已有完整报价、合同草稿或付款节点，准备继续谈或签约。' },
-  { title: '居住方案综合判断',   desc: '方案、预算、报价、合同和付款节点都已经有，且临近签约。' },
-  { title: '建造者手记 / 方法交流', desc: '你读过文章或工具后，有明确问题想讨论。方法交流可以聊，但不是主服务入口。' },
-  { title: '商务合作',          desc: '如果你的合作与网站主题高度相关，可以发邮件说明背景和具体想法。' },
-]
-
-const notSuitableFor = [
-  '只想要"立刻见效"的万能模板，不提供任何上下文。',
-  '只问一句"怎么快速做成"，没有具体场景。',
-  '纯广告推广，与网站主题无关。',
-  '希望免费获得详细咨询方案，且不愿意提供必要信息。',
+const messageTemplate = [
+  '我是谁 / 所在企业或项目',
+  '现在具体怎么做，卡在哪一步',
+  '已经有哪些材料、工具或人员',
+  '希望赞诺帮助交付什么结果',
+  '期望时间，以及需要提前说明的边界',
 ]
 
 export default function ContactPage() {
   return (
-    <>
+    <main className="bg-canvas text-ink">
       <PageHero
-        label="联系"
-        title="欢迎真实的交流"
-        subtitle="如果只是泛泛聊聊机会，我们可能都在浪费时间。如果你有具体问题、真实场景，我们会更有效率。"
+        label="联系赞诺"
+        title="先把来意和真实问题说清楚。"
+        subtitle="信息越具体，越容易判断是否适合继续。不能做的项目，我会直接说明；能做的，先确认范围和交付边界。"
       />
 
-      <Container size="content" className="py-14 sm:py-16">
-
-        {/* ── 联系前先判断 ── */}
-        <section className="mb-14">
-          <h2 className="section-heading mb-6">联系前先判断</h2>
-          <p className="text-sm text-ink-muted mb-6">不同的情况，有不同的最优路径。先看看你属于哪一种：</p>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            <div className="border border-border p-5">
-              <p className="text-sm font-semibold text-ink mb-2">你有明确的问题要解决</p>
-              <p className="text-xs text-ink-muted leading-relaxed mb-4">
-                手里有报价单、合同草稿、预算上限，或者一两周内准备签约——直接看服务页更高效。
-              </p>
-              <Link href="/services" className="text-sm text-stone hover:underline underline-offset-2 decoration-stone/40">
-                查看服务 →
-              </Link>
-            </div>
-            <div className="border border-border p-5">
-              <p className="text-sm font-semibold text-ink mb-2">你还在了解阶段</p>
-              <p className="text-xs text-ink-muted leading-relaxed mb-4">
-                先建立基本判断，再决定下一步。风险词典、检查模板和报价初筛都可以先用。
-              </p>
-              <Link href="/checklists" className="text-sm text-stone hover:underline underline-offset-2 decoration-stone/40">
-                先看检查模板 →
-              </Link>
-            </div>
-            <div className="border border-border p-5">
-              <p className="text-sm font-semibold text-ink mb-2">合作或其他事项</p>
-              <p className="text-xs text-ink-muted leading-relaxed mb-4">
-                内容合作、媒体合作、或不适合走标准服务流程的沟通，请直接联系。
-              </p>
-              <span className="text-xs text-ink-faint">↓ 往下看联系方式</span>
-            </div>
+      <Container className="py-16 sm:py-20 lg:py-24">
+        <section className="grid gap-12 lg:grid-cols-[0.3fr_0.7fr]">
+          <div>
+            <p className="text-sm font-semibold text-stone">四种来意</p>
+            <h2 className="editorial-display mt-4 text-[2.5rem] leading-[1.12] sm:text-[3.5rem]">找到对应入口，再发消息。</h2>
           </div>
-        </section>
-
-        <hr className="border-border mb-14" />
-
-        {/* ── 联系方式 ── */}
-        <section className="mb-14">
-          <h2 className="section-heading mb-6">联系方式</h2>
-          <div className="space-y-4">
-            {contactChannels.map((channel) => (
-              <div key={channel.id} className="border border-border bg-surface p-5 sm:p-6 card-hover">
-                <div className="flex items-center gap-3 mb-3">
-                  <p className="text-sm font-semibold text-ink">{channel.title}</p>
-                  <span className="text-xs text-stone border border-stone/30 px-2 py-px">
-                    {channel.tag}
-                  </span>
-                </div>
-                <p className="text-sm text-ink-muted leading-relaxed mb-3">{channel.desc}</p>
-                <p className="text-base font-semibold text-stone">{channel.value}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <hr className="border-border mb-14" />
-
-        {/* ── 适合联系的情况 ── */}
-        <section className="mb-14">
-          <h2 className="section-heading mb-6">适合联系我的情况</h2>
-          <div className="space-y-5">
-            {suitableFor.map((item) => (
-              <div key={item.title} className="flex items-start gap-4">
-                <span className="text-stone text-sm mt-0.5 shrink-0">→</span>
+          <div className="border-t border-border">
+            {directions.map((item, index) => (
+              <article key={item.title} className="grid gap-4 border-b border-border py-6 sm:grid-cols-[3rem_10rem_1fr_auto] sm:items-center">
+                <span className="text-xs font-semibold tabular-nums text-ink-faint">{String(index + 1).padStart(2, '0')}</span>
                 <div>
-                  <p className="text-sm font-semibold text-ink mb-1">{item.title}</p>
-                  <p className="text-sm text-ink-muted leading-relaxed">{item.desc}</p>
+                  <h3 className="text-lg font-semibold text-ink">{item.title}</h3>
+                  <p className="mt-1 text-xs font-semibold text-stone">{item.note}</p>
                 </div>
-              </div>
+                <p className="text-sm leading-7 text-ink-muted">{item.body}</p>
+                <Link href={item.href} className="text-sm font-semibold text-ink hover:text-stone">了解 →</Link>
+              </article>
             ))}
           </div>
         </section>
 
-        {/* ── 不太适合 ── */}
-        <section className="mb-14">
-          <h2 className="section-heading mb-6">不太适合的情况</h2>
-          <div className="space-y-2.5">
-            {notSuitableFor.map((item) => (
-              <div key={item} className="flex items-start gap-3">
-                <span className="text-ink-faint text-sm mt-0.5 shrink-0">×</span>
-                <p className="text-sm text-ink-muted">{item}</p>
-              </div>
-            ))}
+        <section className="mt-20 grid gap-10 border-y border-border py-12 sm:mt-24 sm:py-16 lg:grid-cols-[0.42fr_0.58fr]">
+          <div>
+            <p className="text-sm font-semibold text-stone">联系方式</p>
+            <h2 className="editorial-display mt-4 text-[2.5rem] leading-[1.12] sm:text-[3.5rem]">优先使用微信沟通具体事项。</h2>
+          </div>
+          <div className="grid gap-6 sm:grid-cols-2">
+            <div className="border-l-2 border-stone pl-5">
+              <p className="text-xs font-semibold text-ink-faint">微信</p>
+              <p className="mt-2 text-xl font-semibold text-ink">zanxiansheng2025</p>
+              <p className="mt-2 text-sm leading-7 text-ink-muted">适合培训、项目、共同体和装修相关沟通。请务必备注来意。</p>
+            </div>
+            <div className="border-l-2 border-stone pl-5">
+              <p className="text-xs font-semibold text-ink-faint">邮箱</p>
+              <p className="mt-2 break-all text-xl font-semibold text-ink">zenoaihome@qq.com</p>
+              <p className="mt-2 text-sm leading-7 text-ink-muted">适合正式合作说明、较长背景资料或需要保留完整记录的沟通。</p>
+            </div>
+            <div className="border-l-2 border-stone pl-5">
+              <p className="text-xs font-semibold text-ink-faint">公众号</p>
+              <p className="mt-2 text-xl font-semibold text-ink">Zeno AI装修笔记</p>
+              <p className="mt-2 text-sm leading-7 text-ink-muted">当前主要内容发布渠道，后续会随个人品牌定位逐步更新。</p>
+            </div>
+            <div className="border-l-2 border-stone pl-5">
+              <p className="text-xs font-semibold text-ink-faint">所在城市</p>
+              <p className="mt-2 text-xl font-semibold text-ink">广西南宁</p>
+              <p className="mt-2 text-sm leading-7 text-ink-muted">培训和项目可根据实际情况沟通线上或线下形式。</p>
+            </div>
           </div>
         </section>
 
-        <hr className="border-border mb-14" />
-
-        {/* ── 建议这样发消息 ── */}
-        <section className="mb-14">
-          <h2 className="section-heading mb-4">建议这样发消息</h2>
-          <p className="text-sm text-ink-muted mb-5">有背景信息，会更快得到有效回复。</p>
-          <div className="border border-border bg-surface p-6 space-y-4">
-            {[
-              '你当前阶段（刚拿报价 / 正在对比 / 一两周内准备签约 / 已经开工）',
-              '房屋面积、城市、预算上限和装修方式',
-              '报价单、合同草稿或付款节点里最让你不确定的一点',
-              '你希望我帮你做居住诊断、报价初查、报价合同快审，还是居住方案综合判断',
-            ].map((tip, i) => (
-              <div key={i} className="flex items-start gap-3">
-                <span className="text-stone text-xs shrink-0 font-semibold mt-0.5">{i + 1}.</span>
-                <p className="text-sm text-ink-muted">{tip}</p>
-              </div>
-            ))}
+        <section className="mt-20 grid gap-10 bg-surface-warm p-7 sm:mt-24 sm:p-10 lg:grid-cols-[0.4fr_0.6fr]">
+          <div>
+            <p className="text-sm font-semibold text-stone">消息模板</p>
+            <h2 className="editorial-display mt-4 text-[2.4rem] leading-[1.12] sm:text-[3.3rem]">五句话，说清一个合作问题。</h2>
           </div>
+          <ol className="border-t border-border">
+            {messageTemplate.map((item, index) => (
+              <li key={item} className="grid grid-cols-[2rem_1fr] border-b border-border py-4 text-sm leading-7 text-ink-muted">
+                <span className="font-semibold tabular-nums text-stone">{index + 1}</span>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ol>
         </section>
 
-        {/* ── 快速入口 ── */}
-        <section className="mb-14 border-2 border-stone bg-surface-warm p-6 sm:p-8 text-center">
-          <h2 className="text-lg font-semibold text-ink mb-2">报价单拿不准？直接发给我</h2>
-          <p className="text-sm text-ink-muted mb-3">¥2,500一次，13个风险边界逐项审核。审过的项目施工中被加价，我帮你追回——追不回，全额退款。</p>
-          <CTA href="/services/quote-review" label="看完整服务 →" variant="primary" />
-          <p className="mt-4 text-xs text-ink-muted">想先免费扫一眼？<a href="/tools/quote-check" className="text-stone underline underline-offset-2">用报价初筛工具 →</a></p>
+        <section className="mt-16 border-t border-border pt-10 sm:mt-20">
+          <p className="max-w-3xl text-sm leading-7 text-ink-muted">不适合的情况：只问“AI 能做什么”但不提供场景；希望免费获得完整方案；把高风险决策完全交给 AI；需求范围持续变化却不愿重新确认交付。</p>
         </section>
-
-        {/* ── 回复说明 ── */}
-        <section className="border-t border-border pt-10">
-          <p className="text-sm text-ink-muted leading-relaxed mb-3">
-            我会按优先级和时间窗口回复，一般 1–3 个工作日处理，复杂问题可能更长。
-          </p>
-          <p className="text-sm text-ink leading-relaxed">
-            我更相信长期连接，而不是一次性成交。如果你也认同这种节奏，欢迎来聊。
-          </p>
-        </section>
-
       </Container>
-    </>
+    </main>
   )
 }
-

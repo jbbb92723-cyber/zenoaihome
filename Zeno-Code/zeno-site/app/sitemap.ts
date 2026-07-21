@@ -10,6 +10,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/about`, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${baseUrl}/blog`, changeFrequency: 'weekly', priority: 0.9 },
     { url: `${baseUrl}/services`, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${baseUrl}/training`, changeFrequency: 'monthly', priority: 0.85 },
+    { url: `${baseUrl}/community`, changeFrequency: 'monthly', priority: 0.85 },
     { url: `${baseUrl}/tools`, changeFrequency: 'weekly', priority: 0.9 },
     { url: `${baseUrl}/resources`, changeFrequency: 'monthly', priority: 0.7 },
     { url: `${baseUrl}/topics`, changeFrequency: 'monthly', priority: 0.8 },
@@ -23,7 +25,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/services/quote-review`, changeFrequency: 'monthly', priority: 0.95 },
     { url: `${baseUrl}/services/node-advisor`, changeFrequency: 'monthly', priority: 0.85 },
     { url: `${baseUrl}/mattress`, changeFrequency: 'monthly', priority: 0.9 },
-    { url: `${baseUrl}/consulting`, changeFrequency: 'monthly', priority: 0.7 },
     { url: `${baseUrl}/notes`, changeFrequency: 'weekly', priority: 0.6 },
   ]
 

@@ -451,7 +451,7 @@ export default function LivingDiagnosisClient() {
                 ))}
                 </div>
                 <Link
-                  href="/services#living-insight-beta"
+                  href="/living-diagnosis"
                   className="mt-3 flex items-center justify-between gap-3 border border-stone-light bg-stone-pale/45 px-4 py-3 text-sm font-semibold text-ink transition-colors hover:border-stone"
                 >
                   升级为人工《居住需求洞察报告》

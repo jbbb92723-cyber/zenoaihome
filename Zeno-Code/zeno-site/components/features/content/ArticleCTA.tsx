@@ -40,12 +40,12 @@ const LIFESTYLE_CTA: CTAConfig = {
   secondary: { label: '联系我', href: '/contact' },
 }
 
-// AI 落地判断 / OPC / 把自己重做一遍 → OPC 社群
+// AI 落地判断 / 一人公司 / 把自己重做一遍 → 星火者共同体
 const AI_CTA: CTAConfig = {
-  title: '这些内容来自一个真实的人的实践——',
-  description: 'Zeno 是从传统装修行业走出来的 AI 全栈实践者。OPC·同行有你社群聚集了一群同样在用自己的方式重建自己的人。不是课堂，是同行的战场。',
-  primary: { label: '了解 OPC 社群', href: '/blog?category=opc' },
-  secondary: { label: '联系 Zeno', href: '/contact' },
+  title: '如果你也在重新搭建自己的工作方式——',
+  description: '赞诺·星火者共同体正在连接一群用 AI 重做产品、内容和业务的独立实践者。先了解共同体，再判断彼此是否适合。',
+  primary: { label: '了解星火者共同体', href: '/community' },
+  secondary: { label: '查看 AI 服务', href: '/services' },
 }
 
 // 默认（暂无分类匹配）

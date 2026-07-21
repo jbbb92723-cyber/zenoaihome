@@ -702,8 +702,8 @@ export default function QuoteCheckClient() {
 
                   <div className="grid gap-3">
                     {[
-                      { label: '查看报价 / 合同快审', href: '/services/quote-standard' },
-                      { label: '查看居住方案综合判断', href: '/services#quote-deep' },
+                      { label: '查看报价 / 合同人工审查', href: '/services/quote-review' },
+                      { label: '联系赞诺说明情况', href: '/contact' },
                       { label: '查看风险词典', href: '/risk-dictionary' },
                     ].map((item) => (
                       <Link key={item.href} href={item.href} className="flex items-center justify-between border border-border bg-canvas px-4 py-3 text-sm font-semibold text-ink transition-colors hover:border-stone">

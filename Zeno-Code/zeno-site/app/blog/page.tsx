@@ -5,9 +5,9 @@ import { articles } from '@/data/content/articles'
 import BlogClient from './BlogClient'
 
 export const metadata: Metadata = {
-  title: '全部文章｜AI 落地判断、装修全案判断、OPC·同行有你',
+  title: '全部文章｜传统行业AI、装修实践与一人公司',
   description:
-    '赞诺的文章库。按 AI 落地判断、装修全案判断、OPC·同行有你三个判断方向组织——17 年一线经验里长出来的真实内容。',
+    '赞诺的公开文章库，记录传统行业AI实践、装修判断、一人公司与星火者共同体。内容来自真实经历、项目和持续迭代。',
   alternates: {
     canonical: 'https://zenoaihome.com/blog',
   },
@@ -22,7 +22,7 @@ export default function BlogPage() {
         data={{
           '@context': 'https://schema.org',
           '@type': 'CollectionPage',
-          name: '居住判断文章库',
+          name: '赞诺的公开实践文章库',
           url: 'https://zenoaihome.com/blog',
           description: metadata.description,
           inLanguage: 'zh-CN',

@@ -23,7 +23,6 @@ type Props = {
 const tierAccent: Record<LadderRung['tier'], string> = {
   free: 'bg-ink text-white',
   'paid-low': 'bg-stone-pale text-ink',
-  'paid-mid': 'bg-ink text-white',
   'paid-high': 'bg-ink text-white',
   'paid-flagship': 'bg-ink text-white',
 }

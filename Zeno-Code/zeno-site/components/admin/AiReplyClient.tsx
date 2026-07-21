@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { ALL_TEMPLATES, UI_UI_CATEGORIES, getTemplatesByCategory } from '@/lib/templates'
+import { UI_CATEGORIES, getTemplatesByCategory } from '@/lib/templates'
 import type { Template } from '@/lib/templates'
 
 export default function AiReplyClient() {
@@ -143,7 +143,7 @@ export default function AiReplyClient() {
             value={aiPrompt}
             onChange={e => setAiPrompt(e.target.value)}
             rows={4}
-            placeholder="例如：业主问"装了中央空调还需要装新风吗？预算不太够了""
+            placeholder="例如：业主问「装了中央空调还需要装新风吗？预算不太够了」"
             className="w-full bg-[#141410] border border-[#3A3530] text-sm text-[#E8E2DA] p-3 resize-y outline-none focus:border-[#C4A882] placeholder:text-[#504840]"
           />
           <button

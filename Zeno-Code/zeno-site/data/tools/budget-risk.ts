@@ -121,7 +121,7 @@ export const riskSummaries: Record<RiskKey, RiskSummary> = {
     firstStep: '先把总预算拆成几份钱，再看哪些不能动、哪些可以晚点买、哪些只是想要。',
     resource: { label: '先拿装修预算模板', href: '/resources#zhuangxiu-yusuan-moban' },
     article: { label: '先看预算为什么总超', href: '/blog/zhuangxiu-yusuan-weishenme-zongchao' },
-    service: { label: '直接看报价 / 合同快审', href: '/services#quote-standard' },
+    service: { label: '直接看报价 / 合同人工审查', href: '/services/quote-review' },
   },
   R3: {
     key: 'R3',
@@ -145,7 +145,7 @@ export const riskSummaries: Record<RiskKey, RiskSummary> = {
     firstStep: '先把家庭成员、作息、收纳、做饭、办公这些真实需求写出来，再回头看方案。',
     resource: { label: '先做 AI 居住诊断', href: '/living-diagnosis' },
     article: { label: '先看家不是样板间', href: '/blog/02-jia-bu-shi-yangban-jian' },
-    service: { label: '先看居住方案综合判断', href: '/services#quote-deep' },
+    service: { label: '联系赞诺说明情况', href: '/contact' },
   },
 }
 

@@ -129,7 +129,7 @@ const releaseCards = [
     body: '想把生活方式、预算、报价、合同和交付这些事放在一起看？我来帮你做一份完整的方案和风险判断。',
     meta: '深度服务',
     date: '决策包',
-    href: '/services#quote-deep',
+    href: '/contact',
     cta: '看服务',
   },
 ]

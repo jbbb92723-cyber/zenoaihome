@@ -44,8 +44,8 @@ export const primaryCategories: ContentCategory[] = [
   },
   {
     slug: 'opc',
-    name: 'OPC·同行有你',
-    description: '一人公司模式、工程方法、实战项目、社群共建',
+    name: '星火者共同体',
+    description: '一人公司实践、产品、协作项目与共同体共建',
   },
   {
     slug: 'about',
@@ -62,7 +62,7 @@ export const subcategories: ContentCategory[] = [
   { slug: 'material', name: '材料拆解', parentSlug: 'mattress' },
   { slug: 'insider', name: '买手经验', parentSlug: 'mattress' },
   { slug: 'care', name: '保养与使用', parentSlug: 'mattress' },
-  // OPC·同行有你的子分类
+  // 星火者共同体的子分类
   { slug: 'solo-method', name: '一人公司工程方法', parentSlug: 'opc' },
   { slug: 'projects', name: '实战项目', parentSlug: 'opc' },
   { slug: 'community', name: '同行社群', parentSlug: 'opc' },
@@ -127,6 +127,7 @@ export const categoryNameToSlug: Record<string, string> = {
   '居住方式': 'lifestyle',
   '把自己重做一遍': 'ip',
   'AI 落地判断': 'ai',
+  '星火者共同体': 'opc',
   'OPC·同行有你': 'opc',
   '关于我': 'about',
   // 旧标签名（向后兼容存量文章数据）

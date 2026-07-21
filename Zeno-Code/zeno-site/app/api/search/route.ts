@@ -3,7 +3,6 @@ import { articles } from '@/data/content/articles'
 import { checklistTemplates } from '@/data/risk-control/checklist-templates'
 import { renovationProjectRisks } from '@/data/risk-control/renovation-project-risks'
 import { quoteRiskRules } from '@/data/risk-control/quote-risk-rules'
-import { serviceLadder } from '@/data/services/commercial-ladder'
 import { prisma } from '@/lib/prisma'
 
 interface SearchResult {
@@ -15,13 +14,19 @@ interface SearchResult {
 
 // Static pages for search
 const staticPages: SearchResult[] = [
-  { title: '首页', href: '/', type: 'page', excerpt: '美学与生活结合后的装修判断系统。' },
+  { title: '首页', href: '/', type: 'page', excerpt: '赞诺的个人品牌与商业入口。传统行业经验与 AI 实战。' },
+  { title: 'AI 培训与企业内训', href: '/training', type: 'service', excerpt: '面向企业、商会和创业社群的 AI 实战培训。' },
+  { title: 'AI 工具与工作流', href: '/services#ai-workflow', type: 'service', excerpt: '把重复工作整理成可执行的 AI 工作流。' },
+  { title: '企业 AI 知识库', href: '/services#knowledge-base', type: 'service', excerpt: '整理内部资料、规则和经验，建立可检索入口。' },
+  { title: 'AI 智能体', href: '/services#ai-agent', type: 'service', excerpt: '围绕明确任务设计、测试和交接智能体。' },
+  { title: '网站开发', href: '/services#website', type: 'service', excerpt: '个人品牌与小型业务网站的信息架构、开发和上线。' },
+  { title: '赞诺·星火者共同体', href: '/community', type: 'page', excerpt: 'AI 时代的一人公司协作网络。' },
   { title: 'AI 居住诊断', href: '/living-diagnosis', type: 'tool', excerpt: '先看生活方式、审美取舍、家庭场景和空间优先级。' },
   { title: '报价初筛工具', href: '/tools/quote-check', type: 'tool', excerpt: '已有报价时，看它有没有承接方案边界。' },
   { title: '装修报价风险词典', href: '/risk-dictionary', type: 'resource', excerpt: '解释报价里容易引发增项和扯皮的风险词。' },
   { title: '签约前检查模板', href: '/checklists', type: 'checklist', excerpt: '报价、合同、付款节点可以逐项对照。' },
   { title: '施工项目风险库', href: '/project-risks', type: 'resource', excerpt: '按水电、防水、拆除等项目看报价里该写清什么。' },
-  { title: '服务路径', href: '/services', type: 'service', excerpt: '居住需求洞察报告、报价 / 合同快审和居住方案综合判断。' },
+  { title: '服务合作', href: '/services', type: 'service', excerpt: 'AI 培训、工作流、知识库、智能体和网站开发。' },
   { title: '关于 Zeno', href: '/about', type: 'page' },
   { title: '联系我', href: '/contact', type: 'page' },
 ]
@@ -121,19 +126,6 @@ export async function GET(request: NextRequest) {
         href: `/project-risks/${project.slug}`,
         type: 'resource',
         excerpt: project.oneLine,
-      })
-    }
-  }
-
-  // Search main commercial ladder
-  for (const service of serviceLadder) {
-    const searchText = `${service.title} ${service.whoFor} ${service.delivers} ${service.price}`.toLowerCase()
-    if (searchText.includes(q)) {
-      results.push({
-        title: service.title,
-        href: service.href,
-        type: 'service',
-        excerpt: `${service.price} · ${service.delivers}`,
       })
     }
   }
