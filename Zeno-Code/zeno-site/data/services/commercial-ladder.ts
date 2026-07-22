@@ -1,22 +1,13 @@
 /**
- * 全站统一的「居住决策支持」判断路径。
- * 任何展示判断路径的位置（首页、服务页、Footer CTA）都必须从这里读，
- * 不要在页面里再写一遍文案、跳转。
+ * 全站统一的产品/服务路径。
+ * 任何展示路径的位置（首页、服务页）都从这里读。
  *
  * 维护规则：
- * - 改路径 / 改命名 / 增减档位 → 只动这个文件
- * - 两个 variant（compact / full）由 CommercialLadder 组件统一渲染
- * - 精简原则（2026-07-13）：
- *   免费层接流量 → ¥2,500 旗舰交付 → 节点顾问锁定长期 → 床垫延长客户关系
- *   砍掉：¥199 信任入口（免费工具已足够筛选）、¥499 快审（和旗舰边界模糊）、
- *         ¥1,999 综合（无人下单）
+ * - 改路径 / 改命名 → 只动这个文件
+ * - 装修付费产品不再公开标价——装修是重决策，需要一对一对接
+ * - 床垫押后——IP 跑稳再做实物产品线
  */
-
-export type LadderTier =
-  | 'free'
-  | 'paid-flagship'
-  | 'paid-high'
-  | 'paid-low'
+export type LadderTier = 'free' | 'paid-core' | 'paid-community'
 
 export type LadderRung = {
   tier: LadderTier
@@ -27,21 +18,21 @@ export type LadderRung = {
   delivers: string
   href: string
   cta: string
-  source: 'tool' | 'product' | 'service'
+  source: 'tool' | 'service' | 'community'
   badge?: string
 }
 
 export const commercialLadder: LadderRung[] = [
-  // ── 免费层：判断工具（帮人自己看）─────────────────
+  // ── 免费层：AI 工具 ──
   {
     tier: 'free',
     price: '免费',
     priceNumeric: 0,
-    title: 'AI 居住诊断',
-    whoFor: '还没想清楚要装成什么样的人。先别急着翻效果图，把你的生活方式和偏好捋一遍。',
-    delivers: '理清你的生活目标、家庭场景、审美偏好和预算边界，给一个下一步的方向',
-    href: '/living-diagnosis',
-    cta: '先做居住诊断',
+    title: '一人公司诊断',
+    whoFor: '不确定自己卡在哪一环——产品、获客、还是交付？10 个问题搞清楚。',
+    delivers: '你的当前阶段、卡在哪一环、下一步优先做什么',
+    href: '/ai-tools/opc-diagnosis',
+    cta: '开始诊断',
     source: 'tool',
     badge: '起点',
   },
@@ -49,57 +40,53 @@ export const commercialLadder: LadderRung[] = [
     tier: 'free',
     price: '免费',
     priceNumeric: 0,
-    title: '报价初筛工具',
-    whoFor: '手里已经有一两份报价了，想知道它有没有坑、有没有漏项。',
-    delivers: '风险等级、重点缺项标记和签约前要追问的问题清单',
-    href: '/tools/quote-check',
-    cta: '先做免费初筛',
+    title: '内容策略生成',
+    whoFor: '想做内容但不知道写什么。输入行业和擅长的事，找到值得写的东西。',
+    delivers: '3 个内容方向 × 每方向 2-3 个具体选题',
+    href: '/ai-tools/content-strategy',
+    cta: '生成策略',
     source: 'tool',
-    badge: '签约前入口',
+    badge: '免费',
   },
-  // ── 旗舰层：零加价保障审查 ──────────────────
   {
-    tier: 'paid-flagship',
-    price: '¥2,500',
-    priceNumeric: 250000,
-    title: '装修报价零加价保障审查',
-    whoFor: '准备签约了，需要一个人把报价单的每一行都审过去——13个风险边界逐项排查，审过的项目出了问题帮你追回。',
-    delivers: '13边界逐项审核报告（24h内）+ 施工前3个月微信答疑 + 装修合同避雷指南 + 入住后1年售后咨询。保证：审过的项目变相加价，帮你追回——追不回，全额退款。',
-    href: '/services/quote-review',
-    cta: '提交报价单',
+    tier: 'free',
+    price: '免费',
+    priceNumeric: 0,
+    title: '装修判断工具',
+    whoFor: '手里有报价单、还没定方案、想先自己看看。',
+    delivers: '居住诊断、报价初筛、风险词典、检查清单',
+    href: '/tools',
+    cta: '用工具',
+    source: 'tool',
+    badge: '免费',
+  },
+  // ── 核心层：AI 服务 ──
+  {
+    tier: 'paid-core',
+    price: '项目定价',
+    priceNumeric: 0,
+    title: 'AI 实战服务',
+    whoFor: '企业团队需要 AI 培训、工作流、知识库或智能体。先说清问题和边界，确认能交付再报价。',
+    delivers: '培训工作坊、工作流搭建、知识库、智能体、网站开发——按项目签约交付',
+    href: '/services',
+    cta: '查看服务',
     source: 'service',
-    badge: '旗舰',
+    badge: '核心',
   },
-  // ── 进阶层：施工陪伴 ──────────────────
+  // ── 社群层：星火者 ──
   {
-    tier: 'paid-high',
-    price: '¥2,000起',
-    priceNumeric: 200000,
-    title: '施工全程节点顾问',
-    whoFor: '已经签了合同进入施工阶段，想在每个关键节点（水电、防水、贴砖、竣工）有人帮你判断的人。',
-    delivers: '每个节点发照片给我 → 告诉你该查什么、照片里漏了什么、下一步注意什么。第一个节点不满意退款。',
-    href: '/services/node-advisor',
-    cta: '看节点顾问',
-    source: 'service',
-    badge: '进阶',
-  },
-  // ── 延长关系：床垫直售 ──────────────────
-  {
-    tier: 'paid-low',
-    price: '¥299起',
-    priceNumeric: 29900,
-    title: 'Zeno 严选床垫',
-    whoFor: '装完入住，最后一件大事——选一张能睡十几年的床垫。',
-    delivers: '内部结构保50年。不是代购，是我自己选品自己卖——17年行业经验帮你筛掉了市面上90%的坑。',
-    href: '/mattress',
-    cta: '选床垫',
-    source: 'product',
-    badge: '自有产品',
+    tier: 'paid-community',
+    price: '¥1,499',
+    priceNumeric: 149900,
+    title: '星火者',
+    whoFor: '正在经营一人公司，想找同路人。不是围观——是分享、连接、有项目一起做。',
+    delivers: '隔周火种读书会 + 日常群内连接 + 知识星球内容沉淀 + 共燃项目机会',
+    href: '/community',
+    cta: '了解星火者',
+    source: 'community',
+    badge: '试运行',
   },
 ]
 
-/** 首页展示完整主路径 */
 export const homepageLadder: LadderRung[] = commercialLadder
-
-/** 主服务档：保留完整路径 */
 export const serviceLadder: LadderRung[] = commercialLadder
