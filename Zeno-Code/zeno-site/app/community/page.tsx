@@ -117,13 +117,38 @@ export default function CommunityPage() {
           </div>
         </section>
 
-        <section className="mt-16 grid gap-8 border-y border-border py-10 sm:mt-20 lg:grid-cols-[0.62fr_0.38fr] lg:items-center">
-          <div>
-            <h2 className="editorial-display text-[2.4rem] leading-[1.12] sm:text-[3.3rem]">先介绍你自己，再谈加入。</h2>
-            <p className="mt-4 max-w-2xl text-sm leading-7 text-ink-muted">添加微信时备注“星火者”，并用几句话说明你目前在做什么、能提供什么、需要什么。共同体仍在筹备，是否进入以实际沟通为准。</p>
-          </div>
-          <div className="lg:text-right">
-            <Link href="/contact" className="motion-press inline-flex min-h-11 items-center rounded-[7px] bg-ink px-5 py-3 text-sm font-semibold text-white hover:bg-stone-deep">查看联系方式</Link>
+        <section className="mt-16 border-2 border-stone bg-surface-warm p-7 sm:mt-20 sm:p-10">
+          <div className="grid gap-8 lg:grid-cols-[0.58fr_0.42fr] lg:items-center">
+            <div>
+              <p className="text-sm font-semibold text-stone">首期试运行招募</p>
+              <h2 className="editorial-display mt-4 text-[2.4rem] leading-[1.12] sm:text-[3.3rem]">20 人。6 个月。一起验证这件事。</h2>
+              <div className="mt-6 grid gap-3 sm:grid-cols-3">
+                <div>
+                  <p className="text-2xl font-bold text-ink">¥1,499</p>
+                  <p className="text-xs text-ink-muted mt-1">6 个月 · 首期锁价</p>
+                </div>
+                <div>
+                  <p className="text-2xl font-bold text-ink">20 人</p>
+                  <p className="text-xs text-ink-muted mt-1">满即关闭</p>
+                </div>
+                <div>
+                  <p className="text-2xl font-bold text-ink">72h</p>
+                  <p className="text-xs text-ink-muted mt-1">无条件退款</p>
+                </div>
+              </div>
+              <p className="mt-5 max-w-xl text-sm leading-7 text-ink-muted">
+                每周隔周一次火种读书会。日常群里有回应。有合适的项目一起做，没有就继续做自己的事。不做课，不卖资料，不保证发财。
+              </p>
+            </div>
+            <div className="lg:text-right">
+              <p className="text-sm font-semibold text-ink mb-3">申请方式</p>
+              <p className="text-sm leading-7 text-ink-muted mb-5">
+                私信赞诺（zanxiansheng2025），说清楚你是谁、在做什么、为什么想加入。15 分钟聊完，双向选择。
+              </p>
+              <Link href="/contact" className="motion-press inline-flex min-h-11 items-center rounded-[7px] bg-ink px-5 py-3 text-sm font-semibold text-white hover:bg-stone-deep">
+                了解详情 →
+              </Link>
+            </div>
           </div>
         </section>
       </Container>

@@ -92,6 +92,7 @@ export const primaryNav: PrimaryNavItem[] = [
         zh: { label: '装修判断资产', desc: '保留为赞诺最完整的垂直实践样本' },
         en: { label: 'Renovation Assets', desc: 'Zeno\'s most complete vertical proof.' },
         items: [
+          { key: 'renovation-services', zh: { label: '判断服务', href: '/renovation', desc: '从免费初筛到付费审查，按你的阶段选' }, en: { label: 'Judgment Services', href: '/en/tools', desc: 'From free screening to paid review.' } },
           { key: 'tools', zh: { label: '装修判断工具', href: '/tools', desc: '居住诊断、报价初筛和计算工具' }, en: { label: 'Decision Tools', href: '/en/tools', desc: 'Diagnosis and quote-screening tools.' } },
           { key: 'cases', zh: { label: '判断样张', href: '/cases', desc: '先看判断过程，再决定怎么做' }, en: { label: 'Samples', href: '/en/blog', desc: 'See the judgment process.' } },
           { key: 'risk-dictionary', zh: { label: '风险词典', href: '/risk-dictionary', desc: '把报价和合同中的模糊词拆开' }, en: { label: 'Risk Dictionary', href: '/en/tools', desc: 'Decode ambiguous quote language.' } },
@@ -152,6 +153,7 @@ const CN_TO_EN: Record<string, string> = {
   '/resources':  '/en/tools',
   '/training':   '/en/training',
   '/services':   '/en/services',
+  '/renovation': '/en/tools',
   '/contact':    '/en/about',
   '/notes':      '/en/notes',
   '/login':      '/en/login',
@@ -181,7 +183,7 @@ export function getLangHref(pathname: string, isEn: boolean): string {
     if (pathname.startsWith('/en/blog/')) return '/blog'
     if (pathname.startsWith('/en/articles/')) return '/blog'
     const cnPath = pathname.replace(/^\/en/, '') || '/'
-    const knownCn = ['/', '/start', '/about', '/blog', '/cases', '/living-diagnosis', '/training', '/tools', '/tools/quote-check', '/tools/budget-structure', '/tools/budget-risk', '/tools/unit-converter', '/tools/tile-calculator', '/tools/paint-calculator', '/tools/inspection-guide', '/risk-dictionary', '/checklists', '/project-risks', '/topics', '/resources', '/services', '/contact', '/login', '/register']
+    const knownCn = ['/', '/start', '/about', '/blog', '/cases', '/living-diagnosis', '/training', '/tools', '/tools/quote-check', '/tools/budget-structure', '/tools/budget-risk', '/tools/unit-converter', '/tools/tile-calculator', '/tools/paint-calculator', '/tools/inspection-guide', '/risk-dictionary', '/checklists', '/project-risks', '/topics', '/resources', '/services', '/renovation', '/contact', '/login', '/register']
     if (knownCn.includes(cnPath)) return cnPath
     return '/'
   } else {

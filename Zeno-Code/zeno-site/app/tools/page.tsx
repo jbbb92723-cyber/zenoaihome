@@ -137,7 +137,7 @@ export default function ToolsPage() {
               ['1. 先看生活', '用居住诊断看清审美、家庭场景和空间优先级。'],
               ['2. 再看报价', '已有报价时，用初筛找出没写清的边界。'],
               ['3. 查词典和模板', '把风险词和追问问题整理成可沟通清单。'],
-              ['4. 必要时快审', '方案或签约材料复杂时进入人工判断。'],
+              ['4. 必要时付费判断', '材料复杂、拿不准时，进入人工审查或节点顾问。'],
             ].map(([title, desc]) => (
               <div key={title} className="border border-border bg-surface p-5">
                 <h3 className="text-sm font-semibold text-ink">{title}</h3>
@@ -172,11 +172,11 @@ export default function ToolsPage() {
           <p className="text-xs font-semibold uppercase tracking-widest text-stone">下一步</p>
           <h2 className="mt-3 text-2xl font-semibold tracking-tight text-ink">工具看完，回到你的真实材料。</h2>
           <p className="mt-3 max-w-3xl text-sm leading-relaxed text-ink-muted">
-            如果还没定方案，先补生活方式、空间优先级和预算取舍；如果初筛显示高风险，先要求施工方把缺失边界补齐。仍然看不明白时，再进入报价 / 合同快审或居住方案综合判断。
+            如果还没定方案，先补生活方式、空间优先级和预算取舍；如果初筛显示高风险，先要求施工方把缺失边界补齐。仍然看不明白时，进入付费判断服务——报价审查或节点顾问，按你的阶段选。
           </p>
           <div className="mt-5 flex flex-wrap gap-3">
             <CTA href="/living-diagnosis" label="做居住诊断" variant="primary" />
-            <CTA href="/services" label="查看服务" variant="secondary" />
+            <CTA href="/renovation" label="查看付费判断服务" variant="secondary" />
           </div>
         </section>
       </Container>

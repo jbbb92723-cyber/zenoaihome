@@ -180,8 +180,8 @@ export default function ServicesBrandHub() {
               ZenoAIHome 的内容系统、装修判断工具、知识库和后台，是赞诺学习 AI 与网站开发的持续实践。装修板块不会消失，它从网站主定位退回到最有说服力的垂直样本。
             </p>
             <div className="mt-6 flex flex-wrap gap-4">
-              <Link href="/tools" className="inline-flex items-center gap-2 text-sm font-semibold text-ink">查看装修判断工具 <ArrowRight size={16} aria-hidden /></Link>
-              <Link href="/cases" className="inline-flex items-center gap-2 text-sm font-semibold text-ink">查看判断样张 <ArrowRight size={16} aria-hidden /></Link>
+              <Link href="/renovation" className="inline-flex items-center gap-2 text-sm font-semibold text-ink">查看装修判断服务 <ArrowRight size={16} aria-hidden /></Link>
+              <Link href="/tools" className="inline-flex items-center gap-2 text-sm font-semibold text-ink">免费判断工具 <ArrowRight size={16} aria-hidden /></Link>
             </div>
           </div>
         </div>

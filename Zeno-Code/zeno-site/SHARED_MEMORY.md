@@ -4,7 +4,26 @@
 
 ---
 
-## 2026-07-13 本轮改动
+## 2026-07-22 本轮改动
+
+### 网站优化：装修判断入口页 + 残留文案修复 + 交叉引流
+
+**改了什么**：
+- `app/renovation/page.tsx` — **新建**，装修判断统一入口页。展示完整产品梯子（免费→¥2,500→¥2,000→¥299），按决策阶段分四步走。从 commercial-ladder.ts 读取数据。含 Hero/判断路径/产品卡片/为什么找Zeno/免费入口/微信CTA。
+- `app/tools/page.tsx` — **三处修复**：①"必要时快审"改为"必要时付费判断"（旧产品已砍）②底部文案"报价/合同快审或居住方案综合判断"改为"报价审查或节点顾问" ③CTA从/services改为/renovation（引流到新产品入口页）
+- `app/services/quote-review/page.tsx` — **新增**「签完合同要开工？」section，交叉引流到节点顾问+完整判断路径
+- `app/services/node-advisor/page.tsx` — **新增**「装完入住？」section，交叉引流到床垫+完整判断路径
+- `app/mattress/page.tsx` — CTA次动作从/blog改为/renovation（引导到完整判断路径）
+- `app/sitemap.ts` — 新增 /renovation，priority 0.9
+- `lib/navigation.ts` — **三处更新**：①「装修判断」mega menu新增「判断服务」子项→/renovation ②CN_TO_EN映射 ③knownCn数组
+
+**为什么改**：
+1. 装修产品线散落在四个独立页面（/living-diagnosis, /services/quote-review, /services/node-advisor, /mattress），没有统一入口。访客找不到完整产品梯子。建 /renovation 作为产品线中枢。
+2. /tools 页有残留文案指向已砍的¥499快审和¥1,999综合判断，误导用户。
+3. 产品页之间缺少互推——看完审查的人不知道有节点顾问，看完节点的人不知道有床垫。加上交叉引流形成闭环。
+4. 导航和sitemap未覆盖新产品入口页。
+
+---
 
 ### 上线前全站审查 + P0修复
 

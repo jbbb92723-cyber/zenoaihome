@@ -367,6 +367,18 @@ export default function NodeAdvisorPage() {
           </div>
         </section>
 
+        {/* ── 装完入住？选床垫 ── */}
+        <section className="mt-12 border-t border-border pt-10">
+          <h2 className="text-lg font-semibold text-ink mb-3">装完入住了？</h2>
+          <p className="text-sm text-ink-muted mb-5 max-w-xl">
+            最后一件大事——选一张能睡十几年的床垫。¥299起，内部结构保50年。17年行业经验严选，不是代购。
+          </p>
+          <div className="flex flex-wrap gap-4">
+            <CTA href="/mattress" label="¥299起 严选床垫 →" variant="primary" />
+            <CTA href="/renovation" label="看完整判断路径 →" variant="secondary" />
+          </div>
+        </section>
+
       </Container>
     </>
   )

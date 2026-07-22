@@ -369,6 +369,18 @@ export default function QuoteReviewPage() {
           </div>
         </section>
 
+        {/* ── 签完合同了？盯施工 ── */}
+        <section className="mt-12 border-t border-border pt-10">
+          <h2 className="text-lg font-semibold text-ink mb-3">签完合同，要开工了？</h2>
+          <p className="text-sm text-ink-muted mb-5 max-w-xl">
+            如果你已经签了合同准备开工，施工节点顾问可以在每个关键节点帮你看一眼——水电、防水、贴砖、竣工。拍照片发我，告诉你看什么、漏了什么。¥2,000起，第一个节点不满意全额退款。
+          </p>
+          <div className="flex flex-wrap gap-4">
+            <CTA href="/services/node-advisor" label="¥2,000起 节点顾问 →" variant="primary" />
+            <CTA href="/renovation" label="看完整判断路径 →" variant="secondary" />
+          </div>
+        </section>
+
       </Container>
     </>
   )
