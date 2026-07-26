@@ -24,13 +24,13 @@ export default function QuoteChecklistPage() {
     <>
       <section className="border-b border-border bg-surface-warm">
         <Container size="content" className="py-14 sm:py-16">
-          <p className="page-label mb-4">付费工具</p>
+          <p className="page-label mb-4">免费工具</p>
           <div className="max-w-2xl">
             <h1 className="page-title mb-4">
               装修报价自检清单
             </h1>
             <p className="text-xl font-semibold text-ink mb-4">
-              ¥99
+              免费
             </p>
             <p className="text-base leading-relaxed text-ink-muted sm:text-lg">
               签约前花 20 分钟自己过一遍。<br />
@@ -95,7 +95,7 @@ export default function QuoteChecklistPage() {
               </p>
             </div>
             <div>
-              <p className="font-semibold text-ink mb-2">付费自检清单（¥99）</p>
+              <p className="font-semibold text-ink mb-2">自检清单（免费）</p>
               <p className="text-ink-muted leading-relaxed">
                 人工整理的系统性检查框架。逐项看懂、逐项判断、逐项和施工方确认。适合签约前最后一遍彻底排查。
               </p>
@@ -105,7 +105,7 @@ export default function QuoteChecklistPage() {
 
         {/* 买到什么 */}
         <section className="mb-14 max-w-2xl">
-          <h2 className="section-heading mb-4">¥99 你拿到什么</h2>
+          <h2 className="section-heading mb-4">你拿到什么</h2>
           <div className="space-y-3 text-sm leading-relaxed text-ink-muted">
             <p>一份 PDF 清单文件——30 个必查项，6 个分类。每个检查项附简短说明：怎么看、哪里容易出问题。</p>
             <p>不是模板。不是网上能搜到的通用版。是我 17 年里一份一份报价单审出来的判断。</p>
@@ -115,9 +115,9 @@ export default function QuoteChecklistPage() {
 
         {/* CTA */}
         <section className="border border-border bg-surface p-6 sm:p-8 text-center">
-          <h2 className="text-xl font-semibold text-ink mb-3">买这份清单</h2>
+          <h2 className="text-xl font-semibold text-ink mb-3">获取这份清单</h2>
           <p className="mb-5 text-sm leading-relaxed text-ink-muted max-w-lg mx-auto">
-            加微信，备注「清单」。付款后 24 小时内发 PDF 给你。签合同之前，花 20 分钟逐条对一遍——省的可能不止 2 万。
+            加微信，备注「清单」。签合同之前，花 20 分钟逐条对一遍——省的可能不止 2 万。
           </p>
           <p className="text-base text-ink">
             微信：<span className="font-semibold">zanxiansheng2025</span>

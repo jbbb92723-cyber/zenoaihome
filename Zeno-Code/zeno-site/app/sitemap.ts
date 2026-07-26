@@ -11,6 +11,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/ai-tools`, changeFrequency: 'weekly', priority: 0.95 },
     { url: `${baseUrl}/services`, changeFrequency: 'monthly', priority: 0.85 },
     { url: `${baseUrl}/training`, changeFrequency: 'monthly', priority: 0.85 },
+    { url: `${baseUrl}/opc-knowledge`, changeFrequency: 'monthly', priority: 0.85 },
     { url: `${baseUrl}/community`, changeFrequency: 'weekly', priority: 0.9 },
     { url: `${baseUrl}/tools`, changeFrequency: 'weekly', priority: 0.85 },
     { url: `${baseUrl}/renovation`, changeFrequency: 'monthly', priority: 0.8 },

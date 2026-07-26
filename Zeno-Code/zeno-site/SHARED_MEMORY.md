@@ -4,7 +4,40 @@
 
 ---
 
-## 2026-07-26 AGENTS.md 完整重构
+## 2026-07-27 OPC 课程体系 v3.0 七视角终极评审 + 网站部署
+
+### 评审与框架
+- 七视角决策评审团（新增 Tiago Forte 知识架构师视角）对 OPC 课程体系进行深度交叉评审
+- 8 轮辩论，七票同意零票反对，产出 v3.0 最终框架
+- 核心产出：课程金字塔（三层三模块+18卡6+6+6归属）、PARA资产映射、CODE 90天路线图、7层定价阶梯（含渐进式总结深度L1-L5）、3+1层护城河（新增知识复利护城河）、Grand Slam Offer 5要素（新增升级钩子）
+- 内部战略句：「在南宁，用17年的伤疤和AI的武器，带你建一个只有你能建的一人公司」
+- Tiago Forte skill 蒸馏完成（575行/38KB），存为 perspective-skill
+
+### 网站
+- `app/opc-knowledge/page.tsx` — 升级为 v3.0：课程金字塔+18方法卡+定价阶梯+护城河+Grand Slam Offer
+- 页面展示三模块（转型实战/城市落地/AI武器库）、18卡归属、7层定价（含L1-L5深度标注）、3+1护城河
+
+### Obsidian
+- v3.0 完整框架存为方法卡 `OPC-课程体系v3.0-七视角终极框架.md`
+- Tiago Forte 蒸馏 skill 存为 `perspective-skills/tiago-forte-knowledge-architect.md`
+
+**改了什么**：
+
+### 审计 P0/P1 修复（4 处）
+- `components/features/content/ArticleCTA.tsx:24` — RENO_CTA 次动作 ¥2,500旗舰→/renovation
+- `components/features/quote-check/QuoteCheckClient.tsx:769-773` — 服务路径三档付费→免费初筛/装修视野/一对一
+- `app/zeno-os/page.tsx:70,80` — 付费服务+FAQ 对齐新产品体系
+- `app/tools/quote-checklist/page.tsx` — ¥99付费→免费，CTA「买」→「获取」
+
+### OPC 知识体系三部曲
+- `app/opc-knowledge/page.tsx` — **新建**，OPC 知识体系落地页。展示三部曲（理论法规卷/城市实操卷/方法工具卷）+ 9 个框架预览。CTA 引导到星火者。底部强调「入群即送完整三卷 PDF + 方法卡 + 诊断模板」
+- `lib/navigation.ts` — 星火者 mega menu 新增「OPC 知识体系」子项（三处：items + CN_TO_EN + knownCn）
+- `app/sitemap.ts` — 新增 /opc-knowledge (priority 0.85)
+- Obsidian 内容资产库 — 三部曲 PDF 存入 `01-原始素材区/外部素材/`，注册 SRC-MISC-077/078/079
+- Obsidian 方法卡 — 9 个 OPC 框架方法卡（放弃信号/状态诊断/技能匹配/生产力/定价产品化/获客引擎/AI杠杆/协作网络/增长飞轮）
+
+### AGENTS.md 重构（前序）
+- `AGENTS.md` — 从旧定位重写为 IP 枢纽+流量引擎，视觉方向升级为 Zeno Studio
 
 **改了什么**：`AGENTS.md` — 从旧定位（装修判断系统）全面重写为当前定位（IP 枢纽 + 流量引擎）。
 
