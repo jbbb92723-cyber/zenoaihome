@@ -768,9 +768,8 @@ export default function QuoteCheckClient() {
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {[
               ['免费', '报价初筛', '先知道边界哪里没写清'],
-              ['¥2,500', '报价零加价保障审查', '13边界逐项排查，追不回退款'],
-              ['¥2,000起', '施工节点顾问', '关键节点拍照发我帮你判断'],
-              ['¥299起', 'Zeno 严选床垫', '装完入住，最后一件大事'],
+              ['装修视野', '17年判断方法', '不是教程——是怎么看报价、怎么判断施工'],
+              ['一对一', '深度对接', '拿不准时找我聊，装修是重决策不标价'],
             ].map(([price, title, desc]) => (
               <div key={title} className="border border-border bg-canvas p-4">
                 <p className="text-xs font-semibold uppercase tracking-widest text-stone">{price}</p>

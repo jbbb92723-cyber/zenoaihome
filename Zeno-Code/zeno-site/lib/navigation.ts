@@ -92,6 +92,7 @@ export const primaryNav: PrimaryNavItem[] = [
         items: [
           { key: 'community-intro', zh: { label: '共同体说明', href: '/community', desc: '星火者是什么、怎么运转、适合谁' }, en: { label: 'About Spark', href: '/en/blog', desc: '' } },
           { key: 'community-join', zh: { label: '试运行招募', href: '/community#join', desc: '20 人 · ¥1,499 · 6 个月 · 72h 退款' }, en: { label: 'Join', href: '/en/blog', desc: '' } },
+          { key: 'opc-knowledge', zh: { label: 'OPC 知识体系', href: '/opc-knowledge', desc: '三卷·87页·9框架——从理论到行动' }, en: { label: 'OPC Knowledge', href: '/en/blog', desc: '' } },
         ],
       },
     ],
@@ -188,6 +189,7 @@ const CN_TO_EN: Record<string, string> = {
   '/login': '/en/login',
   '/register': '/en/register',
   '/community': '/en/blog',
+  '/opc-knowledge': '/en/blog',
   '/topics': '/en/tools',
 }
 
@@ -209,7 +211,7 @@ export function getLangHref(pathname: string, isEn: boolean): string {
     if (pathname.startsWith('/en/blog/')) return '/blog'
     if (pathname.startsWith('/en/articles/')) return '/blog'
     const cnPath = pathname.replace(/^\/en/, '') || '/'
-    const knownCn = ['/', '/start', '/about', '/blog', '/cases', '/living-diagnosis', '/training', '/tools', '/ai-tools', '/tools/quote-check', '/tools/budget-structure', '/tools/budget-risk', '/tools/unit-converter', '/tools/tile-calculator', '/tools/paint-calculator', '/tools/inspection-guide', '/risk-dictionary', '/checklists', '/project-risks', '/topics', '/resources', '/services', '/renovation', '/contact', '/login', '/register', '/community', '/notes']
+    const knownCn = ['/', '/start', '/about', '/blog', '/cases', '/living-diagnosis', '/training', '/tools', '/ai-tools', '/tools/quote-check', '/tools/budget-structure', '/tools/budget-risk', '/tools/unit-converter', '/tools/tile-calculator', '/tools/paint-calculator', '/tools/inspection-guide', '/risk-dictionary', '/checklists', '/project-risks', '/topics', '/resources', '/services', '/renovation', '/opc-knowledge', '/contact', '/login', '/register', '/community', '/notes']
     if (knownCn.includes(cnPath)) return cnPath
     return '/'
   } else {

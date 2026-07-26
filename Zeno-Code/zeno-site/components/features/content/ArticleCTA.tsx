@@ -21,7 +21,7 @@ const RENO_CTA: CTAConfig = {
   title: '报价单拿不准？先免费扫一眼——',
   description: '2 分钟勾几个框，至少知道你的报价有没有明显雷。扫完把结果发我微信，我帮你看下一步该做什么。',
   primary: { label: '免费初筛 →', href: '/tools/quote-check' },
-  secondary: { label: '直接 ¥2,500 旗舰审查 →', href: '/services/quote-review' },
+  secondary: { label: '看装修方法 →', href: '/renovation' },
 }
 
 // 床垫选购判断 → 装修判断体系（床垫不卖咨询，算在装修判断里面）
