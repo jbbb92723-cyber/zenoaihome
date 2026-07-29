@@ -3,6 +3,7 @@
 import { useState, useMemo } from 'react'
 import { useSearchParams } from 'next/navigation'
 import ArticleCard from '@/components/features/content/ArticleCard'
+import TagCloud from '@/components/features/content/TagCloud'
 import PageHero from '@/components/ui/PageHero'
 import Container from '@/components/ui/Container'
 import { articles } from '@/data/content/articles'
@@ -17,9 +18,11 @@ export default function BlogClient() {
   const searchParams = useSearchParams()
   const categoryParam = searchParams.get('category') ?? ''
   const subParam = searchParams.get('sub') ?? ''
+  const tagParam = searchParams.get('tag') ?? ''
 
   const [activeCategory, setActiveCategory] = useState<string>(categoryParam || '全部')
   const [activeSub, setActiveSub] = useState<string>(subParam || '')
+  const [activeTag, setActiveTag] = useState<string>(tagParam || '')
 
   // 所有一级分类 + "全部"
   const allCategories = useMemo(() => ['全部', ...primaryCategories.map((c) => c.slug)], [])
@@ -55,8 +58,14 @@ export default function BlogClient() {
         result = result.filter((a) => a.subcategory === activeSub)
       }
     }
+
+    // 标签过滤
+    if (activeTag) {
+      result = result.filter((a) => a.tags?.includes(activeTag))
+    }
+
     return result
-  }, [activeCategory, activeSub])
+  }, [activeCategory, activeSub, activeTag])
 
   const sorted = useMemo(() => {
     return [...filtered].sort((a, b) => b.date.localeCompare(a.date))
@@ -72,9 +81,9 @@ export default function BlogClient() {
   return (
     <>
       <PageHero
-        label="文章库"
+        label="动态"
         title="传统行业AI、装修实践与一人公司"
-        subtitle="不是AI百科，也不是成功学。记录真实经历、工具、项目和判断如何一步步形成。"
+        subtitle="不是成品文章，是正在发生的实践记录。工具、项目、判断——持续更新。"
         note="先选你关心的版块，再看有什么。不用按时间刷。"
       />
 
@@ -154,6 +163,22 @@ export default function BlogClient() {
             ))}
           </div>
         )}
+
+        {/* 标签云 */}
+        <div className="mb-8">
+          <div className="flex items-center gap-2 mb-3">
+            <span className="text-xs font-semibold text-ink-muted">按标签找：</span>
+            {activeTag && (
+              <button
+                onClick={() => setActiveTag('')}
+                className="text-xs text-stone border border-stone px-2 py-0.5 rounded-full hover:bg-stone hover:text-white transition-colors"
+              >
+                清除「{activeTag}」×
+              </button>
+            )}
+          </div>
+          <TagCloud limit={30} />
+        </div>
 
         {/* 当前分类描述 */}
         {activeCategory !== '全部' && (

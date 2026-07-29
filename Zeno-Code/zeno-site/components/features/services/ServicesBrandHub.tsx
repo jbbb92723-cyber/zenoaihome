@@ -107,6 +107,24 @@ export default function ServicesBrandHub() {
         </div>
       </section>
 
+      {/* ── 认知前置 ── */}
+      <section className="border-b border-border bg-surface-warm px-5 py-10 sm:px-8 sm:py-12 lg:px-12">
+        <div className="mx-auto max-w-[1320px]">
+          <div className="flex flex-wrap items-center gap-3 text-sm">
+            <span className="font-semibold text-stone">找我之前，先建立自己的判断：</span>
+            <Link href="/knowledge" className="inline-flex items-center gap-1.5 text-ink hover:text-stone transition-colors">
+              看认知地图 <ArrowRight size={14} aria-hidden />
+            </Link>
+            <span className="text-ink-muted">→</span>
+            <Link href="/ai-tools" className="inline-flex items-center gap-1.5 text-ink hover:text-stone transition-colors">
+              免费工具 <ArrowRight size={14} aria-hidden />
+            </Link>
+            <span className="text-ink-muted">→</span>
+            <span className="text-ink-muted">拿不准了再来。那个不确定感，是唯一需要付费的地方。</span>
+          </div>
+        </div>
+      </section>
+
       <section className="border-b border-border px-5 py-16 sm:px-8 sm:py-20 lg:px-12 lg:py-24">
         <div className="mx-auto grid max-w-[1320px] gap-12 lg:grid-cols-[0.3fr_0.7fr]">
           <div>

@@ -137,7 +137,7 @@ export default function ToolsPage() {
               ['1. 先看生活', '用居住诊断看清审美、家庭场景和空间优先级。'],
               ['2. 再看报价', '已有报价时，用初筛找出没写清的边界。'],
               ['3. 查词典和模板', '把风险词和追问问题整理成可沟通清单。'],
-              ['4. 必要时付费判断', '材料复杂、拿不准时，进入人工审查或节点顾问。'],
+              ['4. 必要时付费判断', '材料复杂、拿不准时，进入人工审查或节点顾问。那个不确定感，是唯一需要付费的地方。'],
             ].map(([title, desc]) => (
               <div key={title} className="border border-border bg-surface p-5">
                 <h3 className="text-sm font-semibold text-ink">{title}</h3>

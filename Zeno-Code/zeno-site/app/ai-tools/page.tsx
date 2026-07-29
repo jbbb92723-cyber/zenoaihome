@@ -188,9 +188,14 @@ export default function AiToolsPage() {
           <h2 className="text-xl font-semibold text-ink mb-3">
             工具用完了，还是拿不准？
           </h2>
-          <p className="text-sm text-ink-muted mb-5 max-w-lg mx-auto">
+          <p className="text-sm text-ink-muted mb-1 max-w-lg mx-auto">
             一人公司诊断告诉你卡在哪，但不知道怎么破——来星火者，和正在做同样事的人聊聊。
+          </p>
+          <p className="text-sm text-ink-muted mb-5 max-w-lg mx-auto">
             内容策略给你选题，但写不出来——来星火者，看看别人怎么写。
+          </p>
+          <p className="text-base font-semibold text-ink mb-5">
+            那个不确定感，是唯一需要付费的地方。
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <CTA href="/community" label="了解星火者 →" variant="primary" />

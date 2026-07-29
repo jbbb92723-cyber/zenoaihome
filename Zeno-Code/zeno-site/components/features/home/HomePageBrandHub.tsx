@@ -129,11 +129,11 @@ export default function HomePageBrandHub() {
             <motion.p variants={fadeUp} className="text-sm font-semibold text-white/75">
               传统行业转型一人公司 · OPC 圈南宁主理人
             </motion.p>
-            <motion.h1 variants={fadeUp} className="editorial-display mt-5 max-w-[14ch] text-[3.25rem] leading-[1.02] sm:text-[5rem] lg:text-[6.3rem]">
-              花了二十年，才搞清楚怎么把经验变成可交付的东西。
+            <motion.h1 variants={fadeUp} className="editorial-display mt-5 max-w-[16ch] text-[3.25rem] leading-[1.02] sm:text-[5rem] lg:text-[6.3rem]">
+              装修踩过的坑、一人公司犯过的错、AI 用错的工具——这里替你省掉二十年的认知税。
             </motion.h1>
             <motion.p variants={fadeUp} className="mt-6 max-w-[42rem] text-base leading-8 text-white/82 sm:text-lg">
-              从工地到 AI。从一个人到一群人。现在把这条路——怎么学、怎么做内容、怎么搭系统、怎么找到一起走的人——摊开来给你看。
+              不是教程，是真实路径。给你免费工具自己先试，建立判断力，再决定要不要找我。
             </motion.p>
             <motion.div variants={fadeUp} className="mt-8 flex flex-col gap-3 sm:flex-row">
               <ActionLink href="/ai-tools"><Lightning size={18} aria-hidden />先试试免费工具</ActionLink>
@@ -153,6 +153,9 @@ export default function HomePageBrandHub() {
             </div>
           ))}
         </div>
+        <p className="mx-auto max-w-[1320px] px-5 pb-7 text-center text-xs text-ink-muted sm:px-8 sm:pb-9 lg:px-12">
+          这些数字不是简历——是你不用再交的学费。
+        </p>
       </section>
 
       {/* ── 免费工具 ── */}
@@ -324,6 +327,13 @@ export default function HomePageBrandHub() {
             </Link>
           </div>
         </div>
+      </section>
+
+      {/* ── 独立站声明 ── */}
+      <section className="border-t border-white/10 bg-ink px-5 py-6 text-center sm:px-8 lg:px-12">
+        <p className="mx-auto max-w-2xl text-xs leading-relaxed text-white/40">
+          这个站不追算法、不看阅读量。它是我在数字世界里的自留地——用真实的审美、笨拙的文字、持续的实践，慢慢吸引同频的人。算法会过时，热点会消退，但这里会一直长下去。
+        </p>
       </section>
     </main>
   )

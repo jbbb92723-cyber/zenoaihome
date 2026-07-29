@@ -117,18 +117,35 @@ export const primaryNav: PrimaryNavItem[] = [
   },
   {
     key: 'blog',
-    zh: { label: '文章', href: '/blog' },
+    zh: { label: '动态', href: '/blog' },
     en: { label: 'Writing', href: '/en/blog' },
     groups: [
       {
         key: 'content-all',
-        zh: { label: '全部内容', desc: '把实践过程、判断和方法持续公开。' },
+        zh: { label: '全部动态', desc: '把实践过程、判断和方法持续公开。' },
         en: { label: 'All Writing', desc: 'Work, judgment, and methods in public.' },
         items: [
           { key: 'articles-all', zh: { label: '全部文章', href: '/blog', desc: 'AI 实践、装修判断、一人公司、星火者' }, en: { label: 'All Articles', href: '/en/blog', desc: '' } },
           { key: 'articles-ai', zh: { label: '传统行业 × AI', href: '/blog?category=ai', desc: '工具、工作流、真实复盘' }, en: { label: 'AI Practice', href: '/en/blog', desc: '' } },
           { key: 'articles-opc', zh: { label: '一人公司', href: '/blog?category=opc', desc: '转型、产品、协作' }, en: { label: 'Solo Business', href: '/en/blog', desc: '' } },
           { key: 'notes', zh: { label: '碎片笔记', href: '/notes', desc: '比文章短，比动态重' }, en: { label: 'Notes', href: '/en/notes', desc: '' } },
+        ],
+      },
+    ],
+  },
+  {
+    key: 'knowledge',
+    zh: { label: '知识体系', href: '/knowledge' },
+    en: { label: 'Knowledge', href: '/en/blog' },
+    groups: [
+      {
+        key: 'knowledge-map',
+        zh: { label: '认知地图', desc: '见自己→见天地→见众生。三层结构，不堆资料。' },
+        en: { label: 'Knowledge Map', desc: 'Structured knowledge in three layers.' },
+        items: [
+          { key: 'knowledge-self', zh: { label: '见自己 · 底层逻辑', href: '/knowledge', desc: '一人公司诊断、OPC框架、认知升级' }, en: { label: 'Know Yourself', href: '/en/blog', desc: '' } },
+          { key: 'knowledge-world', zh: { label: '见天地 · 规律本质', href: '/knowledge', desc: '装修13边界、AI实战、商业模式' }, en: { label: 'Know the World', href: '/en/blog', desc: '' } },
+          { key: 'knowledge-others', zh: { label: '见众生 · 关系连接', href: '/knowledge', desc: '星火者、读书会、共燃项目' }, en: { label: 'Know Others', href: '/en/blog', desc: '' } },
         ],
       },
     ],
@@ -190,6 +207,7 @@ const CN_TO_EN: Record<string, string> = {
   '/register': '/en/register',
   '/community': '/en/blog',
   '/opc-knowledge': '/en/blog',
+  '/knowledge': '/en/blog',
   '/topics': '/en/tools',
 }
 
@@ -211,7 +229,7 @@ export function getLangHref(pathname: string, isEn: boolean): string {
     if (pathname.startsWith('/en/blog/')) return '/blog'
     if (pathname.startsWith('/en/articles/')) return '/blog'
     const cnPath = pathname.replace(/^\/en/, '') || '/'
-    const knownCn = ['/', '/start', '/about', '/blog', '/cases', '/living-diagnosis', '/training', '/tools', '/ai-tools', '/tools/quote-check', '/tools/budget-structure', '/tools/budget-risk', '/tools/unit-converter', '/tools/tile-calculator', '/tools/paint-calculator', '/tools/inspection-guide', '/risk-dictionary', '/checklists', '/project-risks', '/topics', '/resources', '/services', '/renovation', '/opc-knowledge', '/contact', '/login', '/register', '/community', '/notes']
+    const knownCn = ['/', '/start', '/about', '/blog', '/cases', '/living-diagnosis', '/training', '/tools', '/ai-tools', '/tools/quote-check', '/tools/budget-structure', '/tools/budget-risk', '/tools/unit-converter', '/tools/tile-calculator', '/tools/paint-calculator', '/tools/inspection-guide', '/risk-dictionary', '/checklists', '/project-risks', '/topics', '/resources', '/services', '/renovation', '/opc-knowledge', '/knowledge', '/contact', '/login', '/register', '/community', '/notes']
     if (knownCn.includes(cnPath)) return cnPath
     return '/'
   } else {

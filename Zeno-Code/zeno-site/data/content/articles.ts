@@ -4414,3 +4414,23 @@ export function getArticlesBySubcategory(subSlug: string): Article[] {
 export function getRecentArticles(count = 3): Article[] {
   return [...articles].sort((a, b) => b.date.localeCompare(a.date)).slice(0, count)
 }
+
+export function getAllArticles(): Article[] {
+  return articles
+}
+
+export function getArticlesByTag(tag: string): Article[] {
+  return articles.filter((a) => a.tags?.includes(tag))
+}
+
+export function getAllTags(): { tag: string; count: number }[] {
+  const counts: Record<string, number> = {}
+  articles.forEach((a) => {
+    a.tags?.forEach((tag) => {
+      counts[tag] = (counts[tag] || 0) + 1
+    })
+  })
+  return Object.entries(counts)
+    .map(([tag, count]) => ({ tag, count }))
+    .sort((a, b) => b.count - a.count)
+}
