@@ -4,12 +4,15 @@ import Image from 'next/image'
 import Link from 'next/link'
 import type { ReactNode } from 'react'
 import { motion } from 'framer-motion'
+import type { Variants } from 'framer-motion'
+import Reveal from '@/components/ui/Reveal'
 import {
   ArrowRight,
   BookOpenText,
   Brain,
   Briefcase,
   Browser,
+  Buildings,
   ChatsCircle,
   Database,
   GraduationCap,
@@ -21,9 +24,9 @@ import {
   PenNib,
 } from '@phosphor-icons/react'
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0 },
+const fadeUp: Variants = {
+  hidden: { opacity: 0, y: 16 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.25, 0.1, 0.25, 1] } },
 }
 
 const proofPoints = [
@@ -98,10 +101,10 @@ function ActionLink({ href, children, secondary = false }: { href: string; child
   return (
     <Link
       href={href}
-      className={`motion-press inline-flex min-h-11 items-center justify-center gap-2 rounded-[7px] px-5 py-3 text-sm font-semibold transition-colors ${
+      className={`motion-press inline-flex min-h-11 items-center justify-center gap-2 rounded-[3px] px-5 py-3 text-sm font-semibold transition-colors ${
         secondary
           ? 'border border-white/45 bg-transparent text-white hover:border-white hover:bg-white/10'
-          : 'bg-white text-ink hover:bg-[#DED2BE]'
+          : 'bg-cinnabar text-white hover:bg-cinnabar/92'
       }`}
     >
       {children}
@@ -126,7 +129,8 @@ export default function HomePageBrandHub() {
         <div className="absolute inset-0 bg-[#111111]/60" aria-hidden />
         <div className="relative mx-auto flex min-h-[calc(82dvh-3.5rem)] max-w-[1320px] items-end px-5 pb-12 pt-24 sm:px-8 sm:pb-16 lg:px-12 lg:pb-20">
           <motion.div initial="hidden" animate="visible" transition={{ staggerChildren: 0.1 }} className="max-w-[52rem] text-white">
-            <motion.p variants={fadeUp} className="text-sm font-semibold text-white/75">
+            <motion.p variants={fadeUp} className="flex items-center gap-2.5 text-sm font-semibold text-white/75">
+              <span className="inline-block h-2 w-2 shrink-0 bg-cinnabar" aria-hidden />
               传统行业转型一人公司 · OPC 圈南宁主理人
             </motion.p>
             <motion.h1 variants={fadeUp} className="editorial-display mt-5 max-w-[16ch] text-[3.25rem] leading-[1.02] sm:text-[5rem] lg:text-[6.3rem]">
@@ -145,14 +149,14 @@ export default function HomePageBrandHub() {
 
       {/* ── 证明点 ── */}
       <section className="border-b border-border bg-surface-warm">
-        <div className="mx-auto grid max-w-[1320px] grid-cols-2 px-5 sm:px-8 lg:grid-cols-4 lg:px-12">
+        <Reveal className="mx-auto grid max-w-[1320px] grid-cols-2 px-5 sm:px-8 lg:grid-cols-4 lg:px-12">
           {proofPoints.map((item, index) => (
             <div key={item.value} className={`py-7 sm:py-9 ${index % 2 ? 'pl-5' : 'pr-5'} lg:border-r lg:border-border lg:px-6 first:lg:pl-0 last:lg:border-r-0 last:lg:pr-0`}>
               <p className="editorial-display text-[1.8rem] text-ink sm:text-[2.2rem]">{item.value}</p>
               <p className="mt-2 max-w-[15rem] text-xs leading-5 text-ink-muted">{item.label}</p>
             </div>
           ))}
-        </div>
+        </Reveal>
         <p className="mx-auto max-w-[1320px] px-5 pb-7 text-center text-xs text-ink-muted sm:px-8 sm:pb-9 lg:px-12">
           这些数字不是简历——是你不用再交的学费。
         </p>
@@ -160,9 +164,9 @@ export default function HomePageBrandHub() {
 
       {/* ── 免费工具 ── */}
       <section className="border-b border-border px-5 py-16 sm:px-8 sm:py-20 lg:px-12 lg:py-24">
-        <div className="mx-auto grid max-w-[1320px] gap-12 lg:grid-cols-[0.34fr_0.66fr]">
+        <Reveal className="mx-auto grid max-w-[1320px] gap-12 lg:grid-cols-[0.34fr_0.66fr]">
           <div>
-            <p className="text-sm font-semibold text-stone">AI 工具</p>
+            <p className="page-label">AI 工具</p>
             <h2 className="editorial-display mt-4 text-[2.5rem] leading-[1.12] sm:text-[3.6rem]">不花钱。先自己试试。</h2>
             <p className="mt-5 max-w-md text-base leading-8 text-ink-muted">
               三个免费工具，自己能用、能分享、能帮你搞清楚下一步该做什么。不给结果——给方向。
@@ -175,7 +179,7 @@ export default function HomePageBrandHub() {
             {freeTools.map((tool) => {
               const Icon = tool.icon
               return (
-                <Link key={tool.title} href={tool.href} className="group border border-border bg-surface p-5 transition-colors hover:border-stone">
+                <Link key={tool.title} href={tool.href} className="group card-hover border border-border bg-surface p-5">
                   <Icon size={22} weight="duotone" className="text-stone" aria-hidden />
                   <h3 className="mt-4 text-sm font-semibold text-ink">{tool.title}</h3>
                   <p className="mt-2 text-xs leading-relaxed text-ink-muted">{tool.desc}</p>
@@ -183,14 +187,14 @@ export default function HomePageBrandHub() {
               )
             })}
           </div>
-        </div>
+        </Reveal>
       </section>
 
       {/* ── AI 服务 ── */}
       <section className="border-b border-border bg-surface-warm px-5 py-16 sm:px-8 sm:py-20 lg:px-12 lg:py-24">
-        <div className="mx-auto grid max-w-[1320px] gap-12 lg:grid-cols-[0.34fr_0.66fr]">
+        <Reveal className="mx-auto grid max-w-[1320px] gap-12 lg:grid-cols-[0.34fr_0.66fr]">
           <div>
-            <p className="text-sm font-semibold text-stone">AI 服务</p>
+            <p className="page-label">AI 服务</p>
             <h2 className="editorial-display mt-4 text-[2.5rem] leading-[1.12] sm:text-[3.6rem]">不卖课。只交付具体工作。</h2>
             <p className="mt-5 max-w-md text-base leading-8 text-ink-muted">
               培训、工作流、知识库、智能体、网站。先说清对象、材料和验收边界，确认能交付了再报价。
@@ -204,7 +208,7 @@ export default function HomePageBrandHub() {
               const Icon = service.icon
               return (
                 <Link key={service.id} href={service.href} className="group grid gap-4 border-b border-border py-5 sm:grid-cols-[3rem_1fr_auto] sm:items-center">
-                  <span className="text-xs font-semibold tabular-nums text-ink-faint">{service.id}</span>
+                  <span className="text-xs font-semibold tabular-nums text-cinnabar">{service.id}</span>
                   <div>
                     <Icon size={20} weight="duotone" className="mb-2 text-stone" aria-hidden />
                     <h3 className="text-base font-semibold text-ink">{service.title}</h3>
@@ -215,20 +219,20 @@ export default function HomePageBrandHub() {
               )
             })}
           </div>
-        </div>
+        </Reveal>
       </section>
 
       {/* ── 星火者 ── */}
       <section className="border-b border-border px-5 py-16 sm:px-8 sm:py-20 lg:px-12 lg:py-24">
-        <div className="mx-auto grid max-w-[1320px] gap-12 lg:grid-cols-[0.34fr_0.66fr]">
+        <Reveal className="mx-auto grid max-w-[1320px] gap-12 lg:grid-cols-[0.34fr_0.66fr]">
           <div>
-            <p className="text-sm font-semibold text-stone">星火者</p>
+            <p className="page-label">星火者</p>
             <h2 className="editorial-display mt-4 text-[2.5rem] leading-[1.12] sm:text-[3.6rem]">一个人可以开始，但很难独自走远。</h2>
             <p className="mt-5 max-w-md text-base leading-8 text-ink-muted">
               OPC 协作共同体。不是围观群——每个进来的人都在做事。隔周一次火种读书会，日常有回应。有合适的项目一起做。
             </p>
             <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
-              <Link href="/community" className="motion-press inline-flex min-h-11 items-center gap-2 rounded-[7px] bg-ink px-5 py-3 text-sm font-semibold text-white hover:bg-stone-deep">
+              <Link href="/community" className="motion-press inline-flex min-h-11 items-center gap-2 rounded-[3px] bg-cinnabar px-5 py-3 text-sm font-semibold text-white hover:bg-cinnabar/92">
                 了解星火者 <ArrowRight size={17} aria-hidden />
               </Link>
               <span className="text-xs text-ink-muted">20 人 · ¥1,499 · 试运行招募中</span>
@@ -252,14 +256,14 @@ export default function HomePageBrandHub() {
               <p className="mt-2 text-xs leading-relaxed text-ink-muted">所有活动记录、案例复盘、项目档案沉淀于此。不是资料堆——是正在生长的实践档案。</p>
             </div>
           </div>
-        </div>
+        </Reveal>
       </section>
 
       {/* ── 装修视野 ── */}
       <section className="border-b border-border bg-surface-warm px-5 py-16 sm:px-8 sm:py-20 lg:px-12 lg:py-24">
-        <div className="mx-auto grid max-w-[1320px] gap-10 lg:grid-cols-[0.45fr_0.55fr] lg:items-center">
+        <Reveal className="mx-auto grid max-w-[1320px] gap-10 lg:grid-cols-[0.45fr_0.55fr] lg:items-center">
           <div>
-            <p className="text-sm font-semibold text-stone">装修视野</p>
+            <p className="page-label">装修视野</p>
             <h2 className="editorial-display mt-4 text-[2.4rem] leading-[1.12] sm:text-[3.4rem]">17 年工地里长出来的判断。</h2>
             <p className="mt-5 max-w-md text-base leading-8 text-ink-muted">
               不是教程——是怎么看报价、怎么判断施工质量、怎么在入住前避开大多数人都踩过的坑。免费工具自己用，拿不准的来聊。
@@ -273,17 +277,17 @@ export default function HomePageBrandHub() {
               </Link>
             </div>
           </div>
-          <div className="border-l-2 border-stone pl-6">
+          <div className="border-l-2 border-cinnabar/60 pl-6">
             <p className="text-base leading-8 text-ink-muted">
               装修是重决策——不标价，不接急单。如果你的情况需要深度对接，先看看这些免费工具和文章，建立自己的判断。需要找人帮你判断时，再找我聊。
             </p>
           </div>
-        </div>
+        </Reveal>
       </section>
 
       {/* ── 内容与实践 ── */}
       <section className="border-b border-border px-5 py-16 sm:px-8 sm:py-20 lg:px-12 lg:py-24">
-        <div className="mx-auto grid max-w-[1320px] gap-10 lg:grid-cols-[0.38fr_0.62fr]">
+        <Reveal className="mx-auto grid max-w-[1320px] gap-10 lg:grid-cols-[0.38fr_0.62fr]">
           <div>
             <Buildings size={30} weight="duotone" className="text-stone" aria-hidden />
             <h2 className="editorial-display mt-5 text-[2.4rem] leading-[1.12] sm:text-[3.4rem]">不是教程里学来的——是从经营、团队、客户和工地里长出来的。</h2>
@@ -292,28 +296,28 @@ export default function HomePageBrandHub() {
             </p>
           </div>
           <div className="grid gap-4 sm:grid-cols-3">
-            <Link href="/blog?category=ai" className="group border border-border bg-surface p-5 transition-colors hover:border-stone">
+            <Link href="/blog?category=ai" className="group card-hover border border-border bg-surface p-5">
               <Lightning size={22} weight="duotone" className="text-stone" />
               <h3 className="mt-4 text-sm font-semibold text-ink">传统行业 × AI</h3>
               <p className="mt-2 text-xs leading-relaxed text-ink-muted">工具、工作流、内容系统、真实复盘</p>
             </Link>
-            <Link href="/blog?category=renovation" className="group border border-border bg-surface p-5 transition-colors hover:border-stone">
+            <Link href="/blog?category=renovation" className="group card-hover border border-border bg-surface p-5">
               <HouseLine size={22} weight="duotone" className="text-stone" />
               <h3 className="mt-4 text-sm font-semibold text-ink">装修实践</h3>
               <p className="mt-2 text-xs leading-relaxed text-ink-muted">17 年一线经验的判断</p>
             </Link>
-            <Link href="/blog?category=opc" className="group border border-border bg-surface p-5 transition-colors hover:border-stone">
+            <Link href="/blog?category=opc" className="group card-hover border border-border bg-surface p-5">
               <UsersThree size={22} weight="duotone" className="text-stone" />
               <h3 className="mt-4 text-sm font-semibold text-ink">一人公司</h3>
               <p className="mt-2 text-xs leading-relaxed text-ink-muted">转型、产品、协作与共同体</p>
             </Link>
           </div>
-        </div>
+        </Reveal>
       </section>
 
       {/* ── 底部 CTA ── */}
       <section className="bg-ink px-5 py-16 text-white sm:px-8 sm:py-20 lg:px-12 lg:py-24">
-        <div className="mx-auto grid max-w-[1320px] gap-10 lg:grid-cols-[0.58fr_0.42fr] lg:items-end">
+        <Reveal className="mx-auto grid max-w-[1320px] gap-10 lg:grid-cols-[0.58fr_0.42fr] lg:items-end">
           <div>
             <div className="flex items-center gap-3 text-white/65"><UsersThree size={24} aria-hidden /><span className="text-sm font-semibold">星火者</span></div>
             <h2 className="editorial-display mt-5 max-w-[15ch] text-[2.7rem] leading-[1.1] sm:text-[4rem]">找一群正在做事的人，一起走。</h2>
@@ -322,11 +326,11 @@ export default function HomePageBrandHub() {
             </p>
           </div>
           <div className="lg:text-right">
-            <Link href="/community" className="motion-press inline-flex min-h-11 items-center gap-2 rounded-[7px] bg-white px-5 py-3 text-sm font-semibold text-ink hover:bg-[#DED2BE]">
+            <Link href="/community" className="motion-press inline-flex min-h-11 items-center gap-2 rounded-[3px] bg-cinnabar px-5 py-3 text-sm font-semibold text-white hover:bg-cinnabar/92">
               <ChatsCircle size={18} aria-hidden />了解星火者<ArrowRight size={17} aria-hidden />
             </Link>
           </div>
-        </div>
+        </Reveal>
       </section>
 
       {/* ── 独立站声明 ── */}

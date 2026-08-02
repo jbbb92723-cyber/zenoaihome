@@ -31,7 +31,7 @@ export default function PageHero({
           {subtitle}
         </p>
         {note && (
-          <p className="mt-5 max-w-xl border-l border-ink/25 pl-4 text-sm leading-7 text-ink-faint">{note}</p>
+          <p className="mt-5 max-w-xl border-l-2 border-cinnabar/60 pl-4 text-sm leading-7 text-ink-faint">{note}</p>
         )}
       </Container>
     </div>

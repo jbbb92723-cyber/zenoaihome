@@ -23,6 +23,9 @@ const config: Config = {
         'stone-deep':  'rgb(var(--color-stone-deep-rgb) / <alpha-value>)',
         border:       'rgb(var(--color-border-rgb) / <alpha-value>)',
         'border-subtle': 'rgb(var(--color-border-subtle-rgb) / <alpha-value>)',
+        // ─── 强调色（朱砂，印章红，克制使用）───
+        cinnabar:     'rgb(var(--color-cinnabar-rgb) / <alpha-value>)',
+        copper:       'rgb(var(--color-copper-rgb) / <alpha-value>)',
         // ─── 专题色 ───
         topic1: '#8B7355',
         topic2: '#6B7A5E',
@@ -31,16 +34,17 @@ const config: Config = {
         topic5: '#8A6B5B',
       },
       fontFamily: {
-        sans: ['var(--font-noto)', 'var(--font-inter)', 'system-ui', 'sans-serif'],
+        sans: ['var(--font-sans)', 'var(--font-noto)', 'PingFang SC', 'Microsoft YaHei', 'system-ui', 'sans-serif'],
+        serif: ['var(--font-serif)', 'Noto Serif SC', 'Source Han Serif SC', 'Songti SC', 'STSong', 'SimSun', 'Georgia', 'serif'],
         mono: ['ui-monospace', 'SFMono-Regular', 'monospace'],
       },
       fontSize: {
         // 语义化字号别名
         label:  ['0.75rem',  { lineHeight: '1.4', letterSpacing: '0.06em' }], // 12px
         caption:['0.8125rem',{ lineHeight: '1.5' }],                           // 13px
-        body:   ['1rem',     { lineHeight: '1.85' }],                          // 16px
-        'body-lg':['1.0625rem',{ lineHeight: '1.9' }],                         // 17px
-        prose:  ['1.125rem', { lineHeight: '1.95' }],                          // 18px
+        body:   ['1rem',     { lineHeight: '1.8' }],                           // 16px
+        'body-lg':['1.0625rem',{ lineHeight: '1.8' }],                         // 17px
+        prose:  ['1.125rem', { lineHeight: '1.85' }],                          // 18px
       },
       spacing: {
         section:  '7rem',    // 112px  大区块上下 (奢侈留白)
@@ -54,14 +58,14 @@ const config: Config = {
         layout:  '1152px',  // 全站 max（6xl ≈ 1152px）
       },
       borderRadius: {
-        card: '12px',
-        tag:  '4px',
+        card: '4px',
+        tag:  '2px',
       },
       typography: {
         DEFAULT: {
           css: {
             color: 'var(--color-ink)',
-            lineHeight: '1.9',
+            lineHeight: '1.8',
             fontSize: '1.0625rem',
             '--tw-prose-body': 'var(--color-ink-muted)',
             '--tw-prose-headings': 'var(--color-ink)',

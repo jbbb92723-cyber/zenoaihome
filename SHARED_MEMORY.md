@@ -76,3 +76,5 @@
 8. **OA「服务待办」工作台**：四状态Tab+AI分类+AI回复，是「线索→成交」的主流程引擎
 
 2026-07-26 | Codex | 整理本次待推送改动：官网协作规则更新与内容资产库结构化新增/索引更新分组提交；提交前修正 GROW 方案单元关联列表格式。
+
+2026-08-01 | Kimi Code | 官网 zeno-site 完成「东方美学 + 实用主义」重构：接入 next/font 思源宋体/黑体；新增 cinnabar 朱砂强调色；圆角统一为 2-4px；共享 CTA/Header/PageHero 对齐新 token；新增 Reveal 滚动渐显组件；首页 HomePageBrandHub 接入新字体与动效；修复 knowledge 页与 CommercialLadder 的 TS/构建错误；tsc/lint/build 全通过；已 push。

@@ -14,7 +14,7 @@ import {
   ArrowRight,
   Briefcase,
   PenNib,
-} from '@phosphor-icons/react'
+} from '@phosphor-icons/react/dist/ssr'
 
 export const metadata: Metadata = {
   title: '知识体系｜装修·一人公司·AI 的认知地图',
@@ -144,10 +144,14 @@ export default function KnowledgePage() {
   return (
     <>
       <StructuredData
-        type="WebPage"
-        name="知识体系"
-        description="装修·一人公司·AI 的认知地图：见自己→见天地→见众生"
-        url="https://zenoaihome.com/knowledge"
+        data={{
+          '@context': 'https://schema.org',
+          '@type': 'WebPage',
+          name: '知识体系',
+          description: '装修·一人公司·AI 的认知地图：见自己→见天地→见众生',
+          url: 'https://zenoaihome.com/knowledge',
+          inLanguage: 'zh-CN',
+        }}
       />
 
       {/* ── Hero ── */}

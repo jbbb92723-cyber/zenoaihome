@@ -8,11 +8,11 @@ interface CTAProps {
 }
 
 export default function CTA({ href, label, variant = 'primary', external = false }: CTAProps) {
-  const base = 'motion-press inline-flex min-h-10 items-center justify-center rounded-[7px] text-sm font-semibold'
+  const base = 'motion-press inline-flex min-h-10 items-center justify-center rounded-[3px] text-sm font-semibold'
 
   const variants = {
     primary:
-      'bg-ink px-5 py-2.5 text-white hover:bg-ink/88 hover:shadow-[0_14px_32px_rgba(17,17,17,0.14)]',
+      'bg-cinnabar px-5 py-2.5 text-white hover:bg-cinnabar/92 hover:shadow-[0_12px_30px_rgba(17,17,17,0.16)]',
     secondary:
       'border border-ink/18 bg-surface px-5 py-2.5 text-ink hover:border-ink/40 hover:bg-surface-warm/70',
     ghost:

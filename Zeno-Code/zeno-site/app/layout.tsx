@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Analytics } from '@vercel/analytics/react'
+import { Noto_Sans_SC, Noto_Serif_SC } from 'next/font/google'
 import { ThemeProvider } from '@/components/layout/ThemeProvider'
 import { SessionProvider } from 'next-auth/react'
 import Header from '@/components/layout/Header'
@@ -9,6 +10,19 @@ import ConditionalAIWidget from '@/components/layout/ConditionalAIWidget'
 import HashScrollHandler from '@/components/layout/HashScrollHandler'
 import '@/styles/globals.css'
 
+// ── 字体：正文思源黑体 + 标题思源宋体（next/font 自托管，构建时下载）──
+const notoSans = Noto_Sans_SC({
+  subsets: ['latin'],
+  variable: '--font-sans',
+  display: 'swap',
+})
+
+const notoSerif = Noto_Serif_SC({
+  weight: ['500', '600', '700'],
+  subsets: ['latin'],
+  variable: '--font-serif',
+  display: 'swap',
+})
 
 export const metadata: Metadata = {
   title: {
@@ -62,7 +76,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="zh-CN" suppressHydrationWarning>
-      <body className="bg-canvas text-ink font-sans antialiased">
+      <body className={`${notoSans.variable} ${notoSerif.variable} bg-canvas text-ink font-sans antialiased`}>
+        <noscript>
+          <style>{`.reveal { opacity: 1 !important; transform: none !important; transition: none !important; }`}</style>
+        </noscript>
         <SessionProvider>
           <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false} themes={['light', 'eye', 'dark']}>
             <HashScrollHandler />

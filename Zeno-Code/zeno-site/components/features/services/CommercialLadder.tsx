@@ -22,9 +22,8 @@ type Props = {
 
 const tierAccent: Record<LadderRung['tier'], string> = {
   free: 'bg-ink text-white',
-  'paid-low': 'bg-stone-pale text-ink',
-  'paid-high': 'bg-ink text-white',
-  'paid-flagship': 'bg-ink text-white',
+  'paid-core': 'bg-stone-pale text-ink',
+  'paid-community': 'bg-stone-pale text-ink',
 }
 
 export default function CommercialLadder({
@@ -57,8 +56,8 @@ export default function CommercialLadder({
               <span className="text-[0.65rem] font-semibold uppercase tracking-widest text-ink-faint">
                 {r.source === 'tool'
                   ? '工具'
-                  : r.source === 'product'
-                    ? '资料'
+                  : r.source === 'community'
+                    ? '社群'
                     : '人工服务'}
               </span>
             </div>

@@ -144,7 +144,7 @@ export default function Header() {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                     </svg>
                   )}
-                  <span className={`absolute bottom-0 left-3 right-3 h-px origin-left bg-stone transition-transform duration-200 ${isActive(item.href) || activeMenu === item.key ? 'scale-x-100' : 'scale-x-0 group-hover/nav:scale-x-100'}`} />
+                  <span className={`absolute bottom-0 left-3 right-3 h-px origin-left bg-cinnabar transition-transform duration-200 ${isActive(item.href) || activeMenu === item.key ? 'scale-x-100' : 'scale-x-0 group-hover/nav:scale-x-100'}`} />
                 </Link>
 
                 {item.groups && activeMenu === item.key && (
@@ -235,7 +235,7 @@ export default function Header() {
             </Link>
             <Link
               href={uploadHref}
-              className="motion-press ml-1 inline-flex h-9 items-center rounded-[8px] bg-ink px-4 text-xs font-semibold text-white hover:bg-stone-deep hover:shadow-[0_12px_28px_rgba(20,20,20,0.18)]"
+              className="motion-press ml-1 inline-flex h-9 items-center rounded-[3px] bg-cinnabar px-4 text-xs font-semibold text-white hover:bg-cinnabar/92 hover:shadow-[0_12px_30px_rgba(17,17,17,0.16)]"
             >
               {uploadLabel}
             </Link>
@@ -273,7 +273,7 @@ export default function Header() {
             ))}
 
             <div className="mt-6 grid gap-3 border-t border-border pt-5">
-              <Link href={uploadHref} onClick={() => setMenuOpen(false)} className="motion-press inline-flex h-11 items-center justify-center bg-stone px-4 text-sm font-medium text-white">
+              <Link href={uploadHref} onClick={() => setMenuOpen(false)} className="motion-press inline-flex h-11 items-center justify-center rounded-[3px] bg-cinnabar px-4 text-sm font-medium text-white hover:bg-cinnabar/92">
                 {uploadLabel}
               </Link>
               <div className="flex items-center justify-between">

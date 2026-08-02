@@ -51,11 +51,12 @@
   --section-y: 7rem;
   --section-y-sm: 4rem;
 
-  /* 动效语义变量 — 判断仪器式交互 */
-  --motion-fast: 140ms;
+  /* 动效语义变量 — 克制渐显式交互 */
+  --motion-fast: 200ms;
   --motion-base: 220ms;
   --motion-slow: 420ms;
-  --motion-ease: cubic-bezier(.22, .61, .36, 1);
+  --motion-enter: 500ms;
+  --motion-ease: cubic-bezier(.25, .1, .25, 1);
 }
 
 /* 暗色主题 — 温暖暗色，非纯黑 */
@@ -122,7 +123,7 @@ body {
     radial-gradient(circle at 86% 22%, rgb(var(--color-surface-warm-rgb) / 0.14), transparent 22rem),
     linear-gradient(180deg, rgb(var(--color-canvas-rgb)), rgb(var(--color-canvas-rgb)));
   background-attachment: fixed;
-  line-height: 1.85;
+  line-height: 1.8;
 }
 
 /* ── 纸纹纹理：3% 噪点叠加（MA Studio 对标）── */
@@ -190,15 +191,34 @@ body::after {
   color: var(--color-ink);
 }
 
+/* ── 区块小标签（朱砂印章式点缀，克制使用）── */
+.page-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: var(--color-cinnabar);
+}
+
+/* ── 区块标题（宋体，靠字号与留白分层）── */
+.section-heading {
+  font-family: var(--font-serif, "Noto Serif SC", "Source Han Serif SC", "Source Han Serif CN", "Songti SC", "STSong", "SimSun", Georgia, serif);
+  font-size: 1.65rem;
+  font-weight: 600;
+  line-height: 1.28;
+  letter-spacing: 0.02em;
+  color: var(--color-ink);
+  font-feature-settings: "kern" 1;
+}
+
 .editorial-serif {
-  font-family: "Noto Serif SC", "Source Han Serif SC", "Source Han Serif CN", "Songti SC", "STSong", "SimSun", Georgia, serif;
+  font-family: var(--font-serif, "Noto Serif SC", "Source Han Serif SC", "Source Han Serif CN", "Songti SC", "STSong", "SimSun", Georgia, serif);
   font-weight: 500;
   letter-spacing: 0.02em;
   font-feature-settings: "kern" 1;
 }
 
 .editorial-display {
-  font-family: "Noto Serif SC", "Source Han Serif SC", "Source Han Serif CN", "Songti SC", "STSong", "SimSun", Georgia, serif;
+  font-family: var(--font-serif, "Noto Serif SC", "Source Han Serif SC", "Source Han Serif CN", "Songti SC", "STSong", "SimSun", Georgia, serif);
   font-weight: 500;
   letter-spacing: 0.025em;
   font-feature-settings: "kern" 1;
@@ -206,7 +226,7 @@ body::after {
 
 /* ── 编辑细节：衬线数字（用于卡片/关键数字）── */
 .editorial-num {
-  font-family: "Noto Serif SC", "Source Han Serif SC", Georgia, serif;
+  font-family: var(--font-serif, "Noto Serif SC", "Source Han Serif SC", Georgia, serif);
   font-weight: 500;
   font-feature-settings: "lnum" 1, "kern" 1;
 }
@@ -214,7 +234,7 @@ body::after {
 /* ── 编辑细节：首字母下沉（仅首页关键段落）── */
 .drop-cap::first-letter {
   float: left;
-  font-family: "Noto Serif SC", "Source Han Serif SC", Georgia, serif;
+  font-family: var(--font-serif, "Noto Serif SC", "Source Han Serif SC", Georgia, serif);
   font-size: 3.4em;
   font-weight: 500;
   line-height: 0.82;
@@ -244,16 +264,23 @@ body::after {
 :root {
   --color-copper: #C4A67A;
   --color-copper-rgb: 196 166 122;
+  /* 朱砂 — 全站唯一强调色（印章红）：关键 CTA、当前导航态、印章式点缀、链接 hover */
+  --color-cinnabar: #9E2B25;
+  --color-cinnabar-rgb: 158 43 37;
 }
 
 .dark {
   --color-copper: #D4BA8A;
   --color-copper-rgb: 212 186 138;
+  --color-cinnabar: #C9504A;
+  --color-cinnabar-rgb: 201 80 74;
 }
 
 .eye {
   --color-copper: #C0A074;
   --color-copper-rgb: 192 160 116;
+  --color-cinnabar: #94332C;
+  --color-cinnabar-rgb: 148 51 44;
 }
 
 .headline-underline {
@@ -403,7 +430,7 @@ body::after {
 ───────────────────────────────────────── */
 .prose-zh {
   font-size: 1.0625rem;  /* 17px */
-  line-height: 1.9;
+  line-height: 1.8;
   letter-spacing: 0.015em;
   color: var(--color-ink);
 }
@@ -493,15 +520,15 @@ img {
 /* ─────────────────────────────────────────
    卡片 hover 过渡
 ───────────────────────────────────────── */
-/* 改了什么：卡片 hover 加 translateY 微移 + shadow 加深 */
-/* 为什么改：微交互提升质感，不夸张。奢侈感来自细节。 */
+/* 改了什么：移除无效的 translateY(0)，hover 改为微上移 + 柔影扩散（200ms） */
+/* 为什么改：brief 要求 hover 有质感反馈但不夸张——水墨晕染感来自阴影的柔和扩散。 */
 .card-hover {
-  transition: border-color var(--motion-fast) var(--motion-ease), transform var(--motion-fast) var(--motion-ease), box-shadow var(--motion-base) var(--motion-ease);
+  transition: border-color var(--motion-fast) var(--motion-ease), transform var(--motion-fast) var(--motion-ease), box-shadow var(--motion-fast) var(--motion-ease);
 }
 .card-hover:hover {
   border-color: var(--color-ink);
-  transform: translateY(0);
-  box-shadow: 0 4px 20px rgb(17 17 17 / 0.06);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 32px rgb(17 17 17 / 0.08);
 }
 
 /* ─────────────────────────────────────────
@@ -518,8 +545,8 @@ img {
 }
 
 @keyframes hero-in {
-  from { opacity: 0; transform: translateY(10px); filter: blur(2px); }
-  to { opacity: 1; transform: translateY(0); filter: blur(0); }
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes scan-pass {
@@ -534,21 +561,12 @@ img {
   to { transform: scaleX(1); opacity: 1; }
 }
 
-@keyframes zeno-pulse {
-  0%, 100% { box-shadow: 0 18px 42px rgb(17 17 17 / 0.1); }
-  50% { box-shadow: 0 20px 52px rgb(17 17 17 / 0.18); }
-}
-
 .animate-menu-in {
   animation: menu-in var(--motion-base) var(--motion-ease) both;
 }
 
 .animate-surface-in {
   animation: surface-in var(--motion-base) var(--motion-ease) both;
-}
-
-.animate-zeno-pulse-once {
-  animation: zeno-pulse 1800ms ease-in-out 1;
 }
 
 .motion-hero > * {
@@ -637,6 +655,33 @@ img {
     animation-iteration-count: 1 !important;
     scroll-behavior: auto !important;
     transition-duration: 1ms !important;
+  }
+}
+
+/* ─────────────────────────────────────────
+   Reveal 滚动渐显（IntersectionObserver 驱动）
+   无 JS 时内容默认可见，保证可读性
+───────────────────────────────────────── */
+.reveal {
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    opacity 0.5s var(--motion-ease),
+    transform 0.5s var(--motion-ease);
+}
+
+.reveal:not(.is-visible) {
+  opacity: 0;
+  transform: translateY(16px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal:not(.is-visible),
+  .reveal.is-visible {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
   }
 }
 
