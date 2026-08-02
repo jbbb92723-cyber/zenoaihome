@@ -56,7 +56,7 @@ export default function TrainingPage() {
         <Container className="grid gap-10 py-14 sm:py-16 lg:grid-cols-[0.62fr_0.38fr] lg:items-end lg:py-20">
           <div>
             <p className="text-sm font-semibold text-stone">AI 培训与企业内训</p>
-            <h1 className="editorial-display mt-5 max-w-[14ch] text-[3.2rem] leading-[1.03] sm:text-[4.8rem]">不从概念开始，从你们每天重复的工作开始。</h1>
+            <h1 className="editorial-display mt-5 max-w-[14ch] text-[2.4rem] leading-[1.1] sm:text-[3.2rem]">不从概念开始，从你们每天重复的工作开始。</h1>
             <p className="mt-7 max-w-3xl text-base leading-8 text-ink-muted sm:text-lg">赞诺用传统行业经营者的视角讲 AI。目标不是让学员记住更多工具，而是带着一个真实任务完成第一次可继续使用的实践。</p>
           </div>
           <div>
@@ -70,7 +70,7 @@ export default function TrainingPage() {
         <section className="grid gap-12 lg:grid-cols-[0.3fr_0.7fr]">
           <div>
             <p className="text-sm font-semibold text-stone">课程模块</p>
-            <h2 className="editorial-display mt-4 text-[2.5rem] leading-[1.12] sm:text-[3.5rem]">按问题组合，不卖固定课件。</h2>
+            <h2 className="editorial-display mt-4 text-[1.8rem] leading-[1.15] sm:text-[2.2rem] lg:text-[2.6rem]">按问题组合，不卖固定课件。</h2>
           </div>
           <div className="border-t border-border">
             {modules.map((item) => (
@@ -94,7 +94,7 @@ export default function TrainingPage() {
         <section className="mt-20 border-y border-border py-12 sm:mt-24 sm:py-16">
           <div className="max-w-3xl">
             <p className="text-sm font-semibold text-stone">交付方式</p>
-            <h2 className="editorial-display mt-4 text-[2.5rem] leading-[1.12] sm:text-[3.5rem]">培训结束，要留下能继续做的东西。</h2>
+            <h2 className="editorial-display mt-4 text-[1.8rem] leading-[1.15] sm:text-[2.2rem] lg:text-[2.6rem]">培训结束，要留下能继续做的东西。</h2>
           </div>
           <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-4">
             {delivery.map((item, index) => (
@@ -109,7 +109,7 @@ export default function TrainingPage() {
         <section className="mt-20 grid gap-10 bg-surface-warm p-7 sm:mt-24 sm:p-10 lg:grid-cols-[0.4fr_0.6fr]">
           <div>
             <p className="text-sm font-semibold text-stone">为什么由赞诺来讲</p>
-            <h2 className="editorial-display mt-4 text-[2.4rem] leading-[1.12] sm:text-[3.3rem]">不是旁观转型，而是正在转型。</h2>
+            <h2 className="editorial-display mt-4 text-[1.8rem] leading-[1.15] sm:text-[2.2rem] lg:text-[2.6rem]">不是旁观转型，而是正在转型。</h2>
           </div>
           <div className="space-y-4 text-sm leading-7 text-ink-muted">
             <p>17 年传统行业经营、销售管理和大型装修项目经验，让我知道工具最终要进入团队、客户、合同和交付，而不是停在演示里。</p>
@@ -120,7 +120,7 @@ export default function TrainingPage() {
 
         <section className="mt-16 grid gap-8 border-y border-border py-10 sm:mt-20 lg:grid-cols-[0.62fr_0.38fr] lg:items-center">
           <div>
-            <h2 className="editorial-display text-[2.4rem] leading-[1.12] sm:text-[3.3rem]">把团队情况和目标说清楚。</h2>
+            <h2 className="editorial-display text-[1.8rem] leading-[1.15] sm:text-[2.2rem] lg:text-[2.6rem]">把团队情况和目标说清楚。</h2>
             <p className="mt-4 max-w-2xl text-sm leading-7 text-ink-muted">请提供行业、人数、目前使用过的 AI 工具、最希望解决的三个场景。确认匹配后，再给出课程组合和正式报价。</p>
           </div>
           <div className="lg:text-right">

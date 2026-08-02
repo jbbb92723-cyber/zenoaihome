@@ -47,7 +47,7 @@ export default function CommunityPage() {
       <section className="border-b border-white/10 bg-ink px-5 py-16 text-white sm:px-8 sm:py-20 lg:px-12 lg:py-24">
         <div className="mx-auto max-w-[1320px]">
           <p className="text-sm font-semibold text-white/55">正在发起</p>
-          <h1 className="editorial-display mt-5 max-w-[13ch] text-[3.3rem] leading-[1.02] sm:text-[5.2rem] lg:text-[6.2rem]">赞诺·星火者共同体</h1>
+          <h1 className="editorial-display mt-5 max-w-[13ch] text-[2.4rem] leading-[1.1] sm:text-[3.2rem]">星火者共同体</h1>
           <div className="mt-10 grid gap-8 border-t border-white/20 pt-8 lg:grid-cols-[0.62fr_0.38fr]">
             <p className="max-w-3xl text-xl leading-9 text-white sm:text-2xl sm:leading-10">赞诺发起，但要能独立运转的成员共同体。</p>
             <p className="text-sm leading-7 text-white/65">面向 AI 时代的一人公司、转型创业者和独立实践者。不是围观群，也不是只靠发起人输出的课堂。</p>
@@ -59,7 +59,7 @@ export default function CommunityPage() {
         <section className="grid gap-12 lg:grid-cols-[0.34fr_0.66fr]">
           <div>
             <p className="text-sm font-semibold text-stone">为什么需要共同体</p>
-            <h2 className="editorial-display mt-4 text-[2.5rem] leading-[1.12] sm:text-[3.5rem]">一个人可以开始，但很难独自形成闭环。</h2>
+            <h2 className="editorial-display mt-4 text-[1.8rem] leading-[1.15] sm:text-[2.2rem] lg:text-[2.6rem]">一个人可以开始，但很难独自形成闭环。</h2>
           </div>
           <div className="space-y-5 text-base leading-8 text-ink-muted">
             <p>AI 降低了生产门槛，却没有自动解决方向、信用、客户、协作和持续行动。很多一人公司不是能力不够，而是长期缺少反馈、连接和共同完成真实项目的环境。</p>
@@ -71,7 +71,7 @@ export default function CommunityPage() {
         <section className="mt-20 border-y border-border py-12 sm:mt-24 sm:py-16">
           <div className="max-w-3xl">
             <p className="text-sm font-semibold text-stone">共同体机制</p>
-            <h2 className="editorial-display mt-4 text-[2.5rem] leading-[1.12] sm:text-[3.5rem]">从学习开始，走向连接和项目。</h2>
+            <h2 className="editorial-display mt-4 text-[1.8rem] leading-[1.15] sm:text-[2.2rem] lg:text-[2.6rem]">从学习开始，走向连接和项目。</h2>
           </div>
           <div className="mt-10 grid sm:grid-cols-2">
             {mechanisms.map((item, index) => (
@@ -87,7 +87,7 @@ export default function CommunityPage() {
         <section className="mt-20 grid gap-12 sm:mt-24 lg:grid-cols-[0.3fr_0.7fr]">
           <div>
             <p className="text-sm font-semibold text-stone">共同信条</p>
-            <h2 className="editorial-display mt-4 text-[2.5rem] leading-[1.12] sm:text-[3.5rem]">先判断彼此是否适合。</h2>
+            <h2 className="editorial-display mt-4 text-[1.8rem] leading-[1.15] sm:text-[2.2rem] lg:text-[2.6rem]">先判断彼此是否适合。</h2>
           </div>
           <div className="border-t border-border">
             {principles.map((item, index) => (
@@ -103,7 +103,7 @@ export default function CommunityPage() {
         <section className="mt-20 bg-surface-warm p-7 sm:mt-24 sm:p-10">
           <div className="max-w-3xl">
             <p className="text-sm font-semibold text-stone">如何进入</p>
-            <h2 className="editorial-display mt-4 text-[2.5rem] leading-[1.12] sm:text-[3.5rem]">有门槛，但不看漂亮简历。</h2>
+            <h2 className="editorial-display mt-4 text-[1.8rem] leading-[1.15] sm:text-[2.2rem] lg:text-[2.6rem]">有门槛，但不看漂亮简历。</h2>
             <p className="mt-5 text-sm leading-7 text-ink-muted">更看重真实行动、合作边界和是否愿意贡献。当前处于发起阶段，采用小规模沟通与邀请。</p>
           </div>
           <div className="mt-10 grid border-y border-border sm:grid-cols-2 lg:grid-cols-4">
@@ -121,7 +121,7 @@ export default function CommunityPage() {
           <div className="grid gap-8 lg:grid-cols-[0.58fr_0.42fr] lg:items-center">
             <div>
               <p className="text-sm font-semibold text-stone">首期试运行招募</p>
-              <h2 className="editorial-display mt-4 text-[2.4rem] leading-[1.12] sm:text-[3.3rem]">20 人。6 个月。一起验证这件事。</h2>
+              <h2 className="editorial-display mt-4 text-[1.8rem] leading-[1.15] sm:text-[2.2rem] lg:text-[2.6rem]">20 人。6 个月。一起验证这件事。</h2>
               <div className="mt-6 grid gap-3 sm:grid-cols-3">
                 <div>
                   <p className="text-2xl font-bold text-ink">¥1,499</p>

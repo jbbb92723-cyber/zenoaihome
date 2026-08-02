@@ -88,7 +88,7 @@ export default function ServicesBrandHub() {
         <div className="mx-auto grid max-w-[1320px] gap-10 lg:grid-cols-[0.62fr_0.38fr] lg:items-end">
           <div>
             <p className="text-sm font-semibold text-white/60">服务合作</p>
-            <h1 className="editorial-display mt-5 max-w-[13ch] text-[3.2rem] leading-[1.03] sm:text-[5rem]">把 AI 变成能交付的工作</h1>
+            <h1 className="editorial-display mt-5 max-w-[13ch] text-[2.4rem] leading-[1.1] sm:text-[3.2rem]">把 AI 变成能交付的工作</h1>
             <p className="mt-6 max-w-2xl text-base leading-8 text-white/72 sm:text-lg">
               培训、工作流、知识库、智能体和网站开发。先从一个真实问题开始，再决定要不要使用 AI、用到哪一步。
             </p>
@@ -129,7 +129,7 @@ export default function ServicesBrandHub() {
         <div className="mx-auto grid max-w-[1320px] gap-12 lg:grid-cols-[0.3fr_0.7fr]">
           <div>
             <p className="text-sm font-semibold text-stone">五类合作</p>
-            <h2 className="editorial-display mt-4 text-[2.5rem] leading-[1.12] sm:text-[3.5rem]">每一项都要能验收。</h2>
+            <h2 className="editorial-display mt-4 text-[1.8rem] leading-[1.15] sm:text-[2.2rem] lg:text-[2.6rem]">每一项都要能验收。</h2>
             <p className="mt-5 max-w-sm text-sm leading-7 text-ink-muted">服务名称不是产品。输入、交付物和边界写清楚以后，合作才真正成立。</p>
           </div>
 
@@ -173,7 +173,7 @@ export default function ServicesBrandHub() {
         <div className="mx-auto max-w-[1320px]">
           <div className="max-w-3xl">
             <p className="text-sm font-semibold text-stone">合作流程</p>
-            <h2 className="editorial-display mt-4 text-[2.5rem] leading-[1.12] sm:text-[3.5rem]">先缩小问题，再开始做。</h2>
+            <h2 className="editorial-display mt-4 text-[1.8rem] leading-[1.15] sm:text-[2.2rem] lg:text-[2.6rem]">先缩小问题，再开始做。</h2>
           </div>
           <div className="mt-10 grid border-y border-border sm:grid-cols-2 lg:grid-cols-4">
             {process.map((item, index) => (
@@ -191,7 +191,7 @@ export default function ServicesBrandHub() {
         <div className="mx-auto grid max-w-[1320px] gap-10 lg:grid-cols-[0.45fr_0.55fr] lg:items-center">
           <div>
             <p className="text-sm font-semibold text-stone">为什么可以从传统行业讲 AI</p>
-            <h2 className="editorial-display mt-4 text-[2.4rem] leading-[1.12] sm:text-[3.4rem]">我先在自己的业务里做了一遍。</h2>
+            <h2 className="editorial-display mt-4 text-[1.8rem] leading-[1.15] sm:text-[2.2rem] lg:text-[2.6rem]">我先在自己的业务里做了一遍。</h2>
           </div>
           <div className="border-l-2 border-stone pl-6">
             <p className="text-base leading-8 text-ink-muted">
@@ -208,7 +208,7 @@ export default function ServicesBrandHub() {
       <section className="px-5 py-16 sm:px-8 sm:py-20 lg:px-12 lg:py-24">
         <div className="mx-auto grid max-w-[1320px] gap-8 border-y border-border py-10 lg:grid-cols-[0.62fr_0.38fr] lg:items-center">
           <div>
-            <h2 className="editorial-display text-[2.4rem] leading-[1.12] sm:text-[3.3rem]">把你的真实问题发来。</h2>
+            <h2 className="editorial-display text-[1.8rem] leading-[1.15] sm:text-[2.2rem] lg:text-[2.6rem]">把你的真实问题发来。</h2>
             <p className="mt-4 max-w-2xl text-sm leading-7 text-ink-muted">说明你是谁、现在怎么做、最想解决哪一步。能做，我会先把范围说清；不适合用 AI，也会直接说明。</p>
           </div>
           <div className="lg:text-right">

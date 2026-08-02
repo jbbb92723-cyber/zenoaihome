@@ -118,23 +118,25 @@ export default function HomePageBrandHub() {
     <main className="bg-canvas text-ink">
       {/* ── Hero ── */}
       <section className="relative isolate min-h-[calc(82dvh-3.5rem)] overflow-hidden bg-ink">
+        {/* 背景：人像退成氛围——低亮度 + 极轻微模糊，保留人形轮廓、看不清五官 */}
         <Image
           src="/images/brand/zeno-portrait.jpg"
           alt="赞诺"
           fill
           priority
           sizes="100vw"
-          className="object-cover object-[52%_34%] sm:object-[60%_35%]"
+          className="object-cover object-[52%_34%] blur-[2px] brightness-[0.42] contrast-[0.95] saturate-[0.85] sm:object-[60%_35%]"
         />
-        <div className="absolute inset-0 bg-[#111111]/60" aria-hidden />
+        <div className="absolute inset-0 bg-[#111111]/48" aria-hidden />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(17,17,17,0.85)_0%,rgba(17,17,17,0.5)_55%,rgba(17,17,17,0.2)_85%)]" aria-hidden />
         <div className="relative mx-auto flex min-h-[calc(82dvh-3.5rem)] max-w-[1320px] items-end px-5 pb-12 pt-24 sm:px-8 sm:pb-16 lg:px-12 lg:pb-20">
-          <motion.div initial="hidden" animate="visible" transition={{ staggerChildren: 0.1 }} className="max-w-[52rem] text-white">
+          <motion.div initial="hidden" animate="visible" transition={{ staggerChildren: 0.1 }} className="max-w-[52rem] text-white lg:max-w-[76rem]">
             <motion.p variants={fadeUp} className="flex items-center gap-2.5 text-sm font-semibold text-white/75">
               <span className="inline-block h-2 w-2 shrink-0 bg-cinnabar" aria-hidden />
               传统行业转型一人公司 · OPC 圈南宁主理人
             </motion.p>
-            <motion.h1 variants={fadeUp} className="editorial-display mt-5 max-w-[16ch] text-[3.25rem] leading-[1.02] sm:text-[5rem] lg:text-[6.3rem]">
-              装修踩过的坑、一人公司犯过的错、AI 用错的工具——这里替你省掉二十年的认知税。
+            <motion.h1 variants={fadeUp} className="editorial-display mt-5 text-[2.2rem] leading-[1.1] sm:text-[3rem] lg:text-[3.75rem]">
+              装修踩过的坑、一人公司犯过的错、<br className="hidden lg:block" />AI 用错的工具——这里替你省掉<br className="hidden lg:block" />二十年的认知税。
             </motion.h1>
             <motion.p variants={fadeUp} className="mt-6 max-w-[42rem] text-base leading-8 text-white/82 sm:text-lg">
               不是教程，是真实路径。给你免费工具自己先试，建立判断力，再决定要不要找我。
@@ -167,7 +169,7 @@ export default function HomePageBrandHub() {
         <Reveal className="mx-auto grid max-w-[1320px] gap-12 lg:grid-cols-[0.34fr_0.66fr]">
           <div>
             <p className="page-label">AI 工具</p>
-            <h2 className="editorial-display mt-4 text-[2.5rem] leading-[1.12] sm:text-[3.6rem]">不花钱。先自己试试。</h2>
+            <h2 className="editorial-display mt-4 text-[1.8rem] leading-[1.15] sm:text-[2.2rem] lg:text-[2.6rem]">不花钱。先自己试试。</h2>
             <p className="mt-5 max-w-md text-base leading-8 text-ink-muted">
               三个免费工具，自己能用、能分享、能帮你搞清楚下一步该做什么。不给结果——给方向。
             </p>
@@ -195,7 +197,7 @@ export default function HomePageBrandHub() {
         <Reveal className="mx-auto grid max-w-[1320px] gap-12 lg:grid-cols-[0.34fr_0.66fr]">
           <div>
             <p className="page-label">AI 服务</p>
-            <h2 className="editorial-display mt-4 text-[2.5rem] leading-[1.12] sm:text-[3.6rem]">不卖课。只交付具体工作。</h2>
+            <h2 className="editorial-display mt-4 text-[1.8rem] leading-[1.15] sm:text-[2.2rem] lg:text-[2.6rem]">不卖课。只交付具体工作。</h2>
             <p className="mt-5 max-w-md text-base leading-8 text-ink-muted">
               培训、工作流、知识库、智能体、网站。先说清对象、材料和验收边界，确认能交付了再报价。
             </p>
@@ -227,7 +229,7 @@ export default function HomePageBrandHub() {
         <Reveal className="mx-auto grid max-w-[1320px] gap-12 lg:grid-cols-[0.34fr_0.66fr]">
           <div>
             <p className="page-label">星火者</p>
-            <h2 className="editorial-display mt-4 text-[2.5rem] leading-[1.12] sm:text-[3.6rem]">一个人可以开始，但很难独自走远。</h2>
+            <h2 className="editorial-display mt-4 text-[1.8rem] leading-[1.15] sm:text-[2.2rem] lg:text-[2.6rem]">一个人可以开始，但很难独自走远。</h2>
             <p className="mt-5 max-w-md text-base leading-8 text-ink-muted">
               OPC 协作共同体。不是围观群——每个进来的人都在做事。隔周一次火种读书会，日常有回应。有合适的项目一起做。
             </p>
@@ -264,7 +266,7 @@ export default function HomePageBrandHub() {
         <Reveal className="mx-auto grid max-w-[1320px] gap-10 lg:grid-cols-[0.45fr_0.55fr] lg:items-center">
           <div>
             <p className="page-label">装修视野</p>
-            <h2 className="editorial-display mt-4 text-[2.4rem] leading-[1.12] sm:text-[3.4rem]">17 年工地里长出来的判断。</h2>
+            <h2 className="editorial-display mt-4 text-[1.8rem] leading-[1.15] sm:text-[2.2rem] lg:text-[2.6rem]">17 年工地里长出来的判断。</h2>
             <p className="mt-5 max-w-md text-base leading-8 text-ink-muted">
               不是教程——是怎么看报价、怎么判断施工质量、怎么在入住前避开大多数人都踩过的坑。免费工具自己用，拿不准的来聊。
             </p>
@@ -290,7 +292,7 @@ export default function HomePageBrandHub() {
         <Reveal className="mx-auto grid max-w-[1320px] gap-10 lg:grid-cols-[0.38fr_0.62fr]">
           <div>
             <Buildings size={30} weight="duotone" className="text-stone" aria-hidden />
-            <h2 className="editorial-display mt-5 text-[2.4rem] leading-[1.12] sm:text-[3.4rem]">不是教程里学来的——是从经营、团队、客户和工地里长出来的。</h2>
+            <h2 className="editorial-display mt-5 text-[1.8rem] leading-[1.15] sm:text-[2.2rem] lg:text-[2.6rem]">不是教程里学来的——是从经营、团队、客户和工地里长出来的。</h2>
             <p className="mt-5 max-w-md text-base leading-8 text-ink-muted">
               把转型过程写下来。不包装成神话——写真实的问题、失败和偶尔的突破。
             </p>
@@ -320,7 +322,7 @@ export default function HomePageBrandHub() {
         <Reveal className="mx-auto grid max-w-[1320px] gap-10 lg:grid-cols-[0.58fr_0.42fr] lg:items-end">
           <div>
             <div className="flex items-center gap-3 text-white/65"><UsersThree size={24} aria-hidden /><span className="text-sm font-semibold">星火者</span></div>
-            <h2 className="editorial-display mt-5 max-w-[15ch] text-[2.7rem] leading-[1.1] sm:text-[4rem]">找一群正在做事的人，一起走。</h2>
+            <h2 className="editorial-display mt-5 max-w-[15ch] text-[2rem] leading-[1.12] sm:text-[2.5rem] lg:text-[2.8rem]">找一群正在做事的人，一起走。</h2>
             <p className="mt-6 max-w-2xl text-base leading-8 text-white/70">
               不是围观。是分享真实项目、认识同路人、在边界清楚的前提下一起协作。首期 20 人，试运行 6 个月。
             </p>

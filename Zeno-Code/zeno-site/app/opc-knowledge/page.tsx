@@ -64,7 +64,7 @@ export default function OPCKnowledgePage() {
       <section className="border-b border-border bg-ink px-5 py-16 sm:px-8 sm:py-20 lg:px-12 lg:py-24">
         <div className="mx-auto max-w-[1320px]">
           <p className="text-sm font-semibold text-white/60">OPC 课程体系 v3.0 · 七视角评审终稿</p>
-          <h1 className="editorial-display mt-4 max-w-[18ch] text-[2.6rem] leading-[1.08] text-white sm:text-[4rem]">
+          <h1 className="editorial-display mt-4 max-w-[18ch] text-[2.4rem] leading-[1.1] text-white sm:text-[3.2rem]">
             在南宁，用 17 年的伤疤和 AI 的武器，带你建一个只有你能建的一人公司。
           </h1>
           <p className="mt-5 max-w-[42rem] text-base leading-8 text-white/70">
@@ -183,7 +183,7 @@ export default function OPCKnowledgePage() {
               <Users size={24} aria-hidden />
               <span className="text-sm font-semibold">Grand Slam Offer</span>
             </div>
-            <h2 className="editorial-display mt-4 text-[2rem] leading-[1.15] sm:text-[2.8rem]">
+            <h2 className="editorial-display mt-4 text-[1.8rem] leading-[1.15] sm:text-[2.2rem] lg:text-[2.6rem]">
               用 Zeno 17 年的作战系统 + 南宁 3 天实地陪跑 + 90 天跟进，帮你搭建月入过万的盈利闭环。
             </h2>
             <p className="mt-4 max-w-lg text-base leading-8 text-ink-muted">

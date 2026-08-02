@@ -57,7 +57,7 @@ export default function ContactPage() {
         <section className="grid gap-12 lg:grid-cols-[0.3fr_0.7fr]">
           <div>
             <p className="text-sm font-semibold text-stone">四种来意</p>
-            <h2 className="editorial-display mt-4 text-[2.5rem] leading-[1.12] sm:text-[3.5rem]">找到对应入口，再发消息。</h2>
+            <h2 className="editorial-display mt-4 text-[1.8rem] leading-[1.15] sm:text-[2.2rem] lg:text-[2.6rem]">找到对应入口，再发消息。</h2>
           </div>
           <div className="border-t border-border">
             {directions.map((item, index) => (
@@ -77,7 +77,7 @@ export default function ContactPage() {
         <section className="mt-20 grid gap-10 border-y border-border py-12 sm:mt-24 sm:py-16 lg:grid-cols-[0.42fr_0.58fr]">
           <div>
             <p className="text-sm font-semibold text-stone">联系方式</p>
-            <h2 className="editorial-display mt-4 text-[2.5rem] leading-[1.12] sm:text-[3.5rem]">优先使用微信沟通具体事项。</h2>
+            <h2 className="editorial-display mt-4 text-[1.8rem] leading-[1.15] sm:text-[2.2rem] lg:text-[2.6rem]">优先使用微信沟通具体事项。</h2>
           </div>
           <div className="grid gap-6 sm:grid-cols-2">
             <div className="border-l-2 border-stone pl-5">
@@ -106,7 +106,7 @@ export default function ContactPage() {
         <section className="mt-20 grid gap-10 bg-surface-warm p-7 sm:mt-24 sm:p-10 lg:grid-cols-[0.4fr_0.6fr]">
           <div>
             <p className="text-sm font-semibold text-stone">消息模板</p>
-            <h2 className="editorial-display mt-4 text-[2.4rem] leading-[1.12] sm:text-[3.3rem]">五句话，说清一个合作问题。</h2>
+            <h2 className="editorial-display mt-4 text-[1.8rem] leading-[1.15] sm:text-[2.2rem] lg:text-[2.6rem]">五句话，说清一个合作问题。</h2>
           </div>
           <ol className="border-t border-border">
             {messageTemplate.map((item, index) => (

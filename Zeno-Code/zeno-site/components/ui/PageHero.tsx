@@ -24,7 +24,7 @@ export default function PageHero({
     <div className="relative overflow-hidden border-b border-border bg-canvas">
       <Container size={size} className="motion-hero relative py-14 sm:py-20">
         <p className="system-label mb-4">{label}</p>
-        <h1 className="editorial-display mb-5 max-w-4xl text-[2.35rem] leading-[1.12] text-ink sm:text-[3.35rem]">
+        <h1 className="editorial-display mb-5 max-w-4xl text-[2.4rem] leading-[1.1] text-ink sm:text-[3.2rem]">
           {title}
         </h1>
         <p className="max-w-2xl text-base leading-8 text-ink-muted sm:text-lg">

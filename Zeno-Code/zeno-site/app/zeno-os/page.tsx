@@ -118,7 +118,7 @@ export default function ZenoOSPage() {
             <span className="bg-ink text-paper text-xs font-bold px-3 py-1">Zeno OS</span>
             <span className="text-xs font-semibold uppercase tracking-[0.2em] text-stone">开源方法论 v1</span>
           </div>
-          <h1 className="editorial-display max-w-4xl text-[2.4rem] leading-[1.12] text-ink sm:text-[3.4rem]">
+          <h1 className="editorial-display max-w-4xl text-[2.4rem] leading-[1.1] text-ink sm:text-[3.2rem]">
             装修风险判断，不应该是一个人的秘密。
           </h1>
           <p className="mt-6 max-w-2xl text-base leading-8 text-ink-muted sm:text-lg">

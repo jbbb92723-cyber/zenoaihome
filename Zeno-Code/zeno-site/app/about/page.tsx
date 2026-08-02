@@ -54,7 +54,7 @@ export default function AboutPage() {
           </div>
           <div>
             <p className="text-sm font-semibold text-stone">关于赞诺</p>
-            <h1 className="editorial-display mt-5 max-w-[12ch] text-[3.2rem] leading-[1.03] sm:text-[4.8rem]">我叫陈国赞，也叫 Zeno 赞诺。</h1>
+            <h1 className="editorial-display mt-5 max-w-[12ch] text-[2.4rem] leading-[1.1] sm:text-[3.2rem]">我叫陈国赞，也叫 Zeno 赞诺。</h1>
             <p className="mt-7 max-w-3xl text-base leading-8 text-ink-muted sm:text-lg">
               我在南宁创业。前 17 年主要做家居、销售管理和大型装修项目；现在把 AI 用进内容生产、知识管理、智能体、网站和一人公司的实际工作。
             </p>
@@ -73,7 +73,7 @@ export default function AboutPage() {
         <section className="grid gap-10 lg:grid-cols-[0.32fr_0.68fr]">
           <div>
             <p className="text-sm font-semibold text-stone">经历</p>
-            <h2 className="editorial-display mt-4 text-[2.5rem] leading-[1.12] sm:text-[3.5rem]">先在现实世界里，把事情做成。</h2>
+            <h2 className="editorial-display mt-4 text-[1.8rem] leading-[1.15] sm:text-[2.2rem] lg:text-[2.6rem]">先在现实世界里，把事情做成。</h2>
           </div>
           <div className="border-l border-border pl-6 sm:pl-10">
             {experience.map((item) => (
@@ -91,7 +91,7 @@ export default function AboutPage() {
           <div className="grid gap-10 lg:grid-cols-[0.42fr_0.58fr]">
             <div>
               <p className="text-sm font-semibold text-stone">为什么开始研究 AI</p>
-              <h2 className="editorial-display mt-4 text-[2.4rem] leading-[1.12] sm:text-[3.4rem]">这一次，我不想再站在技术浪潮外面。</h2>
+              <h2 className="editorial-display mt-4 text-[1.8rem] leading-[1.15] sm:text-[2.2rem] lg:text-[2.6rem]">这一次，我不想再站在技术浪潮外面。</h2>
             </div>
             <div className="space-y-5 text-base leading-8 text-ink-muted">
               <p>我很早就意识到重资产经营正在变难，也研究过轻量化团队和合作模式。但在 PC 互联网、移动互联网、短视频和直播阶段，我都因为技术门槛和认知不足错过了真正进场的机会。</p>
@@ -104,7 +104,7 @@ export default function AboutPage() {
         <section className="mt-20 sm:mt-24">
           <div className="max-w-3xl">
             <p className="text-sm font-semibold text-stone">现在正在做</p>
-            <h2 className="editorial-display mt-4 text-[2.5rem] leading-[1.12] sm:text-[3.5rem]">把能力放进真实产品、项目和关系里。</h2>
+            <h2 className="editorial-display mt-4 text-[1.8rem] leading-[1.15] sm:text-[2.2rem] lg:text-[2.6rem]">把能力放进真实产品、项目和关系里。</h2>
           </div>
           <div className="mt-10 grid border-y border-border sm:grid-cols-2">
             {currentWork.map((item, index) => (
@@ -120,7 +120,7 @@ export default function AboutPage() {
         <section className="mt-20 grid gap-10 bg-ink p-7 text-white sm:mt-24 sm:p-10 lg:grid-cols-[0.58fr_0.42fr] lg:items-end">
           <div>
             <p className="text-sm font-semibold text-white/60">为什么发起星火者共同体</p>
-            <h2 className="editorial-display mt-4 text-[2.5rem] leading-[1.12] sm:text-[3.5rem]">一人公司不是一个人扛下所有事情。</h2>
+            <h2 className="editorial-display mt-4 text-[1.8rem] leading-[1.15] sm:text-[2.2rem] lg:text-[2.6rem]">一人公司不是一个人扛下所有事情。</h2>
             <p className="mt-5 max-w-2xl text-sm leading-7 text-white/70">很多独立创业者缺的不是更多课程，而是持续学习、展示能力、建立信用和共同完成项目的关系。我能贡献的是传统行业锻炼出的组织能力、项目经验和把人连接起来的耐心。</p>
           </div>
           <div className="lg:text-right">

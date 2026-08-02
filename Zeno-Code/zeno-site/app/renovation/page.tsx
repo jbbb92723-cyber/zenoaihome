@@ -67,7 +67,7 @@ export default function RenovationPage() {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_20%,rgba(222,210,190,0.18),transparent_45%)]" aria-hidden />
         <Container size="content" className="relative py-16 sm:py-20 lg:py-24">
           <p className="text-sm font-semibold text-white/55">装修视野</p>
-          <h1 className="editorial-display mt-5 max-w-[14ch] text-[2.8rem] leading-[1.05] text-white sm:text-[4.2rem] lg:text-[5.2rem]">
+          <h1 className="editorial-display mt-5 max-w-[14ch] text-[2.4rem] leading-[1.1] text-white sm:text-[3.2rem]">
             不是教你怎么装——<br />是帮你怎么判断。
           </h1>
           <p className="mt-6 max-w-2xl text-base leading-8 text-white/70 sm:text-lg">
