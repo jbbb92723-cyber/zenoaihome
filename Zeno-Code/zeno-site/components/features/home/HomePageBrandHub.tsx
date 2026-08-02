@@ -136,10 +136,10 @@ export default function HomePageBrandHub() {
               传统行业转型一人公司 · OPC 圈南宁主理人
             </motion.p>
             <motion.h1 variants={fadeUp} className="editorial-display mt-5 text-[2.2rem] leading-[1.1] sm:text-[3rem] lg:text-[3.75rem]">
-              装修踩过的坑、一人公司犯过的错、<br className="hidden lg:block" />AI 用错的工具——这里替你省掉<br className="hidden lg:block" />二十年的认知税。
+              传统行业从业者，也可以在<br className="hidden lg:block" />AI 时代把自己重做一遍。
             </motion.h1>
             <motion.p variants={fadeUp} className="mt-6 max-w-[42rem] text-base leading-8 text-white/82 sm:text-lg">
-              不是教程，是真实路径。给你免费工具自己先试，建立判断力，再决定要不要找我。
+              不是被替代，而是用判断力、工具和同行者，把经验换成新的交付方式。
             </motion.p>
             <motion.div variants={fadeUp} className="mt-8 flex flex-col gap-3 sm:flex-row">
               <ActionLink href="/ai-tools"><Lightning size={18} aria-hidden />先试试免费工具</ActionLink>
