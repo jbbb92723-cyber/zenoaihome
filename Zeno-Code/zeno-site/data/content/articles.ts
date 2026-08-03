@@ -4379,6 +4379,18 @@ AI不是魔法。它是一个工具——能帮你整理、对比、查漏，但
     coverImage: '',
     coverAlt: '装修公司上AI，大部分人搞错了顺序',
   },
+  {
+    id: '118',
+    slug: 'ai-agent-anquan-sheji-sanjiang',
+    title: '我拆解了一个开源AI编程代理的源码，发现了三个传统行业做AI最该关注的安全设计',
+    excerpt:
+      '深度拆解 ZoroCoding 源码后，最让我意外的不是它怎么调大模型——而是文件身份锁定、命令沙箱执行、物理离线存储这三个安全设计。这不是技术问题，是信任问题。',
+    category: 'AI 落地判断',
+    tags: ['AI', 'Agent', '安全', '开源', '传统行业', '源码拆解'],
+    date: '2026-08-02',
+    coverImage: '',
+    coverAlt: '拆解AI编程代理源码——三个安全设计',
+  },
 ]
 
 export const categories = [

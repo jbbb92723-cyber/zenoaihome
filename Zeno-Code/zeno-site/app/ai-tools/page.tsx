@@ -37,6 +37,17 @@ const tools = [
     cta: '生成策略',
   },
   {
+    id: 'task-planner',
+    icon: '🤖',
+    title: 'AI Agent 任务规划器',
+    tag: '免费 · 新上线',
+    problem: '想知道 AI Agent 怎么把你的专业知识变成可执行的标准化流程？',
+    what: '选择预设方法论模板（装修审核、内容策略、一人公司诊断、AI Agent 设计），看到每一步的完成标准和时间估算——体验 AI Agent 的工作方式。',
+    result: '你会看到：结构化任务计划 + 进度追踪 + 可导出的 JSON 任务文件',
+    href: '/ai-tools/task-planner',
+    cta: '打开规划器',
+  },
+  {
     id: 'renovation',
     icon: '🏠',
     title: '装修判断工具',
