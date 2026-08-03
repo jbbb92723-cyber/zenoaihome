@@ -5,9 +5,9 @@ import CTA from '@/components/ui/CTA'
 import StructuredData from '@/components/ui/StructuredData'
 
 export const metadata: Metadata = {
-  title: 'AI 工具｜一人公司诊断 · 内容策略 · 装修判断',
+  title: 'AI 工具｜任务规划器 · 一人公司诊断 · 内容策略 · 装修判断',
   description:
-    '三个免费工具：一人公司诊断（看看你卡在哪一步）、内容策略生成（找到值得写的东西）、装修判断工具（17 年经验做成的公开工具）。不花钱，直接用。',
+    '四个免费工具：AI Agent 任务规划器（把专业知识变成标准化流程）、一人公司诊断（看看你卡在哪一步）、内容策略生成（找到值得写的东西）、装修判断工具（17 年经验做成的公开工具）。',
   alternates: {
     canonical: 'https://zenoaihome.com/ai-tools',
   },
