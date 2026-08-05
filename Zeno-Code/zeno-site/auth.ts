@@ -6,7 +6,7 @@
  *   2. Google OAuth
  *
  * 数据库：Supabase Postgres + Prisma
- * 管理员：独立走 /admin/login + ADMIN_PASSWORD，与普通用户完全分离
+ * 管理员：Auth.js 用户角色为主，旧 /admin/login 仅作迁移期间应急入口
  */
 
 import NextAuth from 'next-auth'
@@ -78,8 +78,11 @@ const authConfig: NextAuthConfig = {
   callbacks: {
     async jwt({ token, user, account }) {
       if (user) {
-        token.id   = user.id
-        token.role = 'user'
+        token.id = user.id
+        const databaseUser = user.id
+          ? await prisma.user.findUnique({ where: { id: user.id }, select: { role: true } })
+          : null
+        token.role = databaseUser?.role ?? 'USER'
       }
       if (account?.provider) {
         token.provider = account.provider

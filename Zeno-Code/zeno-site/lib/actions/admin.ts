@@ -4,6 +4,7 @@ import { revalidatePath } from 'next/cache'
 import { isAdminUser } from '@/lib/admin'
 import { prisma } from '@/lib/prisma'
 import { grantEntitlement } from '@/lib/entitlements'
+import { SPARK_COMMUNITY_PLAN, SPARK_COMMUNITY_SERVICE_TYPE } from '@/lib/domains/community/constants'
 
 // ─── 权限守卫 ────────────────────────────────────────────────
 async function requireAdmin() {
@@ -17,22 +18,53 @@ export async function updateOrderStatus(orderId: string, status: string) {
   const validStatuses = ['pending', 'paid', 'processing', 'completed', 'cancelled', 'refunded']
   if (!validStatuses.includes(status)) throw new Error('Invalid status')
 
-  await prisma.order.update({
-    where: { id: orderId },
-    data: {
-      status,
-      ...(status === 'paid'      ? { paidAt: new Date() } : {}),
-      ...(status === 'completed' ? { completedAt: new Date() } : {}),
-    },
-  })
+  await prisma.$transaction(async (tx) => {
+    const order = await tx.order.findUnique({
+      where: { id: orderId },
+      select: { userId: true, source: true },
+    })
+    if (!order) throw new Error('Order not found')
 
-  await prisma.adminLog.create({ data: { action: 'update_order_status', target: orderId, detail: { status } } })
+    await tx.order.update({
+      where: { id: orderId },
+      data: {
+        status,
+        ...(status === 'paid'      ? { paidAt: new Date() } : {}),
+        ...(status === 'completed' ? { completedAt: new Date() } : {}),
+      },
+    })
+
+    if (status === 'refunded' && order.userId && order.source?.startsWith('community:')) {
+      await tx.membership.updateMany({
+        where: { userId: order.userId, plan: SPARK_COMMUNITY_PLAN, status: 'active' },
+        data: { status: 'cancelled' },
+      })
+      await tx.serviceRequest.updateMany({
+        where: {
+          id: order.source.slice('community:'.length),
+          serviceType: SPARK_COMMUNITY_SERVICE_TYPE,
+        },
+        data: {
+          status: 'rejected',
+          responseText: '退款已经完成，本期星火者成员资格同时结束。',
+          reviewedAt: new Date(),
+        },
+      })
+    }
+
+    await tx.adminLog.create({ data: { action: 'update_order_status', target: orderId, detail: { status } } })
+  })
   revalidatePath('/admin/orders')
+  revalidatePath('/admin/community')
+  revalidatePath('/community/apply')
+  revalidatePath('/account')
 }
 
 // ─── 会员管理 ────────────────────────────────────────────────
 export async function grantMembership(userId: string, plan: string, days: number) {
   await requireAdmin()
+  if (!['spark', 'creator'].includes(plan)) throw new Error('Invalid membership plan')
+  if (!Number.isInteger(days) || days < 1 || days > 3650) throw new Error('Invalid membership duration')
   const expiresAt = new Date(Date.now() + days * 86400_000)
 
   await prisma.membership.upsert({
@@ -43,6 +75,8 @@ export async function grantMembership(userId: string, plan: string, days: number
 
   await prisma.adminLog.create({ data: { action: 'grant_membership', target: userId, detail: { plan, days } } })
   revalidatePath('/admin/members')
+  revalidatePath('/admin/community')
+  revalidatePath('/community/apply')
 }
 
 export async function revokeMembership(membershipId: string) {
@@ -53,6 +87,8 @@ export async function revokeMembership(membershipId: string) {
   })
   await prisma.adminLog.create({ data: { action: 'revoke_membership', target: membershipId } })
   revalidatePath('/admin/members')
+  revalidatePath('/admin/community')
+  revalidatePath('/community/apply')
 }
 
 // ─── 服务申请状态 ─────────────────────────────────────────────
@@ -166,13 +202,7 @@ export async function confirmPayment(orderId: string) {
     throw new Error(`订单状态为 ${order.status}，无法确认`)
   }
 
-  // 先更新为 paid，grantEntitlement 内部会改为 completed
-  await prisma.order.update({
-    where: { id: orderId },
-    data:  { status: 'paid', paidAt: new Date() },
-  })
-
-  // 开通权益 + 改为 completed
+  // 权益兑现成功后才把订单完成；失败时保留待确认状态，允许重试。
   await grantEntitlement(orderId)
 
   await prisma.adminLog.create({
@@ -180,4 +210,7 @@ export async function confirmPayment(orderId: string) {
   })
 
   revalidatePath('/admin/orders')
+  revalidatePath('/admin/community')
+  revalidatePath('/community/apply')
+  revalidatePath('/account')
 }

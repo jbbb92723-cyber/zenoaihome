@@ -103,7 +103,6 @@ CSS 变量定义于 `styles/globals.css`：
 - `components/layout/AIChatWidget.tsx`：移除脉冲动画类。
 - `components/features/home/HomePageBrandHub.tsx`：接入 Reveal、修复 `Buildings` 导入、标题/标签/按钮对齐设计系统。
 - `app/knowledge/page.tsx`：修复 StructuredData 调用（SSG 构建报错）。
-- `components/features/services/CommercialLadder.tsx`：修复 `tierAccent` 与 `source` 类型错误。
 
 ## 八、验证结果
 

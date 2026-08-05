@@ -13,7 +13,7 @@ import { listRecords, TABLE_IDS } from '@/lib/hermes-client'
 export const dynamic = 'force-dynamic'
 
 export async function POST(req: Request) {
-  if (!verifyApiRequest(req)) {
+  if (!(await verifyApiRequest(req))) {
     return NextResponse.json({ ok: false, error: '未授权' }, { status: 401 })
   }
 

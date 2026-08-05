@@ -64,8 +64,9 @@ export default async function AccountPage() {
     }),
   ])
 
-  const isMember = membership?.plan === 'creator' && membership?.status === 'active' &&
+  const isMember = membership?.plan !== 'free' && membership?.status === 'active' &&
     (!membership.expiresAt || membership.expiresAt > new Date())
+  const isSparkMember = isMember && membership?.plan === 'spark'
 
   return (
     <Container size="content" className="py-section">
@@ -90,7 +91,7 @@ export default async function AccountPage() {
               <p className="text-sm text-ink-muted mt-1 truncate">{user.email ?? ''}</p>
               <p className="text-xs text-ink-faint mt-1">
                 {isMember ? (
-                  <span className="text-stone font-medium">权益用户</span>
+                  <span className="text-stone font-medium">{isSparkMember ? '星火者成员' : '权益用户'}</span>
                 ) : (
                   '免费用户'
                 )}
@@ -121,19 +122,26 @@ export default async function AccountPage() {
           {isMember ? (
             <div className="space-y-3">
               <div className="flex items-center gap-2">
-                <span className="text-xs font-semibold text-stone border border-stone/30 px-2 py-0.5">权益用户</span>
+                <span className="text-xs font-semibold text-stone border border-stone/30 px-2 py-0.5">{isSparkMember ? '星火者成员' : '权益用户'}</span>
               </div>
               {membership?.expiresAt && (
                 <p className="text-xs text-ink-muted">
                   有效期至：{membership.expiresAt.toLocaleDateString('zh-CN')}
                 </p>
               )}
-              <ul className="text-xs text-ink-muted space-y-1 leading-relaxed">
-                <li className="flex items-center gap-2"><span className="text-stone">✓</span>已领取资料长期查看</li>
-                <li className="flex items-center gap-2"><span className="text-stone">✓</span>服务申请记录</li>
-                <li className="flex items-center gap-2"><span className="text-stone">✓</span>风险工具和文章归档</li>
-                <li className="flex items-center gap-2"><span className="text-stone">✓</span>后续专属资料更新</li>
-              </ul>
+              {isSparkMember ? (
+                <div className="space-y-3">
+                  <p className="text-xs leading-6 text-ink-muted">成员资格已经开通。入群与首次点火安排由赞诺通过申请时填写的微信联系。</p>
+                  <Link href="/community/apply" className="inline-block text-xs text-stone hover:underline underline-offset-2">查看入营状态</Link>
+                </div>
+              ) : (
+                <ul className="text-xs text-ink-muted space-y-1 leading-relaxed">
+                  <li className="flex items-center gap-2"><span className="text-stone">✓</span>已领取资料长期查看</li>
+                  <li className="flex items-center gap-2"><span className="text-stone">✓</span>服务申请记录</li>
+                  <li className="flex items-center gap-2"><span className="text-stone">✓</span>风险工具和文章归档</li>
+                  <li className="flex items-center gap-2"><span className="text-stone">✓</span>后续专属资料更新</li>
+                </ul>
+              )}
             </div>
           ) : (
             <div className="space-y-4">
@@ -212,6 +220,7 @@ export default async function AccountPage() {
               { href: '/risk-dictionary', label: '风险词典' },
               { href: '/checklists', label: '检查模板' },
               { href: '/services', label: '服务路径' },
+              { href: '/community/apply', label: '星火者申请' },
             ].map(item => (
               <Link
                 key={item.href}

@@ -1,5 +1,13 @@
 import { NextResponse } from 'next/server'
+import { z } from 'zod'
 import { prisma } from '@/lib/prisma'
+import { verifyApiRequest } from '@/lib/api-auth'
+import { AiProviderError, createAiChatCompletion } from '@/lib/integrations/ai/client'
+import { checkRateLimit, getClientIp } from '@/lib/rateLimit'
+
+const requestSchema = z.object({
+  prompt: z.string().trim().min(1).max(5000),
+})
 
 // Zeno 的回复风格提示词
 const SYSTEM_PROMPT_BASE = `你是赞诺Zeno的智能回复助手。你帮Zeno草拟给装修业主的微信回复。
@@ -22,14 +30,21 @@ Zeno的背景：
 - 风格：像内行朋友帮你参谋，不像销售在推销`
 
 export async function POST(request: Request) {
-  try {
-    const body = await request.json() as { prompt?: unknown }
-    const prompt = typeof body.prompt === 'string' ? body.prompt.trim() : ''
-    if (!prompt) {
-      return NextResponse.json({ error: '请输入内容' }, { status: 400 })
-    }
+  if (!(await verifyApiRequest(request))) {
+    return NextResponse.json({ ok: false, error: '未授权' }, { status: 401 })
+  }
 
-    const apiKey = process.env.DEEPSEEK_API_KEY
+  const limiter = checkRateLimit(`admin-ai-draft:${getClientIp(request)}`, 20, 60 * 60_000)
+  if (!limiter.allowed) {
+    return NextResponse.json({ ok: false, error: '请求过于频繁，请稍后再试' }, { status: 429 })
+  }
+
+  try {
+    const parsed = requestSchema.safeParse(await request.json().catch(() => null))
+    if (!parsed.success) {
+      return NextResponse.json({ ok: false, error: '请求参数无效' }, { status: 422 })
+    }
+    const { prompt } = parsed.data
 
     // ── RAG: 搜索匹配的知识库条目 ────────────────────
     let knowledgeContext = ''
@@ -93,52 +108,50 @@ ${m.entry.content.slice(0, 800)}`
       ? `\n\n以下是Zeno的知识库中与这个问题相关的内容，请基于这些知识来回复（但不要直接复制，用Zeno的口语化风格重述）：\n\n${knowledgeContext}\n\n请用Zeno的口吻基于以上知识回复业主。`
       : ''
 
-    if (!apiKey) {
+    const completion = await createAiChatCompletion({
+      task: 'admin_draft',
+      messages: [
+        { role: 'system', content: SYSTEM_PROMPT_BASE + knowledgeBlock },
+        {
+          role: 'user',
+          content: `请帮Zeno草拟一段微信回复，回答业主的这个问题：${prompt}
+
+要求：100-300字，口语化，像朋友聊天。可以提一句免费初筛工具或对应的付费服务，但自然一点，不要硬推。`,
+        },
+      ],
+      temperature: 0.7,
+      maxTokens: 600,
+      timeoutMs: 20_000,
+    })
+
+    if (!completion) {
       const fallbackLines = ['【AI 草稿暂不可用 — 请手动编写回复】', '', `业主问："${prompt}"`, '']
       if (matchedKnowledge.length > 0) {
         fallbackLines.push('📚 匹配到的知识库内容：')
         matchedKnowledge.forEach((k) => {
           fallbackLines.push(`  · ${k.title} (相关度: ${k.relevance})`)
         })
-        fallbackLines.push('', '（配置 DEEPSEEK_API_KEY 后可使用 AI 自动生成回复）')
+        fallbackLines.push('', '（配置后台 AI Provider 和模型后可使用自动生成）')
       } else {
         fallbackLines.push('建议回复方向：')
         fallbackLines.push('1. 先确认对方的核心顾虑是什么（预算？效果？信任？）')
         fallbackLines.push('2. 用自己的经验给一个具体的判断，而不是泛泛而谈')
         fallbackLines.push('3. 如果合适，引导到免费初筛工具让对方先试试')
-        fallbackLines.push('', '（配置 DEEPSEEK_API_KEY 环境变量后可使用 AI 自动生成）')
+        fallbackLines.push('', '（配置后台 AI Provider 和模型后可使用自动生成）')
       }
       return NextResponse.json({ reply: fallbackLines.join('\n'), matchedKnowledge })
     }
 
-    const res = await fetch('https://api.deepseek.com/v1/chat/completions', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${apiKey}`,
-      },
-      body: JSON.stringify({
-        model: 'deepseek-chat',
-        messages: [
-          { role: 'system', content: SYSTEM_PROMPT_BASE + knowledgeBlock },
-          {
-            role: 'user',
-            content: `请帮Zeno草拟一段微信回复，回答业主的这个问题：${prompt}
-
-要求：100-300字，口语化，像朋友聊天。可以提一句免费初筛工具或对应的付费服务，但自然一点，不要硬推。`,
-          },
-        ],
-        temperature: 0.7,
-        max_tokens: 600,
-      }),
+    return NextResponse.json({
+      reply: completion.content,
+      matchedKnowledge,
+      provider: completion.provider,
+      model: completion.model,
+      usage: completion.usage,
     })
-
-    const data = await res.json()
-    const reply = data.choices?.[0]?.message?.content || '生成失败，请重试'
-
-    return NextResponse.json({ reply, matchedKnowledge })
   } catch (error) {
-    console.error('AI draft error:', error)
-    return NextResponse.json({ reply: '生成出错，请重试', matchedKnowledge: [] }, { status: 500 })
+    console.error('AI draft error:', error instanceof Error ? error.name : 'unknown')
+    const status = error instanceof AiProviderError ? 502 : 500
+    return NextResponse.json({ reply: '生成服务暂时不可用，请稍后重试', matchedKnowledge: [] }, { status })
   }
 }

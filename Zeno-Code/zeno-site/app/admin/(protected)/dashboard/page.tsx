@@ -119,7 +119,7 @@ export default async function DashboardPage() {
         <StatCard
           label="活跃会员"
           value={business.members.active}
-          subtitle={`创作者 ${business.members.creator} · 免费 ${business.members.free}`}
+          subtitle={`付费 ${business.members.creator} · 免费 ${business.members.free}`}
           tone="teal"
         />
         <StatCard

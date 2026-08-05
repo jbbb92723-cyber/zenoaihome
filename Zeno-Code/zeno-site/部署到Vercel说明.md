@@ -138,10 +138,10 @@ https://zenoaihome-xxxxxx.vercel.app
 
 | 要做的事 | 改哪个文件 |
 |---|---|
-| 改文章内容 | `data/articles.ts` 对应文章的 `content` 字段 |
-| 加新文章 | 在 `data/articles.ts` 数组末尾新增一个对象 |
-| 改服务价格 | `data/services.ts` 对应服务的 `price` 字段 |
-| 改联系方式 | `components/Footer.tsx` + `app/contact/page.tsx` |
+| 改文章内容 | `data/content/article-XX-content.ts` 对应文章正文 |
+| 加新文章 | 新增正文文件并在 `data/content/articles.ts` 注册元数据 |
+| 改服务价格 | `data/services/products.ts` 对应产品的 `price` 字段 |
+| 改联系方式 | `components/layout/Footer.tsx` + `app/contact/page.tsx` |
 | 加图片 | 把图片放入 `public/images/` 对应目录 |
 | 改关于我内容 | `app/about/page.tsx` |
 

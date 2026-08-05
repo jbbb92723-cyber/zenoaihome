@@ -1,5 +1,7 @@
 import { NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
+import { verifyApiRequest } from '@/lib/api-auth'
+import { getClientIp } from '@/lib/rateLimit'
 
 const SEED_KNOWLEDGE = [
   {
@@ -117,21 +119,45 @@ const SEED_KNOWLEDGE = [
   },
 ]
 
-export async function POST() {
+export async function POST(request: Request) {
+  if (!(await verifyApiRequest(request))) {
+    return NextResponse.json({ ok: false, error: '未授权' }, { status: 401 })
+  }
+
   try {
-    // 清空旧数据
-    await prisma.knowledgeEntry.deleteMany()
+    const result = await prisma.$transaction(async (tx) => {
+      let created = 0
+      let updated = 0
 
-    // 批量插入
-    let count = 0
-    for (const entry of SEED_KNOWLEDGE) {
-      await prisma.knowledgeEntry.create({ data: entry })
-      count++
-    }
+      for (const entry of SEED_KNOWLEDGE) {
+        const existing = await tx.knowledgeEntry.findFirst({
+          where: { title: entry.title },
+          select: { id: true },
+        })
 
-    return NextResponse.json({ success: true, seeded: count })
+        if (existing) {
+          await tx.knowledgeEntry.update({ where: { id: existing.id }, data: entry })
+          updated++
+        } else {
+          await tx.knowledgeEntry.create({ data: entry })
+          created++
+        }
+      }
+
+      await tx.adminLog.create({
+        data: {
+          action: 'seed_knowledge_entries',
+          detail: { created, updated },
+          ip: getClientIp(request),
+        },
+      })
+
+      return { created, updated }
+    })
+
+    return NextResponse.json({ ok: true, success: true, seeded: result.created, updated: result.updated })
   } catch (error) {
     console.error('Seed error:', error)
-    return NextResponse.json({ error: 'Seed failed' }, { status: 500 })
+    return NextResponse.json({ ok: false, error: '预置知识失败' }, { status: 500 })
   }
 }

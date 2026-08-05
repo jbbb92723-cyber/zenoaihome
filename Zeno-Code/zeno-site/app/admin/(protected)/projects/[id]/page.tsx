@@ -1,20 +1,11 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { notFound, redirect } from 'next/navigation'
+import { notFound } from 'next/navigation'
 import { prisma } from '@/lib/prisma'
-import { revalidatePath } from 'next/cache'
+import { updateDeliverableAction } from '@/lib/actions/opportunities'
+import { DELIVERABLE_STATUS_LABELS } from '@/lib/domains/opportunities/constants'
 
 export const dynamic = 'force-dynamic'
-
-const NODE_DEFAULTS = [
-  { name: '水电验收', sortOrder: 1 },
-  { name: '防水验收', sortOrder: 2 },
-  { name: '木工验收', sortOrder: 3 },
-  { name: '贴砖验收', sortOrder: 4 },
-  { name: '油漆验收', sortOrder: 5 },
-  { name: '安装验收', sortOrder: 6 },
-  { name: '竣工验收', sortOrder: 7 },
-]
 
 function statusBadge(status: string) {
   const map: Record<string, string> = {
@@ -24,7 +15,7 @@ function statusBadge(status: string) {
     cancelled: 'bg-[#d2846f]/15 text-[#d2846f] border-[#d2846f]/30',
   }
   const label: Record<string, string> = {
-    active: '施工中', completed: '已竣工', paused: '暂停', cancelled: '已取消',
+    active: '进行中', completed: '已完成', paused: '暂停', cancelled: '已取消',
   }
   return (
     <span className={`text-[0.6rem] px-2 py-0.5 border rounded-sm font-semibold ${map[status] || map.active}`}>
@@ -52,23 +43,14 @@ function nodeStatusColor(status: string) {
 export default async function ProjectDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params
 
-  if (id === 'new') {
-    // 创建新项目
-    const project = await prisma.project.create({
-      data: {
-        name: '新项目',
-        nodes: { create: NODE_DEFAULTS },
-      },
-    })
-    redirect(`/admin/projects/${project.id}`)
-  }
-
   const project = await prisma.project.findUnique({
     where: { id },
     include: {
       nodes: { orderBy: { sortOrder: 'asc' } },
       photos: { orderBy: { createdAt: 'desc' }, take: 20 },
       notes: { orderBy: { createdAt: 'desc' } },
+      opportunity: { select: { id: true, title: true } },
+      deliverables: { orderBy: { sortOrder: 'asc' } },
     },
   })
   if (!project) notFound()
@@ -80,7 +62,7 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
     <div className="max-w-[1400px] space-y-5">
       {/* 面包屑 */}
       <div className="flex items-center gap-2 text-xs text-[#706860]">
-        <Link href="/admin/projects" className="hover:text-[#C4A882] transition-colors">← 工地总览</Link>
+        <Link href="/admin/projects" className="hover:text-[#C4A882] transition-colors">← 项目总览</Link>
         <span>/</span>
         <span className="text-[#A09890]">{project.name}</span>
       </div>
@@ -90,6 +72,7 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
         <div>
           <h1 className="text-xl font-semibold text-[#E8E2DA] tracking-tight">{project.name}</h1>
           <div className="flex items-center gap-3 mt-2 text-xs text-[#706860]">
+            <span>{project.projectType}</span>
             {project.clientName && <span>业主：{project.clientName}</span>}
             {project.city && <span>{project.city}</span>}
             {project.area && <span>{project.area}㎡</span>}
@@ -101,9 +84,9 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
 
       {/* 基本信息 + 进度 */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
-        {/* 工地信息 */}
+        {/* 项目信息 */}
         <div className="border border-[#3A3530] bg-[#1f1d1a] p-5 lg:col-span-1">
-          <h2 className="text-sm font-semibold text-[#E8E2DA] mb-4">工地信息</h2>
+          <h2 className="text-sm font-semibold text-[#E8E2DA] mb-4">项目信息</h2>
           <div className="space-y-2 text-xs">
             {[
               ['业主', project.clientName],
@@ -165,6 +148,47 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
           </div>
         </div>
       </div>
+
+      {project.opportunity && (
+        <div className="border border-[#C4A882]/30 bg-[#C4A882]/5 px-4 py-3 text-xs text-[#A09890]">
+          来源商机：<Link href={`/admin/opportunities/${project.opportunity.id}`} className="font-semibold text-[#C4A882] hover:text-[#E8E2DA]">{project.opportunity.title}</Link>
+        </div>
+      )}
+
+      {project.deliverables.length > 0 && (
+        <section className="border border-[#3A3530] bg-[#1f1d1a] p-5">
+          <div className="flex items-center justify-between">
+            <h2 className="text-sm font-semibold text-[#E8E2DA]">交付物与验收</h2>
+            <span className="text-xs text-[#706860]">
+              {project.deliverables.filter((item) => item.status === 'accepted').length}/{project.deliverables.length} 已验收
+            </span>
+          </div>
+          <div className="mt-4 space-y-3">
+            {project.deliverables.map((deliverable) => {
+              const action = updateDeliverableAction.bind(null, project.id, deliverable.id)
+              return (
+                <form key={deliverable.id} action={action} className="grid gap-3 border border-[#3A3530] bg-[#252320] p-4 lg:grid-cols-[1fr_160px_1fr_auto] lg:items-end">
+                  <div>
+                    <p className="text-sm font-semibold text-[#E8E2DA]">{deliverable.title}</p>
+                    {deliverable.description && <p className="mt-1 text-xs text-[#706860]">{deliverable.description}</p>}
+                  </div>
+                  <label className="text-[0.65rem] font-semibold text-[#706860]">状态
+                    <select name="status" defaultValue={deliverable.status} className="mt-2 w-full border border-[#3A3530] bg-[#1C1A17] px-2 py-2 text-xs text-[#A09890]">
+                      {Object.entries(DELIVERABLE_STATUS_LABELS).map(([value, label]) => (
+                        <option key={value} value={value}>{label}</option>
+                      ))}
+                    </select>
+                  </label>
+                  <label className="text-[0.65rem] font-semibold text-[#706860]">验收备注
+                    <input name="acceptanceNote" defaultValue={deliverable.acceptanceNote ?? ''} className="mt-2 w-full border border-[#3A3530] bg-[#1C1A17] px-3 py-2 text-xs text-[#A09890] outline-none focus:border-[#C4A882]" />
+                  </label>
+                  <button type="submit" className="border border-[#504840] px-3 py-2 text-xs font-semibold text-[#A09890] hover:border-[#C4A882] hover:text-[#E8E2DA]">保存</button>
+                </form>
+              )
+            })}
+          </div>
+        </section>
+      )}
 
       {/* 照片 + 备注 */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">

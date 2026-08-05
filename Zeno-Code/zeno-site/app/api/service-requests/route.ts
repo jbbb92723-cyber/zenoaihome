@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server'
 import { auth } from '@/auth'
 import { prisma } from '@/lib/prisma'
 import { z } from 'zod'
+import { SPARK_COMMUNITY_SERVICE_TYPE } from '@/lib/domains/community/constants'
 
 const ServiceRequestSchema = z.object({
   serviceType: z.string().min(1).max(100),
@@ -31,6 +32,25 @@ export async function POST(req: Request) {
   }
 
   const { serviceType, name, phone, wechat, email, message } = parsed.data
+
+  if (serviceType === SPARK_COMMUNITY_SERVICE_TYPE) {
+    const existing = await prisma.serviceRequest.findFirst({
+      where: {
+        userId: session.user.id,
+        serviceType: SPARK_COMMUNITY_SERVICE_TYPE,
+        status: { in: ['submitted', 'reviewing', 'completed'] },
+      },
+      orderBy: { createdAt: 'desc' },
+      select: { id: true, status: true },
+    })
+
+    if (existing) {
+      return NextResponse.json(
+        { error: '你已有正在处理的星火者申请', serviceRequest: existing },
+        { status: 409 },
+      )
+    }
+  }
 
   const serviceRequest = await prisma.serviceRequest.create({
     data: {

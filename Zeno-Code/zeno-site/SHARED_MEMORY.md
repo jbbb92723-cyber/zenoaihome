@@ -282,3 +282,13 @@ npx prisma db push
 - Zeno 确认接工地做施工案例——"顾问+交付"战略转型
 - 每个工地 = 内容生产线
 - 新 OA 结构已确认：5 大模块（数字大屏/用户运营/内容服务/项目交付/AI工具/营销/系统）
+
+2026-08-05 | Codex | 新增 `docs/网站后台重构与API治理技术方案-v1.md`：推荐保留现有技术底座、拒绝整套后台 fork，按止血、统一身份、数据库 baseline、核心业务闭环、第三方 API 治理和质量门禁六阶段实施。
+
+2026-08-05 | Codex | 后台第一阶段已落地 `ServiceRequest → Opportunity → Proposal → Agreement → Project → ProjectDeliverable`；新增商机工作台、交付验收、管理员角色和审计，修复后台 API 鉴权与知识库 seed 清空风险；手动施工项目改为表单提交，GET 不再写库。生产迁移未执行，必须先做 baseline 对账。
+
+2026-08-05 | Codex | 新增 `lib/integrations/ai/` 统一 Provider/Model 层，迁移 public chat、admin draft、classification；新增管理员 `/api/admin/readiness`，公开 `/api/health` 不再暴露配置；AI、排版、图片和公众号草稿补输入校验、限流、超时与上游错误脱敏。Redis 跨实例限流和用量成本持久化尚未完成。
+
+2026-08-05 | Codex | 新增星火者业务闭环：`/community/apply` 记录成员申请，`/admin/community` 管理初筛、面聊、通过、订单和成员；通过后自动生成 `spark:180` 会员订单，确认收款开通资格，退款回收资格；首期 20 人限制，无新增数据表。
+2026-08-06 | Codex | 完成无用代码审计：删除未引用旧首页/服务组件、废弃服务数据、事件追踪接口、重复工具、旧数据库初始化脚本和 `full-schema.sql`；同步移除 `pg` 与 `@types/bcryptjs`，更新现行维护文档。文章正文、Ops 内容工具、已引用资源和旧 URL 重定向均保留。
+2026-08-06 | Codex | 安全审计确认已删除的 `scripts/init-db.mjs`、`scripts/setup-db.ps1` 曾包含硬编码凭据且已进入 Git 历史；上线前必须轮换 Supabase 数据库密码、`AUTH_SECRET`、`ADMIN_SESSION_SECRET`，禁止直接改写共享历史。

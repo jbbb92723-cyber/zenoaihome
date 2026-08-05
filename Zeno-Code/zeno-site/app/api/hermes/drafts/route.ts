@@ -25,7 +25,7 @@ function getBaseToken(): string {
 }
 
 export async function GET(req: Request) {
-  if (!verifyApiRequest(req)) {
+  if (!(await verifyApiRequest(req))) {
     return NextResponse.json({ ok: false, error: '未授权' }, { status: 401 })
   }
 
@@ -56,7 +56,7 @@ export async function GET(req: Request) {
 }
 
 export async function POST(req: Request) {
-  if (!verifyApiRequest(req)) {
+  if (!(await verifyApiRequest(req))) {
     return NextResponse.json({ ok: false, error: '未授权' }, { status: 401 })
   }
 

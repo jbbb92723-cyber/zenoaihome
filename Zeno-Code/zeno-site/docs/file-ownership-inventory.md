@@ -140,7 +140,6 @@
 | `app/api/publish/wechat-draft/route.ts` | 内部运营 | 暂不动 |
 | `app/api/internal/content/drafts/route.ts` | 内部运营 | 暂不动 |
 | `app/api/comments/route.ts` | 内容库 / 用户系统 | 暂不动 |
-| `app/api/track/route.ts` | 基础设施 | 暂不动 |
 | `app/api/health/route.ts` | 基础设施 | 暂不动 |
 
 ## components/ 归属
@@ -178,16 +177,13 @@
 
 | 当前文件 | 建议归属 | 说明 |
 | --- | --- | --- |
-| `components/features/home/HomePageGptSkill.tsx` | `features/home` | 首页主组件 |
+| `components/features/home/HomePageBrandHub.tsx` | `features/home` | 首页主组件 |
 | `components/features/living-diagnosis/LivingDiagnosisClient.tsx` | `features/living-diagnosis` | 居住诊断 |
 | `components/features/quote-check/QuoteCheckClient.tsx` | `features/quote-check` | 报价初筛 |
 | `components/features/tools/budget-risk/BudgetRiskQuiz.tsx` | `features/tools/budget-risk` | 超预算自测 |
 | `components/features/tools/budget-risk/RiskDimensionCard.tsx` | `features/tools/budget-risk` | 超预算结果卡 |
 | `components/features/tools/ToolPageShell.tsx` | `features/tools` | 工具页壳 |
 | `components/features/tools/ToolSeoAssetSection.tsx` | `features/tools` | 工具 SEO 内容区 |
-| `components/features/services/CommercialLadder.tsx` | `features/services` | 商业梯子 |
-| `components/features/services/ServiceCard.tsx` | `features/services` | 服务卡 |
-| `components/features/services/ServiceRequestForm.tsx` | `features/services` | 服务表单 |
 | `components/features/content/ArticleCard.tsx` | `features/content` | 文章卡 |
 | `components/features/content/ArticleCTA.tsx` | `features/content` | 文章 CTA |
 | `components/features/content/NoteCard.tsx` | `features/content` | 笔记卡 |
@@ -230,8 +226,6 @@
 
 | 当前文件 | 归属 | 后续建议 |
 | --- | --- | --- |
-| `data/services/index.ts` | 商业转化 | 服务主数据入口，引用路径为 `@/data/services` |
-| `data/services/commercial-ladder.ts` | 商业转化 | 当前保留 |
 | `data/services/products.ts` | 商业转化 / 支付 | 当前保留 |
 
 ## lib/ 归属
@@ -245,15 +239,12 @@
 | `lib/utils.ts` | 基础设施 | 保持 |
 | `lib/validations.ts` | 基础设施 | 后续可按域拆分 |
 | `lib/navigation.ts` | 基础设施 / 信息架构 | 保持，后续可迁到 `lib/site/navigation.ts` |
-| `lib/track.ts` | 基础设施 / 分析 | 保持 |
 | `lib/i18n/**` | 基础设施 / 英文站 | 保持 |
 | `lib/living-diagnosis.ts` | 诊断逻辑 | 迁到 `lib/diagnosis/living-diagnosis.ts`，避免和 `data/living-diagnosis.ts` 混淆 |
 | `lib/notes.ts` | 内容库 / 用户系统 | 可迁到 `lib/content/notes.ts` |
 | `lib/entitlements.ts` | 商业转化 | 可迁到 `lib/commerce/entitlements.ts` |
-| `lib/permissions.ts` | 用户系统 / 权限 | 可迁到 `lib/auth/permissions.ts` |
 | `lib/email.ts` | 基础设施 / 集成 | 可迁到 `lib/integrations/email.ts` |
 | `lib/md2wechat.ts` | 内部运营 / 集成 | 可迁到 `lib/integrations/md2wechat.ts` |
-| `lib/wechat-official.ts` | 内部运营 / 集成 | 可迁到 `lib/integrations/wechat-official.ts` |
 | `lib/volcengine-image.ts` | 内部运营 / 集成 | 可迁到 `lib/integrations/volcengine-image.ts` |
 | `lib/internal-api.ts` | 内部运营 / API | 可迁到 `lib/internal/api.ts` |
 
@@ -311,7 +302,7 @@
 - `public/images/resources/ai-prompt-pack.svg`
 - `app/tools/publish/page.tsx` 作为公开工具区页面的归属
 - `app/api/images/generate/route.ts`、`app/api/md2wechat/convert/route.ts`、`app/api/publish/wechat-draft/route.ts` 的内部运营归属
-- `data/articles.ts` 中仍面向 AI 提示词、AI 内容工作流、报价审核单点定位的旧 CTA
+- `data/content/articles.ts` 中仍面向 AI 提示词、AI 内容工作流、报价审核单点定位的旧 CTA
 
 ### 暂不建议动
 

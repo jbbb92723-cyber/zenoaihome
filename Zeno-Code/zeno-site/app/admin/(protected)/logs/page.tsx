@@ -23,6 +23,7 @@ const ACTION_LABELS: Record<string, string> = {
   batch_create_redeem_codes: '批量创建兑换码',
   create_coupon: '创建优惠券',
   confirm_payment: '确认付款',
+  update_community_application: '更新社群申请',
 }
 
 export default async function AdminLogsPage() {

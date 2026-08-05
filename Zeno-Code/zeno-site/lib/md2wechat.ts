@@ -67,17 +67,17 @@ export async function convertMarkdownToWechat(params: ConvertParams): Promise<Co
       fontSize:         params.fontSize         ?? 'medium',
       backgroundType:   params.backgroundType   ?? 'default',
     }),
+    signal: AbortSignal.timeout(15_000),
   })
 
   if (!res.ok) {
-    const text = await res.text().catch(() => '')
-    throw new Error(`md2wechat convert 请求失败 (${res.status})：${text}`)
+    throw new Error(`md2wechat convert 请求失败 (${res.status})`)
   }
 
   const json = await res.json()
 
   if (json.code !== 0) {
-    throw new Error(`md2wechat convert 返回错误：${json.message ?? JSON.stringify(json)}`)
+    throw new Error('md2wechat convert 返回业务错误')
   }
 
   return {

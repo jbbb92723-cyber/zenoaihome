@@ -75,40 +75,15 @@ npm run lint     # 代码检查
 
 ## 5. 如何修改首页文案
 
-首页内容在 `app/page.tsx`：
-
-- **Hero 主标题/副标题**：修改 `<h1>` 和 `<p>` 内容
-- **我主要写什么**：修改 `writingAreas` 数组
-- **关于我简介**：修改底部 `<p>` 文字
-- **按钮文案**：修改 `CTAGroup` 的 `items` 数组中的 `label`
+首页入口是 `app/page.tsx`，主要页面内容在 `components/features/home/HomePageBrandHub.tsx`。结构化数据和页面 metadata 在入口文件维护，首页区块与文案在主组件维护。
 
 ---
 
 ## 6. 如何新增文章
 
-**步骤一**：打开 `data/articles.ts`
-
-**步骤二**：在 `articles` 数组末尾新增一项：
-
-```typescript
-{
-  id: '06',                          // 顺序递增
-  slug: '06-你的文章slug',            // 只用英文小写+连字符
-  title: '文章标题',
-  excerpt: '100字以内摘要，不剧透结论',
-  category: '居住与装修',              // 必须是5个分类之一
-  tags: ['标签1', '标签2'],
-  date: '2026-05-01',                // YYYY-MM-DD 格式
-  content: `正文内容（Markdown 格式）`,
-}
-```
-
-**分类选项**（固定5类）：
-- `居住与装修`
-- `美学与生活`
-- `人性与判断`
-- `成长与长期主义`
-- `AI 与新生产力`
+1. 参考相邻文章，在 `data/content/` 新增 `article-XXX-content.ts` 正文文件。
+2. 在 `data/content/articles.ts` 注册文章 metadata，并导入对应正文。
+3. 运行 `npx tsc --noEmit`，确认文章编号、slug 和导入路径有效。
 
 文章会自动出现在 `/blog` 列表页和对应分类筛选中。如果日期最新，也会出现在首页的"最近写的"模块。
 
@@ -116,7 +91,7 @@ npm run lint     # 代码检查
 
 ## 7. 如何新增资料
 
-打开 `data/resources.ts`，在 `resources` 数组末尾新增一项：
+打开 `data/content/resources.ts`，参考现有条目在 `resources` 数组末尾新增一项：
 
 ```typescript
 {
@@ -253,14 +228,14 @@ Zeno-Code/zeno-site/
 
 **修改文章内容**
 
-1. 打开 `data/articles.ts`
-2. 找到对应文章，修改 `title`、`content`、`excerpt` 等字段
+1. 正文在 `data/content/article-XX-content.ts` 修改。
+2. 标题、摘要、分类和 slug 在 `data/content/articles.ts` 修改。
 3. 保存，提交到 GitHub
 4. Vercel 自动重新部署
 
 **新增文章**
 
-同上，在 `articles` 数组末尾新增一项（格式见第 6 节）。
+按第 6 节新增正文文件并注册 metadata。
 
 **修改或新增图片**
 
@@ -280,11 +255,11 @@ Zeno-Code/zeno-site/
 
 **修改联系方式**
 
-打开 `app/contact/page.tsx` 或 `components/Footer.tsx`，找到微信号 / 邮箱等字段，直接修改文字。
+打开 `app/contact/page.tsx` 或 `components/layout/Footer.tsx`，找到微信号 / 邮箱等字段，直接修改文字。
 
 **修改服务价格或描述**
 
-打开 `data/services.ts`，找到对应服务，修改 `price`、`description`、`forWho` 等字段。
+打开 `data/services/products.ts`，找到对应产品，修改 `price`、`description`、`bestFor` 等字段。
 
 ---
 

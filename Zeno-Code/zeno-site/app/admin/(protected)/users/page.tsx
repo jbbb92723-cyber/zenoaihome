@@ -89,8 +89,8 @@ export default async function UsersPage({
               const m = u.membership
               const memberLabel = !m || m.plan === 'free'
                 ? '免费'
-                : m.status === 'active' ? '创作会员' : '已过期'
-              const memberColor = memberLabel === '创作会员' ? 'text-[#C4A882]' : 'text-[#706860]'
+                : m.status === 'active' ? (m.plan === 'spark' ? '星火者' : '创作会员') : '已过期'
+              const memberColor = ['星火者', '创作会员'].includes(memberLabel) ? 'text-[#C4A882]' : 'text-[#706860]'
 
               return (
                 <tr key={u.id} className="hover:bg-[#2A2825] transition-colors">

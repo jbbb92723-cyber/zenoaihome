@@ -10,6 +10,7 @@ import { auth } from '@/auth'
 import { prisma } from '@/lib/prisma'
 import { getProductById } from '@/data/services/products'
 import { z } from 'zod'
+import { SPARK_COMMUNITY_SERVICE_TYPE } from '@/lib/domains/community/constants'
 
 const createOrderSchema = z.object({
   productId:     z.string().min(1).max(64),
@@ -45,13 +46,49 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: '商品不存在或已下架' }, { status: 404 })
   }
 
+  let source = 'web'
+  if (product.requiresApproval) {
+    const approvedApplication = await prisma.serviceRequest.findFirst({
+      where: {
+        userId: session.user.id,
+        serviceType: SPARK_COMMUNITY_SERVICE_TYPE,
+        status: 'completed',
+      },
+      orderBy: { createdAt: 'desc' },
+      select: { id: true },
+    })
+
+    if (!approvedApplication) {
+      return NextResponse.json({ error: '该产品需要先通过申请' }, { status: 403 })
+    }
+
+    source = `community:${approvedApplication.id}`
+    const existingOrder = await prisma.order.findFirst({
+      where: {
+        userId: session.user.id,
+        source,
+        status: { notIn: ['cancelled', 'refunded'] },
+      },
+      orderBy: { createdAt: 'desc' },
+      select: { orderNo: true },
+    })
+
+    if (existingOrder) {
+      return NextResponse.json({ orderNo: existingOrder.orderNo }, { status: 200 })
+    }
+  }
+
   const orderNo = genOrderNo()
+  const databaseProduct = await prisma.product.findUnique({
+    where: { id: product.id },
+    select: { id: true },
+  })
 
   const order = await prisma.order.create({
     data: {
       userId:        session.user.id,
       orderNo,
-      productId,
+      productId:      databaseProduct?.id ?? null,
       productName:   product.name,
       productType:   product.type,
       amount:        product.price,
@@ -59,7 +96,7 @@ export async function POST(request: NextRequest) {
       paidAmount:    product.price,
       status:        'pending',
       paymentMethod,
-      source:        'web',
+      source,
       // remark 存储权益 value，grantEntitlement 读取
       remark:        product.value,
     },
@@ -90,4 +127,3 @@ export async function GET(request: NextRequest) {
 
   return NextResponse.json({ orders })
 }
-

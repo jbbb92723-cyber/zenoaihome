@@ -117,7 +117,7 @@ export default function CommunityPage() {
           </div>
         </section>
 
-        <section className="mt-16 border-2 border-stone bg-surface-warm p-7 sm:mt-20 sm:p-10">
+        <section id="join" className="mt-16 scroll-mt-24 border-2 border-stone bg-surface-warm p-7 sm:mt-20 sm:p-10">
           <div className="grid gap-8 lg:grid-cols-[0.58fr_0.42fr] lg:items-center">
             <div>
               <p className="text-sm font-semibold text-stone">首期试运行招募</p>
@@ -143,10 +143,10 @@ export default function CommunityPage() {
             <div className="lg:text-right">
               <p className="text-sm font-semibold text-ink mb-3">申请方式</p>
               <p className="text-sm leading-7 text-ink-muted mb-5">
-                私信赞诺（zanxiansheng2025），说清楚你是谁、在做什么、为什么想加入。15 分钟聊完，双向选择。
+                在线提交你正在做的事、能提供的能力和当前需要。初筛通过后再进行 15 分钟面聊，双向选择。
               </p>
-              <Link href="/contact" className="motion-press inline-flex min-h-11 items-center rounded-[7px] bg-ink px-5 py-3 text-sm font-semibold text-white hover:bg-stone-deep">
-                了解详情 →
+              <Link href="/community/apply" className="motion-press inline-flex min-h-11 items-center rounded-[7px] bg-ink px-5 py-3 text-sm font-semibold text-white hover:bg-stone-deep">
+                提交成员申请 →
               </Link>
             </div>
           </div>

@@ -13,7 +13,7 @@ export async function POST(
   req: Request,
   { params }: { params: Promise<{ id: string }> }
 ) {
-  if (!verifyApiRequest(req)) {
+  if (!(await verifyApiRequest(req))) {
     return NextResponse.json({ ok: false, error: '未授权' }, { status: 401 })
   }
 

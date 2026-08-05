@@ -10,18 +10,20 @@ const NAV = [
   ]},
   { group: '用户运营', items: [
     { href: '/admin/users',   label: '用户管理' },
+    { href: '/admin/community', label: '星火者社群' },
     { href: '/admin/members', label: '会员管理' },
     { href: '/admin/orders',  label: '订单管理' },
+  ]},
+  { group: '业务经营', items: [
+    { href: '/admin/opportunities', label: '商机工作台' },
+    { href: '/admin/services',      label: '服务申请' },
+    { href: '/admin/projects',      label: '项目交付' },
   ]},
   { group: '内容与服务', items: [
     { href: '/admin/content',           label: '内容草稿' },
     { href: '/admin/notes',             label: '判断笔记' },
     { href: '/admin/living-diagnoses',  label: '居住诊断' },
-    { href: '/admin/services',          label: '服务申请' },
     { href: '/admin/resources/claims',  label: '资料领取' },
-  ]},
-  { group: '项目交付', items: [
-    { href: '/admin/projects', label: '工地总览' },
   ]},
   { group: 'AI 工具', items: [
     { href: '/admin/ai-reply', label: '智能回复' },
@@ -32,7 +34,6 @@ const NAV = [
   ]},
   { group: '系统', items: [
     { href: '/admin/logs',   label: '操作日志' },
-    { href: '/admin/events', label: '行为事件' },
   ]},
 ]
 

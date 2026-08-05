@@ -1,3 +1,10 @@
+import {
+  SPARK_COMMUNITY_DURATION_DAYS,
+  SPARK_COMMUNITY_PLAN,
+  SPARK_COMMUNITY_PRICE,
+  SPARK_COMMUNITY_PRODUCT_ID,
+} from '@/lib/domains/community/constants'
+
 /**
  * data/services/products.ts
  *
@@ -16,13 +23,34 @@ export interface Product {
   originalPrice?: number // 划线价（分）
   description: string[]
   badge?:      string
-  category:    '装修判断'
+  category:    '装修判断' | '星火者'
   bestFor:     string
   deliverable: string
   isActive:    boolean
+  requiresApproval?: boolean
 }
 
 export const PRODUCTS: Product[] = [
+  {
+    id:           SPARK_COMMUNITY_PRODUCT_ID,
+    name:         '星火者共同体 · 首期成员',
+    tagline:      '20 人，6 个月，一起验证真实协作',
+    type:         'membership',
+    value:        `${SPARK_COMMUNITY_PLAN}:${SPARK_COMMUNITY_DURATION_DAYS}`,
+    price:        SPARK_COMMUNITY_PRICE,
+    category:     '星火者',
+    bestFor:      '正在经营一人公司、转型创业或推进真实项目，并愿意分享与协作的实践者。',
+    deliverable:  '6 个月共同体成员资格、火种读书会、成员连接与共燃项目参与机会。',
+    description:  [
+      '申请与 15 分钟面聊，先确认彼此预期',
+      '火种技能读书会与真实项目复盘',
+      '带上下文的成员连接，而不是通讯录交换',
+      '72 小时无条件退款',
+    ],
+    badge:        '首期 20 人',
+    isActive:     true,
+    requiresApproval: true,
+  },
   {
     id:           'quote-self-check-kit',
     name:         '装修报价自查工具包',

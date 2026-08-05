@@ -10,7 +10,9 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server'
-import { isAdminUser } from '@/lib/admin'
+import { z } from 'zod'
+import { getAdminActor } from '@/lib/admin'
+import { checkRateLimit, getClientIp } from '@/lib/rateLimit'
 
 // ─── 回流链接 ──────────────────────────────────────────────────
 
@@ -27,26 +29,34 @@ function buildBacklinkMarkdown(articlePath = ''): string {
 
 // ─── 请求体类型 ─────────────────────────────────────────────────
 
-interface DraftRequestBody {
-  title: string
-  markdown: string
-  coverImageUrl?: string
-  theme?: string
-  fontSize?: string
-  /** 文章在网站的路径，例如 /blog/why-i-dont-just-teach-renovation，用于精准回流链接 */
-  articlePath?: string
-}
+const draftSchema = z.object({
+  title: z.string().trim().min(1).max(200),
+  markdown: z.string().trim().min(1).max(100_000),
+  coverImageUrl: z.string().trim().url().max(2000).optional(),
+  theme: z.string().trim().min(1).max(50).default('default'),
+  fontSize: z.enum(['small', 'medium', 'large']).default('medium'),
+  articlePath: z.string().trim().max(300).regex(/^\/[a-z0-9/_-]*$/i).default(''),
+})
 
 // ─── 路由处理器 ─────────────────────────────────────────────────
 
 export async function POST(request: NextRequest) {
   // ── 权限验证 ──────────────────────────────────────────────────
-  const admin = await isAdminUser()
-  if (!admin) {
+  const actor = await getAdminActor()
+  if (!actor) {
     return NextResponse.json(
       { error: '无权限。此接口仅限管理员使用。' },
       { status: 403 },
     )
+  }
+
+  const limiter = checkRateLimit(
+    `wechat-draft:${actor.id ?? getClientIp(request)}`,
+    20,
+    60 * 60_000,
+  )
+  if (!limiter.allowed) {
+    return NextResponse.json({ error: '草稿推送请求过于频繁，请稍后再试。' }, { status: 429 })
   }
 
   // ── 环境变量检查 ───────────────────────────────────────────────
@@ -61,51 +71,26 @@ export async function POST(request: NextRequest) {
   if (!wechatSecret)                    missingEnvs.push('WECHAT_APP_SECRET')
 
   if (missingEnvs.length > 0) {
+    console.warn('[publish/wechat-draft] missing configuration:', missingEnvs.join(','))
     return NextResponse.json(
-      { error: `以下环境变量未配置：${missingEnvs.join('、')}` },
+      { error: '公众号草稿服务暂未配置。' },
       { status: 503 },
     )
   }
 
   // ── 解析请求体 ─────────────────────────────────────────────────
-  let body: unknown
-  try {
-    body = await request.json()
-  } catch {
-    return NextResponse.json({ error: '请求格式错误，需要 JSON 格式。' }, { status: 400 })
+  const parsed = draftSchema.safeParse(await request.json().catch(() => null))
+  if (!parsed.success) {
+    return NextResponse.json({ error: '请求参数无效。' }, { status: 422 })
   }
-
-  if (
-    typeof body !== 'object' ||
-    body === null ||
-    typeof (body as DraftRequestBody).title !== 'string' ||
-    typeof (body as DraftRequestBody).markdown !== 'string'
-  ) {
-    return NextResponse.json({ error: '缺少 title 或 markdown 字段。' }, { status: 400 })
-  }
-
-  const {
-    title,
-    markdown,
-    coverImageUrl,
-    theme = 'default',
-    fontSize = 'medium',
-    articlePath = '',
-  } = body as DraftRequestBody
-
-  if (!title.trim()) {
-    return NextResponse.json({ error: '文章标题不能为空。' }, { status: 400 })
-  }
-  if (!markdown.trim()) {
-    return NextResponse.json({ error: 'Markdown 内容不能为空。' }, { status: 400 })
-  }
+  const { title, markdown, coverImageUrl, theme, fontSize, articlePath } = parsed.data
 
   // ── 注入回流链接 ───────────────────────────────────────────────
-  const markdownWithBacklink = markdown.trimEnd() + buildBacklinkMarkdown(articlePath)
+  const markdownWithBacklink = markdown + buildBacklinkMarkdown(articlePath)
 
   // ── 构建草稿请求 ───────────────────────────────────────────────
   const draftPayload: Record<string, unknown> = {
-    title: title.trim(),
+    title,
     markdown: markdownWithBacklink,
     theme,
     fontSize,
@@ -113,8 +98,8 @@ export async function POST(request: NextRequest) {
     draft: true,
   }
 
-  if (coverImageUrl?.trim()) {
-    draftPayload.coverImageUrl = coverImageUrl.trim()
+  if (coverImageUrl) {
+    draftPayload.coverImageUrl = coverImageUrl
   }
 
   const baseUrl = (process.env.MD2WECHAT_BASE_URL ?? 'https://md2wechat.com').replace(/\/$/, '')
@@ -132,6 +117,7 @@ export async function POST(request: NextRequest) {
         'Wechat-App-Secret': wechatSecret as string,
       },
       body: JSON.stringify(draftPayload),
+      signal: AbortSignal.timeout(30_000),
     })
   } catch (err) {
     console.error('[publish/wechat-draft] 网络请求失败:', err)
@@ -144,15 +130,12 @@ export async function POST(request: NextRequest) {
   const upstreamText = await upstreamResponse.text()
 
   if (!upstreamResponse.ok) {
-    console.error(
-      `[publish/wechat-draft] 上游返回 ${upstreamResponse.status}:`,
-      upstreamText.slice(0, 500),
-    )
+    console.error(`[publish/wechat-draft] upstream status: ${upstreamResponse.status}`)
     return NextResponse.json(
       {
-        error: `创建草稿失败（HTTP ${upstreamResponse.status}）。请检查微信 APPID/SECRET 或 md2wechat API Key 是否正确。`,
+        error: `创建草稿失败（HTTP ${upstreamResponse.status}）。请检查公众号和排版服务配置。`,
       },
-      { status: upstreamResponse.status },
+      { status: 502 },
     )
   }
 
@@ -169,7 +152,7 @@ export async function POST(request: NextRequest) {
       success: true,
       message: '草稿已创建成功！已自动注入网站回流链接。请前往微信公众号后台"草稿箱"审核后手动发布。',
       backlinkAdded: true,
-      raw: upstreamText,
+      data: null,
     })
   }
 }

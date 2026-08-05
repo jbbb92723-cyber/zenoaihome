@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 import Container from '@/components/ui/Container'
 
 export default function AdminLoginPage() {
@@ -43,6 +44,12 @@ export default function AdminLoginPage() {
           <p className="page-label mb-3">管理后台</p>
           <h1 className="text-2xl font-semibold text-ink tracking-tight">管理员登录</h1>
         </div>
+
+        <Link href="/login?callbackUrl=/admin/dashboard" className="mb-5 block border border-border px-4 py-2.5 text-center text-sm font-semibold text-ink hover:border-stone">
+          管理员账户登录
+        </Link>
+
+        <p className="mb-3 text-xs font-semibold text-ink-muted">应急入口</p>
 
         {error && (
           <div className="mb-4 px-4 py-3 border border-red-200 bg-red-50 dark:bg-red-950/30 dark:border-red-800 text-sm text-red-700 dark:text-red-400">

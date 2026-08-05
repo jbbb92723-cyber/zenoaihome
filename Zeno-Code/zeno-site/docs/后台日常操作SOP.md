@@ -1,6 +1,6 @@
 # ZenoAIHome 后台日常操作 SOP
 
-> 版本 V1.0 | 2026-06-17
+> 版本 V1.1 | 2026-08-05
 > 适用：Zeno 本人日常使用。每次打开后台前扫一眼。
 
 ## 一、后台入口
@@ -8,11 +8,69 @@
 | 页面 | URL | 用途 |
 | --- | --- | --- |
 | 后台首页 | `/admin` | 功能入口总览 |
+| 商机工作台 | `/admin/opportunities` | 从需求判断推进到方案、协议和项目 |
+| 服务申请 | `/admin/services` | 审核网站提交并转为商机 |
+| 项目交付 | `/admin/projects` | 推进节点、交付物和验收 |
 | 判断笔记 | `/admin/notes` | *你最常用的页面*——写/发/管笔记 |
 | 操作日志 | `/admin/logs` | 回溯所有管理操作 |
-| 登录页 | `/admin/login` | 输 `ADMIN_PASSWORD`（7 天有效） |
+| 登录页 | `/admin/login` | 管理员账户登录；共享密码仅作应急入口 |
 
-## 二、日常内容发布 SOP
+### 管理员首次授权
+
+1. 先对生产库做可恢复备份，并执行 `npx prisma migrate status` 核对迁移历史。
+2. 当前仓库不是完整初始基线；如果生产库和 `prisma/migrations/` 记录不一致，先在 staging 完成 baseline 与 reconciliation，禁止直接 deploy。
+3. staging 重建和迁移演练通过后，生产执行 `npx prisma migrate deploy`。
+4. 管理员邮箱先在网站完成正常注册，再执行：`npm run admin:grant -- 管理员邮箱`。
+5. 退出旧会话并重新登录，JWT 才会带上新的管理员角色。
+
+旧 `ADMIN_PASSWORD` 入口暂时保留，单次会话有效期为 12 小时。Auth.js 管理员登录验证稳定后再下线。
+
+### AI Provider 与模型
+
+文本模型按任务分开配置，密钥只放在服务端环境变量：
+
+| 任务 | Provider | 模型 |
+| --- | --- | --- |
+| 网站客户助手 | `AI_PUBLIC_CHAT_PROVIDER` | `AI_PUBLIC_CHAT_MODEL` |
+| 后台回复草稿 | `AI_ADMIN_DRAFT_PROVIDER` | `AI_ADMIN_DRAFT_MODEL` |
+| 服务申请分类 | `AI_CLASSIFICATION_PROVIDER` | `AI_CLASSIFICATION_MODEL` |
+
+Provider 支持 `deepseek`、`openai` 和任意 OpenAI-compatible `custom`。具体密钥与 Base URL 见 `.env.example`；不要把 API Key 写进页面、数据库正文或 Git。
+
+公开存活检查使用 `/api/health`。数据库、Auth、邮件和第三方服务的详细就绪状态使用管理员接口 `/api/admin/readiness`，不得对外公开 readiness 响应。
+
+## 二、服务经营 SOP
+
+```text
+服务申请 → 商机 → 方案 → 协议 → 项目 → 交付物验收
+```
+
+1. 在 `/admin/services` 打开一条服务申请，确认联系方式和真实问题。
+2. 点击「转为商机」，补充需求边界、预计金额、下一动作和跟进日期。
+3. 新建方案版本，逐项写清工作范围、交付物、报价和有效期。
+4. 记录方案已发送；客户接受后，把方案状态改为「已接受」。
+5. 核对自动生成的协议边界，确认签署后创建交付项目。
+6. 在项目页更新节点和交付物状态，客户确认后标记「已验收」。
+
+同一服务申请只能生成一个商机，同一商机只能自动生成一个项目。重复点击不会创建重复数据。
+
+## 三、星火者社群 SOP
+
+```text
+在线申请 → 初筛 → 面聊 → 通过并生成订单 → 确认收款 → 自动开通 180 天资格 → 入营
+```
+
+1. 申请人登录后在 `/community/apply` 提交申请。
+2. 在 `/admin/community` 查看申请内容；符合初步方向时点「进入面聊」。
+3. 面聊确认双方预期后，点「通过并生成订单」。系统自动生成 ¥1,499 的首期成员订单。
+4. 申请人在自己的申请进度页打开订单、付款并通知已付款。
+5. 在 `/admin/orders` 找到对应订单，必须点「确认已付款」；不要只把状态手工改成「已完成」。
+6. 确认成功后系统自动开通 `spark` 会员 180 天，成员可在个人中心看到资格。
+7. 通过微信联系成员完成入群和首次自我介绍，网站保留申请、订单与资格记录。
+
+首期系统上限为 20 个通过名额。订单在 72 小时内退款时，把订单改为「已退款」，系统会同步取消本期会员资格并关闭申请。
+
+## 四、日常内容发布 SOP
 
 ### 判断笔记（核心日常）
 
@@ -69,13 +127,6 @@
     不能 → 发。
 ```
 
-### 更新首页签名（可选，每周一次）
-
-首页 Hero 下方有一行小字："今天在看的：XXX"。建议每周或每两周换一次，反映你当下最关注的问题。
-
-编辑文件：`components/features/home/HomePageGptSkill.tsx`
-找到 `今天在看的：` 那行 → 改掉 → commit → push。
-
 ### 发布文章（低频，每月 1-4 篇）
 
 文章数据在 `data/content/articles.ts` 和 `data/content/article-XX-content.ts` 中。修改流程：
@@ -83,14 +134,16 @@
 2. 本地 `npx.cmd tsc --noEmit` 确认编译
 3. commit → push
 
-## 三、安全注意事项
+## 五、安全注意事项
 
 ### 密码管理
 - `ADMIN_PASSWORD` 在 Vercel 环境变量中，不要分享
+- 正常管理使用 Auth.js 管理员账户，角色保存在 `users.role`
 - 如果怀疑泄露：Vercel Dashboard → Settings → Environment Variables → 改掉 → Redeploy
 
 ### Cookie 安全
-- 管理员 session 7 天有效，过期需重新登录
+- Auth.js 会话按用户登录策略管理；旧共享密码 session 仅 12 小时有效
+- 旧共享密码 session 必须单独配置 `ADMIN_SESSION_SECRET`，不得使用 `ADMIN_PASSWORD` 兼作签名密钥
 - Cookie 设置：httpOnly ✅ · secure（生产）✅ · sameSite lax ✅
 
 ### 操作回溯
@@ -98,28 +151,31 @@
 - 怀疑异常时，先去日志页看最近操作
 - 日志保留最近 100 条
 
-## 四、内容节奏建议
+## 六、内容节奏建议
 
 | 频率 | 发布什么 | 发布到哪里 |
 | --- | --- | --- |
 | 每周 1-3 次 | 判断笔记（300-800 字） | `/admin/notes` |
-| 每两周 1 次 | 更新首页"今天在看的" | 编辑 `HomePageGptSkill.tsx` |
 | 每月 1-2 篇 | 长文（1500+ 字） | `data/content/articles.ts` |
 | 按需 | 更新 llms.txt / sitemap | `public/` 目录 |
 
-## 五、你后台现在有的功能
+## 七、你后台现在有的功能
 
 | 功能 | 在哪 | 做什么 |
 | --- | --- | --- |
+| 星火者社群 | `/admin/community` | 初筛、面聊、通过、订单和成员状态 |
+| 商机经营 | `/admin/opportunities` | 需求、跟进、方案、协议和成交状态 |
+| 服务申请 | `/admin/services` | 网站线索审核和转商机 |
+| 项目交付 | `/admin/projects` | 节点、交付物、验收、照片和备注 |
 | 判断笔记管理 | `/admin/notes` | 创建/编辑/预览/发布/删除笔记 |
 | 操作日志 | `/admin/logs` | 看所有管理操作记录 |
 | 内容草稿 | `/admin/content` | 飞书推送过来的草稿 |
 | 公众号工作台 | `/tools/publish` | 公众号发布工具 |
 
-## 六、常见问题
+## 八、常见问题
 
 **Q: 登录过期了怎么办？**
-A: 浏览器打开 `/admin/login`，重新输入 `ADMIN_PASSWORD`。有效期 7 天。
+A: 优先使用管理员账户重新登录。应急情况下可在 `/admin/login` 使用 `ADMIN_PASSWORD`，有效期 12 小时。
 
 **Q: 笔记发了但前台看不到？**
 A: 检查笔记状态是不是「公开」（PUBLIC）。草稿和私有笔记不会出现在前台 `/notes` 页。

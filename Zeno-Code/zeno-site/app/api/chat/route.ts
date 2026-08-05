@@ -2,19 +2,18 @@
  * AI Chat API — Zeno 智能问答接口
  *
  * 设计原则：
- * 1. 优先调用真实大模型（DeepSeek / OpenAI 兼容协议），用一段写死的系统提示词
+ * 1. 优先通过统一 Provider 适配器调用 OpenAI 兼容协议，用一段写死的系统提示词
  *    把 Zeno 的人设、使命和边界注入。
- * 2. 没有配置 LLM_API_KEY 时，自动回退到关键词知识库——保证未配置 Key 的环境
+ * 2. 没有配置 Provider 时，自动回退到关键词知识库——保证未配置 Key 的环境
  *    （比如本地开发、首次部署）也不报错。
  * 3. 所有用户问题在 server 端落地，浏览器端不直接持有 API Key。
- *
- * 环境变量：
- *   LLM_API_KEY       必填（接 LLM 时）— DeepSeek / OpenAI 等服务的 API Key
- *   LLM_BASE_URL      可选 — 默认 https://api.deepseek.com/v1
- *   LLM_MODEL         可选 — 默认 deepseek-chat
  */
 
 import { NextRequest, NextResponse } from 'next/server'
+import { z } from 'zod'
+import { checkRateLimit, getClientIp } from '@/lib/rateLimit'
+import { createAiChatCompletion, type AiMessage } from '@/lib/integrations/ai/client'
+import { getAiTaskStatus } from '@/lib/integrations/ai/config'
 
 interface ChatRequest {
   message: string
@@ -22,6 +21,15 @@ interface ChatRequest {
   /** 历史消息，用于多轮上下文，可选 */
   history?: { role: 'user' | 'assistant'; content: string }[]
 }
+
+const chatRequestSchema = z.object({
+  message: z.string().trim().min(1).max(1000),
+  locale: z.enum(['zh', 'en']).default('zh'),
+  history: z.array(z.object({
+    role: z.enum(['user', 'assistant']),
+    content: z.string().trim().min(1).max(2000),
+  })).max(12).optional(),
+})
 
 type ChatActionKind = 'tool' | 'article' | 'resource' | 'service' | 'contact' | 'page'
 
@@ -619,46 +627,24 @@ async function callLLM(
   history: ChatRequest['history'] = [],
   locale: 'zh' | 'en'
 ): Promise<string | null> {
-  const apiKey = process.env.LLM_API_KEY
-  if (!apiKey) return null
-
-  const baseUrl = process.env.LLM_BASE_URL || 'https://api.deepseek.com/v1'
-  const model = process.env.LLM_MODEL || 'deepseek-chat'
-
   // 控制上下文长度：只取最近 6 轮
   const recent = (history || []).slice(-6)
 
-  const messages = [
+  const messages: AiMessage[] = [
     { role: 'system', content: locale === 'en' ? SYSTEM_PROMPT_EN : SYSTEM_PROMPT_ZH },
     ...recent,
     { role: 'user', content: message },
   ]
 
   try {
-    // 12 秒超时，避免聊天面板长时间转圈
-    const controller = new AbortController()
-    const timeout = setTimeout(() => controller.abort(), 12_000)
-
-    const res = await fetch(`${baseUrl}/chat/completions`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${apiKey}`,
-      },
-      body: JSON.stringify({
-        model,
-        messages,
-        temperature: 0.4,
-        max_tokens: 600,
-      }),
-      signal: controller.signal,
+    const completion = await createAiChatCompletion({
+      task: 'public_chat',
+      messages,
+      temperature: 0.4,
+      maxTokens: 600,
+      timeoutMs: 12_000,
     })
-    clearTimeout(timeout)
-
-    if (!res.ok) return null
-    const data = await res.json()
-    const reply = data?.choices?.[0]?.message?.content
-    return typeof reply === 'string' && reply.trim().length > 0 ? reply.trim() : null
+    return completion?.content ?? null
   } catch {
     return null
   }
@@ -670,16 +656,24 @@ async function callLLM(
 
 export async function POST(request: NextRequest) {
   try {
-    const body: ChatRequest = await request.json()
-    const { message, locale = 'zh', history } = body
+    const parsed = chatRequestSchema.safeParse(await request.json().catch(() => null))
+    if (!parsed.success) {
+      return NextResponse.json({ error: 'Invalid message' }, { status: 422 })
+    }
+    const { message, locale, history } = parsed.data
 
-    if (!message || typeof message !== 'string' || message.length > 1000) {
-      return NextResponse.json({ error: 'Invalid message' }, { status: 400 })
+    const modelConfigured = getAiTaskStatus('public_chat').configured
+    const limiter = checkRateLimit(
+      `public-chat:${getClientIp(request)}`,
+      modelConfigured ? 20 : 120,
+      60 * 60_000,
+    )
+    if (!limiter.allowed) {
+      return NextResponse.json({ error: '请求过于频繁，请稍后再试' }, { status: 429 })
     }
 
-    const trimmed = message.trim()
-    const llmReply = await callLLM(trimmed, history, locale)
-    const payload = llmReply ? buildStructuredReply(llmReply, trimmed, locale) : fallbackAnswer(trimmed, locale)
+    const llmReply = await callLLM(message, history, locale)
+    const payload = llmReply ? buildStructuredReply(llmReply, message, locale) : fallbackAnswer(message, locale)
 
     return NextResponse.json({ ...payload, source: llmReply ? 'llm' : 'fallback' })
   } catch {

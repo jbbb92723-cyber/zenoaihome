@@ -4,8 +4,10 @@
  */
 
 import type { Metadata } from 'next'
+import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { prisma } from '@/lib/prisma'
+import { createOpportunityFromRequestAction } from '@/lib/actions/opportunities'
 import { classify, suggestArticles } from '@/lib/classifier'
 import { matchTemplate, getTemplatesByCategory } from '@/lib/template-matcher'
 import { ActionPanel } from './actions'
@@ -33,7 +35,10 @@ export default async function ServiceDetailPage({
   params: Promise<{ id: string }>
 }) {
   const { id } = await params
-  const request = await prisma.serviceRequest.findUnique({ where: { id } })
+  const request = await prisma.serviceRequest.findUnique({
+    where: { id },
+    include: { opportunity: { select: { id: true, stage: true } } },
+  })
   if (!request) notFound()
 
   // 执行分类
@@ -69,13 +74,26 @@ export default async function ServiceDetailPage({
             服务申请详情
           </h1>
         </div>
-        <span className={`text-xs px-3 py-1 rounded-sm font-semibold ${
-          request.status === 'submitted' ? 'bg-[#d2846f]/15 text-[#d2846f]' :
-          request.status === 'completed' ? 'bg-green-400/15 text-green-400' :
-          'bg-[#706860]/15 text-[#706860]'
-        }`}>
-          {STATUS_LABEL[request.status] ?? request.status}
-        </span>
+        <div className="flex items-center gap-2">
+          {request.opportunity ? (
+            <Link href={`/admin/opportunities/${request.opportunity.id}`} className="border border-[#C4A882]/40 px-3 py-1.5 text-xs font-semibold text-[#C4A882] hover:bg-[#C4A882]/10">
+              查看商机
+            </Link>
+          ) : (
+            <form action={createOpportunityFromRequestAction.bind(null, request.id)}>
+              <button type="submit" className="bg-[#C4A882] px-3 py-1.5 text-xs font-semibold text-[#1C1A17] hover:bg-[#d2bb98]">
+                转为商机
+              </button>
+            </form>
+          )}
+          <span className={`text-xs px-3 py-1 rounded-sm font-semibold ${
+            request.status === 'submitted' ? 'bg-[#d2846f]/15 text-[#d2846f]' :
+            request.status === 'completed' ? 'bg-green-400/15 text-green-400' :
+            'bg-[#706860]/15 text-[#706860]'
+          }`}>
+            {STATUS_LABEL[request.status] ?? request.status}
+          </span>
+        </div>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">

@@ -38,6 +38,9 @@ export async function grantEntitlement(orderId: string): Promise<void> {
       // value 格式：plan:days  例如 "creator:30"
       const [plan, daysStr] = value.split(':')
       const days = parseInt(daysStr ?? '30', 10)
+      if (!['creator', 'spark'].includes(plan) || !Number.isInteger(days) || days < 1 || days > 3650) {
+        throw new Error('Invalid membership entitlement')
+      }
       const now = new Date()
       const expiresAt = new Date(now.getTime() + days * 86400_000)
 
@@ -70,7 +73,7 @@ export async function grantEntitlement(orderId: string): Promise<void> {
     // 标记订单为 completed
     await tx.order.update({
       where: { id: orderId },
-      data:  { status: 'completed', completedAt: new Date() },
+      data:  { status: 'completed', paidAt: order.paidAt ?? new Date(), completedAt: new Date() },
     })
 
     await tx.adminLog.create({

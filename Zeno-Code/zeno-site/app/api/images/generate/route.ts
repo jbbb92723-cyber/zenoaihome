@@ -8,64 +8,63 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server'
-import { isAdminUser } from '@/lib/admin'
-import { generateWechatCoverImage, generateArticleImage, ImageUsage } from '@/lib/volcengine-image'
+import { z } from 'zod'
+import { getAdminActor } from '@/lib/admin'
+import { checkRateLimit, getClientIp } from '@/lib/rateLimit'
+import { generateWechatCoverImage, generateArticleImage } from '@/lib/volcengine-image'
 
-interface GenerateRequestBody {
-  prompt: string
-  articleTitle?: string
-  articleSummary?: string
-  usage?: ImageUsage   // 'cover' | 'inline'
-  style?: string
-  size?: string
-}
+const generateSchema = z.object({
+  prompt: z.string().trim().min(1).max(2000),
+  articleTitle: z.string().trim().max(200).optional(),
+  articleSummary: z.string().trim().max(1000).optional(),
+  usage: z.enum(['cover', 'inline']).default('cover'),
+  style: z.string().trim().max(100).optional(),
+  size: z.string().trim().regex(/^\d{2,5}x\d{2,5}$/).optional(),
+})
 
 export async function POST(request: NextRequest) {
   // 管理员验证
-  const isAdmin = await isAdminUser()
-  if (!isAdmin) {
+  const actor = await getAdminActor()
+  if (!actor) {
     return NextResponse.json(
       { error: '无权限。图片生成接口仅限管理员使用，避免产生不可控费用。' },
       { status: 403 },
     )
   }
 
+  const limiter = checkRateLimit(
+    `image-generate:${actor.id ?? getClientIp(request)}`,
+    10,
+    60 * 60_000,
+  )
+  if (!limiter.allowed) {
+    return NextResponse.json({ error: '图片生成请求过于频繁，请稍后再试。' }, { status: 429 })
+  }
+
   // 检查 API 配置
   if (!process.env.VOLCENGINE_ARK_API_KEY || !process.env.VOLCENGINE_IMAGE_MODEL) {
     return NextResponse.json(
-      { error: '火山引擎图片生成 API 尚未配置，请设置 VOLCENGINE_ARK_API_KEY 和 VOLCENGINE_IMAGE_MODEL。' },
+      { error: '图片生成服务暂未配置。' },
       { status: 503 },
     )
   }
 
-  // 解析请求体
-  let body: unknown
-  try {
-    body = await request.json()
-  } catch {
-    return NextResponse.json({ error: '请求格式错误，需要 JSON 格式。' }, { status: 400 })
+  const parsed = generateSchema.safeParse(await request.json().catch(() => null))
+  if (!parsed.success) {
+    return NextResponse.json({ error: '请求参数无效。' }, { status: 422 })
   }
-
-  const b = body as GenerateRequestBody
-
-  if (!b?.prompt || typeof b.prompt !== 'string' || !b.prompt.trim()) {
-    return NextResponse.json({ error: '缺少 prompt 字段。' }, { status: 400 })
-  }
-
-  if (b.prompt.length > 2000) {
-    return NextResponse.json({ error: 'prompt 过长，最大 2000 字符。' }, { status: 400 })
-  }
+  const body = parsed.data
 
   const params = {
-    prompt:         b.prompt,
-    articleTitle:   b.articleTitle,
-    articleSummary: b.articleSummary,
-    style:          b.style,
-    size:           b.size,
+    prompt: body.prompt,
+    articleTitle: body.articleTitle,
+    articleSummary: body.articleSummary,
+    style: body.style,
+    size: body.size,
   }
 
   try {
-    const result = b.usage === 'inline'
+    const result = body.usage === 'inline'
       ? await generateArticleImage(params)
       : await generateWechatCoverImage(params)
 
@@ -77,7 +76,7 @@ export async function POST(request: NextRequest) {
       estimatedCost: result.estimatedCost,
     })
   } catch (err) {
-    const message = err instanceof Error ? err.message : '未知错误'
-    return NextResponse.json({ error: `图片生成失败：${message}` }, { status: 500 })
+    console.error('[images/generate] upstream failed:', err instanceof Error ? err.message : 'unknown')
+    return NextResponse.json({ error: '图片生成服务暂时不可用，请稍后重试。' }, { status: 502 })
   }
 }

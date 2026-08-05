@@ -78,3 +78,15 @@
 2026-07-26 | Codex | 整理本次待推送改动：官网协作规则更新与内容资产库结构化新增/索引更新分组提交；提交前修正 GROW 方案单元关联列表格式。
 
 2026-08-01 | Kimi Code | 官网 zeno-site 完成「东方美学 + 实用主义」重构：接入 next/font 思源宋体/黑体；新增 cinnabar 朱砂强调色；圆角统一为 2-4px；共享 CTA/Header/PageHero 对齐新 token；新增 Reveal 滚动渐显组件；首页 HomePageBrandHub 接入新字体与动效；修复 knowledge 页与 CommercialLadder 的 TS/构建错误；tsc/lint/build 全通过；已 push。
+
+2026-08-05 | Codex | 新增 `Zeno-Code/zeno-site/docs/网站后台重构与API治理技术方案-v1.md`：决定不整体 fork GitHub 后台，保留 Next.js/Auth.js/Prisma/Supabase 底座，采用模块化单体与选择性开源复用，并规划管理员身份、API Key、限流、迁移、事务幂等和分阶段治理。
+
+2026-08-05 | Codex | 从 GitHub `dontbesilent2025/dbskill` 按标签 `v2.18.15` 安装完整 dbskill 套件到 `~/.codex/skills`，共 30 个技能目录；该仓库采用 CC BY-NC 4.0，商业使用需另行取得作者授权。
+
+2026-08-05 | Codex | 完成官网后台第一阶段经营闭环：服务申请可转商机，方案接受生成协议，签署后事务创建项目与交付物；管理员身份并入 Auth.js 角色并加固后台 API；生产迁移仍须先完成数据库 baseline 对账和 staging 演练。
+
+2026-08-05 | Codex | 后台第二阶段新增按任务拆分的 AI Provider/Model 适配层，客户聊天、后台草稿、申请分类可分别使用 DeepSeek/OpenAI/custom；公开 health 最小化，详细 readiness 改为管理员专用，高成本第三方接口补限流、校验、超时和错误脱敏。
+
+2026-08-05 | Codex | 补齐星火者社群闭环：前台在线申请，后台完成初筛/面聊/通过，通过后事务生成 ¥1,499 订单，确认收款自动开通 180 天 spark 会员；首期限 20 人，退款同步取消资格和申请；复用 ServiceRequest/Order/Membership，无新增迁移。
+2026-08-06 | Codex | 审计并清理官网未引用旧组件、旧服务数据、废弃追踪接口、重复工具和初始化脚本；保留文章动态正文、内容工具、所有已引用静态资源与旧 URL 重定向；移除仅供旧脚本使用的 `pg` 和重复的 `@types/bcryptjs`。
+2026-08-06 | Codex | 安全审计发现已删除的 `scripts/init-db.mjs` 与 `scripts/setup-db.ps1` 曾硬编码 Supabase/Auth 管理密钥且进入 Git 历史；必须轮换 Supabase 数据库密码、`AUTH_SECRET`、`ADMIN_SESSION_SECRET`，本次未改写 Git 历史。

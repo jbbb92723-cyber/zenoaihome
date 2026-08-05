@@ -1,61 +1,57 @@
 /**
  * POST /api/md2wechat/convert
  *
- * 公开接口：将 Markdown 转换为微信公众号 HTML。
- * 无需登录，任何用户均可调用（排版预览功能）。
+ * 公开接口：将 Markdown 转换为微信公众号 HTML，按 IP 限流。
  *
  * API Key 只在服务端读取，不会暴露给前端。
  */
 
 import { NextRequest, NextResponse } from 'next/server'
+import { z } from 'zod'
 import { convertMarkdownToWechat } from '@/lib/md2wechat'
+import { checkRateLimit, getClientIp } from '@/lib/rateLimit'
 
-interface ConvertRequestBody {
-  markdown: string
-  theme?: string
-  fontSize?: string
-  backgroundType?: string
-}
+const convertSchema = z.object({
+  markdown: z.string().trim().min(1).max(50_000),
+  theme: z.string().trim().min(1).max(50).default('default'),
+  fontSize: z.enum(['small', 'medium', 'large']).default('medium'),
+  backgroundType: z.string().trim().min(1).max(50).default('default'),
+})
 
 export async function POST(request: NextRequest) {
+  const limiter = checkRateLimit(
+    `md2wechat-convert:${getClientIp(request)}`,
+    10,
+    60 * 60_000,
+  )
+  if (!limiter.allowed) {
+    return NextResponse.json({ error: '转换请求过于频繁，请稍后再试。' }, { status: 429 })
+  }
+
   // 检查 API 是否已配置（不暴露密钥，只说明状态）
   if (!process.env.MD2WECHAT_BASE_URL || !process.env.MD2WECHAT_API_KEY) {
     return NextResponse.json(
-      { error: 'md2wechat API 尚未配置，请联系管理员设置 MD2WECHAT_BASE_URL 和 MD2WECHAT_API_KEY。' },
+      { error: '排版服务暂未开放。' },
       { status: 503 },
     )
   }
 
-  // 解析请求体
-  let body: unknown
-  try {
-    body = await request.json()
-  } catch {
-    return NextResponse.json({ error: '请求格式错误，需要 JSON 格式。' }, { status: 400 })
-  }
-
-  const b = body as ConvertRequestBody
-
-  if (!b?.markdown || typeof b.markdown !== 'string' || !b.markdown.trim()) {
-    return NextResponse.json({ error: '缺少 markdown 字段或内容为空。' }, { status: 400 })
-  }
-
-  // 基本长度限制（防止滥用）
-  if (b.markdown.length > 50000) {
-    return NextResponse.json({ error: 'Markdown 内容过长，最大支持 50000 字符。' }, { status: 400 })
+  const parsed = convertSchema.safeParse(await request.json().catch(() => null))
+  if (!parsed.success) {
+    return NextResponse.json({ error: '请求参数无效。' }, { status: 422 })
   }
 
   try {
     const result = await convertMarkdownToWechat({
-      markdown:       b.markdown,
-      theme:          b.theme         ?? 'default',
-      fontSize:       b.fontSize      ?? 'medium',
-      backgroundType: b.backgroundType ?? 'default',
+      markdown: parsed.data.markdown,
+      theme: parsed.data.theme,
+      fontSize: parsed.data.fontSize,
+      backgroundType: parsed.data.backgroundType,
     })
 
     return NextResponse.json({ success: true, ...result })
   } catch (err) {
-    const message = err instanceof Error ? err.message : '未知错误'
-    return NextResponse.json({ error: `转换失败：${message}` }, { status: 500 })
+    console.error('[md2wechat/convert] upstream failed:', err instanceof Error ? err.message : 'unknown')
+    return NextResponse.json({ error: '排版服务暂时不可用，请稍后重试。' }, { status: 502 })
   }
 }

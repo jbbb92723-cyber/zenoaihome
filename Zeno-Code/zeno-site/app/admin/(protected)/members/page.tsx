@@ -18,6 +18,10 @@ export default async function MembersPage() {
   const STATUS_LABEL: Record<string, string> = {
     active: '活跃', expired: '已过期', cancelled: '已取消',
   }
+  const PLAN_LABEL: Record<string, string> = {
+    spark: '星火者',
+    creator: '创作会员',
+  }
 
   return (
     <div className="max-w-4xl">
@@ -47,12 +51,13 @@ export default async function MembersPage() {
           <div>
             <label className="block text-xs text-[#706860] mb-1">套餐</label>
             <select name="plan" className="bg-[#1C1A17] border border-[#3A3530] text-[#E8E2DA] text-sm px-3 py-2">
+              <option value="spark">星火者（6个月）</option>
               <option value="creator">创作会员</option>
             </select>
           </div>
           <div>
             <label className="block text-xs text-[#706860] mb-1">天数</label>
-            <input name="days" type="number" defaultValue={365} min={1} max={3650}
+            <input name="days" type="number" defaultValue={180} min={1} max={3650}
               className="w-24 bg-[#1C1A17] border border-[#3A3530] text-[#E8E2DA] text-sm px-3 py-2 focus:outline-none focus:border-[#C4A882]" />
           </div>
           <button type="submit" className="px-5 py-2 text-sm bg-[#C4A882]/15 text-[#C4A882] border border-[#C4A882]/30 hover:bg-[#C4A882]/20">
@@ -97,7 +102,7 @@ export default async function MembersPage() {
                   <p className="text-[#E8E2DA]">{m.user.name ?? '—'}</p>
                   <p className="text-xs text-[#706860] mt-0.5 truncate max-w-[160px]">{m.user.email}</p>
                 </td>
-                <td className="px-4 py-3 text-sm text-[#C4A882]">{m.plan}</td>
+                <td className="px-4 py-3 text-sm text-[#C4A882]">{PLAN_LABEL[m.plan] ?? m.plan}</td>
                 <td className="px-4 py-3 text-xs">
                   <span className={m.status === 'active' ? 'text-green-400' : 'text-[#706860]'}>
                     {STATUS_LABEL[m.status] ?? m.status}

@@ -2,10 +2,8 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { prisma } from '@/lib/prisma'
 
-export const metadata: Metadata = { title: '工地总览 · Admin' }
+export const metadata: Metadata = { title: '项目交付 · Admin' }
 export const dynamic = 'force-dynamic'
-
-const NODE_LABELS = ['水电验收', '防水验收', '木工验收', '贴砖验收', '油漆验收', '安装验收', '竣工验收']
 
 function statusBadge(status: string) {
   const map: Record<string, string> = {
@@ -15,7 +13,7 @@ function statusBadge(status: string) {
     cancelled: 'bg-[#d2846f]/15 text-[#d2846f] border-[#d2846f]/30',
   }
   const label: Record<string, string> = {
-    active: '施工中', completed: '已竣工', paused: '暂停', cancelled: '已取消',
+    active: '进行中', completed: '已完成', paused: '暂停', cancelled: '已取消',
   }
   return (
     <span className={`text-[0.6rem] px-2 py-0.5 border rounded-sm font-semibold ${map[status] || map.active}`}>
@@ -58,22 +56,22 @@ export default async function ProjectsPage() {
           <p className="text-[0.65rem] text-[#706860] uppercase tracking-widest font-semibold mb-1">
             Project Delivery · 项目交付
           </p>
-          <h1 className="text-xl font-semibold text-[#E8E2DA] tracking-tight">工地总览</h1>
+          <h1 className="text-xl font-semibold text-[#E8E2DA] tracking-tight">项目总览</h1>
         </div>
         <Link
           href="/admin/projects/new"
           className="inline-flex items-center gap-1.5 px-4 py-2 bg-[#C4A882] text-[#1C1A17] text-sm font-semibold rounded-sm hover:bg-[#C4A882]/85 transition-colors"
         >
-          + 新建工地
+          + 新建施工项目
         </Link>
       </div>
 
       {/* KPI */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         {[
-          { label: '施工中', value: activeCount, tone: 'text-green-400' },
-          { label: '已竣工', value: completedCount, tone: 'text-[#C4A882]' },
-          { label: '总工地数', value: projects.length, tone: 'text-[#E8E2DA]' },
+          { label: '进行中', value: activeCount, tone: 'text-green-400' },
+          { label: '已完成', value: completedCount, tone: 'text-[#C4A882]' },
+          { label: '项目总数', value: projects.length, tone: 'text-[#E8E2DA]' },
           { label: '总节点数', value: projects.reduce((s, p) => s + p.nodes.length, 0), tone: 'text-[#68aeb0]' },
         ].map(kpi => (
           <div key={kpi.label} className="border border-[#3A3530] bg-[#1f1d1a] p-4">
@@ -101,7 +99,7 @@ export default async function ProjectsPage() {
               {projects.length === 0 ? (
                 <tr>
                   <td colSpan={6} className="px-4 py-12 text-center text-sm text-[#706860]">
-                    暂无工地项目。点击「新建工地」开始记录你的第一个项目。
+                    暂无项目。施工项目可手动新建，其他服务项目从商机协议创建。
                   </td>
                 </tr>
               ) : (

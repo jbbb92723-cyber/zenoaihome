@@ -31,7 +31,6 @@ export interface ImageGenerateResult {
   imageBase64?: string
   model: string
   estimatedCost: number  // 元
-  raw?: unknown
 }
 
 // ─── 内部工具 ──────────────────────────────────────────────────
@@ -89,17 +88,17 @@ async function generateImage(params: ImageGenerateParams): Promise<ImageGenerate
       'Authorization': `Bearer ${apiKey}`,
     },
     body: JSON.stringify(requestBody),
+    signal: AbortSignal.timeout(45_000),
   })
 
   if (!res.ok) {
-    const text = await res.text().catch(() => '')
-    throw new Error(`火山引擎图片生成请求失败 (${res.status})：${text}`)
+    throw new Error(`火山引擎图片生成请求失败 (${res.status})`)
   }
 
   const json = await res.json()
 
   if (json.error) {
-    throw new Error(`火山引擎图片生成错误：${json.error.message ?? JSON.stringify(json.error)}`)
+    throw new Error('火山引擎图片生成返回业务错误')
   }
 
   const first = json.data?.[0]
@@ -108,7 +107,6 @@ async function generateImage(params: ImageGenerateParams): Promise<ImageGenerate
     imageBase64:   first?.b64_json  ?? undefined,
     model,
     estimatedCost: pricePerImage,
-    raw:           json,
   }
 }
 
