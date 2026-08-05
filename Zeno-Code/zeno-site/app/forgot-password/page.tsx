@@ -59,7 +59,7 @@ export default function ForgotPasswordPage() {
           <p className="page-label mb-3">忘记密码</p>
           <h1 className="text-2xl font-semibold text-ink tracking-tight">找回密码</h1>
           <p className="text-sm text-ink-muted mt-3 leading-relaxed">
-            输入注册邮箱，我们会发送验证码到你的邮箱。
+            输入注册邮箱，我们会发送验证码到你的邮箱。验证码 30 分钟内有效。
           </p>
         </div>
 

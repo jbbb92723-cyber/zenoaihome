@@ -89,6 +89,7 @@ function ResetPasswordForm() {
               className="w-full text-sm text-ink bg-surface border border-border px-3 py-2 placeholder:text-ink-faint focus:outline-none focus:border-stone transition-colors"
               placeholder="6 位数字"
             />
+            <p className="mt-1.5 text-xs text-ink-faint">验证码 30 分钟内有效。</p>
           </div>
           <div>
             <label className="block text-sm text-ink-muted mb-1.5">新密码</label>

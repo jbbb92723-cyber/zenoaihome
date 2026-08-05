@@ -9,6 +9,7 @@ import { prisma } from '@/lib/prisma'
 import { sendCodeSchema } from '@/lib/validations'
 import { sendVerificationCode, isEmailConfigured } from '@/lib/email'
 import { checkRateLimit, getClientIp } from '@/lib/rateLimit'
+import { getVerificationCodeExpiresAt, VERIFICATION_CODE_RESEND_COOLDOWN_MS } from '@/lib/verification-code'
 import bcrypt from 'bcryptjs'
 
 export async function POST(req: Request) {
@@ -46,7 +47,7 @@ export async function POST(req: Request) {
     where: {
       email,
       type,
-      createdAt: { gt: new Date(Date.now() - 60_000) },
+      createdAt: { gt: new Date(Date.now() - VERIFICATION_CODE_RESEND_COOLDOWN_MS) },
     },
     orderBy: { createdAt: 'desc' },
   })
@@ -63,7 +64,7 @@ export async function POST(req: Request) {
       email,
       codeHash,
       type,
-      expiresAt: new Date(Date.now() + 10 * 60_000), // 10 分钟
+      expiresAt: getVerificationCodeExpiresAt(),
     },
   })
 

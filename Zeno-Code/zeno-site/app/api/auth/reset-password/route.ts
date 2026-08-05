@@ -7,6 +7,7 @@
 import { NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
 import { resetPasswordSchema } from '@/lib/validations'
+import { VERIFICATION_CODE_MAX_ATTEMPTS } from '@/lib/verification-code'
 import bcrypt from 'bcryptjs'
 
 export async function POST(req: Request) {
@@ -32,7 +33,7 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: '验证码无效或已过期' }, { status: 400 })
   }
 
-  if (record.attempts >= 5) {
+  if (record.attempts >= VERIFICATION_CODE_MAX_ATTEMPTS) {
     return NextResponse.json({ error: '验证码尝试次数过多，请重新获取' }, { status: 400 })
   }
 

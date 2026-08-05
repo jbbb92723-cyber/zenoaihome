@@ -144,6 +144,7 @@ export default function SecurityPage() {
                 {countdown > 0 ? `${countdown}s` : codeSent ? '重新发送' : '发送验证码'}
               </button>
             </div>
+            <p className="mt-1.5 text-xs text-ink-faint">验证码 30 分钟内有效，60 秒后可重新发送。</p>
           </div>
 
           <div>

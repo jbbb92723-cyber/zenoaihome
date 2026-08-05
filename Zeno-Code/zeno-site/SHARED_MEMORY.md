@@ -292,3 +292,5 @@ npx prisma db push
 2026-08-05 | Codex | 新增星火者业务闭环：`/community/apply` 记录成员申请，`/admin/community` 管理初筛、面聊、通过、订单和成员；通过后自动生成 `spark:180` 会员订单，确认收款开通资格，退款回收资格；首期 20 人限制，无新增数据表。
 2026-08-06 | Codex | 完成无用代码审计：删除未引用旧首页/服务组件、废弃服务数据、事件追踪接口、重复工具、旧数据库初始化脚本和 `full-schema.sql`；同步移除 `pg` 与 `@types/bcryptjs`，更新现行维护文档。文章正文、Ops 内容工具、已引用资源和旧 URL 重定向均保留。
 2026-08-06 | Codex | 安全审计确认已删除的 `scripts/init-db.mjs`、`scripts/setup-db.ps1` 曾包含硬编码凭据且已进入 Git 历史；上线前必须轮换 Supabase 数据库密码、`AUTH_SECRET`、`ADMIN_SESSION_SECRET`，禁止直接改写共享历史。
+2026-08-06 | Codex | 优化 `/admin/login`：改为管理员账号登录 + 应急密码双入口，新增管理员角色未授权提示，并同步后台日常操作说明。
+2026-08-06 | Codex | 修复邮箱验证码体验：抽出 `lib/verification-code.ts` 统一时长/重试常量，将注册、重置密码、改密验证码有效期从 10 分钟延长到 30 分钟，并同步邮箱模板、注册/找回密码/账号安全页提示。

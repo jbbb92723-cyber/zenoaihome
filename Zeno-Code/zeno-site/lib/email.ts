@@ -6,6 +6,7 @@
  */
 
 import { Resend } from 'resend'
+import { VERIFICATION_CODE_TTL_MS } from '@/lib/verification-code'
 
 /**
  * 判断 Resend API Key 是否已配置（在请求时读取，而非模块加载时）
@@ -47,7 +48,7 @@ export async function sendVerificationCode(email: string, code: string): Promise
             ${code}
           </div>
           <p style="font-size: 13px; color: #A09890; line-height: 1.6;">
-            10 分钟内有效。如果不是你本人操作，可以忽略这封邮件。
+            ${Math.round(VERIFICATION_CODE_TTL_MS / 60_000)} 分钟内有效。如果不是你本人操作，可以忽略这封邮件。
           </p>
         </div>
       `,
