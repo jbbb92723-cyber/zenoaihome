@@ -294,3 +294,4 @@ npx prisma db push
 2026-08-06 | Codex | 安全审计确认已删除的 `scripts/init-db.mjs`、`scripts/setup-db.ps1` 曾包含硬编码凭据且已进入 Git 历史；上线前必须轮换 Supabase 数据库密码、`AUTH_SECRET`、`ADMIN_SESSION_SECRET`，禁止直接改写共享历史。
 2026-08-06 | Codex | 优化 `/admin/login`：改为管理员账号登录 + 应急密码双入口，新增管理员角色未授权提示，并同步后台日常操作说明。
 2026-08-06 | Codex | 修复邮箱验证码体验：抽出 `lib/verification-code.ts` 统一时长/重试常量，将注册、重置密码、改密验证码有效期从 10 分钟延长到 30 分钟，并同步邮箱模板、注册/找回密码/账号安全页提示。
+2026-08-06 | Codex | 补齐 Google 管理员登录：`/admin/login` 新增 Google 管理员账号入口，受保护后台在未授权时回到登录页并提示先授权 ADMIN/OPERATOR，避免 Google 用户被要求输入本站密码。

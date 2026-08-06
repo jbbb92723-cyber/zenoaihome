@@ -11,7 +11,7 @@ export default async function AdminProtectedLayout({
   children: React.ReactNode
 }) {
   const isAdmin = await isAdminUser()
-  if (!isAdmin) redirect('/admin/login')
+  if (!isAdmin) redirect('/admin/login?error=AdminRoleRequired')
 
   return (
     <div className="flex min-h-screen bg-[#1C1A17] text-[#E8E2DA]">
