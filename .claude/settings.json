@@ -75,7 +75,8 @@
       "Bash(xxd lib/schema-faqs.ts)",
       "Bash(git pull *)",
       "Bash(git stash *)",
-      "Bash(git checkout *)"
+      "Bash(git checkout *)",
+      "Bash(git fetch *)"
     ],
     "additionalDirectories": [
       "g:\\Zenoaihome.com\\Zeno-Code\\zeno-site\\app\\api\\service-requests\\[id]"
