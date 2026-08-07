@@ -72,7 +72,10 @@
       "Bash(node scripts/init-db.mjs)",
       "PowerShell(New-Item -ItemType Directory -Force -Path \"$env:USERPROFILE\\\\.dbs\\\\sessions\\\\zenoaihome-com\")",
       "Bash(npx tsc *)",
-      "Bash(xxd lib/schema-faqs.ts)"
+      "Bash(xxd lib/schema-faqs.ts)",
+      "Bash(git pull *)",
+      "Bash(git stash *)",
+      "Bash(git checkout *)"
     ],
     "additionalDirectories": [
       "g:\\Zenoaihome.com\\Zeno-Code\\zeno-site\\app\\api\\service-requests\\[id]"

@@ -1,0 +1,209 @@
+{
+  "opc": {
+    "name": "OPC圈",
+    "colors": {
+      "primary": "#FC723F",
+      "primary_dark": "#E05A2D",
+      "background": "#FFFBF5",
+      "surface": "#F2E8D9",
+      "text": "#2D2D2D",
+      "text_secondary": "#8C7B6E",
+      "accent": "#6B4C35",
+      "line": "#E8DDD0",
+      "table_header": "#FC723F",
+      "table_stripe": "#FFF7F0",
+      "highlight_bg": "#F7F3EC",
+      "highlight_border": "#FC723F",
+      "highlight_text": "#6B4C35",
+      "cover_bg": "#FFFBF5",
+      "cover_bg_alt": "#F7F2E8",
+      "cover_gradient_1": "rgba(252,114,63,0.08)",
+      "cover_gradient_2": "rgba(252,114,63,0.05)",
+      "cover_gradient_3": "rgba(107,76,53,0.06)",
+      "cover_gradient_4": "rgba(252,114,63,0.03)",
+      "cover_accent_line": "rgba(252,114,63,0.55)",
+      "cover_overlay_opacity": "0.92"
+    },
+    "typography": {
+      "heading_family": "'Noto Serif SC', 'PingFang SC', 'Noto Sans SC', serif",
+      "heading_weight": "900",
+      "body_family": "'Noto Sans SC', 'PingFang SC', sans-serif",
+      "body_weight": "300",
+      "code_family": "SF Mono, 'Cascadia Code', monospace",
+      "cover_title_spacing": "-0.03em",
+      "eyebrow_spacing": "0.25em",
+      "tagline_family": "'EB Garamond', 'Noto Serif SC', serif",
+      "sizes": {
+        "cover_title": "48pt",
+        "cover_subtitle": "18pt",
+        "cover_eyebrow": "11pt",
+        "cover_tagline": "20pt",
+        "h1": "24pt",
+        "h2": "18pt",
+        "h3": "14pt",
+        "body": "10.5pt",
+        "code": "9pt",
+        "caption": "9pt"
+      }
+    },
+    "logo": "assets/logo-wordmark.png",
+    "logo_height_cm": "1.2",
+    "cover": {
+      "top_bar_visible": false,
+      "top_bar_height": "2mm",
+      "top_bar_color": "#FC723F",
+      "background": "#FFFBF5",
+      "decoration": "gradient_glow",
+      "deco_vertical_line": true,
+      "deco_line_width": "3px",
+      "deco_line_color": "rgba(252,114,63,0.55)",
+      "mountain_opacity_1": 0.07,
+      "mountain_opacity_2": 0.12,
+      "mountain_opacity_3": 0.17,
+      "mountain_stroke_color": "rgba(252,114,63,0.4)"
+    },
+    "components": {
+      "table_card": {
+        "enabled": true,
+        "border_radius": "20px",
+        "padding": "20px",
+        "border": "1px solid rgba(232,221,208,0.8)",
+        "box_shadow": "0 12px 40px rgba(26,21,18,0.04)",
+        "background": "#FBF8F3"
+      },
+      "highlight_box": {
+        "enabled": true,
+        "border_left": "4px solid #FC723F",
+        "background": "#F7F3EC",
+        "padding": "16px 20px",
+        "border_radius": "6px",
+        "text_color": "#6B4C35"
+      },
+      "kpi_row": {
+        "enabled": true,
+        "columns": 3,
+        "gap": "28px",
+        "border": "1px solid rgba(232,221,208,0.6)",
+        "padding": "26px 0",
+        "kpi_number_size": "28pt",
+        "kpi_number_color": "#FC723F",
+        "kpi_number_family": "'Space Mono', SF Mono, monospace",
+        "kpi_label_size": "10pt",
+        "kpi_label_color": "#8C7B6E",
+        "kpi_label_spacing": "0.15em"
+      }
+    },
+    "page": {
+      "size": "A4",
+      "margin_top": "2cm",
+      "margin_bottom": "2cm",
+      "margin_left": "2cm",
+      "margin_right": "2cm",
+      "max_width": "820px",
+      "running_header": true,
+      "running_header_text": "OPC圈 © {year}"
+    }
+  },
+  "heibaokc": {
+    "name": "黑豹科创",
+    "colors": {
+      "primary": "#1A1A1A",
+      "primary_dark": "#000000",
+      "background": "#FFFFFF",
+      "surface": "#F5F5F5",
+      "text": "#1A1A1A",
+      "text_secondary": "#666666",
+      "accent": "#D4AF37",
+      "line": "#E0E0E0",
+      "table_header": "#1A1A1A",
+      "table_stripe": "#FAFAFA",
+      "highlight_bg": "#F9F9F9",
+      "highlight_border": "#D4AF37",
+      "highlight_text": "#1A1A1A",
+      "cover_bg": "#FFFFFF",
+      "cover_bg_alt": "#F8F8F8",
+      "cover_gradient_1": "rgba(212,175,55,0.04)",
+      "cover_gradient_2": "rgba(26,26,26,0.02)",
+      "cover_gradient_3": "rgba(212,175,55,0.03)",
+      "cover_gradient_4": "rgba(26,26,26,0.01)",
+      "cover_accent_line": "rgba(212,175,55,0.6)",
+      "cover_overlay_opacity": "0.95"
+    },
+    "typography": {
+      "heading_family": "'Noto Serif SC', 'PingFang SC', serif",
+      "heading_weight": "700",
+      "body_family": "'Noto Sans SC', 'PingFang SC', sans-serif",
+      "body_weight": "300",
+      "code_family": "SF Mono, 'Cascadia Code', monospace",
+      "cover_title_spacing": "-0.02em",
+      "eyebrow_spacing": "0.3em",
+      "tagline_family": "'EB Garamond', serif",
+      "sizes": {
+        "cover_title": "42pt",
+        "cover_subtitle": "16pt",
+        "cover_eyebrow": "11pt",
+        "cover_tagline": "18pt",
+        "h1": "22pt",
+        "h2": "16pt",
+        "h3": "13pt",
+        "body": "10.5pt",
+        "code": "9pt",
+        "caption": "9pt"
+      }
+    },
+    "logo": "assets/heibaokc-logo.png",
+    "logo_height_cm": "1.5",
+    "cover": {
+      "top_bar_visible": true,
+      "top_bar_height": "4mm",
+      "top_bar_color": "#1A1A1A",
+      "background": "#FFFFFF",
+      "decoration": "gradient_glow",
+      "deco_vertical_line": false,
+      "deco_line_width": "2px",
+      "deco_line_color": "#D4AF37",
+      "line_color": "#D4AF37"
+    },
+    "components": {
+      "table_card": {
+        "enabled": true,
+        "border_radius": "12px",
+        "padding": "16px",
+        "border": "1px solid rgba(224,224,224,0.8)",
+        "box_shadow": "0 8px 30px rgba(0,0,0,0.03)",
+        "background": "#FFFFFF"
+      },
+      "highlight_box": {
+        "enabled": true,
+        "border_left": "4px solid #D4AF37",
+        "background": "#F9F9F9",
+        "padding": "14px 18px",
+        "border_radius": "4px",
+        "text_color": "#1A1A1A"
+      },
+      "kpi_row": {
+        "enabled": true,
+        "columns": 3,
+        "gap": "28px",
+        "border": "1px solid rgba(224,224,224,0.5)",
+        "padding": "24px 0",
+        "kpi_number_size": "26pt",
+        "kpi_number_color": "#D4AF37",
+        "kpi_number_family": "'Space Mono', SF Mono, monospace",
+        "kpi_label_size": "10pt",
+        "kpi_label_color": "#666666",
+        "kpi_label_spacing": "0.2em"
+      }
+    },
+    "page": {
+      "size": "A4",
+      "margin_top": "2cm",
+      "margin_bottom": "2cm",
+      "margin_left": "2.5cm",
+      "margin_right": "2.5cm",
+      "max_width": "820px",
+      "running_header": true,
+      "running_header_text": "黑豹科创 · 内部资料"
+    }
+  }
+}
