@@ -3,20 +3,20 @@ import ServicesBrandHub from '@/components/features/services/ServicesBrandHub'
 import StructuredData from '@/components/ui/StructuredData'
 
 export const metadata: Metadata = {
-  title: '服务合作｜AI培训、知识库、智能体与网站开发',
+  title: '项目合作｜AI培训、知识库、智能体与网站系统',
   description:
-    '赞诺当前可承接的AI实战服务：企业培训、AI工具与工作流、企业知识库、AI智能体和网站开发。先明确问题、材料、交付物与验收边界，再启动合作。',
+    '赞诺公开实践的项目合作入口：AI实战工作坊、流程自动化、企业知识库、AI智能体和网站内容系统。先明确问题、材料、交付物与验收边界，再决定是否合作。',
   alternates: {
     canonical: 'https://zenoaihome.com/services',
   },
 }
 
 const serviceNames = [
-  'AI培训与企业内训',
-  'AI工具与工作流',
+  'AI实战工作坊',
+  '流程自动化',
   '企业AI知识库',
   'AI智能体',
-  '网站开发',
+  '网站与内容系统',
 ]
 
 export default function ServicesPage() {
@@ -26,7 +26,7 @@ export default function ServicesPage() {
         data={{
           '@context': 'https://schema.org',
           '@type': 'ItemList',
-          name: '赞诺 AI 实战服务',
+          name: '赞诺 AI 落地项目合作',
           description: metadata.description,
           itemListElement: serviceNames.map((name, index) => ({
             '@type': 'ListItem',

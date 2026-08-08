@@ -1,14 +1,9 @@
 /**
- * lib/navigation.ts
- * 全站导航。Header mega menu 与 Footer 统一读取。
- *
- * 导航结构（2026-07-22）：
- * 首页 → AI 工具 → AI 服务 → 星火者 → 装修视野 → 文章 → 关于
+ * 全站导航。个人博客与公开实践是主入口，工具、服务和共同体是延伸。
+ * Header mega menu 与 Footer 统一读取这里的数据。
  */
 
 export type Locale = 'zh' | 'en'
-
-/* ─── 基础类型 ─────────────────────────────────────── */
 
 export interface NavItem {
   key: string
@@ -36,13 +31,40 @@ export interface PrimaryNavItem {
   groups?: NavGroup[]
 }
 
-/* ─── 一级导航 ─────────────────────────────────────── */
-
 export const primaryNav: PrimaryNavItem[] = [
   {
     key: 'home',
     zh: { label: '首页', href: '/' },
     en: { label: 'Home', href: '/en' },
+  },
+  {
+    key: 'blog',
+    zh: { label: '文章', href: '/blog' },
+    en: { label: 'Writing', href: '/en/blog' },
+    groups: [
+      {
+        key: 'writing',
+        zh: { label: '公开写作', desc: '做过的事、踩过的坑和仍在验证的判断。' },
+        en: { label: 'Writing', desc: 'Work, lessons, and ideas still being tested.' },
+        items: [
+          { key: 'all', zh: { label: '全部文章', href: '/blog', desc: '按时间查看所有公开文章' }, en: { label: 'All writing', href: '/en/blog' } },
+          { key: 'ai', zh: { label: '传统行业 × AI', href: '/blog?category=ai', desc: '知识库、工作流、智能体与真实复盘' }, en: { label: 'AI practice', href: '/en/blog' } },
+          { key: 'opc', zh: { label: '一人公司', href: '/blog?category=opc', desc: '产品、获客、交付与协作' }, en: { label: 'Solo business', href: '/en/blog' } },
+          { key: 'notes', zh: { label: '碎片笔记', href: '/notes', desc: '比文章短，比动态重' }, en: { label: 'Notes', href: '/en/notes' } },
+        ],
+      },
+      {
+        key: 'practice',
+        zh: { label: '长期实践', desc: '用真实行业和项目检验 AI 是否有用。' },
+        en: { label: 'Practice', desc: 'Testing AI against real work.' },
+        items: [
+          { key: 'knowledge', zh: { label: '知识体系', href: '/knowledge', desc: '见自己、见天地、见众生' }, en: { label: 'Knowledge map', href: '/en/blog' } },
+          { key: 'renovation', zh: { label: '装修垂直实践', href: '/renovation', desc: '17 年经验结构化的公开样本' }, en: { label: 'Renovation practice', href: '/en/tools' } },
+          { key: 'cases', zh: { label: '项目与判断样张', href: '/cases', desc: '看具体过程和交付颗粒度' }, en: { label: 'Cases', href: '/en/blog' } },
+          { key: 'resources', zh: { label: '资料库', href: '/resources', desc: '模板、规则、清单与可复用资料' }, en: { label: 'Resources', href: '/en/tools' } },
+        ],
+      },
+    ],
   },
   {
     key: 'ai-tools',
@@ -51,31 +73,32 @@ export const primaryNav: PrimaryNavItem[] = [
     groups: [
       {
         key: 'free-tools',
-        zh: { label: '免费工具', desc: '先自己试试——不花钱，直接用' },
-        en: { label: 'Free Tools', desc: 'Try them yourself — no signup, no cost.' },
+        zh: { label: '先自己试试', desc: '免费使用，不要求先购买服务。' },
+        en: { label: 'Try first', desc: 'Free tools, no purchase required.' },
         items: [
-          { key: 'opc-diagnosis', zh: { label: '一人公司诊断', href: '/ai-tools#opc', desc: '10 个问题，看看你现在卡在哪一步' }, en: { label: 'Solo Business Check', href: '/en/tools', desc: '' } },
-          { key: 'content-strategy', zh: { label: '内容策略生成', href: '/ai-tools#content', desc: '输入你的行业和经验，生成 3 个内容方向' }, en: { label: 'Content Strategy', href: '/en/tools', desc: '' } },
-          { key: 'renovation-tools', zh: { label: '装修判断工具', href: '/tools', desc: '居住诊断、报价初筛、计算器——17 年经验做成公开工具' }, en: { label: 'Renovation Tools', href: '/en/tools', desc: '' } },
+          { key: 'opc-diagnosis', zh: { label: '一人公司诊断', href: '/ai-tools/opc-diagnosis', desc: '看看产品、获客和交付卡在哪一步' }, en: { label: 'Solo business check', href: '/en/tools' } },
+          { key: 'content-strategy', zh: { label: '内容策略生成', href: '/ai-tools/content-strategy', desc: '从行业和经验里找到值得写的方向' }, en: { label: 'Content strategy', href: '/en/tools' } },
+          { key: 'task-planner', zh: { label: 'AI Agent 任务规划器', href: '/ai-tools/task-planner', desc: '把专业任务拆成可执行步骤' }, en: { label: 'Agent task planner', href: '/en/tools' } },
+          { key: 'renovation-tools', zh: { label: '装修判断工具', href: '/tools', desc: '17 年经验做成的垂直工具组' }, en: { label: 'Renovation tools', href: '/en/tools' } },
         ],
       },
     ],
   },
   {
     key: 'services',
-    zh: { label: 'AI 服务', href: '/services' },
-    en: { label: 'AI Services', href: '/en/services' },
+    zh: { label: '项目合作', href: '/services' },
+    en: { label: 'Work together', href: '/en/services' },
     groups: [
       {
-        key: 'ai-services-group',
-        zh: { label: 'AI 实战服务', desc: '不卖课。每一项都能验收，先从一个真实问题开始。' },
-        en: { label: 'AI Services', desc: 'Scoped delivery. Start with one real problem.' },
+        key: 'services-group',
+        zh: { label: 'AI 落地服务', desc: '先说真实问题，再确认范围、交付物和验收边界。' },
+        en: { label: 'AI delivery', desc: 'Start with a real problem and a clear scope.' },
         items: [
-          { key: 'training', zh: { label: 'AI 实战工作坊', href: '/training', desc: '面向企业团队，现场完成一次真实操作' }, en: { label: 'AI Workshop', href: '/en/services', desc: 'Hands-on training for teams.' } },
-          { key: 'workflow', zh: { label: 'AI 工具与工作流', href: '/services#ai-workflow', desc: '梳理重复工作，搭成可执行流程' }, en: { label: 'AI Workflows', href: '/en/services', desc: 'Turn repeated work into workflows.' } },
-          { key: 'knowledge-base', zh: { label: '企业 AI 知识库', href: '/services#knowledge-base', desc: '把分散资料整理成可检索入口' }, en: { label: 'Knowledge Base', href: '/en/services', desc: 'Structure knowledge for retrieval.' } },
-          { key: 'agent', zh: { label: 'AI 智能体', href: '/services#ai-agent', desc: '围绕明确任务设计、测试和交接' }, en: { label: 'AI Agents', href: '/en/services', desc: 'Scoped agents with clear handoff.' } },
-          { key: 'website', zh: { label: '网站开发', href: '/services#website', desc: '从信息架构到上线交接' }, en: { label: 'Website Dev', href: '/en/services', desc: 'From IA to launch.' } },
+          { key: 'training', zh: { label: 'AI 实战工作坊', href: '/training', desc: '面向企业团队的现场实操' }, en: { label: 'AI workshop', href: '/en/services' } },
+          { key: 'workflow', zh: { label: '流程自动化', href: '/services#ai-workflow', desc: '把重复工作搭成可执行流程' }, en: { label: 'AI workflows', href: '/en/services' } },
+          { key: 'knowledge-base', zh: { label: '企业知识库', href: '/services#knowledge-base', desc: '让分散经验变成可调用知识' }, en: { label: 'Knowledge base', href: '/en/services' } },
+          { key: 'agent', zh: { label: '智能体开发', href: '/services#ai-agent', desc: '围绕明确任务设计、测试和交接' }, en: { label: 'AI agents', href: '/en/services' } },
+          { key: 'website', zh: { label: '网站与内容系统', href: '/services#website', desc: '从信息架构到上线交接' }, en: { label: 'Website systems', href: '/en/services' } },
         ],
       },
     ],
@@ -87,65 +110,12 @@ export const primaryNav: PrimaryNavItem[] = [
     groups: [
       {
         key: 'spark-info',
-        zh: { label: 'OPC 协作共同体', desc: '一人是星火，众人是燎原。试运行招募中。' },
-        en: { label: 'OPC Community', desc: 'Solo operators, collaborative network.' },
+        zh: { label: 'OPC 协作共同体', desc: '分享真实项目，带着上下文连接。' },
+        en: { label: 'OPC community', desc: 'Real projects and contextual connections.' },
         items: [
-          { key: 'community-intro', zh: { label: '共同体说明', href: '/community', desc: '星火者是什么、怎么运转、适合谁' }, en: { label: 'About Spark', href: '/en/blog', desc: '' } },
-          { key: 'community-join', zh: { label: '试运行招募', href: '/community#join', desc: '20 人 · ¥1,499 · 6 个月 · 72h 退款' }, en: { label: 'Join', href: '/en/blog', desc: '' } },
-          { key: 'opc-knowledge', zh: { label: 'OPC 知识体系', href: '/opc-knowledge', desc: '三卷·87页·9框架——从理论到行动' }, en: { label: 'OPC Knowledge', href: '/en/blog', desc: '' } },
-        ],
-      },
-    ],
-  },
-  {
-    key: 'renovation',
-    zh: { label: '装修视野', href: '/renovation' },
-    en: { label: 'Renovation Lens', href: '/en/tools' },
-    groups: [
-      {
-        key: 'reno-content',
-        zh: { label: '17 年装修视野', desc: '不是教程——是从工地里长出来的判断方法。' },
-        en: { label: '17 Years of Renovation Insight', desc: 'Judgment built from the job site.' },
-        items: [
-          { key: 'reno-method', zh: { label: 'Zeno 的装修方法', href: '/renovation', desc: '不是教你怎么装——是教你怎么判断' }, en: { label: 'Method', href: '/en/tools', desc: '' } },
-          { key: 'reno-tools', zh: { label: '免费判断工具', href: '/tools', desc: '居住诊断、报价初筛、风险词典、检查清单' }, en: { label: 'Free Tools', href: '/en/tools', desc: '' } },
-          { key: 'reno-articles', zh: { label: '装修相关文章', href: '/blog?category=renovation', desc: '真实案例、判断方法、行业洞察' }, en: { label: 'Articles', href: '/en/blog', desc: '' } },
-          { key: 'reno-contact', zh: { label: '需要深度对接？', href: '/contact', desc: '装修是重决策——不标价，慢慢聊' }, en: { label: 'Contact', href: '/en/about', desc: '' } },
-        ],
-      },
-    ],
-  },
-  {
-    key: 'blog',
-    zh: { label: '动态', href: '/blog' },
-    en: { label: 'Writing', href: '/en/blog' },
-    groups: [
-      {
-        key: 'content-all',
-        zh: { label: '全部动态', desc: '把实践过程、判断和方法持续公开。' },
-        en: { label: 'All Writing', desc: 'Work, judgment, and methods in public.' },
-        items: [
-          { key: 'articles-all', zh: { label: '全部文章', href: '/blog', desc: 'AI 实践、装修判断、一人公司、星火者' }, en: { label: 'All Articles', href: '/en/blog', desc: '' } },
-          { key: 'articles-ai', zh: { label: '传统行业 × AI', href: '/blog?category=ai', desc: '工具、工作流、真实复盘' }, en: { label: 'AI Practice', href: '/en/blog', desc: '' } },
-          { key: 'articles-opc', zh: { label: '一人公司', href: '/blog?category=opc', desc: '转型、产品、协作' }, en: { label: 'Solo Business', href: '/en/blog', desc: '' } },
-          { key: 'notes', zh: { label: '碎片笔记', href: '/notes', desc: '比文章短，比动态重' }, en: { label: 'Notes', href: '/en/notes', desc: '' } },
-        ],
-      },
-    ],
-  },
-  {
-    key: 'knowledge',
-    zh: { label: '知识体系', href: '/knowledge' },
-    en: { label: 'Knowledge', href: '/en/blog' },
-    groups: [
-      {
-        key: 'knowledge-map',
-        zh: { label: '认知地图', desc: '见自己→见天地→见众生。三层结构，不堆资料。' },
-        en: { label: 'Knowledge Map', desc: 'Structured knowledge in three layers.' },
-        items: [
-          { key: 'knowledge-self', zh: { label: '见自己 · 底层逻辑', href: '/knowledge', desc: '一人公司诊断、OPC框架、认知升级' }, en: { label: 'Know Yourself', href: '/en/blog', desc: '' } },
-          { key: 'knowledge-world', zh: { label: '见天地 · 规律本质', href: '/knowledge', desc: '装修13边界、AI实战、商业模式' }, en: { label: 'Know the World', href: '/en/blog', desc: '' } },
-          { key: 'knowledge-others', zh: { label: '见众生 · 关系连接', href: '/knowledge', desc: '星火者、读书会、共燃项目' }, en: { label: 'Know Others', href: '/en/blog', desc: '' } },
+          { key: 'community-intro', zh: { label: '共同体说明', href: '/community', desc: '星火者是什么、怎么运转、适合谁' }, en: { label: 'About Spark', href: '/en/blog' } },
+          { key: 'community-join', zh: { label: '申请加入', href: '/community#join', desc: '先判断彼此是否适合' }, en: { label: 'Join', href: '/en/blog' } },
+          { key: 'opc-knowledge', zh: { label: 'OPC 知识体系', href: '/opc-knowledge', desc: '从理论、工具到行动框架' }, en: { label: 'OPC knowledge', href: '/en/blog' } },
         ],
       },
     ],
@@ -157,26 +127,22 @@ export const primaryNav: PrimaryNavItem[] = [
     groups: [
       {
         key: 'about-group',
-        zh: { label: '认识赞诺', desc: '从工地到 AI，一个传统行业人的转型实践。' },
-        en: { label: 'About Zeno', desc: 'From job site to AI practice.' },
+        zh: { label: '认识赞诺', desc: '从传统行业到 AI 实践。' },
+        en: { label: 'About Zeno', desc: 'From traditional business to AI practice.' },
         items: [
-          { key: 'about-story', zh: { label: '我的经历', href: '/about', desc: '睡宝集团 → 城堡项目 → AI 实践 → 星火者' }, en: { label: 'My Story', href: '/en/about', desc: '' } },
-          { key: 'contact', zh: { label: '联系我', href: '/contact', desc: '微信 zanxiansheng2025 · 注明来意' }, en: { label: 'Contact', href: '/en/about', desc: '' } },
+          { key: 'about-story', zh: { label: '我的经历', href: '/about', desc: '经营、项目、AI 与一人公司' }, en: { label: 'My story', href: '/en/about' } },
+          { key: 'contact', zh: { label: '联系我', href: '/contact', desc: '请说明身份、问题和希望交流的方向' }, en: { label: 'Contact', href: '/en/about' } },
         ],
       },
     ],
   },
 ]
 
-/* ─── 扁平导航（Footer 用）─────────────────────────── */
-
 export const mainNav: NavItem[] = primaryNav.map((item) => ({
   key: item.key,
   zh: { label: item.zh.label, href: item.zh.href },
   en: { label: item.en.label, href: item.en.href },
 }))
-
-/* ─── 路由映射（语言切换）────────────────────── */
 
 const CN_TO_EN: Record<string, string> = {
   '/': '/en',
@@ -199,7 +165,7 @@ const CN_TO_EN: Record<string, string> = {
   '/checklists': '/en',
   '/project-risks': '/en',
   '/resources': '/en/tools',
-  '/training': '/en/training',
+  '/training': '/en/services',
   '/services': '/en/services',
   '/contact': '/en/about',
   '/notes': '/en/notes',
@@ -215,7 +181,7 @@ const EN_TO_CN: Record<string, string> = {
   '/en': '/',
   '/en/about': '/about',
   '/en/blog': '/blog',
-  '/en/tools': '/tools',
+  '/en/tools': '/ai-tools',
   '/en/training': '/training',
   '/en/services': '/services',
   '/en/notes': '/notes',
@@ -226,18 +192,17 @@ const EN_TO_CN: Record<string, string> = {
 export function getLangHref(pathname: string, isEn: boolean): string {
   if (isEn) {
     if (EN_TO_CN[pathname]) return EN_TO_CN[pathname]
-    if (pathname.startsWith('/en/blog/')) return '/blog'
-    if (pathname.startsWith('/en/articles/')) return '/blog'
+    if (pathname.startsWith('/en/blog/') || pathname.startsWith('/en/articles/')) return '/blog'
     const cnPath = pathname.replace(/^\/en/, '') || '/'
-    const knownCn = ['/', '/start', '/about', '/blog', '/cases', '/living-diagnosis', '/training', '/tools', '/ai-tools', '/tools/quote-check', '/tools/budget-structure', '/tools/budget-risk', '/tools/unit-converter', '/tools/tile-calculator', '/tools/paint-calculator', '/tools/inspection-guide', '/risk-dictionary', '/checklists', '/project-risks', '/topics', '/resources', '/services', '/renovation', '/opc-knowledge', '/knowledge', '/contact', '/login', '/register', '/community', '/notes']
+    const knownCn = Object.keys(CN_TO_EN)
     if (knownCn.includes(cnPath)) return cnPath
     return '/'
-  } else {
-    if (CN_TO_EN[pathname]) return CN_TO_EN[pathname]
-    if (pathname.startsWith('/blog/')) return '/en/blog'
-    if (pathname.startsWith('/risk-dictionary/')) return '/en'
-    if (pathname.startsWith('/services/')) return '/en/services'
-    if (pathname.startsWith('/tools/')) return '/en/tools'
-    return '/en'
   }
+
+  if (CN_TO_EN[pathname]) return CN_TO_EN[pathname]
+  if (pathname.startsWith('/blog/')) return '/en/blog'
+  if (pathname.startsWith('/risk-dictionary/')) return '/en'
+  if (pathname.startsWith('/services/')) return '/en/services'
+  if (pathname.startsWith('/tools/')) return '/en/tools'
+  return '/en'
 }

@@ -96,10 +96,10 @@ export default function ServicesBrandHub() {
           <div className="lg:text-right">
             <p className="text-sm leading-7 text-white/60">当前采用项目制合作。未标准化的服务不挂统一价格，确认范围与验收方式后报价。</p>
             <div className="mt-6 flex flex-col gap-3 sm:flex-row lg:justify-end">
-              <Link href="/training" className="motion-press inline-flex min-h-11 items-center justify-center gap-2 rounded-[7px] bg-white px-5 py-3 text-sm font-semibold text-ink hover:bg-[#DED2BE]">
+              <Link href="/training" className="motion-press inline-flex min-h-11 items-center justify-center gap-2 rounded-[3px] bg-white px-5 py-3 text-sm font-semibold text-ink hover:bg-surface-warm">
                 看培训方案 <ArrowRight size={17} aria-hidden />
               </Link>
-              <Link href="/contact" className="motion-press inline-flex min-h-11 items-center justify-center gap-2 rounded-[7px] border border-white/40 px-5 py-3 text-sm font-semibold text-white hover:border-white hover:bg-white/10">
+              <Link href="/contact" className="motion-press inline-flex min-h-11 items-center justify-center gap-2 rounded-[3px] border border-white/40 px-5 py-3 text-sm font-semibold text-white hover:border-white hover:bg-white/10">
                 发起项目沟通 <ArrowRight size={17} aria-hidden />
               </Link>
             </div>
@@ -195,7 +195,7 @@ export default function ServicesBrandHub() {
           </div>
           <div className="border-l-2 border-stone pl-6">
             <p className="text-base leading-8 text-ink-muted">
-              ZenoAIHome 的内容系统、装修判断工具、知识库和后台，是赞诺学习 AI 与网站开发的持续实践。装修板块不会消失，它从网站主定位退回到最有说服力的垂直样本。
+              ZenoAIHome 的内容系统、装修判断工具、知识库和后台，是赞诺学习 AI 与网站开发的持续实践。装修板块不会消失，它是网站里最完整的垂直样本之一。
             </p>
             <div className="mt-6 flex flex-wrap gap-4">
               <Link href="/renovation" className="inline-flex items-center gap-2 text-sm font-semibold text-ink">查看装修判断服务 <ArrowRight size={16} aria-hidden /></Link>
@@ -212,7 +212,7 @@ export default function ServicesBrandHub() {
             <p className="mt-4 max-w-2xl text-sm leading-7 text-ink-muted">说明你是谁、现在怎么做、最想解决哪一步。能做，我会先把范围说清；不适合用 AI，也会直接说明。</p>
           </div>
           <div className="lg:text-right">
-            <Link href="/contact" className="motion-press inline-flex min-h-11 items-center gap-2 rounded-[7px] bg-ink px-5 py-3 text-sm font-semibold text-white hover:bg-stone-deep">
+            <Link href="/contact" className="motion-press inline-flex min-h-11 items-center gap-2 rounded-[3px] bg-ink px-5 py-3 text-sm font-semibold text-white hover:bg-stone-deep">
               查看联系方式 <ArrowRight size={17} aria-hidden />
             </Link>
           </div>

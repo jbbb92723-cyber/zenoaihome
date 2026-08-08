@@ -3,9 +3,9 @@ import HomePageBrandHub from '@/components/features/home/HomePageBrandHub'
 import StructuredData from '@/components/ui/StructuredData'
 
 export const metadata: Metadata = {
-  title: 'Zeno 赞诺｜传统行业 × AI 实战',
+  title: 'Zeno 赞诺｜传统行业、AI 实践与一人公司',
   description:
-    '赞诺的个人品牌与商业入口。17年传统行业经营与项目经验，提供AI培训、AI工具与工作流、企业知识库、智能体和网站开发。',
+    '赞诺的个人博客与公开实践。记录17年传统行业经验如何进入AI知识库、工作流、智能体、内容系统与一人公司。',
   alternates: {
     canonical: 'https://zenoaihome.com/',
   },
@@ -16,39 +16,39 @@ export default function HomePage() {
     <>
       <StructuredData
         data={[
-          // 0. Person — GEO 最核心信号：让 AI 知道 Zeno 是谁
           {
             '@context': 'https://schema.org',
             '@type': 'Person',
-            name: '赞诺',
-            alternateName: ['Zeno', '赞诺 Zeno'],
+            name: '陈国赞',
+            alternateName: ['Zeno', '赞诺', '赞诺 Zeno'],
             url: 'https://zenoaihome.com',
             description:
-              '17年传统行业经营与项目经验，从家居和装修行业转向AI实践，正在提供AI培训、工作流、企业知识库、智能体和网站开发服务，并发起赞诺·星火者共同体。',
-            jobTitle: '传统行业AI实践者 · 星火者共同体发起人',
+              '拥有17年传统行业经营与项目经验的AI落地实践者，持续公开企业知识库、流程自动化、智能体、内容系统和一人公司的真实实践。',
+            jobTitle: '传统行业AI落地实践者 · OPC圈南宁城市主理人',
             knowsAbout: [
-              'AI培训',
-              'AI工具与工作流',
+              '传统行业AI落地',
               '企业AI知识库',
+              '流程自动化',
               'AI智能体',
-              '网站开发',
-              '传统行业AI实践',
+              '内容获客',
+              'Vibe Coding',
               '一人公司经营',
-              '装修判断',
+              '装修行业实践',
             ],
-            hasCredential: {
-              '@type': 'EducationalOccupationalCredential',
-              credentialCategory: '17年传统行业经营、销售与项目管理经验',
-            },
+            hasCredential: [
+              {
+                '@type': 'EducationalOccupationalCredential',
+                credentialCategory: '智联企服认证AI落地专家',
+              },
+              {
+                '@type': 'EducationalOccupationalCredential',
+                credentialCategory: '注册建造师',
+              },
+            ],
             sameAs: [
               'https://zenoaihome.com',
               'https://zenoaihome.com/about',
             ],
-            affiliation: {
-              '@type': 'Organization',
-              name: 'Zeno 赞诺',
-              url: 'https://zenoaihome.com',
-            },
             knowsLanguage: ['zh-CN', 'en'],
             nationality: {
               '@type': 'Country',
@@ -61,83 +61,26 @@ export default function HomePage() {
           },
           {
             '@context': 'https://schema.org',
+            '@type': 'Blog',
+            name: 'Zeno 赞诺',
+            url: 'https://zenoaihome.com',
+            description:
+              '赞诺的个人博客，记录传统行业、AI实践、一人公司、装修垂直经验和星火者共同体。',
+            inLanguage: 'zh-CN',
+            author: {
+              '@type': 'Person',
+              name: '陈国赞',
+              alternateName: 'Zeno 赞诺',
+              url: 'https://zenoaihome.com/about',
+            },
+          },
+          {
+            '@context': 'https://schema.org',
             '@type': 'WebSite',
             name: 'Zeno 赞诺',
             url: 'https://zenoaihome.com',
-            description:
-              '赞诺的个人品牌与商业入口，记录传统行业转向AI的实践，并提供培训、知识库、智能体和网站项目合作。',
+            description: metadata.description,
             inLanguage: 'zh-CN',
-          },
-          // 2. Organization — 关联 Person 为 founder，增加 sameAs 和 knowsAbout
-          {
-            '@context': 'https://schema.org',
-            '@type': 'Organization',
-            name: 'Zeno 赞诺',
-            url: 'https://zenoaihome.com',
-            description:
-              '赞诺的个人实践与商业入口，围绕传统行业AI应用、项目交付、公开内容和星火者共同体展开。',
-            founder: {
-              '@type': 'Person',
-              name: '赞诺',
-              sameAs: 'https://zenoaihome.com',
-            },
-            sameAs: [
-              'https://zenoaihome.com',
-            ],
-            knowsAbout: [
-              'AI培训',
-              '企业AI知识库',
-              'AI智能体',
-              '网站开发',
-              '装修判断',
-              '一人公司实践',
-            ],
-          },
-          {
-            '@context': 'https://schema.org',
-            '@type': 'WebPage',
-            name: 'Zeno 赞诺｜传统行业 × AI 实战',
-            url: 'https://zenoaihome.com/',
-            description:
-              '17年传统行业经营与项目经验，提供AI培训、AI工具与工作流、企业知识库、智能体和网站开发。',
-            inLanguage: 'zh-CN',
-            isPartOf: {
-              '@type': 'WebSite',
-              name: 'Zeno 赞诺',
-              url: 'https://zenoaihome.com',
-            },
-            about: {
-              '@type': 'Person',
-              name: '赞诺',
-              sameAs: 'https://zenoaihome.com',
-            },
-          },
-          {
-            '@context': 'https://schema.org',
-            '@type': 'Service',
-            name: '传统行业 AI 实战服务',
-            provider: {
-              '@type': 'Organization',
-              name: 'Zeno 赞诺',
-              url: 'https://zenoaihome.com/',
-            },
-            areaServed: '中国',
-            serviceType: 'AI培训、AI工具与工作流、企业知识库、AI智能体和网站开发',
-            audience: {
-              '@type': 'Audience',
-              audienceType: '传统行业企业、创业团队与一人公司',
-            },
-            hasOfferCatalog: {
-              '@type': 'OfferCatalog',
-              name: 'AI 实战服务与项目合作',
-              itemListElement: [
-                { '@type': 'Offer', name: 'AI培训与企业内训', url: 'https://zenoaihome.com/training' },
-                { '@type': 'Offer', name: 'AI工具与工作流', url: 'https://zenoaihome.com/services#ai-workflow' },
-                { '@type': 'Offer', name: '企业AI知识库', url: 'https://zenoaihome.com/services#knowledge-base' },
-                { '@type': 'Offer', name: 'AI智能体', url: 'https://zenoaihome.com/services#ai-agent' },
-                { '@type': 'Offer', name: '网站开发', url: 'https://zenoaihome.com/services#website' },
-              ],
-            },
           },
           {
             '@context': 'https://schema.org',
@@ -145,34 +88,26 @@ export default function HomePage() {
             mainEntity: [
               {
                 '@type': 'Question',
-                name: '赞诺目前提供哪些服务？',
+                name: '这个网站主要是什么？',
                 acceptedAnswer: {
                   '@type': 'Answer',
-                  text: '目前可合作方向包括AI培训与企业内训、AI工具与工作流、企业AI知识库、AI智能体和网站开发。',
+                  text: '这是赞诺的个人博客与公开实践站，主要记录传统行业如何使用AI、一人公司实践、装修垂直经验和星火者共同体。',
                 },
               },
               {
                 '@type': 'Question',
-                name: 'AI项目有统一价格吗？',
+                name: '网站上的工具需要付费或注册吗？',
                 acceptedAnswer: {
                   '@type': 'Answer',
-                  text: '目前采用项目制合作。先确认真实问题、现有材料、交付物和验收边界，再根据范围给出报价。',
+                  text: '公开工具可以先直接使用。部分工具会在用户主动继续时提供保存或联系入口，但不会要求先购买服务。',
                 },
               },
               {
                 '@type': 'Question',
-                name: '原来的装修内容还保留吗？',
+                name: '赞诺目前研究和实践哪些方向？',
                 acceptedAnswer: {
                   '@type': 'Answer',
-                  text: '保留。装修判断、报价初筛、风险词典和案例样张是赞诺最完整的垂直实践，会继续更新，但不再代表整个网站。',
-                },
-              },
-              {
-                '@type': 'Question',
-                name: '星火者共同体是什么？',
-                acceptedAnswer: {
-                  '@type': 'Answer',
-                  text: '赞诺发起、但希望能够独立运转的成员共同体，面向AI时代的一人公司、转型创业者和独立实践者。',
+                  text: '主要包括企业知识库、流程自动化、内容获客、AI智能体、Vibe Coding、一人公司和装修行业AI实践。',
                 },
               },
             ],

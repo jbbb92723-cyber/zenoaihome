@@ -4,9 +4,9 @@ import Link from 'next/link'
 import Container from '@/components/ui/Container'
 
 export const metadata: Metadata = {
-  title: '关于赞诺｜陈国赞的传统行业与AI实践',
+  title: '关于赞诺｜陈国赞的传统行业、AI实践与一人公司',
   description:
-    '陈国赞，赞诺，南宁创业者。17年传统行业经营与项目经验，正在推进AI培训、工作流、企业知识库、智能体、网站开发和星火者共同体。',
+    '陈国赞，赞诺。17年传统行业经营与项目经验，智联企服认证AI落地专家、注册建造师、OPC圈南宁城市主理人、星火者共同体发起人。',
   alternates: {
     canonical: 'https://zenoaihome.com/about',
   },
@@ -58,12 +58,17 @@ export default function AboutPage() {
             <p className="mt-7 max-w-3xl text-base leading-8 text-ink-muted sm:text-lg">
               我在南宁创业。前 17 年主要做家居、销售管理和大型装修项目；现在把 AI 用进内容生产、知识管理、智能体、网站和一人公司的实际工作。
             </p>
+            <div className="mt-6 flex flex-wrap gap-2 text-xs font-semibold text-ink-muted">
+              {['智联企服认证 AI 落地专家', '注册建造师', 'OPC 圈南宁城市主理人', '星火者共同体发起人'].map((item) => (
+                <span key={item} className="border border-border bg-surface px-3 py-1.5">{item}</span>
+              ))}
+            </div>
             <p className="mt-4 max-w-3xl text-base leading-8 text-ink-muted sm:text-lg">
               我不把传统行业经历当作要摆脱的过去。它让我知道客户、团队、合同、现金流和交付分别意味着什么，也是我判断 AI 能否真正落地的底盘。
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Link href="/services" className="motion-press inline-flex min-h-11 items-center rounded-[7px] bg-ink px-5 py-3 text-sm font-semibold text-white hover:bg-stone-deep">查看合作方式</Link>
-              <Link href="/blog" className="motion-press inline-flex min-h-11 items-center rounded-[7px] border border-border px-5 py-3 text-sm font-semibold text-ink hover:border-stone">先看公开内容</Link>
+              <Link href="/blog" className="motion-press inline-flex min-h-11 items-center rounded-[3px] bg-ink px-5 py-3 text-sm font-semibold text-white hover:bg-stone-deep">先看公开内容</Link>
+              <Link href="/services" className="motion-press inline-flex min-h-11 items-center rounded-[3px] border border-border px-5 py-3 text-sm font-semibold text-ink hover:border-stone">查看合作方式</Link>
             </div>
           </div>
         </Container>
@@ -124,7 +129,7 @@ export default function AboutPage() {
             <p className="mt-5 max-w-2xl text-sm leading-7 text-white/70">很多独立创业者缺的不是更多课程，而是持续学习、展示能力、建立信用和共同完成项目的关系。我能贡献的是传统行业锻炼出的组织能力、项目经验和把人连接起来的耐心。</p>
           </div>
           <div className="lg:text-right">
-            <Link href="/community" className="motion-press inline-flex min-h-11 items-center rounded-[7px] bg-white px-5 py-3 text-sm font-semibold text-ink hover:bg-[#DED2BE]">了解星火者共同体</Link>
+            <Link href="/community" className="motion-press inline-flex min-h-11 items-center rounded-[3px] bg-white px-5 py-3 text-sm font-semibold text-ink hover:bg-surface-warm">了解星火者共同体</Link>
           </div>
         </section>
 

@@ -52,8 +52,8 @@ export default function Header() {
   const logoHref = isEn ? '/en' : '/'
   const loginLabel = isEn ? 'Log in' : '登录'
   const loginHref = isEn ? '/en/login' : '/login'
-  const uploadHref = isEn ? '/en/services' : '/services'
-  const uploadLabel = isEn ? 'Work with Zeno' : '查看合作方式'
+  const uploadHref = isEn ? '/en/about' : '/about'
+  const uploadLabel = isEn ? 'About Zeno' : '认识赞诺'
 
   const navItems = useMemo<LocalizedPrimary[]>(() => primaryNav.map((item) => ({
     key: item.key,
@@ -318,6 +318,7 @@ function MobileNavGroup({
         type="button"
         onClick={() => setExpanded((value) => !value)}
         className="flex w-full items-center justify-between py-4 text-left text-sm font-medium text-ink"
+        aria-expanded={expanded}
       >
         {item.label}
         <svg className={`h-3.5 w-3.5 text-ink-muted transition-transform ${expanded ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>

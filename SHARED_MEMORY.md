@@ -80,3 +80,4 @@
 2026-08-01 | Kimi Code | 官网 zeno-site 完成「东方美学 + 实用主义」重构：接入 next/font 思源宋体/黑体；新增 cinnabar 朱砂强调色；圆角统一为 2-4px；共享 CTA/Header/PageHero 对齐新 token；新增 Reveal 滚动渐显组件；首页 HomePageBrandHub 接入新字体与动效；修复 knowledge 页与 CommercialLadder 的 TS/构建错误；tsc/lint/build 全通过；已 push。
 2026-08-02 | Kimi | zeno-site：统一全站标题层级（H1 2.4/3.2rem、H2 1.8/2.2/2.6rem，11 个文件）；community 大标题去「赞诺·」前缀；Hero 人像 blur 2px + brightness .42 + 遮罩 48%。tsc/lint/build 通过，已 push（23cc0e4）。移动端「横向溢出」系 Chrome CLI 截图伪影，playwright 实测无溢出。
 2026-08-02 | Kimi | zeno-site Hero 主标题从焦虑型改为赋能型：「传统行业从业者，也可以在 AI 时代把自己重做一遍」，副文案「不是被替代，而是用判断力、工具和同行者，把经验换成新的交付方式」。已 push（456cb36）。注意：dev server 运行中不要跑 next build，会互相污染 .next 导致页面挂起。
+2026-08-08 | Codex | 将官网主定位校正为“赞诺的个人博客与公开实践档案”，以传统行业 × AI、一人公司和装修垂直实践为三条内容主线；首页、导航、关于、AI 工具与项目合作页同步调整，并以克制方式落地“差一点、预拥有、身份痒、神秘痒、亏欠痒”；修复内嵌正文文章可能被渲染为空白的问题。已通过 TypeScript、lint 与 Next.js 构建，未提交、未推送。

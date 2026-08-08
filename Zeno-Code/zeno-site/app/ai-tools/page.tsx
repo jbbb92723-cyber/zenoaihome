@@ -95,7 +95,7 @@ export default function AiToolsPage() {
             不花钱。先自己试试。
           </h1>
           <p className="mt-6 max-w-2xl text-base leading-8 text-white/70 sm:text-lg">
-            三个免费工具——帮你搞清楚自己卡在哪、写什么、怎么判断。不是替你做事——是给你一个方向。
+            四个免费工具——帮你搞清楚自己卡在哪、写什么、任务怎么拆、经验怎么判断。不是替你做事——是先给你一个方向。
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <CTA href="#opc" label="先做一人公司诊断 →" variant="primary" />
@@ -217,4 +217,3 @@ export default function AiToolsPage() {
     </>
   )
 }
-

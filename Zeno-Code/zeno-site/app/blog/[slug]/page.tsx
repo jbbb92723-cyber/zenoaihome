@@ -52,7 +52,7 @@ export default async function ArticlePage({ params }: Props) {
   const article = getArticleBySlug(params.slug)
   if (!article) notFound()
 
-  const content = await getArticleContent(article.id)
+  const content = article.content || (await getArticleContent(article.id))
 
   const articleUrl = `https://zenoaihome.com/blog/${article.slug}`
   const articleImage = article.coverImage
@@ -102,8 +102,8 @@ export default async function ArticlePage({ params }: Props) {
             name: '赞诺',
             alternateName: 'Zeno',
             url: 'https://zenoaihome.com',
-            jobTitle: 'AI全栈独立实践者 · OPC社群发起人',
-            knowsAbout: ['装修全案判断', '装修报价审核', 'AI赋能传统行业'],
+            jobTitle: '传统行业 AI 落地实践者 · OPC 圈南宁城市主理人',
+            knowsAbout: ['传统行业 AI 落地', '一人公司实践', '装修全案判断'],
             affiliation: {
               '@type': 'Organization',
               name: 'ZenoAIHome',
@@ -219,8 +219,8 @@ export default async function ArticlePage({ params }: Props) {
             <div className="flex-1 min-w-0">
               <p className="text-sm font-semibold text-ink">Zeno · 赞诺</p>
               <p className="text-xs text-ink-muted mt-1.5 leading-relaxed max-w-sm">
-                16 年装修从业经历，从工地和客户沟通中走出来。
-                现在用 AI 把一线经验整理成普通人也能用的判断系统——不追热点，只讲真实。
+                17 年传统行业与装修项目经验，正在把现场判断、AI 落地和一人公司实践持续公开。
+                写做过的事，也记录还在验证的问题。
               </p>
               <div className="flex flex-wrap gap-4 mt-3">
                 <Link href="/about" className="text-xs text-stone hover:underline underline-offset-2 decoration-stone-light">

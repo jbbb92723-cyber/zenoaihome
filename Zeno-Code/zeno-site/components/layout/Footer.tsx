@@ -29,13 +29,13 @@ export default function Footer() {
             </Link>
             <p className="editorial-serif mt-4 max-w-[320px] text-[1.55rem] leading-[1.28] text-ink">
               {isEn
-                ? '17 years in traditional business. Turning AI into work that can be delivered.'
-                : '17年传统行业经营与项目经验。现在把AI变成能交付的工作。'}
+                ? 'A personal record of traditional business, AI practice, and solo work.'
+                : '从传统行业走进 AI，记录真实实践，也记录自己怎样被重新组织。'}
             </p>
             <p className="mt-4 max-w-[300px] text-sm leading-7 text-ink-muted">
               {isEn
-                ? 'AI training / knowledge bases / agents / websites / solo business'
-                : 'AI培训 · 知识库 · 智能体 · 网站开发 · 星火者共同体'}
+                ? 'Writing / AI practice / tools / projects / community'
+                : '公开写作 · AI实践 · 免费工具 · 项目合作 · 星火者'}
             </p>
           </div>
 
@@ -99,7 +99,7 @@ export default function Footer() {
           <p className="text-[0.75rem] text-ink-faint">
             {isEn
               ? 'Start with a real problem.'
-              : '从真实问题开始，把边界和交付说清楚。'}
+              : '先把做过的事写下来，再把有用的部分交给别人。'}
           </p>
         </div>
 
