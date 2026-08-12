@@ -61,7 +61,7 @@ const zh = {
     breadcrumbHome: '首页',
     breadcrumbBlog: '文章',
     authorName: 'Zeno',
-    authorDesc: '装修行业 16 年。在这里持续记录工地现场与报价案例的判断过程，AI 作为给同行看的延伸内容。',
+    authorDesc: '17 年传统行业与装修项目经验。在这里持续记录现场判断、AI 实践与一人公司实验。',
     relatedArticles: '你可能还想看',
   },
 
