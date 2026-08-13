@@ -4,9 +4,9 @@ import Link from 'next/link'
 import Container from '@/components/ui/Container'
 
 export const metadata: Metadata = {
-  title: '关于赞诺｜陈国赞的传统行业、AI实践与一人公司',
+  title: '关于赞诺｜传统行业经验资产化实践',
   description:
-    '陈国赞，赞诺。17年传统行业经营与项目经验，智联企服认证AI落地专家、注册建造师、OPC圈南宁城市主理人、星火者共同体发起人。',
+    '陈国赞，赞诺。拥有17年传统行业经营与项目经验，现在以 OPC 一人公司为起点，公开验证如何把经验变成判断、内容、工具和服务。',
   alternates: {
     canonical: 'https://zenoaihome.com/about',
   },
@@ -15,13 +15,13 @@ export const metadata: Metadata = {
 const experience = [
   {
     years: '2009—2017',
-    role: '睡宝集团 · 南宁总经理',
-    detail: '负责南宁市场经营与团队管理。2014 年推动销售端使用 iPad，并与仓库数据管理打通，提高协同效率与品牌呈现；任职期间累计服务南宁 20 万+客户。',
+    role: '睡宝集团 · 传统行业经营与团队管理',
+    detail: '曾负责南宁市场经营与团队协作。在实际经营中处理客户、销售、仓配和交付问题，也留下了对流程和组织协同的第一手经验。',
   },
   {
     years: '2017—2025',
-    role: '家装行业 · 创始人',
-    detail: '独立签下 1 万㎡+城堡装修总承包项目，装修合同金额 3000 万+，从前端洽谈、施工管理、审美判断到后端服务完成全链路推进。',
+    role: '家装行业 · 项目交付与现场管理',
+    detail: '长期参与家庭装修、改造、全屋定制和项目交付。从前端需求沟通、预算和报价判断，到材料协调、施工节点和客户交付，形成了对责任边界和现场结果的判断。',
   },
   {
     years: '近两年',
@@ -56,15 +56,15 @@ export default function AboutPage() {
             <p className="text-sm font-semibold text-stone">关于赞诺</p>
             <h1 className="editorial-display mt-5 max-w-[12ch] text-[2.4rem] leading-[1.1] sm:text-[3.2rem]">我叫陈国赞，也叫 Zeno 赞诺。</h1>
             <p className="mt-7 max-w-3xl text-base leading-8 text-ink-muted sm:text-lg">
-              我在南宁创业。前 17 年主要做家居、销售管理和大型装修项目；现在把 AI 用进内容生产、知识管理、智能体、网站和一人公司的实际工作。
+              我在南宁创业。截至 2026 年，我有 17 年传统行业经营与项目经验，现在以 OPC 一人公司为起点，把 AI 用进内容生产、知识管理、智能体、网站和实际工作。
             </p>
             <div className="mt-6 flex flex-wrap gap-2 text-xs font-semibold text-ink-muted">
-              {['智联企服认证 AI 落地专家', '注册建造师', 'OPC 圈南宁城市主理人', '星火者共同体发起人'].map((item) => (
+              {['17 年传统行业经营与项目经验', 'OPC 一人公司实践者', '传统行业经验资产化', '星火者共同体发起人'].map((item) => (
                 <span key={item} className="border border-border bg-surface px-3 py-1.5">{item}</span>
               ))}
             </div>
             <p className="mt-4 max-w-3xl text-base leading-8 text-ink-muted sm:text-lg">
-              我不把传统行业经历当作要摆脱的过去。它让我知道客户、团队、合同、现金流和交付分别意味着什么，也是我判断 AI 能否真正落地的底盘。
+              我不把传统行业经历当作要摆脱的过去。它让我知道客户、团队、合同、现金流和交付分别意味着什么，也是我判断 AI 能否真正进入工作的底盘。现在我把这些经验用真实问题、可核对证据和最小交付继续验证。
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link href="/blog" className="motion-press inline-flex min-h-11 items-center rounded-[3px] bg-ink px-5 py-3 text-sm font-semibold text-white hover:bg-stone-deep">先看公开内容</Link>

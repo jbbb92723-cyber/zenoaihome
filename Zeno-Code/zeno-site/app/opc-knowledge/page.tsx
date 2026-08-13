@@ -3,8 +3,8 @@ import Link from 'next/link'
 import { ArrowRight, BookOpen, Compass, Target, Users, Shield, Cube, Lightning, Sparkle } from '@phosphor-icons/react/dist/ssr'
 
 export const metadata: Metadata = {
-  title: 'OPC 知识体系 v3.0｜一人公司从理论到实战',
-  description: 'Zeno 的 OPC 课程体系：传统行业转型实战 · 城市 OPC 落地实操 · 一人公司 AI 武器库。18 张方法卡 + 三卷作战手册 + 7 层定价阶梯。在南宁，用 17 年的伤疤和 AI 的武器，带你建一个只有你能建的一人公司。',
+  title: 'OPC 公开实践｜把真实经验变成可复用资产',
+  description: 'Zeno 以 OPC 一人公司为起点，公开记录如何把传统行业经验变成判断、案例、内容、工具和服务，并在真实实践中验证。',
 }
 
 const modules = [
@@ -63,17 +63,17 @@ export default function OPCKnowledgePage() {
       {/* Hero */}
       <section className="border-b border-border bg-ink px-5 py-16 sm:px-8 sm:py-20 lg:px-12 lg:py-24">
         <div className="mx-auto max-w-[1320px]">
-          <p className="text-sm font-semibold text-white/60">OPC 课程体系 v3.0 · 七视角评审终稿</p>
+          <p className="text-sm font-semibold text-white/60">OPC 公开实践 · 一人公司经验资产化</p>
           <h1 className="editorial-display mt-4 max-w-[18ch] text-[2.4rem] leading-[1.1] text-white sm:text-[3.2rem]">
-            在南宁，用 17 年的伤疤和 AI 的武器，带你建一个只有你能建的一人公司。
+            以你的真实经验为起点，做出别人能使用的职业资产。
           </h1>
           <p className="mt-5 max-w-[42rem] text-base leading-8 text-white/70">
-            不是"最好的 OPC 课程"，是"唯一的跨境 OPC 实战体系"。三层护城河 + 知识复利引擎 + 7 层定价阶梯——从免费内容到 ¥49,999 跨境合伙人，每一层都有对应的知识深度。
+            这不是一套先写好的课程承诺，而是一个正在运行的实践档案：从真实问题出发，留下证据，制作最小交付，再用他人试用和复盘修正。
           </p>
           <div className="mt-6 flex flex-wrap items-center gap-3 text-sm text-white/55">
             <span>作者：陈国赞（Zeno）</span>
             <span aria-hidden>·</span>
-            <span>南宁 OPC 圈城市主理人</span>
+            <span>传统行业经验资产化实践者</span>
             <span aria-hidden>·</span>
             <span>星火者共同体发起人</span>
           </div>
@@ -206,7 +206,7 @@ export default function OPCKnowledgePage() {
           </div>
           <div className="border-l-2 border-stone pl-6">
             <p className="text-sm leading-relaxed text-ink-muted">
-              这份知识体系不是书房里写出来的——是 Zeno 在南宁东盟谷做 OPC 圈城市主理人期间，从一个个真实创业者的真实问题里提炼出来的。v3.0 经过了七个视角的交叉评审（don哥/毛选/Dan Koe/Justin Welsh/Alex Hormozi/安先生/Tiago Forte），七票同意，零票反对。
+              这套内部方法不是先在书房里宣布完成，而是在真实问题、小交付、他人试用和复盘中逐步修正。与其用评审票数证明方法成立，不如留下谁用过、改了什么和哪里失效。
             </p>
             <p className="mt-3 text-xs text-ink-muted">不卖 OPC 的梦想，卖 OPC 的伤疤和地图。</p>
           </div>
@@ -215,4 +215,3 @@ export default function OPCKnowledgePage() {
     </main>
   )
 }
-

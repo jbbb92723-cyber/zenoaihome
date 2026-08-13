@@ -17,6 +17,7 @@ import {
   Database,
   HouseLine,
   Lightning,
+  Path,
   PenNib,
   UsersThree,
   Wrench,
@@ -29,35 +30,54 @@ const fadeUp: Variants = {
 
 const proofPoints = [
   { value: '17年', label: '传统行业经营与项目经验' },
-  { value: '20万+', label: '睡宝集团任职期间服务客户' },
-  { value: '3000万+', label: '大型装修项目合同金额' },
-  { value: '南宁', label: 'OPC 圈城市主理人' },
+  { value: '装修', label: '最深的垂直经验与首个验证场' },
+  { value: 'OPC', label: '一人公司的公开实践起点' },
+  { value: '南宁', label: '当前实践与星火者发起地' },
 ]
 
 const landingStages = [
-  { code: '01', title: '找场景', body: '先找到一个每天重复、资料可得、结果能判断的真实任务。' },
-  { code: '02', title: '理经验', body: '把散在文档、聊天和人脑里的经验，整理成规则与样本。' },
-  { code: '03', title: '跑流程', body: '让 AI 在一条小流程里工作，用真实输入反复测试。' },
-  { code: '04', title: '做交付', body: '写清边界、验收和维护方式，让结果离开个人也能继续用。' },
+  { code: '01', title: '收真问题', body: '从客户、项目和日常工作中找一个高频、高代价的具体问题。' },
+  { code: '02', title: '理判断', body: '把散在人脑、聊天和文档里的经验，整理成规则、样本和边界。' },
+  { code: '03', title: '做最小交付', body: '先做一次可使用的清单、案例、SOP 或工具，再让 AI 放大。' },
+  { code: '04', title: '留证据复盘', body: '记录他人如何使用、哪里无效，再修改为下次能直接复用的资产。' },
+]
+
+const practicePaths = [
+  {
+    icon: HouseLine,
+    audience: '正在装修的业主',
+    title: '签约前，先把报价、责任和付款顺序看懂。',
+    body: '装修是我最深的垂直实践。这里有报价初筛、风险词典、检查清单和真实判断样张。',
+    href: '/tools',
+    action: '进入装修判断',
+  },
+  {
+    icon: Path,
+    audience: '有真实经验的实践者',
+    title: '不再只说“我做过”，把经验变成别人能使用的资产。',
+    body: '我以 OPC 一人公司为起点，公开记录经验如何变成案例、内容、SOP、AI 工作流和最小服务。',
+    href: '/blog?category=opc',
+    action: '看经验资产化实践',
+  },
 ]
 
 const writingTracks = [
   {
     icon: Lightning,
-    title: '传统行业 × AI',
-    body: '不追工具清单，记录知识库、工作流、智能体和网站怎样进入真实业务。',
+    title: '经验资产化',
+    body: '从一个真问题出发，记录经验怎样变成证据、判断、内容、工具和服务。',
     href: '/blog?category=ai',
   },
   {
     icon: UsersThree,
-    title: '一人公司',
-    body: '产品、获客、交付、协作，以及一个传统行业人如何把自己重新组织起来。',
+    title: 'OPC 一人公司',
+    body: '产品、内容、交付、协作和现金流，以及一个传统行业人如何把自己重新组织起来。',
     href: '/blog?category=opc',
   },
   {
     icon: HouseLine,
-    title: '装修实践',
-    body: '17 年一线经验留下的判断方法，也是我把隐性经验结构化的长期样本。',
+    title: '装修判断',
+    body: '从报价、合同、付款和现场问题中提炼判断方法，也检验经验能否真正被他人使用。',
     href: '/blog?category=renovation',
   },
 ]
@@ -103,20 +123,20 @@ export default function HomePageBrandHub() {
           <motion.div initial="hidden" animate="visible" transition={{ staggerChildren: 0.1 }} className="max-w-[52rem] text-white">
             <motion.p variants={fadeUp} className="flex items-center gap-2.5 text-sm font-semibold text-white/75">
               <span className="inline-block h-2 w-2 shrink-0 bg-cinnabar" aria-hidden />
-              传统行业 AI 落地实践者 · OPC 圈南宁城市主理人
+              从装修现场走出来的 OPC 实践者
             </motion.p>
             <motion.h1 variants={fadeUp} className="editorial-display mt-5 text-[2.6rem] leading-[1.08] sm:text-[3.4rem] lg:text-[4.2rem]">
               赞诺 Zeno
             </motion.h1>
             <motion.p variants={fadeUp} className="editorial-display mt-5 max-w-[18ch] text-[1.65rem] leading-[1.25] text-white/95 sm:text-[2rem]">
-              一个从传统行业走进 AI 实践的人。
+              把真实经验，变成可复用的职业资产。
             </motion.p>
             <motion.p variants={fadeUp} className="mt-6 max-w-[43rem] text-base leading-8 text-white/75 sm:text-lg">
-              我把 17 年经营、项目和装修经验带进 AI，持续公开知识库、工作流、智能体、内容系统与一人公司的真实实践。
+              我是赞诺。正在公开验证如何用 AI，把 17 年传统行业经营与项目经验，整理成可核验的判断、内容、工具和服务。装修是我最深的验证场。
             </motion.p>
             <motion.div variants={fadeUp} className="mt-8 flex flex-col gap-3 sm:flex-row">
               <ActionLink href="/blog"><BookOpenText size={18} aria-hidden />读公开实践</ActionLink>
-              <ActionLink href="/ai-tools" secondary><Compass size={18} aria-hidden />先找到 AI 切入点</ActionLink>
+              <ActionLink href="/about" secondary><Compass size={18} aria-hidden />了解我如何开始</ActionLink>
             </motion.div>
           </motion.div>
         </div>
@@ -137,11 +157,47 @@ export default function HomePageBrandHub() {
         <Reveal className="mx-auto max-w-[1320px]">
           <div className="grid gap-8 lg:grid-cols-[0.38fr_0.62fr] lg:items-end">
             <div>
-              <p className="page-label">差一点</p>
-              <h2 className="editorial-display mt-4 text-[1.8rem] leading-[1.15] sm:text-[2.2rem] lg:text-[2.6rem]">你可能不是不会用 AI，只是还差一个落地点。</h2>
+              <p className="page-label">两条实践线</p>
+              <h2 className="editorial-display mt-4 text-[1.8rem] leading-[1.15] sm:text-[2.2rem] lg:text-[2.6rem]">从你手里的真问题开始。</h2>
             </div>
             <p className="max-w-2xl text-base leading-8 text-ink-muted lg:justify-self-end">
-              很多项目停在“知道 AI 很重要”。真正往前走，需要依次把场景、经验、流程和交付说清。看看你现在停在哪一步。
+              我同时服务两类问题，但不把它们混成一句空泛的承诺。一条来自装修现场，一条来自我正在跑的 OPC 转型。
+            </p>
+          </div>
+          <div className="mt-10 grid border-y border-border lg:grid-cols-2">
+            {practicePaths.map((path, index) => {
+              const Icon = path.icon
+              return (
+                <Link
+                  key={path.audience}
+                  href={path.href}
+                  className={`group flex min-h-[22rem] flex-col p-7 hover:bg-surface-warm sm:p-9 ${index === 0 ? 'border-b border-border lg:border-b-0 lg:border-r' : ''}`}
+                >
+                  <div className="flex items-center gap-3 text-stone">
+                    <Icon size={24} weight="duotone" aria-hidden />
+                    <p className="text-sm font-semibold">{path.audience}</p>
+                  </div>
+                  <h3 className="editorial-display mt-7 max-w-[19ch] text-[1.65rem] leading-[1.25] text-ink sm:text-[1.9rem]">{path.title}</h3>
+                  <p className="mt-5 max-w-2xl text-sm leading-7 text-ink-muted">{path.body}</p>
+                  <span className="mt-auto inline-flex items-center gap-2 pt-8 text-sm font-semibold text-stone group-hover:text-ink">
+                    {path.action} <ArrowRight size={16} aria-hidden />
+                  </span>
+                </Link>
+              )
+            })}
+          </div>
+        </Reveal>
+      </section>
+
+      <section className="border-b border-border px-5 py-16 sm:px-8 sm:py-20 lg:px-12 lg:py-24">
+        <Reveal className="mx-auto max-w-[1320px]">
+          <div className="grid gap-8 lg:grid-cols-[0.38fr_0.62fr] lg:items-end">
+            <div>
+              <p className="page-label">经验资产化</p>
+              <h2 className="editorial-display mt-4 text-[1.8rem] leading-[1.15] sm:text-[2.2rem] lg:text-[2.6rem]">经验不会自动变成你的资产。</h2>
+            </div>
+            <p className="max-w-2xl text-base leading-8 text-ink-muted lg:justify-self-end">
+              只有当它进入一次真实交付，留下可核对的证据，再被别人使用和修改，它才不再只是“我做过”。
             </p>
           </div>
           <ol className="mt-10 grid border-y border-border sm:grid-cols-2 lg:grid-cols-4">
@@ -153,8 +209,8 @@ export default function HomePageBrandHub() {
               </li>
             ))}
           </ol>
-          <Link href="/ai-tools/opc-diagnosis" className="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-ink hover:text-stone">
-            用 5 分钟看看自己卡在哪 <ArrowRight size={16} aria-hidden />
+          <Link href="/blog?category=opc" className="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-ink hover:text-stone">
+            看我怎样跑这个过程 <ArrowRight size={16} aria-hidden />
           </Link>
         </Reveal>
       </section>
@@ -227,14 +283,14 @@ export default function HomePageBrandHub() {
         <Reveal className="mx-auto grid max-w-[1320px] gap-10 lg:grid-cols-[0.38fr_0.62fr]">
           <div>
             <p className="text-sm font-semibold text-white/55">神秘痒</p>
-            <h2 className="editorial-display mt-4 text-[1.8rem] leading-[1.15] sm:text-[2.2rem] lg:text-[2.6rem]">真正让 AI 项目停下来的，往往不是技术。</h2>
-            <p className="mt-5 max-w-md text-base leading-8 text-white/65">工具能不能用，很快就能试出来。难的是三个经常被跳过的问题。</p>
+            <h2 className="editorial-display mt-4 text-[1.8rem] leading-[1.15] sm:text-[2.2rem] lg:text-[2.6rem]">我不是把 AI 加在经验上，就宣布它变成了方法。</h2>
+            <p className="mt-5 max-w-md text-base leading-8 text-white/65">工具很快就能搭出来。难的是让真实问题、判断边界和使用结果都留下来。</p>
           </div>
           <div className="border-t border-white/15">
             {[
-              ['01', '到底要替谁完成哪一项工作？'],
-              ['02', '判断好坏的经验，现在写在哪里？'],
-              ['03', '结果错了以后，谁复核、怎样修正？'],
+              ['01', '这是一个真实发生的问题吗？'],
+              ['02', '我的判断来自什么材料和经历？'],
+              ['03', '别人使用后，它在哪里有效、在哪里失效？'],
             ].map(([code, question]) => (
               <div key={code} className="grid grid-cols-[3rem_1fr_auto] items-center gap-4 border-b border-white/15 py-6">
                 <span className="text-xs font-semibold text-cinnabar">{code}</span>
@@ -279,7 +335,7 @@ export default function HomePageBrandHub() {
             <h2 className="editorial-display mt-4 text-[1.8rem] leading-[1.15] sm:text-[2.2rem] lg:text-[2.6rem]">一个人可以开始，但不必一直独自走。</h2>
           </div>
           <div className="border-l-2 border-cinnabar pl-6">
-            <p className="text-base leading-8 text-ink-muted">星火者是我发起的 OPC 协作共同体。分享真实项目，带着上下文连接，在边界清楚时一起做事。</p>
+            <p className="text-base leading-8 text-ink-muted">星火者是小规模实践与协作共同体。成员从自己的真实角色出发，完成行动、试用和复盘，留下案例、工具与可信的协作记录。</p>
             <Link href="/community" className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-ink hover:text-stone">了解星火者 <ArrowRight size={16} aria-hidden /></Link>
           </div>
         </Reveal>
