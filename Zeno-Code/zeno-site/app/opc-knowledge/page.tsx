@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { ArrowRight, BookOpen, Compass, Target, Users, Shield, Cube, Lightning, Sparkle } from '@phosphor-icons/react/dist/ssr'
+import { ArrowRight, Compass, Users, Shield, Cube, Sparkle } from '@phosphor-icons/react/dist/ssr'
 
 export const metadata: Metadata = {
   title: 'OPC 公开实践｜把真实经验变成可复用资产',
@@ -10,51 +10,49 @@ export const metadata: Metadata = {
 const modules = [
   {
     icon: Shield,
-    title: '传统行业转型实战',
-    subtitle: '卷① 转型生存算法',
+    title: '传统行业经验迁移',
+    subtitle: '模块① 经验如何重新使用',
     cards: '卡 01-06',
-    desc: '从部门主任到光杆司令的第一天。睡宝集团内斗、城堡项目 3000 万资金管理、转型决策树——17 年伤疤压缩成的生存算法。',
-    anchor: '时间纵深 · 无法加速',
+    desc: '从 17 年经营和项目经历中，分辨哪些判断可以迁移到一人公司，哪些只能作为个案，并为每个结论补上来源和适用边界。',
+    anchor: '经历证据 · 可以追溯',
   },
   {
     icon: Compass,
-    title: '城市 OPC 落地实操',
-    subtitle: '卷② 城市通关手册',
+    title: '城市 OPC 在地验证',
+    subtitle: '模块② 从南宁开始试验',
     cards: '卡 07-12',
-    desc: '二线城市 OPC 生态评估、本地化获客飞轮、东盟跨境合规导航。南宁东盟谷物理驻地——不是线上课，是实地。',
-    anchor: '地理锚点 · 无法搬家',
+    desc: '以南宁为当前实践场，记录本地需求、关系建立、小项目和交付过程。涉及东盟与跨境的内容，只收录已经核验的事实和实际案例。',
+    anchor: '在地实践 · 持续验证',
   },
   {
     icon: Cube,
-    title: '一人公司 AI 武器库',
-    subtitle: '卷③ AI 私有化部署',
+    title: '一人公司 AI 工作流',
+    subtitle: '模块③ 工具如何进入工作',
     cards: '卡 13-18',
-    desc: '大模型选型矩阵、Prompt 军工化、自动化流水线。传统老板 + 真实技术能力的杂交——OPC 圈里找不到第二个。',
-    anchor: '杂交稀缺 · 无法速成',
+    desc: '围绕具体任务选择模型、整理上下文、搭建自动化并核算成本。判断标准不是工具数量，而是输出能否验收、流程能否维护。',
+    anchor: '工具工作流 · 按结果验收',
   },
 ]
 
 const cards = [
-  { id: '01-06', vol: '转型生存算法', items: '身份转换罗盘 · 资源断舍离 · 生存算法决策树 · 反脆弱定价法 · 从属到主权 · 转型试错日志' },
-  { id: '07-12', vol: '城市通关手册', items: '二线城市评估 · 本地化获客飞轮 · 东盟跨境合规 · 物理护城河搭建 · 城市资源杠杆 · 跨境物流清单' },
-  { id: '13-18', vol: 'AI 私有化部署', items: '大模型选型矩阵 · 一人公司 AI 堆栈 · Prompt 军工化 · 自动化流水线 · 平民数据工程 · AI 成本核算' },
+  { id: '01-06', vol: '经验迁移', items: '身份变化 · 可迁移经验盘点 · 资源边界 · 小步验证 · 服务边界 · 转型复盘' },
+  { id: '07-12', vol: '城市实践', items: '需求观察 · 本地关系地图 · 线索记录 · 小项目验证 · 协作约定 · 交付回流' },
+  { id: '13-18', vol: 'AI 工作流', items: '任务选择 · 模型与工具矩阵 · 上下文整理 · 自动化流程 · 数据边界 · 成本与质量' },
 ]
 
-const pricing = [
-  { price: '¥0', product: '转型日记（短视频/公众号）', depth: 'L1→L2', desc: '建立气质认知' },
-  { price: '¥9.9', product: '18 张 OPC 方法卡', depth: 'L2→L3', desc: '筛选付费用户' },
-  { price: '¥199', product: '三卷作战手册（电子版）', depth: 'L3→L4', desc: '建立体系信任' },
-  { price: '¥1,999', product: '季度实战训练营', depth: 'L4', desc: '跟 Zeno 一起做项目' },
-  { price: '¥3,999/年', product: '星火者社群年费', depth: 'L4→L5', desc: '长期关系绑定' },
-  { price: '¥19,999', product: '南宁 3 天实地陪跑 + 90 天跟进', depth: 'L5', desc: '物理护城河变现' },
-  { price: '¥49,999', product: '跨境 OPC 合伙人', depth: 'L5', desc: '高净值合作网络' },
+const practicePath = [
+  { stage: '01', name: '公开记录', output: '短视频、文章和实践日志', desc: '把真实问题、判断过程和暂时无解的部分留下来。' },
+  { stage: '02', name: '提炼方法', output: '方法卡、清单和任务模板', desc: '从具体案例中提炼可复用的步骤，同时标明适用边界。' },
+  { stage: '03', name: '小范围试用', output: '交流、工作坊或一次具体交付', desc: '让他人用一次，记录哪里能用、哪里需要改，不预先承诺结果。' },
+  { stage: '04', name: '共同实践', output: '星火者成员关系与协作记录', desc: '围绕真实项目建立反馈和连接，是否继续由双方实际情况决定。' },
+  { stage: '05', name: '结果回流', output: '脱敏案例、复盘和下一版知识', desc: '把交付后的证据回流到内容和角色知识体系，持续修正方法。' },
 ]
 
-const moat = [
-  { layer: '第一层', name: '时间护城河', when: '过去时', desc: '17 年传统行业经历。没有人能缩短这 17 年的距离。', level: '★★★★★' },
-  { layer: '第二层', name: '地理护城河', when: '现在时', desc: '南宁东盟谷物理驻地。别人可以在线上模仿，没办法说"来南宁，我带你看"。', level: '★★★★☆' },
-  { layer: '第三层', name: '身份护城河', when: '现在时', desc: '传统老板 + 真实技术能力。商业讲师学不会技术，技术人讲不了商业。', level: '★★★★☆' },
-  { layer: '第四层', name: '知识复利护城河', when: '将来时', desc: '内部 CODE 循环。对手今天抄走所有内容，三个月后你已进化到下一代。', level: '★★★★★' },
+const knowledgeSources = [
+  { layer: '第一层', name: '长期经历', when: '过去', desc: '17 年传统行业经历提供了大量问题样本，但年限本身不等于方法；每个判断仍需回到案例和证据。', evidence: '履历、项目与复盘' },
+  { layer: '第二层', name: '在地实践', when: '现在', desc: '以南宁作为当前观察样本，持续区分本地条件和可迁移机制，避免把个案包装成普遍答案。', evidence: '访谈、需求与交付记录' },
+  { layer: '第三层', name: '跨角色翻译', when: '现在', desc: '把经营问题翻译成 AI 可以协助的任务，再把技术输出翻译成业务可验收的结果。', evidence: '输入、输出与验收标准' },
+  { layer: '第四层', name: '知识回流', when: '持续', desc: '为方法保留来源、版本、适用条件和失效记录，让每次内容与交付都能修正下一版。', evidence: '版本、案例与失败条件' },
 ]
 
 export default function OPCKnowledgePage() {
@@ -80,15 +78,15 @@ export default function OPCKnowledgePage() {
         </div>
       </section>
 
-      {/* 三个课程模块 */}
+      {/* 三个实践模块 */}
       <section className="border-b border-border px-5 py-16 sm:px-8 sm:py-20 lg:px-12 lg:py-24">
         <div className="mx-auto max-w-[1320px]">
-          <p className="text-sm font-semibold text-stone">课程金字塔</p>
+          <p className="text-sm font-semibold text-stone">实践模块</p>
           <h2 className="editorial-display mt-3 text-[2.2rem] leading-[1.15] sm:text-[3rem]">
-            三件事。不多不少。
+            三条经验线，放进真实问题里验证。
           </h2>
           <p className="mt-3 max-w-lg text-sm leading-relaxed text-ink-muted">
-            砍掉了 AI 专项层、产品化层、概念入门课。留下的三板斧，每一件都只有 Zeno 能教。
+            三条线分别对应我已经走过、正在做和持续验证的工作。它们不是预先包装完成的课程，而是会随着案例和复盘更新的实践档案。
           </p>
           <div className="mt-10 grid gap-6 sm:grid-cols-3">
             {modules.map((mod) => {
@@ -115,7 +113,7 @@ export default function OPCKnowledgePage() {
             18 张方法卡 · 6+6+6 精确归属。
           </h2>
           <p className="mt-3 max-w-lg text-sm leading-relaxed text-ink-muted">
-            每张卡 1 页 A4，独立可传播。背后是 87 页原始素材的 L1-L3 提炼。一张卡 = 一周的免费内容素材。
+            每张卡都从具体素材或实践问题出发，独立说明一个判断、步骤或边界。它既可以成为公开内容的骨架，也可以在试用和复盘后继续修订。
           </p>
           <div className="mt-10 grid gap-5 sm:grid-cols-3">
             {cards.map((c) => (
@@ -129,45 +127,45 @@ export default function OPCKnowledgePage() {
         </div>
       </section>
 
-      {/* 定价阶梯 */}
+      {/* 实践路径 */}
       <section className="border-b border-border px-5 py-16 sm:px-8 sm:py-20 lg:px-12 lg:py-24">
         <div className="mx-auto max-w-[1320px]">
-          <p className="text-sm font-semibold text-stone">定价阶梯</p>
+          <p className="text-sm font-semibold text-stone">从内容到交付</p>
           <h2 className="editorial-display mt-3 text-[2.2rem] leading-[1.15] sm:text-[3rem]">
-            不是价格列表，是信任阶梯。
+            不是价格列表，是验证路径。
           </h2>
           <p className="mt-3 max-w-lg text-sm leading-relaxed text-ink-muted">
-            每一层对应一个渐进式总结深度（L1-L5）。同一套知识资产，不同提炼深度 = 不同产品形态。
+            公开内容负责让你看见判断过程，工具和小交付负责让你亲自验证。只有被真实使用、验收和复盘过的部分，才会进入下一版体系。
           </p>
           <div className="mt-10 space-y-2">
-            {pricing.map((p) => (
-              <div key={p.price} className="grid grid-cols-[6rem_1fr_5rem_10rem] gap-4 border border-border bg-surface p-4 items-center text-sm">
-                <span className="font-semibold text-ink tabular-nums">{p.price}</span>
-                <span className="text-ink">{p.product}</span>
-                <span className="text-xs font-semibold text-stone">{p.depth}</span>
-                <span className="text-xs text-ink-muted">{p.desc}</span>
+            {practicePath.map((item) => (
+              <div key={item.stage} className="grid gap-2 border border-border bg-surface p-4 sm:grid-cols-[3rem_10rem_14rem_1fr] sm:items-center sm:gap-4">
+                <span className="text-xs font-semibold tabular-nums text-stone">{item.stage}</span>
+                <span className="font-semibold text-ink">{item.name}</span>
+                <span className="text-xs font-semibold text-stone">{item.output}</span>
+                <span className="text-xs leading-relaxed text-ink-muted">{item.desc}</span>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* 护城河 */}
+      {/* 知识来源 */}
       <section className="border-b border-border bg-surface-warm px-5 py-16 sm:px-8 sm:py-20 lg:px-12 lg:py-24">
         <div className="mx-auto max-w-[1320px]">
-          <p className="text-sm font-semibold text-stone">护城河体系</p>
+          <p className="text-sm font-semibold text-stone">知识来源</p>
           <h2 className="editorial-display mt-3 text-[2.2rem] leading-[1.15] sm:text-[3rem]">
-            3+1 层。三层对外，一层对内。
+            角色知识不是整理出来的，是验证出来的。
           </h2>
           <p className="mt-3 max-w-lg text-sm leading-relaxed text-ink-muted">
-            前三层防御——让别人追不上你。第四层进攻——让你加速远离别人。知识复利引擎每天只需 10 分钟。
+            时间、地点和身份构成实践背景，持续记录与复盘让经验逐渐形成可复用资产。
           </p>
           <div className="mt-10 grid gap-4 sm:grid-cols-4">
-            {moat.map((m) => (
+            {knowledgeSources.map((m) => (
               <div key={m.layer} className="border border-border bg-canvas p-5">
                 <p className="text-[0.65rem] font-semibold uppercase tracking-widest text-stone">{m.layer} · {m.when}</p>
                 <h3 className="mt-2 text-sm font-semibold text-ink">{m.name}</h3>
-                <p className="mt-1 text-xs font-semibold text-stone">攻击难度 {m.level}</p>
+                <p className="mt-1 text-xs font-semibold text-stone">证据：{m.evidence}</p>
                 <p className="mt-2 text-xs leading-relaxed text-ink-muted">{m.desc}</p>
               </div>
             ))}
@@ -175,19 +173,19 @@ export default function OPCKnowledgePage() {
         </div>
       </section>
 
-      {/* Grand Slam Offer */}
+      {/* 公开实践边界 */}
       <section className="px-5 py-16 sm:px-8 sm:py-20 lg:px-12 lg:py-24">
         <div className="mx-auto max-w-[1320px] grid gap-10 lg:grid-cols-[0.55fr_0.45fr] lg:items-center">
           <div>
             <div className="flex items-center gap-3 text-stone">
               <Users size={24} aria-hidden />
-              <span className="text-sm font-semibold">Grand Slam Offer</span>
+              <span className="text-sm font-semibold">公开实践边界</span>
             </div>
             <h2 className="editorial-display mt-4 text-[1.8rem] leading-[1.15] sm:text-[2.2rem] lg:text-[2.6rem]">
-              用 Zeno 17 年的作战系统 + 南宁 3 天实地陪跑 + 90 天跟进，帮你搭建月入过万的盈利闭环。
+              把方法放进你的真实工作里，先确认它是否适合你。
             </h2>
             <p className="mt-4 max-w-lg text-base leading-8 text-ink-muted">
-              做不到，全额退款，方法卡和三卷你留着。如果做成了，你就是下一个跨境 OPC 合伙人。
+              赞诺可以提供公开内容、免费工具、具体项目沟通和星火者共同体等不同入口。它们都不承诺收入、客户、项目结果或合伙资格；涉及付费服务时，会在开始前单独确认范围、交付物、周期和退款边界。
             </p>
             <div className="mt-6 flex flex-wrap gap-4">
               <Link

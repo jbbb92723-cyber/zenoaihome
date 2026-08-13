@@ -1,17 +1,43 @@
 /**
  * lib/prisma.ts
  *
- * Prisma Client 单例 — 容错版
+ * Prisma Client 单例。
  *
- * - DATABASE_URL 存在时：使用真实 PrismaClient，但查询失败时返回空数据
- * - DATABASE_URL 不存在时：使用通用 stub（构建时不依赖数据库）
- *
- * 任何情况下都不会因为数据库不可用导致页面 500。
+ * 页面读取允许在构建期或数据库暂时不可用时降级为空数据；任何写入、事务和
+ * 原始 SQL 都必须保留失败，避免接口返回一个并不存在的成功结果。
  */
 
 import { PrismaClient } from '@prisma/client'
 
 const globalForPrisma = globalThis as unknown as { prisma?: PrismaClient }
+
+const READ_METHODS = new Set([
+  'aggregate',
+  'count',
+  'findFirst',
+  'findMany',
+  'findUnique',
+  'groupBy',
+])
+
+const RAW_DATABASE_METHODS = new Set([
+  '$executeRaw',
+  '$executeRawUnsafe',
+  '$queryRaw',
+  '$queryRawUnsafe',
+  '$transaction',
+])
+
+export class DatabaseUnavailableError extends Error {
+  constructor(operation = 'database operation') {
+    super(`Database is unavailable: ${operation}`)
+    this.name = 'DatabaseUnavailableError'
+  }
+}
+
+export function isDatabaseUnavailableError(error: unknown): error is DatabaseUnavailableError {
+  return error instanceof DatabaseUnavailableError
+}
 
 function createRealClient(): PrismaClient {
   const client = globalForPrisma.prisma ?? new PrismaClient()
@@ -21,61 +47,103 @@ function createRealClient(): PrismaClient {
   return client
 }
 
+function emptyReadResult(methodName: string): unknown {
+  if (methodName === 'count') return 0
+  if (methodName === 'findUnique' || methodName === 'findFirst') return null
+  if (methodName === 'aggregate') {
+    return { _avg: {}, _count: {}, _max: {}, _min: {}, _sum: {} }
+  }
+  return []
+}
+
+function logReadFailure(modelName: string, methodName: string, error: unknown) {
+  if (process.env.NODE_ENV !== 'production') {
+    console.warn(
+      `[prisma] 数据库查询失败 (${modelName}.${methodName}):`,
+      (error as Error)?.message?.split('\n')[0] ?? String(error),
+    )
+  }
+}
+
 function createFallbackStub(): PrismaClient {
-  const stubHandler: ProxyHandler<any> = {
-    get() {
-      return new Proxy(() => {}, {
-        get() {
-          return async () => []
-        },
-        apply() {
-          return async () => []
-        },
-      })
+  const fallbackModelHandler: ProxyHandler<Record<string, unknown>> = {
+    get(_target, methodName) {
+      if (typeof methodName === 'symbol') return undefined
+
+      const operation = String(methodName)
+      if (READ_METHODS.has(operation)) {
+        return async () => emptyReadResult(operation)
+      }
+
+      return async () => {
+        throw new DatabaseUnavailableError(`model.${operation}`)
+      }
     },
   }
-  // @ts-ignore
-  return new Proxy({}, stubHandler) as unknown as PrismaClient
+
+  const fallbackHandler: ProxyHandler<Record<string, unknown>> = {
+    get(_target, property) {
+      if (property === 'then') return undefined
+      if (typeof property === 'symbol') return undefined
+
+      const operation = String(property)
+      if (operation === '$disconnect') {
+        return async () => undefined
+      }
+      if (operation === '$on') {
+        return () => undefined
+      }
+      if (RAW_DATABASE_METHODS.has(operation) || operation === '$connect') {
+        return async () => {
+          throw new DatabaseUnavailableError(operation)
+        }
+      }
+
+      return new Proxy({}, fallbackModelHandler)
+    },
+  }
+
+  return new Proxy({}, fallbackHandler) as unknown as PrismaClient
 }
 
 /**
- * 包装 PrismaClient，所有模型方法调用失败时返回空数据而非抛出异常。
- * 这样任何一个后台页面都不会因为数据库不可用而白屏。
+ * 只对读查询做空数据降级。写方法不在 catch 中转换，因此数据库故障会直接
+ * 进入调用方的错误处理，不会伪装成空对象或成功响应。
  */
 function wrapResilient(client: PrismaClient): PrismaClient {
   const handler: ProxyHandler<PrismaClient> = {
-    get(target, prop) {
-      const original = (target as any)[prop]
+    get(target, property) {
+      const original = Reflect.get(target, property, target)
 
-      // 非模型属性直接返回（$connect, $disconnect, $on, $transaction 等）
-      if (typeof original !== 'object' || original === null) {
+      if (typeof property === 'symbol') return original
+
+      // Prisma 内部属性不能被模型代理包装。
+      if (property.startsWith('_')) return original
+
+      if (typeof original === 'function') {
+        // 事务、原始 SQL 和连接方法保留 Prisma 原本的失败语义，并绑定 this。
+        return (...args: unknown[]) => Reflect.apply(original, target, args)
+      }
+
+      if (original === null || typeof original !== 'object' || property.startsWith('$')) {
         return original
       }
 
-      // 模型代理：拦截所有方法调用，失败返回空
       return new Proxy(original, {
         get(modelTarget, methodName) {
-          const method = modelTarget[methodName]
+          if (typeof methodName === 'symbol') return Reflect.get(modelTarget, methodName)
+
+          const method = Reflect.get(modelTarget, methodName)
           if (typeof method !== 'function') return method
 
-          return async (...args: any[]) => {
+          return async (...args: unknown[]) => {
             try {
-              return await method.apply(modelTarget, args)
+              return await Reflect.apply(method, modelTarget, args)
             } catch (error) {
-              // 数据库不可用时静默降级，不阻塞页面渲染
-              if (process.env.NODE_ENV !== 'production') {
-                console.warn(
-                  `[prisma] 数据库查询失败 (${String(prop)}.${String(methodName)}):`,
-                  (error as Error).message?.split('\n')[0]
-                )
-              }
-              // 根据方法名返回合理的空值
-              if (String(methodName) === 'count') return 0
-              if (String(methodName) === 'findMany') return []
-              if (String(methodName) === 'findUnique' || String(methodName) === 'findFirst') return null
-              if (String(methodName).startsWith('aggregate')) return { _sum: {}, _count: {} }
-              if (String(methodName).startsWith('create') || String(methodName).startsWith('update') || String(methodName).startsWith('delete') || String(methodName).startsWith('upsert')) return {}
-              return []
+              if (!READ_METHODS.has(methodName)) throw error
+
+              logReadFailure(property, methodName, error)
+              return emptyReadResult(methodName)
             }
           }
         },
@@ -93,7 +161,7 @@ if (process.env.DATABASE_URL) {
 } else {
   prisma = createFallbackStub()
   if (process.env.NODE_ENV !== 'production') {
-    console.warn('[prisma] DATABASE_URL 未配置，使用 stub（所有查询返回空数据）')
+    console.warn('[prisma] DATABASE_URL 未配置，读取使用空数据；写入将返回数据库不可用错误')
   }
 }
 

@@ -3,6 +3,7 @@ import { isAdminUser } from '@/lib/admin'
 import { prisma } from '@/lib/prisma'
 import { isEmailConfigured } from '@/lib/email'
 import { AI_TASKS, getAiTaskStatus } from '@/lib/integrations/ai/config'
+import { getPaymentOptions } from '@/lib/payment-config'
 
 export const dynamic = 'force-dynamic'
 
@@ -19,6 +20,7 @@ export async function GET() {
     database = false
   }
 
+  const paymentOptions = getPaymentOptions()
   const checks = {
     database: { ok: database },
     auth: {
@@ -32,6 +34,10 @@ export async function GET() {
     email: { ok: isEmailConfigured() },
     ai: AI_TASKS.map(getAiTaskStatus),
     integrations: {
+      manualPayment: {
+        ok: paymentOptions.length > 0,
+        methods: paymentOptions.map((option) => option.method),
+      },
       md2wechat: Boolean(process.env.MD2WECHAT_BASE_URL && process.env.MD2WECHAT_API_KEY),
       wechatDraft: Boolean(process.env.WECHAT_APPID && process.env.WECHAT_APP_SECRET),
       imageGeneration: Boolean(

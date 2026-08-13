@@ -295,3 +295,6 @@ npx prisma db push
 2026-08-06 | Codex | 优化 `/admin/login`：改为管理员账号登录 + 应急密码双入口，新增管理员角色未授权提示，并同步后台日常操作说明。
 2026-08-06 | Codex | 修复邮箱验证码体验：抽出 `lib/verification-code.ts` 统一时长/重试常量，将注册、重置密码、改密验证码有效期从 10 分钟延长到 30 分钟，并同步邮箱模板、注册/找回密码/账号安全页提示。
 2026-08-06 | Codex | 补齐 Google 管理员登录：`/admin/login` 新增 Google 管理员账号入口，受保护后台在未授权时回到登录页并提示先授权 ADMIN/OPERATOR，避免 Google 用户被要求输入本站密码。
+2026-08-13 | Codex | 完成网站前后台一体化架构体检与 v2 实施基线：保留 Next.js + Auth.js + Prisma + Supabase 的模块化单体；30 天优先修复付款/订单/权益闭环、数据库静默失败、旧产品承诺冲突和隐私边界；前台按角色场景收敛入口，后台从资产大屏转为今日行动台；每次交付必须回流为案例与角色知识。详见 `docs/网站前后台一体化优化架构方案-v2.md`。
+2026-08-13 | Codex | 落地可信主链第一批止血修复：`lib/prisma.ts` 仅允许读查询降级，写入/事务/原始 SQL 保留失败；新增 `lib/payment-config.ts` 与 `.env.example` 收款码配置；订单页和付款通知接口在未配置真实收款码时统一拒绝付款动作；订单未登录回调改为当前订单 URL；占位支付 Webhook 改为 HTTP 501；`app/opc-knowledge/page.tsx` 移除未验证价格、收入/合伙承诺，改成公开实践验证路径；新增 `app/privacy/page.tsx` 并在 Footer 提供隐私入口。生产收款码和数据库迁移仍需单独配置/对账。
+2026-08-13 | Codex | 补齐诊断写入边界：`app/api/living-diagnosis/route.ts` 将诊断记录与分析事件放入同一事务，数据库不可用时返回 `503/ok:false` 而不再假成功；前端仍展示已生成结果并明确提示未保存。`app/sitemap.ts` 加入 `/privacy`。类型检查、lint、生产构建均通过；lint 仅保留既有项目照片 `<img>` 优化 warning。

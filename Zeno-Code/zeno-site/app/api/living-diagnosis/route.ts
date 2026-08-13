@@ -37,46 +37,58 @@ export async function POST(req: Request) {
   }
 
   const result = analyzeLivingDiagnosis(parsed.data.answers)
-  let diagnosisId: string | null = null
-  let persisted = false
 
   try {
-    const diagnosis = await prisma.livingDiagnosis.create({
-      data: {
-        userId:        session?.user?.id ?? null,
-        stage:         parsed.data.stage         || null,
-        city:          parsed.data.city          || null,
-        homeType:      parsed.data.homeType      || null,
-        area:          parsed.data.area          || null,
-        budgetRange:   parsed.data.budgetRange   || null,
-        contactName:   parsed.data.contactName   || null,
-        contactWechat: parsed.data.contactWechat || null,
-        contactEmail:  parsed.data.contactEmail  || null,
-        answers:       parsed.data.answers,
-        result,
-        status:        'submitted',
-      },
-    })
-
-    diagnosisId = diagnosis.id
-    persisted = true
-
-    await prisma.analyticsEvent.create({
-      data: {
-        userId:   session?.user?.id ?? null,
-        event:    'living_diagnosis_submitted',
-        path:     '/living-diagnosis',
-        metadata: {
-          diagnosisId,
-          primaryType: result.primaryType,
-          riskLevel:   result.riskLevel,
+    const diagnosis = await prisma.$transaction(async (tx) => {
+      const created = await tx.livingDiagnosis.create({
+        data: {
+          userId:        session?.user?.id ?? null,
+          stage:         parsed.data.stage         || null,
+          city:          parsed.data.city          || null,
+          homeType:      parsed.data.homeType      || null,
+          area:          parsed.data.area          || null,
+          budgetRange:   parsed.data.budgetRange   || null,
+          contactName:   parsed.data.contactName   || null,
+          contactWechat: parsed.data.contactWechat || null,
+          contactEmail:  parsed.data.contactEmail  || null,
+          answers:       parsed.data.answers,
+          result,
+          status:        'submitted',
         },
-        userAgent: req.headers.get('user-agent') ?? null,
-      },
+      })
+
+      await tx.analyticsEvent.create({
+        data: {
+          userId:   session?.user?.id ?? null,
+          event:    'living_diagnosis_submitted',
+          path:     '/living-diagnosis',
+          metadata: {
+            diagnosisId: created.id,
+            primaryType: result.primaryType,
+            riskLevel:   result.riskLevel,
+          },
+          userAgent: req.headers.get('user-agent') ?? null,
+        },
+      })
+
+      return created
     })
+
+    return NextResponse.json(
+      { ok: true, persisted: true, diagnosisId: diagnosis.id, result },
+      { status: 201 },
+    )
   } catch (error) {
     console.error('[living-diagnosis] failed to persist diagnosis', error)
+    return NextResponse.json(
+      {
+        ok: false,
+        error: '诊断结果已生成，但系统暂时无法保存记录，请稍后重试。',
+        persisted: false,
+        diagnosisId: null,
+        result,
+      },
+      { status: 503 },
+    )
   }
-
-  return NextResponse.json({ ok: true, persisted, diagnosisId, result }, { status: persisted ? 201 : 200 })
 }

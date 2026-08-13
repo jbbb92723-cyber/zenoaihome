@@ -114,13 +114,9 @@ export default function LivingDiagnosisClient() {
         }),
       })
 
-      if (!response.ok) {
-        setStatus('error')
-        setError('提交失败，请检查信息后稍后再试。')
-        return
-      }
-
       const data = await response.json() as {
+        ok?: boolean
+        error?: string
         diagnosisId?: string
         persisted?: boolean
         result?: LivingDiagnosisResult
@@ -128,14 +124,15 @@ export default function LivingDiagnosisClient() {
 
       if (!data.result) {
         setStatus('error')
-        setError('系统没有返回诊断结果，请稍后再试。')
+        setError(data.error ?? '系统没有返回诊断结果，请稍后再试。')
         return
       }
 
       setResult(data.result)
       setDiagnosisId(data.diagnosisId ?? '')
       setPersisted(data.persisted ?? null)
-      setStatus('success')
+      setStatus(response.ok && data.ok !== false ? 'success' : 'error')
+      setError(response.ok ? '' : (data.error ?? '诊断结果已生成，但暂未保存记录。'))
     } catch {
       setStatus('error')
       setError('网络异常，请稍后再试。')

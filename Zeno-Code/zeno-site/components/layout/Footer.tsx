@@ -93,9 +93,12 @@ export default function Footer() {
 
         {/* 版权栏 */}
         <div className="mt-12 flex flex-col items-start justify-between gap-2 border-t border-border pt-6 sm:flex-row sm:items-center">
-          <p className="text-[0.75rem] text-ink-faint">
-            © {year} ZenoAIHome.com | Zeno 赞诺 | 所有内容均为个人观点
-          </p>
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-[0.75rem] text-ink-faint">
+            <p>© {year} ZenoAIHome.com | Zeno 赞诺 | 所有内容均为个人观点</p>
+            <Link href="/privacy" className="underline underline-offset-2 hover:text-ink-muted">
+              {isEn ? 'Privacy' : '隐私说明'}
+            </Link>
+          </div>
           <p className="text-[0.75rem] text-ink-faint">
             {isEn
               ? 'Start with a real problem.'
@@ -107,4 +110,3 @@ export default function Footer() {
     </footer>
   )
 }
-

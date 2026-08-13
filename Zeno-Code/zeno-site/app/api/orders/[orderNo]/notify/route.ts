@@ -6,7 +6,8 @@
 
 import { NextResponse } from 'next/server'
 import { auth } from '@/auth'
-import { prisma } from '@/lib/prisma'
+import { isDatabaseUnavailableError, prisma } from '@/lib/prisma'
+import { isPaymentMethodConfigured } from '@/lib/payment-config'
 
 export async function POST(
   _req: Request,
@@ -34,10 +35,27 @@ export async function POST(
     )
   }
 
-  await prisma.order.update({
-    where: { id: order.id },
-    data:  { status: 'pending_confirmation' },
-  })
+  if (!isPaymentMethodConfigured(order.paymentMethod)) {
+    return NextResponse.json(
+      { error: '当前付款方式尚未配置，暂时不能提交付款通知' },
+      { status: 503 },
+    )
+  }
+
+  try {
+    await prisma.order.update({
+      where: { id: order.id },
+      data:  { status: 'pending_confirmation' },
+    })
+  } catch (error) {
+    if (isDatabaseUnavailableError(error)) {
+      return NextResponse.json(
+        { error: '系统暂时无法保存，请稍后重试' },
+        { status: 503 },
+      )
+    }
+    throw error
+  }
 
   return NextResponse.json({ message: '已提交付款通知' })
 }

@@ -7,9 +7,10 @@ import Link from 'next/link'
 interface Props {
   orderNo: string
   status:  string
+  paymentAvailable: boolean
 }
 
-export default function OrderActions({ orderNo, status }: Props) {
+export default function OrderActions({ orderNo, status, paymentAvailable }: Props) {
   const router = useRouter()
   const [loading, setLoading] = useState(false)
   const [error, setError]     = useState('')
@@ -77,7 +78,39 @@ export default function OrderActions({ orderNo, status }: Props) {
     )
   }
 
-  // pending — 显示通知按钮
+  if (status === 'paid' || status === 'processing') {
+    return (
+      <div className="space-y-3">
+        <div className="border border-stone-light bg-stone-pale/70 px-4 py-3 text-sm text-ink">
+          付款已确认，相关权益正在处理中。
+        </div>
+        <Link
+          href="/account"
+          className="block w-full text-center text-sm font-medium border border-border text-ink-muted px-4 py-2.5 hover:text-ink transition-colors"
+        >
+          返回个人中心
+        </Link>
+      </div>
+    )
+  }
+
+  if (!paymentAvailable) {
+    return (
+      <div className="space-y-3">
+        <div className="border border-border bg-surface-warm px-4 py-3 text-sm leading-7 text-ink-muted">
+          收款方式尚未配置，暂时不能提交付款通知。请不要向任何未核实的账户转账。
+        </div>
+        <Link
+          href="/contact"
+          className="block w-full text-center text-sm font-medium border border-border text-ink-muted px-4 py-2.5 hover:text-ink transition-colors"
+        >
+          联系赞诺
+        </Link>
+      </div>
+    )
+  }
+
+  // pending — 只有收款配置存在时才显示通知按钮
   return (
     <div className="space-y-2">
       {error && (

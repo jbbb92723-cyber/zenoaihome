@@ -1,7 +1,8 @@
 import type { Metadata } from 'next'
-import { notFound } from 'next/navigation'
+import { notFound, redirect } from 'next/navigation'
 import { auth } from '@/auth'
 import { prisma } from '@/lib/prisma'
+import { getPaymentOptions } from '@/lib/payment-config'
 import Container from '@/components/ui/Container'
 import { formatYuan } from '@/data/services/products'
 import OrderActions from './OrderActions'
@@ -25,15 +26,22 @@ export default async function OrderPage({
 }) {
   const { orderNo } = await params
   const session     = await auth()
+  if (!session?.user?.id) {
+    redirect(`/login?callbackUrl=${encodeURIComponent(`/order/${orderNo}`)}`)
+  }
 
   const order = await prisma.order.findFirst({
-    where: { orderNo, userId: session!.user!.id },
+    where: { orderNo, userId: session.user.id },
   })
 
   if (!order) notFound()
 
   const status = STATUS_LABEL[order.status] ?? { label: order.status, color: 'text-ink-muted' }
   const isPending = order.status === 'pending'
+  const paymentOptions = getPaymentOptions().filter(
+    (option) => option.method === order.paymentMethod,
+  )
+  const paymentAvailable = paymentOptions.length > 0
 
   return (
     <Container size="content" className="py-section">
@@ -67,8 +75,8 @@ export default async function OrderPage({
           </p>
         </div>
 
-        {/* 支付步骤（仅待付款状态显示） */}
-        {isPending && (
+        {/* 只有至少配置一张真实收款码时，才展示可执行的付款步骤。 */}
+        {isPending && paymentAvailable && (
           <div className="border border-border bg-surface p-6 mb-6">
             <h2 className="text-sm font-semibold text-ink mb-4">付款步骤</h2>
 
@@ -78,48 +86,25 @@ export default async function OrderPage({
                 <span className="shrink-0 w-5 h-5 bg-stone text-white text-xs flex items-center justify-center font-bold">1</span>
                 <div>
                   <p className="text-sm font-medium text-ink mb-0.5">扫码付款</p>
-                  <p className="text-xs text-ink-muted">选择微信或支付宝扫描下方二维码，转账 <strong className="text-ink">{formatYuan(order.paidAmount)}</strong></p>
+                  <p className="text-xs text-ink-muted">使用下方收款码转账 <strong className="text-ink">{formatYuan(order.paidAmount)}</strong></p>
                 </div>
               </div>
 
-              {/* QR Codes */}
-              <div className="grid grid-cols-2 gap-4">
-                <div className="text-center">
-                  <div className="border border-border bg-canvas p-3 mb-2 flex items-center justify-center aspect-square">
-                    {/* 替换为真实微信收款码: public/images/wechat-qr.jpg */}
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src="/images/wechat-qr.jpg"
-                      alt="微信收款码"
-                      className="w-full h-full object-contain"
-                      onError={(e) => {
-                        const el = e.currentTarget
-                        el.style.display = 'none'
-                        const parent = el.parentElement!
-                        parent.innerHTML = '<p class="text-xs text-ink-faint text-center">微信收款码<br/>（待上传）</p>'
-                      }}
-                    />
+              {/* 收款码由环境变量配置，不能使用不存在的默认图片。 */}
+              <div className={`grid gap-4 ${paymentOptions.length > 1 ? 'grid-cols-2' : 'grid-cols-1 max-w-[13rem]'}`}>
+                {paymentOptions.map((option) => (
+                  <div key={option.method} className="text-center">
+                    <div className="border border-border bg-canvas p-3 mb-2 flex items-center justify-center aspect-square">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={option.qrUrl}
+                        alt={`${option.label}收款码`}
+                        className="w-full h-full object-contain"
+                      />
+                    </div>
+                    <p className="text-xs text-ink-muted">{option.label}</p>
                   </div>
-                  <p className="text-xs text-ink-muted">微信</p>
-                </div>
-                <div className="text-center">
-                  <div className="border border-border bg-canvas p-3 mb-2 flex items-center justify-center aspect-square">
-                    {/* 替换为真实支付宝收款码: public/images/alipay-qr.jpg */}
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src="/images/alipay-qr.jpg"
-                      alt="支付宝收款码"
-                      className="w-full h-full object-contain"
-                      onError={(e) => {
-                        const el = e.currentTarget
-                        el.style.display = 'none'
-                        const parent = el.parentElement!
-                        parent.innerHTML = '<p class="text-xs text-ink-faint text-center">支付宝收款码<br/>（待上传）</p>'
-                      }}
-                    />
-                  </div>
-                  <p className="text-xs text-ink-muted">支付宝</p>
-                </div>
+                ))}
               </div>
 
               {/* Step 2 */}
@@ -145,14 +130,27 @@ export default async function OrderPage({
           </div>
         )}
 
+        {isPending && !paymentAvailable && (
+          <div className="border border-border bg-surface-warm p-5 mb-6">
+            <h2 className="text-sm font-semibold text-ink">付款暂未开放</h2>
+            <p className="mt-2 text-sm leading-7 text-ink-muted">
+              当前订单还没有配置可用的收款方式。请先不要转账，待付款入口开放后再继续。
+            </p>
+            <a href="/contact" className="mt-4 inline-block text-sm font-semibold text-stone underline underline-offset-4 hover:text-ink">
+              联系赞诺确认
+            </a>
+          </div>
+        )}
+
         {/* Actions（客户端组件） */}
         <OrderActions
           orderNo={order.orderNo}
           status={order.status}
+          paymentAvailable={paymentAvailable}
         />
 
         {/* 说明 */}
-        {(isPending || order.status === 'pending_confirmation') && (
+        {((paymentAvailable && isPending) || order.status === 'pending_confirmation') && (
           <p className="mt-4 text-xs text-ink-faint text-center leading-relaxed">
             如超过 24 小时未开通，请通过<a href="/contact" className="underline underline-offset-2 hover:text-ink-muted">联系页</a>联系我核实
           </p>
