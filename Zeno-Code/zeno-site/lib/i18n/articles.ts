@@ -173,50 +173,57 @@ If you're looking for your own long-term rhythm, start with one small action: wr
     articleId: '04',
     en: {
       slug: 'why-i-started-taking-ai-seriously',
-      title: 'Why I Started Taking AI Seriously',
-      excerpt: "I was skeptical of AI at first. What changed my mind wasn't the hype — it was the pain of spending most of my time on moving and repeating information instead of thinking and creating.",
+      title: 'Four Quote Revisions and Hundreds of Messages Made Me Take AI Seriously',
+      excerpt: 'A three-month renovation project left hundreds of messages, more than ten voice notes, and four quote revisions. Spending an afternoon sorting them showed me where AI belongs in real work: organizing and comparing first, while judgment and accountability remain mine.',
       category: 'AI in Practice',
-      tags: ['AI', 'workflow', 'efficiency', 'traditional industry', 'tools'],
-      coverAlt: 'Why I Started Taking AI Seriously — cover image',
-      content: `When I first encountered AI, I was skeptical.
+      tags: ['AI', 'renovation', 'workflow', 'information management', 'judgment'],
+      coverAlt: 'Four quote revisions and hundreds of messages from an AI-assisted renovation workflow',
+      content: `## An afternoon spent inside project records
 
-Every day my feed was filled with "this tool just disrupted everything" — after a while, the fatigue sets in. I don't come from a tech background. I've never believed in the "one prompt solves all" narrative. For me, any tool has to answer one question: does it actually help me do my real work better?
+That renovation project ran for three months, from the first consultation to the construction handoff.
 
-What got me to take AI seriously wasn't the hype. It was the pain.
+Afterward, I wanted to reconstruct what had happened: what the client cared about at each stage, what changed across four revisions of the quote, which questions had been confirmed, and which remained verbal promises. The material included hundreds of messages, more than ten voice notes, notes from two meetings, and four versions of the electronic quote.
 
-During that period I was juggling renovation consultations, project reviews, and content writing. Information was scattered everywhere: client chats on one platform, site notes in a notebook, random ideas in voice memos, article outlines in yet another doc. Every day felt busy, but most of the time went to moving and repeating things — not to judgment and creation.
+It took an entire afternoon.
 
-I took some wrong turns first.
+There was no shortage of information. Each source simply had its own order. Messages followed send time, quotes followed revision history, voice notes contained temporary decisions, and new site conditions could change an earlier agreement. Search, transfer, and version checks consumed the time that should have gone into risk judgment.
 
-Early on, I bookmarked dozens of "magic prompts." They looked impressive but rarely fit my situation. They could produce complete sentences, but nothing sounded like me. They could generate advice, but nothing matched my context. Eventually I realized the problem wasn't the tool — it was that I was treating it as an answer machine instead of a thinking partner.
+That was why I began studying AI seriously. The problem in front of me was specific: could scattered information be organized into one structure, leaving my attention for the decisions that required experience?
 
-The turning point came when I started breaking my workflow apart.
+## I had the order wrong at first
 
-I split a complete task into stages: information gathering, structural organization, risk identification, expression and output, review and retention. Then I brought AI into only the stages where it actually helped.
+Like many people, I initially collected "universal prompts." They could produce polished text quickly, but they knew nothing about my projects. They did not know why the word "charged separately" in a quote deserved another question, or who would be accountable for a verbal promise later.
 
-After a client consultation, I'd write my own core assessment first, then ask AI to run a "missed items check." When writing an article, I'd lock down the perspective and experience first, then use AI to sharpen the structure and readability. After a project wrapped, I'd feed the records into the system and generate a "reusable next time" checklist.
+A prompt detached from a real task produces work that cannot be accepted or checked.
 
-The efficiency gains were secondary. What mattered more was that my thinking became steadier.
+I changed the process. When I handle similar records now, I first remove direct identifiers such as names, phone numbers, and addresses. Then I put messages, voice transcripts, meeting notes, and quote revisions into one task and ask AI to organize them around five fields: time, participant, point of dispute, missing information, and version difference.
 
-People often ask me what the biggest change from learning AI has been.
+The result is an index, not a conclusion.
 
-It's not "faster." It's "clearer."
+I still return to the original records and verify each item. If a material price changed, was it due to a new specification, a quantity change, or an omission in the previous quote? If a process is listed, is it specific enough to inspect? Could "we will discuss it later" become an unaccountable extra charge during construction? AI can surface inconsistencies. I must decide the risk level and the next question.
 
-I used to carry a lot of experience in my head, but it was scattered. Now I can more easily turn experience into method, and method into reusable assets. For someone who came from job sites and fieldwork, this matters especially. We're naturally practice-oriented, but without systematization, experience struggles to compound.
+## How I decide whether the result is usable
 
-Of course, the boundaries have to be clear too.
+I use four acceptance conditions for this kind of work:
 
-AI won't go on-site for you. It won't bear the consequences of a bad call. It won't build trust with an anxious client on your behalf. It's good at processing information, not at holding relationships. Good at generating options, not at making value judgments.
+1. Important information is not lost through compression.
+2. Every summary can be traced to an original record.
+3. Uncertain points are marked instead of completed with invented answers.
+4. I review the final material and remain accountable before it reaches a client.
 
-So my stance on AI is simple: use it when it helps, don't worship it. Let it boost efficiency, but never outsource your thinking.
+If one condition fails, the organized material cannot move directly into delivery.
 
-When I say "taking AI seriously," what I really mean is taking my own growth seriously. In traditional industries, we've always lived on experience — and we always will. But the way we organize experience is changing. Whoever can structure their knowledge, clarify their expression, and systematize their tools will have more agency.
+With that division of labor, AI handles transfer, classification, comparison, and omission checks. I handle judgment, trade-offs, follow-up questions, and final expression. The tool did not complete the project for me. It showed me that experience held in my head could be turned into work with inputs, a process, and acceptance criteria.
 
-This isn't career-change anxiety. It's not tech worship. It's a long-term professional discipline.
+## Start with the task, then choose the tool
 
-Starting from renovation, I saw spaces and people. Looking further ahead, I see systems and eras. AI isn't a destination for me — it's a new tool on a longer road. What stays constant is the through line: in a complex reality, make choices that are as clear-eyed, responsible, and durably effective as possible.
+My learning order changed after that project.
 
-If you're in a traditional industry and want to put AI to practical use, start with one small workflow. You don't need to go big all at once. I'll keep sharing the workflow templates I've tested in the resource library — take what works and adapt it to your own rhythm.`,
+I now begin with a recurring piece of real work. I define its inputs, required result, and final reviewer before deciding which step belongs to a tool. If a tool cannot improve actual delivery, I stop chasing it. If a process works again on the next project, I keep it and revise it.
+
+I later documented the detailed quote-review process in [a real AI-assisted workflow](/blog/ai-gongzuoliu-zhenshi-anli) and the wider learning curve in [three stages of AI adoption for a traditional-industry practitioner](/blog/chuantong-hangye-ren-ai-sange-jieduan). Both articles are currently in Chinese.
+
+The conclusion I took from this project is precise: AI's first value is making scattered work inspectable. Once experience is recorded, judgment can be used again in the next piece of work.`,
     },
   },
   {

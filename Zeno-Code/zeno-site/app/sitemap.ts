@@ -63,15 +63,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/en/articles`, changeFrequency: 'monthly', priority: 0.7 },
   ]
 
-  const enArticleSlugs = [
-    'home-is-not-a-showroom',
-    'long-term-thinking-is-not-patience',
-    'seeing-the-world-from-a-job-site',
-    'why-i-dont-just-teach-renovation',
-    'why-i-started-learning-ai',
+  const enArticlePaths = [
+    'articles/home-is-not-a-showroom',
+    'articles/long-term-thinking-is-not-patience',
+    'articles/seeing-the-world-from-a-job-site',
+    'articles/why-i-dont-just-teach-renovation',
+    'blog/why-i-started-taking-ai-seriously',
   ]
-  const enArticlePages: MetadataRoute.Sitemap = enArticleSlugs.map((slug) => ({
-    url: `${baseUrl}/en/articles/${slug}`,
+  const enArticlePages: MetadataRoute.Sitemap = enArticlePaths.map((path) => ({
+    url: `${baseUrl}/en/${path}`,
     changeFrequency: 'yearly' as const,
     priority: 0.7,
   }))

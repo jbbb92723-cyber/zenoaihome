@@ -63,6 +63,11 @@ const nextConfig = {
         permanent: true,
       },
       {
+        source: '/en/articles/why-i-started-learning-ai',
+        destination: '/en/blog/why-i-started-taking-ai-seriously',
+        permanent: true,
+      },
+      {
         source: '/en/resources',
         destination: '/en/tools',
         permanent: true,

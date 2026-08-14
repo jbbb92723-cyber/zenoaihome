@@ -27,10 +27,10 @@ const articles = [
     tag: 'Work · Human nature',
   },
   {
-    title: 'Why I Started Taking AI Seriously',
-    summary: "AI isn't just for tech people. For practitioners in traditional industries, the real opportunity is augmenting judgment — not replacing it.",
-    href: '/en/articles/why-i-started-learning-ai',
-    tag: 'AI · Traditional industries',
+    title: 'Four Quote Revisions and Hundreds of Messages Made Me Take AI Seriously',
+    summary: 'A three-month renovation project showed me exactly where AI helps: organizing scattered records so human attention stays on judgment and accountability.',
+    href: '/en/blog/why-i-started-taking-ai-seriously',
+    tag: 'AI · Renovation workflow',
   },
   {
     title: 'Long-term Thinking Is Not Patience',
