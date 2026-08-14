@@ -16,9 +16,11 @@ export interface Article {
   coverImage?: string
   coverAlt?: string
   relatedImages?: { src: string; alt: string }[]
+  /** 下线文章保留原始材料，但不进入公开页面、列表或 Sitemap。 */
+  publicationStatus?: 'published' | 'retired'
 }
 
-export const articles: Article[] = [
+const articleRegistry: Article[] = [
   {
     id: '01',
     slug: '01-wo-wei-shenme-bu-xiang-zhi-zuo-jiaoren-zhuangxiu',
@@ -863,6 +865,7 @@ export const articles: Article[] = [
     category: '居住方式',
     tags: ['审美', '克制', '留白', '材质', '装修选择'],
     date: '2026-03-07',
+    publicationStatus: 'retired',
     coverImage: '',
     coverAlt: '美感不是贵，而是克制 — 文章封面',
     content: `我见过不少装修投入很高的家，走进去第一感觉是"满"。
@@ -2271,6 +2274,7 @@ export const articles: Article[] = [
     category: '居住方式',
     tags: ['管理', '工地', '协作', '经验'],
     date: '2026-04-09',
+    publicationStatus: 'retired',
     coverImage: '',
     coverAlt: '从工地学到的管理课 — 文章封面',
     content: `我做装修十七年,带过的工地有上千个。
@@ -3553,14 +3557,15 @@ AI不是魔法。它是一个工具——能帮你整理、对比、查漏，但
   {
     id: '55',
     slug: 'sensitivity-is-not-weakness',
-    title: '你的敏感，不是缺点，是判断力的入口',
+    title: '一份看不出硬伤的报价单，为什么仍让我不踏实',
     excerpt:
-      '敏感不是矫情，也不是天赋。它就是一种原材料。一个装修人怎么理解情绪、斯多葛、AI 和行业现场里的真实感知。',
-    category: '居住方式',
-    tags: ['敏感', '判断力', '斯多葛', 'AI', '情绪', '装修行业', '长期主义'],
+      '感觉只能提醒我停下来，不能直接替客户下结论。我会把这种不踏实拆成防水遍数、水电计量、辅材明细和责任边界，再逐项回到报价单验证。',
+    category: '装修全案判断',
+    parentCategory: 'renovation',
+    tags: ['装修报价', '模糊条款', '判断力', '信息核验', '报价审核'],
     date: '2026-04-25',
     coverImage: '',
-    coverAlt: '你的敏感不是缺点',
+    coverAlt: '从报价单里的不踏实找到可核验问题',
   },
   {
     id: '56',
@@ -3673,10 +3678,11 @@ AI不是魔法。它是一个工具——能帮你整理、对比、查漏，但
   {
     id: '65',
     slug: 'zhuangxiu-baojia-mingxian-di-qianyueqian-cha-6ge-weizhi',
-    title: '报价比别人低很多，我会先查这 6 个位置',
+    title: '一份报价明显偏低，我会先核对这 6 项',
     excerpt:
-      '装修报价明显比别人低，不一定是坑，但签约前要查清它为什么便宜：项目有没有漏、数量有没有少算、材料工艺是否明确，以及另计暂估和增项规则有没有写清。',
+      '低价可能来自采购效率和方案取舍，也可能只是比较条件没有拉齐。签约前先核对项目、数量、材料、工艺、结算边界和质保，再判断它是否真的便宜。',
     category: '装修全案判断',
+    parentCategory: 'renovation',
     tags: ['装修报价', '低价报价', '增项风险', '签约前', '报价单审核'],
     date: '2026-05-16',
     coverImage: '',
@@ -3983,8 +3989,8 @@ AI不是魔法。它是一个工具——能帮你整理、对比、查漏，但
   {
     id: '90',
     slug: 'yiren-gongsi-dingjia',
-    title: '一人公司怎么给自己的服务定价——别再按小时算了',
-    excerpt: '一人公司最怕的不是没客户，是接了客户但价格亏了。别按小时算，按客户从你这里拿走的价值算。',
+    title: '一人公司怎么定服务价格：先写清交付边界',
+    excerpt: '我给服务定价时，先确定谁做判断、交付什么、承担到哪里，再计算时间、沟通、返工和工具成本。客户价值决定产品是否值得做，不能代替成本与边界。',
     category: 'OPC·同行有你',
     parentCategory: 'opc',
     subcategory: 'solo-method',
@@ -4016,6 +4022,7 @@ AI不是魔法。它是一个工具——能帮你整理、对比、查漏，但
     subcategory: 'solo-method',
     tags: ['一人公司', '时间管理', '注意力', '效率', '工作方法'],
     date: '2026-06-21',
+    publicationStatus: 'retired',
   },
   {
     id: '114',
@@ -4033,8 +4040,8 @@ AI不是魔法。它是一个工具——能帮你整理、对比、查漏，但
   {
     id: '115',
     slug: 'rengong-gui-haishi-cailiao-gui',
-    title: '当业主问"人工贵还是材料贵"，他真正想问的不是价格',
-    excerpt: '装修聊天时被问这个问题，十次有八次不是在询价。是在试探你会不会利用信息差宰他。17年经验翻译装修谈判中的潜台词。',
+    title: '“人工贵还是材料贵”，不能脱离报价单回答',
+    excerpt: '地区、工种、材料规格和施工范围不同，脱离具体报价谈贵不贵没有意义。先把项目、数量、型号、工艺和责任边界拉齐，再决定哪里能替换、哪里不能冒险。',
     category: '装修全案判断',
     parentCategory: 'renovation',
     subcategory: 'contract',
@@ -4076,10 +4083,15 @@ AI不是魔法。它是一个工具——能帮你整理、对比、查漏，但
     category: 'AI 落地判断',
     tags: ['AI', 'Agent', '安全', '开源', '传统行业', '源码拆解'],
     date: '2026-08-02',
+    publicationStatus: 'retired',
     coverImage: '',
     coverAlt: '拆解AI编程代理源码——三个安全设计',
   },
 ]
+
+export const articles: Article[] = articleRegistry.filter(
+  (article) => article.publicationStatus !== 'retired',
+)
 
 export const categories = [
   '装修全案判断',

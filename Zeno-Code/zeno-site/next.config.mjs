@@ -87,6 +87,21 @@ const nextConfig = {
         destination: '/en/services',
         permanent: true,
       },
+      {
+        source: '/blog/article-02-03',
+        destination: '/blog/article-04-02',
+        permanent: true,
+      },
+      {
+        source: '/blog/gongdi-guanlike',
+        destination: '/blog/03-cong-gongdi-kan-shijie',
+        permanent: true,
+      },
+      {
+        source: '/blog/yiren-gongsi-shijian-guanli',
+        destination: '/blog/yiren-gongsi-bu-shi-yigeren-ganhuo',
+        permanent: true,
+      },
     ]
   },
 }
