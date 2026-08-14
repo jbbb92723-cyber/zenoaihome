@@ -20,12 +20,14 @@ status: 可用
 canonical: true
 version: 1
 created_at: 2026-07-09
+updated_at: 2026-08-14
 target_problem: 客户案例像流水账，即兴发言脑子空白
 solution_summary: STAR四步讲好案例（情境→任务→行动→结果），SPARK五步即兴发言（稳住心态→抓住观点→组织框架→建立联系→简洁收尾）
 action_steps:
   - step: "STAR案例：S什么情境（业主拿到12万报价）→ T什么任务（判断有无风险）→ A什么行动（用六层框架对照审查）→ R什么结果（发现5处问题，省1.8万）"
   - step: "SPARK即兴：Steady稳住（感谢+停顿）→ Point抓观点（一句话核心）→ Arrange组织（三点展开）→ Relate联系（举一个真实例子）→ Key close收尾（金句回扣）"
 expected_result: 客户案例从流水账变决策催化剂，即兴发言从紧张变出彩
+relationships: []
 ---
 
 ## 核心内容

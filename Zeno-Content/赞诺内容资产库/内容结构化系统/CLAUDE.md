@@ -29,6 +29,8 @@ Phase 1 supports only:
 - 案例单元
 - 方案单元
 
+问题单元当前存放在 `02-内容单元库/QUE-问题单元/`，但内容单元 ID 继续使用 `QST` 前缀。
+
 Evidence is embedded inside viewpoint units or case units rather than stored as an independent type.
 
 ## Naming Rules

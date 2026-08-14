@@ -2,8 +2,9 @@
 
 const fs = require("fs");
 const path = require("path");
+const { resolveSystemRoot } = require("./_system-root");
 
-const root = path.resolve(process.cwd());
+const root = resolveSystemRoot();
 const unitRoot = path.join(root, "02-内容单元库");
 const targetRoots = [
   path.join(root, "02-内容单元库"),
@@ -12,6 +13,11 @@ const targetRoots = [
 ];
 const codeFencePattern = /```[\s\S]*?```/g;
 const associationSectionPattern = /\n## 关联单元\n([\s\S]*?)(\n## |\s*$)/;
+const wikilinkPattern = /\[\[([^\]|#]+)(#[^\]|]+)?(\|[^\]]+)?\]\]/g;
+
+function escapeRegExp(value) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
 
 function walkMarkdownFiles(dir) {
   if (!fs.existsSync(dir)) return [];
@@ -40,13 +46,23 @@ function getRelationshipTargets(frontmatter) {
 }
 
 const idToLink = new Map();
+const idToFilename = new Map();
 for (const file of walkMarkdownFiles(unitRoot)) {
   const content = fs.readFileSync(file, "utf8");
   const { frontmatter } = extractFrontmatter(content);
   const id = getId(frontmatter);
   if (!id) continue;
-  idToLink.set(id, `[[${path.basename(file, ".md")}]]`);
+  const filename = path.basename(file, ".md");
+  idToFilename.set(id, filename);
+  idToLink.set(id, `[[${filename}]]`);
 }
+
+const unitIdPattern = new RegExp(
+  `^(${[...idToFilename.keys()]
+    .sort((a, b) => b.length - a.length)
+    .map(escapeRegExp)
+    .join("|")})(?:_|$)`,
+);
 
 let changedFiles = 0;
 let changedLinks = 0;
@@ -61,10 +77,20 @@ function replaceLinksInBody(body) {
     return token;
   });
 
-  let nextBody = bodyWithoutCode;
+  let nextBody = bodyWithoutCode.replace(wikilinkPattern, (fullMatch, target, heading = "", alias = "") => {
+    const normalizedTarget = target.trim();
+    const idMatch = normalizedTarget.match(unitIdPattern);
+    if (!idMatch) return fullMatch;
+
+    const currentFilename = idToFilename.get(idMatch[1]);
+    if (!currentFilename || currentFilename === normalizedTarget) return fullMatch;
+
+    changedLinks += 1;
+    return `[[${currentFilename}${heading}${alias}]]`;
+  });
 
   for (const [id, link] of idToLink.entries()) {
-    const escapedId = id.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    const escapedId = escapeRegExp(id);
     const backtickPattern = new RegExp("`" + escapedId + "`", "g");
     const barePattern = new RegExp(`(^|[^\\w\\[\\]])(${escapedId})(?=$|[^\\w_])`, "gm");
 

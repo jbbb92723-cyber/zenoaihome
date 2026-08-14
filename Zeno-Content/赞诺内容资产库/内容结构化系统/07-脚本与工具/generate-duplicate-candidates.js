@@ -2,8 +2,9 @@
 
 const fs = require("fs");
 const path = require("path");
+const { resolveSystemRoot } = require("./_system-root");
 
-const root = path.resolve(process.cwd());
+const root = resolveSystemRoot();
 const unitRoot = path.join(root, "02-内容单元库");
 const outputDir = path.join(root, "03-处理状态");
 const csvOutput = path.join(outputDir, "去重候选索引.csv");

@@ -2,8 +2,10 @@
 
 const fs = require("fs");
 const path = require("path");
+const { resolveSystemRoot } = require("./_system-root");
+const { ledgerCatalog } = require("./_content-catalog");
 
-const root = path.resolve(process.cwd());
+const root = resolveSystemRoot();
 const stateRoot = path.join(root, "03-处理状态");
 const sourceRoot = path.join(root, "01-原始素材区");
 const unitRoot = path.join(root, "02-内容单元库");
@@ -12,23 +14,12 @@ const assemblyRoot = path.join(root, "06-选题装配");
 const templateRoot = path.join(root, "04-模板");
 
 const typeConfig = {
-  QST: { dir: "问题单元", template: "问题单元模板.md", typeName: "问题单元" },
+  QST: { dir: "QUE-问题单元", template: "问题单元模板.md", typeName: "问题单元" },
   CON: { dir: "概念单元", template: "概念单元模板.md", typeName: "概念单元" },
   OPI: { dir: "观点单元", template: "观点单元模板.md", typeName: "观点单元" },
   CAS: { dir: "案例单元", template: "案例单元模板.md", typeName: "案例单元" },
   SOL: { dir: "方案单元", template: "方案单元模板.md", typeName: "方案单元" },
 };
-
-const ledgerCatalog = [
-  { category: "短视频", sourceType: "短视频", dirs: ["短视频/文稿"] },
-  { category: "公众号", sourceType: "公众号文章", dirs: ["公众号"] },
-  { category: "观点与概念", sourceType: "观点与概念", dirs: ["观点与概念"] },
-  { category: "爆款文稿", sourceType: "爆款文稿", dirs: ["爆款文稿"] },
-  { category: "推文", sourceType: "推文素材", dirs: ["推文"] },
-  { category: "其他作者", sourceType: "外部研究素材", dirs: ["其他作者"] },
-  { category: "dontbesilent", sourceType: "本人内容", dirs: ["dontbesilent"] },
-  { category: "完整副本", sourceType: "完整副本", dirs: ["完整副本"] },
-];
 
 function usage(exitCode = 0) {
   console[exitCode === 0 ? "log" : "error"](

@@ -2,8 +2,9 @@
 
 const fs = require("fs");
 const path = require("path");
+const { resolveSystemRoot } = require("./_system-root");
 
-const root = path.resolve(process.cwd());
+const root = resolveSystemRoot();
 const unitRoot = path.join(root, "02-内容单元库");
 const themeRoot = path.join(root, "05-主题地图");
 const assemblyRoot = path.join(root, "06-选题装配");
@@ -17,6 +18,7 @@ const today = new Intl.DateTimeFormat("en-CA", {
   month: "2-digit",
   day: "2-digit",
 }).format(new Date());
+const allowedRelationshipTypes = new Set(["回应", "解释", "证明", "冲突"]);
 
 function walkFiles(dir) {
   if (!fs.existsSync(dir)) return [];
@@ -91,6 +93,7 @@ const relationRows = [];
 for (const unit of units) {
   for (const relation of unit.relationships) {
     const targetUnit = unitById.get(relation.target);
+    const validType = allowedRelationshipTypes.has(relation.type);
     relationRows.push({
       source_id: unit.id,
       source_type: unit.type,
@@ -102,7 +105,7 @@ for (const unit of units) {
       note: relation.note || "",
       source_file: unit.relPath,
       target_file: targetUnit ? targetUnit.relPath : "",
-      status: targetUnit ? "有效" : "目标缺失",
+      status: !validType ? "关系类型非法" : targetUnit ? "有效" : "目标缺失",
     });
   }
 }
@@ -130,6 +133,7 @@ const relationTypeCounts = relationRows.reduce((acc, row) => {
 
 const unitsWithRelationships = units.filter((unit) => unit.relationships.length > 0).length;
 const missingTargets = relationRows.filter((row) => row.status !== "有效");
+const invalidTypes = relationRows.filter((row) => row.status === "关系类型非法");
 
 const lines = [
   "# 关系总览",
@@ -151,10 +155,16 @@ for (const type of Object.keys(relationTypeCounts).sort((a, b) => a.localeCompar
 }
 if (Object.keys(relationTypeCounts).length === 0) lines.push("- 暂无关系");
 lines.push("", "## 校验结果", "");
-if (missingTargets.length === 0) lines.push("- 所有关系统一指向有效内容单元");
+if (invalidTypes.length === 0) lines.push("- 所有关系类型均符合第一期规则");
 else {
-  lines.push(`- 存在 ${missingTargets.length} 条目标缺失关系`);
-  for (const row of missingTargets) lines.push(`- ${row.source_id} -> ${row.target_id}（${row.relation_type}）`);
+  lines.push(`- 存在 ${invalidTypes.length} 条关系类型非法记录`);
+  for (const row of invalidTypes) lines.push(`- ${row.source_id} -> ${row.target_id}（${row.relation_type}）`);
+}
+const missingTargetRows = relationRows.filter((row) => row.status === "目标缺失");
+if (missingTargetRows.length === 0) lines.push("- 所有关系统一指向有效内容单元");
+else {
+  lines.push(`- 存在 ${missingTargetRows.length} 条目标缺失关系`);
+  for (const row of missingTargetRows) lines.push(`- ${row.source_id} -> ${row.target_id}（${row.relation_type}）`);
 }
 lines.push("", "## 权威文件", "", "- 明细索引：`03-处理状态/关系索引.csv`", "- 关系规则：`00-规则与索引/内容单元关系规则.md`");
 fs.writeFileSync(relationSummary, lines.join("\n") + "\n");
@@ -165,6 +175,8 @@ console.log(JSON.stringify({
   totalUnits: units.length,
   unitsWithRelationships,
   relationCount: relationRows.length,
+  invalidRelationshipTypes: invalidTypes.length,
+  missingRelationshipTargets: missingTargetRows.length,
   themeCount: walkFiles(themeRoot).filter((file) => path.basename(file).toLowerCase() !== "readme.md").length,
   assemblyCount: walkFiles(assemblyRoot).filter((file) => path.basename(file).toLowerCase() !== "readme.md").length,
 }, null, 2));

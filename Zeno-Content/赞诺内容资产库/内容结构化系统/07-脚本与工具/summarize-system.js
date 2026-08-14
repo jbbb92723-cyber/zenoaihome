@@ -2,8 +2,9 @@
 
 const fs = require("fs");
 const path = require("path");
+const { resolveSystemRoot } = require("./_system-root");
 
-const root = path.resolve(process.cwd());
+const root = resolveSystemRoot();
 
 function walkFiles(dir) {
   if (!fs.existsSync(dir)) return [];
@@ -39,6 +40,7 @@ const summary = {
   unitBreakdown: countBySubdir(path.join(root, "02-内容单元库")),
   themeMaps: countContentMarkdownFiles(path.join(root, "05-主题地图")),
   assemblies: countContentMarkdownFiles(path.join(root, "06-选题装配")),
+  roleIndex: fs.existsSync(path.join(root, "03-处理状态/角色经营索引.csv")),
   totalFolders: walkFiles(root).filter((file) => false).length,
 };
 

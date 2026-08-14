@@ -20,6 +20,7 @@ status: 可用
 canonical: true
 version: 1
 created_at: 2026-07-09
+updated_at: 2026-08-14
 target_problem: 自我介绍像念简历，复盘太复杂坚持不了，对不同人用同一套话术
 solution_summary: SHIP四步展示价值（定位→成果→影响→规划），KISS四问轻复盘（Keep/Improve/Stop/Start），DISC四型沟通（D直接/I热情/S稳健/C严谨）
 action_steps:
@@ -27,6 +28,7 @@ action_steps:
   - step: "KISS每周5分钟：Keep继续做→ Improve优化做→ Stop停止做→ Start开始做"
   - step: "DISC速判：对方话少直接→D型给结论 / 对方热情健谈→I型给认可 / 对方温和犹豫→S型给安全感 / 对方追问细节→C型给数据"
 expected_result: 介绍自己让人从"知道"到"期待"，复盘从负担变习惯，沟通因人而异效果翻倍
+relationships: []
 ---
 
 ## 核心内容

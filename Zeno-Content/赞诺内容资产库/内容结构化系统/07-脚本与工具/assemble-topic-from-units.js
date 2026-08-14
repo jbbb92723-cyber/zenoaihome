@@ -2,13 +2,14 @@
 
 const fs = require("fs");
 const path = require("path");
+const { resolveSystemRoot } = require("./_system-root");
 
-const root = path.resolve(process.cwd());
+const root = resolveSystemRoot();
 const unitRoot = path.join(root, "02-内容单元库");
 const assemblyRoot = path.join(root, "06-选题装配");
 
 const typeDirs = {
-  QST: "问题单元",
+  QST: "QUE-问题单元",
   CON: "概念单元",
   OPI: "观点单元",
   CAS: "案例单元",

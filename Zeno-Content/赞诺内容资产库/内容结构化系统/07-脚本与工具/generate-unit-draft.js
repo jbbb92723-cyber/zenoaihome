@@ -2,13 +2,14 @@
 
 const fs = require("fs");
 const path = require("path");
+const { resolveSystemRoot } = require("./_system-root");
 
-const root = path.resolve(process.cwd());
+const root = resolveSystemRoot();
 const templateRoot = path.join(root, "04-模板");
 const unitRoot = path.join(root, "02-内容单元库");
 
 const typeMap = {
-  QST: { dir: "问题单元", template: "问题单元模板.md" },
+  QST: { dir: "QUE-问题单元", template: "问题单元模板.md" },
   CON: { dir: "概念单元", template: "概念单元模板.md" },
   OPI: { dir: "观点单元", template: "观点单元模板.md" },
   CAS: { dir: "案例单元", template: "案例单元模板.md" },

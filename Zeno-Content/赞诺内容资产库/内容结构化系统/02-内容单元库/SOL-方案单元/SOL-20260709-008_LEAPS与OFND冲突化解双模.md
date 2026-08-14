@@ -20,6 +20,7 @@ status: 可用
 canonical: true
 version: 1
 created_at: 2026-07-09
+updated_at: 2026-08-14
 target_problem: 客户投诉和团队冲突升级为情绪对抗，越沟通越糟
 solution_summary: LEAPS重"结果导向"——五步化解冲突达成行动闭环；OFND重"关系导向"——四步表达自己而不攻击对方。两者互补
 action_steps:
@@ -27,6 +28,7 @@ action_steps:
   - step: "OFND：Observation观察（摄像机式描述）→Feeling感受（我句式）→Needs需求→Desire期望"
   - step: 冲突先降温用LEAPS（先听先共情），表达自己立场用OFND（不攻击对方）
 expected_result: 客户投诉从"要个说法"变成"要个方案"，团队冲突从互相指责变成共同解决
+relationships: []
 ---
 
 ## 核心内容

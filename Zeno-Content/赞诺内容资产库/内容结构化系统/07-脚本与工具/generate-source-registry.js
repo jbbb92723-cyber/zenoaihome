@@ -2,22 +2,14 @@
 
 const fs = require("fs");
 const path = require("path");
+const { resolveSystemRoot } = require("./_system-root");
+const { inferSourceRule } = require("./_content-catalog");
 
-const root = path.resolve(process.cwd());
+const root = resolveSystemRoot();
 const sourceRoot = path.join(root, "01-原始素材区");
 const stateRoot = path.join(root, "03-处理状态");
 const output = path.join(stateRoot, "来源注册表_批量生成候选.csv");
 const registryPath = path.join(stateRoot, "来源注册表.csv");
-
-const rules = [
-  { keywords: ["短视频", "文稿"], type: "短视频", code: "VIDEO" },
-  { keywords: ["公众号"], type: "公众号文章", code: "WX" },
-  { keywords: ["观点与概念"], type: "观点与概念", code: "CON" },
-  { keywords: ["爆款文稿"], type: "爆款文稿", code: "BK" },
-  { keywords: ["推文"], type: "推文素材", code: "POST" },
-  { keywords: ["其他作者"], type: "外部研究素材", code: "EXT" },
-  { keywords: ["dontbesilent"], type: "本人内容", code: "USER" },
-];
 
 function walk(dir) {
   const results = [];
@@ -83,14 +75,6 @@ function loadRegistry() {
   return { byPath, maxSeqByCode, usedIds };
 }
 
-function inferRule(relPath) {
-  const normalized = relPath.replaceAll("\\", "/");
-  for (const rule of rules) {
-    if (rule.keywords.every((item) => normalized.includes(item))) return rule;
-  }
-  return { type: "未分类素材", code: "MISC" };
-}
-
 function inferStableId(rule, relPath, existing) {
   if (existing.byPath.has(relPath)) return existing.byPath.get(relPath);
 
@@ -132,7 +116,7 @@ const files = walk(sourceRoot)
   .sort((a, b) => a.localeCompare(b, "zh-Hans-CN"));
 
 for (const rel of files) {
-  const rule = inferRule(rel);
+  const rule = inferSourceRule(rel);
   const id = inferStableId(rule, rel, existing);
   rows.push([id, rel, rule.type, "待补", "候选", "脚本生成，待人工确认"]);
 }
