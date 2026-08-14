@@ -58,8 +58,4 @@ export const article22Content = `
 
 *我是 Zeno，十七年装修行业老兵。*
 
----
-
-> **本文调用的知识卡片**
-> - SOL-20260709-021_系统思维与PDCA
 `;

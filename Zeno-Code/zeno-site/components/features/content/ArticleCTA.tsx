@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { categoryNameToSlug, mapLegacyCategoryToSlug } from '@/data/content/categories'
 
 /**
  * 文章底部 CTA 组件
@@ -61,11 +62,14 @@ const DEFAULT_CTA: CTAConfig = {
  * 兼容旧 category 字段的中文名
  */
 function pickCTA(parentCategory?: string, legacyCategory?: string): CTAConfig {
-  const slug = parentCategory ?? ''
-  if (slug === 'renovation' || legacyCategory === '真实居住' || legacyCategory === '工具与产品') return RENO_CTA
-  if (slug === 'mattress') return MATTRESS_CTA
-  if (slug === 'lifestyle' || legacyCategory === '判断与生活') return LIFESTYLE_CTA
-  if (slug === 'ai' || slug === 'ip' || slug === 'opc' || legacyCategory === 'AI 实践' || legacyCategory === '一人公司') return AI_CTA
+  const slug = parentCategory?.trim()
+    || categoryNameToSlug[legacyCategory ?? '']
+    || mapLegacyCategoryToSlug(legacyCategory ?? '')
+
+  if (slug === 'renovation') return RENO_CTA
+  if (['mattress', 'buying', 'material', 'insider', 'care'].includes(slug)) return MATTRESS_CTA
+  if (slug === 'lifestyle' || slug === 'about') return LIFESTYLE_CTA
+  if (['ai', 'ip', 'opc', 'solo-method', 'projects', 'community', 'ai-school'].includes(slug)) return AI_CTA
   return DEFAULT_CTA
 }
 

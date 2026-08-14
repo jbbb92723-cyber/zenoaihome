@@ -60,8 +60,6 @@ export const article12Content = `
 
 ---
 
----
-
 *我是 Zeno。*
 
 如果这篇文章让你有了新的想法，你可以：
@@ -69,9 +67,4 @@ export const article12Content = `
 2. 关注 zenoaihome.com —— 每周一篇，帮你从"怕被坑"变成"没人敢坑"
 3. 手里有报价单？先用免费筛查工具扫一眼：zenoaihome.com/tools/quote-check
 
----
-
-> **本文调用的知识卡片**
-> - SOL-20260709-002_金字塔原理与MECE
-> - OPI-20260709-002_第一性原理与杠杆思维
 `;
