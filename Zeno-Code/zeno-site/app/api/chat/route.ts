@@ -130,7 +130,6 @@ const ROUTE_LABELS: Record<'zh' | 'en', Record<string, string>> = {
     '/risk-dictionary': '查装修报价风险词典',
     '/living-diagnosis': '先做 AI 居住诊断',
     '/services': '看服务路径',
-    '/services#quote-entry': '了解报价风险初查',
     '/services/quote-review': '了解报价 / 合同人工审查',
     '/tools/quote-check': '先做报价初筛',
   },

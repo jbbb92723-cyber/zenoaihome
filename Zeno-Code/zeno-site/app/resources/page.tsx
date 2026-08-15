@@ -119,7 +119,7 @@ export default function ResourcesPage() {
           <div className="mt-5 flex flex-wrap gap-3">
             <CTA href="/tools/quote-check" label="先做报价初筛" variant="primary" />
             <CTA href="/living-diagnosis" label="还没定方案，先做居住诊断" variant="secondary" />
-            <CTA href="/services" label="看三档人工服务" variant="ghost" />
+            <CTA href="/renovation" label="看装修判断路径" variant="ghost" />
           </div>
         </section>
 
@@ -245,4 +245,3 @@ export default function ResourcesPage() {
     </>
   )
 }
-

@@ -128,7 +128,7 @@ export default function InspectionGuideClient() {
       <section className="mx-auto max-w-6xl px-5 pb-12 sm:px-8">
         <BridgePanel items={[
           { label: '报价初筛工具', href: '/tools/quote-check', desc: '验收前先确认合同里有没有验收标准。' },
-          { label: '找 Zeno 判断现场问题', href: '/services#service-form', desc: '清单看完仍不确定，可以提交资料。' },
+          { label: '找 Zeno 判断现场问题', href: '/services/node-advisor', desc: '清单看完仍不确定，可以查看节点顾问的交付方式。' },
           { label: '资料与清单', href: '/resources', desc: '领取预算、报价和验收相关资料。' },
         ]} />
       </section>

@@ -4,9 +4,9 @@ import CTA from '@/components/ui/CTA'
 import StructuredData from '@/components/ui/StructuredData'
 
 export const metadata: Metadata = {
-  title: 'Zeno OS｜装修风险判断的开源方法论',
+  title: 'Zeno OS｜装修风险判断框架',
   description:
-    '17年工地经验提炼的13边界装修报价审核框架，完全开源。你可以自己用、可以改、可以拿去赚钱。我们只赌一件事：执行比知识贵。',
+    '17年工地经验提炼的13个装修报价风险边界。公开框架、风险词库和检查清单，帮助你在签约前看清报价、责任和付款节点。',
   alternates: {
     canonical: 'https://zenoaihome.com/zeno-os',
   },
@@ -15,28 +15,28 @@ export const metadata: Metadata = {
 const principles = [
   {
     num: '01',
-    title: '方法论开源，判断力收费',
-    body: '13边界框架、风险词库、检查清单——全部免费公开。你拿着清单可以自己审报价。审完还是不确定？那个不确定感，是唯一需要付费的地方。',
+    title: '先看总价是否完整',
+    body: '基础总价之外，把另计、甲供、暂估和按实际结算逐项找出来。总价只有在范围清楚时才有比较意义。',
   },
   {
     num: '02',
-    title: '执行是壁垒，知识不是',
-    body: '任何人都可以下载这13个边界。但能在报价单第3页第5行一眼看出"水电点位按个报价没写超出单价"——这需要17年。公开方法论不会让我少赚钱。它只会让更多人在试过自己审之后，发现"还是需要那个人看一眼"。',
+    title: '再看项目能否核对',
+    body: '水电点位、材料型号、施工数量都要有明确的计量方式。只写一个模糊的“按实际结算”，后面就没有共同的尺子。',
   },
   {
     num: '03',
-    title: '每交付一次，提取一个资产',
-    body: '审核一份报价单，不止是帮一个客户。是从中提取一个脱敏案例、一条判断规则、一段方法论笔记。审100份 = 100个案例 = 一本不是理论书、是17年工地上真实发生过的血泪合集。',
+    title: '把口头承诺写下来',
+    body: '品牌、型号、遍数、包含的服务和超出后的算法，都应该回到报价或合同里。没有写清楚的承诺，很难在争议时核对。',
   },
   {
     num: '04',
-    title: '免费内容好到让人想付钱',
-    body: '网上讲装修的太多了。但能把"这份报价单在施工第3周会变成加价通知"这件事讲清楚的人，很少。我们的免费内容不是引流诱饵——是让你拿着就能去跟施工方对峙的武器。',
+    title: '让付款跟验收相连',
+    body: '付款节点不是财务细节，而是项目中的主动权安排。每一笔付款前，都要知道对应什么完成结果、谁来确认、出了问题怎么办。',
   },
   {
     num: '05',
-    title: '先让客户变内行，再让内行变客户',
-    body: '传统生意是信息不对称赚钱——你越不懂，我越好赚。我们是反过来——先把你教会。教会了，你发现"知道怎么看"和"看了17年练出来的眼睛"是两回事。那个差距，是你愿意付钱的地方。',
+    title: '遇到不确定时先停下来',
+    body: '低价、模糊词和前后矛盾不一定代表对方有问题，但都值得在签约前问清楚。不能核对的地方，不要用猜测替代确认。',
   },
 ]
 
@@ -56,41 +56,39 @@ const boundaries = [
   { name: '工期顺延', detail: '60天从哪天算起' },
 ]
 
-const stack = [
+const usageSteps = [
   {
-    label: '免费工具',
-    items: ['报价风险初筛 → /tools/quote-check', 'AI 居住诊断 → /living-diagnosis', '风险词典 → /risk-dictionary', '检查清单 → /checklists'],
+    label: '先看框架',
+    body: '先用这 13 个边界检查报价的范围、计量、责任和节点。',
+    href: '/zeno-os',
+    action: '阅读本页框架',
   },
   {
-    label: '开源方法论',
-    items: ['Zeno OS 13边界（本页）', '装修报价风险六层框架 → /blog', '报价风险词库 → Obsidian 公开', '案例脱敏模板 → 即将开放'],
+    label: '自己初筛',
+    body: '把具体报价放进初筛工具，先定位需要回到施工方确认的地方。',
+    href: '/tools/quote-check',
+    action: '开始报价初筛',
   },
   {
-    label: '付费服务',
-    items: ['AI 实战服务 → /services', '星火者共同体 → /community', '装修深度对接 → 微信联系'],
-  },
-  {
-    label: '数字资产',
-    items: ['100个脱敏案例库 → 建设中', '施工节点自检清单包 → 规划中', '装修判断力入门课程 → 规划中'],
+    label: '申请具体审核',
+    body: '如果你已经有具体报价单，需要逐项确认范围、金额和责任，可以申请人工审核。',
+    href: '/services/quote-review',
+    action: '查看审核服务',
   },
 ]
 
 const faqs = [
   {
-    q: '既然方法论都公开了，为什么还有人找你深度对接？',
-    a: '因为"知道该看什么"和"看了17年练出来的眼睛"是两回事。你拿着13边界清单审完一遍，可能会发现3-5个不确定的地方——那些不确定的地方，就是我帮你消除的东西。方法免费，判断收费。',
+    q: '这套框架适合什么时候使用？',
+    a: '最适合在签约前拿到报价单时使用。已经开工或发生争议时，它仍然可以帮助你整理问题，但不能替代监理、法律或工程鉴定。',
   },
   {
-    q: '我可以拿你的13边界去做我自己的审核服务吗？',
-    a: '可以。你拿去用、改、包装、卖——都可以。但有一个条件：你用的过程中发现的新问题、新案例、新风险——希望你也能公开回来。不是法律条款，是信誉约定。',
+    q: '我可以自己使用这套框架吗？',
+    a: '可以。页面上的边界、文章和工具都面向公开使用，你可以据此整理自己的检查表。具体项目的判断仍然要以报价、合同和现场材料为准。',
   },
   {
-    q: '这和don哥的dbskill有什么不同？',
-    a: 'dbskill是商业思维的操作系统，Zeno OS是装修风险判断的操作系统。同一个逻辑，不同赛道。don哥证明了"开源方法论能赚钱"——我们用装修验证一次。',
-  },
-  {
-    q: 'Zeno OS 以后会收费吗？',
-    a: '方法论本身永远免费。未来可能收费的是：①基于100个真实案例的深度课程 ②批量审核的企业服务 ③方法论培训。但13边界框架、风险词库、检查清单——永远免费。',
+    q: '什么时候需要人工审核？',
+    a: '当报价涉及多种计价方式、项目之间存在矛盾，或者你已经找到问题但无法判断影响范围时，可以把具体材料交给人工审核。服务开始前会先确认范围、交付物、周期和退款边界。',
   },
 ]
 
@@ -102,9 +100,9 @@ export default function ZenoOSPage() {
           {
             '@context': 'https://schema.org',
             '@type': 'WebPage',
-            name: 'Zeno OS — 装修风险判断的开源方法论',
+            name: 'Zeno OS — 装修风险判断框架',
             url: 'https://zenoaihome.com/zeno-os',
-            description: '17年工地经验提炼的13边界装修报价审核框架，完全开源。方法论免费，判断力收费。',
+            description: '17年工地经验提炼的13个装修报价风险边界，帮助业主在签约前看清报价、责任和付款节点。',
             inLanguage: 'zh-CN',
           },
         ]}
@@ -116,14 +114,14 @@ export default function ZenoOSPage() {
         <Container size="content" className="relative py-14 sm:py-18">
           <div className="flex items-center gap-3 mb-5">
             <span className="bg-ink text-paper text-xs font-bold px-3 py-1">Zeno OS</span>
-            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-stone">开源方法论 v1</span>
+            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-stone">公开判断框架 v1</span>
           </div>
           <h1 className="editorial-display max-w-4xl text-[2.4rem] leading-[1.1] text-ink sm:text-[3.2rem]">
             装修风险判断，不应该是一个人的秘密。
           </h1>
           <p className="mt-6 max-w-2xl text-base leading-8 text-ink-muted sm:text-lg">
-            17年工地经验提炼成13个风险边界。全部公开。你可以自己用、可以改、可以拿去赚钱。
-            我们只赌一件事：<b>执行比知识贵。</b>方法论免费，但17年的眼睛——你得来找我。
+            17年工地经验提炼成13个风险边界，帮助你在签约前看清报价、责任和付款节点。
+            你可以先自己检查；如果手里的具体材料仍有疑问，再决定是否需要人工审核。
           </p>
           <div className="mt-8 flex flex-wrap gap-4">
             <CTA href="/tools/quote-check" label="先用免费工具试试 →" variant="primary" />
@@ -134,11 +132,11 @@ export default function ZenoOSPage() {
 
       <Container size="content" className="py-section">
 
-        {/* 五个原则 */}
+        {/* 五个检查原则 */}
         <section className="mb-16">
-          <h2 className="text-2xl font-semibold text-ink mb-3">开源五原则</h2>
+          <h2 className="text-2xl font-semibold text-ink mb-3">五个检查原则</h2>
           <p className="text-sm text-ink-muted mb-8 max-w-2xl">
-            不是"我们很大方"。是这些原则经过验证——公开方法论的人，赚得比藏着掖着的人多。
+            每一条都来自装修报价、合同和现场交付中反复出现的问题。
           </p>
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {principles.map((p) => (
@@ -170,24 +168,18 @@ export default function ZenoOSPage() {
           </p>
         </section>
 
-        {/* 免费 → 开源 → 付费 → 资产 */}
+        {/* 使用路径 */}
         <section className="mb-16">
-          <h2 className="text-2xl font-semibold text-ink mb-3">从免费到资产：四层结构</h2>
+          <h2 className="text-2xl font-semibold text-ink mb-3">接下来怎么用</h2>
           <p className="text-sm text-ink-muted mb-8 max-w-2xl">
-            不是"先用免费的勾引你然后卖贵的"。是每一层都有独立价值——你可以停在任何一层。
+            先处理你手里的具体问题。能自己确认的地方自己确认，需要具体判断时再了解服务范围。
           </p>
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {stack.map((col) => (
-              <div key={col.label} className="border border-border bg-surface p-5">
-                <p className="text-xs font-semibold uppercase tracking-widest text-stone mb-4">{col.label}</p>
-                <ul className="space-y-2">
-                  {col.items.map((item) => (
-                    <li key={item} className="text-xs text-ink-muted leading-relaxed flex gap-1.5">
-                      <span className="text-stone shrink-0">·</span>
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {usageSteps.map((step) => (
+              <div key={step.label} className="border border-border bg-surface p-5">
+                <p className="text-xs font-semibold uppercase tracking-widest text-stone mb-4">{step.label}</p>
+                <p className="text-sm leading-relaxed text-ink-muted">{step.body}</p>
+                <CTA href={step.href} label={`${step.action} →`} variant="ghost" />
               </div>
             ))}
           </div>
@@ -209,10 +201,10 @@ export default function ZenoOSPage() {
         {/* 底部CTA */}
         <section className="border-2 border-stone bg-surface-warm p-6 sm:p-8 text-center">
           <h2 className="text-xl font-semibold text-ink mb-3">
-            Zeno OS 是开源的。Zeno 的判断力不是。
+            先把报价单看清楚，再决定下一步。
           </h2>
           <p className="text-sm text-ink-muted mb-5 max-w-md mx-auto">
-            下载13边界清单，自己试试。审完如果心里有底——免费的够了。审完如果觉得"还有几个地方不确定"——你知道怎么找我。
+            报价初筛适合先定位问题；具体审核适合需要逐项确认材料、金额和责任边界的情况。
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <CTA href="/tools/quote-check" label="免费初筛 →" variant="primary" />

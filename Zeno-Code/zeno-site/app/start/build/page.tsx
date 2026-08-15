@@ -85,7 +85,7 @@ export default function BuildStagePage() {
           { label: '材料进场核对表', href: '/resources' },
         ]}
         services={[
-          { label: '提交现场判断需求', href: '/services#service-form' },
+          { label: '查看施工节点顾问', href: '/services/node-advisor' },
         ]}
         prev={{ label: '再看合同：签约前必须改什么', href: '/start/contract' }}
         next={{ label: '再看验收：交工时收什么', href: '/start/inspect' }}

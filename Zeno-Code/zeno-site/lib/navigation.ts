@@ -39,8 +39,8 @@ export const primaryNav: PrimaryNavItem[] = [
   },
   {
     key: 'blog',
-    zh: { label: '文章', href: '/blog' },
-    en: { label: 'Writing', href: '/en/blog' },
+    zh: { label: '公开实践', href: '/blog' },
+    en: { label: 'Public practice', href: '/en/blog' },
     groups: [
       {
         key: 'writing',
@@ -59,9 +59,26 @@ export const primaryNav: PrimaryNavItem[] = [
         en: { label: 'Practice', desc: 'Testing AI against real work.' },
         items: [
           { key: 'knowledge', zh: { label: '知识体系', href: '/knowledge', desc: '见自己、见天地、见众生' }, en: { label: 'Knowledge map', href: '/en/blog' } },
-          { key: 'renovation', zh: { label: '装修垂直实践', href: '/renovation', desc: '17 年经验结构化的公开样本' }, en: { label: 'Renovation practice', href: '/en/tools' } },
           { key: 'cases', zh: { label: '项目与判断样张', href: '/cases', desc: '看具体过程和交付颗粒度' }, en: { label: 'Cases', href: '/en/blog' } },
           { key: 'resources', zh: { label: '资料库', href: '/resources', desc: '模板、规则、清单与可复用资料' }, en: { label: 'Resources', href: '/en/tools' } },
+        ],
+      },
+    ],
+  },
+  {
+    key: 'renovation',
+    zh: { label: '装修判断', href: '/renovation' },
+    en: { label: 'Renovation', href: '/en/tools' },
+    groups: [
+      {
+        key: 'renovation-practice',
+        zh: { label: '装修判断路径', desc: '先自己看清楚，仍然拿不准时再进入具体服务。' },
+        en: { label: 'Renovation judgment', desc: 'Start with self-serve tools, then bring a specific question.' },
+        items: [
+          { key: 'renovation-home', zh: { label: '装修视野', href: '/renovation', desc: '17 年现场经验整理出的判断路径' }, en: { label: 'Renovation practice', href: '/en/tools' } },
+          { key: 'renovation-tools', zh: { label: '免费判断工具', href: '/tools', desc: '居住诊断、报价初筛和检查工具' }, en: { label: 'Free tools', href: '/en/tools' } },
+          { key: 'renovation-resources', zh: { label: '签约前资料库', href: '/resources', desc: '风险词典、规则库和检查模板' }, en: { label: 'Resources', href: '/en/tools' } },
+          { key: 'renovation-review', zh: { label: '报价 / 合同人工审查', href: '/services/quote-review', desc: '已有具体材料时，看清交付和价格' }, en: { label: 'Quote review', href: '/en/services' } },
         ],
       },
     ],

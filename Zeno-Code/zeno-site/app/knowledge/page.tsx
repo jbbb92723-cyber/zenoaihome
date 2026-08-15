@@ -74,9 +74,9 @@ const layers = [
       {
         icon: HouseLine,
         title: '装修 13 边界框架',
-        desc: '17 年工地提炼的报价审核方法论。完全开源。',
+        desc: '17 年工地提炼的装修报价判断框架。先看边界，再自己检查。',
         href: '/zeno-os',
-        tag: '开源方法论',
+        tag: '公开判断框架',
       },
       {
         icon: HouseLine,

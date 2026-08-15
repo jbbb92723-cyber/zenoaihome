@@ -2,6 +2,17 @@
 
 > 手机 Hermes 不翻代码也能知道的上下文。每条写清：改了哪个文件 + 为什么改。
 
+## 2026-08-15 | Codex | 收拢公开判断与付费服务路径
+
+- `lib/navigation.ts`：将「公开实践」与「装修判断」拆为独立主导航入口；装修路径集中指向 `/renovation`、免费工具、资料库和报价审核。
+- `components/features/home/HomePageBrandHub.tsx`：首页首屏改为按处境分流，进入装修、AI 项目或公开实践；装修实践入口改为 `/renovation`。
+- `app/resources/page.tsx`：修正“看三档人工服务”错误指向 AI 项目页的问题，改为装修判断路径。
+- `app/renovation/page.tsx`：补齐免费工具 → 报价审核的可见路径，显示服务价格与交付边界入口。
+- `components/features/quote-check/QuoteCheckClient.tsx`、`data/tools/budget-risk.ts`、`data/tools/toolSeoAssets.ts` 及相关风险/清单页面：将装修上下文中的失效 `/services` 锚点统一到报价审核或节点顾问页面。
+- `data/services/products.ts`：未接通交付链路的 ¥49 自查工具包暂不激活；星火者商品保持可售。
+
+商业原则：文章、方法和基础工具公开；针对用户具体材料承担判断责任时收费。强退款承诺、上传材料处理和生产支付配置仍需按真实交付能力单独核对。
+
 ---
 
 ## 2026-07-27 OPC 课程体系 v3.0 七视角终极评审 + 网站部署

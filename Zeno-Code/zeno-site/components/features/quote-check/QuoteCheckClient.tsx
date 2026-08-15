@@ -230,7 +230,7 @@ function getPrimaryNextStep(score: number, stage: QuoteStage) {
   if (score >= 8) {
     return {
       label: '查看人工复核服务',
-      href: '/services',
+      href: '/services/quote-review',
       desc: '这份报价不建议直接签。先把缺失边界补齐，再谈价格和优惠。',
       reviewNote: '如果你已经准备签约，建议做一次报价 / 合同快审；如果方案也不确定，再看综合判断。',
     }
@@ -238,7 +238,7 @@ function getPrimaryNextStep(score: number, stage: QuoteStage) {
   if (score >= 4) {
     return {
       label: '查看人工复核服务',
-      href: '/services',
+      href: '/services/quote-review',
       desc: '可以继续谈，但要先把这些追问问清楚。',
       reviewNote: '如果你已经准备签约，可以考虑报价 / 合同快审。',
     }
@@ -768,8 +768,9 @@ export default function QuoteCheckClient() {
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {[
               ['免费', '报价初筛', '先知道边界哪里没写清'],
-              ['装修视野', '17年判断方法', '不是教程——是怎么看报价、怎么判断施工'],
-              ['一对一', '深度对接', '拿不准时找我聊，装修是重决策不标价'],
+              ['¥2,500', '报价 / 合同审核', '已有完整材料时，得到逐项报告和修改建议'],
+              ['¥2,000起', '施工节点顾问', '已经开工时，按关键节点获得具体判断'],
+              ['公开', '装修视野', '先看方法，再决定是否需要人工判断'],
             ].map(([price, title, desc]) => (
               <div key={title} className="border border-border bg-canvas p-4">
                 <p className="text-xs font-semibold uppercase tracking-widest text-stone">{price}</p>
@@ -820,8 +821,8 @@ export default function QuoteCheckClient() {
             ))}
           </div>
           <div className="mt-6">
-            <Link href="/services" className="text-sm font-semibold text-stone hover:underline underline-offset-2">
-              查看服务 →
+            <Link href="/services/quote-review" className="text-sm font-semibold text-stone hover:underline underline-offset-2">
+              查看报价审核服务 →
             </Link>
           </div>
         </div>

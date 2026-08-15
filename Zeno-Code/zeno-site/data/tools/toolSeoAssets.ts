@@ -179,7 +179,7 @@ export const toolSeoAssets = {
     links: [
       { label: '报价初筛工具', href: '/tools/quote-check', desc: '验收前先看报价和合同有没有写清验收标准。' },
       { label: '验收清单资料', href: '/resources#yanshou-qingdan', desc: '把节点检查内容整理成可下载资料。' },
-      { label: '找 Zeno 做签约前判断', href: '/services', desc: '报价、合同和付款节点仍不确定，可以提交资料。' },
+      { label: '找 Zeno 做签约前判断', href: '/services/quote-review', desc: '报价、合同和付款节点仍不确定，可以查看人工审核的交付与价格。' },
       { label: '从工地看世界', href: '/blog/03-cong-gongdi-kan-shijie', desc: '理解为什么节点、责任和留痕决定装修结果。' },
     ],
   },

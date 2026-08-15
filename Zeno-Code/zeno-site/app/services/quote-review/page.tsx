@@ -1,12 +1,13 @@
 import type { Metadata } from 'next'
+import Link from 'next/link'
 import Container from '@/components/ui/Container'
 import CTA from '@/components/ui/CTA'
 import StructuredData from '@/components/ui/StructuredData'
 
 export const metadata: Metadata = {
-  title: '装修报价零加价保障审查｜¥2,500，审过的项目被加价我帮你追',
+  title: '装修报价 / 合同人工审查｜¥2,500，一份材料的逐项判断',
   description:
-    '17年经验的人逐项审核你的报价单，24小时内出报告。13个风险边界逐项排查。保证：审核过的项目施工中被变相加价，我帮你追回差额。追不回，全额退款。',
+    '17年装修现场经验，逐项审核报价与合同材料，24小时内交付报告。13个风险边界逐项排查，写清风险、追问和修改方向。',
   alternates: {
     canonical: 'https://zenoaihome.com/services/quote-review',
   },
@@ -31,7 +32,7 @@ const boundaries = [
 
 /* ── 赠品堆叠 ── */
 const bonusItems = [
-  { name: '装修合同陷阱避雷指南', value: '¥299', desc: '合同里常见的8个坑，和怎么把口头承诺写进合同，让它有法律效力' },
+  { name: '装修合同核对指南', value: '¥299', desc: '合同里常见的8个模糊点，以及如何把口头承诺整理成可确认的文字' },
   { name: '施工前3个月微信答疑', value: '¥499', desc: '签约后遇到不确定的事——增项、工艺、付款节点——随时拍照发我' },
   { name: '入住后1年售后咨询', value: '¥599', desc: '住进去之后发现问题？发照片给我，我帮你判断是正常现象还是该找施工方' },
   { name: '装修公司谈判话术模板', value: '¥199', desc: '不知道怎么开口拒绝加价？模板给你，你复制粘贴——重点是"你是内行，你不好糊弄"' },
@@ -39,9 +40,9 @@ const bonusItems = [
 
 /* ── 保证 ── */
 const guaranteeItems = [
-  '审核过的项目如果在施工中被变相加价，我帮你追回差额',
-  '追不回，¥2,500全额退款——没有条件，不用解释',
-  '退一万步说，即使你对报告不满意，你也免费拿到了一份¥299的装修合同避雷指南',
+  '审核范围内出现后续争议时，我会协助你复核材料、定位边界并准备沟通依据',
+  '退款条件、服务范围和协助期限，会在开始前的服务确认单中写清楚',
+  '如果材料不适合这项服务，我会先说明原因，不让你为不匹配的判断付费',
 ]
 
 /* ── 算账 ── */
@@ -49,7 +50,7 @@ const comparison = [
   {
     label: '不审核',
     items: [
-      '隐藏加价平均 ¥20,000–50,000',
+      '模糊描述可能在施工中变成数万元级的增项争议',
       '施工中反复扯皮，工期一拖就是3个月',
       '材料偷换、工艺缩水，住进去才发现',
       '每次去工地都心里没底，不知道在看什么',
@@ -84,16 +85,16 @@ const faqs = [
     a: '全国的装修报价单都能审。你拍照发我，我标注问题发回给你。线上完成，不需要见面。',
   },
   {
-    q: '审完就完了吗？施工中出了问题你管吗？',
-    a: '管。上面写了——审核过的项目如果在施工中被变相加价，我帮你追。不是"一次性服务"，是我在为你站台。',
+    q: '审完就完了吗？施工中出了问题怎么办？',
+    a: '审核范围内出现争议时，可以按服务确认单约定的范围和期限联系我复核。它不是现场监理，也不替代法律审查。',
   },
   {
     q: '能帮我砍价吗？',
     a: '我不帮你砍价。我给你的是一份逐项标注的报告——"第3页第5项水电点位多算了¥1,200"——拿着这个去谈，你不需要砍价，你只需要问"这一项为什么是这个价"。这是两种谈判。',
   },
   {
-    q: '你不怕退款吗？',
-    a: '17年经验。如果我的审核会出错，我不会拿自己的全额退款开玩笑。敢保证，是因为我知道自己看到的东西不会错。',
+    q: '退款和后续协助怎么约定？',
+    a: '开始前会书面确认审核材料、交付范围、协助期限和退款边界。没有写清的承诺，不会默认包含在服务里。',
   },
 ]
 
@@ -105,9 +106,9 @@ export default function QuoteReviewPage() {
           {
             '@context': 'https://schema.org',
             '@type': 'Service',
-            name: '装修报价零加价保障审查',
+            name: '装修报价 / 合同人工审查',
             description:
-              '17年装修经验的人逐项审核您的报价单，13个风险边界逐一排查。24小时内出详细审核报告。审核过的项目如在施工中被变相加价，帮您追回差额。追不回，全额退款。',
+              '17年装修现场经验，逐项审核报价与合同材料，13个风险边界逐一排查，24小时内交付详细审核报告。',
             provider: { '@type': 'Person', name: 'Zeno' },
             offers: { '@type': 'Offer', priceCurrency: 'CNY', price: '2500' },
             url: 'https://zenoaihome.com/services/quote-review',
@@ -123,7 +124,7 @@ export default function QuoteReviewPage() {
             Zeno Quote Review · 旗舰服务
           </p>
           <h1 className="editorial-display mt-5 max-w-4xl text-[2.2rem] leading-[1.12] text-ink sm:text-[3.2rem]">
-            你在装修上多花的每一块钱，都是因为签合同之前没有17年经验的人帮你看了一眼报价单。
+            签合同之前，先让一份报价被认真看一遍。
           </h1>
           <p className="mt-6 max-w-2xl text-base leading-8 text-ink-muted sm:text-lg">
             一份装修报价单，少则几页，多则几十页。你不需要看懂——你只需要找一个看得懂的人，帮你在签字之前把每一个可能变成加价通知的隐藏项都找出来。
@@ -138,7 +139,7 @@ export default function QuoteReviewPage() {
           {/* 保证 */}
           <div className="mt-3 border-l-2 border-stone pl-4">
             <p className="text-sm font-semibold text-stone">
-              审核过的项目施工中被变相加价 → 我帮你追回差额。追不回，全额退款。
+              审核范围内出现争议时，我会按确认的服务范围协助你复核材料和沟通依据。
             </p>
             <p className="mt-1 text-xs text-ink-faint">
               这不是营销话术。这是17年经验给我的一双手——我知道合同上哪一行字会在第几周变成加价通知。
@@ -152,6 +153,10 @@ export default function QuoteReviewPage() {
               微信 zanxiansheng2025 · 备注「审报价」· 拍照发来就行
             </p>
           </div>
+          <p className="mt-4 max-w-2xl text-xs leading-6 text-ink-faint">
+            请先删除身份证号、银行卡号、密码、客户姓名等不必要的敏感信息。材料使用和删除说明见
+            <Link href="/privacy" className="ml-1 underline underline-offset-2 hover:text-ink-muted">隐私说明</Link>。
+          </p>
         </Container>
       </section>
 
@@ -234,11 +239,11 @@ export default function QuoteReviewPage() {
         {/* ── 风险逆转：保证 ── */}
         <section className="mb-16">
           <h2 className="text-xl font-semibold text-ink mb-6">
-            你的风险是零。我的风险是全额退款。
+            先把服务边界写清，再开始判断。
           </h2>
           <div className="border-2 border-stone bg-surface p-6 sm:p-8">
             <p className="text-sm text-ink-muted mb-5">
-              成交最大的阻力不是你嫌贵，是你担心"买了没用"。所以我们把这个风险从你身上转移到我自己身上：
+              这项服务不是替你保证施工结果，而是把报价和合同里需要追问、修改和留痕的地方逐项整理出来：
             </p>
             <ul className="space-y-3">
               {guaranteeItems.map((item, i) => (
@@ -250,7 +255,7 @@ export default function QuoteReviewPage() {
             </ul>
           </div>
           <p className="mt-4 text-xs text-ink-faint max-w-2xl">
-            让客户零风险买，不是因为我敢赌——是因为我17年看过的报价单告诉我：我的判断不会错。如果错了，是我该退的钱，不是客户该赔的装修款。
+            具体服务范围、交付时间、协助期限和退款边界，以开始前双方确认的服务说明为准。
           </p>
         </section>
 
@@ -349,7 +354,7 @@ export default function QuoteReviewPage() {
             加微信，备注「审报价」。把报价单拍照发来。24小时内，你手里会有一份被17年经验看过、13个风险边界逐一排查、每一个问题都标注到"第几页第几行"的审核报告。
           </p>
           <p className="text-xs text-ink-faint">
-            审核过的项目施工中被变相加价，我帮你追回差额。追不回，¥2,500全额退款。这不是促销话术——这是承诺。
+            这项服务只对确认范围内的报价和合同材料负责，不替代现场监理、法律意见或施工方责任。
           </p>
         </section>
 
@@ -373,7 +378,7 @@ export default function QuoteReviewPage() {
         <section className="mt-12 border-t border-border pt-10">
           <h2 className="text-lg font-semibold text-ink mb-3">签完合同，要开工了？</h2>
           <p className="text-sm text-ink-muted mb-5 max-w-xl">
-            如果你已经签了合同准备开工，施工节点顾问可以在每个关键节点帮你看一眼——水电、防水、贴砖、竣工。拍照片发我，告诉你看什么、漏了什么。¥2,000起，第一个节点不满意全额退款。
+            如果你已经签了合同准备开工，施工节点顾问可以在每个关键节点帮你看一眼——水电、防水、贴砖、竣工。拍照片发我，告诉你看什么、漏了什么。¥2,000起，具体节点范围和退款边界在开始前确认。
           </p>
           <div className="flex flex-wrap gap-4">
             <CTA href="/services/node-advisor" label="¥2,000起 节点顾问 →" variant="primary" />

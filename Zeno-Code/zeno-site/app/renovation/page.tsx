@@ -74,10 +74,11 @@ export default function RenovationPage() {
             17 年工地经验。做过施工、谈过报价、处理过无数预算纠纷。不卖装修——把判断方法摊开来给你，你自己用。
             拿不准了，再来聊。
           </p>
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
             <CTA href="/tools" label="先用免费工具 →" variant="primary" />
-            <p className="self-center text-sm text-white/50">装修是重决策——不标价，不急接。</p>
+            <CTA href="/services/quote-review" label="看报价审核服务 →" variant="secondary" />
           </div>
+          <p className="mt-4 text-sm text-white/50">先自己判断；需要具体材料审核时，服务页会写清价格、交付和边界。</p>
         </Container>
       </section>
 
@@ -162,10 +163,12 @@ export default function RenovationPage() {
           </h2>
           <p className="text-2xl font-bold text-stone tracking-wide mb-2">zanxiansheng2025</p>
           <p className="text-sm text-ink-muted mb-5 max-w-lg mx-auto">
-            加微信，备注「装修」。把你的情况说一下——城市、面积、装修阶段。
-            装修是重决策，不标价，不接急单。先聊聊，看能不能帮到你。
+            已有报价或合同，先看人工审查的价格、交付和边界；情况不适合标准服务，再通过联系页沟通。
           </p>
-          <CTA href="/contact" label="联系我 →" variant="primary" />
+          <div className="flex flex-wrap justify-center gap-3">
+            <CTA href="/services/quote-review" label="看 ¥2,500 报价审核 →" variant="primary" />
+            <CTA href="/contact" label="情况复杂，先联系我 →" variant="secondary" />
+          </div>
         </section>
 
       </Container>

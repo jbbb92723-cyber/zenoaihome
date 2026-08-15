@@ -69,7 +69,8 @@ export const PRODUCTS: Product[] = [
       '审完还不确定？¥2,500 完整审核等你升级',
     ],
     badge: '自助',
-    isActive: true,
+    // 页面和交付路径尚未接通，暂不让 API 创建这个商品的订单。
+    isActive: false,
   },
   {
     id:           'quote-guide-pack',

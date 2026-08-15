@@ -13,7 +13,6 @@ import {
   Briefcase,
   Browser,
   CheckCircle,
-  Compass,
   Database,
   HouseLine,
   Lightning,
@@ -48,7 +47,7 @@ const practicePaths = [
     audience: '正在装修的业主',
     title: '签约前，先把报价、责任和付款顺序看懂。',
     body: '装修是我最深的垂直实践。这里有报价初筛、风险词典、检查清单和真实判断样张。',
-    href: '/tools',
+    href: '/renovation',
     action: '进入装修判断',
   },
   {
@@ -56,8 +55,8 @@ const practicePaths = [
     audience: '有真实经验的实践者',
     title: '不再只说“我做过”，把经验变成别人能使用的资产。',
     body: '我以 OPC 一人公司为起点，公开记录经验如何变成案例、内容、SOP、AI 工作流和最小服务。',
-    href: '/blog?category=opc',
-    action: '看经验资产化实践',
+    href: '/opc-knowledge',
+    action: '进入经验资产化',
   },
 ]
 
@@ -135,8 +134,11 @@ export default function HomePageBrandHub() {
               我是赞诺。正在公开验证如何用 AI，把 17 年传统行业经营与项目经验，整理成可核验的判断、内容、工具和服务。装修是我最深的验证场。
             </motion.p>
             <motion.div variants={fadeUp} className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <ActionLink href="/blog"><BookOpenText size={18} aria-hidden />读公开实践</ActionLink>
-              <ActionLink href="/about" secondary><Compass size={18} aria-hidden />了解我如何开始</ActionLink>
+              <ActionLink href="/renovation"><HouseLine size={18} aria-hidden />我正在装修</ActionLink>
+              <ActionLink href="/services" secondary><Wrench size={18} aria-hidden />我想把经验变成系统</ActionLink>
+              <Link href="/blog" className="motion-press inline-flex min-h-11 items-center justify-center gap-2 px-3 py-3 text-sm font-semibold text-white/80 transition-colors hover:text-white">
+                <BookOpenText size={18} aria-hidden />先读公开实践
+              </Link>
             </motion.div>
           </motion.div>
         </div>
