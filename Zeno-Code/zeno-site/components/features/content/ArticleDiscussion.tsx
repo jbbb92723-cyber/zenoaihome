@@ -26,6 +26,7 @@ export default function ArticleDiscussion({ articleSlug, locale = 'zh', articleP
   const [loading, setLoading] = useState(true)
   const [submitting, setSubmitting] = useState(false)
   const [message, setMessage] = useState('')
+  const [needsLogin, setNeedsLogin] = useState(false)
 
   const loadComments = useCallback(async () => {
     const response = await fetch(`/api/comments?slug=${encodeURIComponent(articleSlug)}`, { cache: 'no-store' })
@@ -45,6 +46,7 @@ export default function ArticleDiscussion({ articleSlug, locale = 'zh', articleP
     if (!content.trim() || submitting) return
     setSubmitting(true)
     setMessage('')
+    setNeedsLogin(false)
     try {
       const requestId = crypto.randomUUID()
       const payload = JSON.stringify({ articleSlug, content, requestId })
@@ -63,6 +65,7 @@ export default function ArticleDiscussion({ articleSlug, locale = 'zh', articleP
       if (!response) throw new Error('comment request did not run')
       const data = await response.json().catch(() => ({})) as { message?: string }
       if (!response.ok) {
+        if (response.status === 401 || response.status === 409) setNeedsLogin(true)
         setMessage(data.message ?? (isEnglish ? 'Comment submission failed. Please try again.' : '评论提交失败，请稍后重试。'))
         return
       }
@@ -127,7 +130,16 @@ export default function ArticleDiscussion({ articleSlug, locale = 'zh', articleP
               {submitting ? (isEnglish ? 'Submitting...' : '提交中…') : (isEnglish ? 'Submit comment' : '提交评论')}
             </button>
           </div>
-          {message && <p className="text-xs text-ink-muted">{message}</p>}
+          {message && (
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-ink-muted" role="status">
+              <span>{message}</span>
+              {needsLogin && (
+                <Link href={`/${isEnglish ? 'en/' : ''}login?callbackUrl=${encodeURIComponent(`/${isEnglish ? 'en/' : ''}blog/${articlePathSlug}#article-discussion`)}`} className="text-stone hover:underline">
+                  {isEnglish ? 'Sign in again' : '重新登录'}
+                </Link>
+              )}
+            </div>
+          )}
         </form>
       ) : (
         <div className="border border-border bg-surface-warm px-4 py-4 text-sm text-ink-muted">
