@@ -65,7 +65,7 @@ export async function POST(request: NextRequest) {
     console.error('[API] comment authentication error:', error)
     return NextResponse.json({ message: '登录状态暂时无法确认，请稍后再试。' }, { status: 503 })
   }
-  if (!session?.user) {
+  if (!session?.user?.id) {
     return NextResponse.json(
       { message: '请先登录后再发表评论。' },
       { status: 401 },

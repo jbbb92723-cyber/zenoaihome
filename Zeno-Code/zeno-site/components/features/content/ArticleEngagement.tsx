@@ -28,7 +28,7 @@ type EngagementState = {
   available?: boolean
 }
 
-type ShareState = 'idle' | 'copied' | 'shared' | 'error'
+type ShareState = 'idle' | 'copied' | 'wechat-copied' | 'shared' | 'error'
 
 const RETRY_DELAYS = [0, 500, 1400]
 
@@ -45,6 +45,7 @@ export default function ArticleEngagement({ articleSlug, articleTitle, locale = 
   const [reactionMessage, setReactionMessage] = useState('')
   const [shareOpen, setShareOpen] = useState(false)
   const [shareState, setShareState] = useState<ShareState>('idle')
+  const [moreAppsOpen, setMoreAppsOpen] = useState(false)
   const [qrDataUrl, setQrDataUrl] = useState('')
   const [qrVisible, setQrVisible] = useState(false)
 
@@ -132,7 +133,7 @@ export default function ArticleEngagement({ articleSlug, articleTitle, locale = 
     }).catch(() => undefined)
   }
 
-  async function copyLink() {
+  async function copyLink(method: 'copy' | 'wechat' = 'copy') {
     const url = window.location.href
     try {
       if (navigator.clipboard?.writeText) {
@@ -149,8 +150,8 @@ export default function ArticleEngagement({ articleSlug, articleTitle, locale = 
         input.remove()
         if (!copied) throw new Error('copy failed')
       }
-      setShareState('copied')
-      void trackShare('copy')
+      setShareState(method === 'wechat' ? 'wechat-copied' : 'copied')
+      void trackShare(method)
     } catch {
       setShareState('error')
     }
@@ -186,6 +187,11 @@ export default function ArticleEngagement({ articleSlug, articleTitle, locale = 
     void trackShare('wechat_qr')
   }
 
+  function openMoreApps() {
+    setMoreAppsOpen(true)
+    showWechatQr()
+  }
+
   return (
     <>
       <div className="mt-10 border-y border-border py-4">
@@ -203,7 +209,7 @@ export default function ArticleEngagement({ articleSlug, articleTitle, locale = 
           </button>
           <button
             type="button"
-            onClick={() => { setShareOpen(true); setQrVisible(false); setShareState('idle') }}
+            onClick={() => { setShareOpen(true); setQrVisible(false); setMoreAppsOpen(false); setShareState('idle') }}
             className="inline-flex items-center gap-1.5 border border-border px-3 py-2 text-ink-muted transition-colors hover:border-stone hover:text-stone"
             title={isEnglish ? 'Share this article' : '分享这篇文章'}
           >
@@ -234,25 +240,32 @@ export default function ArticleEngagement({ articleSlug, articleTitle, locale = 
             </div>
 
             <div className="mt-5 grid grid-cols-2 gap-2">
-              <button type="button" onClick={showWechatQr} className="inline-flex min-h-11 items-center justify-center gap-2 border border-border px-3 py-2 text-sm text-ink-muted hover:border-stone hover:text-stone">
+              <button type="button" onClick={() => copyLink('wechat')} className="inline-flex min-h-11 items-center justify-center gap-2 border border-border px-3 py-2 text-sm text-ink-muted hover:border-stone hover:text-stone">
                 <WechatLogo size={19} />{isEnglish ? 'WeChat' : '微信'}
               </button>
-              <button type="button" onClick={nativeShare} className="inline-flex min-h-11 items-center justify-center gap-2 border border-border px-3 py-2 text-sm text-ink-muted hover:border-stone hover:text-stone">
+              <button type="button" onClick={openMoreApps} className="inline-flex min-h-11 items-center justify-center gap-2 border border-border px-3 py-2 text-sm text-ink-muted hover:border-stone hover:text-stone">
                 <ShareNetwork size={18} />{isEnglish ? 'More apps' : '更多应用'}
-              </button>
-              <button type="button" onClick={openWeibo} className="inline-flex min-h-11 items-center justify-center gap-2 border border-border px-3 py-2 text-sm text-ink-muted hover:border-stone hover:text-stone">
-                <LinkSimple size={18} />{isEnglish ? 'Weibo' : '微博'}
-              </button>
-              <button type="button" onClick={copyLink} className="inline-flex min-h-11 items-center justify-center gap-2 border border-border px-3 py-2 text-sm text-ink-muted hover:border-stone hover:text-stone">
-                {shareState === 'copied' ? <Check size={18} weight="bold" /> : <CopySimple size={18} />}
-                {shareState === 'copied' ? (isEnglish ? 'Copied' : '已复制') : (isEnglish ? 'Copy link' : '复制链接')}
               </button>
             </div>
 
-            {qrVisible && (
+            {shareState === 'wechat-copied' && <p className="mt-4 text-center text-xs text-stone" role="status">{isEnglish ? 'Link copied. Open WeChat and send it to yourself or a friend.' : '链接已复制，请打开微信发送给自己或朋友。'}</p>}
+            {shareState === 'copied' && <p className="mt-4 text-center text-xs text-stone" role="status">{isEnglish ? 'Link copied.' : '链接已复制。'}</p>}
+
+            {moreAppsOpen && qrVisible && (
               <div className="mt-5 border-t border-border pt-5 text-center">
                 {qrDataUrl ? <Image src={qrDataUrl} alt={isEnglish ? 'Article QR code' : '文章微信分享二维码'} width={192} height={192} unoptimized className="mx-auto h-48 w-48" /> : <div className="mx-auto grid h-48 w-48 place-items-center bg-surface text-ink-faint"><QrCodeIcon size={32} /></div>}
                 <p className="mt-3 text-xs text-ink-muted">{isEnglish ? 'Scan in WeChat' : '微信扫码打开'}</p>
+                <div className="mt-4 grid grid-cols-2 gap-2">
+                  <button type="button" onClick={nativeShare} className="inline-flex min-h-10 items-center justify-center gap-2 border border-border px-3 py-2 text-xs text-ink-muted hover:border-stone hover:text-stone">
+                    <ShareNetwork size={16} />{isEnglish ? 'System share' : '手机分享'}
+                  </button>
+                  <button type="button" onClick={openWeibo} className="inline-flex min-h-10 items-center justify-center gap-2 border border-border px-3 py-2 text-xs text-ink-muted hover:border-stone hover:text-stone">
+                    <LinkSimple size={16} />{isEnglish ? 'Weibo' : '微博'}
+                  </button>
+                  <button type="button" onClick={() => copyLink()} className="col-span-2 inline-flex min-h-10 items-center justify-center gap-2 border border-border px-3 py-2 text-xs text-ink-muted hover:border-stone hover:text-stone">
+                    <CopySimple size={16} />{isEnglish ? 'Copy link' : '复制链接'}
+                  </button>
+                </div>
               </div>
             )}
             {shareState === 'shared' && <p className="mt-4 text-center text-xs text-stone" role="status">{isEnglish ? 'Shared' : '已打开系统分享'}</p>}
