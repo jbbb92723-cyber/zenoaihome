@@ -15,7 +15,8 @@ function getOrCreateVisitorId(request: NextRequest) {
 }
 
 async function getCounts(slug: string, visitorId: string) {
-  for (let attempt = 0; attempt < 2; attempt += 1) {
+  let lastError: unknown
+  for (let attempt = 0; attempt < 3; attempt += 1) {
     try {
       const [helpful, comments, currentReaction] = await Promise.all([
         prisma.articleReaction.count({ where: { articleSlug: slug, kind: REACTION_KIND } }),
@@ -34,10 +35,11 @@ async function getCounts(slug: string, visitorId: string) {
 
       return { helpful, comments, hasReacted: Boolean(currentReaction), available: Boolean(process.env.DATABASE_URL) }
     } catch (error) {
-      if (attempt === 1) throw error
-      await new Promise((resolve) => setTimeout(resolve, 300))
+      lastError = error
+      if (attempt < 2) await new Promise((resolve) => setTimeout(resolve, 350 * (attempt + 1)))
     }
   }
+  console.error('[API] engagement count unavailable:', lastError)
   return { helpful: 0, comments: 0, hasReacted: false, available: false }
 }
 
