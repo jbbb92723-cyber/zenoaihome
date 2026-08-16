@@ -4075,6 +4075,19 @@ AI不是魔法。它是一个工具——能帮你整理、对比、查漏，但
     coverAlt: '装修公司上AI，大部分人搞错了顺序',
   },
   {
+    id: '119',
+    slug: 'wo-bu-xiang-ba-ai-zuo-cheng-huoke-jiqi',
+    title: '我不想把 AI 做成一台获客机器',
+    excerpt:
+      '我不反对让真正需要这件事的人找到我。我反对把具体处境压缩成静态画像，再用固定话术替代经验、判断和交付证据。',
+    category: '把自己重做一遍',
+    parentCategory: 'ip',
+    tags: ['内容创作', '个人 IP', 'AI', '经验资产化', '判断力', '一人公司'],
+    date: '2026-08-16',
+    coverImage: '',
+    coverAlt: '我不想把 AI 做成一台获客机器',
+  },
+  {
     id: '118',
     slug: 'ai-agent-anquan-sheji-sanjiang',
     title: '我拆解了一个开源AI编程代理的源码，发现了三个传统行业做AI最该关注的安全设计',

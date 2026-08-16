@@ -47,7 +47,7 @@ const practicePaths = [
     icon: Path,
     audience: '有真实经验的实践者',
     title: '不再只说“我做过”，把经验变成别人能使用的资产。',
-    body: '我以 OPC 一人公司为起点，公开记录经验如何变成案例、内容、SOP、AI 工作流和最小服务。',
+    body: '我以 OPC 一人公司为起点，公开记录经验如何变成案例、内容、判断方法、AI 协作和最小服务。',
     href: '/opc-knowledge',
     action: '进入经验资产化',
   },
@@ -76,8 +76,8 @@ const writingTracks = [
 
 const services = [
   { icon: Database, title: '企业知识库', body: '把分散资料和隐性经验整理成可检索、可更新的知识入口。', href: '/services#knowledge-base' },
-  { icon: Wrench, title: '流程自动化', body: '从一项重复任务开始，搭成团队能够执行和验收的流程。', href: '/services#ai-workflow' },
-  { icon: Brain, title: '智能体开发', body: '围绕边界清楚的任务设计、测试并交接智能体。', href: '/services#ai-agent' },
+  { icon: Wrench, title: 'AI 协作流程', body: '从一项重复任务开始，搭成团队能够执行和验收的协作流程。', href: '/services#ai-workflow' },
+  { icon: Brain, title: '任务型智能体', body: '围绕边界清楚的任务设计、测试并交接，不把它包装成“数字员工”。', href: '/services#ai-agent' },
   { icon: Browser, title: '网站与内容系统', body: '把定位、内容、工具和业务入口组织成可以持续生长的系统。', href: '/services#website' },
 ]
 
@@ -103,7 +103,7 @@ export default function HomePageBrandHub() {
       <section className="relative isolate min-h-[calc(82dvh-3.5rem)] overflow-hidden bg-ink">
         <Image
           src="/images/brand/zeno-portrait.jpg"
-          alt="赞诺，陈国赞"
+          alt="赞诺 Zeno"
           fill
           priority
           sizes="100vw"
@@ -118,7 +118,7 @@ export default function HomePageBrandHub() {
               传统行业 × 人机协作 × 公开实践
             </motion.p>
             <motion.h1 variants={fadeUp} className="editorial-display mt-5 text-[2.6rem] leading-[1.08] sm:text-[3.4rem] lg:text-[4.2rem]">
-              赞诺 Zeno
+              传统行业人的 AI 胜任力实践
             </motion.h1>
             <motion.p variants={fadeUp} className="editorial-display mt-5 max-w-[18ch] text-[1.65rem] leading-[1.25] text-white/95 sm:text-[2rem]">
               把真实经验，变成 AI 时代可复用的职业资产。
@@ -190,6 +190,26 @@ export default function HomePageBrandHub() {
               <p className="text-xs font-semibold text-ink-faint">下一步</p>
               <p className="mt-2 text-sm leading-7 text-ink-muted">{currentPractice.nextAction}</p>
             </div>
+          </div>
+        </Reveal>
+      </section>
+
+      <section className="border-b border-border px-5 py-16 sm:px-8 sm:py-20 lg:px-12 lg:py-24">
+        <Reveal className="mx-auto grid max-w-[1320px] gap-10 lg:grid-cols-[0.4fr_0.6fr] lg:items-start">
+          <div>
+            <p className="page-label">创作与 AI 的立场</p>
+            <h2 className="editorial-display mt-4 max-w-[16ch] text-[1.8rem] leading-[1.15] sm:text-[2.2rem] lg:text-[2.6rem]">不把真实处境写成一条获客漏斗。</h2>
+          </div>
+          <div className="border-l-2 border-cinnabar pl-6">
+            <p className="text-base leading-8 text-ink-muted">我不反对让真正需要这件事的人找到我。我反对先画一张静态画像，再用固定话术替代具体经验、独立判断和交付证据。</p>
+            <ul className="mt-6 grid gap-4 sm:grid-cols-3">
+              <li className="border-t border-border pt-4 text-sm leading-7 text-ink-muted"><span className="font-semibold text-ink">从处境开始</span><br />先看真实问题，不先给人贴标签。</li>
+              <li className="border-t border-border pt-4 text-sm leading-7 text-ink-muted"><span className="font-semibold text-ink">让 AI 参与判断</span><br />让它整理、质疑和查漏，不替人作主。</li>
+              <li className="border-t border-border pt-4 text-sm leading-7 text-ink-muted"><span className="font-semibold text-ink">用证据承接合作</span><br />把输入、交付和边界写清，不用结果幻觉成交。</li>
+            </ul>
+            <Link href="/blog/wo-bu-xiang-ba-ai-zuo-cheng-huoke-jiqi" className="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-ink hover:text-stone">
+              读这条立场的完整实践 <ArrowRight size={16} aria-hidden />
+            </Link>
           </div>
         </Reveal>
       </section>

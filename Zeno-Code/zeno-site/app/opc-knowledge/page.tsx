@@ -28,7 +28,7 @@ const modules = [
     icon: Cube,
     title: '一人公司 AI 工作流',
     subtitle: '模块③ 工具如何进入工作',
-    desc: '围绕具体任务选择模型、整理上下文、搭建自动化并核算成本。判断标准不是工具数量，而是输出能否验收、流程能否维护。',
+    desc: '围绕具体任务选择模型，让 AI 协助整理、比较和执行，并核算成本。判断标准不是工具数量，而是输出能否验收、流程能否维护，最终决定仍由人承担。',
     anchor: '工具工作流 · 按结果验收',
     status: '已有自用实例，对外交付待验证',
   },
@@ -42,7 +42,7 @@ const currentEvidence = [
 
 const practicePath = [
   { stage: '01', name: '公开记录', output: '短视频、文章和实践日志', desc: '把真实问题、判断过程和暂时无解的部分留下来。' },
-  { stage: '02', name: '提炼方法', output: '方法卡、清单和任务模板', desc: '从具体案例中提炼可复用的步骤，同时标明适用边界。' },
+  { stage: '02', name: '提炼方法', output: '方法卡、清单和记录骨架', desc: '从具体案例中提炼可复用的判断步骤，同时标明适用边界，不把它包装成万能模板。' },
   { stage: '03', name: '小范围试用', output: '交流、工作坊或一次具体交付', desc: '让他人用一次，记录哪里能用、哪里需要改，不预先承诺结果。' },
   { stage: '04', name: '共同实践', output: '星火者成员关系与协作记录', desc: '围绕真实项目建立反馈和连接，是否继续由双方实际情况决定。' },
   { stage: '05', name: '结果回流', output: '脱敏案例、复盘和下一版知识', desc: '把交付后的证据回流到内容和角色知识体系，持续修正方法。' },
@@ -66,10 +66,10 @@ export default function OPCKnowledgePage() {
             从一个真实问题开始，把经验做成别人能使用的东西。
           </h1>
           <p className="mt-5 max-w-[42rem] text-base leading-8 text-white/70">
-            这不是一套先写好的课程承诺，而是一个正在运行的实践档案：从真实问题出发，留下证据，制作最小交付，再用他人试用和复盘修正。
+            这不是一键蒸馏器，也不是一套先写好的课程承诺，而是一个正在运行的实践档案：从真实问题出发，留下证据，制作最小交付，再用他人试用和复盘修正。
           </p>
           <div className="mt-6 flex flex-wrap items-center gap-3 text-sm text-white/55">
-            <span>作者：陈国赞（Zeno）</span>
+            <span>作者：赞诺（Zeno）</span>
             <span aria-hidden>·</span>
             <span>传统行业经验资产化实践者</span>
             <span aria-hidden>·</span>

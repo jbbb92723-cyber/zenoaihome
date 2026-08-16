@@ -26,19 +26,19 @@ const notoSerif = Noto_Serif_SC({
 
 export const metadata: Metadata = {
   title: {
-    default: 'Zeno 赞诺｜传统行业 × AI 的公开实践',
+    default: '传统行业人的 AI 胜任力实践',
     template: '%s · Zeno',
   },
   description:
     '赞诺的个人博客与公开实践档案。记录 17 年传统行业经营与项目经验如何进入 AI、知识库、工作流、智能体、内容系统和一人公司，并公开实验、结果与方法修订。',
-  keywords: ['Zeno', '赞诺', '陈国赞', '经验资产化', '传统行业AI', '装修判断', '企业知识库', 'AI工作流', '一人公司', 'OPC', '星火者共同体'],
+  keywords: ['Zeno', '赞诺', '经验资产化', '传统行业AI', '装修判断', '企业知识库', 'AI工作流', '一人公司', 'OPC', '星火者共同体'],
   authors: [{ name: 'Zeno', url: 'https://zenoaihome.com' }],
   openGraph: {
     type: 'website',
     locale: 'zh_CN',
     url: 'https://zenoaihome.com',
     siteName: 'Zeno 赞诺',
-    title: 'Zeno 赞诺｜传统行业 × AI 的公开实践',
+    title: '传统行业人的 AI 胜任力实践',
     description:
       '赞诺记录人与 AI 如何把传统行业经验变成可检查、可使用、可修订的判断、内容、工具和服务。',
     images: [
@@ -46,13 +46,13 @@ export const metadata: Metadata = {
         url: 'https://zenoaihome.com/images/brand/zeno-portrait.jpg',
         width: 940,
         height: 940,
-        alt: '赞诺 Zeno，陈国赞',
+        alt: '赞诺 Zeno',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Zeno 赞诺｜传统行业 × AI 的公开实践',
+    title: '传统行业人的 AI 胜任力实践',
     description:
       '人先判断，AI 参与质疑，再用真实交付和反馈修订方法。',
     images: ['https://zenoaihome.com/images/brand/zeno-portrait.jpg'],

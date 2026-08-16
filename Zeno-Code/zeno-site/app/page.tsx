@@ -3,7 +3,7 @@ import HomePageBrandHub from '@/components/features/home/HomePageBrandHub'
 import StructuredData from '@/components/ui/StructuredData'
 
 export const metadata: Metadata = {
-  title: 'Zeno 赞诺｜传统行业 × AI 的公开实践',
+  title: '传统行业人的 AI 胜任力实践',
   description:
     '赞诺的个人博客与公开实践档案。记录 17 年传统行业经营与项目经验如何进入 AI、知识库、工作流、智能体、内容系统和一人公司，并公开实验、结果与方法修订。',
   alternates: {
@@ -19,8 +19,8 @@ export default function HomePage() {
           {
             '@context': 'https://schema.org',
             '@type': 'Person',
-            name: '陈国赞',
-            alternateName: ['Zeno', '赞诺', '赞诺 Zeno'],
+            name: '赞诺',
+            alternateName: ['Zeno', '赞诺'],
             url: 'https://zenoaihome.com',
             description:
               '拥有 17 年传统行业经营与项目经验的 OPC 实践者，正在公开记录人与 AI 如何把真实经验变成可检查、可使用、可修订的判断、内容、工具和服务。',
@@ -59,7 +59,7 @@ export default function HomePage() {
             inLanguage: 'zh-CN',
             author: {
               '@type': 'Person',
-              name: '陈国赞',
+              name: '赞诺',
               alternateName: 'Zeno 赞诺',
               url: 'https://zenoaihome.com/about',
             },

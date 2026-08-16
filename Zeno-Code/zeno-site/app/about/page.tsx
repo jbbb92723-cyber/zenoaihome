@@ -6,7 +6,7 @@ import Container from '@/components/ui/Container'
 export const metadata: Metadata = {
   title: '关于赞诺｜传统行业 × AI 实践者',
   description:
-    '陈国赞，赞诺。截至 2026 年有 17 年传统行业经营与项目经验，现在以 OPC 一人公司为起点，公开记录人与 AI 如何把经验变成可检查、可使用、可修订的交付。',
+    '赞诺。截至 2026 年有 17 年传统行业经营与项目经验，现在以 OPC 一人公司为起点，公开记录人与 AI 如何把经验变成可检查、可使用、可修订的交付。',
   alternates: {
     canonical: 'https://zenoaihome.com/about',
   },
@@ -45,7 +45,7 @@ export default function AboutPage() {
           <div className="relative aspect-[4/5] max-w-sm overflow-hidden bg-ink">
             <Image
               src="/images/brand/zeno-portrait.jpg"
-              alt="赞诺，陈国赞"
+              alt="赞诺"
               fill
               priority
               sizes="(max-width: 1024px) 100vw, 420px"
@@ -54,7 +54,7 @@ export default function AboutPage() {
           </div>
           <div>
             <p className="text-sm font-semibold text-stone">关于赞诺</p>
-            <h1 className="editorial-display mt-5 max-w-[12ch] text-[2.4rem] leading-[1.1] sm:text-[3.2rem]">我叫陈国赞，也叫 Zeno 赞诺。</h1>
+            <h1 className="editorial-display mt-5 max-w-[12ch] text-[2.4rem] leading-[1.1] sm:text-[3.2rem]">我是赞诺。</h1>
             <p className="mt-7 max-w-3xl text-base leading-8 text-ink-muted sm:text-lg">
               我在南宁创业。截至 2026 年，我有 17 年传统行业经营与项目经验，现在以 OPC 一人公司为起点，把 AI 用进内容生产、知识管理、智能体、网站和实际工作。
             </p>

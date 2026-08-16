@@ -28,11 +28,11 @@ const services = [
     id: 'ai-workflow',
     code: '02',
     icon: Wrench,
-    title: 'AI 工具与工作流',
+    title: 'AI 协作与工作流',
     forWho: '已经有明确重复任务，但团队仍靠手工复制、查找和反复沟通的业务。',
     input: '一项真实任务、现有操作步骤、常用资料和期望结果样本。',
-    outputs: ['工作场景拆解', '工具选择建议', '基础工作流', '操作说明与交接'],
-    boundary: '先做一条能跑通的流程，不一开始就搭庞大自动化系统。',
+    outputs: ['工作场景拆解', '工具选择建议', '最小可运行协作流程', '操作说明与交接'],
+    boundary: '先做一条能跑通的协作流程，不把创作和判断压成固定 SOP，也不一开始就搭庞大自动化系统。',
     href: '/contact',
     cta: '说明你的场景',
   },
@@ -52,11 +52,11 @@ const services = [
     id: 'ai-agent',
     code: '04',
     icon: Brain,
-    title: 'AI 智能体',
+    title: 'AI 智能体（任务代理）',
     forWho: '任务目标、输入和验收标准相对清楚，希望减少重复判断与整理工作的团队。',
     input: '任务说明、真实输入样本、合格输出样本、不可触碰的业务边界。',
     outputs: ['任务边界定义', '提示与工作流程', '样本测试记录', '部署入口与使用手册'],
-    boundary: '不把高风险决策完全交给 AI，关键结果必须保留人工复核。',
+    boundary: '不把智能体包装成“数字员工”或“专家”，不把高风险决策完全交给 AI，关键结果必须保留人工复核。',
     href: '/contact',
     cta: '描述智能体任务',
   },
@@ -92,6 +92,7 @@ export default function ServicesBrandHub() {
             <p className="mt-6 max-w-2xl text-base leading-8 text-white/72 sm:text-lg">
               培训、工作流、知识库、智能体和网站开发。先从一个真实问题开始，再决定要不要使用 AI、用到哪一步。
             </p>
+            <p className="mt-4 max-w-2xl text-sm leading-7 text-white/55">不做 AI 数字人获客、批量代写或无证据的结果承诺。</p>
           </div>
           <div className="lg:text-right">
             <p className="text-sm leading-7 text-white/60">当前采用项目制合作。未标准化的服务不挂统一价格，确认范围与验收方式后报价。</p>
@@ -130,7 +131,7 @@ export default function ServicesBrandHub() {
           <div>
             <p className="text-sm font-semibold text-stone">五类合作</p>
             <h2 className="editorial-display mt-4 text-[1.8rem] leading-[1.15] sm:text-[2.2rem] lg:text-[2.6rem]">每一项都要能验收。</h2>
-            <p className="mt-5 max-w-sm text-sm leading-7 text-ink-muted">服务名称不是产品。输入、交付物和边界写清楚以后，合作才真正成立。</p>
+            <p className="mt-5 max-w-sm text-sm leading-7 text-ink-muted">服务名称不是模板。输入、交付物和边界写清楚以后，合作才真正成立。</p>
           </div>
 
           <div className="border-t border-border">
