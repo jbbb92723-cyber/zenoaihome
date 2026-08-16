@@ -1,18 +1,10 @@
-/**
- * app/api/comments/route.ts
- *
- * 评论 API 路由
- * 第一阶段：占位实现，接收评论但不存入真实数据库
- *
- * TODO（第二阶段）：
- * 1. 安装 Prisma 或 @supabase/supabase-js
- * 2. 取消注释数据库写入代码
- * 3. 配置 DATABASE_URL 环境变量
- * 4. 在 Supabase 管理面板审核评论
- */
-
 import { NextRequest, NextResponse } from 'next/server'
 import { auth } from '@/auth'
+import { getArticleBySlug } from '@/data/content/articles'
+import { prisma } from '@/lib/prisma'
+import { checkRateLimit } from '@/lib/rateLimit'
+
+export const dynamic = 'force-dynamic'
 
 export async function POST(request: NextRequest) {
   // ─── 认证检查 ────────────────────────────────────────────────
@@ -55,31 +47,29 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ message: '无效的文章标识。' }, { status: 400 })
   }
 
-  // ─── 写入数据库（TODO：第二阶段取消注释）────────────────────
-  /*
-  const { db } = await import('@/lib/db')  // Prisma client
+  if (!getArticleBySlug(articleSlug)) {
+    return NextResponse.json({ message: '文章不存在。' }, { status: 404 })
+  }
 
-  await db.comment.create({
+  const limit = checkRateLimit(`comment:${session.user.id}:${articleSlug}`, 3, 60 * 60 * 1000)
+  if (!limit.allowed) {
+    return NextResponse.json({ message: '评论提交过于频繁，请稍后再试。' }, { status: 429 })
+  }
+
+  const comment = await prisma.comment.create({
     data: {
       userId: session.user.id,
       articleSlug,
       content: trimmedContent,
-      status: 'pending',  // 默认待审核
+      status: 'pending',
     },
-  })
-  */
-
-  // 第一阶段：只记录日志，不存数据库
-  console.log('[Comment API] New comment submitted:', {
-    userId: session.user.id,
-    articleSlug,
-    contentLength: trimmedContent.length,
+    select: { id: true, status: true, createdAt: true },
   })
 
   return NextResponse.json(
     {
       message: '评论已提交，审核通过后将公开显示。',
-      // TODO: 返回真实的 commentId
+      comment,
     },
     { status: 201 },
   )
@@ -94,23 +84,28 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ message: '缺少 slug 参数。' }, { status: 400 })
   }
 
-  // TODO（第二阶段）：从数据库查询已审核评论
-  /*
-  const { db } = await import('@/lib/db')
-  const comments = await db.comment.findMany({
+  if (!getArticleBySlug(slug)) {
+    return NextResponse.json({ message: '文章不存在。' }, { status: 404 })
+  }
+
+  const comments = await prisma.comment.findMany({
     where: {
       articleSlug: slug,
       status: 'approved',
     },
     include: {
-      user: { select: { displayName: true } },
+      user: { select: { name: true } },
     },
     orderBy: { createdAt: 'asc' },
+    take: 100,
   })
 
-  return NextResponse.json({ comments })
-  */
-
-  // 第一阶段：返回空数组
-  return NextResponse.json({ comments: [] })
+  return NextResponse.json({
+    comments: comments.map((comment) => ({
+      id: comment.id,
+      content: comment.content,
+      createdAt: comment.createdAt.toISOString(),
+      authorName: comment.user.name || '读者',
+    })),
+  })
 }

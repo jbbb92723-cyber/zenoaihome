@@ -23,19 +23,22 @@ model User {
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
 
-  accounts         Account[]
-  sessions         Session[]
-  membership       Membership?
-  resourceClaims   ResourceClaim[]
-  serviceRequests  ServiceRequest[]
-  orders           Order[]
-  couponClaims     CouponClaim[]
-  couponUsages     CouponUsage[]
-  redeemCodeUsages RedeemCodeUsage[]
-  checkins         Checkin[]
-  livingDiagnoses  LivingDiagnosis[]
-  opportunities    Opportunity[]     @relation("OpportunityCustomer")
-  adminLogs        AdminLog[]        @relation("AdminLogActor")
+  accounts          Account[]
+  sessions          Session[]
+  membership        Membership?
+  resourceClaims    ResourceClaim[]
+  serviceRequests   ServiceRequest[]
+  orders            Order[]
+  couponClaims      CouponClaim[]
+  couponUsages      CouponUsage[]
+  redeemCodeUsages  RedeemCodeUsage[]
+  checkins          Checkin[]
+  livingDiagnoses   LivingDiagnosis[]
+  articleComments   Comment[]         @relation("ArticleComments")
+  moderatedComments Comment[]         @relation("CommentModerators")
+  articleReactions  ArticleReaction[]
+  opportunities     Opportunity[]     @relation("OpportunityCustomer")
+  adminLogs         AdminLog[]        @relation("AdminLogActor")
 
   @@map("users")
 }
@@ -317,6 +320,46 @@ model AnalyticsEvent {
   @@index([userId])
   @@index([createdAt])
   @@map("analytics_events")
+}
+
+// ─── 文章互动 ───────────────────────────────────────────────
+// 互动数据用于识别哪些判断真正帮助了读者，不在前台制造热度排行榜。
+model ArticleReaction {
+  id          String   @id @default(cuid())
+  articleSlug String
+  kind        String   @default("helpful") // helpful
+  visitorId   String
+  userId      String?
+  createdAt   DateTime @default(now())
+
+  user User? @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  @@unique([articleSlug, kind, visitorId])
+  @@index([articleSlug, kind])
+  @@index([userId])
+  @@map("article_reactions")
+}
+
+// ─── 文章评论 ───────────────────────────────────────────────
+// 评论先进入 pending，管理员审核后才公开；不开放匿名评论，降低噪音和隐私风险。
+model Comment {
+  id             String    @id @default(cuid())
+  articleSlug    String
+  userId         String
+  content        String
+  status         String    @default("pending") // pending | approved | rejected | spam
+  moderatorId    String?
+  moderationNote String?
+  moderatedAt    DateTime?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  user      User  @relation("ArticleComments", fields: [userId], references: [id], onDelete: Cascade)
+  moderator User? @relation("CommentModerators", fields: [moderatorId], references: [id], onDelete: SetNull)
+
+  @@index([articleSlug, status, createdAt])
+  @@index([userId, createdAt])
+  @@map("comments")
 }
 
 // ─── 每日汇总指标 ─────────────────────────────────────────────

@@ -1,6 +1,6 @@
 # Zeno Site — 运行说明
 
-> Zeno 个人网站 v1.0。技术栈：Next.js 14 + TypeScript + Tailwind CSS。静态生成，无数据库，无登录。
+> Zeno 个人网站。技术栈：Next.js 14 + TypeScript + Tailwind CSS + Auth.js + Prisma + Supabase PostgreSQL。
 
 ---
 
@@ -28,12 +28,14 @@
 
 ## 2. 技术栈
 
-- **框架**：Next.js 14（App Router，静态导出 `output: 'export'`）
+- **框架**：Next.js 14（App Router，服务端运行时）
 - **语言**：TypeScript
 - **样式**：Tailwind CSS v3
 - **Markdown 渲染**：react-markdown + remark-gfm
 - **字体**：Noto Sans SC（中文）+ Inter（英文）via `next/font/google`
-- **部署**：Vercel（推荐）或任意静态托管
+- **认证**：Auth.js v5（邮箱密码 / Google）
+- **数据层**：Prisma + Supabase PostgreSQL；migration 是数据库结构的唯一来源
+- **部署**：Vercel（需要服务端运行时）
 
 ---
 
@@ -66,7 +68,7 @@ npm run dev
 
 ```bash
 npm run dev      # 开发模式（热更新）
-npm run build    # 构建静态文件（输出到 out/ 目录）
+npm run build    # 构建 Next.js 生产版本
 npm run start    # 本地预览生产构建（需先 build）
 npm run lint     # 代码检查
 ```
@@ -134,29 +136,37 @@ vercel --prod
 
 ---
 
-## 9. 后续如何接入 Supabase、登录、会员、资料权限
+## 9. 当前网站能力边界
 
-**当前 v1 完全不需要这些**，等内容积累到 20+ 篇、有稳定复访流量后再启动。
+网站已经使用服务端运行时。文章正文保持公开阅读，互动和服务数据进入数据库，但不把互动数据包装成公开热度排名。
 
-启动路径（按顺序）：
+文章页第一版互动包括：
+
+- 无登录分享：系统分享或复制链接，并记录分享方式；
+- 无登录“对我有帮助”：按访客 cookie 去重，用于判断哪些文章真正帮到读者；
+- 登录后评论：评论先进入待审核，不公开邮箱，不开放匿名评论；
+- 后台审核：管理员在 `/admin/comments` 通过、拒绝或标记垃圾，操作写入后台日志。
+
+具体设计见 [`docs/文章互动与IP反馈系统方案.md`](docs/文章互动与IP反馈系统方案.md)。
+
+以下旧版 V2/V3 路线只保留为历史记录，当前以本节和架构方案为准。
+
+后续能力（按实际反馈决定）：
 
 ```
-V2：接入 Supabase
-  ↓ 创建资料领取记录表
+V2：反馈资产化
+  ↓ 从评论和行为反馈中提炼问题库
   ↓ 接入邮件订阅（Resend）
   ↓ 接入全文搜索（Algolia 或 Fuse.js）
 
-V3：登录 + 会员
-  ↓ 使用 NextAuth.js 接入邮箱登录
+V3：个性化与会员
+  ↓ 建立收藏、阅读历史和主题订阅
   ↓ 可选接入 OAuth（微信/Google）
   ↓ 内容权限分层（公开 / 留资可见 / 会员）
   ↓ 个人中心（收藏、阅读历史）
 ```
 
-**Supabase 接入时的改动点**：
-- 移除 `next.config.mjs` 中的 `output: 'export'`（静态导出与数据库不兼容）
-- 改为 Vercel 全功能部署
-- 在 `data/` 目录的 fetch 函数改为从 Supabase 查询
+认证、数据库和服务端运行时已经接入，后续只根据真实反馈增加能力，不再重复迁移基础设施。
 
 ---
 
@@ -164,11 +174,11 @@ V3：登录 + 会员
 
 | 功能 | 状态 | 理由 |
 |---|---|---|
-| 用户登录 / OAuth | ❌ 不做 | 先验证内容和信任是否成立 |
-| 会员分层 | ❌ 不做 | 同上 |
-| 评论系统 | ❌ 不做 | 先用公众号留言代替 |
+| 用户登录 / OAuth | ✅ 已有 | 支撑评论和后续个性化能力 |
+| 会员分层 | ⏸ 暂缓 | 先证明内容反馈和真实交付闭环 |
+| 评论系统 | ✅ 第一版 | 登录评论、人工审核、问题回流 |
 | 邮件订阅 | ❌ 不做 | V2 再接 |
-| 数据库 | ❌ 不做 | 静态内容，不需要 |
+| 数据库 | ✅ 已有 | 认证、服务、互动和运营数据共用 Prisma |
 | 搜索功能 | ❌ 不做 | 文章少时意义不大 |
 | 暗色模式 | ❌ 不做 | 保持专注，减少变量 |
 | 多语言 | ❌ 不做 | 先做好中文版 |
@@ -182,7 +192,7 @@ V3：登录 + 会员
 Zeno-Code/zeno-site/
 ├── README.md                     # 本文件
 ├── package.json
-├── next.config.mjs               # 静态导出配置
+├── next.config.mjs               # Next.js 配置
 ├── tsconfig.json
 ├── tailwind.config.ts            # 自定义色彩（暖白底+暖石accent）
 ├── postcss.config.js

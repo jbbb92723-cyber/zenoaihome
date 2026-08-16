@@ -12,6 +12,8 @@ import {
   getAlternateSlug,
 } from '@/lib/i18n'
 import ArticleCardEn from '@/app/en/ArticleCardEn'
+import ArticleEngagement from '@/components/features/content/ArticleEngagement'
+import ArticleDiscussion from '@/components/features/content/ArticleDiscussion'
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -123,6 +125,9 @@ export default async function EnArticlePage({ params }: Props) {
           </div>
         </div>
       </div>
+
+      <ArticleEngagement articleSlug={article.slug} articleTitle={article.title} locale="en" />
+      <ArticleDiscussion articleSlug={article.slug} articlePathSlug={article.localizedSlug} locale="en" />
 
       {/* ── Related articles ──────────────────────────── */}
       {recentArticles.length > 0 && (

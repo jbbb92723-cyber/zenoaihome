@@ -11,6 +11,8 @@ import { getAlternateSlug } from '@/lib/i18n'
 import ArticleCard from '@/components/features/content/ArticleCard'
 import CopyLinkButton from '@/components/ui/CopyLinkButton'
 import ArticleCTA from '@/components/features/content/ArticleCTA'
+import ArticleEngagement from '@/components/features/content/ArticleEngagement'
+import ArticleDiscussion from '@/components/features/content/ArticleDiscussion'
 import StructuredData from '@/components/ui/StructuredData'
 import { getCategoryFaqs } from '@/lib/schema-faqs'
 
@@ -256,12 +258,16 @@ export default async function ArticlePage({ params }: Props) {
             看服务边界
           </Link>
         </div>
+
+        <ArticleEngagement articleSlug={article.slug} articleTitle={article.title} />
       </article>
 
       {/* 按分类显示不同 CTA */}
       <div className="max-w-reading mx-auto px-5 sm:px-8">
         <ArticleCTA category={article.category} parentCategorySlug={article.parentCategory} />
       </div>
+
+      <ArticleDiscussion articleSlug={article.slug} />
 
       {/* ───── 下一步行动 ───── */}
       <section className="max-w-reading mx-auto px-5 sm:px-8 py-10">

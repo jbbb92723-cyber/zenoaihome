@@ -22,6 +22,7 @@ const NAV = [
   { group: '内容与服务', items: [
     { href: '/admin/content',           label: '内容草稿' },
     { href: '/admin/notes',             label: '判断笔记' },
+    { href: '/admin/comments',          label: '文章评论' },
     { href: '/admin/living-diagnoses',  label: '居住诊断' },
     { href: '/admin/resources/claims',  label: '资料领取' },
   ]},
