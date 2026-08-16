@@ -98,29 +98,29 @@ export async function POST(
   const limit = checkRateLimit(`article-reaction:${visitorId}`, 30, 24 * 60 * 60 * 1000)
   if (!limit.allowed) return NextResponse.json({ message: '操作过于频繁，请明天再试。' }, { status: 429 })
 
-  const existing = await prisma.articleReaction.findUnique({
+  const reactionWhere = {
+    articleSlug: params.slug,
+    kind: REACTION_KIND,
+    visitorId,
+  }
+
+  const deleted = await prisma.articleReaction.deleteMany({
     where: {
-      articleSlug_kind_visitorId: {
-        articleSlug: params.slug,
-        kind: REACTION_KIND,
-        visitorId,
-      },
+      ...reactionWhere,
     },
   })
 
-  if (existing) {
-    await prisma.articleReaction.delete({ where: { id: existing.id } })
-  } else {
+  const hasReacted = deleted.count === 0
+  if (hasReacted) {
     await prisma.articleReaction.create({
       data: {
-        articleSlug: params.slug,
-        kind: REACTION_KIND,
-        visitorId,
+        ...reactionWhere,
         userId: sessionUserId,
       },
     })
   }
 
-  const response = NextResponse.json({ ok: true, ...(await getCounts(params.slug, visitorId)) })
+  const counts = await getCounts(params.slug, visitorId)
+  const response = NextResponse.json({ ok: true, ...counts, hasReacted })
   return withVisitorCookie(response, visitorId, request)
 }

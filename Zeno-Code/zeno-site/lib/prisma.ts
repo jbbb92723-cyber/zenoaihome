@@ -7,7 +7,7 @@
  * 原始 SQL 都必须保留失败，避免接口返回一个并不存在的成功结果。
  */
 
-import { PrismaClient } from '@prisma/client'
+import { Prisma, PrismaClient } from '@prisma/client'
 
 const globalForPrisma = globalThis as unknown as { prisma?: PrismaClient }
 
@@ -63,6 +63,26 @@ function logReadFailure(modelName: string, methodName: string, error: unknown) {
       (error as Error)?.message?.split('\n')[0] ?? String(error),
     )
   }
+}
+
+const TRANSIENT_DATABASE_ERROR_CODES = new Set([
+  'P1001', // database server unreachable
+  'P1002', // connection timeout
+  'P1008', // operation timeout
+  'P1017', // connection closed
+  'P2024', // connection pool timeout
+  'P2037', // too many database connections
+])
+
+function canFallbackRead(error: unknown): boolean {
+  if (error instanceof DatabaseUnavailableError) return true
+  if (error instanceof Prisma.PrismaClientKnownRequestError) {
+    return TRANSIENT_DATABASE_ERROR_CODES.has(error.code)
+  }
+  if (error instanceof Prisma.PrismaClientInitializationError) {
+    return Boolean(error.errorCode && TRANSIENT_DATABASE_ERROR_CODES.has(error.errorCode))
+  }
+  return false
 }
 
 function createFallbackStub(): PrismaClient {
@@ -140,7 +160,7 @@ function wrapResilient(client: PrismaClient): PrismaClient {
             try {
               return await Reflect.apply(method, modelTarget, args)
             } catch (error) {
-              if (!READ_METHODS.has(methodName)) throw error
+              if (!READ_METHODS.has(methodName) || !canFallbackRead(error)) throw error
 
               logReadFailure(property, methodName, error)
               return emptyReadResult(methodName)
