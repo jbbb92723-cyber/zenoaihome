@@ -46,11 +46,21 @@ export default function ArticleDiscussion({ articleSlug, locale = 'zh', articleP
     setSubmitting(true)
     setMessage('')
     try {
-      const response = await fetch('/api/comments', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ articleSlug, content }),
-      })
+      const requestId = crypto.randomUUID()
+      const payload = JSON.stringify({ articleSlug, content, requestId })
+      let response: Response | null = null
+
+      for (let attempt = 0; attempt < 2; attempt += 1) {
+        response = await fetch('/api/comments', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: payload,
+        })
+        if (response.status !== 503 || attempt === 1) break
+        await new Promise((resolve) => window.setTimeout(resolve, 700))
+      }
+
+      if (!response) throw new Error('comment request did not run')
       const data = await response.json().catch(() => ({})) as { message?: string }
       if (!response.ok) {
         setMessage(data.message ?? (isEnglish ? 'Comment submission failed. Please try again.' : '评论提交失败，请稍后重试。'))

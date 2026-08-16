@@ -3,12 +3,68 @@ import { auth } from '@/auth'
 import { getArticleBySlug } from '@/data/content/articles'
 import { prisma } from '@/lib/prisma'
 import { checkRateLimit } from '@/lib/rateLimit'
+import { Prisma } from '@prisma/client'
 
 export const dynamic = 'force-dynamic'
 
+function isTransientDatabaseError(error: unknown) {
+  if (error instanceof Prisma.PrismaClientKnownRequestError) {
+    return ['P1001', 'P1002', 'P1008', 'P1017', 'P2024', 'P2037'].includes(error.code)
+  }
+  if (error instanceof Prisma.PrismaClientInitializationError) {
+    return ['P1001', 'P1002', 'P1017'].includes(error.errorCode ?? '')
+  }
+  return false
+}
+
+function commentErrorResponse(error: unknown) {
+  if (isTransientDatabaseError(error)) {
+    return { message: '评论服务正在重新连接，请稍后再试。', status: 503 }
+  }
+  if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === 'P2003') {
+    return { message: '登录账号状态已失效，请退出后重新登录。', status: 409 }
+  }
+  if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === 'P2021') {
+    return { message: '评论服务尚未完成数据库配置。', status: 503 }
+  }
+  return { message: '评论提交失败，请稍后再试。', status: 500 }
+}
+
+async function createCommentWithRetry(data: {
+  id: string
+  userId: string
+  articleSlug: string
+  content: string
+}) {
+  for (let attempt = 0; attempt < 2; attempt += 1) {
+    try {
+      return await prisma.comment.create({
+        data: { ...data, status: 'pending' },
+        select: { id: true, status: true, createdAt: true },
+      })
+    } catch (error) {
+      if (error instanceof Prisma.PrismaClientKnownRequestError && error.code === 'P2002') {
+        const existing = await prisma.comment.findUnique({
+          where: { id: data.id },
+          select: { id: true, status: true, createdAt: true },
+        })
+        if (existing) return existing
+      }
+      if (!isTransientDatabaseError(error) || attempt === 1) throw error
+      await new Promise((resolve) => setTimeout(resolve, 350))
+    }
+  }
+  throw new Error('Comment creation retry exhausted')
+}
+
 export async function POST(request: NextRequest) {
-  // ─── 认证检查 ────────────────────────────────────────────────
-  const session = await auth()
+  let session
+  try {
+    session = await auth()
+  } catch (error) {
+    console.error('[API] comment authentication error:', error)
+    return NextResponse.json({ message: '登录状态暂时无法确认，请稍后再试。' }, { status: 503 })
+  }
   if (!session?.user) {
     return NextResponse.json(
       { message: '请先登录后再发表评论。' },
@@ -28,12 +84,13 @@ export async function POST(request: NextRequest) {
     typeof body !== 'object' ||
     body === null ||
     typeof (body as Record<string, unknown>).articleSlug !== 'string' ||
-    typeof (body as Record<string, unknown>).content !== 'string'
+    typeof (body as Record<string, unknown>).content !== 'string' ||
+    typeof (body as Record<string, unknown>).requestId !== 'string'
   ) {
     return NextResponse.json({ message: '缺少必要字段。' }, { status: 400 })
   }
 
-  const { articleSlug, content } = body as { articleSlug: string; content: string }
+  const { articleSlug, content, requestId } = body as { articleSlug: string; content: string; requestId: string }
 
   // ─── 内容校验 ────────────────────────────────────────────────
   const trimmedContent = content.trim()
@@ -46,6 +103,9 @@ export async function POST(request: NextRequest) {
   if (!articleSlug || articleSlug.length > 200) {
     return NextResponse.json({ message: '无效的文章标识。' }, { status: 400 })
   }
+  if (!/^[0-9a-f-]{36}$/i.test(requestId)) {
+    return NextResponse.json({ message: '无效的评论请求。' }, { status: 400 })
+  }
 
   if (!getArticleBySlug(articleSlug)) {
     return NextResponse.json({ message: '文章不存在。' }, { status: 404 })
@@ -56,23 +116,29 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ message: '评论提交过于频繁，请稍后再试。' }, { status: 429 })
   }
 
-  const comment = await prisma.comment.create({
-    data: {
+  try {
+    const comment = await createCommentWithRetry({
+      id: requestId,
       userId: session.user.id,
       articleSlug,
       content: trimmedContent,
-      status: 'pending',
-    },
-    select: { id: true, status: true, createdAt: true },
-  })
+    })
 
-  return NextResponse.json(
-    {
-      message: '评论已提交，审核通过后将公开显示。',
-      comment,
-    },
-    { status: 201 },
-  )
+    return NextResponse.json(
+      {
+        message: '评论已提交，审核通过后将公开显示。',
+        comment,
+      },
+      { status: 201 },
+    )
+  } catch (error) {
+    console.error('[API] comment creation error:', error)
+    const response = commentErrorResponse(error)
+    return NextResponse.json(
+      { message: response.message },
+      { status: response.status },
+    )
+  }
 }
 
 // GET 方法：获取某篇文章的已审核评论

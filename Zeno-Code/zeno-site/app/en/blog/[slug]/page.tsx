@@ -126,7 +126,9 @@ export default async function EnArticlePage({ params }: Props) {
         </div>
       </div>
 
-      <ArticleEngagement articleSlug={article.slug} articleTitle={article.title} locale="en" />
+      <div className="max-w-[42rem] mx-auto px-5 sm:px-8 lg:px-10">
+        <ArticleEngagement articleSlug={article.slug} articleTitle={article.title} locale="en" />
+      </div>
       <ArticleDiscussion articleSlug={article.slug} articlePathSlug={article.localizedSlug} locale="en" />
 
       {/* ── Related articles ──────────────────────────── */}

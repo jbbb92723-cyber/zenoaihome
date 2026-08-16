@@ -9,7 +9,6 @@ import { articles, getArticleBySlug, getRecentArticles } from '@/data/content/ar
 import { getArticleContent } from '@/lib/content-loader'
 import { getAlternateSlug } from '@/lib/i18n'
 import ArticleCard from '@/components/features/content/ArticleCard'
-import CopyLinkButton from '@/components/ui/CopyLinkButton'
 import ArticleCTA from '@/components/features/content/ArticleCTA'
 import ArticleEngagement from '@/components/features/content/ArticleEngagement'
 import ArticleDiscussion from '@/components/features/content/ArticleDiscussion'
@@ -238,7 +237,6 @@ export default async function ArticlePage({ params }: Props) {
 
         {/* 轻互动 */}
         <div className="mt-10 pt-6 border-t border-border flex flex-wrap gap-3">
-          <CopyLinkButton />
           <Link
             href="/tools"
             className="text-xs text-ink-muted border border-border px-3 py-1.5 hover:border-stone hover:text-stone transition-colors"

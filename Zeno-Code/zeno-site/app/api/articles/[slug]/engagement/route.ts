@@ -15,22 +15,30 @@ function getOrCreateVisitorId(request: NextRequest) {
 }
 
 async function getCounts(slug: string, visitorId: string) {
-  const [helpful, comments, currentReaction] = await Promise.all([
-    prisma.articleReaction.count({ where: { articleSlug: slug, kind: REACTION_KIND } }),
-    prisma.comment.count({ where: { articleSlug: slug, status: 'approved' } }),
-    prisma.articleReaction.findUnique({
-      where: {
-        articleSlug_kind_visitorId: {
-          articleSlug: slug,
-          kind: REACTION_KIND,
-          visitorId,
-        },
-      },
-      select: { id: true },
-    }),
-  ])
+  for (let attempt = 0; attempt < 2; attempt += 1) {
+    try {
+      const [helpful, comments, currentReaction] = await Promise.all([
+        prisma.articleReaction.count({ where: { articleSlug: slug, kind: REACTION_KIND } }),
+        prisma.comment.count({ where: { articleSlug: slug, status: 'approved' } }),
+        prisma.articleReaction.findUnique({
+          where: {
+            articleSlug_kind_visitorId: {
+              articleSlug: slug,
+              kind: REACTION_KIND,
+              visitorId,
+            },
+          },
+          select: { id: true },
+        }),
+      ])
 
-  return { helpful, comments, hasReacted: Boolean(currentReaction), available: Boolean(process.env.DATABASE_URL) }
+      return { helpful, comments, hasReacted: Boolean(currentReaction), available: Boolean(process.env.DATABASE_URL) }
+    } catch (error) {
+      if (attempt === 1) throw error
+      await new Promise((resolve) => setTimeout(resolve, 300))
+    }
+  }
+  return { helpful: 0, comments: 0, hasReacted: false, available: false }
 }
 
 function withVisitorCookie(response: NextResponse, visitorId: string, request: NextRequest) {
@@ -46,7 +54,7 @@ function withVisitorCookie(response: NextResponse, visitorId: string, request: N
   return response
 }
 
-export async function GET(
+async function handleGet(
   request: NextRequest,
   { params }: { params: { slug: string } },
 ) {
@@ -59,7 +67,7 @@ export async function GET(
   return withVisitorCookie(response, visitorId, request)
 }
 
-export async function POST(
+async function handlePost(
   request: NextRequest,
   { params }: { params: { slug: string } },
 ) {
@@ -120,7 +128,34 @@ export async function POST(
     })
   }
 
-  const counts = await getCounts(params.slug, visitorId)
+  const counts = await getCounts(params.slug, visitorId).catch((error) => {
+    console.error('[API] engagement count after mutation error:', error)
+    return { helpful: 0, comments: 0, hasReacted, available: false }
+  })
   const response = NextResponse.json({ ok: true, ...counts, hasReacted })
   return withVisitorCookie(response, visitorId, request)
+}
+
+export async function GET(
+  request: NextRequest,
+  context: { params: { slug: string } },
+) {
+  try {
+    return await handleGet(request, context)
+  } catch (error) {
+    console.error('[API] engagement GET error:', error)
+    return NextResponse.json({ message: '互动数据正在重新连接，请稍后再试。' }, { status: 503 })
+  }
+}
+
+export async function POST(
+  request: NextRequest,
+  context: { params: { slug: string } },
+) {
+  try {
+    return await handlePost(request, context)
+  } catch (error) {
+    console.error('[API] engagement POST error:', error)
+    return NextResponse.json({ message: '互动暂时无法提交，请稍后再试。' }, { status: 503 })
+  }
 }
