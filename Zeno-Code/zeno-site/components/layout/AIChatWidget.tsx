@@ -52,8 +52,8 @@ const quickEntriesZh = [
     label: '我还没定方案',
     prompt: '我还没定装修方案，请先帮我判断：我应该从生活方式、审美偏好、家庭场景、预算边界还是报价风险开始整理？',
     links: [
-      { label: 'AI 居住诊断', href: '/living-diagnosis' },
-      { label: '继续做居住诊断', href: '/living-diagnosis' },
+      { label: '居住需求自检', href: '/living-diagnosis' },
+      { label: '继续做居住需求自检', href: '/living-diagnosis' },
       { label: '文章判断库', href: '/blog' },
     ],
   },
@@ -89,7 +89,7 @@ const quickEntriesZh = [
     prompt: '我已经有方案、报价或合同材料了，请帮我判断应该选居住需求洞察报告、报价风险初查、报价 / 合同快审，还是居住方案综合判断。',
     links: [
       { label: '服务路径', href: '/services' },
-      { label: '居住诊断', href: '/living-diagnosis' },
+      { label: '居住需求自检', href: '/living-diagnosis' },
       { label: '报价 / 合同人工审查', href: '/services/quote-review' },
     ],
   },

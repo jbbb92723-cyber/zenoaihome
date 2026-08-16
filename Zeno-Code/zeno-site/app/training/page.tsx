@@ -112,7 +112,7 @@ export default function TrainingPage() {
             <h2 className="editorial-display mt-4 text-[1.8rem] leading-[1.15] sm:text-[2.2rem] lg:text-[2.6rem]">不是旁观转型，而是正在转型。</h2>
           </div>
           <div className="space-y-4 text-sm leading-7 text-ink-muted">
-            <p>17 年传统行业经营、销售管理和大型装修项目经验，让我知道工具最终要进入团队、客户、合同和交付，而不是停在演示里。</p>
+            <p>截至 2026 年，我有 17 年传统行业经营与项目经验，长期涉及家居、销售管理和装修项目。这些经历让我知道，工具最终要进入团队、客户、合同和交付，而不是停在演示里。</p>
             <p>我正在用 AI 搭建自己的网站、内容系统、知识库和智能体。这些仍在迭代，我会把能复用的方法和踩过的坑同时讲清楚。</p>
             <p className="font-semibold text-ink">我不承诺听完就完成转型，只确保学员离开时已经真正动手，并知道下一步做什么。</p>
           </div>

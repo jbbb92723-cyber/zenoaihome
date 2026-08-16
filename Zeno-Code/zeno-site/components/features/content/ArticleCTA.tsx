@@ -19,18 +19,18 @@ type CTAConfig = {
 
 // 装修全案判断 → 免费初筛 → 旗舰审查
 const RENO_CTA: CTAConfig = {
-  title: '报价单拿不准？先免费扫一眼——',
-  description: '2 分钟勾几个框，至少知道你的报价有没有明显雷。扫完把结果发我微信，我帮你看下一步该做什么。',
+  title: '已经拿到报价？先做一轮规则初筛。',
+  description: '按问题勾选已经写清的边界，先整理待确认项。工具不会自动读懂报价，也不替代结合原文的人工审查。',
   primary: { label: '免费初筛 →', href: '/tools/quote-check' },
   secondary: { label: '看装修方法 →', href: '/renovation' },
 }
 
-// 床垫选购判断 → 装修判断体系（床垫不卖咨询，算在装修判断里面）
+// 床垫产品已押后，只引导到公开文章和装修判断。
 const MATTRESS_CTA: CTAConfig = {
-  title: '看完这篇，还是拿不准？',
-  description: '床垫不是单独一个东西——它跟你睡的姿势、腰的情况、卧室的大小都有关系。拿不准的话，先从免费初筛开始，我帮你看整体。',
-  primary: { label: '免费初筛 →', href: '/tools/quote-check' },
-  secondary: { label: '直接看严选床垫 →', href: '/mattress' },
+  title: '把睡眠需求写成可比较的条件。',
+  description: '先记录常用睡姿、软硬偏好、同睡干扰、尺寸和售后要求，再回到具体型号、试睡条件与书面条款核对。',
+  primary: { label: '查看资料复核状态', href: '/mattress' },
+  secondary: { label: '返回公开实践', href: '/blog' },
 }
 
 // 生活方式 → 关于页 / 联系
@@ -52,8 +52,8 @@ const AI_CTA: CTAConfig = {
 // 默认（暂无分类匹配）
 const DEFAULT_CTA: CTAConfig = {
   title: '拿不准下一步该做什么？',
-  description: '不是你的问题——装修这件事本来就不该靠运气。直接告诉我你的情况，我帮你看下一步该做什么。',
-  primary: { label: '免费居住诊断 →', href: '/living-diagnosis' },
+  description: '先用自检工具整理需求和材料；仍需结合具体文件判断时，再联系 Zeno 确认范围。',
+  primary: { label: '免费居住需求自检 →', href: '/living-diagnosis' },
   secondary: { label: '联系 Zeno', href: '/contact' },
 }
 

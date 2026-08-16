@@ -6,13 +6,13 @@ import type { ReactNode } from 'react'
 import { motion } from 'framer-motion'
 import type { Variants } from 'framer-motion'
 import Reveal from '@/components/ui/Reveal'
+import { currentPractice, humanAiProtocol } from '@/data/practice/experiments'
 import {
   ArrowRight,
   BookOpenText,
   Brain,
   Briefcase,
   Browser,
-  CheckCircle,
   Database,
   HouseLine,
   Lightning,
@@ -29,16 +29,9 @@ const fadeUp: Variants = {
 
 const proofPoints = [
   { value: '17年', label: '传统行业经营与项目经验' },
-  { value: '装修', label: '最深的垂直经验与首个验证场' },
-  { value: 'OPC', label: '一人公司的公开实践起点' },
-  { value: '南宁', label: '当前实践与星火者发起地' },
-]
-
-const landingStages = [
-  { code: '01', title: '收真问题', body: '从客户、项目和日常工作中找一个高频、高代价的具体问题。' },
-  { code: '02', title: '理判断', body: '把散在人脑、聊天和文档里的经验，整理成规则、样本和边界。' },
-  { code: '03', title: '做最小交付', body: '先做一次可使用的清单、案例、SOP 或工具，再让 AI 放大。' },
-  { code: '04', title: '留证据复盘', body: '记录他人如何使用、哪里无效，再修改为下次能直接复用的资产。' },
+  { value: '1项', label: '当前只推进一项 30 天验证' },
+  { value: '2条', label: '装修业主与传统行业实践者分开承接' },
+  { value: '4步', label: '人先判断、AI 质疑、交付、复盘' },
 ]
 
 const practicePaths = [
@@ -63,8 +56,8 @@ const practicePaths = [
 const writingTracks = [
   {
     icon: Lightning,
-    title: '经验资产化',
-    body: '从一个真问题出发，记录经验怎样变成证据、判断、内容、工具和服务。',
+    title: '传统行业 × AI',
+    body: 'AI 怎样进入真实任务，以及哪些判断不能交给 AI。',
     href: '/blog?category=ai',
   },
   {
@@ -122,22 +115,22 @@ export default function HomePageBrandHub() {
           <motion.div initial="hidden" animate="visible" transition={{ staggerChildren: 0.1 }} className="max-w-[52rem] text-white">
             <motion.p variants={fadeUp} className="flex items-center gap-2.5 text-sm font-semibold text-white/75">
               <span className="inline-block h-2 w-2 shrink-0 bg-cinnabar" aria-hidden />
-              从装修现场走出来的 OPC 实践者
+              传统行业 × 人机协作 × 公开实践
             </motion.p>
             <motion.h1 variants={fadeUp} className="editorial-display mt-5 text-[2.6rem] leading-[1.08] sm:text-[3.4rem] lg:text-[4.2rem]">
               赞诺 Zeno
             </motion.h1>
             <motion.p variants={fadeUp} className="editorial-display mt-5 max-w-[18ch] text-[1.65rem] leading-[1.25] text-white/95 sm:text-[2rem]">
-              把真实经验，变成可复用的职业资产。
+              把真实经验，变成 AI 时代可复用的职业资产。
             </motion.p>
             <motion.p variants={fadeUp} className="mt-6 max-w-[43rem] text-base leading-8 text-white/75 sm:text-lg">
-              我是赞诺。正在公开验证如何用 AI，把 17 年传统行业经营与项目经验，整理成可核验的判断、内容、工具和服务。装修是我最深的验证场。
+              我是赞诺。人先提出判断和验收标准，AI 负责质疑、比较和整理，真实使用结果决定下一版。装修是我最深的验证场。
             </motion.p>
             <motion.div variants={fadeUp} className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <ActionLink href="/renovation"><HouseLine size={18} aria-hidden />我正在装修</ActionLink>
-              <ActionLink href="/services" secondary><Wrench size={18} aria-hidden />我想把经验变成系统</ActionLink>
-              <Link href="/blog" className="motion-press inline-flex min-h-11 items-center justify-center gap-2 px-3 py-3 text-sm font-semibold text-white/80 transition-colors hover:text-white">
-                <BookOpenText size={18} aria-hidden />先读公开实践
+              <ActionLink href="#current-practice"><Lightning size={18} aria-hidden />看当前实验</ActionLink>
+              <ActionLink href="/blog" secondary><BookOpenText size={18} aria-hidden />读公开实践</ActionLink>
+              <Link href="/about" className="motion-press inline-flex min-h-11 items-center justify-center gap-2 px-3 py-3 text-sm font-semibold text-white/80 transition-colors hover:text-white">
+                <PenNib size={18} aria-hidden />认识赞诺
               </Link>
             </motion.div>
           </motion.div>
@@ -152,6 +145,52 @@ export default function HomePageBrandHub() {
               <p className="mt-2 max-w-[15rem] text-xs leading-5 text-ink-muted">{item.label}</p>
             </div>
           ))}
+        </Reveal>
+      </section>
+
+      <section id="current-practice" className="scroll-mt-20 border-b border-border px-5 py-16 sm:px-8 sm:py-20 lg:px-12 lg:py-24">
+        <Reveal className="mx-auto grid max-w-[1320px] gap-10 lg:grid-cols-[0.43fr_0.57fr] lg:items-start">
+          <div>
+            <div className="flex flex-wrap items-center gap-2">
+              <p className="page-label">当前实践</p>
+              <span className="border border-cinnabar/30 bg-cinnabar/5 px-2.5 py-1 text-xs font-semibold text-cinnabar">{currentPractice.status}</span>
+              <span className="border border-border px-2.5 py-1 text-xs font-semibold text-ink-muted">{currentPractice.evidenceStatus}</span>
+            </div>
+            <h2 className="editorial-display mt-5 max-w-[18ch] text-[1.8rem] leading-[1.15] sm:text-[2.2rem] lg:text-[2.6rem]">{currentPractice.title}</h2>
+            <p className="mt-5 max-w-xl text-base leading-8 text-ink-muted">{currentPractice.question}</p>
+            <p className="mt-4 max-w-xl border-l-2 border-stone pl-4 text-sm leading-7 text-ink-muted">目标：{currentPractice.goal}</p>
+            <div className="mt-7 flex flex-wrap gap-4">
+              <Link href="/blog/zeno-from-renovation-to-opc" className="inline-flex items-center gap-2 text-sm font-semibold text-ink hover:text-stone">
+                阅读实践起点 <ArrowRight size={16} aria-hidden />
+              </Link>
+              <Link href="/cases" className="inline-flex items-center gap-2 text-sm font-semibold text-stone hover:text-ink">
+                查看方法示例 <ArrowRight size={16} aria-hidden />
+              </Link>
+            </div>
+          </div>
+          <div className="report-sheet p-6 sm:p-8">
+            <div className="flex flex-wrap items-start justify-between gap-4 border-b border-border pb-5">
+              <div>
+                <p className="system-label">30-DAY PRACTICE / 01</p>
+                <h3 className="mt-3 text-xl font-semibold text-ink">公开进度</h3>
+              </div>
+              <p className="text-xs text-ink-faint">更新于 {currentPractice.updatedAt}</p>
+            </div>
+            <div className="mt-6 grid gap-px border border-border bg-border sm:grid-cols-2">
+              {currentPractice.metrics.map((metric) => (
+                <div key={metric.label} className="min-h-28 bg-surface p-4">
+                  <p className="text-xs font-semibold text-ink-faint">{metric.label}</p>
+                  <p className="mt-3 text-2xl font-semibold tabular-nums text-ink">
+                    {metric.current}<span className="mx-1 text-sm font-normal text-ink-faint">/</span>{metric.target}<span className="ml-1 text-sm font-normal text-ink-muted">{metric.unit}</span>
+                  </p>
+                </div>
+              ))}
+            </div>
+            <div className="mt-6 border-l-2 border-cinnabar pl-4">
+              <p className="text-xs font-semibold text-ink-faint">下一步</p>
+              <p className="mt-2 text-sm leading-7 text-ink-muted">{currentPractice.nextAction}</p>
+            </div>
+          </div>
         </Reveal>
       </section>
 
@@ -191,67 +230,25 @@ export default function HomePageBrandHub() {
         </Reveal>
       </section>
 
-      <section className="border-b border-border px-5 py-16 sm:px-8 sm:py-20 lg:px-12 lg:py-24">
-        <Reveal className="mx-auto max-w-[1320px]">
-          <div className="grid gap-8 lg:grid-cols-[0.38fr_0.62fr] lg:items-end">
-            <div>
-              <p className="page-label">经验资产化</p>
-              <h2 className="editorial-display mt-4 text-[1.8rem] leading-[1.15] sm:text-[2.2rem] lg:text-[2.6rem]">经验不会自动变成你的资产。</h2>
-            </div>
-            <p className="max-w-2xl text-base leading-8 text-ink-muted lg:justify-self-end">
-              只有当它进入一次真实交付，留下可核对的证据，再被别人使用和修改，它才不再只是“我做过”。
-            </p>
+      <section className="border-b border-border bg-ink px-5 py-16 text-white sm:px-8 sm:py-20 lg:px-12 lg:py-24">
+        <Reveal className="mx-auto grid max-w-[1320px] gap-10 lg:grid-cols-[0.38fr_0.62fr]">
+          <div>
+            <p className="text-sm font-semibold text-white/55">人机协作协议</p>
+            <h2 className="editorial-display mt-4 max-w-[16ch] text-[1.8rem] leading-[1.15] sm:text-[2.2rem] lg:text-[2.6rem]">AI 不替我判断，它负责让我看得更清楚。</h2>
+            <p className="mt-5 max-w-md text-base leading-8 text-white/65">速度不是唯一目标。原始判断、责任边界和最终决定仍然由人保留。</p>
+            <Link href="/blog/04-wei-shenme-wo-kaishi-renzheng-xue-ai" className="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-white hover:text-white/70">
+              阅读这套协议的实践起点 <ArrowRight size={16} aria-hidden />
+            </Link>
           </div>
-          <ol className="mt-10 grid border-y border-border sm:grid-cols-2 lg:grid-cols-4">
-            {landingStages.map((stage, index) => (
-              <li key={stage.code} className={`relative p-6 ${index < landingStages.length - 1 ? 'border-b border-border sm:border-r lg:border-b-0' : ''} ${index === 1 ? 'sm:border-r-0 lg:border-r' : ''}`}>
-                <p className="text-xs font-semibold tabular-nums text-cinnabar">{stage.code}</p>
-                <h3 className="mt-4 text-lg font-semibold text-ink">{stage.title}</h3>
-                <p className="mt-3 text-sm leading-7 text-ink-muted">{stage.body}</p>
+          <ol className="border-t border-white/15">
+            {humanAiProtocol.map((stage) => (
+              <li key={stage.code} className="grid grid-cols-[3rem_1fr] gap-4 border-b border-white/15 py-6 sm:grid-cols-[3rem_10rem_1fr] sm:items-start">
+                <span className="text-xs font-semibold tabular-nums text-cinnabar">{stage.code}</span>
+                <h3 className="text-base font-semibold text-white">{stage.title}</h3>
+                <p className="col-start-2 text-sm leading-7 text-white/60 sm:col-start-3">{stage.body}</p>
               </li>
             ))}
           </ol>
-          <Link href="/blog?category=opc" className="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-ink hover:text-stone">
-            看我怎样跑这个过程 <ArrowRight size={16} aria-hidden />
-          </Link>
-        </Reveal>
-      </section>
-
-      <section className="border-b border-border bg-surface-warm px-5 py-16 sm:px-8 sm:py-20 lg:px-12 lg:py-24">
-        <Reveal className="mx-auto grid max-w-[1320px] gap-10 lg:grid-cols-[0.42fr_0.58fr] lg:items-center">
-          <div>
-            <p className="page-label">预拥有</p>
-            <h2 className="editorial-display mt-4 text-[1.8rem] leading-[1.15] sm:text-[2.2rem] lg:text-[2.6rem]">先看见一份属于自己的答案。</h2>
-            <p className="mt-5 max-w-md text-base leading-8 text-ink-muted">
-              免费诊断不会只给一个分数。你会先拿到当前阶段、主要缺口和下一步动作，再决定是否继续找工具、读文章或与人交流。
-            </p>
-            <Link href="/ai-tools/opc-diagnosis" className="motion-press mt-7 inline-flex min-h-11 items-center gap-2 rounded-[3px] bg-cinnabar px-5 py-3 text-sm font-semibold text-white hover:bg-cinnabar/92">
-              生成我的体检报告 <ArrowRight size={17} aria-hidden />
-            </Link>
-          </div>
-          <div className="report-sheet p-6 sm:p-8">
-            <div className="flex flex-wrap items-start justify-between gap-4 border-b border-border pb-5">
-              <div>
-                <p className="system-label">OPC REPORT / PREVIEW</p>
-                <h3 className="mt-3 text-2xl font-semibold text-ink">你的 AI 落地起点</h3>
-              </div>
-              <span className="border border-cinnabar/30 bg-cinnabar/5 px-3 py-1 text-xs font-semibold text-cinnabar">示例预览</span>
-            </div>
-            <div className="mt-6 grid gap-5 sm:grid-cols-2">
-              <div className="border-l-2 border-cinnabar pl-4">
-                <p className="text-xs font-semibold text-ink-faint">当前阶段</p>
-                <p className="mt-2 text-base font-semibold text-ink">经验已经形成，流程还没跑通</p>
-              </div>
-              <div className="border-l-2 border-stone-light pl-4">
-                <p className="text-xs font-semibold text-ink-faint">主要缺口</p>
-                <p className="mt-2 text-base font-semibold text-ink">任务范围和验收标准不清</p>
-              </div>
-            </div>
-            <div className="mt-6 border-t border-border pt-5">
-              <p className="text-xs font-semibold text-ink-faint">建议下一步</p>
-              <p className="mt-2 text-sm leading-7 text-ink-muted">先选一个每周重复两次以上的任务，收集 5 份真实输入与合格输出，再判断是否需要知识库或智能体。</p>
-            </div>
-          </div>
         </Reveal>
       </section>
 
@@ -278,32 +275,6 @@ export default function HomePageBrandHub() {
           <Link href="/blog" className="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-ink hover:text-stone">
             查看全部文章 <ArrowRight size={16} aria-hidden />
           </Link>
-        </Reveal>
-      </section>
-
-      <section className="border-b border-border bg-ink px-5 py-16 text-white sm:px-8 sm:py-20 lg:px-12 lg:py-24">
-        <Reveal className="mx-auto grid max-w-[1320px] gap-10 lg:grid-cols-[0.38fr_0.62fr]">
-          <div>
-            <p className="text-sm font-semibold text-white/55">神秘痒</p>
-            <h2 className="editorial-display mt-4 text-[1.8rem] leading-[1.15] sm:text-[2.2rem] lg:text-[2.6rem]">我不是把 AI 加在经验上，就宣布它变成了方法。</h2>
-            <p className="mt-5 max-w-md text-base leading-8 text-white/65">工具很快就能搭出来。难的是让真实问题、判断边界和使用结果都留下来。</p>
-          </div>
-          <div className="border-t border-white/15">
-            {[
-              ['01', '这是一个真实发生的问题吗？'],
-              ['02', '我的判断来自什么材料和经历？'],
-              ['03', '别人使用后，它在哪里有效、在哪里失效？'],
-            ].map(([code, question]) => (
-              <div key={code} className="grid grid-cols-[3rem_1fr_auto] items-center gap-4 border-b border-white/15 py-6">
-                <span className="text-xs font-semibold text-cinnabar">{code}</span>
-                <p className="text-base font-semibold text-white">{question}</p>
-                <CheckCircle size={19} className="text-white/35" aria-hidden />
-              </div>
-            ))}
-            <Link href="/blog?category=ai" className="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-white hover:text-white/70">
-              看我怎样拆这些问题 <ArrowRight size={16} aria-hidden />
-            </Link>
-          </div>
         </Reveal>
       </section>
 

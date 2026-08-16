@@ -112,7 +112,7 @@ export default function ServicesBrandHub() {
         <div className="mx-auto max-w-[1320px]">
           <div className="flex flex-wrap items-center gap-3 text-sm">
             <span className="font-semibold text-stone">找我之前，先建立自己的判断：</span>
-            <Link href="/knowledge" className="inline-flex items-center gap-1.5 text-ink hover:text-stone transition-colors">
+            <Link href="/opc-knowledge" className="inline-flex items-center gap-1.5 text-ink hover:text-stone transition-colors">
               看认知地图 <ArrowRight size={14} aria-hidden />
             </Link>
             <span className="text-ink-muted">→</span>
@@ -120,7 +120,7 @@ export default function ServicesBrandHub() {
               免费工具 <ArrowRight size={14} aria-hidden />
             </Link>
             <span className="text-ink-muted">→</span>
-            <span className="text-ink-muted">拿不准了再来。那个不确定感，是唯一需要付费的地方。</span>
+            <span className="text-ink-muted">需要结合具体材料、明确范围并承担交付责任时，再进入项目合作。</span>
           </div>
         </div>
       </section>

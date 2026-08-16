@@ -90,6 +90,17 @@ export default function LivingDiagnosisClient() {
     setError('')
   }
 
+  function resetSelfCheck() {
+    setForm(emptyForm)
+    setAnswers({})
+    setResult(null)
+    setDiagnosisId('')
+    setPersisted(null)
+    setStatus('idle')
+    setError('')
+    document.getElementById('diagnosis-form')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  }
+
   async function submit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
     if (!isComplete) {
@@ -145,16 +156,16 @@ export default function LivingDiagnosisClient() {
         <div className="absolute inset-0 bg-[linear-gradient(120deg,rgba(244,241,232,0.96),rgba(244,241,232,0.78)),radial-gradient(circle_at_82%_18%,rgba(222,210,190,0.3),transparent_34%)]" aria-hidden />
         <div className="mx-auto grid max-w-7xl gap-8 px-5 py-14 sm:px-8 lg:grid-cols-[0.58fr_0.42fr] lg:px-12 lg:py-20">
           <div className="relative min-w-0">
-            <p className="system-label">AI Living Diagnosis</p>
+            <p className="system-label">Living Needs Check</p>
             <h1 className="mt-4 max-w-[27rem] text-[2.35rem] font-semibold leading-tight tracking-tight text-ink sm:max-w-4xl sm:text-6xl">
               先把生活判断清楚，再进入方案和报价。
             </h1>
             <p className="mt-6 max-w-[42rem] text-base leading-8 text-ink-muted sm:text-lg">
-              这不是风格测试，而是把生活方式、美学偏好、家庭场景、空间秩序、预算取舍和签约风险放在一起看。结果会告诉你：现在更应该先整理需求，还是先核对报价合同。
+              这不是风格测试。页面通过预设问题和规则，把生活方式、美学偏好、家庭场景、空间秩序、预算取舍和签约风险放在一起看，给出下一步核对方向。
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <a href="#diagnosis-form" className="motion-press inline-flex min-h-11 items-center gap-2 bg-stone px-5 py-3 text-sm font-semibold text-white hover:bg-stone/90">
-                开始诊断
+                开始自检
                 <ArrowRight size={16} className="motion-arrow" aria-hidden />
               </a>
               <Link href="/tools/quote-check" className="motion-press inline-flex min-h-11 items-center border border-border bg-surface px-5 py-3 text-sm font-semibold text-ink hover:border-stone">
@@ -201,7 +212,7 @@ export default function LivingDiagnosisClient() {
           </section>
           <section className="border border-border bg-surface p-5">
             <Notebook size={30} weight="duotone" className="text-stone" aria-hidden />
-            <h2 className="mt-4 text-lg font-semibold text-ink">诊断边界</h2>
+            <h2 className="mt-4 text-lg font-semibold text-ink">自检边界</h2>
             <ul className="mt-3 space-y-2 text-sm leading-7 text-ink-muted">
               <li>不替你定最终风格。</li>
               <li>不输出施工图和报价。</li>
@@ -299,8 +310,8 @@ export default function LivingDiagnosisClient() {
 
           <section className="border border-border bg-surface p-5 sm:p-6">
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-stone">Optional</p>
-            <h2 className="mt-2 text-xl font-semibold text-ink">需要人工整理报告时再留下联系方式</h2>
-            <p className="mt-2 text-sm leading-7 text-ink-muted">免费诊断不强制留资。想继续拿《AI 居住需求洞察报告》时，填写微信或邮箱即可。</p>
+            <h2 className="mt-2 text-xl font-semibold text-ink">需要后续人工复核时再留下联系方式</h2>
+            <p className="mt-2 text-sm leading-7 text-ink-muted">免费自检不强制留资。希望结合户型、报价或合同继续核对时，可以填写微信或邮箱。</p>
             <div className="mt-5 grid gap-4 sm:grid-cols-3">
               <label className="text-sm font-medium text-ink">
                 称呼
@@ -447,13 +458,14 @@ export default function LivingDiagnosisClient() {
                   </Link>
                 ))}
                 </div>
-                <Link
-                  href="/living-diagnosis"
+                <button
+                  type="button"
+                  onClick={resetSelfCheck}
                   className="mt-3 flex items-center justify-between gap-3 border border-stone-light bg-stone-pale/45 px-4 py-3 text-sm font-semibold text-ink transition-colors hover:border-stone"
                 >
-                  升级为人工《居住需求洞察报告》
+                  重新做一次居住需求自检
                   <ArrowRight size={16} className="motion-arrow shrink-0 text-stone" aria-hidden />
-                </Link>
+                </button>
               </div>
             </section>
           ) : (

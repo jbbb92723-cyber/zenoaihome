@@ -5,9 +5,9 @@ import { articles } from '@/data/content/articles'
 import BlogClient from './BlogClient'
 
 export const metadata: Metadata = {
-  title: '全部文章｜传统行业AI、装修实践与一人公司',
+  title: '公开实践｜实验、文章与方法样本',
   description:
-    '赞诺的公开文章库，记录传统行业AI实践、装修判断、一人公司与星火者共同体。内容来自真实经历、项目和持续迭代。',
+    '赞诺的公开实践档案：正在进行的实验、可复盘文章和方法样本。聚焦传统行业 × AI、经验资产化、一人公司与装修判断，并明确当前证据边界。',
   alternates: {
     canonical: 'https://zenoaihome.com/blog',
   },
@@ -22,7 +22,7 @@ export default function BlogPage() {
         data={{
           '@context': 'https://schema.org',
           '@type': 'CollectionPage',
-          name: '赞诺的公开实践文章库',
+          name: '赞诺的公开实践档案',
           url: 'https://zenoaihome.com/blog',
           description: metadata.description,
           inLanguage: 'zh-CN',

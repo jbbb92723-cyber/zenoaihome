@@ -220,7 +220,7 @@ export default async function ArticlePage({ params }: Props) {
             <div className="flex-1 min-w-0">
               <p className="text-sm font-semibold text-ink">Zeno · 赞诺</p>
               <p className="text-xs text-ink-muted mt-1.5 leading-relaxed max-w-sm">
-                17 年传统行业与装修项目经验，正在把现场判断、AI 落地和一人公司实践持续公开。
+                截至 2026 年有 17 年传统行业经营与项目经验，长期涉及家居与装修实践，正在把现场判断、AI 落地和一人公司实践持续公开。
                 写做过的事，也记录还在验证的问题。
               </p>
               <div className="flex flex-wrap gap-4 mt-3">

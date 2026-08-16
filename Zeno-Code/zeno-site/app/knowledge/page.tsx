@@ -81,7 +81,7 @@ const layers = [
       {
         icon: HouseLine,
         title: '装修判断工具',
-        desc: '居住诊断、报价初筛、风险词典、检查清单。',
+        desc: '居住需求自检、报价初筛、风险词典、检查清单。',
         href: '/tools',
         tag: '免费工具',
       },

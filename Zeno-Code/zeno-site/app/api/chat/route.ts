@@ -77,7 +77,7 @@ const SYSTEM_PROMPT_ZH = `你是 Zeno（赞诺）的网站 AI 助手。Zeno 截�
 - 涉及合同、法律、人身安全的问题，提醒用户找对应专业人士。
 
 【常用站内链接】（适当时给出，每条单独一行，前面加 →）
-- AI 居住诊断：/living-diagnosis
+- 居住需求自检（预设问题与规则）：/living-diagnosis
 - 报价初筛工具：/tools/quote-check
 - 装修报价风险词典：/risk-dictionary
 - 签约前检查模板：/checklists
@@ -128,7 +128,7 @@ const ROUTE_LABELS: Record<'zh' | 'en', Record<string, string>> = {
     '/checklists/payment-milestone-check': '看付款节点检查模板',
     '/project-risks': '看施工项目风险库',
     '/risk-dictionary': '查装修报价风险词典',
-    '/living-diagnosis': '先做 AI 居住诊断',
+    '/living-diagnosis': '先做居住需求自检',
     '/services': '看服务路径',
     '/services/quote-review': '了解报价 / 合同人工审查',
     '/tools/quote-check': '先做报价初筛',
@@ -181,7 +181,7 @@ const KNOWLEDGE_ZH: Array<{ pattern: RegExp; intent: IntentKey; payload: ChatRep
         '也可以说：已经开工了，现在最该盯什么。',
       ],
       actions: [
-        { label: '先做 AI 居住诊断', href: '/living-diagnosis', kind: 'tool' },
+        { label: '先做居住需求自检', href: '/living-diagnosis', kind: 'tool' },
         { label: '先做报价初筛', href: '/tools/quote-check', kind: 'tool' },
         { label: '看服务路径', href: '/services', kind: 'service' },
       ],
@@ -199,8 +199,8 @@ const KNOWLEDGE_ZH: Array<{ pattern: RegExp; intent: IntentKey; payload: ChatRep
         '等方案方向稳定后，再看报价能不能承接这些选择。',
       ],
       actions: [
-        { label: '先做 AI 居住诊断', href: '/living-diagnosis', kind: 'tool' },
-        { label: '继续做居住诊断', href: '/living-diagnosis', kind: 'service' },
+        { label: '先做居住需求自检', href: '/living-diagnosis', kind: 'tool' },
+        { label: '继续做居住需求自检', href: '/living-diagnosis', kind: 'service' },
         { label: '看文章判断库', href: '/blog', kind: 'article' },
       ],
       followUps: FOLLOW_UPS_ZH.living,
@@ -255,7 +255,7 @@ const KNOWLEDGE_ZH: Array<{ pattern: RegExp; intent: IntentKey; payload: ChatRep
       actions: [
         { label: '看服务路径', href: '/services', kind: 'service' },
         { label: '直接联系 Zeno', href: '/contact', kind: 'contact' },
-        { label: '先做居住诊断', href: '/living-diagnosis', kind: 'tool' },
+        { label: '先做居住需求自检', href: '/living-diagnosis', kind: 'tool' },
       ],
       followUps: FOLLOW_UPS_ZH.service,
     },
@@ -271,7 +271,7 @@ const KNOWLEDGE_ZH: Array<{ pattern: RegExp; intent: IntentKey; payload: ChatRep
         '涉及方案取舍、合同、付款和最终签约，仍要回到人工复核和书面确认。',
       ],
       actions: [
-        { label: '先做居住诊断', href: '/living-diagnosis', kind: 'tool' },
+        { label: '先做居住需求自检', href: '/living-diagnosis', kind: 'tool' },
         { label: '已有报价，做初筛', href: '/tools/quote-check', kind: 'tool' },
         { label: '查风险词典', href: '/risk-dictionary', kind: 'resource' },
       ],
@@ -284,12 +284,12 @@ const KNOWLEDGE_ZH: Array<{ pattern: RegExp; intent: IntentKey; payload: ChatRep
     payload: {
       reply: '如果你还没确定要不要咨询，先走工具和资料通常更划算。先把问题分清，再决定要不要找人看。',
       bullets: [
-        '还没定方案，先做 AI 居住诊断。',
+        '还没定方案，先用居住需求自检整理生活方式和空间优先级。',
         '报价阶段再做免费报价初筛。',
         '看不懂风险词时，去风险词典查清楚。',
       ],
       actions: [
-        { label: '先做居住诊断', href: '/living-diagnosis', kind: 'tool' },
+        { label: '先做居住需求自检', href: '/living-diagnosis', kind: 'tool' },
         { label: '看检查模板', href: '/checklists', kind: 'resource' },
         { label: '查风险词典', href: '/risk-dictionary', kind: 'resource' },
       ],
@@ -569,7 +569,7 @@ function fallbackAnswer(message: string, locale: 'zh' | 'en'): ChatReplyPayload 
           '如果你已经有具体案例，联系前先准备一句背景说明。',
         ],
         actions: [
-          { label: '先做居住诊断', href: '/living-diagnosis', kind: 'tool' },
+          { label: '先做居住需求自检', href: '/living-diagnosis', kind: 'tool' },
           { label: '已有报价，做初筛', href: '/tools/quote-check', kind: 'tool' },
           { label: '看服务路径', href: '/services', kind: 'service' },
         ],

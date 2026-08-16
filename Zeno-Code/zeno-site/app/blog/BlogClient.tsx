@@ -1,6 +1,7 @@
 'use client'
 
-import { useState, useMemo } from 'react'
+import Link from 'next/link'
+import { useEffect, useState, useMemo } from 'react'
 import { useSearchParams } from 'next/navigation'
 import ArticleCard from '@/components/features/content/ArticleCard'
 import TagCloud from '@/components/features/content/TagCloud'
@@ -13,19 +14,53 @@ import {
   getPrimaryCategory,
   getSubcategory,
 } from '@/data/content/categories'
+import { currentPractice } from '@/data/practice/experiments'
+
+const startHere = [
+  {
+    label: '真实起点',
+    title: '四版报价单和几百条聊天记录，让我开始认真用 AI',
+    body: 'AI 先整理和对比，人保留判断与责任。这是赞诺人机协作方式的现实起点。',
+    href: '/blog/04-wei-shenme-wo-kaishi-renzheng-xue-ai',
+  },
+  {
+    label: '一人公司实践',
+    title: '从装修现场出发，我开始搭一人公司的工作系统',
+    body: '为什么不急着做课程，而是先把真实经验放进内容、工具和最小交付里。',
+    href: '/blog/zeno-from-renovation-to-opc',
+  },
+  {
+    label: '垂直验证场',
+    title: '报价单真正怎么看：先查范围，再谈总价',
+    body: '从一份具体报价开始，看装修经验如何被拆成别人可以使用的判断顺序。',
+    href: '/blog/baojia-dan-zhenzheng-zenme-kan',
+  },
+]
+
+const publicArticles = articles.filter((article) => article.parentCategory !== 'mattress')
 
 export default function BlogClient() {
   const searchParams = useSearchParams()
   const categoryParam = searchParams.get('category') ?? ''
+  const visibleCategoryParam = categoryParam === 'mattress' ? '' : categoryParam
   const subParam = searchParams.get('sub') ?? ''
   const tagParam = searchParams.get('tag') ?? ''
 
-  const [activeCategory, setActiveCategory] = useState<string>(categoryParam || '全部')
+  const [activeCategory, setActiveCategory] = useState<string>(visibleCategoryParam || '全部')
   const [activeSub, setActiveSub] = useState<string>(subParam || '')
   const [activeTag, setActiveTag] = useState<string>(tagParam || '')
 
-  // 所有一级分类 + "全部"
-  const allCategories = useMemo(() => ['全部', ...primaryCategories.map((c) => c.slug)], [])
+  // 只展示当前确实有公开文章的一级分类。
+  const allCategories = useMemo(() => {
+    const available = new Set(publicArticles.map((article) => article.parentCategory).filter(Boolean))
+    return ['全部', ...primaryCategories.filter((category) => category.slug !== 'about' && available.has(category.slug)).map((category) => category.slug)]
+  }, [])
+
+  useEffect(() => {
+    setActiveCategory(visibleCategoryParam || '全部')
+    setActiveSub(subParam)
+    setActiveTag(tagParam)
+  }, [visibleCategoryParam, subParam, tagParam])
 
   // 当前一级分类对应的二级分类
   const activeSubcategories = useMemo(
@@ -48,7 +83,7 @@ export default function BlogClient() {
 
   // 筛选文章
   const filtered = useMemo(() => {
-    let result = articles
+    let result = publicArticles
 
     if (activeCategory !== '全部') {
       // 先按 parentCategory 筛选（新分类体系）
@@ -71,46 +106,45 @@ export default function BlogClient() {
     return [...filtered].sort((a, b) => b.date.localeCompare(a.date))
   }, [filtered])
 
-  // 版块介绍（6个内容方向）
-  const contentSystem = useMemo(() => {
-    return primaryCategories
-      .filter((c) => c.slug !== 'about') // 关于我 不是文章分类
-      .map((c) => [c.name, c.description ?? ''] as [string, string])
-  }, [])
-
   return (
     <>
       <PageHero
-        label="动态"
-        title="传统行业AI、装修实践与一人公司"
-        subtitle="不是成品文章，是正在发生的实践记录。工具、项目、判断——持续更新。"
-        note="先选你关心的版块，再看有什么。不用按时间刷。"
+        label="公开实践"
+        title="从真实问题，到可以被核对的下一版"
+        subtitle="这里记录做过的事、仍在验证的判断，以及工具和方法被使用后发生的修改。"
+        note={`当前重点：${currentPractice.title}`}
       />
 
       <Container size="content" className="py-12 sm:py-16">
-        {/* How to use */}
-        <section className="mb-10 report-sheet p-5 sm:p-6">
-          <p className="system-label">内容版块</p>
-          <h2 className="mt-2 text-lg font-semibold text-ink">这个文章库怎么用</h2>
-          <p className="mt-3 text-sm leading-relaxed text-ink-muted">
-            五个版块各有侧重。选你当前最关心的方向，从那里开始。每篇文章结尾有统一的行动建议——看完知道下一步该做什么。
-          </p>
-          <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {contentSystem.map(([title, desc]) => (
-              <button
-                key={title}
-                onClick={() => {
-                  const cat = primaryCategories.find((c) => c.name === title)
-                  if (cat) {
-                    setActiveCategory(cat.slug)
-                    setActiveSub('')
-                  }
-                }}
-                className="border border-border bg-surface/92 px-4 py-3 text-left hover:border-stone transition-colors"
+        <section className="mb-12 grid gap-6 border-y border-border py-7 sm:grid-cols-[0.72fr_0.28fr] sm:items-center">
+          <div>
+            <div className="flex flex-wrap items-center gap-2">
+              <p className="system-label">当前实验</p>
+              <span className="border border-cinnabar/30 bg-cinnabar/5 px-2 py-1 text-[0.7rem] font-semibold text-cinnabar">{currentPractice.status}</span>
+              <span className="border border-border px-2 py-1 text-[0.7rem] font-semibold text-ink-muted">{currentPractice.evidenceStatus}</span>
+            </div>
+            <h2 className="mt-4 text-xl font-semibold leading-8 text-ink">{currentPractice.title}</h2>
+            <p className="mt-3 text-sm leading-7 text-ink-muted">{currentPractice.nextAction}</p>
+          </div>
+          <Link href="/#current-practice" className="inline-flex min-h-11 items-center justify-center border border-border px-4 py-3 text-sm font-semibold text-ink hover:border-stone">
+            查看公开进度
+          </Link>
+        </section>
+
+        <section className="mb-12">
+          <p className="system-label">从这里开始</p>
+          <div className="mt-5 grid border-y border-border md:grid-cols-3">
+            {startHere.map((item, index) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={`group flex min-h-64 flex-col py-6 md:px-6 ${index < startHere.length - 1 ? 'border-b border-border md:border-b-0 md:border-r' : ''} ${index === 0 ? 'md:pl-0' : ''} ${index === startHere.length - 1 ? 'md:pr-0' : ''}`}
               >
-                <h3 className="text-sm font-semibold text-ink">{title}</h3>
-                <p className="mt-2 text-xs leading-relaxed text-ink-muted">{desc}</p>
-              </button>
+                <p className="text-xs font-semibold text-stone">{item.label}</p>
+                <h2 className="mt-4 text-lg font-semibold leading-7 text-ink group-hover:text-stone">{item.title}</h2>
+                <p className="mt-3 text-sm leading-7 text-ink-muted">{item.body}</p>
+                <span className="mt-auto pt-6 text-sm font-semibold text-stone">阅读全文 →</span>
+              </Link>
             ))}
           </div>
         </section>
@@ -164,21 +198,18 @@ export default function BlogClient() {
           </div>
         )}
 
-        {/* 标签云 */}
-        <div className="mb-8">
-          <div className="flex items-center gap-2 mb-3">
-            <span className="text-xs font-semibold text-ink-muted">按标签找：</span>
-            {activeTag && (
-              <button
-                onClick={() => setActiveTag('')}
-                className="text-xs text-stone border border-stone px-2 py-0.5 rounded-full hover:bg-stone hover:text-white transition-colors"
-              >
-                清除「{activeTag}」×
-              </button>
-            )}
+        {/* 标签作为二级探索入口，不抢占首屏。 */}
+        <details className="mb-8 border-b border-border pb-5">
+          <summary className="cursor-pointer text-xs font-semibold text-ink-muted hover:text-ink">更多标签</summary>
+          <TagCloud limit={20} className="mt-4" />
+        </details>
+
+        {activeTag && (
+          <div className="mb-8 flex items-center gap-3 border-l-2 border-stone pl-4">
+            <p className="text-sm text-ink-muted">当前标签：<span className="font-semibold text-ink">{activeTag}</span></p>
+            <button onClick={() => setActiveTag('')} className="text-xs font-semibold text-stone hover:text-ink">清除</button>
           </div>
-          <TagCloud limit={30} />
-        </div>
+        )}
 
         {/* 当前分类描述 */}
         {activeCategory !== '全部' && (

@@ -102,10 +102,10 @@ export default function StartPage() {
             先看清生活方式、审美取舍和空间优先级，再判断报价、合同和交付边界能不能承接。
           </p>
           <p className="mt-5 text-sm text-ink-faint leading-relaxed max-w-xl">
-            如果还没定方案，先做居住诊断；如果已经拿到报价单，再做免费初筛。
+            如果还没定方案，先做居住需求自检；如果已经拿到报价单，再做免费初筛。
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
-            <CTA href="/living-diagnosis" label="先做居住诊断" variant="primary" />
+            <CTA href="/living-diagnosis" label="先做居住需求自检" variant="primary" />
             <CTA href="/tools/quote-check" label="已有报价，做初筛" variant="secondary" />
           </div>
         </Container>
@@ -166,9 +166,9 @@ export default function StartPage() {
               </p>
               <h3 className="text-lg font-semibold text-ink mb-3">先把生活和空间优先级说清</h3>
               <p className="text-sm text-ink-muted leading-relaxed mb-5">
-                居住诊断先帮你看清家庭场景、审美偏好、空间优先级和预算取舍，再决定要不要继续看报价。
+                居住需求自检通过预设问题整理家庭场景、审美偏好、空间优先级和预算取舍，再决定要不要继续看报价。
               </p>
-              <CTA href="/living-diagnosis" label="做居住诊断" variant="secondary" />
+              <CTA href="/living-diagnosis" label="做居住需求自检" variant="secondary" />
             </div>
             <div className="bg-surface p-6 sm:p-8">
               <p className="text-[11px] font-semibold uppercase tracking-widest text-ink-faint mb-3">

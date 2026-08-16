@@ -4,9 +4,9 @@ import Link from 'next/link'
 import Container from '@/components/ui/Container'
 
 export const metadata: Metadata = {
-  title: '关于赞诺｜传统行业经验资产化实践',
+  title: '关于赞诺｜传统行业 × AI 实践者',
   description:
-    '陈国赞，赞诺。拥有17年传统行业经营与项目经验，现在以 OPC 一人公司为起点，公开验证如何把经验变成判断、内容、工具和服务。',
+    '陈国赞，赞诺。截至 2026 年有 17 年传统行业经营与项目经验，现在以 OPC 一人公司为起点，公开记录人与 AI 如何把经验变成可检查、可使用、可修订的交付。',
   alternates: {
     canonical: 'https://zenoaihome.com/about',
   },
@@ -33,7 +33,7 @@ const experience = [
 const currentWork = [
   { title: 'AI 培训', body: '面向传统行业团队、商会和创业社群，从真实工作场景出发做工具实操。', href: '/training' },
   { title: 'AI 项目服务', body: '围绕工作流、企业知识库、智能体和网站开发，先明确范围再交付。', href: '/services' },
-  { title: '装修垂直实践', body: '把 17 年行业经验继续沉淀为内容、判断工具、风险资料和案例样张。', href: '/tools' },
+  { title: '装修垂直实践', body: '把长期家居与装修实践继续沉淀为内容、判断工具、风险资料和方法样张。', href: '/tools' },
   { title: '星火者共同体', body: '发起一个能够逐步脱离发起人、围绕学习与项目协作运转的成员共同体。', href: '/community' },
 ]
 

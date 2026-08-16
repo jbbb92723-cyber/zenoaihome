@@ -3,8 +3,8 @@ import Link from 'next/link'
 import { ArrowRight, Compass, Users, Shield, Cube, Sparkle } from '@phosphor-icons/react/dist/ssr'
 
 export const metadata: Metadata = {
-  title: 'OPC 公开实践｜把真实经验变成可复用资产',
-  description: 'Zeno 以 OPC 一人公司为起点，公开记录如何把传统行业经验变成判断、案例、内容、工具和服务，并在真实实践中验证。',
+  title: '经验变成系统｜赞诺的公开实践',
+  description: '赞诺从一个真实问题开始，公开记录传统行业经验如何变成可核验的判断、最小工具和具体交付，并通过使用反馈持续修订。',
 }
 
 const modules = [
@@ -12,32 +12,32 @@ const modules = [
     icon: Shield,
     title: '传统行业经验迁移',
     subtitle: '模块① 经验如何重新使用',
-    cards: '卡 01-06',
     desc: '从 17 年经营和项目经历中，分辨哪些判断可以迁移到一人公司，哪些只能作为个案，并为每个结论补上来源和适用边界。',
     anchor: '经历证据 · 可以追溯',
+    status: '已有内部资料，外部使用证据待补',
   },
   {
     icon: Compass,
     title: '城市 OPC 在地验证',
     subtitle: '模块② 从南宁开始试验',
-    cards: '卡 07-12',
     desc: '以南宁为当前实践场，记录本地需求、关系建立、小项目和交付过程。涉及东盟与跨境的内容，只收录已经核验的事实和实际案例。',
     anchor: '在地实践 · 持续验证',
+    status: '待真实项目持续回流',
   },
   {
     icon: Cube,
     title: '一人公司 AI 工作流',
     subtitle: '模块③ 工具如何进入工作',
-    cards: '卡 13-18',
     desc: '围绕具体任务选择模型、整理上下文、搭建自动化并核算成本。判断标准不是工具数量，而是输出能否验收、流程能否维护。',
     anchor: '工具工作流 · 按结果验收',
+    status: '已有自用实例，对外交付待验证',
   },
 ]
 
-const cards = [
-  { id: '01-06', vol: '经验迁移', items: '身份变化 · 可迁移经验盘点 · 资源边界 · 小步验证 · 服务边界 · 转型复盘' },
-  { id: '07-12', vol: '城市实践', items: '需求观察 · 本地关系地图 · 线索记录 · 小项目验证 · 协作约定 · 交付回流' },
-  { id: '13-18', vol: 'AI 工作流', items: '任务选择 · 模型与工具矩阵 · 上下文整理 · 自动化流程 · 数据边界 · 成本与质量' },
+const currentEvidence = [
+  { state: '可检查', title: '网站与内容系统', body: '当前网站、内容资产库和协作规则可以直接检查，证明这套整理方式已经用于赞诺自己的工作。' },
+  { state: '待归档', title: '装修判断使用反馈', body: '已有工具和公开内容，真实使用反馈仍需按材料、判断、结果和授权范围系统归档。' },
+  { state: '待验证', title: '经验资产化外部案例', body: '尚未形成可公开的首个外部使用案例，因此不把内部方法卡数量当作市场证明。' },
 ]
 
 const practicePath = [
@@ -61,9 +61,9 @@ export default function OPCKnowledgePage() {
       {/* Hero */}
       <section className="border-b border-border bg-ink px-5 py-16 sm:px-8 sm:py-20 lg:px-12 lg:py-24">
         <div className="mx-auto max-w-[1320px]">
-          <p className="text-sm font-semibold text-white/60">OPC 公开实践 · 一人公司经验资产化</p>
+          <p className="text-sm font-semibold text-white/60">公开实践 · 经验资产化</p>
           <h1 className="editorial-display mt-4 max-w-[18ch] text-[2.4rem] leading-[1.1] text-white sm:text-[3.2rem]">
-            以你的真实经验为起点，做出别人能使用的职业资产。
+            从一个真实问题开始，把经验做成别人能使用的东西。
           </h1>
           <p className="mt-5 max-w-[42rem] text-base leading-8 text-white/70">
             这不是一套先写好的课程承诺，而是一个正在运行的实践档案：从真实问题出发，留下证据，制作最小交付，再用他人试用和复盘修正。
@@ -96,8 +96,9 @@ export default function OPCKnowledgePage() {
                   <Icon size={28} weight="duotone" className="text-stone" />
                   <span className="mt-3 inline-block text-[0.65rem] font-semibold uppercase tracking-widest text-stone">{mod.anchor}</span>
                   <h3 className="mt-2 text-base font-semibold text-ink">{mod.title}</h3>
-                  <p className="mt-1 text-xs leading-relaxed text-ink-muted">{mod.subtitle} · {mod.cards}</p>
+                  <p className="mt-1 text-xs leading-relaxed text-ink-muted">{mod.subtitle}</p>
                   <p className="mt-3 text-sm leading-relaxed text-ink-muted">{mod.desc}</p>
+                  <p className="mt-4 border-t border-border pt-3 text-xs font-semibold leading-5 text-stone">当前状态：{mod.status}</p>
                 </div>
               )
             })}
@@ -105,22 +106,22 @@ export default function OPCKnowledgePage() {
         </div>
       </section>
 
-      {/* 18 张方法卡 */}
+      {/* 当前证据状态 */}
       <section className="border-b border-border bg-surface-warm px-5 py-16 sm:px-8 sm:py-20 lg:px-12 lg:py-24">
         <div className="mx-auto max-w-[1320px]">
-          <p className="text-sm font-semibold text-stone">知识资产</p>
+          <p className="text-sm font-semibold text-stone">当前证据</p>
           <h2 className="editorial-display mt-3 text-[2.2rem] leading-[1.15] sm:text-[3rem]">
-            18 张方法卡 · 6+6+6 精确归属。
+            先说明已经有什么，也说明还缺什么。
           </h2>
           <p className="mt-3 max-w-lg text-sm leading-relaxed text-ink-muted">
-            每张卡都从具体素材或实践问题出发，独立说明一个判断、步骤或边界。它既可以成为公开内容的骨架，也可以在试用和复盘后继续修订。
+            内部资料和方法数量不等于外部价值。只有原始材料、使用过程、反馈和修订能够被核对，才会升级为公开案例。
           </p>
           <div className="mt-10 grid gap-5 sm:grid-cols-3">
-            {cards.map((c) => (
-              <div key={c.vol} className="border border-border bg-canvas p-5">
-                <p className="text-[0.65rem] font-semibold uppercase tracking-widest text-stone">卡 {c.id}</p>
-                <h3 className="mt-2 text-sm font-semibold text-ink">{c.vol}</h3>
-                <p className="mt-2 text-xs leading-relaxed text-ink-muted">{c.items}</p>
+            {currentEvidence.map((item) => (
+              <div key={item.title} className="border border-border bg-canvas p-5">
+                <p className="text-[0.65rem] font-semibold uppercase tracking-widest text-stone">{item.state}</p>
+                <h3 className="mt-2 text-sm font-semibold text-ink">{item.title}</h3>
+                <p className="mt-2 text-xs leading-relaxed text-ink-muted">{item.body}</p>
               </div>
             ))}
           </div>
@@ -204,9 +205,9 @@ export default function OPCKnowledgePage() {
           </div>
           <div className="border-l-2 border-stone pl-6">
             <p className="text-sm leading-relaxed text-ink-muted">
-              这套内部方法不是先在书房里宣布完成，而是在真实问题、小交付、他人试用和复盘中逐步修正。与其用评审票数证明方法成立，不如留下谁用过、改了什么和哪里失效。
+              这套方法不会因为内部文档很多就自动成立。它要经过真实问题、小交付、他人试用和复盘，最终留下谁用过、改了什么，以及哪里失效。
             </p>
-            <p className="mt-3 text-xs text-ink-muted">不卖 OPC 的梦想，卖 OPC 的伤疤和地图。</p>
+            <p className="mt-3 text-xs text-ink-muted">先公开过程和边界，再谈方法是否成立。</p>
           </div>
         </div>
       </section>

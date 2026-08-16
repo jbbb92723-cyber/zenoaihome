@@ -7,37 +7,37 @@ import Link from 'next/link'
 const suggestions: Record<string, { directions: { title: string; topics: string[] }[] }> = {
   '装修|施工': {
     directions: [
-      { title: '传统行业人怎么用 AI', topics: ['装修公司上 AI 搞错了顺序', '一个工地佬的 AI 工具清单', '用 AI 写报价说明，客户秒懂'] },
-      { title: '装修避坑指南', topics: ['报价单上最危险的七个字', '水电验收你该看什么（不是看走线）', '合同里没写这句话等于白签'] },
-      { title: '一人公司怎么做装修', topics: ['一个人接装修项目，怎么不崩', '装修不是卖方案——是卖判断', '我为什么不招工人'] },
+      { title: '传统行业人怎么用 AI', topics: ['传统装修团队引入 AI，第一步该解决什么', '一次装修资料整理流程该怎样记录', '怎样把报价说明整理得更容易核对'] },
+      { title: '装修签约前的核对问题', topics: ['报价单里的模糊表述怎么问清', '水电验收前要准备哪些可核对资料', '哪些责任边界需要写进合同'] },
+      { title: '一人公司做装修如何划边界', topics: ['一个人承接装修项目，哪些工作不能全包', '装修服务中的判断如何变成明确交付', '什么时候应该引入外部协作'] },
     ],
   },
   '设计|设计': {
     directions: [
-      { title: '设计师的 AI 工具箱', topics: ['用 AI 出 10 版方案只要 30 分钟', '设计提案怎么写客户才会买单', 'AI 时代设计师的核心能力变了'] },
-      { title: '独立设计师怎么活', topics: ['不做平台、不接低价单——我的获客方法', '从接单到产品化：一个设计模板卖 100 次', '设计师转型一人公司的三个坑'] },
-      { title: '审美与商业之间', topics: ['好设计为什么不等于好生意', '客户说"不好看"——你怎么回应', '设计不是艺术——是解决问题'] },
+      { title: '设计师的 AI 工具箱', topics: ['AI 出多版方案前，哪些标准要先写清', '设计提案需要讲清哪些决策', 'AI 进入设计后，人应保留哪些判断'] },
+      { title: '独立设计师怎么经营', topics: ['独立设计师的客户从哪里来', '哪些设计工作适合产品化', '转向一人公司前要验证哪三个问题'] },
+      { title: '审美与商业之间', topics: ['好设计为什么不等于好生意', '客户说“不好看”时，先核对什么', '设计怎样同时回应审美和具体问题'] },
     ],
   },
   '教育|培训': {
     directions: [
-      { title: '知识付费怎么做', topics: ['录播课和直播课，哪个值得做', '从 1v1 咨询到 1vN 课程：我的产品化之路', '学员不交作业怎么办'] },
-      { title: 'AI + 教育', topics: ['用 AI 给学员做个性化学习路径', 'AI 批改作业到底靠不靠谱', '教育者不需要变成程序员——需要变成 AI 使用者'] },
-      { title: '从打工到独立', topics: ['什么时候从机构出来单干', '第一个 100 个学员怎么来的', '教育的本质不是教知识——是帮人做决策'] },
+      { title: '知识服务怎么设计', topics: ['录播课和直播课分别适合什么条件', '从一对一咨询到小班课程，交付要改什么', '怎样收集学员没有完成练习的真实原因'] },
+      { title: 'AI + 教育', topics: ['怎样用 AI 辅助整理个性化学习路径', 'AI 批改作业需要保留哪些人工复核', '教育者使用 AI 时不能外包哪些责任'] },
+      { title: '从机构到独立', topics: ['离开机构前要核对哪些条件', '怎样记录第一个付费学员的真实来源', '教育服务中哪些判断不能交给工具'] },
     ],
   },
   '技术|开发': {
     directions: [
-      { title: '独立开发者的生意经', topics: ['从接外包到做产品：我走了三年弯路', '一个 SaaS 从 0 到 100 个付费用户的真实过程', '独立开发者要不要写内容'] },
-      { title: 'AI 时代的程序员', topics: ['Cursor + Copilot——我不再写代码了', '提示词工程师是伪需求吗', '什么项目值得自己写、什么该用 AI'] },
-      { title: '技术人的表达', topics: ['为什么好程序员写不出好文章', '技术博客怎么写到圈外人也能看懂', '你的 GitHub 就是你的简历——但还不够'] },
+      { title: '独立开发者的经营问题', topics: ['从外包转向产品前要验证什么', 'SaaS 的第一批付费反馈该怎样记录', '独立开发者为什么需要公开表达'] },
+      { title: 'AI 时代的程序员', topics: ['使用 AI 编程后，代码审查责任落在谁身上', '提示词能力在哪些任务中真正有用', '什么项目适合自己写，什么适合借助 AI'] },
+      { title: '技术人的表达', topics: ['专业能力为什么不自动变成好文章', '技术博客怎样让圈外人也能核对', 'GitHub 之外还需要展示哪些交付证据'] },
     ],
   },
   '营销|运营': {
     directions: [
-      { title: '一人公司的获客方法', topics: ['不做投放——靠内容获客的完整路径', '朋友圈就是你的最小 MVP', '客户转介绍不是靠求——是靠系统'] },
-      { title: 'AI 降本增效', topics: ['用 AI 写小红书文案，一个月 30 篇不重样', '客服 AI 帮我省掉一个人', '数据分析不需要学 Python——用 AI 就够了'] },
-      { title: '从执行到策略', topics: ['运营不是发帖子——是设计增长系统', '小品牌的定价策略：不要跟大公司比便宜', '怎么判断一个渠道值不值得做'] },
+      { title: '一人公司的获客方法', topics: ['内容获客需要观察哪些真实信号', '朋友圈能否作为最小验证渠道', '怎样把客户转介绍从偶然变成可复盘流程'] },
+      { title: 'AI 与运营效率', topics: ['AI 批量生成文案后，质量怎样验收', '客服自动回复在哪些问题上必须转人工', '用 AI 分析数据时怎样核对原始口径'] },
+      { title: '从执行到策略', topics: ['运营工作怎样连接到可衡量的结果', '小品牌定价前需要核对哪些成本', '怎样判断一个渠道是否值得继续投入'] },
     ],
   },
   'default': {
@@ -78,10 +78,13 @@ export default function ContentStrategyPage() {
 
       {!result ? (
         <>
-          <p className="text-sm font-semibold text-stone">内容策略生成</p>
-          <h1 className="editorial-display mt-4 text-[2.2rem] leading-[1.12] sm:text-[3rem] text-ink">输入两样东西——</h1>
+          <p className="text-sm font-semibold text-stone">内容选题匹配</p>
+          <h1 className="editorial-display mt-4 text-[2.2rem] leading-[1.12] sm:text-[3rem] text-ink">输入两项信息</h1>
           <p className="mt-4 text-base leading-8 text-ink-muted max-w-xl">
-            告诉我你的行业和你擅长的事，帮你找到值得写的东西。
+            告诉工具你的行业和擅长的事，从预设题库中找几个可以继续核对的选题起点。
+          </p>
+          <p className="mt-3 max-w-xl border-l-2 border-stone pl-4 text-xs leading-6 text-ink-muted">
+            当前版本不调用大模型。匹配结果不能证明选题适合你，也不能替你补写没有发生过的经历。
           </p>
           <form onSubmit={handleSubmit} className="mt-8 max-w-lg space-y-5">
             <div>
@@ -108,17 +111,17 @@ export default function ContentStrategyPage() {
               type="submit"
               className="inline-flex min-h-11 items-center rounded-[7px] bg-ink px-5 py-3 text-sm font-semibold text-white hover:bg-stone-deep"
             >
-              生成内容策略 →
+              匹配内容选题 →
             </button>
           </form>
         </>
       ) : (
         <>
-          <p className="text-sm font-semibold text-stone">你的内容策略</p>
-          <h1 className="editorial-display mt-4 text-[2.2rem] leading-[1.12] sm:text-[3rem] text-ink">三个方向，九个选题。</h1>
+          <p className="text-sm font-semibold text-stone">匹配结果</p>
+          <h1 className="editorial-display mt-4 text-[2.2rem] leading-[1.12] sm:text-[3rem] text-ink">三个方向，九个选题起点。</h1>
           <p className="mt-4 text-sm leading-relaxed text-ink-muted max-w-xl mb-8">
-            基于 <strong className="text-ink">{industry || '你的行业'}</strong> 和 <strong className="text-ink">{skills || '你擅长的事'}</strong> 生成。
-            不是替你写——是告诉你什么值得写。
+            基于 <strong className="text-ink">{industry || '你的行业'}</strong> 和 <strong className="text-ink">{skills || '你擅长的事'}</strong> 从预设题库匹配。
+            发布前请用自己的经历、证据和读者反馈重新筛选。
           </p>
           <div className="grid gap-5 sm:grid-cols-3 max-w-3xl">
             {result.directions.map((d, i) => (
@@ -137,7 +140,7 @@ export default function ContentStrategyPage() {
             ))}
           </div>
           <div className="mt-10 flex flex-wrap gap-3">
-            <button onClick={() => setResult(null)} className="text-sm font-semibold text-stone hover:text-ink">← 重新生成</button>
+            <button onClick={() => setResult(null)} className="text-sm font-semibold text-stone hover:text-ink">← 重新匹配</button>
             <Link href="/community" className="inline-flex min-h-11 items-center rounded-[7px] bg-ink px-5 py-3 text-sm font-semibold text-white hover:bg-stone-deep">
               去星火者和同行聊聊 →
             </Link>

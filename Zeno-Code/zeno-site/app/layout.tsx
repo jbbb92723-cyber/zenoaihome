@@ -26,11 +26,11 @@ const notoSerif = Noto_Serif_SC({
 
 export const metadata: Metadata = {
   title: {
-    default: 'Zeno 赞诺｜传统行业经验资产化实践',
+    default: 'Zeno 赞诺｜传统行业 × AI 的公开实践',
     template: '%s · Zeno',
   },
   description:
-    '赞诺的个人品牌母站与公开实践档案。记录如何用 AI 把传统行业经验变成可复用的判断、内容、工具和服务，以装修和 OPC 一人公司为真实验证场。',
+    '赞诺的个人博客与公开实践档案。记录 17 年传统行业经营与项目经验如何进入 AI、知识库、工作流、智能体、内容系统和一人公司，并公开实验、结果与方法修订。',
   keywords: ['Zeno', '赞诺', '陈国赞', '经验资产化', '传统行业AI', '装修判断', '企业知识库', 'AI工作流', '一人公司', 'OPC', '星火者共同体'],
   authors: [{ name: 'Zeno', url: 'https://zenoaihome.com' }],
   openGraph: {
@@ -38,24 +38,24 @@ export const metadata: Metadata = {
     locale: 'zh_CN',
     url: 'https://zenoaihome.com',
     siteName: 'Zeno 赞诺',
-    title: 'Zeno 赞诺｜把真实经验变成可复用的职业资产',
+    title: 'Zeno 赞诺｜传统行业 × AI 的公开实践',
     description:
-      '一个从装修现场走出来的 OPC 实践者，公开验证如何用 AI 把传统行业经验变成判断、内容、工具和服务。',
+      '赞诺记录人与 AI 如何把传统行业经验变成可检查、可使用、可修订的判断、内容、工具和服务。',
     images: [
       {
-        url: 'https://zenoaihome.com/images/og-default.png',
-        width: 1200,
-        height: 630,
-        alt: 'Zeno 赞诺｜传统行业经验资产化实践',
+        url: 'https://zenoaihome.com/images/brand/zeno-portrait.jpg',
+        width: 940,
+        height: 940,
+        alt: '赞诺 Zeno，陈国赞',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Zeno 赞诺｜把真实经验变成可复用的职业资产',
+    title: 'Zeno 赞诺｜传统行业 × AI 的公开实践',
     description:
-      '公开记录传统行业经验如何变成判断、内容、工具和服务，以装修和 OPC 一人公司为真实验证场。',
-    images: ['https://zenoaihome.com/images/og-default.png'],
+      '人先判断，AI 参与质疑，再用真实交付和反馈修订方法。',
+    images: ['https://zenoaihome.com/images/brand/zeno-portrait.jpg'],
   },
   robots: {
     index: true,

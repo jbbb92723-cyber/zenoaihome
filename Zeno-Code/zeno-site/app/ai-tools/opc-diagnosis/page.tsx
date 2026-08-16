@@ -18,10 +18,10 @@ const questions = [
 ]
 
 const stageMap: Record<string, { stage: string; title: string; what: string; next: string }> = {
-  'explore': { stage: '探索期', title: '你还在找方向', what: '产品不清晰、没收入、不知道客户在哪。这是最难的阶段——但也最自由。你现在需要的不是执行力，是需要一个可以试的小切口。', next: '找一个最小的事做。去 /ai-tools/content-strategy 生成几个方向，挑一个花两周试。试完再来做一次诊断。' },
-  'build': { stage: '构建期', title: '你在搭产品', what: '有方向了，但还没有客户。或者有客户但产品不成熟。你现在需要的是「让人知道你的产品存在」和「快速获得第一次真实反馈」。', next: '去 /ai-tools/content-strategy 生成内容策略，开始写。写的过程就是你打磨产品的过程。' },
-  'grow': { stage: '成长期', title: '你在找放大', what: '有产品、有客户、有收入。现在的问题是「怎么放大」——交付跟不上、获客不稳定、时间不够用。', next: '你需要系统化和找人。来星火者——找能协作的人、学别人的流程、把你的方法变成可复用的系统。' },
-  'stable': { stage: '稳定期', title: '你在维持', what: '收入稳定、方向清晰。但你可能在问：下一步是什么？要不要放大？要不要带人？', next: '你是星火者要找的那种人——有东西可以分享、有能力可以协作。来星火者，把你的经验变成别人的跳板。' },
+  'explore': { stage: '探索提示', title: '当前回答更接近探索期', what: '从产品清晰度和付费反馈看，现在更需要验证一个足够小的产品问题。这是阶段提示，不代表对你的业务作出完整诊断。', next: '选一个最小问题，写下目标用户、交付物和两周内能观察到的信号，然后完成一次真实尝试。' },
+  'build': { stage: '构建提示', title: '当前回答更接近构建期', what: '你已经有初步方向，但产品边界或稳定付费反馈仍不充分。当前重点是让真实用户看见、使用并反馈一次最小交付。', next: '找一位符合目标条件的真实用户，完成一次范围明确的交付，并记录他在哪里理解、犹豫或放弃。' },
+  'grow': { stage: '增长提示', title: '当前回答更接近增长期', what: '你已经出现产品与付费信号，接下来需要核对获客是否稳定、交付是否可重复，以及增长会不会放大当前问题。', next: '选获客或交付中的一个瓶颈，记录当前基线，只改一个环节，并在 30 天后比较结果。' },
+  'stable': { stage: '稳定提示', title: '当前回答更接近稳定期', what: '你的回答显示已有持续付费和相对清晰的收入结构。是否扩张、协作或产品化，仍要结合利润、时间和风险数据判断。', next: '列出当前最依赖你本人完成的三个环节，选择一个做交接测试，并记录质量是否下降。' },
 }
 
 function computeStage(answers: Record<string, string>): string {
@@ -56,14 +56,17 @@ export default function OPCDiagnosisPage() {
     return (
       <Container size="content" className="py-16 sm:py-20">
         <Link href="/ai-tools" className="text-xs font-semibold text-stone hover:text-ink mb-8 inline-block">← 回到 AI 工具</Link>
-        <p className="text-sm font-semibold text-stone">{s.stage}</p>
+        <p className="text-sm font-semibold text-stone">一人公司阶段自检 · {s.stage}</p>
         <h1 className="editorial-display mt-4 text-[2.2rem] leading-[1.12] sm:text-[3rem] text-ink">{s.title}</h1>
         <div className="mt-8 max-w-2xl space-y-6">
           <div className="border-l-2 border-stone pl-5">
             <p className="text-base leading-8 text-ink-muted">{s.what}</p>
           </div>
+          <p className="text-xs leading-6 text-ink-muted">
+            结果主要依据产品清晰度、付费反馈、收入来源和当前卡点生成，其余回答用于你自行复盘。它不是财务、职业或商业咨询结论。
+          </p>
           <div className="border border-stone bg-surface-warm p-5">
-            <p className="text-sm font-semibold text-ink mb-2">下一步</p>
+            <p className="text-sm font-semibold text-ink mb-2">下一次验证</p>
             <p className="text-sm leading-relaxed text-ink-muted">{s.next}</p>
           </div>
           <div className="flex flex-wrap gap-3 mt-6">
@@ -76,12 +79,12 @@ export default function OPCDiagnosisPage() {
   }
 
   const q = questions[step]
-  const progress = Math.round(((step) / questions.length) * 100)
+  const progress = Math.round(((step + 1) / questions.length) * 100)
 
   return (
     <Container size="content" className="py-16 sm:py-20">
       <Link href="/ai-tools" className="text-xs font-semibold text-stone hover:text-ink mb-8 inline-block">← 回到 AI 工具</Link>
-      <p className="text-sm font-semibold text-stone">一人公司诊断 · 第 {step + 1}/{questions.length} 题</p>
+      <p className="text-sm font-semibold text-stone">一人公司阶段自检 · 第 {step + 1}/{questions.length} 题</p>
       <div className="mt-2 h-1 w-full bg-border rounded-full overflow-hidden">
         <div className="h-full bg-stone transition-all duration-300" style={{ width: `${progress}%` }} />
       </div>

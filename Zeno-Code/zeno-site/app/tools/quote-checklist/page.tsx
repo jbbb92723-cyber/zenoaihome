@@ -1,10 +1,11 @@
 import type { Metadata } from 'next'
 import Container from '@/components/ui/Container'
+import CTA from '@/components/ui/CTA'
 
 export const metadata: Metadata = {
   title: '装修报价自检清单｜签约前自己先查一遍',
   description:
-    '17 年工地经验浓缩成一份自检清单。30 个必查项，覆盖暂估陷阱、漏项、材料边界、付款节点——签约前花 20 分钟自己过一遍，省的可能不止 2 万。',
+    '基于长期传统行业经营与装修项目实践整理的 26 个报价核对项，覆盖暂估、漏项、材料边界、付款节点和合同条款。',
   alternates: {
     canonical: 'https://zenoaihome.com/tools/quote-checklist',
   },
@@ -34,7 +35,7 @@ export default function QuoteChecklistPage() {
             </p>
             <p className="text-base leading-relaxed text-ink-muted sm:text-lg">
               签约前花 20 分钟自己过一遍。<br />
-              30 个必查项——17 年工地经验踩过的坑，都在这张清单里。
+              26 个核对项，覆盖报价、材料、付款和合同中需要继续确认的地方。
             </p>
           </div>
         </Container>
@@ -46,20 +47,13 @@ export default function QuoteChecklistPage() {
           <h2 className="section-heading mb-4">为什么你需要这份清单</h2>
           <div className="space-y-3 text-sm leading-relaxed text-ink-muted">
             <p>
-              大多数人签装修合同时，手上只有一份报价单——价格、项目名称、备注。
-              没有人告诉你哪些地方会漏项、哪些措辞是空白支票、哪个付款节点一过你就失去了主动权。
+              报价单不只有总价，还同时写着项目范围、材料规格、计量方式、变更流程和付款节点。任何一处没有写清，都值得在签约前继续追问。
             </p>
             <p>
-              2018 年我在南宁签了一份水电「暂估 1.2 万按实结算」的合同。四个月后结算 3.7 万——多了 2.5 万，其中
-              4000 块是一根本来就在原户型里的排水管。
+              这份清单把常见问题按六类排好：先看暂估与计量，再核对材料、漏项、付款、合同和施工管控。你可以直接对着手上的报价与合同逐项确认。
             </p>
             <p>
-              从那天起，我变了。每一份报价单我不再看金额，先看「上限」两个字，再看「计量规则」，最后才看金额。
-              这套检查习惯，我用了 7 年，帮业主审过的报价累计节省超过
-              200 万。
-            </p>
-            <p>
-              现在我把这 7 年的检查习惯浓缩成一份自检清单——<strong className="text-ink">30 个必查项，分 6 个类别</strong>。不需要专业知识，拿着清单逐条对报价单，不会看的地方我标了怎么看。
+              它提供的是核对起点，不是审价结论，也不能证明某个价格一定合理。涉及当地单价、工程量、施工现场或法律责任时，还需要对应专业人员结合原始材料判断。
             </p>
           </div>
         </section>
@@ -91,38 +85,38 @@ export default function QuoteChecklistPage() {
             <div>
               <p className="font-semibold text-ink mb-2">免费报价初筛</p>
               <p className="text-ink-muted leading-relaxed">
-                AI 自动扫描报价单，快速标记可疑项。适合第一次拿到报价，想看大概哪里有问题。
+                通过勾选已写清的项目形成规则初筛；粘贴的文本只在浏览器本地匹配高频风险词。它不会自动读取或理解上传文件。
               </p>
             </div>
             <div>
               <p className="font-semibold text-ink mb-2">自检清单（免费）</p>
               <p className="text-ink-muted leading-relaxed">
-                人工整理的系统性检查框架。逐项看懂、逐项判断、逐项和施工方确认。适合签约前最后一遍彻底排查。
+                当前网页列出 26 个核对问题，适合拿着报价和合同逐项记录，再把没有写清的部分交给施工方确认。
               </p>
             </div>
           </div>
         </section>
 
-        {/* 买到什么 */}
+        {/* 如何使用 */}
         <section className="mb-14 max-w-2xl">
-          <h2 className="section-heading mb-4">你拿到什么</h2>
+          <h2 className="section-heading mb-4">如何使用</h2>
           <div className="space-y-3 text-sm leading-relaxed text-ink-muted">
-            <p>一份 PDF 清单文件——30 个必查项，6 个分类。每个检查项附简短说明：怎么看、哪里容易出问题。</p>
-            <p>不是模板。不是网上能搜到的通用版。是我 17 年里一份一份报价单审出来的判断。</p>
-            <p className="text-xs text-stone">* 付款后微信发文件，24 小时内交付。不含一对一咨询服务。</p>
+            <p>本页就是完整清单，不需要付款或领取文件。打开报价单和合同，对照六个分类逐项记录「已写清 / 待确认 / 不适用」。</p>
+            <p>发现模糊项时，先让对方把范围、规格、计量方式和变更流程写回原文件。不要只保留口头说明或聊天承诺。</p>
+            <p className="text-xs text-stone">* 清单不能覆盖所有户型、工艺和合同情形，也不替代造价、监理或法律意见。</p>
           </div>
         </section>
 
         {/* CTA */}
         <section className="border border-border bg-surface p-6 sm:p-8 text-center">
-          <h2 className="text-xl font-semibold text-ink mb-3">获取这份清单</h2>
+          <h2 className="text-xl font-semibold text-ink mb-3">下一步看你的材料状态</h2>
           <p className="mb-5 text-sm leading-relaxed text-ink-muted max-w-lg mx-auto">
-            加微信，备注「清单」。签合同之前，花 20 分钟逐条对一遍——省的可能不止 2 万。
+            还没开始核对，就从本页第一项往下走；已经拿到电子报价，可以用免费初筛整理待确认项；材料复杂且临近签约，再了解人工审查范围。
           </p>
-          <p className="text-base text-ink">
-            微信：<span className="font-semibold">zanxiansheng2025</span>
-          </p>
-          <p className="mt-1 text-sm text-ink-muted">备注「清单」</p>
+          <div className="flex flex-col justify-center gap-3 sm:flex-row">
+            <CTA href="/tools/quote-check" label="打开免费报价初筛" variant="primary" />
+            <CTA href="/services/quote-review" label="了解人工审查" variant="secondary" />
+          </div>
         </section>
       </Container>
     </>

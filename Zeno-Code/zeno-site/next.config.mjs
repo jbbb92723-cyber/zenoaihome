@@ -1,4 +1,21 @@
 /** @type {import('next').NextConfig} */
+const pausedMattressArticlePaths = [
+  '/blog/chuangdian-bu-shi-yue-gui-yue-hao',
+  '/blog/chuangdian-hangye-zhuangxiu-taolu',
+  '/blog/shishui-shifenzhong-pianju',
+  '/blog/chuangdian-cailiao-zhenxiang',
+  '/blog/chuangdian-yong-sannian-ta',
+  '/blog/chuangdian-xuangou-wu-ge-wenti',
+  '/blog/duli-daizhuang-zhengtan-tanhuang',
+  '/blog/chuangdian-chai-jie-limian',
+  '/blog/chuangdian-tuihuo-zhengce',
+  '/en/blog/mattress-not-about-price',
+  '/en/blog/mattress-renovation-same-pricing-tricks',
+  '/en/blog/ten-minute-sleep-trial-lie',
+  '/en/blog/mattress-materials-marketing-vs-reality',
+  '/en/blog/mattress-sags-after-three-years',
+]
+
 const nextConfig = {
   // === Windows 构建内存优化 ===
   // 跳过生产压缩节省内存
@@ -22,6 +39,11 @@ const nextConfig = {
   },
   async redirects() {
     return [
+      ...pausedMattressArticlePaths.map((source) => ({
+        source,
+        destination: '/mattress',
+        permanent: true,
+      })),
       {
         source: '/ai',
         destination: '/living-diagnosis',
@@ -40,6 +62,11 @@ const nextConfig = {
       {
         source: '/pricing',
         destination: '/services',
+        permanent: true,
+      },
+      {
+        source: '/knowledge',
+        destination: '/opc-knowledge',
         permanent: true,
       },
       {

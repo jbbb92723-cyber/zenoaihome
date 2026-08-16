@@ -46,7 +46,7 @@ export function analyzeLivingDiagnosis(answers: LivingDiagnosisAnswer[]): Living
     summary: '你现在最重要的不是马上定风格，而是先把生活方式、家庭关系、空间秩序和预算优先级说清楚。',
     priorities: ['生活方式', '空间秩序', '审美偏好'],
     nextSteps: [
-      { label: '保存诊断结果', href: '/living-diagnosis' },
+      { label: '查看居住阶段自查', href: '/start/living' },
       { label: '查看案例复盘', href: '/cases' },
     ],
   }

@@ -7,7 +7,7 @@ import StructuredData from '@/components/ui/StructuredData'
 export const metadata: Metadata = {
   title: '装修报价 / 合同人工审查｜¥2,500，一份材料的逐项判断',
   description:
-    '17年装修现场经验，逐项审核报价与合同材料，24小时内交付报告。13个风险边界逐项排查，写清风险、追问和修改方向。',
+    '基于长期传统行业经营与装修项目实践，逐项审核报价与合同材料，写清待确认项、追问和修改方向。材料与范围确认后，目标 24 小时内交付。',
   alternates: {
     canonical: 'https://zenoaihome.com/services/quote-review',
   },
@@ -15,27 +15,27 @@ export const metadata: Metadata = {
 
 /* ── 13边界 ── */
 const boundaries = [
-  { label: '基础部分总合计', risk: '是不是最终价，还是后面还有' },
-  { label: '水电点位', risk: '"个"字背后的计量陷阱——多一个插座涨多少？' },
-  { label: '按实际结算', risk: '七个字底下该有的半页纸规则，没写就全看对方心情' },
-  { label: '防水', risk: '只写品牌名，不写型号、厚度、遍数——品牌只回答了七分之一' },
-  { label: '封窗', risk: '型材、玻璃、五金、安装——参数之外的增项来源' },
-  { label: '垃圾外运', risk: '报价编号自己跟自己打架：这边含了，那边另计' },
-  { label: '另计·甲供·暂估', risk: '三个词告诉你总价不完整——实际完工价≠报价总价' },
-  { label: '口头承诺', risk: '没写进报价单的那句话，等于没说过' },
-  { label: '低价报价', risk: '便宜来自清晰取舍，还是漏项少算？' },
-  { label: '付款节点', risk: '不是财务细节，是主动权安排——钱付完了你还有多少筹码' },
-  { label: '验收质保', risk: '"已验收"三个字的背后——什么时候验、按什么标准验' },
-  { label: '材料型号', risk: '同一个品牌的不同系列，差价可达一倍' },
-  { label: '工期顺延', risk: '60天从哪天算起——合同上写了吗？' },
+  { label: '基础部分总合计', risk: '总价是否包含全部已知项目，哪些费用仍需另计？' },
+  { label: '水电点位', risk: '点位如何计数，增减一个点位按什么单价确认？' },
+  { label: '按实际结算', risk: '实际工程量由谁测量，何时确认，是否约定单价或上限？' },
+  { label: '防水', risk: '材料型号、施工范围、厚度或遍数、闭水与验收要求是否写清？' },
+  { label: '封窗', risk: '型材、玻璃、五金、安装和收口分别包含什么？' },
+  { label: '垃圾外运', risk: '清运、下楼、装车和外运是否重复计费或留有空白？' },
+  { label: '另计·甲供·暂估', risk: '哪些费用未进入当前总价，后续怎样确认？' },
+  { label: '口头承诺', risk: '重要说明是否已经写回报价、合同或双方确认的附件？' },
+  { label: '低价报价', risk: '价格差异来自材料与范围取舍，还是项目或工程量没有列全？' },
+  { label: '付款节点', risk: '每次付款对应哪些已完成工作和验收条件？' },
+  { label: '验收质保', risk: '什么时候验、按什么标准验，未通过如何整改？' },
+  { label: '材料型号', risk: '品牌之外，系列、型号、规格和可替换条件是否明确？' },
+  { label: '工期顺延', risk: '工期从哪天起算，哪些情况可以顺延，如何书面确认？' },
 ]
 
-/* ── 赠品堆叠 ── */
+/* ── 服务包含 ── */
 const bonusItems = [
-  { name: '装修合同核对指南', value: '¥299', desc: '合同里常见的8个模糊点，以及如何把口头承诺整理成可确认的文字' },
-  { name: '施工前3个月微信答疑', value: '¥499', desc: '签约后遇到不确定的事——增项、工艺、付款节点——随时拍照发我' },
-  { name: '入住后1年售后咨询', value: '¥599', desc: '住进去之后发现问题？发照片给我，我帮你判断是正常现象还是该找施工方' },
-  { name: '装修公司谈判话术模板', value: '¥199', desc: '不知道怎么开口拒绝加价？模板给你，你复制粘贴——重点是"你是内行，你不好糊弄"' },
+  { name: '逐项标注', desc: '把问题定位到具体页面和条目，方便你回到原材料逐项核对。' },
+  { name: '追问清单', desc: '把模糊项目改写成可以直接向施工方确认的问题。' },
+  { name: '修改方向', desc: '说明哪些内容适合进入报价备注、合同附件或书面确认。' },
+  { name: '约定范围内复核', desc: '报告交付后，按服务确认单约定的期限和范围说明审核结论。' },
 ]
 
 /* ── 保证 ── */
@@ -45,44 +45,22 @@ const guaranteeItems = [
   '如果材料不适合这项服务，我会先说明原因，不让你为不匹配的判断付费',
 ]
 
-/* ── 算账 ── */
-const comparison = [
-  {
-    label: '不审核',
-    items: [
-      '模糊描述可能在施工中变成数万元级的增项争议',
-      '施工中反复扯皮，工期一拖就是3个月',
-      '材料偷换、工艺缩水，住进去才发现',
-      '每次去工地都心里没底，不知道在看什么',
-    ],
-  },
-  {
-    label: '花 ¥2,500 审核',
-    items: [
-      '13个风险边界逐项排查，每个问题标注到"第几页第几行"',
-      '签约前把所有模糊描述改清楚——口头承诺变成白纸黑字',
-      '施工中遇到加价——有人帮你判断这钱该不该给',
-      '拿着报告去谈，施工方知道你是内行在看，不好糊弄',
-    ],
-  },
-]
-
 /* ── 不适合这个服务的人 ── */
 const notForItems = [
-  { label: '你已经完全信任施工方，不想多一道审核', detail: '不用买。信任比审核更值钱。' },
-  { label: '装修预算在 ¥50,000 以下', detail: '审核费占比例太高，不划算。' },
-  { label: '你觉得"装修嘛，差不多就行"', detail: '这个服务的颗粒度对你来说是过度投入。' },
+  { label: '已有独立专业人员逐项审过材料', detail: '先使用已有结论，不需要重复购买相同范围的审核。' },
+  { label: '只想知道本地市场最低价', detail: '这项服务核对文件边界，不提供当地最低价承诺或议价代理。' },
+  { label: '需要现场验收或法律结论', detail: '远程材料审查不能替代现场监理、检测、造价或法律专业意见。' },
 ]
 
 /* ── FAQ ── */
 const faqs = [
   {
     q: '¥2,500是一次还是一年？',
-    a: '一次。一份报价单的全量审核。如果你换了施工方需要重新审，第二次半价 ¥1,250。',
+    a: '一次。开始前会确认这一轮包含的报价、合同和附件；更换施工方或新增整套材料时，需要重新确认范围和价格。',
   },
   {
     q: '你只服务南宁吗？',
-    a: '全国的装修报价单都能审。你拍照发我，我标注问题发回给你。线上完成，不需要见面。',
+    a: '这项服务可以远程完成，重点核对文件中的范围、计量、材料、付款和责任。各地单价、法规和现场条件不同，需要当地专业人员确认的部分会在报告中标明。',
   },
   {
     q: '审完就完了吗？施工中出了问题怎么办？',
@@ -90,7 +68,7 @@ const faqs = [
   },
   {
     q: '能帮我砍价吗？',
-    a: '我不帮你砍价。我给你的是一份逐项标注的报告——"第3页第5项水电点位多算了¥1,200"——拿着这个去谈，你不需要砍价，你只需要问"这一项为什么是这个价"。这是两种谈判。',
+    a: '不代替你砍价。报告会把问题定位到具体页码和条目，例如“第 3 页第 5 项的工程量来源和计量规则需要确认”，方便你带着原文向施工方追问。',
   },
   {
     q: '退款和后续协助怎么约定？',
@@ -108,7 +86,7 @@ export default function QuoteReviewPage() {
             '@type': 'Service',
             name: '装修报价 / 合同人工审查',
             description:
-              '17年装修现场经验，逐项审核报价与合同材料，13个风险边界逐一排查，24小时内交付详细审核报告。',
+              '基于长期传统行业经营与装修项目实践，逐项审核报价与合同材料，按 13 个边界整理待确认项、追问和修改方向。',
             provider: { '@type': 'Person', name: 'Zeno' },
             offers: { '@type': 'Offer', priceCurrency: 'CNY', price: '2500' },
             url: 'https://zenoaihome.com/services/quote-review',
@@ -127,13 +105,13 @@ export default function QuoteReviewPage() {
             签合同之前，先让一份报价被认真看一遍。
           </h1>
           <p className="mt-6 max-w-2xl text-base leading-8 text-ink-muted sm:text-lg">
-            一份装修报价单，少则几页，多则几十页。你不需要看懂——你只需要找一个看得懂的人，帮你在签字之前把每一个可能变成加价通知的隐藏项都找出来。
+            一份装修报价单，少则几页，多则几十页。我会在签字之前帮你逐项查找范围、计量、材料、付款和责任中需要继续确认的地方。
           </p>
 
           {/* 价格 */}
           <div className="mt-6 flex items-baseline gap-3">
             <span className="text-5xl font-bold text-ink">¥2,500</span>
-            <span className="text-base text-ink-muted">/ 一次审核，24小时内出结果</span>
+            <span className="text-base text-ink-muted">/ 一次审核，目标 24 小时内交付</span>
           </div>
 
           {/* 保证 */}
@@ -142,7 +120,7 @@ export default function QuoteReviewPage() {
               审核范围内出现争议时，我会按确认的服务范围协助你复核材料和沟通依据。
             </p>
             <p className="mt-1 text-xs text-ink-faint">
-              这不是营销话术。这是17年经验给我的一双手——我知道合同上哪一行字会在第几周变成加价通知。
+              先确认材料、审核范围、交付时间和后续协助边界，再开始服务。
             </p>
           </div>
 
@@ -150,7 +128,7 @@ export default function QuoteReviewPage() {
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
             <CTA href="/contact" label="把报价单发给我 →" variant="primary" />
             <p className="text-sm text-ink-muted">
-              微信 zanxiansheng2025 · 备注「审报价」· 拍照发来就行
+              微信 zanxiansheng2025 · 备注「审报价」· 先发去敏样张确认范围
             </p>
           </div>
           <p className="mt-4 max-w-2xl text-xs leading-6 text-ink-faint">
@@ -166,22 +144,22 @@ export default function QuoteReviewPage() {
         <section className="mb-16">
           <h2 className="text-2xl font-semibold text-ink mb-3">¥2,500，你得到什么</h2>
           <p className="text-sm text-ink-muted mb-8 max-w-2xl">
-            不是"这份报价有问题"，而是<b>第3页第5项水电点位按'个'报价却没写超出单价，如果多加3个插座，成本从¥800变成¥3,200</b>。这个颗粒度。
+            不是笼统地说“这份报价有问题”，而是指出具体页码、具体条目、缺少什么信息，以及应该向谁确认。
           </p>
 
           <div className="grid gap-5 sm:grid-cols-3">
             {[
               {
                 label: '逐项审核报告',
-                desc: '13个风险边界，逐项排查。每个问题标注到"第几页第几行、具体什么风险、建议怎么改"。',
+                desc: '按 13 个边界逐项核对。每个待确认项尽量标注到具体页码和条目，并给出追问或修改方向。',
               },
               {
-                label: '24小时内交付',
-                desc: '你今晚发，明天下午拿到报告。不耽误你的签约时间。着急的话跟我说，我会尽量快。',
+                label: '目标 24 小时内交付',
+                desc: '材料清晰、范围确认后开始计时；材料复杂或需要补充时，会在开始前重新确认交付时间。',
               },
               {
-                label: '你只做一件事',
-                desc: '把报价单拍照发给我。不用整理Excel，不用打字说明，不需要"先学习怎么看报价"——拍张照，等报告。',
+                label: '材料提交要求',
+                desc: '提供清晰、连续的报价与合同材料，并说明签约阶段和最关心的问题；提交前先删除不必要的敏感信息。',
               },
             ].map((item) => (
               <div key={item.label} className="border border-border bg-surface p-6">
@@ -200,7 +178,7 @@ export default function QuoteReviewPage() {
             13个风险边界，逐项排查
           </h2>
           <p className="text-sm text-ink-muted mb-6">
-            每一个都是17年工地经验里真实发生过的事——不是理论，是血泪。
+            这些边界覆盖报价、合同和现场交付中反复需要核对的项目；是否适用于你的情况，以你提交的具体材料为准。
           </p>
           <div className="grid gap-3 sm:grid-cols-2">
             {boundaries.map((b) => (
@@ -212,27 +190,21 @@ export default function QuoteReviewPage() {
           </div>
         </section>
 
-        {/* ── 赠品价值堆叠 ── */}
+        {/* ── 服务包含 ── */}
         <section className="mb-16 border-2 border-stone bg-surface-warm p-6 sm:p-8">
           <h2 className="text-xl font-semibold text-ink mb-2">
-            不只是审核——你还免费获得这些
+            一次审核具体包含什么
           </h2>
           <p className="text-sm text-ink-muted mb-6 max-w-2xl">
-            一份¥2,500的报价审核 = ¥4,096的价值。不是因为定价低，是因为这些事我们做起来不费力，但对你价值巨大。
+            价格对应以下审核内容。交付范围、协助期限和退款边界，以开始前双方确认的服务说明为准。
           </p>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {bonusItems.map((bonus) => (
               <div key={bonus.name} className="border border-border bg-canvas p-5">
-                <p className="text-lg font-bold text-stone">{bonus.value}</p>
-                <h3 className="mt-1 text-sm font-semibold text-ink">{bonus.name}</h3>
+                <h3 className="text-sm font-semibold text-ink">{bonus.name}</h3>
                 <p className="mt-2 text-xs leading-relaxed text-ink-muted">{bonus.desc}</p>
               </div>
             ))}
-          </div>
-          <div className="mt-6 border-t border-border pt-4 flex items-baseline gap-3">
-            <span className="text-sm text-ink-muted line-through">赠品总价值 ¥1,596</span>
-            <span className="text-2xl font-bold text-ink">¥0</span>
-            <span className="text-sm text-ink-muted">购买审核服务即免费获得</span>
           </div>
         </section>
 
@@ -259,51 +231,25 @@ export default function QuoteReviewPage() {
           </p>
         </section>
 
-        {/* ── 算账 ── */}
-        <section className="mb-16">
-          <h2 className="text-xl font-semibold text-ink mb-6">算一笔账</h2>
-          <div className="grid gap-5 sm:grid-cols-2">
-            {comparison.map((col) => (
-              <div key={col.label} className="border border-border bg-surface p-6">
-                <p className="text-sm font-semibold text-ink mb-4">{col.label}：</p>
-                <ul className="space-y-2">
-                  {col.items.map((item, i) => (
-                    <li key={i} className="flex gap-2 text-sm text-ink-muted">
-                      <span className="shrink-0 text-stone">·</span>
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-          <div className="mt-5 border border-stone bg-surface-warm p-5">
-            <p className="text-sm font-semibold text-ink mb-2">你可能会损失 ¥20,000+，也可能花 ¥2,500 避免这笔损失。</p>
-            <p className="text-sm leading-relaxed text-ink-muted">
-              这是 12.5% 的保险费用。任何保险都不会写"理赔不成功，全额退保费"。我们敢。因为我们的赔付率是零——17年里，审过的地方没有被加价成功的案例。
-            </p>
-          </div>
-        </section>
-
-        {/* ── 为什么是 ¥2,500 ── */}
+        {/* ── 定价边界 ── */}
         <section className="mb-16 border border-border bg-surface p-6 sm:p-8">
           <h2 className="text-xl font-semibold text-ink mb-4">为什么是 ¥2,500</h2>
           <div className="grid gap-4 sm:grid-cols-3">
             {[
               {
-                num: '¥20,000+',
-                label: '不审核的平均损失',
-                desc: '一份没审过的报价单，隐藏加价项平均多算2-5万。这是17年的真实数据。',
+                num: '一份',
+                label: '材料范围',
+                desc: '针对双方确认的一份报价或合同材料逐项审核；更换施工方或新增整套材料需重新确认范围。',
               },
               {
-                num: '12.5%',
-                label: '保险费率',
-                desc: '¥2,500帮你避免¥20,000的损失——花1块钱，省8块。这个回报率，任何理财产品都给不了。',
+                num: '24h',
+                label: '目标交付时间',
+                desc: '材料清晰、范围确认后，目标在 24 小时内交付；复杂材料会在开始前另行说明。',
               },
               {
-                num: '17年',
-                label: '你买的不只是审核',
-                desc: '是17年里见过几千份报价单、几百个工地现场的人，用经验帮你挡一次坑。一次就够了。',
+                num: '13项',
+                label: '检查边界',
+                desc: '按 13 个边界检查范围、计量、材料、付款和责任，最终结论仍以具体文件为准。',
               },
             ].map((item) => (
               <div key={item.label} className="text-center p-4">
@@ -319,7 +265,7 @@ export default function QuoteReviewPage() {
         <section className="mb-16">
           <h2 className="text-xl font-semibold text-ink mb-4">谁不适合这个服务</h2>
           <p className="text-sm text-ink-muted mb-5">
-            我们不接所有单。只接我们能真正帮到的。如果你属于以下情况，这个服务对你可能不是最优解：
+            是否适合这项服务，取决于材料状态、项目阶段和你需要的判断范围。以下情况可以先不购买：
           </p>
           <div className="grid gap-3 sm:grid-cols-3">
             {notForItems.map((item) => (
@@ -351,7 +297,7 @@ export default function QuoteReviewPage() {
           </h2>
           <p className="text-2xl font-bold text-stone tracking-wide mb-2">zanxiansheng2025</p>
           <p className="text-sm text-ink-muted mb-5 max-w-md mx-auto">
-            加微信，备注「审报价」。把报价单拍照发来。24小时内，你手里会有一份被17年经验看过、13个风险边界逐一排查、每一个问题都标注到"第几页第几行"的审核报告。
+            加微信，备注「审报价」。先发材料样张确认是否适合这项服务；开始后按 13 个边界逐项检查，并把问题定位到具体页码和条目。
           </p>
           <p className="text-xs text-ink-faint">
             这项服务只对确认范围内的报价和合同材料负责，不替代现场监理、法律意见或施工方责任。
@@ -362,11 +308,10 @@ export default function QuoteReviewPage() {
         <section className="mt-12 border-t border-border pt-10">
           <h2 className="text-lg font-semibold text-ink mb-3">还不确定？</h2>
           <p className="text-sm text-ink leading-relaxed mb-2">
-            先用免费的「装修报价风险初筛」扫一眼你的报价单。
+            先用免费的「装修报价风险初筛」按问题核对哪些边界已经写清。
           </p>
           <p className="text-sm text-ink-muted mb-5 max-w-xl">
-            花2分钟，系统帮你标记风险区域。如果扫完你觉得安心了——那可能真的没问题，¥2,500省下来了。
-            如果扫完你心里更没底了——那种"不确定感"就是¥2,500帮你消除的东西。你知道怎么找我。
+            初筛由勾选项和浏览器本地关键词规则生成，不会自动理解上传文件。先把缺失边界交给施工方补充；仍需结合原文逐项判断时，再确认人工审查范围。
           </p>
           <div className="flex flex-wrap gap-4">
             <CTA href="/tools/quote-check" label="先做免费初筛 →" variant="primary" />
@@ -378,7 +323,7 @@ export default function QuoteReviewPage() {
         <section className="mt-12 border-t border-border pt-10">
           <h2 className="text-lg font-semibold text-ink mb-3">签完合同，要开工了？</h2>
           <p className="text-sm text-ink-muted mb-5 max-w-xl">
-            如果你已经签了合同准备开工，施工节点顾问可以在每个关键节点帮你看一眼——水电、防水、贴砖、竣工。拍照片发我，告诉你看什么、漏了什么。¥2,000起，具体节点范围和退款边界在开始前确认。
+            如果你已经签了合同准备开工，施工节点顾问可以在约定节点提供拍摄清单、整理可见疑点和现场追问。¥2,000 起，具体节点、材料条件和退款边界在开始前确认；远程判断不替代现场监理或工程验收。
           </p>
           <div className="flex flex-wrap gap-4">
             <CTA href="/services/node-advisor" label="¥2,000起 节点顾问 →" variant="primary" />

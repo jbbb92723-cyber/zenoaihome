@@ -114,11 +114,11 @@ export default function ResourcesPage() {
           <p className="text-xs font-semibold uppercase tracking-widest text-stone">先走主路径</p>
           <h2 className="mt-3 text-xl font-semibold tracking-tight text-ink">如果你手上已经有报价，先不要乱翻资料。</h2>
           <p className="mt-3 text-sm leading-relaxed text-ink-muted">
-            已经拿到报价，先做免费报价初筛，再用风险词典和检查模板补问题；如果还没有方案，先回到居住诊断，把生活目标和空间优先级说清。
+            已经拿到报价，先做免费报价初筛，再用风险词典和检查模板补问题；如果还没有方案，先回到居住需求自检，把生活目标和空间优先级说清。
           </p>
           <div className="mt-5 flex flex-wrap gap-3">
             <CTA href="/tools/quote-check" label="先做报价初筛" variant="primary" />
-            <CTA href="/living-diagnosis" label="还没定方案，先做居住诊断" variant="secondary" />
+            <CTA href="/living-diagnosis" label="还没定方案，先做居住需求自检" variant="secondary" />
             <CTA href="/renovation" label="看装修判断路径" variant="ghost" />
           </div>
         </section>

@@ -52,8 +52,8 @@ export default function Header() {
   const logoHref = isEn ? '/en' : '/'
   const loginLabel = isEn ? 'Log in' : '登录'
   const loginHref = isEn ? '/en/login' : '/login'
-  const uploadHref = isEn ? '/en/about' : '/about'
-  const uploadLabel = isEn ? 'About Zeno' : '认识赞诺'
+  const actionHref = isEn ? '/en/services' : '/services'
+  const actionLabel = isEn ? 'Work together' : '项目合作'
 
   const navItems = useMemo<LocalizedPrimary[]>(() => primaryNav.map((item) => ({
     key: item.key,
@@ -234,10 +234,10 @@ export default function Header() {
               {loginLabel}
             </Link>
             <Link
-              href={uploadHref}
+              href={actionHref}
               className="motion-press ml-1 inline-flex h-9 items-center rounded-[3px] bg-cinnabar px-4 text-xs font-semibold text-white hover:bg-cinnabar/92 hover:shadow-[0_12px_30px_rgba(17,17,17,0.16)]"
             >
-              {uploadLabel}
+              {actionLabel}
             </Link>
           </div>
 
@@ -273,8 +273,8 @@ export default function Header() {
             ))}
 
             <div className="mt-6 grid gap-3 border-t border-border pt-5">
-              <Link href={uploadHref} onClick={() => setMenuOpen(false)} className="motion-press inline-flex h-11 items-center justify-center rounded-[3px] bg-cinnabar px-4 text-sm font-medium text-white hover:bg-cinnabar/92">
-                {uploadLabel}
+              <Link href={actionHref} onClick={() => setMenuOpen(false)} className="motion-press inline-flex h-11 items-center justify-center rounded-[3px] bg-cinnabar px-4 text-sm font-medium text-white hover:bg-cinnabar/92">
+                {actionLabel}
               </Link>
               <div className="flex items-center justify-between">
                 <Link href={loginHref} onClick={() => setMenuOpen(false)} className="text-sm text-ink-muted hover:text-ink">

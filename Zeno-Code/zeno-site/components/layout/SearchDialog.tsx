@@ -13,7 +13,7 @@ interface SearchResult {
 }
 
 const recommendedZh: SearchResult[] = [
-  { title: 'AI 居住诊断', href: '/living-diagnosis', type: 'tool', excerpt: '先看生活方式、审美取舍、家庭场景和空间优先级。' },
+  { title: '居住需求自检', href: '/living-diagnosis', type: 'tool', excerpt: '用预设问题整理生活方式、审美取舍、家庭场景和空间优先级。' },
   { title: '报价初筛工具', href: '/tools/quote-check', type: 'tool', excerpt: '已有报价时，看它有没有承接方案边界。' },
   { title: '装修报价风险词典', href: '/risk-dictionary', type: 'resource', excerpt: '查报价里容易引发增项和扯皮的词。' },
   { title: '签约前检查模板', href: '/checklists', type: 'checklist', excerpt: '报价、合同、付款节点可以逐项对照。' },
@@ -137,7 +137,7 @@ export default function SearchDialog() {
               {isEn ? 'Search ZenoAIHome' : '搜索 ZenoAIHome'}
             </p>
             <p className="mt-1 text-sm text-ink-muted">
-              {isEn ? 'Living judgment, quote risk, checklists and services.' : '先找居住诊断、报价风险、清单和服务入口。'}
+              {isEn ? 'Living judgment, quote risk, checklists and services.' : '先找居住需求自检、报价风险、清单和服务入口。'}
             </p>
           </div>
           <button type="button" onClick={() => setOpen(false)} className="text-sm text-ink-muted hover:text-ink">
@@ -210,8 +210,8 @@ export default function SearchDialog() {
               {isEn ? 'Shortcut' : '快捷动作'}
             </p>
             <div className="mt-4 space-y-3 text-sm">
-              <button type="button" onClick={() => handleSelect({ title: 'AI 居住诊断', href: '/living-diagnosis', type: 'tool' })} className="motion-press block w-full text-left text-ink-muted hover:text-ink">
-                {isEn ? 'Living diagnosis' : '做居住诊断'}
+              <button type="button" onClick={() => handleSelect({ title: '居住需求自检', href: '/living-diagnosis', type: 'tool' })} className="motion-press block w-full text-left text-ink-muted hover:text-ink">
+                {isEn ? 'Living needs check' : '做居住需求自检'}
               </button>
               <button type="button" onClick={() => handleSelect({ title: '报价初筛工具', href: '/tools/quote-check', type: 'tool' })} className="motion-press block w-full text-left text-ink-muted hover:text-ink">
                 {isEn ? 'Quote screening' : '做报价初筛'}

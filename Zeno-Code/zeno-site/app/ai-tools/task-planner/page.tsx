@@ -26,8 +26,8 @@ const templates: MethodologyTemplate[] = [
   {
     id: 'renovation-quote-review',
     icon: '🏗️',
-    name: '装修报价审核七步法',
-    description: '拿到装修公司的报价单后，AI 按七个步骤逐项审核：材料品牌、工艺标准、面积计算、漏项检测、单价合理性、付款节点、违约责任。每一步都有明确的通过标准。',
+    name: '装修报价核对七步样本',
+    description: '把装修报价核对拆成七个待执行步骤：材料规格、工艺说明、面积数量、漏项、价格依据、付款节点和责任边界。这里展示任务结构，不会自动审核报价单。',
     useCase: '适合正在对比报价单的业主，或者帮客户审核报价的独立设计师。',
     totalMinutes: 22,
     steps: [
@@ -44,7 +44,7 @@ const templates: MethodologyTemplate[] = [
     id: 'content-strategy-ai',
     icon: '✍️',
     name: '一人公司内容策略工作流',
-    description: '帮一人公司的创始人系统性地挖掘内容选题、设计内容结构、制定发布节奏。不是AI替你写——是AI帮你理清"你该写什么、怎么写、什么时候发"。',
+    description: '把内容选题、结构、发布节奏和复盘指标拆成一组可执行任务，适合作为人与 AI 继续协作的起点。',
     useCase: '适合独立咨询师、设计师、开发者等一人公司，需要持续输出内容但不知道从哪里开始。',
     totalMinutes: 35,
     steps: [
@@ -75,8 +75,8 @@ const templates: MethodologyTemplate[] = [
   {
     id: 'ai-agent-design',
     icon: '🤖',
-    name: 'AI Agent 设计蓝图',
-    description: '帮传统行业从业者把"我想用 AI 做什么"转化为可落地的 Agent 设计方案：定义输入输出、设计步骤流程、明确权限边界、设定验收标准。',
+    name: 'AI Agent 设计蓝图样本',
+    description: '把“我想用 AI 做什么”拆成输入输出、步骤流程、权限边界和验收标准，形成一份仍需用真实样本测试的设计草案。',
     useCase: '适合想做 AI Agent 但不知道从哪里开始的传统行业老板或团队负责人。',
     totalMinutes: 40,
     steps: [
@@ -139,7 +139,7 @@ export default function TaskPlannerPage() {
         estimateSeconds: s.estimateMinutes * 60,
       })),
       exportedAt: new Date().toISOString(),
-      source: 'ZenoAI Task Planner',
+      source: 'ZenoAI Workflow Planner',
     }
     const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' })
     const url = URL.createObjectURL(blob)
@@ -161,11 +161,11 @@ export default function TaskPlannerPage() {
       {/* 页头 */}
       <div className="mb-10">
         <h1 className="text-2xl sm:text-3xl font-bold text-ink mb-3">
-          AI Agent 任务规划器
+          工作流任务拆解器
         </h1>
         <p className="text-ink-muted leading-relaxed max-w-2xl">
-          选择一个方法论模板，看到 AI 如何把你的专业知识拆成可执行的步骤。
-          每个步骤都有明确的完成标准和时间估算——这就是 AI Agent 的工作方式。
+          选择一个预设方法模板，查看专业工作可以怎样拆成可执行、可检查的步骤。
+          当前版本不调用模型，也不会替你完成任务；时间只是模板预估，需要按真实情况调整。
         </p>
       </div>
 
@@ -281,7 +281,7 @@ export default function TaskPlannerPage() {
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
             </svg>
-            已导出！可导入到 ZoroCoding 等 AI Agent 工具中执行
+            已导出任务文件
           </span>
         )}
       </div>
@@ -289,11 +289,11 @@ export default function TaskPlannerPage() {
       {/* CTA */}
       <div className="bg-soft border border-border/30 rounded-xl p-6 sm:p-8 text-center">
         <h3 className="text-lg font-bold text-ink mb-2">
-          想把你自己的方法论做成这样的 AI Agent？
+          想把自己的方法整理成可测试的工作流？
         </h3>
         <p className="text-ink-muted text-sm leading-relaxed max-w-lg mx-auto mb-5">
-          我帮传统行业从业者把隐性的专业知识，编码成 AI 可以忠实执行的结构化工作流——
-          让你的方法论不再只存在于你的脑子里，而是可以被复制、被交付、被验证。
+          项目会从真实任务、输入样本和合格输出开始，把隐性经验整理成结构化工作流，
+          再通过人工复核和样本测试判断哪些步骤适合交给 AI。
         </p>
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
           <a

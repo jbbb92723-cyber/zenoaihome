@@ -18,9 +18,9 @@ type JudgmentSample = {
 }
 
 export const metadata: Metadata = {
-  title: '判断样张库：从生活目标到报价合同追问',
+  title: '方法示例库：从生活目标到报价合同追问',
   description:
-    'ZenoAIHome 判断样张库。用脱敏样张展示如何把生活方式、美学取舍、空间方案、预算边界、报价合同和交付风险放在一起判断。',
+    'ZenoAIHome 方法示例库。用明确标注的演示材料展示如何把生活方式、空间方案、预算边界、报价合同和交付风险放在一起判断。',
   alternates: {
     canonical: 'https://zenoaihome.com/cases',
   },
@@ -43,8 +43,8 @@ const judgmentSamples: JudgmentSample[] = [
       '哪些需求可以后置，哪些必须在水电和柜体阶段一次想清？',
     ],
     articleSlugs: ['jia-bu-shi-yangban-jian', 'article-01-01', 'article-01-02'],
-    tool: { label: '先做 AI 居住诊断', href: '/living-diagnosis' },
-    service: { label: '继续做居住诊断', href: '/living-diagnosis' },
+    tool: { label: '先做居住需求自检', href: '/living-diagnosis' },
+    service: { label: '继续做居住需求自检', href: '/living-diagnosis' },
   },
   {
     code: 'Sample 02',
@@ -93,7 +93,7 @@ export default function CasesPage() {
         data={{
           '@context': 'https://schema.org',
           '@type': 'CollectionPage',
-          name: '判断样张库',
+          name: '方法示例库',
           url: 'https://zenoaihome.com/cases',
           description: metadata.description,
           inLanguage: 'zh-CN',
@@ -105,15 +105,15 @@ export default function CasesPage() {
           <div className="absolute inset-0 bg-[linear-gradient(120deg,rgba(244,241,232,0.96),rgba(244,241,232,0.78)),radial-gradient(circle_at_82%_18%,rgba(222,210,190,0.3),transparent_34%)]" aria-hidden />
           <Container size="layout" className="relative py-16 sm:py-20">
             <div className="max-w-4xl">
-              <p className="system-label">Judgment Samples</p>
+              <p className="system-label">Method Samples</p>
               <h1 className="mt-4 max-w-4xl text-[2.35rem] font-semibold leading-tight tracking-tight text-ink sm:text-6xl">
                 先看判断过程，再决定怎么做。
               </h1>
               <p className="mt-6 max-w-3xl text-base leading-8 text-ink-muted sm:text-lg">
-                这里不把复杂现实讲成一句口号，也不编造客户隐私案例。样张展示的是 ZenoAIHome 的判断方式：从生活目标和美学取舍出发，一直落到预算边界、报价合同追问和下一步动作。
+                以下三份内容是方法示例，不是客户案例，也不代表已经完成外部验证。它们只展示赞诺会怎样从生活目标和空间取舍出发，逐步落到预算边界、报价合同追问和下一步动作。
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
-                <CTA href="/living-diagnosis" label="先做居住诊断" variant="primary" />
+                <CTA href="/living-diagnosis" label="先做居住需求自检" variant="primary" />
                 <CTA href="/tools/quote-check" label="已有报价，做初筛" variant="secondary" />
               </div>
             </div>
@@ -132,6 +132,9 @@ export default function CasesPage() {
                   <div className="grid gap-px bg-border lg:grid-cols-[0.42fr_0.58fr]">
                     <div className="bg-surface p-6 sm:p-8">
                       <p className="system-label">{sample.code}</p>
+                      <p className="mt-3 inline-flex border border-stone/30 bg-canvas px-2.5 py-1 text-[0.7rem] font-semibold text-stone">
+                        方法示例 · 非客户案例
+                      </p>
                       <h2 className="mt-4 text-2xl font-semibold leading-tight tracking-tight text-ink">{sample.title}</h2>
                       <div className="mt-6 space-y-4 text-sm leading-7 text-ink-muted">
                         <div className="border border-border bg-canvas p-4">
@@ -203,10 +206,10 @@ export default function CasesPage() {
             <p className="system-label">下一步</p>
             <h2 className="mt-3 section-heading">如果你不是来看样张，而是想先解决手头问题</h2>
             <p className="mt-3 max-w-2xl text-sm leading-relaxed text-ink-muted">
-              不需要先看完所有内容。还没定方向，先做居住诊断；已经拿到报价，先做报价初筛；方案、报价、合同都复杂，再进入人工判断。
+              不需要先看完所有内容。还没定方向，先做居住需求自检；已经拿到报价，先做报价初筛；方案、报价、合同都复杂，再进入人工判断。
             </p>
             <div className="mt-5 flex flex-wrap gap-3">
-              <CTA href="/living-diagnosis" label="开始 AI 居住诊断" variant="primary" />
+              <CTA href="/living-diagnosis" label="开始居住需求自检" variant="primary" />
               <CTA href="/tools/quote-check" label="做报价初筛" variant="secondary" />
               <CTA href="/services" label="查看服务边界" variant="ghost" />
             </div>

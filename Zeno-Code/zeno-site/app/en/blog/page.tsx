@@ -8,8 +8,8 @@ import { getDictionary, getLocalizedArticles, getLocalizedCategories } from '@/l
 
 export default function EnBlogPage() {
   const t = getDictionary('en')
-  const allArticles = getLocalizedArticles('en')
-  const categories = getLocalizedCategories('en')
+  const allArticles = getLocalizedArticles('en').filter((article) => article.category !== 'Mattress')
+  const categories = getLocalizedCategories('en').filter((category) => category !== 'Mattress')
 
   const [activeCategory, setActiveCategory] = useState<string>(t.blog.allCategories)
 

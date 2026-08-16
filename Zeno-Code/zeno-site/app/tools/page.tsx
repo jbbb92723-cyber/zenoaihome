@@ -6,9 +6,9 @@ import PageHero from '@/components/ui/PageHero'
 import StructuredData from '@/components/ui/StructuredData'
 
 export const metadata: Metadata = {
-  title: '居住诊断与报价初筛工具 | ZenoAIHome',
+  title: '居住需求自检与报价初筛工具 | ZenoAIHome',
   description:
-    'ZenoAIHome 工具入口按装修决策阶段组织：先用 AI 居住诊断看清生活方式、审美取舍和空间优先级；已经拿到报价时，再用报价初筛检查材料、工艺、范围、责任和交付边界。',
+    'ZenoAIHome 工具入口按装修决策阶段组织：先用规则型居住需求自检梳理生活方式和空间优先级；拿到报价后，再用初筛检查材料、工艺、范围、责任和交付边界。',
   alternates: {
     canonical: 'https://zenoaihome.com/tools',
   },
@@ -16,11 +16,11 @@ export const metadata: Metadata = {
 
 const mainEntries = [
   {
-    title: 'AI 居住诊断',
+    title: '居住需求自检',
     href: '/living-diagnosis',
     label: '第一入口',
     desc: '还没定方案时，先看生活方式、审美取舍、家庭场景、空间优先级和预算边界。',
-    action: '开始居住诊断',
+    action: '开始自检',
   },
   {
     title: '报价初筛工具',
@@ -69,7 +69,7 @@ export default function ToolsPage() {
           {
             '@context': 'https://schema.org',
             '@type': 'CollectionPage',
-            name: '居住诊断与报价初筛工具',
+            name: '居住需求自检与报价初筛工具',
             url: 'https://zenoaihome.com/tools',
             description: '围绕装修前居住判断、报价初筛、风险词典、检查模板和项目风险库的结构化工具入口。',
             inLanguage: 'zh-CN',
@@ -86,13 +86,13 @@ export default function ToolsPage() {
       <PageHero
         label="工具 / 判断入口"
         title="先看这套家怎么住，再看报价能不能承接。"
-        subtitle="还没定方向，先做 AI 居住诊断；已经拿到报价，再做免费报价初筛。预算、计算器和验收工具只是辅助，不作为主路径。"
+        subtitle="还没定方向，先用预设问题整理居住需求；已经拿到报价，再做免费报价初筛。预算、计算器和验收工具只是辅助，不作为主路径。"
         size="content"
       />
 
       <Container size="content" className="pt-8">
         <div className="flex flex-wrap gap-3">
-          <CTA href="/living-diagnosis" label="开始 AI 居住诊断" variant="primary" />
+          <CTA href="/living-diagnosis" label="开始居住需求自检" variant="primary" />
           <CTA href="/tools/quote-check" label="已有报价，做初筛" variant="secondary" />
         </div>
       </Container>
@@ -108,9 +108,9 @@ export default function ToolsPage() {
               还没定方案，先把生活方式和空间优先级说清。
             </h2>
             <p className="mt-5 max-w-2xl text-sm leading-relaxed text-white/78">
-              居住诊断不替你选风格。它先把家庭成员、日常动线、收纳家务、陪伴独处、审美偏好和预算取舍整理成下一步判断。
+              居住需求自检不替你选风格。它通过预设问题，把家庭成员、日常动线、收纳家务、陪伴独处、审美偏好和预算取舍整理成下一步核对方向。
             </p>
-            <span className="mt-auto pt-8 text-sm font-semibold">开始居住诊断 -&gt;</span>
+            <span className="mt-auto pt-8 text-sm font-semibold">开始居住需求自检 -&gt;</span>
           </Link>
 
           <div className="grid gap-4">
@@ -134,10 +134,10 @@ export default function ToolsPage() {
           <h2 className="mt-3 text-2xl font-semibold tracking-tight text-ink">不要从工具堆里挑，按装修决策阶段走。</h2>
           <div className="mt-6 grid gap-4 md:grid-cols-4">
             {[
-              ['1. 先看生活', '用居住诊断看清审美、家庭场景和空间优先级。'],
+              ['1. 先看生活', '用居住需求自检整理审美、家庭场景和空间优先级。'],
               ['2. 再看报价', '已有报价时，用初筛找出没写清的边界。'],
               ['3. 查词典和模板', '把风险词和追问问题整理成可沟通清单。'],
-              ['4. 必要时付费判断', '材料复杂、拿不准时，进入人工审查或节点顾问。那个不确定感，是唯一需要付费的地方。'],
+              ['4. 必要时人工判断', '材料复杂、需要结合原文并明确责任时，再进入人工审查或节点顾问。'],
             ].map(([title, desc]) => (
               <div key={title} className="border border-border bg-surface p-5">
                 <h3 className="text-sm font-semibold text-ink">{title}</h3>
@@ -151,7 +151,7 @@ export default function ToolsPage() {
           <div className="mb-5 border-l-2 border-stone/40 pl-4">
             <p className="text-xs font-semibold uppercase tracking-widest text-stone">辅助工具</p>
             <p className="mt-2 text-sm leading-relaxed text-ink-muted">
-              这些页面保留给历史用户和长尾搜索，但不作为网站主路径。主线仍是：居住诊断、报价初筛、风险资料、必要时人工判断。
+              这些页面保留给历史用户和长尾搜索，但不作为网站主路径。主线仍是：居住需求自检、报价初筛、风险资料、必要时人工判断。
             </p>
           </div>
           <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
@@ -175,7 +175,7 @@ export default function ToolsPage() {
             如果还没定方案，先补生活方式、空间优先级和预算取舍；如果初筛显示高风险，先要求施工方把缺失边界补齐。仍然看不明白时，进入付费判断服务——报价审查或节点顾问，按你的阶段选。
           </p>
           <div className="mt-5 flex flex-wrap gap-3">
-            <CTA href="/living-diagnosis" label="做居住诊断" variant="primary" />
+            <CTA href="/living-diagnosis" label="做居住需求自检" variant="primary" />
             <CTA href="/renovation" label="查看付费判断服务" variant="secondary" />
           </div>
         </section>

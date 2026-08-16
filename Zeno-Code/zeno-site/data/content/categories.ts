@@ -20,7 +20,7 @@ export const primaryCategories: ContentCategory[] = [
   {
     slug: 'renovation',
     name: '装修全案判断',
-    description: '从空间方案到交付风险，17 年全链条判断——合同审查、施工标准、预算拆解、验收清单',
+    description: '从空间方案到交付风险，整理合同审查、施工标准、预算拆解与验收清单',
   },
   {
     slug: 'mattress',

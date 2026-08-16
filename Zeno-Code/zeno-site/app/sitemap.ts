@@ -27,7 +27,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/zeno-os`, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${baseUrl}/services/quote-review`, changeFrequency: 'monthly', priority: 0.7 },
     { url: `${baseUrl}/services/node-advisor`, changeFrequency: 'monthly', priority: 0.7 },
-    { url: `${baseUrl}/mattress`, changeFrequency: 'monthly', priority: 0.7 },
     { url: `${baseUrl}/notes`, changeFrequency: 'weekly', priority: 0.6 },
   ]
 
@@ -47,12 +46,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/tools/publish`, changeFrequency: 'monthly', priority: 0.5 },
   ]
 
-  const blogPages: MetadataRoute.Sitemap = articles.map((article) => ({
-    url: `${baseUrl}/blog/${article.slug}`,
-    lastModified: article.date ? new Date(article.date) : undefined,
-    changeFrequency: 'yearly' as const,
-    priority: 0.8,
-  }))
+  const blogPages: MetadataRoute.Sitemap = articles
+    .filter((article) => article.parentCategory !== 'mattress')
+    .map((article) => ({
+      url: `${baseUrl}/blog/${article.slug}`,
+      lastModified: article.date ? new Date(article.date) : undefined,
+      changeFrequency: 'yearly' as const,
+      priority: 0.8,
+    }))
 
   const enPages: MetadataRoute.Sitemap = [
     { url: `${baseUrl}/en`, changeFrequency: 'monthly', priority: 0.8 },

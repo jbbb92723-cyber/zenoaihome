@@ -3,9 +3,9 @@ import LivingDiagnosisClient from '@/components/features/living-diagnosis/Living
 import StructuredData from '@/components/ui/StructuredData'
 
 export const metadata: Metadata = {
-  title: 'AI 居住诊断｜装修前先看清你真正想怎样生活',
+  title: '居住需求自检｜装修前先看清你真正想怎样生活',
   description:
-    'ZenoAIHome 的 AI 居住诊断帮助自我成长型家庭在装修前梳理生活方式、空间秩序、审美偏好、预算取舍和签约风险。',
+    '通过预设问题和规则，梳理生活方式、空间秩序、审美偏好、预算取舍和签约风险，形成下一步核对清单。',
   alternates: {
     canonical: 'https://zenoaihome.com/living-diagnosis',
   },
@@ -18,7 +18,7 @@ export default function LivingDiagnosisPage() {
         data={{
           '@context': 'https://schema.org',
           '@type': 'WebPage',
-          name: 'AI 居住诊断',
+          name: '居住需求自检',
           url: 'https://zenoaihome.com/living-diagnosis',
           description: '装修前先看清真实生活方式、空间秩序、预算取舍和签约风险。',
           inLanguage: 'zh-CN',

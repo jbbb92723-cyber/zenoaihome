@@ -4,22 +4,22 @@ import CTA from '@/components/ui/CTA'
 import StructuredData from '@/components/ui/StructuredData'
 
 export const metadata: Metadata = {
-  title: '施工全程节点顾问｜¥2,000起，每个关键节点帮你看一眼',
+  title: '施工节点顾问｜¥2,000起，按约定节点整理可见疑点',
   description:
-    '签完合同进入施工？每个关键节点拍照发给我，告诉你该查什么、照片里漏了什么、下一步注意什么。17年经验，第一个节点不满意退款。',
+    '进入施工后，在约定的关键节点提交照片和材料，获得拍摄清单、疑点整理与现场追问建议。远程判断不替代现场监理或工程验收。',
   alternates: {
     canonical: 'https://zenoaihome.com/services/node-advisor',
   },
 }
 
 const nodes = [
-  { name: '水电验收', risk: '走线对不对、管卡间距够不够、强弱电距离、点位数量和位置——签了之后改一个点位就是一笔钱' },
-  { name: '防水验收', risk: '刷了几遍、厚度够不够、阴角处理、闭水试验——住进去漏水，修一次就是大几千' },
-  { name: '木工验收', risk: '吊顶龙骨间距、石膏板接缝处理、柜体安装牢固度——歪了裂了，后面全受影响' },
-  { name: '贴砖验收', risk: '空鼓率、平整度、缝隙均匀度、坡度——空鼓的砖早晚要掉' },
-  { name: '油漆验收', risk: '基层处理、遍数、平整度、阴阳角——刷完看不出来，住半年全出来' },
-  { name: '安装验收', risk: '橱柜、门、卫浴、开关面板——安装阶段最容易被糊弄，因为业主累了' },
-  { name: '竣工验收', risk: '整体观感、使用功能、遗留问题清单、尾款支付判断——最后一关，也是最容易被"差不多就行"糊过去的一关' },
+  { name: '水电验收', risk: '核对走向、固定、强弱电间距、点位数量和位置；尺寸与性能仍需现场测量。' },
+  { name: '防水验收', risk: '核对施工范围、阴角处理、材料记录和闭水安排；厚度与渗漏判断需要现场条件或仪器。' },
+  { name: '木工验收', risk: '核对龙骨、接缝和柜体安装的可见状态，并记录需要现场复尺或加固确认的位置。' },
+  { name: '贴砖验收', risk: '核对平整度、缝隙、坡向和可见缺陷；空鼓等项目需要现场敲检或仪器确认。' },
+  { name: '油漆验收', risk: '核对基层记录、施工遍数、平整度和阴阳角，并区分照片可见项与现场光线下才能确认的部分。' },
+  { name: '安装验收', risk: '按橱柜、门、卫浴和开关面板逐项核对安装状态、使用功能和待整改记录。' },
+  { name: '竣工验收', risk: '整理整体观感、使用功能、遗留问题和尾款前待确认项；最终验收由合同责任方现场完成。' },
 ]
 
 const tiers = [
@@ -39,39 +39,18 @@ const tiers = [
     badge: '推荐',
   },
   {
-    name: '全流程版',
+    name: '扩展节点版',
     price: '¥8,000',
     nodes: '10+ 节点',
     includes: ['标准7节点 + 拆除、砌墙、定制安装等额外节点'],
-    bestFor: '大户型或复杂改造，节点多、不想漏掉任何一步',
+    bestFor: '大户型或复杂改造，需要在标准范围外增加约定节点',
   },
 ]
 
 const guaranteeItems = [
-  '第一个节点做完后，你觉得没用——后续所有节点全额退款',
-  '不是"不满意退差价"，是"全额退还没做的节点"',
-  '试一个节点，再决定要不要继续。零压力',
-]
-
-const comparison = [
-  {
-    label: '不找人盯',
-    items: [
-      '自己去工地不知道该看什么，拍照也不知道拍哪里',
-      '施工方说"按标准做的"——但你不知道标准是什么',
-      '水电封了、防水刷了，只能相信对方说的',
-      '竣工验收走马观花，住进去才发现问题——已经晚了',
-    ],
-  },
-  {
-    label: '花 ¥2,000 起，每个节点有人帮你看',
-    items: [
-      '每个节点去工地之前：知道该拍什么角度、问什么问题',
-      '拍照发来之后：17年经验判断你照片里有没有疑点',
-      '施工方知道你"有内行在看"——做事更认真',
-      '竣工验收有清单对照，不是"看着差不多就行"',
-    ],
-  },
+  '第一个节点完成后，可以决定是否继续后续节点',
+  '不继续时，未完成节点按服务确认单约定退款',
+  '已经完成的节点、材料范围和退款算法会在开始前写清楚',
 ]
 
 const notForItems = [
@@ -83,23 +62,23 @@ const notForItems = [
 const faqs = [
   {
     q: '你不去现场，怎么判断？',
-    a: '17年工地经验告诉我，大部分施工问题不需要到现场才能判断。水电走线对不对——看照片里的走向、管卡间距、强弱电距离就知道。防水刷了几遍——看厚度、颜色、阴角处理就知道。关键是知道看什么，不是站在哪里。',
+    a: '照片可以帮助识别走向、间距、收口和表面状态中的部分疑点，但无法排除照片之外、隐蔽位置或需要仪器检测的问题。我会说明照片能判断什么、还缺什么，以及哪些情况必须找现场监理或专业人员。',
   },
   {
     q: '节点是怎么定义的？什么时候该找你？',
-    a: '每个节点施工方说"可以验收了"的时候——你拍照发我，我告诉你该查什么。不是每天找你，是每个关键节点找一次。你不需要记住所有节点——加微信后我会提醒你。',
+    a: '开始前会按施工计划列出约定节点和材料要求。施工方通知可以验收时，你需要主动确认时间并按清单拍摄；我再基于收到的材料整理可见疑点和现场追问。',
   },
   {
     q: '施工方愿意配合拍照吗？',
-    a: '大部分愿意。你只需要说"我有个朋友做装修的，帮我看看"——这句话就够了。你的身份从"不懂的业主"变成"有内行在看的业主"，施工方会更认真。',
+    a: '这取决于你的合同约定和现场沟通。开始前建议先确认关键节点的拍照、验收和整改记录方式；不建议隐瞒顾问身份或用模糊关系施压。',
   },
   {
     q: '和 ¥2,500 报价审核有什么区别？',
-    a: '审核是签合同前一次性帮你审报价单。节点顾问是签了合同之后施工中的持续陪伴。通常先做审核（确保合同没坑），再做节点顾问（确保施工不走偏）。两个产品互补。',
+    a: '报价审核发生在签约前，重点是报价与合同里的范围、计量和责任；节点顾问发生在施工中，重点是拍摄清单、可见疑点和现场追问。两项服务都不能保证项目没有问题。',
   },
   {
     q: '如果照片看不出问题，实际有问题呢？',
-    a: '我会告诉你"这个角度看不到XX，去工地的时候重点看XX，拍下来发我"。我帮你缩小风险区域，但最终检查需要你在现场——这是远程顾问的边界。我有信心：我让你看的地方，就是最容易出问题的地方。',
+    a: '我会明确告诉你哪些位置当前看不到，并补充拍摄或现场核对要求。远程顾问只能基于收到的材料提出疑点，最终检查仍需要你、施工方和必要的现场专业人员完成。',
   },
   {
     q: '节点之间可以加吗？比如先买3节点，中间觉得不够再加？',
@@ -115,9 +94,9 @@ export default function NodeAdvisorPage() {
           {
             '@context': 'https://schema.org',
             '@type': 'Service',
-            name: '施工全程节点顾问',
+            name: '施工节点顾问',
             description:
-              '每个施工关键节点拍照发给赞诺，17年经验告诉您该查什么、照片里漏了什么、下一步注意什么。第一个节点不满意退款。',
+              '在约定的施工关键节点提交照片和材料，获得拍摄清单、可见疑点整理与现场追问建议。远程判断不替代现场监理或工程验收。',
             provider: { '@type': 'Person', name: 'Zeno' },
             offers: {
               '@type': 'AggregateOffer',
@@ -139,10 +118,10 @@ export default function NodeAdvisorPage() {
             Zeno Milestone Advisor · 进阶服务
           </p>
           <h1 className="editorial-display mt-5 max-w-4xl text-[2.2rem] leading-[1.12] text-ink sm:text-[3.2rem]">
-            签了合同只是开始。三个月施工，每一个节点都可能走偏——有人帮你看一眼，就不一样。
+            签了合同只是开始。关键节点到来前，先知道该拍什么、问什么。
           </h1>
           <p className="mt-6 max-w-2xl text-base leading-8 text-ink-muted sm:text-lg">
-            你不用每天盯着工地。但水电、防水、贴砖、竣工——这几个节点，差一步就是差一整个工期。每个节点你拍照发给我，17年经验告诉你：该查什么，照片里可能漏了什么，下一步该注意什么。
+            在水电、防水、贴砖和竣工等约定节点，你提交照片与现场信息。我会整理可见疑点、缺失材料和下一步追问，同时明确远程照片不能判断的部分。
           </p>
 
           <div className="mt-6 flex items-baseline gap-3">
@@ -152,10 +131,10 @@ export default function NodeAdvisorPage() {
 
           <div className="mt-3 border-l-2 border-stone pl-4">
             <p className="text-sm font-semibold text-stone">
-              第一个节点不满意，后续节点全额退款。
+              第一个节点完成后再决定是否继续；未完成节点按服务确认单约定退款。
             </p>
             <p className="mt-1 text-xs text-ink-faint">
-              试一个节点——你觉得有用，继续。觉得没用，止损。零压力。
+              退款范围和已经完成的节点如何计算，会在开始前的服务确认单中写清楚。
             </p>
           </div>
 
@@ -174,7 +153,7 @@ export default function NodeAdvisorPage() {
         <section className="mb-16">
           <h2 className="text-2xl font-semibold text-ink mb-3">怎么用：每个节点，三次交互</h2>
           <p className="text-sm text-ink-muted mb-8 max-w-2xl">
-            不需要学任何装修知识。你只需要在关键节点去工地（或让施工方拍照），剩下的我来。
+            你需要在关键节点到场，或取得施工方同意后获得清晰材料。我负责说明拍摄要求、整理疑点和生成追问清单。
           </p>
 
           <div className="grid gap-5 sm:grid-cols-3">
@@ -182,17 +161,17 @@ export default function NodeAdvisorPage() {
               {
                 step: '01',
                 title: '施工方说"可以验收了"',
-                desc: '你去工地之前，我会告诉你这个节点该拍什么角度、问什么问题。你不需要记住——加了微信，我到节点会提醒你。',
+                desc: '施工方通知节点时间后，你按开始前确认的节点表与我联系。我会提供当前节点的拍摄角度和现场追问清单。',
               },
               {
                 step: '02',
                 title: '拍照发给我',
-                desc: '拍完发过来。我根据你的照片和17年经验，逐项判断：哪里没问题，哪里有疑点，哪里需要你再去确认一下。',
+                desc: '拍完发过来。我会区分可见疑点、材料不足和需要现场专业人员确认的部分。',
               },
               {
                 step: '03',
                 title: '拿到清单，去跟施工方确认',
-                desc: '你拿到一份针对你工地的检查清单。拿着清单去跟施工方对——你的底气不是"我觉得有问题"，而是"这个角度这个位置，17年经验的人说有疑点"。',
+                desc: '你会拿到一份针对当前节点的追问清单，用具体位置、照片和合同约定与施工方核对。',
               },
             ].map((item) => (
               <div key={item.step} className="border border-border bg-surface p-6">
@@ -206,9 +185,9 @@ export default function NodeAdvisorPage() {
 
         {/* ── 7个节点 ── */}
         <section className="mb-16 border border-stone bg-surface-warm p-6 sm:p-8">
-          <h2 className="text-xl font-semibold text-ink mb-2">7个关键节点，一个不落</h2>
+          <h2 className="text-xl font-semibold text-ink mb-2">7 个常见关键节点</h2>
           <p className="text-sm text-ink-muted mb-6">
-            标准版本覆盖从水电到竣工的全部关键节点。每个节点都是17年工地上真实出过事的地方。
+            标准版本覆盖从水电到竣工的 7 个常见关键节点。具体项目是否需要增减节点，会在开始前按施工范围确认。
           </p>
           <div className="grid gap-3 sm:grid-cols-2">
             {nodes.map((node) => (
@@ -264,7 +243,7 @@ export default function NodeAdvisorPage() {
         {/* ── 风险逆转 ── */}
         <section className="mb-16">
           <h2 className="text-xl font-semibold text-ink mb-6">
-            试一个节点。不满意，后续全退。
+            先完成一个节点，再决定是否继续。
           </h2>
           <div className="border-2 border-stone bg-surface p-6 sm:p-8">
             <p className="text-sm text-ink-muted mb-5">
@@ -280,36 +259,8 @@ export default function NodeAdvisorPage() {
             </ul>
           </div>
           <p className="mt-4 text-xs text-ink-faint max-w-2xl">
-            17年经验。如果第一个节点就觉得没用，说明你的施工方确实靠谱——那恭喜你，你不需要我。如果第一个节点就觉得有用，后面你会主动来找我。
+            是否继续，应以第一次真实节点的交付是否解决了你的问题为准。
           </p>
-        </section>
-
-        {/* ── 算账 ── */}
-        <section className="mb-16">
-          <h2 className="text-xl font-semibold text-ink mb-6">算一笔账</h2>
-          <div className="grid gap-5 sm:grid-cols-2">
-            {comparison.map((col) => (
-              <div key={col.label} className="border border-border bg-surface p-6">
-                <p className="text-sm font-semibold text-ink mb-4">{col.label}：</p>
-                <ul className="space-y-2">
-                  {col.items.map((item, i) => (
-                    <li key={i} className="flex gap-2 text-sm text-ink-muted">
-                      <span className="shrink-0 text-stone">·</span>
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-          <div className="mt-5 border border-stone bg-surface-warm p-5">
-            <p className="text-sm font-semibold text-ink mb-2">
-              水电重做一次 ¥3,000-8,000。防水重做一次 ¥5,000-15,000。贴砖返工 ¥2,000-5,000。
-            </p>
-            <p className="text-sm leading-relaxed text-ink-muted">
-              花 ¥2,000，每个节点有人帮你看一眼——这三个数字，帮你躲过任何一个，都划算。
-            </p>
-          </div>
         </section>
 
         {/* ── 不适合谁 ── */}
@@ -341,14 +292,14 @@ export default function NodeAdvisorPage() {
         {/* ── 最终 CTA ── */}
         <section className="border-2 border-stone bg-surface-warm p-6 sm:p-8 text-center">
           <h2 className="text-xl font-semibold text-ink mb-3">
-            你的第一个节点，我帮你免费判断一次
+            先确认你的下一个节点是否适合远程判断
           </h2>
           <p className="text-2xl font-bold text-stone tracking-wide mb-2">zanxiansheng2025</p>
           <p className="text-sm text-ink-muted mb-5 max-w-md mx-auto">
-            加微信，备注「节点顾问」。告诉我你的面积、城市、施工阶段。你在下一个节点去工地之前，我会告诉你该拍什么——你先体验一次，觉得有用再付费。
+            加微信，备注「节点顾问」。说明面积、城市、施工阶段和下一个节点；我会先确认材料条件、服务范围和对应档位。
           </p>
           <p className="text-xs text-ink-faint">
-            第一个付费节点不满意，后续全额退款。这不是促销——这是让你零风险体验"有人帮你看一眼"的差别。
+            第一个付费节点完成后如不继续，未完成节点如何退款，以开始前双方确认的服务说明为准。
           </p>
         </section>
 
@@ -359,23 +310,11 @@ export default function NodeAdvisorPage() {
             如果你还在签约前阶段，先做报价审核——确保合同没有隐藏加价项，再进入施工。
           </p>
           <p className="text-sm text-ink-muted mb-5 max-w-xl">
-            ¥2,500零加价保障审查 → 13个风险边界逐项排查 → 审过的项目被加价帮你追回。签完合同后，再用节点顾问盯施工。两个产品互补。
+            ¥2,500 报价 / 合同人工审查，会按 13 个边界逐项整理需要追问和修改的内容；它不保证零增项，也不替代法律审查。
           </p>
           <div className="flex flex-wrap gap-4">
             <CTA href="/services/quote-review" label="¥2,500 报价审核 →" variant="primary" />
             <CTA href="/tools/quote-check" label="先做免费初筛 →" variant="secondary" />
-          </div>
-        </section>
-
-        {/* ── 装完入住？选床垫 ── */}
-        <section className="mt-12 border-t border-border pt-10">
-          <h2 className="text-lg font-semibold text-ink mb-3">装完入住了？</h2>
-          <p className="text-sm text-ink-muted mb-5 max-w-xl">
-            最后一件大事——选一张能睡十几年的床垫。¥299起，内部结构保50年。17年行业经验严选，不是代购。
-          </p>
-          <div className="flex flex-wrap gap-4">
-            <CTA href="/mattress" label="¥299起 严选床垫 →" variant="primary" />
-            <CTA href="/renovation" label="看完整判断路径 →" variant="secondary" />
           </div>
         </section>
 

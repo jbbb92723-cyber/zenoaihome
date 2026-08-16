@@ -4,9 +4,9 @@ import CTA from '@/components/ui/CTA'
 import StructuredData from '@/components/ui/StructuredData'
 
 export const metadata: Metadata = {
-  title: 'Zeno OS｜装修风险判断框架',
+  title: '装修报价判断框架｜13 个签约前检查边界',
   description:
-    '17年工地经验提炼的13个装修报价风险边界。公开框架、风险词库和检查清单，帮助你在签约前看清报价、责任和付款节点。',
+    '基于长期传统行业经营与装修项目实践整理的 13 个报价检查边界，帮助你在签约前看清范围、责任和付款节点。',
   alternates: {
     canonical: 'https://zenoaihome.com/zeno-os',
   },
@@ -100,9 +100,9 @@ export default function ZenoOSPage() {
           {
             '@context': 'https://schema.org',
             '@type': 'WebPage',
-            name: 'Zeno OS — 装修风险判断框架',
+            name: '装修报价判断框架 — 13 个签约前检查边界',
             url: 'https://zenoaihome.com/zeno-os',
-            description: '17年工地经验提炼的13个装修报价风险边界，帮助业主在签约前看清报价、责任和付款节点。',
+            description: '基于长期传统行业经营与装修项目实践整理的 13 个报价检查边界，帮助业主在签约前看清范围、责任和付款节点。',
             inLanguage: 'zh-CN',
           },
         ]}
@@ -113,14 +113,14 @@ export default function ZenoOSPage() {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_15%,rgba(222,210,190,0.34),transparent_38%)]" aria-hidden />
         <Container size="content" className="relative py-14 sm:py-18">
           <div className="flex items-center gap-3 mb-5">
-            <span className="bg-ink text-paper text-xs font-bold px-3 py-1">Zeno OS</span>
+            <span className="bg-ink text-paper text-xs font-bold px-3 py-1">装修报价判断框架</span>
             <span className="text-xs font-semibold uppercase tracking-[0.2em] text-stone">公开判断框架 v1</span>
           </div>
           <h1 className="editorial-display max-w-4xl text-[2.4rem] leading-[1.1] text-ink sm:text-[3.2rem]">
             装修风险判断，不应该是一个人的秘密。
           </h1>
           <p className="mt-6 max-w-2xl text-base leading-8 text-ink-muted sm:text-lg">
-            17年工地经验提炼成13个风险边界，帮助你在签约前看清报价、责任和付款节点。
+            这些检查边界来自长期传统行业经营与装修项目实践，帮助你在签约前看清报价范围、责任和付款节点。
             你可以先自己检查；如果手里的具体材料仍有疑问，再决定是否需要人工审核。
           </p>
           <div className="mt-8 flex flex-wrap gap-4">
@@ -153,7 +153,7 @@ export default function ZenoOSPage() {
         <section className="mb-16 border border-stone bg-surface-warm p-6 sm:p-8">
           <h2 className="text-xl font-semibold text-ink mb-2">核心框架：13边界</h2>
           <p className="text-sm text-ink-muted mb-6 max-w-2xl">
-            一份装修报价单该被13把尺子量过——不是我们发明的，是17年里每一个超预算的业主用真金白银买来的教训。
+            一份装修报价单可以从 13 个边界逐项核对。它们覆盖报价、合同和现场交付中反复需要确认的范围、计量与责任问题。
           </p>
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {boundaries.map((b) => (
@@ -164,7 +164,7 @@ export default function ZenoOSPage() {
             ))}
           </div>
           <p className="mt-6 text-xs text-ink-faint">
-            这13个边界已经在生产环境中被验证。每一个都是真实工地上发生过的事。我们把它从一个人的脑子里拆出来，变成一套可复用的框架——这就是 Zeno OS。
+            当前版本是公开判断框架 v1，可用于整理问题和追问清单。它不代表每一条都已完成外部验证，也不能替代针对具体报价、合同和现场材料的专业判断。
           </p>
         </section>
 

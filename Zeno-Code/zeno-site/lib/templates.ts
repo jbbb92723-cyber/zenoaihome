@@ -218,11 +218,11 @@ export const ALL_TEMPLATES: Template[] = [
 随时把报价单发我，不着急。`,
   },
 
-  // ═══ living_diagnosis 居住诊断 ═══
+  // ═══ living_diagnosis 居住需求自检 ═══
   {
     id: 'live-01', category: 'effect', systemCategory: 'living_diagnosis',
-    title: '还不确定风格，能先做居住诊断吗？', scenario: '业主问诊断',
-    content: `完全可以。居住诊断不是帮您选风格——是先帮您理清"我到底需要什么样的家"。
+    title: '还不确定风格，能先做居住需求自检吗？', scenario: '业主问自检',
+    content: `完全可以。居住需求自检不是帮您选风格，而是先用预设问题理清"我到底需要什么样的家"。
 
 很多人在这阶段容易绕弯：刷了三个月小红书，攒了500张灵感图，但说不上来自己到底喜欢什么。
 

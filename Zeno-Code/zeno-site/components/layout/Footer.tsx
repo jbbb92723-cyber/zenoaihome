@@ -30,12 +30,12 @@ export default function Footer() {
             <p className="editorial-serif mt-4 max-w-[320px] text-[1.55rem] leading-[1.28] text-ink">
               {isEn
                 ? 'A personal record of traditional business, AI practice, and solo work.'
-                : '从传统行业走进 AI，记录真实实践，也记录自己怎样被重新组织。'}
+                : '人先判断，AI 负责质疑与放大，真实结果决定下一版。'}
             </p>
             <p className="mt-4 max-w-[300px] text-sm leading-7 text-ink-muted">
               {isEn
                 ? 'Writing / AI practice / tools / projects / community'
-                : '公开写作 · AI实践 · 免费工具 · 项目合作 · 星火者'}
+                : '公开实践 · 经验资产化 · 装修判断 · 项目合作 · 星火者'}
             </p>
           </div>
 
@@ -54,6 +54,12 @@ export default function Footer() {
                   {link.label}
                 </Link>
               ))}
+              <Link
+                href={isEn ? '/en/services' : '/services'}
+                className="text-[0.8125rem] font-semibold text-stone transition-colors hover:text-ink"
+              >
+                {isEn ? 'Work together' : '项目合作'}
+              </Link>
             </nav>
           </div>
 

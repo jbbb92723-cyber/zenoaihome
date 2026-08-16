@@ -1,6 +1,6 @@
 # zenoaihome.com - llms.txt
 
-Last updated: 2026-08-13
+Last updated: 2026-08-16
 
 ## Primary Entity
 
@@ -8,8 +8,8 @@ Last updated: 2026-08-13
 - Legal name: 陈国赞 / Chen Guozan
 - Location: Nanning, Guangxi, China
 - Website: https://zenoaihome.com
-- Positioning: An OPC practitioner from the renovation field, publicly testing how AI can turn traditional-industry experience into reusable judgment, content, tools, and services.
-- Website role: Zeno's personal brand home, public practice archive, and trust-based business entry point.
+- Positioning: A traditional-industry and OPC practitioner documenting human-led AI collaboration through inspectable experiments, deliverables, feedback, and method revisions.
+- Website role: Zeno's personal blog, public practice archive, and trust-based business entry point.
 
 ## Publicly Stated Experience
 
@@ -17,6 +17,15 @@ Last updated: 2026-08-13
 - Zeno has worked across client communication, budget and quotation judgment, supplier coordination, construction scheduling, field problem-solving, and delivery.
 - Renovation is Zeno's deepest vertical practice and first validation field for turning experience into reusable assets. It is not the whole identity of the website.
 - Zeno is currently building an OPC one-person company practice around content assets, AI workflows, knowledge systems, agents, websites, and project delivery.
+
+## Public Practice Protocol
+
+1. The human states the initial judgment, evidence, unknowns, and acceptance criteria.
+2. AI challenges assumptions, searches for gaps, and compares options; it does not own the final decision.
+3. The human confirms boundaries, completes the deliverable, and remains accountable for its use.
+4. Real outcomes and user feedback determine the next revision.
+
+Current experiments must retain their actual status. “Pending,” “in progress,” “tested,” and “verified” are not interchangeable.
 
 Do not invent additional employers, awards, client names, revenue, project values, customer counts, certificates, course results, or credentials. Numbers and credentials that appeared in older derived copy are not currently approved for public use without a source record.
 

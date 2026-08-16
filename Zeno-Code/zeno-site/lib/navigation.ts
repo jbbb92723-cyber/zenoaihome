@@ -33,11 +33,6 @@ export interface PrimaryNavItem {
 
 export const primaryNav: PrimaryNavItem[] = [
   {
-    key: 'home',
-    zh: { label: '首页', href: '/' },
-    en: { label: 'Home', href: '/en' },
-  },
-  {
     key: 'blog',
     zh: { label: '公开实践', href: '/blog' },
     en: { label: 'Public practice', href: '/en/blog' },
@@ -53,14 +48,22 @@ export const primaryNav: PrimaryNavItem[] = [
           { key: 'notes', zh: { label: '碎片笔记', href: '/notes', desc: '比文章短，比动态重' }, en: { label: 'Notes', href: '/en/notes' } },
         ],
       },
+    ],
+  },
+  {
+    key: 'experience',
+    zh: { label: '经验变成系统', href: '/opc-knowledge' },
+    en: { label: 'Experience systems', href: '/en/blog' },
+    groups: [
       {
-        key: 'practice',
-        zh: { label: '长期实践', desc: '用真实行业和项目检验 AI 是否有用。' },
-        en: { label: 'Practice', desc: 'Testing AI against real work.' },
+        key: 'experience-practice',
+        zh: { label: '从一个真实任务开始', desc: '先看过程和证据，再决定是否需要工具或项目合作。' },
+        en: { label: 'Start with real work', desc: 'See the process and evidence before choosing a tool or project.' },
         items: [
-          { key: 'knowledge', zh: { label: '知识体系', href: '/knowledge', desc: '见自己、见天地、见众生' }, en: { label: 'Knowledge map', href: '/en/blog' } },
-          { key: 'cases', zh: { label: '项目与判断样张', href: '/cases', desc: '看具体过程和交付颗粒度' }, en: { label: 'Cases', href: '/en/blog' } },
-          { key: 'resources', zh: { label: '资料库', href: '/resources', desc: '模板、规则、清单与可复用资料' }, en: { label: 'Resources', href: '/en/tools' } },
+          { key: 'experience-home', zh: { label: '经验资产化实践', href: '/opc-knowledge', desc: '问题、判断、最小交付与反馈回流' }, en: { label: 'Experience practice', href: '/en/blog' } },
+          { key: 'cases', zh: { label: '方法示例与实践档案', href: '/cases', desc: '区分演示样张与真实使用结果' }, en: { label: 'Practice records', href: '/en/blog' } },
+          { key: 'task-planner', zh: { label: '工作流任务拆解器', href: '/ai-tools/task-planner', desc: '查看预设任务结构和验收步骤' }, en: { label: 'Workflow task breakdown', href: '/en/tools' } },
+          { key: 'ai-tools', zh: { label: '全部公开工具', href: '/ai-tools', desc: '查看实际能力、适用场景与边界' }, en: { label: 'Public tools', href: '/en/tools' } },
         ],
       },
     ],
@@ -75,47 +78,10 @@ export const primaryNav: PrimaryNavItem[] = [
         zh: { label: '装修判断路径', desc: '先自己看清楚，仍然拿不准时再进入具体服务。' },
         en: { label: 'Renovation judgment', desc: 'Start with self-serve tools, then bring a specific question.' },
         items: [
-          { key: 'renovation-home', zh: { label: '装修视野', href: '/renovation', desc: '17 年现场经验整理出的判断路径' }, en: { label: 'Renovation practice', href: '/en/tools' } },
-          { key: 'renovation-tools', zh: { label: '免费判断工具', href: '/tools', desc: '居住诊断、报价初筛和检查工具' }, en: { label: 'Free tools', href: '/en/tools' } },
+          { key: 'renovation-home', zh: { label: '装修视野', href: '/renovation', desc: '传统行业与装修实践整理出的判断路径' }, en: { label: 'Renovation practice', href: '/en/tools' } },
+          { key: 'renovation-tools', zh: { label: '免费判断工具', href: '/tools', desc: '居住需求自检、报价初筛和检查工具' }, en: { label: 'Free tools', href: '/en/tools' } },
           { key: 'renovation-resources', zh: { label: '签约前资料库', href: '/resources', desc: '风险词典、规则库和检查模板' }, en: { label: 'Resources', href: '/en/tools' } },
           { key: 'renovation-review', zh: { label: '报价 / 合同人工审查', href: '/services/quote-review', desc: '已有具体材料时，看清交付和价格' }, en: { label: 'Quote review', href: '/en/services' } },
-        ],
-      },
-    ],
-  },
-  {
-    key: 'ai-tools',
-    zh: { label: 'AI 工具', href: '/ai-tools' },
-    en: { label: 'AI Tools', href: '/en/tools' },
-    groups: [
-      {
-        key: 'free-tools',
-        zh: { label: '先自己试试', desc: '免费使用，不要求先购买服务。' },
-        en: { label: 'Try first', desc: 'Free tools, no purchase required.' },
-        items: [
-          { key: 'opc-diagnosis', zh: { label: '一人公司诊断', href: '/ai-tools/opc-diagnosis', desc: '看看产品、获客和交付卡在哪一步' }, en: { label: 'Solo business check', href: '/en/tools' } },
-          { key: 'content-strategy', zh: { label: '内容策略生成', href: '/ai-tools/content-strategy', desc: '从行业和经验里找到值得写的方向' }, en: { label: 'Content strategy', href: '/en/tools' } },
-          { key: 'task-planner', zh: { label: 'AI Agent 任务规划器', href: '/ai-tools/task-planner', desc: '把专业任务拆成可执行步骤' }, en: { label: 'Agent task planner', href: '/en/tools' } },
-          { key: 'renovation-tools', zh: { label: '装修判断工具', href: '/tools', desc: '17 年经验做成的垂直工具组' }, en: { label: 'Renovation tools', href: '/en/tools' } },
-        ],
-      },
-    ],
-  },
-  {
-    key: 'services',
-    zh: { label: '项目合作', href: '/services' },
-    en: { label: 'Work together', href: '/en/services' },
-    groups: [
-      {
-        key: 'services-group',
-        zh: { label: 'AI 落地服务', desc: '先说真实问题，再确认范围、交付物和验收边界。' },
-        en: { label: 'AI delivery', desc: 'Start with a real problem and a clear scope.' },
-        items: [
-          { key: 'training', zh: { label: 'AI 实战工作坊', href: '/training', desc: '面向企业团队的现场实操' }, en: { label: 'AI workshop', href: '/en/services' } },
-          { key: 'workflow', zh: { label: '流程自动化', href: '/services#ai-workflow', desc: '把重复工作搭成可执行流程' }, en: { label: 'AI workflows', href: '/en/services' } },
-          { key: 'knowledge-base', zh: { label: '企业知识库', href: '/services#knowledge-base', desc: '让分散经验变成可调用知识' }, en: { label: 'Knowledge base', href: '/en/services' } },
-          { key: 'agent', zh: { label: '智能体开发', href: '/services#ai-agent', desc: '围绕明确任务设计、测试和交接' }, en: { label: 'AI agents', href: '/en/services' } },
-          { key: 'website', zh: { label: '网站与内容系统', href: '/services#website', desc: '从信息架构到上线交接' }, en: { label: 'Website systems', href: '/en/services' } },
         ],
       },
     ],
@@ -124,34 +90,11 @@ export const primaryNav: PrimaryNavItem[] = [
     key: 'community',
     zh: { label: '星火者', href: '/community' },
     en: { label: 'Spark', href: '/en/blog' },
-    groups: [
-      {
-        key: 'spark-info',
-        zh: { label: 'OPC 协作共同体', desc: '分享真实项目，带着上下文连接。' },
-        en: { label: 'OPC community', desc: 'Real projects and contextual connections.' },
-        items: [
-          { key: 'community-intro', zh: { label: '共同体说明', href: '/community', desc: '星火者是什么、怎么运转、适合谁' }, en: { label: 'About Spark', href: '/en/blog' } },
-          { key: 'community-join', zh: { label: '申请加入', href: '/community#join', desc: '先判断彼此是否适合' }, en: { label: 'Join', href: '/en/blog' } },
-          { key: 'opc-knowledge', zh: { label: 'OPC 知识体系', href: '/opc-knowledge', desc: '从理论、工具到行动框架' }, en: { label: 'OPC knowledge', href: '/en/blog' } },
-        ],
-      },
-    ],
   },
   {
     key: 'about',
     zh: { label: '关于', href: '/about' },
     en: { label: 'About', href: '/en/about' },
-    groups: [
-      {
-        key: 'about-group',
-        zh: { label: '认识赞诺', desc: '从传统行业到 AI 实践。' },
-        en: { label: 'About Zeno', desc: 'From traditional business to AI practice.' },
-        items: [
-          { key: 'about-story', zh: { label: '我的经历', href: '/about', desc: '经营、项目、AI 与一人公司' }, en: { label: 'My story', href: '/en/about' } },
-          { key: 'contact', zh: { label: '联系我', href: '/contact', desc: '请说明身份、问题和希望交流的方向' }, en: { label: 'Contact', href: '/en/about' } },
-        ],
-      },
-    ],
   },
 ]
 

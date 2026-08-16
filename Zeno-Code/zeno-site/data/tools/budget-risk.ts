@@ -143,7 +143,7 @@ export const riskSummaries: Record<RiskKey, RiskSummary> = {
     description: '如果你现在主要靠网图、风格词或短期展示感做选择，住进去后的摩擦往往会在后面慢慢显现。',
     whyItMatters: '需求顺序一旦错了，后面的预算、材料和方案讨论都会被带偏。',
     firstStep: '先把家庭成员、作息、收纳、做饭、办公这些真实需求写出来，再回头看方案。',
-    resource: { label: '先做 AI 居住诊断', href: '/living-diagnosis' },
+    resource: { label: '先做居住需求自检', href: '/living-diagnosis' },
     article: { label: '先看家不是样板间', href: '/blog/02-jia-bu-shi-yangban-jian' },
     service: { label: '联系赞诺说明情况', href: '/contact' },
   },

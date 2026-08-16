@@ -5,9 +5,9 @@ import CTA from '@/components/ui/CTA'
 import StructuredData from '@/components/ui/StructuredData'
 
 export const metadata: Metadata = {
-  title: '装修视野｜17 年工地里长出来的判断方法',
+  title: '装修视野｜从传统行业与项目实践中整理判断方法',
   description:
-    '不是装修教程——是怎么看报价、怎么判断施工质量、怎么在入住前避开大多数人都踩过的坑。免费工具自己用，拿不准的来聊。',
+    '从长期传统行业经营与装修项目实践中整理报价、合同和施工节点的核对方法。先用免费工具整理问题，需要结合材料时再进入人工判断。',
   alternates: {
     canonical: 'https://zenoaihome.com/renovation',
   },
@@ -17,25 +17,25 @@ export const metadata: Metadata = {
 const method = [
   {
     title: '看报价',
-    desc: '不是比价格高低——是看哪些项目没写清楚。\"按实结算\"四个字下面该有半页纸的规则，没写就意味着后面要加钱。',
+    desc: '不只比价格高低，还要看哪些项目没写清楚。遇到“按实结算”或“暂估”，继续确认计量方式、单价、上限和变更流程。',
     href: '/tools/quote-check',
   },
   {
     title: '看施工',
-    desc: '水电走线对不对、防水刷了几遍、贴砖空鼓率——不是你盯着工人干活，是知道在哪个节点该看什么。',
+    desc: '水电、防水、贴砖等节点的核对条件不同。先明确该看什么、该拍什么，以及哪些问题必须由现场人员或仪器确认。',
     href: '/blog?category=renovation',
   },
   {
     title: '看合同',
-    desc: '口头承诺没写进合同等于没说过。付款节点不是财务细节——是你手里的筹码什么时候用完。',
+    desc: '把重要口头说明写回报价或合同，并确认付款对应的工作内容、验收条件、变更流程和双方责任。',
     href: '/risk-dictionary',
   },
 ]
 
 /* ── 免费工具 ── */
 const tools = [
-  { title: 'AI 居住诊断', desc: '还没定方案？先把生活方式和优先级捋清楚。', href: '/living-diagnosis', cta: '开始诊断' },
-  { title: '报价初筛', desc: '手里有报价单？2 分钟扫一眼有没有明显雷。', href: '/tools/quote-check', cta: '免费初筛' },
+  { title: '居住需求自检', desc: '还没定方案时，用预设问题整理生活方式和优先级。', href: '/living-diagnosis', cta: '开始自检' },
+  { title: '报价初筛', desc: '手里有报价单时，按规则标记还没有写清的边界。', href: '/tools/quote-check', cta: '免费初筛' },
   { title: '风险词典', desc: '把\"按实结算\"\"品牌型号缺失\"这些模糊词拆成人话。', href: '/risk-dictionary', cta: '查词典' },
   { title: '检查清单', desc: '报价、合同、付款、水电——拿到材料逐项对照。', href: '/checklists', cta: '看清单' },
 ]
@@ -57,7 +57,7 @@ export default function RenovationPage() {
           '@type': 'CollectionPage',
           name: '装修视野',
           url: 'https://zenoaihome.com/renovation',
-          description: '17 年工地经验提炼的装修判断方法。不是教程——是怎么看报价、判断施工和避开常见坑。',
+          description: '从长期传统行业经营与装修项目实践中整理的判断方法，帮助业主看报价、问合同和核对施工节点。',
           inLanguage: 'zh-CN',
         }]}
       />
@@ -71,8 +71,7 @@ export default function RenovationPage() {
             不是教你怎么装——<br />是帮你怎么判断。
           </h1>
           <p className="mt-6 max-w-2xl text-base leading-8 text-white/70 sm:text-lg">
-            17 年工地经验。做过施工、谈过报价、处理过无数预算纠纷。不卖装修——把判断方法摊开来给你，你自己用。
-            拿不准了，再来聊。
+            截至 2026 年，我有 17 年传统行业经营与项目经验，长期涉及家居与装修实践。这里把能够公开的判断方法摊开，你可以先自己使用；拿不准时，再带着具体材料来聊。
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
             <CTA href="/tools" label="先用免费工具 →" variant="primary" />
@@ -88,7 +87,7 @@ export default function RenovationPage() {
         <section>
           <p className="text-sm font-semibold text-stone">装修判断三件事</p>
           <h2 className="editorial-display mt-4 text-[2.2rem] leading-[1.12] sm:text-[3rem]">
-            不在工地盯 17 年，也能知道该看哪里。
+            不必先成为行家，也能知道该从哪里开始核对。
           </h2>
           <div className="mt-10 grid gap-5 sm:grid-cols-3">
             {method.map((item) => (
@@ -127,16 +126,16 @@ export default function RenovationPage() {
           <h2 className="text-xl font-semibold text-ink mb-6">为什么我说的话可能对你有用</h2>
           <div className="grid gap-4 sm:grid-cols-3">
             <div>
-              <h3 className="text-sm font-semibold text-ink">17 年在现场</h3>
-              <p className="mt-2 text-xs leading-relaxed text-ink-muted">不是从教程里学来的。水电、防水、贴砖、竣工——每个节点都在工地盯过。知道哪里会出问题，因为见过。</p>
+              <h3 className="text-sm font-semibold text-ink">长期经营与项目实践</h3>
+              <p className="mt-2 text-xs leading-relaxed text-ink-muted">判断来自家居经营、客户沟通、报价合同和装修项目经历，不把年限本身当作结论。</p>
             </div>
             <div>
               <h3 className="text-sm font-semibold text-ink">不卖施工，不推荐工长</h3>
               <p className="mt-2 text-xs leading-relaxed text-ink-muted">我的立场和你的利益一致。只做判断——帮你看清报价和施工质量，不从中拿回扣。</p>
             </div>
             <div>
-              <h3 className="text-sm font-semibold text-ink">不是内容创作者——是实践者</h3>
-              <p className="mt-2 text-xs leading-relaxed text-ink-muted">每篇装修文章背后都是一个真实案例或一段真实经历。不写我没有验证过的东西。</p>
+              <h3 className="text-sm font-semibold text-ink">区分经验、示例与案例</h3>
+              <p className="mt-2 text-xs leading-relaxed text-ink-muted">方法示例会明确标注；只有材料、使用过程和授权边界能够核对时，才会称为真实案例。</p>
             </div>
           </div>
         </section>
