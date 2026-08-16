@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Analytics } from '@vercel/analytics/react'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 import { Noto_Sans_SC, Noto_Serif_SC } from 'next/font/google'
 import { ThemeProvider } from '@/components/layout/ThemeProvider'
 import { SessionProvider } from 'next-auth/react'
@@ -91,6 +92,7 @@ export default function RootLayout({
           </ThemeProvider>
         </SessionProvider>
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   )
