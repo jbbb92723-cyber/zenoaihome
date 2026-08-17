@@ -27,7 +27,7 @@ const notoSerif = Noto_Serif_SC({
 export const metadata: Metadata = {
   title: {
     default: '赞诺｜一个传统行业人的 AI 转型记录',
-    template: '%s · Zeno',
+    template: '%s｜赞诺',
   },
   description:
     '赞诺的个人博客与公开实践档案。记录 17 年传统行业经营与项目经验如何进入 AI、知识库、工作流、智能体、内容系统和一人公司，并公开实验、结果与方法修订。',

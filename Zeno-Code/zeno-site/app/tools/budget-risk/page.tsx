@@ -6,7 +6,7 @@ import StructuredData from '@/components/ui/StructuredData'
 import BudgetRiskQuiz from '@/components/features/tools/budget-risk/BudgetRiskQuiz'
 
 export const metadata: Metadata = {
-  title: '超预算原因自测',
+  title: '装修为什么会超预算｜原因自测',
   description:
     '用 8 个问题先分清你担心超预算，更像来自报价没说清、预算没分好、施工流程，还是需求顺序本身。',
   alternates: {
@@ -53,7 +53,7 @@ export default function BudgetRiskToolPage() {
       />
 
       <PageHero
-        label="工具"
+        label="装修预算自测"
         title="超预算原因自测"
         subtitle="如果你已经感觉钱可能失控，但说不清是报价、预算、流程还是需求顺序的问题，先用这 8 个问题把风险缩小。"
         note="结果页会告诉你先该看哪类资源、文章或服务，而不是给你一个虚假的“总分”。"

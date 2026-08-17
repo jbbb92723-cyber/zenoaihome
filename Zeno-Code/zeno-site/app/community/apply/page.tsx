@@ -10,7 +10,7 @@ import {
 } from '@/lib/domains/community/constants'
 
 export const metadata: Metadata = {
-  title: '申请加入星火者共同体｜Zeno',
+  title: '申请加入星火者共同体',
   description: '提交星火者共同体首期成员申请，查看面聊、订单和成员资格进度。',
   robots: { index: false, follow: false },
 }

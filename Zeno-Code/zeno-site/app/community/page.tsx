@@ -4,7 +4,7 @@ import Container from '@/components/ui/Container'
 import StructuredData from '@/components/ui/StructuredData'
 
 export const metadata: Metadata = {
-  title: '星火者共同体｜AI 时代 OPC 一人公司的实践与协作｜赞诺',
+  title: '星火者共同体｜AI 时代 OPC 一人公司的实践与协作',
   description: '赞诺发起、逐步由成员共同运转的申请制实践俱乐部。面向一人公司、转型创业者和独立实践者，围绕真实项目、反馈、连接与协作建立长期关系。',
   alternates: { canonical: 'https://zenoaihome.com/community' },
 }

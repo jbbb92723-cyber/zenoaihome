@@ -4,7 +4,7 @@ import CTA from '@/components/ui/CTA'
 import StructuredData from '@/components/ui/StructuredData'
 
 export const metadata: Metadata = {
-  title: '装修报价怎么检查｜签约前确认 13 项｜赞诺',
+  title: '装修报价怎么检查｜签约前确认 13 项',
   description:
     '基于长期传统行业经营与装修项目实践整理的 13 个报价检查边界，帮助你在签约前看清范围、责任和付款节点。',
   alternates: {

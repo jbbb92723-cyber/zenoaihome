@@ -7,7 +7,7 @@ import StructuredData from '@/components/ui/StructuredData'
 import { renovationProjectRisks } from '@/data/risk-control/renovation-project-risks'
 
 export const metadata: Metadata = {
-  title: '装修项目报价｜水电、防水、拆改怎么查｜赞诺',
+  title: '装修项目报价｜水电、防水、拆改怎么查',
   description:
     '按拆除、水电、防水、找平、瓷砖等施工项目，查看装修报价里应该写清什么、哪些地方容易漏项、模糊和后期增项。',
   alternates: {

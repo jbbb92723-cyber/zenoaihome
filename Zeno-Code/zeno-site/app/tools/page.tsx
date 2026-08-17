@@ -6,7 +6,7 @@ import PageHero from '@/components/ui/PageHero'
 import StructuredData from '@/components/ui/StructuredData'
 
 export const metadata: Metadata = {
-  title: '装修自检工具｜居住需求、报价、合同与施工｜赞诺',
+  title: '装修自检工具｜居住需求、报价、合同与施工',
   description:
     'ZenoAIHome 工具入口按装修决策阶段组织：先用规则型居住需求自检梳理生活方式和空间优先级；拿到报价后，再用初筛检查材料、工艺、范围、责任和交付边界。',
   alternates: {

@@ -4,7 +4,7 @@ import PageHero from '@/components/ui/PageHero'
 import Container from '@/components/ui/Container'
 
 export const metadata: Metadata = {
-  title: '联系赞诺｜项目合作、星火者与装修判断',
+  title: { absolute: '联系赞诺｜项目合作、星火者与装修判断' },
   description: '联系赞诺。适用于AI培训、工作流、企业知识库、智能体、网站开发、星火者共同体和装修判断相关沟通。',
   alternates: { canonical: 'https://zenoaihome.com/contact' },
 }

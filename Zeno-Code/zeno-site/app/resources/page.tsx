@@ -15,7 +15,7 @@ import {
 } from '@/data/risk-control/quote-risk'
 
 export const metadata: Metadata = {
-  title: '签约前资料库｜报价、合同与施工怎么查｜赞诺',
+  title: '签约前资料库｜报价、合同与施工怎么查',
   description:
     'ZenoAIHome 的签约前资料库：把报价合同风险、风险词典、检查模板、施工项目边界和追问清单组织起来，帮助业主在签装修合同前看清边界。',
   alternates: {

@@ -4,7 +4,7 @@ import StructuredData from '@/components/ui/StructuredData'
 import { buildToolStructuredData, toolSeoAssets } from '@/data/tools/toolSeoAssets'
 
 export const metadata: Metadata = {
-  title: '装修报价风险初筛工具｜看报价能不能承接方案边界',
+  title: '装修报价初筛｜找出漏项和没写清的地方',
   description:
     '填写装修报价信息，初步判断报价是否承接空间方案、材料工艺、范围边界、付款节点、验收标准和交付责任，并生成签约前追问清单。',
   alternates: {

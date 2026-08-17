@@ -5,7 +5,7 @@ import CTA from '@/components/ui/CTA'
 import StructuredData from '@/components/ui/StructuredData'
 
 export const metadata: Metadata = {
-  title: '装修报价 / 合同人工审查｜¥2,500，一份材料的逐项判断',
+  title: '装修报价与合同人工审查｜¥2,500 一次审核',
   description:
     '基于长期传统行业经营与装修项目实践，逐项审核报价与合同材料，写清待确认项、追问和修改方向。材料与范围确认后，目标 24 小时内交付。',
   alternates: {
@@ -99,7 +99,7 @@ export default function QuoteReviewPage() {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_10%,rgba(222,210,190,0.42),transparent_38%)]" aria-hidden />
         <Container size="content" className="relative py-14 sm:py-18">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-stone">
-            Zeno Quote Review · 旗舰服务
+            装修报价与合同人工审查
           </p>
           <h1 className="editorial-display mt-5 max-w-4xl text-[2.2rem] leading-[1.12] text-ink sm:text-[3.2rem]">
             签合同之前，先让一份报价被认真看一遍。

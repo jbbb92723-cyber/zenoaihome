@@ -7,7 +7,7 @@ import Container from '@/components/ui/Container'
 import { formatYuan } from '@/data/services/products'
 import OrderActions from './OrderActions'
 
-export const metadata: Metadata = { title: '订单支付 · Zeno' }
+export const metadata: Metadata = { title: '订单支付' }
 
 const STATUS_LABEL: Record<string, { label: string; color: string }> = {
   pending:               { label: '待付款', color: 'text-ink' },

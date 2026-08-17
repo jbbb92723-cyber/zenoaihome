@@ -360,9 +360,9 @@ export default function QuoteCheckClient() {
         <div className="absolute inset-0 bg-[linear-gradient(120deg,rgba(244,241,232,0.96),rgba(244,241,232,0.78)),radial-gradient(circle_at_82%_16%,rgba(222,210,190,0.3),transparent_32%)]" aria-hidden />
         <div className="relative mx-auto grid max-w-6xl gap-8 px-5 py-14 sm:px-8 lg:grid-cols-[0.62fr_0.38fr] lg:py-16">
           <div className="min-w-0">
-            <p className="system-label">Quote Boundary Check</p>
+            <p className="system-label">装修报价初筛</p>
             <h1 className="mt-4 max-w-[25rem] text-[2.35rem] font-semibold leading-tight tracking-tight text-ink sm:max-w-3xl sm:text-5xl">
-              看报价能不能承接你的方案和生活目标。
+              先看报价，找出还没写清楚的地方。
             </h1>
             <p className="mt-5 max-w-[22rem] text-base leading-relaxed text-ink-muted sm:max-w-2xl sm:text-lg">
               报价不是单独看的。它应该能承接你的空间选择、材料工艺、预算边界、付款节点、验收标准和交付责任。这个工具先帮你把没写清的地方拆出来。

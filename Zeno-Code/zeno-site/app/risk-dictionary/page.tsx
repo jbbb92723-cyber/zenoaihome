@@ -7,7 +7,7 @@ import StructuredData from '@/components/ui/StructuredData'
 import { quoteRiskRules } from '@/data/risk-control/quote-risk-rules'
 
 export const metadata: Metadata = {
-  title: '装修报价风险词典｜按实结算、暂估与漏项｜赞诺',
+  title: '装修报价风险词典｜按实结算、暂估与漏项',
   description:
     '装修报价风险词典解释按实结算、暂估、另计、材料品牌型号缺失、施工范围不清等签约前高频风险词，帮助业主看清报价边界。',
   alternates: {

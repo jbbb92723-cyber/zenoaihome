@@ -7,7 +7,7 @@ import StructuredData from '@/components/ui/StructuredData'
 import { checklistTemplates } from '@/data/risk-control/checklist-templates'
 
 export const metadata: Metadata = {
-  title: '装修检查清单｜报价、合同与付款节点｜赞诺',
+  title: '装修检查清单｜报价、合同与付款节点',
   description:
     '提供报价单初查、合同签约前检查、水电改造、老房翻新和付款节点检查模板，帮助业主在装修签字前逐项核对风险边界。',
   alternates: {

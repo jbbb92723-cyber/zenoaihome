@@ -17,7 +17,7 @@ import {
 } from '@phosphor-icons/react/dist/ssr'
 
 export const metadata: Metadata = {
-  title: '知识导航｜装修、一人公司和 AI｜赞诺',
+  title: '知识导航｜装修、一人公司和 AI',
   description:
     '整理装修、一人公司与 AI 相关的文章、工具和实践入口，帮助访客从当前问题出发，找到可阅读、可使用和仍在验证的内容。',
   alternates: {

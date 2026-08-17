@@ -121,8 +121,8 @@ export default function BudgetStructureClient() {
 
   return (
     <ToolPageShell
-      label="Budget Split"
-      title="把总预算拆成业主能看懂的几份钱"
+      label="装修预算分配"
+      title="从总预算开始，看看每一项花多少。"
       subtitle="先选你更接近简约、舒适还是精致，再输入总预算和面积。这个工具不判断报价贵不贵，只帮你看钱是不是分得清、留得住。"
       bestFor="已经有总预算，但不知道钱该怎么分的人"
       time="5-8 分钟"

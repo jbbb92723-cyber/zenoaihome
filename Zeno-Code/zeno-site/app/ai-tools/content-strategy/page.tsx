@@ -79,7 +79,7 @@ export default function ContentStrategyPage() {
       {!result ? (
         <>
           <p className="text-sm font-semibold text-stone">内容选题匹配</p>
-          <h1 className="editorial-display mt-4 text-[2.2rem] leading-[1.12] sm:text-[3rem] text-ink">输入两项信息</h1>
+          <h1 className="editorial-display mt-4 text-[2.2rem] leading-[1.12] sm:text-[3rem] text-ink">从你的行业和经验里，找到可以写的选题。</h1>
           <p className="mt-4 text-base leading-8 text-ink-muted max-w-xl">
             告诉工具你的行业和擅长的事，从预设题库中找几个可以继续核对的选题起点。
           </p>

@@ -5,7 +5,7 @@ import StructuredData from '@/components/ui/StructuredData'
 import { currentPractice, humanAiProtocol } from '@/data/practice/experiments'
 
 export const metadata: Metadata = {
-  title: '正在验证｜实践、反馈与修订｜赞诺',
+  title: '正在验证｜实践、反馈与修订',
   description: '记录赞诺正在验证的问题、使用的依据、真实反馈和方法修订。公开过程，也公开尚未成立的部分。',
   alternates: { canonical: 'https://zenoaihome.com/practice' },
 }

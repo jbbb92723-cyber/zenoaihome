@@ -4,7 +4,7 @@ import CTA from '@/components/ui/CTA'
 import StructuredData from '@/components/ui/StructuredData'
 
 export const metadata: Metadata = {
-  title: '施工节点顾问｜¥2,000起，按约定节点整理可见疑点',
+  title: '装修施工节点顾问｜¥2,000 起，按节点整理现场疑点',
   description:
     '进入施工后，在约定的关键节点提交照片和材料，获得拍摄清单、疑点整理与现场追问建议。远程判断不替代现场监理或工程验收。',
   alternates: {
@@ -115,7 +115,7 @@ export default function NodeAdvisorPage() {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(222,210,190,0.36),transparent_40%)]" aria-hidden />
         <Container size="content" className="relative py-14 sm:py-18">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-stone">
-            Zeno Milestone Advisor · 进阶服务
+            装修施工节点顾问
           </p>
           <h1 className="editorial-display mt-5 max-w-4xl text-[2.2rem] leading-[1.12] text-ink sm:text-[3.2rem]">
             签了合同只是开始。关键节点到来前，先知道该拍什么、问什么。

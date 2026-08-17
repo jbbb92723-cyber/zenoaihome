@@ -4,7 +4,7 @@ import CTA from '@/components/ui/CTA'
 import StructuredData from '@/components/ui/StructuredData'
 
 export const metadata: Metadata = {
-  title: '实用工具｜一人公司、内容、工作流与装修｜赞诺',
+  title: '实用工具｜一人公司、内容、工作流与装修',
   description:
     '四个免费公开原型：工作流任务拆解、一人公司阶段自检、内容选题匹配和装修判断工具。它们用于整理问题与形成初筛，不代替最终判断。',
   alternates: {

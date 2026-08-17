@@ -5,7 +5,7 @@ import CTA from '@/components/ui/CTA'
 import StructuredData from '@/components/ui/StructuredData'
 
 export const metadata: Metadata = {
-  title: '装修判断｜报价、合同和施工怎么检查｜赞诺',
+  title: '装修判断｜报价、合同和施工怎么检查',
   description:
     '从长期传统行业经营与装修项目实践中整理报价、合同和施工节点的核对方法。先用免费工具整理问题，需要结合材料时再进入人工判断。',
   alternates: {

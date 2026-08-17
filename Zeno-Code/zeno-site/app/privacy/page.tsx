@@ -4,7 +4,7 @@ import Container from '@/components/ui/Container'
 import PageHero from '@/components/ui/PageHero'
 
 export const metadata: Metadata = {
-  title: '隐私说明｜Zeno 赞诺',
+  title: '隐私说明',
   description: 'ZenoAIHome 对账号、服务申请、订单和站点使用数据的收集、使用、保存与删除说明。',
   alternates: { canonical: 'https://zenoaihome.com/privacy' },
 }

@@ -7,7 +7,7 @@ import SectionHeader from '@/components/ui/SectionHeader'
 import { getPublicNotes, NOTE_CATEGORIES } from '@/lib/notes'
 
 export const metadata: Metadata = {
-  title: '碎片笔记｜赞诺',
+  title: '碎片笔记',
   description:
     '记录我在装修、AI、商业、学习和长期主义中的真实思考。不是正式文章，而是正在生长中的方法论、判断和现场笔记——带着现场温度的真实输出。',
 }

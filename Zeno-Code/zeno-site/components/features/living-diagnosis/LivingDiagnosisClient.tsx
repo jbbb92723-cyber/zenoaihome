@@ -156,9 +156,9 @@ export default function LivingDiagnosisClient() {
         <div className="absolute inset-0 bg-[linear-gradient(120deg,rgba(244,241,232,0.96),rgba(244,241,232,0.78)),radial-gradient(circle_at_82%_18%,rgba(222,210,190,0.3),transparent_34%)]" aria-hidden />
         <div className="mx-auto grid max-w-7xl gap-8 px-5 py-14 sm:px-8 lg:grid-cols-[0.58fr_0.42fr] lg:px-12 lg:py-20">
           <div className="relative min-w-0">
-            <p className="system-label">Living Needs Check</p>
+            <p className="system-label">装修前需求自检</p>
             <h1 className="mt-4 max-w-[27rem] text-[2.35rem] font-semibold leading-tight tracking-tight text-ink sm:max-w-4xl sm:text-6xl">
-              先把生活判断清楚，再进入方案和报价。
+              先想清楚你要怎样的生活空间，再看方案和报价。
             </h1>
             <p className="mt-6 max-w-[42rem] text-base leading-8 text-ink-muted sm:text-lg">
               这不是风格测试。页面通过预设问题和规则，把生活方式、美学偏好、家庭场景、空间秩序、预算取舍和签约风险放在一起看，给出下一步核对方向。

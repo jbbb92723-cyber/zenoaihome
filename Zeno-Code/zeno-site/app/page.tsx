@@ -3,7 +3,7 @@ import HomePageBrandHub from '@/components/features/home/HomePageBrandHub'
 import StructuredData from '@/components/ui/StructuredData'
 
 export const metadata: Metadata = {
-  title: '赞诺｜一个传统行业人的 AI 转型记录',
+  title: { absolute: '赞诺｜一个传统行业人的 AI 转型记录' },
   description:
     '赞诺的个人博客与公开判断实践系统。记录 17 年传统行业经营与项目经验如何进入 AI、知识库、工作流、智能体、内容系统和星火者共同实践，并公开依据、结果与方法修订。',
   alternates: {

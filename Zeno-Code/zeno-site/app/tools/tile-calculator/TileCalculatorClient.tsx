@@ -54,7 +54,7 @@ export default function TileCalculatorClient() {
   }
 
   return (
-    <ToolPageShell label="Tile Calculator" title="瓷砖先估够，不要只听一句“大概够”。" subtitle="输入铺贴面积和瓷砖规格，先估算片数、箱数和损耗。结果用于和商家、工长沟通，不替代现场复尺。" bestFor="准备买砖或核对瓷砖数量的人" time="3-5 分钟" prepare={["铺贴面积", "瓷砖规格", "每箱片数"]}>
+    <ToolPageShell label="瓷砖用量计算" title="买瓷砖前，先算清要多少片、多少箱。" subtitle="输入铺贴面积和瓷砖规格，先估算片数、箱数和损耗。结果用于和商家、工长沟通，不替代现场复尺。" bestFor="准备买砖或核对瓷砖数量的人" time="3-5 分钟" prepare={["铺贴面积", "瓷砖规格", "每箱片数"]}>
       <section className="mx-auto grid max-w-6xl gap-8 px-5 py-12 sm:px-8 lg:grid-cols-[0.55fr_0.45fr]">
         <div className="border border-border bg-surface p-5 sm:p-6">
           <div className="grid gap-4 sm:grid-cols-2">

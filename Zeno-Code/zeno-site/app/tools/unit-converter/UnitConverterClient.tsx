@@ -50,7 +50,7 @@ export default function UnitConverterClient() {
   }, [mode, number, areaNumber])
 
   return (
-    <ToolPageShell label="Unit Converter" title="先把单位看懂，再看价格。" subtitle="装修报价里很多误解，来自㎡、米、延米、坪、单方混在一起。这个工具只做普通业主需要的常用换算。" bestFor="正在看报价单或材料清单的人" time="1-3 分钟" prepare={["一个数字", "对应单位"]}>
+    <ToolPageShell label="装修单位换算" title="先看单位，再看价格。" subtitle="装修报价里很多误解，来自㎡、米、延米、坪、单方混在一起。这个工具只做普通业主需要的常用换算。" bestFor="正在看报价单或材料清单的人" time="1-3 分钟" prepare={["一个数字", "对应单位"]}>
       <section className="mx-auto grid max-w-6xl gap-8 px-5 py-12 sm:px-8 lg:grid-cols-[0.5fr_0.5fr]">
         <div className="border border-border bg-surface p-5 sm:p-6">
           <p className="mb-3 text-sm font-semibold text-ink">选择你要换算的类型</p>

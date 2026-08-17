@@ -18,7 +18,7 @@ type JudgmentSample = {
 }
 
 export const metadata: Metadata = {
-  title: '我怎么分析装修问题｜方法示例｜赞诺',
+  title: '我怎么分析装修问题｜方法示例',
   description:
     'ZenoAIHome 公开判断档案。用明确标注的演示材料展示如何把生活方式、空间方案、预算边界、报价合同和交付风险放在一起判断，并区分示例、使用和验证。',
   alternates: {

@@ -52,7 +52,7 @@ export default function PaintCalculatorClient() {
   }
 
   return (
-    <ToolPageShell label="Paint Calculator" title="乳胶漆别只问几桶，先把墙面和遍数算清。" subtitle="输入墙面面积、涂布率、桶规格和面漆遍数，估算底漆、面漆用量。结果用于采购前沟通，不替代现场复尺。" bestFor="准备买乳胶漆或核对油漆报价的人" time="3-5 分钟" prepare={["墙面面积", "产品涂布率", "桶规格"]}>
+    <ToolPageShell label="乳胶漆用量计算" title="买乳胶漆前，先算清要多少升、多少桶。" subtitle="输入墙面面积、涂布率、桶规格和面漆遍数，估算底漆、面漆用量。结果用于采购前沟通，不替代现场复尺。" bestFor="准备买乳胶漆或核对油漆报价的人" time="3-5 分钟" prepare={["墙面面积", "产品涂布率", "桶规格"]}>
       <section className="mx-auto grid max-w-6xl gap-8 px-5 py-12 sm:px-8 lg:grid-cols-[0.55fr_0.45fr]">
         <div className="border border-border bg-surface p-5 sm:p-6">
           <div className="grid gap-4 sm:grid-cols-2">

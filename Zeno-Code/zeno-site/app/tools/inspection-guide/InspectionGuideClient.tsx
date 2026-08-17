@@ -82,7 +82,7 @@ export default function InspectionGuideClient() {
   }
 
   return (
-    <ToolPageShell label="Inspection Guide" title="验收不是挑刺，是把问题留在付款之前。" subtitle="选择当前施工节点，得到一份业主能看懂、能拍照、能沟通的验收清单。它不替代第三方监理，但能先把明显风险拦住。" bestFor="正在施工或准备阶段验收的人" time="5-10 分钟" prepare={["当前施工节点", "现场照片", "报价/合同"]}>
+    <ToolPageShell label="装修验收向导" title="验收不是挑刺，是把问题留在付款之前。" subtitle="选择当前施工节点，得到一份业主能看懂、能拍照、能沟通的验收清单。它不替代第三方监理，但能先把明显风险拦住。" bestFor="正在施工或准备阶段验收的人" time="5-10 分钟" prepare={["当前施工节点", "现场照片", "报价/合同"]}>
       <section className="mx-auto grid max-w-6xl gap-8 px-5 py-12 sm:px-8 lg:grid-cols-[0.42fr_0.58fr]">
         <div className="border border-border bg-surface p-5 sm:p-6">
           <p className="mb-3 text-sm font-semibold text-ink">选择验收节点</p>

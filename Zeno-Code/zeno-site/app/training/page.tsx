@@ -3,7 +3,7 @@ import Link from 'next/link'
 import Container from '@/components/ui/Container'
 
 export const metadata: Metadata = {
-  title: 'AI 培训｜从团队每天的工作开始｜赞诺',
+  title: 'AI 培训｜从团队每天的工作开始',
   description:
     '赞诺面向企业、商会和创业社群提供AI实战培训。从传统行业真实工作出发，覆盖AI应用入门、工具实操、内容工作流和一人公司实践。',
   alternates: {
