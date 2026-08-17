@@ -34,7 +34,7 @@ export interface PrimaryNavItem {
 export const primaryNav: PrimaryNavItem[] = [
   {
     key: 'blog',
-    zh: { label: '公开实践', href: '/blog' },
+    zh: { label: '我的实践', href: '/blog' },
     en: { label: 'Public practice', href: '/en/blog' },
     groups: [
       {

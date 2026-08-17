@@ -124,7 +124,7 @@ export default function HomePageBrandHub() {
           <div className="max-w-[52rem] text-white">
             <p className="flex items-center gap-2.5 text-sm font-semibold text-white/75">
               <span className="inline-block h-2 w-2 shrink-0 bg-cinnabar" aria-hidden />
-              赞诺的 AI 转型记录
+              面向 AGI 时代的个人实践
             </p>
             <h1 className="editorial-display mt-5 text-[2.45rem] leading-[1.12] tracking-[0] sm:text-[3.25rem] lg:text-[4rem]">
               <span className="block whitespace-nowrap">我的 AI 转型，</span>
