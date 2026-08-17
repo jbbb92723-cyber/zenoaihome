@@ -5,7 +5,7 @@ import StructuredData from '@/components/ui/StructuredData'
 import { currentPractice, humanAiProtocol } from '@/data/practice/experiments'
 
 export const metadata: Metadata = {
-  title: '实践与证据｜赞诺的公开判断档案',
+  title: '正在验证｜实践、反馈与修订｜赞诺',
   description: '记录赞诺正在验证的问题、使用的依据、真实反馈和方法修订。公开过程，也公开尚未成立的部分。',
   alternates: { canonical: 'https://zenoaihome.com/practice' },
 }
@@ -43,9 +43,9 @@ export default function PracticePage() {
       <main className="bg-canvas text-ink">
         <section className="border-b border-white/10 bg-ink px-5 py-16 text-white sm:px-8 sm:py-20 lg:px-12 lg:py-24">
           <Container>
-            <p className="text-sm font-semibold text-white/60">公开判断档案 · 实践与证据</p>
+            <p className="text-sm font-semibold text-white/60">正在验证</p>
             <h1 className="editorial-display mt-5 max-w-[18ch] text-[2.4rem] leading-[1.1] sm:text-[3.2rem]">
-              把判断放进现实，再决定它能不能成为方法。
+              我正在验证什么，结果说明了什么。
             </h1>
             <p className="mt-6 max-w-3xl text-base leading-8 text-white/70 sm:text-lg">
               这里记录正在验证的问题、使用的依据、实际交付和方法修订。公开的不只是已经成立的结论，也包括还没有证据支持的部分。

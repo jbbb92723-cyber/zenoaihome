@@ -15,9 +15,9 @@ import {
 } from '@/data/risk-control/quote-risk'
 
 export const metadata: Metadata = {
-  title: '签约前判断资料库 | 报价合同风险、检查模板、项目边界',
+  title: '签约前资料库｜报价、合同与施工怎么查｜赞诺',
   description:
-    'ZenoAIHome 的签约前判断资料库：把报价合同风险、风险词典、检查模板、施工项目边界和追问清单组织起来，帮助业主在签装修合同前看清边界。',
+    'ZenoAIHome 的签约前资料库：把报价合同风险、风险词典、检查模板、施工项目边界和追问清单组织起来，帮助业主在签装修合同前看清边界。',
   alternates: {
     canonical: 'https://zenoaihome.com/resources',
   },
@@ -81,7 +81,7 @@ export default function ResourcesPage() {
           {
             '@context': 'https://schema.org',
             '@type': 'CollectionPage',
-            name: '签约前判断资料库',
+            name: '签约前资料库',
             url: 'https://zenoaihome.com/resources',
             description: '围绕签约前生活目标、报价合同、付款节点和施工项目边界沉淀的词典、规则、模板和清单。',
             inLanguage: 'zh-CN',
@@ -103,8 +103,8 @@ export default function ResourcesPage() {
       />
 
       <PageHero
-        label="签约前判断资料库"
-        title="资料库只服务一件事：把签约前看不清的边界拆开。"
+        label="签约前资料库"
+        title="签约前，把报价、合同和责任逐项查清。"
         subtitle="这里不是装修百科。风险词典、规则库、检查模板和项目风险库，都围绕生活目标、报价、合同、付款节点和交付责任有没有说清。"
         size="content"
       />

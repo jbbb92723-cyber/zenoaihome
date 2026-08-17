@@ -7,7 +7,7 @@ import StructuredData from '@/components/ui/StructuredData'
 import { renovationProjectRisks } from '@/data/risk-control/renovation-project-risks'
 
 export const metadata: Metadata = {
-  title: '施工项目报价风险库｜水电、防水、拆除、找平增项风险',
+  title: '装修项目报价｜水电、防水、拆改怎么查｜赞诺',
   description:
     '按拆除、水电、防水、找平、瓷砖等施工项目，查看装修报价里应该写清什么、哪些地方容易漏项、模糊和后期增项。',
   alternates: {
@@ -65,8 +65,8 @@ export default function ProjectRisksPage() {
       />
 
       <PageHero
-        label="看增项"
-        title="装修项目增项风险库"
+        label="项目报价"
+        title="装修报价里，哪些项目容易漏项？"
         subtitle="很多增项不是施工中突然出现，而是报价阶段就留了口子。按水电、拆改、找平、防水、定制接口和“现场为准”类风险，查看签约前应该约定清楚什么。"
         size="content"
       />

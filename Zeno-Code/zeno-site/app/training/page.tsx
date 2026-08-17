@@ -3,7 +3,7 @@ import Link from 'next/link'
 import Container from '@/components/ui/Container'
 
 export const metadata: Metadata = {
-  title: 'AI培训与企业内训｜传统行业从真实工作开始',
+  title: 'AI 培训｜从团队每天的工作开始｜赞诺',
   description:
     '赞诺面向企业、商会和创业社群提供AI实战培训。从传统行业真实工作出发，覆盖AI应用入门、工具实操、内容工作流和一人公司实践。',
   alternates: {
@@ -55,8 +55,8 @@ export default function TrainingPage() {
       <section className="border-b border-border bg-surface-warm">
         <Container className="grid gap-10 py-14 sm:py-16 lg:grid-cols-[0.62fr_0.38fr] lg:items-end lg:py-20">
           <div>
-            <p className="text-sm font-semibold text-stone">AI 培训与企业内训</p>
-            <h1 className="editorial-display mt-5 max-w-[14ch] text-[2.4rem] leading-[1.1] sm:text-[3.2rem]">不从概念开始，从你们每天重复的工作开始。</h1>
+            <p className="text-sm font-semibold text-stone">AI 培训</p>
+            <h1 className="editorial-display mt-5 max-w-[14ch] text-[2.4rem] leading-[1.1] sm:text-[3.2rem]">从团队每天重复的工作开始。</h1>
             <p className="mt-7 max-w-3xl text-base leading-8 text-ink-muted sm:text-lg">赞诺用传统行业经营者的视角讲 AI。目标不是让学员记住更多工具，而是带着一个真实任务完成第一次可继续使用的实践。</p>
           </div>
           <div>

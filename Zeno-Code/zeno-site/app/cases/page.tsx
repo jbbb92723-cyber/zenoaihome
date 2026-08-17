@@ -18,7 +18,7 @@ type JudgmentSample = {
 }
 
 export const metadata: Metadata = {
-  title: '公开判断档案｜方法示例与证据边界',
+  title: '我怎么分析装修问题｜方法示例｜赞诺',
   description:
     'ZenoAIHome 公开判断档案。用明确标注的演示材料展示如何把生活方式、空间方案、预算边界、报价合同和交付风险放在一起判断，并区分示例、使用和验证。',
   alternates: {
@@ -105,9 +105,9 @@ export default function CasesPage() {
           <div className="absolute inset-0 bg-[linear-gradient(120deg,rgba(244,241,232,0.96),rgba(244,241,232,0.78)),radial-gradient(circle_at_82%_18%,rgba(222,210,190,0.3),transparent_34%)]" aria-hidden />
           <Container size="layout" className="relative py-16 sm:py-20">
             <div className="max-w-4xl">
-              <p className="system-label">PUBLIC JUDGMENT ARCHIVE</p>
+              <p className="system-label">装修方法示例</p>
               <h1 className="mt-4 max-w-4xl text-[2.35rem] font-semibold leading-tight tracking-tight text-ink sm:text-6xl">
-                先看判断过程，再决定怎么做。
+                看看我是怎么把装修问题一步步看清的。
               </h1>
               <p className="mt-6 max-w-3xl text-base leading-8 text-ink-muted sm:text-lg">
                 以下三份内容是方法示例，不是客户案例，也不代表已经完成外部验证。它们展示赞诺如何从生活目标和空间取舍出发，逐步落到预算边界、报价合同追问和下一步动作。正在发生的实验、证据和修订记录，集中放在实践与证据页。

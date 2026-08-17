@@ -5,7 +5,7 @@ import CTA from '@/components/ui/CTA'
 import StructuredData from '@/components/ui/StructuredData'
 
 export const metadata: Metadata = {
-  title: '装修视野｜从传统行业与项目实践中整理判断方法',
+  title: '装修判断｜报价、合同和施工怎么检查｜赞诺',
   description:
     '从长期传统行业经营与装修项目实践中整理报价、合同和施工节点的核对方法。先用免费工具整理问题，需要结合材料时再进入人工判断。',
   alternates: {
@@ -66,9 +66,9 @@ export default function RenovationPage() {
       <section className="relative isolate overflow-hidden border-b border-border bg-ink">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_20%,rgba(222,210,190,0.18),transparent_45%)]" aria-hidden />
         <Container size="content" className="relative py-16 sm:py-20 lg:py-24">
-          <p className="text-sm font-semibold text-white/55">装修视野</p>
+          <p className="text-sm font-semibold text-white/55">装修判断</p>
           <h1 className="editorial-display mt-5 max-w-[14ch] text-[2.4rem] leading-[1.1] text-white sm:text-[3.2rem]">
-            不是教你怎么装——<br />是帮你怎么判断。
+            装修前，先把报价、合同和施工看明白。
           </h1>
           <p className="mt-6 max-w-2xl text-base leading-8 text-white/70 sm:text-lg">
             截至 2026 年，我有 17 年传统行业经营与项目经验，长期涉及家居与装修实践。这里把能够公开的判断方法摊开，你可以先自己使用；拿不准时，再带着具体材料来聊。

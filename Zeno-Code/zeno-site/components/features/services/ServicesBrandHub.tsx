@@ -87,8 +87,8 @@ export default function ServicesBrandHub() {
       <section className="border-b border-border bg-ink px-5 py-16 text-white sm:px-8 sm:py-20 lg:px-12 lg:py-24">
         <div className="mx-auto grid max-w-[1320px] gap-10 lg:grid-cols-[0.62fr_0.38fr] lg:items-end">
           <div>
-            <p className="text-sm font-semibold text-white/60">服务合作</p>
-            <h1 className="editorial-display mt-5 max-w-[13ch] text-[2.4rem] leading-[1.1] sm:text-[3.2rem]">把 AI 变成能交付的工作</h1>
+            <p className="text-sm font-semibold text-white/60">项目合作</p>
+            <h1 className="editorial-display mt-5 max-w-[13ch] text-[2.4rem] leading-[1.1] sm:text-[3.2rem]">把 AI 用进具体工作。</h1>
             <p className="mt-6 max-w-2xl text-base leading-8 text-white/72 sm:text-lg">
               培训、工作流、知识库、智能体和网站开发。先从一个真实问题开始，再决定要不要使用 AI、用到哪一步。
             </p>

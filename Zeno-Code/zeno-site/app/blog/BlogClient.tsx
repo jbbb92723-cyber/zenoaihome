@@ -109,8 +109,8 @@ export default function BlogClient() {
   return (
     <>
       <PageHero
-        label="公开实践"
-        title="从真实问题，到可以被核对的下一版"
+        label="我的实践"
+        title="我做过什么，正在研究什么。"
         subtitle="这里记录做过的事、仍在验证的判断，以及工具和方法被使用后发生的修改。"
         note={`当前重点：${currentPractice.title}`}
       />

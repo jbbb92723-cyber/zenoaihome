@@ -6,7 +6,7 @@ import PageHero from '@/components/ui/PageHero'
 import StructuredData from '@/components/ui/StructuredData'
 
 export const metadata: Metadata = {
-  title: '居住需求自检与报价初筛工具 | ZenoAIHome',
+  title: '装修自检工具｜居住需求、报价、合同与施工｜赞诺',
   description:
     'ZenoAIHome 工具入口按装修决策阶段组织：先用规则型居住需求自检梳理生活方式和空间优先级；拿到报价后，再用初筛检查材料、工艺、范围、责任和交付边界。',
   alternates: {
@@ -84,8 +84,8 @@ export default function ToolsPage() {
       />
 
       <PageHero
-        label="工具 / 判断入口"
-        title="先看这套家怎么住，再看报价能不能承接。"
+        label="装修工具"
+        title="先想清楚怎么住，再看报价。"
         subtitle="还没定方向，先用预设问题整理居住需求；已经拿到报价，再做免费报价初筛。预算、计算器和验收工具只是辅助，不作为主路径。"
         size="content"
       />

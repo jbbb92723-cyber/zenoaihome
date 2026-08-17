@@ -7,7 +7,7 @@ import StructuredData from '@/components/ui/StructuredData'
 import { checklistTemplates } from '@/data/risk-control/checklist-templates'
 
 export const metadata: Metadata = {
-  title: '装修签约前检查模板｜报价、合同、水电和付款节点清单',
+  title: '装修检查清单｜报价、合同与付款节点｜赞诺',
   description:
     '提供报价单初查、合同签约前检查、水电改造、老房翻新和付款节点检查模板，帮助业主在装修签字前逐项核对风险边界。',
   alternates: {
@@ -72,7 +72,7 @@ export default function ChecklistsPage() {
       />
 
       <PageHero
-        label="看合同"
+        label="装修检查清单"
         title="签约前装修检查清单"
         subtitle="销售说过的话，不等于合同里有保障。围绕口头承诺、付款节点、延期责任、材料替换、质保范围和增项确认流程，签约前逐项对照。"
         size="content"

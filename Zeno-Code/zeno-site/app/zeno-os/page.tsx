@@ -4,7 +4,7 @@ import CTA from '@/components/ui/CTA'
 import StructuredData from '@/components/ui/StructuredData'
 
 export const metadata: Metadata = {
-  title: '装修报价判断框架｜13 个签约前检查边界',
+  title: '装修报价怎么检查｜签约前确认 13 项｜赞诺',
   description:
     '基于长期传统行业经营与装修项目实践整理的 13 个报价检查边界，帮助你在签约前看清范围、责任和付款节点。',
   alternates: {
@@ -113,11 +113,10 @@ export default function ZenoOSPage() {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_15%,rgba(222,210,190,0.34),transparent_38%)]" aria-hidden />
         <Container size="content" className="relative py-14 sm:py-18">
           <div className="flex items-center gap-3 mb-5">
-            <span className="bg-ink text-paper text-xs font-bold px-3 py-1">装修报价判断框架</span>
-            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-stone">公开判断框架 v1</span>
+            <span className="bg-ink text-paper text-xs font-bold px-3 py-1">装修报价怎么看</span>
           </div>
           <h1 className="editorial-display max-w-4xl text-[2.4rem] leading-[1.1] text-ink sm:text-[3.2rem]">
-            装修风险判断，不应该是一个人的秘密。
+            总价之外，还有 13 项要确认。
           </h1>
           <p className="mt-6 max-w-2xl text-base leading-8 text-ink-muted sm:text-lg">
             这些检查边界来自长期传统行业经营与装修项目实践，帮助你在签约前看清报价范围、责任和付款节点。

@@ -4,7 +4,7 @@ import CTA from '@/components/ui/CTA'
 import StructuredData from '@/components/ui/StructuredData'
 
 export const metadata: Metadata = {
-  title: '公开工具｜任务拆解 · 一人公司自检 · 内容选题 · 装修判断',
+  title: '实用工具｜一人公司、内容、工作流与装修｜赞诺',
   description:
     '四个免费公开原型：工作流任务拆解、一人公司阶段自检、内容选题匹配和装修判断工具。它们用于整理问题与形成初筛，不代替最终判断。',
   alternates: {
@@ -78,7 +78,7 @@ export default function AiToolsPage() {
         data={[{
           '@context': 'https://schema.org',
           '@type': 'CollectionPage',
-          name: '公开工具与方法原型',
+          name: '实用工具与方法原型',
           url: 'https://zenoaihome.com/ai-tools',
           description: '免费公开原型：工作流任务拆解、一人公司阶段自检、内容选题匹配和装修判断工具。',
           inLanguage: 'zh-CN',
@@ -88,7 +88,7 @@ export default function AiToolsPage() {
       {/* ── Hero ── */}
       <section className="relative isolate overflow-hidden border-b border-border bg-ink">
         <Container size="content" className="relative py-16 sm:py-20 lg:py-24">
-          <p className="text-sm font-semibold text-white/55">公开工具</p>
+          <p className="text-sm font-semibold text-white/55">实用工具</p>
           <h1 className="editorial-display mt-5 max-w-[12ch] text-[2.4rem] leading-[1.1] text-white sm:text-[3.2rem]">
             先自己看清问题。
           </h1>

@@ -17,9 +17,9 @@ import {
 } from '@phosphor-icons/react/dist/ssr'
 
 export const metadata: Metadata = {
-  title: '知识体系｜装修·一人公司·AI 的认知地图',
+  title: '知识导航｜装修、一人公司和 AI｜赞诺',
   description:
-    '把17年工地经验、一人公司实践和AI工具探索做成三层认知地图。见自己（底层逻辑）→见天地（规律本质）→见众生（关系连接）。不堆资料，只放经过验证的判断。',
+    '整理装修、一人公司与 AI 相关的文章、工具和实践入口，帮助访客从当前问题出发，找到可阅读、可使用和仍在验证的内容。',
   alternates: {
     canonical: 'https://zenoaihome.com/knowledge',
   },
@@ -88,7 +88,7 @@ const layers = [
       {
         icon: Lightning,
         title: 'AI 实战与工具',
-        desc: '选型、工作流、企业知识库——真实案例。',
+        desc: '选型、工作流和企业知识库相关的文章与实践记录。',
         href: '/blog?category=ai',
         tag: '文章',
       },
@@ -131,10 +131,10 @@ const layers = [
       },
       {
         icon: Brain,
-        title: 'AI 转型专家智库',
-        desc: 'OPC 圈 × 智联招聘。入库 = 平台背书 + 客户资源。',
+        title: '项目合作规则',
+        desc: '项目开始前先写清目标、角色、周期、交付、分配和退出方式。',
         href: '/community',
-        tag: '资源',
+        tag: '协作规则',
       },
     ],
   },
@@ -147,8 +147,8 @@ export default function KnowledgePage() {
         data={{
           '@context': 'https://schema.org',
           '@type': 'WebPage',
-          name: '知识体系',
-          description: '装修·一人公司·AI 的认知地图：见自己→见天地→见众生',
+          name: '知识导航',
+          description: '装修、一人公司与 AI 的文章、工具和实践入口。',
           url: 'https://zenoaihome.com/knowledge',
           inLanguage: 'zh-CN',
         }}
@@ -157,12 +157,12 @@ export default function KnowledgePage() {
       {/* ── Hero ── */}
       <div className="relative overflow-hidden border-b border-border bg-canvas">
         <Container size="content" className="motion-hero relative py-14 sm:py-20">
-          <p className="text-xs font-semibold uppercase tracking-widest text-stone">知识体系</p>
+          <p className="text-xs font-semibold uppercase tracking-widest text-stone">知识导航</p>
           <h1 className="editorial-display mb-5 max-w-3xl text-[2.35rem] leading-[1.12] text-ink sm:text-[3.35rem]">
-            认知税我们替你交了。这是蒸馏器。
+            从装修、AI 到一人公司，先找到你现在需要的内容。
           </h1>
           <p className="max-w-2xl text-base leading-8 text-ink-muted sm:text-lg">
-            书、课程、文章和实践，不该只停在收藏夹里。这里把它们蒸馏成三层认知地图——见自己、见天地、见众生。不堆资料，只放经过验证的判断。
+            这里按见自己、见天地、见众生整理文章、工具和实践入口。不同内容会说明它是公开方法、工具、示例，还是仍在验证的实践。
           </p>
         </Container>
       </div>
@@ -226,9 +226,9 @@ export default function KnowledgePage() {
 
         {/* ── 价值标签：按标签探索 ── */}
         <div className="mt-14 border-t border-border pt-10">
-          <h2 className="text-lg font-semibold text-ink mb-2">按价值标签探索</h2>
+          <h2 className="text-lg font-semibold text-ink mb-2">按主题继续找</h2>
           <p className="text-sm text-ink-muted mb-5">
-            未来的搜索不是按分类，是按标签。点一个你关心的，直接看相关文章。
+            点一个你关心的标签，直接查看相关文章。
           </p>
           <TagCloud limit={40} />
         </div>
@@ -237,8 +237,7 @@ export default function KnowledgePage() {
         <div className="mt-14 border-2 border-stone bg-surface-warm p-6 text-center sm:p-8">
           <h2 className="text-xl font-semibold text-ink">还没找到你要的？</h2>
           <p className="mx-auto mt-3 max-w-lg text-sm leading-relaxed text-ink-muted">
-            这里的每一条都经过真实项目验证。如果你关心的话题这里没有——
-            说明我还没做过。但也许下一个就是。
+            这里收录我已经公开的文章、工具和实践入口。没有找到时，可以先看全部文章，或带着具体问题来交流。
           </p>
           <div className="mt-5 flex flex-col justify-center gap-3 sm:flex-row">
             <CTA href="/blog" label="看全部文章 →" variant="primary" />

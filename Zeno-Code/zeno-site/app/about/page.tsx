@@ -4,7 +4,7 @@ import Link from 'next/link'
 import Container from '@/components/ui/Container'
 
 export const metadata: Metadata = {
-  title: '关于赞诺｜传统行业 × AI 实践者',
+  title: '关于赞诺｜从传统行业开始的 AI 转型',
   description:
     '赞诺。截至 2026 年有 17 年传统行业经营与项目经验，现在以 OPC 一人公司为起点，公开记录人与 AI 如何把经验变成可检查、可使用、可修订的交付。',
   alternates: {

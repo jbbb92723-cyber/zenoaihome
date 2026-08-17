@@ -4,7 +4,7 @@ import Container from '@/components/ui/Container'
 import StructuredData from '@/components/ui/StructuredData'
 
 export const metadata: Metadata = {
-  title: '星火者共同体｜AI 时代的实践俱乐部｜Zeno',
+  title: '星火者共同体｜AI 时代 OPC 一人公司的实践与协作｜赞诺',
   description: '赞诺发起、逐步由成员共同运转的申请制实践俱乐部。面向一人公司、转型创业者和独立实践者，围绕真实项目、反馈、连接与协作建立长期关系。',
   alternates: { canonical: 'https://zenoaihome.com/community' },
 }
@@ -46,10 +46,10 @@ export default function CommunityPage() {
 
       <section className="border-b border-white/10 bg-ink px-5 py-16 text-white sm:px-8 sm:py-20 lg:px-12 lg:py-24">
         <div className="mx-auto max-w-[1320px]">
-          <p className="text-sm font-semibold text-white/55">星火者共同体 · 实践俱乐部</p>
-          <h1 className="editorial-display mt-5 max-w-[13ch] text-[2.4rem] leading-[1.1] sm:text-[3.2rem]">星火者共同体</h1>
+          <p className="text-sm font-semibold text-white/55">AI 时代 OPC 一人公司的实践共同体</p>
+          <h1 className="editorial-display mt-5 max-w-[13ch] text-[2.4rem] leading-[1.1] sm:text-[3.2rem]">星火者</h1>
           <div className="mt-10 grid gap-8 border-t border-white/20 pt-8 lg:grid-cols-[0.62fr_0.38fr]">
-            <p className="max-w-3xl text-xl leading-9 text-white sm:text-2xl sm:leading-10">赞诺发起，但要逐渐由成员共同运转的实践俱乐部。</p>
+            <p className="max-w-3xl text-xl leading-9 text-white sm:text-2xl sm:leading-10">独立经营，但不孤立。带着真实项目进来，在行动、复盘和协作中建立信任。</p>
             <p className="text-sm leading-7 text-white/65">面向 AI 时代的一人公司、转型创业者和独立实践者。不是围观群，也不是只靠发起人输出的课堂，而是把真实项目带进长期关系。</p>
           </div>
         </div>

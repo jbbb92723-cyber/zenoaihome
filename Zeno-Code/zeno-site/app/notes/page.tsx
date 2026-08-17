@@ -7,7 +7,7 @@ import SectionHeader from '@/components/ui/SectionHeader'
 import { getPublicNotes, NOTE_CATEGORIES } from '@/lib/notes'
 
 export const metadata: Metadata = {
-  title: '思考札记 · 思想资产库',
+  title: '碎片笔记｜赞诺',
   description:
     '记录我在装修、AI、商业、学习和长期主义中的真实思考。不是正式文章，而是正在生长中的方法论、判断和现场笔记——带着现场温度的真实输出。',
 }
@@ -35,8 +35,8 @@ export default async function NotesPage({
   return (
     <>
       <PageHero
-        label="思想资产库"
-        title="正在生长的判断和方法论"
+        label="碎片笔记"
+        title="一些还没写成文章的想法。"
         subtitle="这里不是正式文章库，而是我在装修现场、AI 实践、商业思考和日常观察中，真正打动过我的想法和笔记。有些会长成文章，有些永远只是一颗种子。"
       />
 

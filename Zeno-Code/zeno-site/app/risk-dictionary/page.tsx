@@ -7,7 +7,7 @@ import StructuredData from '@/components/ui/StructuredData'
 import { quoteRiskRules } from '@/data/risk-control/quote-risk-rules'
 
 export const metadata: Metadata = {
-  title: '装修报价风险词典｜按实结算、暂估、漏项和材料模糊风险',
+  title: '装修报价风险词典｜按实结算、暂估与漏项｜赞诺',
   description:
     '装修报价风险词典解释按实结算、暂估、另计、材料品牌型号缺失、施工范围不清等签约前高频风险词，帮助业主看清报价边界。',
   alternates: {
@@ -73,7 +73,7 @@ export default function RiskDictionaryPage() {
       />
 
       <PageHero
-        label="看报价"
+        label="报价风险词典"
         title="装修报价风险词典"
         subtitle="报价单不是看总价，而是看边界。按风险词、材料品牌型号、数量面积、漏项和低价背后的责任口径，把签约前必须问清的报价边界先看懂。"
         size="content"

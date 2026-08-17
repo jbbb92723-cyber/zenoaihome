@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { ArrowRight, Compass, Users, Shield, Cube, Sparkle } from '@phosphor-icons/react/dist/ssr'
 
 export const metadata: Metadata = {
-  title: '经验变成系统｜赞诺的公开实践',
+  title: '传统行业经验怎么用｜赞诺',
   description: '赞诺从一个真实问题开始，公开记录传统行业经验如何变成可核验的判断、最小工具和具体交付，并通过使用反馈持续修订。',
 }
 
@@ -12,7 +12,7 @@ const modules = [
     icon: Shield,
     title: '传统行业经验迁移',
     subtitle: '模块① 经验如何重新使用',
-    desc: '从 17 年经营和项目经历中，分辨哪些判断可以迁移到一人公司，哪些只能作为个案，并为每个结论补上来源和适用边界。',
+    desc: '从长期经营和项目经历中，分辨哪些判断可以迁移到一人公司，哪些只能作为个案，并为每个结论补上来源和适用边界。',
     anchor: '经历证据 · 可以追溯',
     status: '已有内部资料，外部使用证据待补',
   },
@@ -49,7 +49,7 @@ const practicePath = [
 ]
 
 const knowledgeSources = [
-  { layer: '第一层', name: '长期经历', when: '过去', desc: '17 年传统行业经历提供了大量问题样本，但年限本身不等于方法；每个判断仍需回到案例和证据。', evidence: '履历、项目与复盘' },
+  { layer: '第一层', name: '长期经历', when: '过去', desc: '传统行业经历提供了大量问题样本，但经历本身不等于方法；每个判断仍需回到案例和证据。', evidence: '履历、项目与复盘' },
   { layer: '第二层', name: '在地实践', when: '现在', desc: '以南宁作为当前观察样本，持续区分本地条件和可迁移机制，避免把个案包装成普遍答案。', evidence: '访谈、需求与交付记录' },
   { layer: '第三层', name: '跨角色翻译', when: '现在', desc: '把经营问题翻译成 AI 可以协助的任务，再把技术输出翻译成业务可验收的结果。', evidence: '输入、输出与验收标准' },
   { layer: '第四层', name: '知识回流', when: '持续', desc: '为方法保留来源、版本、适用条件和失效记录，让每次内容与交付都能修正下一版。', evidence: '版本、案例与失败条件' },
@@ -61,9 +61,9 @@ export default function OPCKnowledgePage() {
       {/* Hero */}
       <section className="border-b border-border bg-ink px-5 py-16 sm:px-8 sm:py-20 lg:px-12 lg:py-24">
         <div className="mx-auto max-w-[1320px]">
-          <p className="text-sm font-semibold text-white/60">公开实践 · 经验资产化</p>
+          <p className="text-sm font-semibold text-white/60">经验怎么用</p>
           <h1 className="editorial-display mt-4 max-w-[18ch] text-[2.4rem] leading-[1.1] text-white sm:text-[3.2rem]">
-            从一个真实问题开始，把经验做成别人能使用的东西。
+            我怎样把传统行业经验重新用起来。
           </h1>
           <p className="mt-5 max-w-[42rem] text-base leading-8 text-white/70">
             这不是一键蒸馏器，也不是一套先写好的课程承诺，而是一个正在运行的实践档案：从真实问题出发，留下证据，制作最小交付，再用他人试用和复盘修正。

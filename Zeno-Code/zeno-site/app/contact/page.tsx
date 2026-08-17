@@ -4,7 +4,7 @@ import PageHero from '@/components/ui/PageHero'
 import Container from '@/components/ui/Container'
 
 export const metadata: Metadata = {
-  title: '联系赞诺｜培训、AI项目与星火者共同体',
+  title: '联系赞诺｜项目合作、星火者与装修判断',
   description: '联系赞诺。适用于AI培训、工作流、企业知识库、智能体、网站开发、星火者共同体和装修判断相关沟通。',
   alternates: { canonical: 'https://zenoaihome.com/contact' },
 }
@@ -49,7 +49,7 @@ export default function ContactPage() {
     <main className="bg-canvas text-ink">
       <PageHero
         label="联系赞诺"
-        title="先把来意和真实问题说清楚。"
+        title="把你的问题和想做的事告诉我。"
         subtitle="信息越具体，越容易判断是否适合继续。不能做的项目，我会直接说明；能做的，先确认范围和交付边界。"
       />
 

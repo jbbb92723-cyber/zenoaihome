@@ -8,7 +8,7 @@ import CTA from '@/components/ui/CTA'
 import StructuredData from '@/components/ui/StructuredData'
 
 export const metadata: Metadata = {
-  title: '居住判断专题 | ZenoAIHome',
+  title: '按问题找内容｜生活、装修与实践｜赞诺',
   description:
     '按问题进入 ZenoAIHome 的长期专题：美学与生活、空间与家庭场景、装修决策、报价合同风险和建造者手记。',
 }
@@ -20,7 +20,7 @@ export default function TopicsPage() {
         data={{
           '@context': 'https://schema.org',
           '@type': 'CollectionPage',
-          name: '按问题看 5 个长期专题',
+          name: '按问题找内容',
           url: 'https://zenoaihome.com/topics',
           description:
             '从美学与生活开始，继续看空间与家庭场景、装修决策、报价合同风险和建造者手记。',
@@ -39,8 +39,8 @@ export default function TopicsPage() {
       />
 
       <PageHero
-        label="问题专题"
-        title="按问题看这 5 个长期专题"
+        label="按问题找内容"
+        title="从生活、装修到实践，找到你要看的内容。"
         subtitle="如果你不想在文章列表里碎片化跳转，就从专题开始。先看美学与生活，再看空间与家庭场景、装修决策、报价合同风险和建造者手记。"
         size="content"
       />
