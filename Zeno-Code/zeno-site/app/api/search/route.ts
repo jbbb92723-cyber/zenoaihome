@@ -21,6 +21,7 @@ const staticPages: SearchResult[] = [
   { title: 'AI 智能体', href: '/services#ai-agent', type: 'service', excerpt: '围绕明确任务设计、测试和交接智能体。' },
   { title: '网站开发', href: '/services#website', type: 'service', excerpt: '个人品牌与小型业务网站的信息架构、开发和上线。' },
   { title: '赞诺·星火者共同体', href: '/community', type: 'page', excerpt: 'AI 时代的一人公司协作网络。' },
+  { title: '实践与证据', href: '/practice', type: 'page', excerpt: '查看正在验证什么、依据是什么，以及方法如何被修订。' },
   { title: '居住需求自检', href: '/living-diagnosis', type: 'tool', excerpt: '用预设问题整理生活方式、审美取舍、家庭场景和空间优先级。' },
   { title: '报价初筛工具', href: '/tools/quote-check', type: 'tool', excerpt: '已有报价时，看它有没有承接方案边界。' },
   { title: '装修报价风险词典', href: '/risk-dictionary', type: 'resource', excerpt: '解释报价里容易引发增项和扯皮的风险词。' },

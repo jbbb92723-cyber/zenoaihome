@@ -4,8 +4,8 @@ import Container from '@/components/ui/Container'
 import StructuredData from '@/components/ui/StructuredData'
 
 export const metadata: Metadata = {
-  title: '赞诺·星火者共同体｜AI时代的一人公司协作网络',
-  description: '赞诺发起、但能独立运转的成员共同体。面向AI时代的一人公司、转型创业者和独立实践者，围绕学习、分享、连接与真实项目建立协作。',
+  title: '星火者共同体｜AI 时代的实践俱乐部｜Zeno',
+  description: '赞诺发起、逐步由成员共同运转的申请制实践俱乐部。面向一人公司、转型创业者和独立实践者，围绕真实项目、反馈、连接与协作建立长期关系。',
   alternates: { canonical: 'https://zenoaihome.com/community' },
 }
 
@@ -46,11 +46,11 @@ export default function CommunityPage() {
 
       <section className="border-b border-white/10 bg-ink px-5 py-16 text-white sm:px-8 sm:py-20 lg:px-12 lg:py-24">
         <div className="mx-auto max-w-[1320px]">
-          <p className="text-sm font-semibold text-white/55">正在发起</p>
+          <p className="text-sm font-semibold text-white/55">星火者共同体 · 实践俱乐部</p>
           <h1 className="editorial-display mt-5 max-w-[13ch] text-[2.4rem] leading-[1.1] sm:text-[3.2rem]">星火者共同体</h1>
           <div className="mt-10 grid gap-8 border-t border-white/20 pt-8 lg:grid-cols-[0.62fr_0.38fr]">
-            <p className="max-w-3xl text-xl leading-9 text-white sm:text-2xl sm:leading-10">赞诺发起，但要能独立运转的成员共同体。</p>
-            <p className="text-sm leading-7 text-white/65">面向 AI 时代的一人公司、转型创业者和独立实践者。不是围观群，也不是只靠发起人输出的课堂。</p>
+            <p className="max-w-3xl text-xl leading-9 text-white sm:text-2xl sm:leading-10">赞诺发起，但要逐渐由成员共同运转的实践俱乐部。</p>
+            <p className="text-sm leading-7 text-white/65">面向 AI 时代的一人公司、转型创业者和独立实践者。不是围观群，也不是只靠发起人输出的课堂，而是把真实项目带进长期关系。</p>
           </div>
         </div>
       </section>
@@ -64,13 +64,13 @@ export default function CommunityPage() {
           <div className="space-y-5 text-base leading-8 text-ink-muted">
             <p>AI 降低了生产门槛，却没有自动解决方向、信用、客户、协作和持续行动。很多一人公司不是能力不够，而是长期缺少反馈、连接和共同完成真实项目的环境。</p>
             <p>星火者共同体想做的不是制造热闹，而是让成员逐渐说清三件事：我能做什么、我需要什么、别人为什么愿意和我合作。</p>
-            <p className="font-semibold text-ink">一人是星火，众人是燎原。共同体存在的价值，是让能力能够彼此点燃，而不是把所有注意力集中到发起人身上。</p>
+            <p className="font-semibold text-ink">在 ZenoAIHome 中，公开内容负责把判断开放出来，项目服务负责对具体交付承担责任，星火者负责让有真实项目的人在长期关系里互相验证。</p>
           </div>
         </section>
 
         <section className="mt-20 border-y border-border py-12 sm:mt-24 sm:py-16">
           <div className="max-w-3xl">
-            <p className="text-sm font-semibold text-stone">共同体机制</p>
+            <p className="text-sm font-semibold text-stone">实践俱乐部机制</p>
             <h2 className="editorial-display mt-4 text-[1.8rem] leading-[1.15] sm:text-[2.2rem] lg:text-[2.6rem]">从学习开始，走向连接和项目。</h2>
           </div>
           <div className="mt-10 grid sm:grid-cols-2">

@@ -20,6 +20,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/contact`, changeFrequency: 'monthly', priority: 0.6 },
     { url: `${baseUrl}/privacy`, changeFrequency: 'yearly', priority: 0.4 },
     { url: `${baseUrl}/cases`, changeFrequency: 'monthly', priority: 0.7 },
+    { url: `${baseUrl}/practice`, changeFrequency: 'weekly', priority: 0.85 },
     { url: `${baseUrl}/living-diagnosis`, changeFrequency: 'monthly', priority: 0.85 },
     { url: `${baseUrl}/risk-dictionary`, changeFrequency: 'monthly', priority: 0.85 },
     { url: `${baseUrl}/project-risks`, changeFrequency: 'monthly', priority: 0.75 },

@@ -3,8 +3,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import type { ReactNode } from 'react'
-import { motion } from 'framer-motion'
-import type { Variants } from 'framer-motion'
 import Reveal from '@/components/ui/Reveal'
 import { currentPractice, humanAiProtocol } from '@/data/practice/experiments'
 import {
@@ -22,19 +20,22 @@ import {
   Wrench,
 } from '@phosphor-icons/react'
 
-const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 16 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.25, 0.1, 0.25, 1] } },
-}
-
 const proofPoints = [
   { value: '17年', label: '传统行业经营与项目经验' },
   { value: '1项', label: '当前只推进一项 30 天验证' },
-  { value: '2条', label: '装修业主与传统行业实践者分开承接' },
+  { value: '4个', label: '从公开判断到共同实践的入口' },
   { value: '4步', label: '人先判断、AI 质疑、交付、复盘' },
 ]
 
 const practicePaths = [
+  {
+    icon: BookOpenText,
+    audience: '想先看依据的人',
+    title: '先看实践和证据，再决定是否使用工具。',
+    body: '文章、案例、实验和方法修订公开记录正在发生什么，也明确哪些结论还没有被验证。',
+    href: '/practice',
+    action: '查看实践与证据',
+  },
   {
     icon: HouseLine,
     audience: '正在装修的业主',
@@ -50,6 +51,14 @@ const practicePaths = [
     body: '我以 OPC 一人公司为起点，公开记录经验如何变成案例、内容、判断方法、AI 协作和最小服务。',
     href: '/opc-knowledge',
     action: '进入经验资产化',
+  },
+  {
+    icon: UsersThree,
+    audience: '愿意长期实践的人',
+    title: '把一次阅读，带进真实项目和可信关系。',
+    body: '星火者是申请制实践俱乐部。成员分享、试用、复盘并完成有上下文的连接，不靠热闹证明价值。',
+    href: '/community',
+    action: '了解星火者共同体',
   },
 ]
 
@@ -112,28 +121,28 @@ export default function HomePageBrandHub() {
         <div className="absolute inset-0 bg-ink/45" aria-hidden />
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(17,17,17,0.88)_0%,rgba(17,17,17,0.58)_56%,rgba(17,17,17,0.22)_88%)]" aria-hidden />
         <div className="relative mx-auto flex min-h-[calc(82dvh-3.5rem)] max-w-[1320px] items-end px-5 pb-12 pt-24 sm:px-8 sm:pb-16 lg:px-12 lg:pb-20">
-          <motion.div initial="hidden" animate="visible" transition={{ staggerChildren: 0.1 }} className="max-w-[52rem] text-white">
-            <motion.p variants={fadeUp} className="flex items-center gap-2.5 text-sm font-semibold text-white/75">
+          <div className="max-w-[52rem] text-white">
+            <p className="flex items-center gap-2.5 text-sm font-semibold text-white/75">
               <span className="inline-block h-2 w-2 shrink-0 bg-cinnabar" aria-hidden />
-              传统行业 × 人机协作 × 公开实践
-            </motion.p>
-            <motion.h1 variants={fadeUp} className="editorial-display mt-5 text-[2.6rem] leading-[1.08] sm:text-[3.4rem] lg:text-[4.2rem]">
+              赞诺个人 IP × 公开判断 × 人机协作
+            </p>
+            <h1 className="editorial-display mt-5 text-[2.6rem] leading-[1.08] sm:text-[3.4rem] lg:text-[4.2rem]">
               传统行业人的 AI 胜任力实践
-            </motion.h1>
-            <motion.p variants={fadeUp} className="editorial-display mt-5 max-w-[18ch] text-[1.65rem] leading-[1.25] text-white/95 sm:text-[2rem]">
-              把真实经验，变成 AI 时代可复用的职业资产。
-            </motion.p>
-            <motion.p variants={fadeUp} className="mt-6 max-w-[43rem] text-base leading-8 text-white/75 sm:text-lg">
-              我是赞诺。人先提出判断和验收标准，AI 负责质疑、比较和整理，真实使用结果决定下一版。装修是我最深的验证场。
-            </motion.p>
-            <motion.div variants={fadeUp} className="mt-8 flex flex-col gap-3 sm:flex-row">
+            </h1>
+            <p className="editorial-display mt-5 max-w-[18ch] text-[1.65rem] leading-[1.25] text-white/95 sm:text-[2rem]">
+              把真实经验，变成可检查、可使用、会修订的判断资产。
+            </p>
+            <p className="mt-6 max-w-[43rem] text-base leading-8 text-white/75 sm:text-lg">
+              我是赞诺。人先提出判断和验收标准，AI 负责质疑、比较和整理，真实使用结果决定下一版。文章、工具、服务和星火者共同体，都从这套实践长出来。
+            </p>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <ActionLink href="#current-practice"><Lightning size={18} aria-hidden />看当前实验</ActionLink>
               <ActionLink href="/blog" secondary><BookOpenText size={18} aria-hidden />读公开实践</ActionLink>
               <Link href="/about" className="motion-press inline-flex min-h-11 items-center justify-center gap-2 px-3 py-3 text-sm font-semibold text-white/80 transition-colors hover:text-white">
                 <PenNib size={18} aria-hidden />认识赞诺
               </Link>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -218,11 +227,11 @@ export default function HomePageBrandHub() {
         <Reveal className="mx-auto max-w-[1320px]">
           <div className="grid gap-8 lg:grid-cols-[0.38fr_0.62fr] lg:items-end">
             <div>
-              <p className="page-label">两条实践线</p>
+              <p className="page-label">一套判断，四个入口</p>
               <h2 className="editorial-display mt-4 text-[1.8rem] leading-[1.15] sm:text-[2.2rem] lg:text-[2.6rem]">从你手里的真问题开始。</h2>
             </div>
             <p className="max-w-2xl text-base leading-8 text-ink-muted lg:justify-self-end">
-              我同时服务两类问题，但不把它们混成一句空泛的承诺。一条来自装修现场，一条来自我正在跑的 OPC 转型。
+              你可以先阅读判断依据，也可以进入装修、经验资产化或星火者。入口不同，但都回到同一件事：把真实问题说清楚，再用行动和反馈修订方法。
             </p>
           </div>
           <div className="mt-10 grid border-y border-border lg:grid-cols-2">
@@ -232,7 +241,7 @@ export default function HomePageBrandHub() {
                 <Link
                   key={path.audience}
                   href={path.href}
-                  className={`group flex min-h-[22rem] flex-col p-7 hover:bg-surface-warm sm:p-9 ${index === 0 ? 'border-b border-border lg:border-b-0 lg:border-r' : ''}`}
+                  className={`group flex min-h-[22rem] flex-col p-7 hover:bg-surface-warm sm:p-9 ${index < practicePaths.length - 1 ? 'border-b border-border' : ''} ${index >= 2 ? 'lg:border-b-0' : ''} ${index % 2 === 0 ? 'lg:border-r' : ''}`}
                 >
                   <div className="flex items-center gap-3 text-stone">
                     <Icon size={24} weight="duotone" aria-hidden />
@@ -328,7 +337,7 @@ export default function HomePageBrandHub() {
             <h2 className="editorial-display mt-4 text-[1.8rem] leading-[1.15] sm:text-[2.2rem] lg:text-[2.6rem]">一个人可以开始，但不必一直独自走。</h2>
           </div>
           <div className="border-l-2 border-cinnabar pl-6">
-            <p className="text-base leading-8 text-ink-muted">星火者是小规模实践与协作共同体。成员从自己的真实角色出发，完成行动、试用和复盘，留下案例、工具与可信的协作记录。</p>
+            <p className="text-base leading-8 text-ink-muted">星火者是申请制实践俱乐部。成员从自己的真实角色出发，完成行动、试用和复盘，留下案例、工具与可信的协作记录；它不是围观群，也不是只靠发起人输出的课堂。</p>
             <Link href="/community" className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-ink hover:text-stone">了解星火者 <ArrowRight size={16} aria-hidden /></Link>
           </div>
         </Reveal>
