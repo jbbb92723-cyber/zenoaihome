@@ -1,0 +1,203 @@
+import { articles } from '@/data/content/articles'
+
+type Locale = 'zh' | 'en'
+
+type HistoryMessage = {
+  role: 'user' | 'assistant'
+  content: string
+}
+
+type SiteContextInput = {
+  message: string
+  history?: HistoryMessage[]
+  locale: Locale
+  pagePath?: string
+}
+
+type SiteResource = {
+  href: string
+  title: string
+  titleEn: string
+  summary: string
+  summaryEn: string
+  signals: RegExp[]
+  articleKeywords: string[]
+  fallback?: boolean
+}
+
+const SITE_RESOURCES: SiteResource[] = [
+  {
+    href: '/living-diagnosis',
+    title: '居住需求自检',
+    titleEn: 'Living-needs self-check',
+    summary: '用预设问题梳理家庭成员、生活场景、空间优先级和预算取舍。',
+    summaryEn: 'Clarifies household, routines, spatial priorities and budget tradeoffs.',
+    signals: [/生活方式|居住|户型|动线|收纳|家庭|老人|孩子|宠物|风格|审美|方案/i],
+    articleKeywords: ['居住', '空间', '审美', '生活', '方案'],
+  },
+  {
+    href: '/tools/quote-check',
+    title: '报价初筛工具',
+    titleEn: 'Quote screening tool',
+    summary: '初筛漏项、模糊工艺、材料边界、增项流程和付款节点。',
+    summaryEn: 'Screens omissions, vague scope, material boundaries, change orders and payments.',
+    signals: [/报价|预算|总价|单价|漏项|增项|暂估|结算|付款|合同/i],
+    articleKeywords: ['报价', '预算', '合同', '增项', '付款'],
+  },
+  {
+    href: '/risk-dictionary',
+    title: '报价风险词典',
+    titleEn: 'Quote-risk dictionary',
+    summary: '解释“按实际发生”“暂估”“同等档次”等高风险表述。',
+    summaryEn: 'Explains open-ended and high-risk wording in renovation quotes.',
+    signals: [/按实际|暂估|同等档次|综合价|另计|风险词|模糊/i],
+    articleKeywords: ['报价', '风险', '增项', '合同'],
+  },
+  {
+    href: '/project-risks',
+    title: '施工项目风险库',
+    titleEn: 'Construction risk library',
+    summary: '按拆除、水电、防水、泥工、木作、油漆和安装查看检查点。',
+    summaryEn: 'Stage-based checks for demolition, utilities, waterproofing, finishes and installation.',
+    signals: [/开工|施工|水电|防水|泥工|木作|油漆|安装|验收|整改|工地/i],
+    articleKeywords: ['施工', '验收', '工地', '水电', '防水'],
+  },
+  {
+    href: '/ai-tools/task-planner',
+    title: '工作流任务拆解器',
+    titleEn: 'Workflow task planner',
+    summary: '把真实工作拆成输入、步骤、完成标准、人工责任和可交接结果。',
+    summaryEn: 'Breaks real work into inputs, steps, acceptance criteria and human ownership.',
+    signals: [/AI|人工智能|工作流|自动化|智能体|Agent|重复工作|任务|交接|知识库/i],
+    articleKeywords: ['AI', '工作流', '知识库', '一人公司', '任务'],
+  },
+  {
+    href: '/opc-knowledge',
+    title: '经验资产化与一人公司',
+    titleEn: 'Experience assets and solo work',
+    summary: '把传统行业经验整理成可检索、可复用、可验证的工作资产。',
+    summaryEn: 'Turns field experience into searchable, reusable and testable working assets.',
+    signals: [/经验|资产化|一人公司|OPC|个人品牌|内容系统|知识系统|转型|传统行业/i],
+    articleKeywords: ['经验', '一人公司', 'OPC', '个人品牌', '传统行业'],
+  },
+  {
+    href: '/services',
+    title: '项目合作与人工判断',
+    titleEn: 'Projects and human review',
+    summary: '需要结合具体材料、明确范围并承担交付责任时进入人工合作。',
+    summaryEn: 'Human review for work that requires source materials, scope and delivery responsibility.',
+    signals: [/服务|合作|咨询|人工|帮我看|具体材料|联系|报价审查/i],
+    articleKeywords: ['服务', '合作', '判断'],
+  },
+  {
+    href: '/practice',
+    title: '实践与证据',
+    titleEn: 'Practice and evidence',
+    summary: '查看赞诺正在验证什么、依据是什么，以及方法如何被修订。',
+    summaryEn: 'Shows what Zeno is testing, the evidence used and how methods change.',
+    signals: [/证据|案例|实践|验证|结果|依据|方法/i],
+    articleKeywords: ['实践', '验证', '判断', '长期主义'],
+    fallback: true,
+  },
+  {
+    href: '/blog',
+    title: '文章与判断记录',
+    titleEn: 'Writing and judgment records',
+    summary: '从文章中查看完整背景、判断过程和公开实践。',
+    summaryEn: 'Long-form context, judgment and public practice.',
+    signals: [/文章|博客|观点|怎么想|为什么|经历/i],
+    articleKeywords: ['判断', '实践'],
+    fallback: true,
+  },
+]
+
+function resourceScore(resource: SiteResource, query: string, pagePath?: string) {
+  let score = resource.signals.reduce(
+    (total, signal) => total + (signal.test(query) ? 3 : 0),
+    0,
+  )
+
+  const cleanHref = resource.href.split('#')[0]
+  if (pagePath && (pagePath === cleanHref || pagePath.startsWith(`${cleanHref}/`))) {
+    score += 5
+  }
+
+  return score
+}
+
+function articleScore(article: (typeof articles)[number], query: string, keywords: string[]) {
+  const haystack = `${article.title} ${article.excerpt} ${article.category} ${article.tags.join(' ')}`.toLowerCase()
+  let score = 0
+
+  for (const tag of article.tags) {
+    if (tag.length > 1 && query.includes(tag.toLowerCase())) score += 4
+  }
+
+  for (const keyword of keywords) {
+    const normalized = keyword.toLowerCase()
+    if (query.includes(normalized) && haystack.includes(normalized)) score += 3
+    else if (haystack.includes(normalized)) score += 1
+  }
+
+  return score
+}
+
+export function buildAssistantSiteContext({
+  message,
+  history = [],
+  locale,
+  pagePath,
+}: SiteContextInput) {
+  const query = [
+    ...history.slice(-4).map((item) => item.content),
+    message,
+  ].join(' ').toLowerCase()
+
+  const rankedResources = SITE_RESOURCES
+    .map((resource) => ({ resource, score: resourceScore(resource, query, pagePath) }))
+    .filter((item) => item.score > 0)
+    .sort((a, b) => b.score - a.score)
+
+  const selectedResources = rankedResources.length > 0
+    ? rankedResources.slice(0, 4).map((item) => item.resource)
+    : SITE_RESOURCES.filter((resource) => resource.fallback)
+
+  const articleKeywords = Array.from(new Set(
+    selectedResources.flatMap((resource) => resource.articleKeywords),
+  ))
+
+  const selectedArticles = articles
+    .map((article) => ({ article, score: articleScore(article, query, articleKeywords) }))
+    .filter((item) => item.score >= 3)
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 3)
+    .map((item) => item.article)
+
+  const resourceLines = selectedResources.map((resource) => {
+    const title = locale === 'en' ? resource.titleEn : resource.title
+    const summary = locale === 'en' ? resource.summaryEn : resource.summary
+    return `- ${title} | ${resource.href} | ${summary}`
+  })
+
+  const articleLines = selectedArticles.map((article) => (
+    `- ${article.title} | /blog/${article.slug} | ${article.excerpt}`
+  ))
+
+  const currentPage = pagePath || (locale === 'en' ? '/en' : '/')
+  const heading = locale === 'en'
+    ? `Current page: ${currentPage}\nVerified site routes that may help:`
+    : `用户当前页面：${currentPage}\n可能有帮助的站内可核对入口：`
+  const articleHeading = locale === 'en'
+    ? '\nRelated published article metadata (title and excerpt only):'
+    : '\n可能相关的已发布文章元数据（只有标题和摘要）：'
+  const boundary = locale === 'en'
+    ? '\nUse these only when relevant. Do not claim to have read a full article or private file from metadata alone.'
+    : '\n只在确实相关时引用。仅凭元数据不得声称已经读过文章全文，也不得声称看过用户未提交的私人材料。'
+
+  return [
+    heading,
+    ...resourceLines,
+    ...(articleLines.length > 0 ? [articleHeading, ...articleLines] : []),
+    boundary,
+  ].join('\n')
+}

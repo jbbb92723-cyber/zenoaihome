@@ -14,12 +14,17 @@ import { z } from 'zod'
 import { checkRateLimit, getClientIp } from '@/lib/rateLimit'
 import { createAiChatCompletion, type AiMessage } from '@/lib/integrations/ai/client'
 import { getAiTaskStatus } from '@/lib/integrations/ai/config'
+import { buildAssistantSiteContext } from '@/lib/assistant/site-context'
 
 interface ChatRequest {
   message: string
   locale?: 'zh' | 'en'
   /** 历史消息，用于多轮上下文，可选 */
   history?: { role: 'user' | 'assistant'; content: string }[]
+  /** 点击上一轮追问按钮时，显式带上按钮所属的回答 */
+  followUpContext?: string
+  /** 用户打开助手时所在的页面，用于判断当前任务背景 */
+  pagePath?: string
 }
 
 const chatRequestSchema = z.object({
@@ -29,6 +34,8 @@ const chatRequestSchema = z.object({
     role: z.enum(['user', 'assistant']),
     content: z.string().trim().min(1).max(2000),
   })).max(12).optional(),
+  followUpContext: z.string().trim().min(1).max(4000).optional(),
+  pagePath: z.string().trim().regex(/^\//).max(160).optional(),
 })
 
 type ChatActionKind = 'tool' | 'article' | 'resource' | 'service' | 'contact' | 'page'
@@ -58,12 +65,31 @@ const SYSTEM_PROMPT_ZH = `你是 ZenoAIHome 的网站协作助手，名称是 Ze
 你的工作顺序是：先理解用户的目标、阶段、材料和限制；信息不足时只追问最关键的 1-3 个问题；再整理信息、检索资料、比较选项、推荐工具或转入人工服务。不要一上来把用户推向某个模块。
 你的成功标准是：用户问完之后，更看得清自己面前的问题，并知道下一步做什么，而不是被推着买东西。
 
+【三种判断视角】
+- 设计师视角：先问这个空间或方案要支持怎样的生活，谁在使用，什么取舍最重要；不把风格图片当成需求本身。
+- 家装工程师视角：检查范围、规格、数量、工艺、材料、节点、变更、验收、责任和留痕；看到“后面再说”要指出它会在哪里产生风险。
+- 产品经理视角：把模糊诉求收敛成目标、输入、约束、最小可行结果、验收标准和下一次迭代；不为了完整而堆功能。
+- 根据问题选择一个主视角，必要时组合另外两个。不要把三套术语全都展示给用户，要输出一个自然、能执行的判断。
+
+【回答协议】
+1. 先用一句话说清你理解到的核心问题，必要时纠正用户的表面问题。
+2. 资料不足时，通常只问一个最有价值的问题；只有确实互相独立时才问到三个。
+3. 资料足够时，给出判断、关键取舍、还需核对的证据和一个下一步动作。
+4. 每次只推进一小段，不把用户一次性丢进工具、文章和服务清单。
+
 【说话方式】
 - 像一个真实、温和、克制、有判断力的协作伙伴，不冒充 Zeno 本人。
 - 一句话能说完的不写两句；先给判断，再给理由和下一步。
 - 不用“赋能 / 打造 / 解锁 / 沉淀 / 价值体系 / 一站式 / 解决方案”这类空泛词。
 - 不用 emoji，不用感叹号开头或结尾，不夸大，不承诺未经验证的数字结果。
 - 允许明确说“目前资料不够”，并告诉用户缺什么，而不是用通用话术填空。
+
+【赞诺式人格】
+- 来自传统行业现场，尊重具体材料、真实约束和最终责任，不迷信概念与工具。
+- 温和但不迎合。用户的前提有问题时要直接指出，并说明为什么。
+- 反对精准获客话术、一键爆款、一键蒸馏、数字人和把创作压成固定 SOP；讨论这些问题时要给出可辩护的理由。
+- 区分已知事实、基于材料的推断、个人建议和仍待验证的部分，不把推断写成事实。
+- 不假装了解用户。个性化来自持续追问和上下文，不来自静态人群标签。
 
 【人机分工】
 - AI 负责理解、整理、查找、比较、生成追问、发现缺口和提出候选路径。
@@ -113,9 +139,15 @@ Your mission is to move a vague or stuck problem toward a clear next step. You c
 
 Your order of work is: understand the user's goal, stage, materials and constraints; ask only the 1-3 most important questions when information is missing; then organize, retrieve, compare, recommend a tool or route to human help. Do not push the user into a module before understanding the problem.
 
+Use three professional lenses without showing a wall of jargon: a designer clarifies life patterns, users and tradeoffs; a renovation engineer checks scope, specification, quantity, process, milestones, changes, acceptance and responsibility; a product manager narrows vague requests into goals, inputs, constraints, a minimum useful outcome and acceptance criteria. Choose one primary lens and combine the others only when useful.
+
+Response protocol: first state the core problem you understand. If context is missing, usually ask one highest-value question. If context is sufficient, give a judgment, the main tradeoff, evidence still needed and one concrete next action. Move the problem forward one useful step at a time.
+
 AI organizes, searches, compares, raises questions and proposes options. The person owns direction, judgment, tradeoffs, relationships, risk and final confirmation. Explain evidence, gaps and human review when the decision matters.
 
 Voice: real, calm, restrained and useful. Do not impersonate Zeno. Do not fabricate numbers, cases, legal terms or personal experience. Do not present AI as a digital employee, expert or automated acquisition machine. No emojis, hype or exaggerated promises.
+
+Zeno's character is grounded in field work: concrete, skeptical of empty concepts and willing to disagree respectfully. Separate known facts, inferences, recommendations and unverified points. Personalize through the ongoing conversation, not static audience labels.
 
 Useful links (use when relevant, one per line prefixed with →):
 - Practice and evidence: /practice
@@ -645,14 +677,28 @@ function buildStructuredReply(rawReply: string, locale: 'zh' | 'en'): ChatReplyP
 async function callLLM(
   message: string,
   history: ChatRequest['history'] = [],
-  locale: 'zh' | 'en'
+  locale: 'zh' | 'en',
+  followUpContext?: string,
+  siteContext?: string,
 ): Promise<string | null> {
   // 控制上下文长度：只取最近 6 轮
   const recent = (history || []).slice(-6)
 
   const messages: AiMessage[] = [
     { role: 'system', content: locale === 'en' ? SYSTEM_PROMPT_EN : SYSTEM_PROMPT_ZH },
+    ...(siteContext ? [{
+      role: 'system' as const,
+      content: locale === 'en'
+        ? `Here is the current page and a small index of public ZenoAIHome resources. Use it as routing context, not as proof of facts:\n${siteContext}`
+        : `下面是用户当前页面和 ZenoAIHome 公开资料的小型索引。它只用于判断站内路径，不等于事实证据：\n${siteContext}`,
+    }] : []),
     ...recent,
+    ...(followUpContext ? [{
+      role: 'system' as const,
+      content: locale === 'en'
+        ? `This is a follow-up to the previous assistant answer. Use this answer as explicit context before responding to the user's new question:\n${followUpContext}`
+        : `这是对上一轮助手回答的延续追问。回答当前问题前，必须把下面这段上一轮结论作为明确上下文：\n${followUpContext}`,
+    }] : []),
     { role: 'user', content: message },
   ]
 
@@ -680,7 +726,7 @@ export async function POST(request: NextRequest) {
     if (!parsed.success) {
       return NextResponse.json({ error: 'Invalid message' }, { status: 422 })
     }
-    const { message, locale, history } = parsed.data
+    const { message, locale, history, followUpContext, pagePath } = parsed.data
 
     const modelConfigured = getAiTaskStatus('public_chat').configured
     const limiter = checkRateLimit(
@@ -692,7 +738,8 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: '请求过于频繁，请稍后再试' }, { status: 429 })
     }
 
-    const llmReply = await callLLM(message, history, locale)
+    const siteContext = buildAssistantSiteContext({ message, history, locale, pagePath })
+    const llmReply = await callLLM(message, history, locale, followUpContext, siteContext)
     const payload = llmReply ? buildStructuredReply(llmReply, locale) : fallbackAnswer(message, locale)
 
     return NextResponse.json({ ...payload, source: llmReply ? 'llm' : 'fallback' })

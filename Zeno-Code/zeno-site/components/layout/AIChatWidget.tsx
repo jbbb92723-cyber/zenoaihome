@@ -1,8 +1,20 @@
 'use client'
 
 import Link from 'next/link'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, type KeyboardEvent } from 'react'
 import { usePathname } from 'next/navigation'
+import {
+  ArrowCounterClockwise,
+  ArrowRight,
+  Brain,
+  ChatCircleDots,
+  FileText,
+  HouseLine,
+  PaperPlaneTilt,
+  WarningCircle,
+  Wrench,
+  X,
+} from '@phosphor-icons/react'
 
 type ChatActionKind = 'tool' | 'article' | 'resource' | 'service' | 'contact' | 'page'
 
@@ -18,6 +30,7 @@ interface Message {
   bullets?: string[]
   actions?: ChatAction[]
   followUps?: string[]
+  source?: 'llm' | 'fallback'
 }
 
 interface ChatResponse {
@@ -27,6 +40,14 @@ interface ChatResponse {
   followUps?: string[]
   source: 'llm' | 'fallback'
 }
+
+interface AssistantRequest {
+  message: string
+  followUpContext?: string
+  history: Array<{ role: 'user' | 'assistant'; content: string }>
+}
+
+const SESSION_STORAGE_KEY = 'zeno-assistant-conversation-v1'
 
 const actionKindLabels: Record<'zh' | 'en', Record<ChatActionKind, string>> = {
   zh: {
@@ -49,40 +70,60 @@ const actionKindLabels: Record<'zh' | 'en', Record<ChatActionKind, string>> = {
 
 const quickEntriesZh = [
   {
-    label: '我还没想清楚从哪里开始',
-    prompt: '我还没定装修方案，请先帮我判断：我应该从生活方式、审美偏好、家庭场景、预算边界还是报价风险开始整理？',
+    label: '生活与方案',
+    description: '先把谁在住、怎么住和最重要的取舍说清楚。',
+    prompt: '我还没定装修方案。请先从家庭成员、生活习惯、空间优先级和预算取舍里，问我一个最关键的问题。',
+    icon: HouseLine,
   },
   {
-    label: '我手上有一份报价单',
-    prompt: '我正在看装修报价单，请先帮我分流：它能不能承接方案边界，我应该先看哪些风险、用哪个工具、拿哪份检查模板，什么时候需要报价 / 合同快审或综合判断？',
+    label: '报价与工程',
+    description: '从范围、工艺、材料、变更和付款节点开始核对。',
+    prompt: '我手上有一份装修报价单。请先问我目前有哪些材料，再判断第一步应该核对范围、工艺、材料、增项还是付款节点。',
+    icon: FileText,
   },
   {
-    label: '我想把一项工作交给 AI',
-    prompt: '我在传统行业里有一项重复工作，想判断 AI 能不能帮我做。请先问我最关键的问题，再帮我拆出适合 AI、必须由人负责和需要验证的部分。',
+    label: 'AI 与工作',
+    description: '拆清输入、验收标准，以及必须由人负责的部分。',
+    prompt: '我在传统行业里有一项重复工作，想判断 AI 能不能帮我做。请先问我一个最关键的问题，再拆分 AI 可以做、必须由人负责和需要验证的部分。',
+    icon: Wrench,
   },
 ]
 
 const quickEntriesEn = [
   {
-    label: 'I am not sure where to start',
-    prompt: 'I am checking a renovation quote. Help me route to the right risks, tools, checklists and service if needed.',
+    label: 'Living and design',
+    description: 'Clarify who lives there, how life works and the main tradeoff.',
+    prompt: 'I have not fixed the renovation plan. Ask me the single most important question about household, routines, spatial priorities or budget tradeoffs.',
+    icon: HouseLine,
   },
   {
-    label: 'I have a quote in hand',
-    prompt: 'I worry about add-on costs after signing. Help me identify missing scope, unclear wording, change-order risks, and payment milestone issues.',
+    label: 'Quote and delivery',
+    description: 'Check scope, process, materials, changes and payment milestones.',
+    prompt: 'I have a renovation quote. First ask what materials I have, then decide whether scope, process, materials, change orders or payment milestones should be checked first.',
+    icon: FileText,
   },
   {
-    label: 'I want to improve a real workflow with AI',
-    prompt: 'I have a repetitive task in a traditional industry and want to know whether AI can help. Ask me the most important questions first, then separate what AI can do, what I must own, and how to test it.',
+    label: 'AI and real work',
+    description: 'Separate inputs, acceptance criteria and human responsibility.',
+    prompt: 'I have a repetitive task in a traditional industry. Ask me the single most important question, then separate what AI can do, what a person must own and what needs testing.',
+    icon: Wrench,
   },
 ]
+
+function toHistoryContent(message: Message) {
+  const bullets = message.bullets?.map((item) => `- ${item}`) ?? []
+  return [message.content, ...bullets].filter(Boolean).join('\n')
+}
 
 export default function AIChatWidget() {
   const [open, setOpen] = useState(false)
   const [messages, setMessages] = useState<Message[]>([])
   const [input, setInput] = useState('')
   const [loading, setLoading] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+  const [failedRequest, setFailedRequest] = useState<AssistantRequest | null>(null)
   const messagesEndRef = useRef<HTMLDivElement>(null)
+  const inputRef = useRef<HTMLTextAreaElement>(null)
   const pathname = usePathname()
 
   const isEn = pathname.startsWith('/en')
@@ -90,18 +131,46 @@ export default function AIChatWidget() {
   const locale = isEn ? 'en' : 'zh'
 
   useEffect(() => {
+    try {
+      const saved = window.sessionStorage.getItem(SESSION_STORAGE_KEY)
+      if (!saved) return
+      const parsed = JSON.parse(saved)
+      if (Array.isArray(parsed)) setMessages(parsed.slice(-24))
+    } catch {
+      window.sessionStorage.removeItem(SESSION_STORAGE_KEY)
+    }
+  }, [])
+
+  useEffect(() => {
+    try {
+      if (messages.length === 0) {
+        window.sessionStorage.removeItem(SESSION_STORAGE_KEY)
+      } else {
+        window.sessionStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify(messages.slice(-24)))
+      }
+    } catch {
+      // The assistant still works when browser storage is unavailable.
+    }
+  }, [messages])
+
+  useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
-  }, [messages, loading])
+  }, [messages, loading, error])
 
   useEffect(() => {
     if (!open) return
 
-    function handleEscape(event: KeyboardEvent) {
+    const focusTimer = window.setTimeout(() => inputRef.current?.focus(), 120)
+
+    function handleEscape(event: globalThis.KeyboardEvent) {
       if (event.key === 'Escape') setOpen(false)
     }
 
     window.addEventListener('keydown', handleEscape)
-    return () => window.removeEventListener('keydown', handleEscape)
+    return () => {
+      window.clearTimeout(focusTimer)
+      window.removeEventListener('keydown', handleEscape)
+    }
   }, [open])
 
   if (pathname.startsWith('/admin')) return null
@@ -109,49 +178,79 @@ export default function AIChatWidget() {
   function resetConversation() {
     setMessages([])
     setInput('')
+    setError(null)
+    setFailedRequest(null)
+    window.sessionStorage.removeItem(SESSION_STORAGE_KEY)
+    window.setTimeout(() => inputRef.current?.focus(), 0)
   }
 
-  async function handleSend(text?: string) {
-    const msg = text ?? input.trim()
-    if (!msg) return
+  async function requestAssistant(request: AssistantRequest, appendUser: boolean) {
+    if (loading) return
 
-    const userMessage: Message = { role: 'user', content: msg }
-    setMessages((previous) => [...previous, userMessage])
+    if (appendUser) {
+      setMessages((previous) => [...previous, { role: 'user', content: request.message }])
+    }
+
     setInput('')
     setLoading(true)
+    setError(null)
+    setFailedRequest(null)
 
     try {
-      const history = messages.map((message) => ({ role: message.role, content: message.content }))
       const response = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: msg, locale, history }),
+        body: JSON.stringify({
+          message: request.message,
+          locale,
+          history: request.history,
+          followUpContext: request.followUpContext,
+          pagePath: pathname,
+        }),
       })
 
-      if (response.ok) {
-        const data: ChatResponse = await response.json()
-        setMessages((previous) => [...previous, {
-          role: 'assistant',
-          content: data.reply,
-          bullets: data.bullets,
-          actions: data.actions,
-          followUps: data.followUps,
-        }])
-      } else {
-        setMessages((previous) => [...previous, {
-          role: 'assistant',
-          content: isEn
-            ? 'I could not process that. You can still use the route links above.'
-            : '暂时无法回复。你可以先用上面的分流入口继续往下走。',
-        }])
+      if (!response.ok) {
+        const message = response.status === 429
+          ? (isEn ? 'Too many requests. Please wait a moment.' : '请求有点密集，请稍等片刻再试。')
+          : (isEn ? 'The assistant could not complete this response.' : '这次没有完成回答，请重试。')
+        setError(message)
+        setFailedRequest(request)
+        return
       }
-    } catch {
+
+      const data: ChatResponse = await response.json()
       setMessages((previous) => [...previous, {
         role: 'assistant',
-        content: isEn ? 'Network error. Please try again.' : '网络错误，请稍后重试。',
+        content: data.reply,
+        bullets: data.bullets,
+        actions: data.actions,
+        followUps: data.followUps,
+        source: data.source,
       }])
+    } catch {
+      setError(isEn ? 'The connection was interrupted. Please try again.' : '连接中断了，请再试一次。')
+      setFailedRequest(request)
     } finally {
       setLoading(false)
+    }
+  }
+
+  function handleSend(text?: string, followUpContext?: string) {
+    const message = (text ?? input).trim()
+    if (!message || loading) return
+
+    const history = messages.slice(-12).map((item) => ({
+      role: item.role,
+      content: toHistoryContent(item),
+    }))
+
+    void requestAssistant({ message, followUpContext, history }, true)
+  }
+
+  function handleInputKeyDown(event: KeyboardEvent<HTMLTextAreaElement>) {
+    if (event.key === 'Enter' && !event.shiftKey) {
+      event.preventDefault()
+      handleSend()
     }
   }
 
@@ -161,112 +260,125 @@ export default function AIChatWidget() {
         <button
           type="button"
           onClick={() => setOpen(true)}
-          className="motion-press fixed bottom-4 right-4 z-[75] inline-flex h-12 w-12 items-center justify-center border border-white/25 bg-stone p-0 text-left text-white shadow-[0_18px_48px_rgba(17,17,17,0.26)] hover:bg-stone/95 hover:shadow-[0_24px_70px_rgba(17,17,17,0.32)] sm:bottom-7 sm:right-7 sm:h-auto sm:w-auto sm:min-h-[4.5rem] sm:gap-3 sm:px-6 sm:py-3"
-          aria-label={isEn ? 'Open Zeno assistant' : '打开 Zeno 助手'}
+          className="motion-press fixed bottom-4 right-4 z-[75] inline-flex h-12 w-12 items-center justify-center border border-white/25 bg-stone p-0 text-left text-white shadow-[0_18px_48px_rgba(17,17,17,0.26)] transition-transform active:scale-[0.98] sm:bottom-7 sm:right-7 sm:h-auto sm:w-auto sm:min-h-[4.5rem] sm:gap-3 sm:px-5 sm:py-3"
+          aria-label={isEn ? 'Open Zeno assistant' : '打开 ZENO 助手'}
         >
-          <span className="flex h-9 w-9 shrink-0 items-center justify-center bg-white/12 ring-1 ring-white/20 sm:h-10 sm:w-10">
-            <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-            </svg>
+          <span className="flex h-9 w-9 shrink-0 items-center justify-center bg-white/10 ring-1 ring-white/20 sm:h-10 sm:w-10">
+            <ChatCircleDots size={21} weight="duotone" aria-hidden />
           </span>
           <span className="hidden sm:block">
-            <span className="block text-base font-semibold leading-none sm:text-lg">{isEn ? 'Zeno assistant' : 'Zeno 助手'}</span>
-            <span className="mt-1 block text-xs font-medium text-white/75">{isEn ? 'From a question to a next step' : '从问题到下一步'}</span>
+            <span className="block text-base font-semibold leading-none">{isEn ? 'ZENO assistant' : 'ZENO 助手'}</span>
+            <span className="mt-1.5 block text-xs font-medium text-white/72">{isEn ? 'Understand, judge, move forward' : '理解 · 判断 · 推进'}</span>
           </span>
         </button>
       )}
 
       {open && (
-        <div className="fixed bottom-4 right-4 z-[80] flex h-[min(680px,calc(100vh-2rem))] w-[min(460px,calc(100vw-2rem))] flex-col border border-border bg-canvas shadow-[0_28px_90px_rgba(17,17,17,0.26)] animate-surface-in sm:bottom-6 sm:right-6">
-          <div className="flex shrink-0 items-center justify-between border-b border-border bg-surface-warm px-4 py-3">
-            <div className="flex items-center gap-3">
-              <div className="flex h-8 w-8 items-center justify-center bg-stone-pale text-xs font-semibold text-stone">Z</div>
-              <div>
-                <p className="text-sm font-semibold text-ink">{isEn ? 'Ask Zeno' : '问 Zeno'}</p>
-                <p className="text-[0.7rem] text-ink-faint">
-                  {isEn ? 'Route the question first' : '先分流，再解决问题'}
+        <section
+          className="fixed inset-0 z-[80] flex h-[100dvh] w-full flex-col bg-canvas text-ink shadow-[0_28px_90px_rgba(17,17,17,0.26)] animate-surface-in sm:inset-auto sm:bottom-6 sm:right-6 sm:h-[min(720px,calc(100dvh-3rem))] sm:w-[min(500px,calc(100vw-3rem))] sm:border sm:border-border"
+          aria-label={isEn ? 'ZENO assistant conversation' : 'ZENO 助手对话'}
+        >
+          <header className="flex min-h-[4.25rem] shrink-0 items-center justify-between border-b border-border bg-surface-warm px-4">
+            <div className="flex min-w-0 items-center gap-3">
+              <div className="flex h-9 w-9 shrink-0 items-center justify-center bg-ink text-xs font-semibold text-white">Z</div>
+              <div className="min-w-0">
+                <p className="truncate text-sm font-semibold text-ink">{isEn ? 'ZENO assistant' : 'ZENO 助手'}</p>
+                <p className="mt-0.5 truncate text-[0.72rem] text-ink-faint">
+                  {isEn ? 'Judgment for real work' : '真实问题的协作判断'}
                 </p>
               </div>
             </div>
-            <div className="flex items-center gap-2">
+
+            <div className="flex items-center gap-1">
               {messages.length > 0 && (
                 <button
                   type="button"
                   onClick={resetConversation}
-                  className="text-[0.7rem] font-medium text-ink-faint transition-colors hover:text-ink"
+                  className="inline-flex h-9 w-9 items-center justify-center text-ink-muted transition-colors hover:bg-surface hover:text-ink active:scale-[0.98]"
+                  aria-label={isEn ? 'Start a new conversation' : '重新开始'}
+                  title={isEn ? 'Start a new conversation' : '重新开始'}
                 >
-                  {isEn ? 'New chat' : '重新开始'}
+                  <ArrowCounterClockwise size={18} aria-hidden />
                 </button>
               )}
               <button
                 type="button"
                 onClick={() => setOpen(false)}
-                className="inline-flex min-h-9 items-center gap-1.5 border border-border px-2.5 text-xs font-medium text-ink-muted transition-colors hover:border-stone hover:text-ink"
-                aria-label={isEn ? 'Close Zeno assistant' : '收起 Zeno 助手'}
-                title={isEn ? 'Close Zeno assistant' : '收起 Zeno 助手'}
+                className="inline-flex h-9 w-9 items-center justify-center text-ink-muted transition-colors hover:bg-surface hover:text-ink active:scale-[0.98]"
+                aria-label={isEn ? 'Close ZENO assistant' : '收起 ZENO 助手'}
+                title={isEn ? 'Close ZENO assistant' : '收起 ZENO 助手'}
               >
-                <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
-                <span>{isEn ? 'Close' : '收起'}</span>
+                <X size={18} aria-hidden />
               </button>
             </div>
-          </div>
+          </header>
 
-          <div className="flex-1 overflow-y-auto px-4 py-4 space-y-4">
+          <div className="flex-1 space-y-5 overflow-y-auto px-4 py-5 sm:px-5">
             {messages.length === 0 && (
               <div>
-                <p className="text-sm leading-relaxed text-ink-muted">
-                  {isEn
-                    ? 'Tell me what you are trying to solve. I will first understand your stage, then help you organize information, find resources, compare options or choose a next step.'
-                    : '直接说你现在遇到什么问题。我会先理解你处在哪个阶段，再帮你整理信息、查找资料、比较选项或找到下一步。'}
-                </p>
-
-                <div className="mt-3 border border-border bg-surface px-3 py-3">
-                  <p className="text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-ink-faint">
-                    {isEn ? 'Start with a situation' : '可以从一件具体的事开始'}
+                <div className="border-l-2 border-stone pl-4">
+                  <p className="text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-stone">
+                    {isEn ? 'Start with the real situation' : '先说真实处境'}
                   </p>
-                  <p className="mt-2 text-sm leading-relaxed text-ink">
+                  <p className="mt-3 text-[0.95rem] leading-7 text-ink">
                     {isEn
-                      ? '“I have a real task and I am not sure whether AI should handle it. What should I clarify first?”'
-                      : '“我有一项重复工作，想知道 AI 应该做到哪一步，我先说哪些信息？”'}
+                      ? 'You do not need to organize the problem first. Tell me what happened, what you have in hand and what you are worried about.'
+                      : '不用先把问题整理好。告诉我发生了什么、手里已有些什么、你最担心哪一步。'}
+                  </p>
+                  <p className="mt-2 text-sm leading-6 text-ink-muted">
+                    {isEn
+                      ? 'I will clarify one key issue first, then give a judgment and a next action.'
+                      : '我会先问清一个关键点，再给判断和下一步。'}
                   </p>
                 </div>
 
-                <div className="mt-4">
-                  <p className="text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-ink-faint">
-                    {isEn ? 'Or choose an example' : '也可以从这里开始'}
-                  </p>
-                  <div className="mt-3 flex flex-wrap gap-2">
-                  {quickEntries.map((entry) => (
-                    <button
-                      key={entry.label}
-                      type="button"
-                      onClick={() => handleSend(entry.prompt)}
-                      className="motion-surface border border-border bg-surface px-3 py-2 text-left text-sm font-medium text-ink hover:border-stone hover:text-stone"
-                    >
-                        {entry.label}
-                    </button>
-                  ))}
-                  </div>
+                <div className="mt-7 border-t border-border">
+                  {quickEntries.map((entry) => {
+                    const Icon = entry.icon
+                    return (
+                      <button
+                        key={entry.label}
+                        type="button"
+                        onClick={() => handleSend(entry.prompt)}
+                        disabled={loading}
+                        className="group grid w-full grid-cols-[2.25rem_1fr_auto] items-center gap-3 border-b border-border py-4 text-left transition-colors hover:bg-surface-warm/60 active:bg-surface disabled:cursor-not-allowed disabled:opacity-50"
+                      >
+                        <span className="flex h-9 w-9 items-center justify-center bg-surface text-stone transition-colors group-hover:bg-stone-pale">
+                          <Icon size={19} weight="duotone" aria-hidden />
+                        </span>
+                        <span>
+                          <span className="block text-sm font-semibold text-ink">{entry.label}</span>
+                          <span className="mt-1 block text-xs leading-5 text-ink-muted">{entry.description}</span>
+                        </span>
+                        <ArrowRight size={16} className="text-ink-faint transition-transform group-hover:translate-x-0.5 group-hover:text-stone" aria-hidden />
+                      </button>
+                    )
+                  })}
                 </div>
               </div>
             )}
 
             {messages.map((message, index) => (
-              <div key={index} className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                <div className={`max-w-[88%] px-3 py-2 text-sm leading-relaxed ${
+              <div key={`${message.role}-${index}`} className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}>
+                <div className={`max-w-[92%] px-3.5 py-3 text-sm leading-7 sm:max-w-[88%] ${
                   message.role === 'user'
                     ? 'bg-stone text-white'
-                    : 'border border-border bg-surface text-ink shadow-[0_12px_30px_rgba(17,17,17,0.06)]'
+                    : 'border border-border bg-surface text-ink shadow-[0_12px_30px_rgba(17,17,17,0.05)]'
                 }`}>
+                  {message.role === 'assistant' && (
+                    <div className="mb-2 flex items-center gap-1.5 text-[0.68rem] font-semibold uppercase tracking-[0.12em] text-stone">
+                      <Brain size={14} weight="duotone" aria-hidden />
+                      <span>{message.source === 'fallback' ? (isEn ? 'Basic routing' : '基础分流') : (isEn ? 'ZENO judgment' : 'ZENO 判断')}</span>
+                    </div>
+                  )}
+
                   <div className="whitespace-pre-wrap">{message.content}</div>
 
                   {message.role === 'assistant' && message.bullets && message.bullets.length > 0 && (
-                    <ul className="mt-3 space-y-2 border-t border-border/70 pt-3 text-[0.92rem] text-ink-muted">
+                    <ul className="mt-3 space-y-2 border-t border-border/70 pt-3 text-[0.9rem] text-ink-muted">
                       {message.bullets.map((bullet) => (
-                        <li key={bullet} className="flex gap-2">
-                          <span className="mt-[0.15rem] text-stone">•</span>
+                        <li key={bullet} className="grid grid-cols-[0.7rem_1fr] gap-2">
+                          <span className="mt-[0.7rem] h-1 w-1 bg-stone" aria-hidden />
                           <span>{bullet}</span>
                         </li>
                       ))}
@@ -274,24 +386,25 @@ export default function AIChatWidget() {
                   )}
 
                   {message.role === 'assistant' && message.actions && message.actions.length > 0 && (
-                    <div className="mt-3 border-t border-border/70 pt-3">
-                      <p className="mb-2 text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-ink-faint">
-                        {isEn ? 'Next step' : '下一步'}
+                    <div className="mt-4 border-t border-border/70 pt-3">
+                      <p className="mb-1 text-[0.68rem] font-semibold uppercase tracking-[0.12em] text-ink-faint">
+                        {isEn ? 'Useful next step' : '可用的下一步'}
                       </p>
-                      <div className="grid gap-2">
+                      <div className="divide-y divide-border/70">
                         {message.actions.map((action) => (
                           <Link
                             key={`${action.href}-${action.label}`}
                             href={action.href}
-                            className="group flex items-center justify-between border border-border bg-canvas px-3 py-2 transition-colors hover:border-stone hover:bg-stone-pale/45"
+                            onClick={() => setOpen(false)}
+                            className="group flex min-h-11 items-center justify-between gap-3 py-2.5 text-ink transition-colors hover:text-stone"
                           >
-                            <div>
-                              <span className="block text-sm font-semibold text-ink group-hover:text-stone">{action.label}</span>
-                              <span className="mt-1 block text-[0.72rem] uppercase tracking-[0.16em] text-ink-faint">
+                            <span>
+                              <span className="block text-sm font-semibold">{action.label}</span>
+                              <span className="mt-0.5 block text-[0.68rem] uppercase tracking-[0.1em] text-ink-faint">
                                 {actionKindLabels[locale][action.kind]}
                               </span>
-                            </div>
-                            <span className="text-sm text-stone">→</span>
+                            </span>
+                            <ArrowRight size={16} className="shrink-0 transition-transform group-hover:translate-x-0.5" aria-hidden />
                           </Link>
                         ))}
                       </div>
@@ -299,18 +412,18 @@ export default function AIChatWidget() {
                   )}
 
                   {message.role === 'assistant' && message.followUps && message.followUps.length > 0 && (
-                    <div className="mt-3 border-t border-border/70 pt-3">
-                      <p className="mb-2 text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-ink-faint">
-                        {isEn ? 'Continue here' : '继续追问'}
+                    <div className="mt-4 border-t border-border/70 pt-3">
+                      <p className="mb-2 text-[0.68rem] font-semibold uppercase tracking-[0.12em] text-ink-faint">
+                        {isEn ? 'Continue this judgment' : '沿着这个判断继续'}
                       </p>
-                      <div className="flex flex-wrap gap-2">
+                      <div className="grid gap-2">
                         {message.followUps.map((followUp) => (
                           <button
                             key={followUp}
                             type="button"
-                            onClick={() => handleSend(followUp)}
+                            onClick={() => handleSend(followUp, toHistoryContent(message))}
                             disabled={loading}
-                            className="border border-border bg-canvas px-2.5 py-1.5 text-left text-xs text-ink-muted transition-colors hover:border-stone hover:text-stone disabled:cursor-not-allowed disabled:opacity-50"
+                            className="min-h-10 border-l-2 border-border pl-3 text-left text-xs leading-5 text-ink-muted transition-colors hover:border-stone hover:text-ink disabled:cursor-not-allowed disabled:opacity-50"
                           >
                             {followUp}
                           </button>
@@ -323,42 +436,73 @@ export default function AIChatWidget() {
             ))}
 
             {loading && (
-              <div className="flex justify-start">
-                <div className="border border-border bg-surface px-3 py-2 text-sm text-ink-muted">
-                  {isEn ? 'Thinking...' : '正在整理路径...'}
+              <div className="flex justify-start" role="status" aria-live="polite">
+                <div className="w-[min(82%,22rem)] border border-border bg-surface px-3.5 py-3">
+                  <p className="text-xs font-medium text-stone">{isEn ? 'Understanding the situation' : '正在理解你的处境'}</p>
+                  <div className="mt-3 space-y-2" aria-hidden>
+                    <div className="h-2 w-full animate-pulse bg-stone-pale" />
+                    <div className="h-2 w-[82%] animate-pulse bg-stone-pale [animation-delay:120ms]" />
+                    <div className="h-2 w-[58%] animate-pulse bg-stone-pale [animation-delay:240ms]" />
+                  </div>
                 </div>
               </div>
             )}
+
             <div ref={messagesEndRef} />
           </div>
 
-          <div className="shrink-0 border-t border-border px-3 py-3">
-            <form
-              onSubmit={(event) => { event.preventDefault(); handleSend() }}
-              className="flex items-center gap-2"
-            >
-              <input
+          <footer className="shrink-0 border-t border-border bg-canvas px-4 py-3 sm:px-5">
+            {error && (
+              <div className="mb-3 flex items-start justify-between gap-3 border-l-2 border-cinnabar bg-surface-warm px-3 py-2.5 text-xs leading-5 text-ink-muted" role="alert">
+                <span className="flex items-start gap-2">
+                  <WarningCircle size={16} className="mt-0.5 shrink-0 text-cinnabar" aria-hidden />
+                  <span>{error}</span>
+                </span>
+                {failedRequest && (
+                  <button
+                    type="button"
+                    onClick={() => void requestAssistant(failedRequest, false)}
+                    className="shrink-0 font-semibold text-ink hover:text-stone"
+                  >
+                    {isEn ? 'Retry' : '重试'}
+                  </button>
+                )}
+              </div>
+            )}
+
+            <label htmlFor="zeno-assistant-input" className="block text-[0.68rem] font-semibold uppercase tracking-[0.12em] text-ink-faint">
+              {isEn ? 'Continue with context' : '继续描述'}
+            </label>
+            <div className="mt-2 grid grid-cols-[1fr_2.75rem] items-end gap-2 border border-border bg-surface px-3 py-2 focus-within:border-stone">
+              <textarea
+                ref={inputRef}
+                id="zeno-assistant-input"
+                rows={2}
                 value={input}
                 onChange={(event) => setInput(event.target.value)}
-                placeholder={isEn ? 'Tell me what you are trying to solve...' : '直接说你现在想解决什么问题...'}
-                className="min-h-10 flex-1 bg-transparent px-2 text-sm text-ink outline-none placeholder:text-ink-faint"
+                onKeyDown={handleInputKeyDown}
+                placeholder={isEn ? 'Describe the situation, materials and concern...' : '说清处境、已有材料和最担心的事...'}
+                className="max-h-28 min-h-12 w-full resize-none bg-transparent py-1 text-sm leading-6 text-ink outline-none placeholder:text-ink-faint"
                 disabled={loading}
               />
               <button
-                type="submit"
+                type="button"
+                onClick={() => handleSend()}
                 disabled={!input.trim() || loading}
-                className="inline-flex h-10 items-center bg-stone px-3 text-sm font-medium text-white transition-colors hover:bg-stone/90 disabled:bg-stone/35"
+                className="inline-flex h-10 w-10 items-center justify-center bg-stone text-white transition-transform hover:bg-stone-deep active:scale-[0.98] disabled:cursor-not-allowed disabled:bg-stone/35"
+                aria-label={isEn ? 'Send message' : '发送'}
+                title={isEn ? 'Send message' : '发送'}
               >
-                {isEn ? 'Send' : '发送'}
+                <PaperPlaneTilt size={18} weight="fill" aria-hidden />
               </button>
-            </form>
-            <p className="mt-2 text-[0.72rem] leading-relaxed text-ink-faint">
+            </div>
+            <p className="mt-2 text-[0.68rem] leading-5 text-ink-faint">
               {isEn
-                ? 'I can help organize, compare and move the problem forward. Important decisions and specific case responsibility stay with a person.'
-                : '我会帮你理解、整理、比较并推进问题。重要判断和具体个案责任，仍由人确认。'}
+                ? 'Context stays in this tab. Important decisions and project responsibility remain human.'
+                : '上下文仅保留在本标签页。重要判断与项目责任仍由人确认。'}
             </p>
-          </div>
-        </div>
+          </footer>
+        </section>
       )}
     </div>
   )
