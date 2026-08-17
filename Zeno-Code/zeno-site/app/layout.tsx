@@ -26,7 +26,7 @@ const notoSerif = Noto_Serif_SC({
 
 export const metadata: Metadata = {
   title: {
-    default: '传统行业人的 AI 胜任力实践',
+    default: '赞诺｜一个传统行业人的 AI 转型记录',
     template: '%s · Zeno',
   },
   description:
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     locale: 'zh_CN',
     url: 'https://zenoaihome.com',
     siteName: 'Zeno 赞诺',
-    title: '传统行业人的 AI 胜任力实践',
+    title: '赞诺｜一个传统行业人的 AI 转型记录',
     description:
       '赞诺记录人与 AI 如何把传统行业经验变成可检查、可使用、可修订的判断、内容、工具和服务。',
     images: [
@@ -52,7 +52,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: '传统行业人的 AI 胜任力实践',
+    title: '赞诺｜一个传统行业人的 AI 转型记录',
     description:
       '人先判断，AI 参与质疑，再用真实交付和反馈修订方法。',
     images: ['https://zenoaihome.com/images/brand/zeno-portrait.jpg'],

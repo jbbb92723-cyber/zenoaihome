@@ -124,14 +124,14 @@ export default function HomePageBrandHub() {
           <div className="max-w-[52rem] text-white">
             <p className="flex items-center gap-2.5 text-sm font-semibold text-white/75">
               <span className="inline-block h-2 w-2 shrink-0 bg-cinnabar" aria-hidden />
-              赞诺个人 IP × 公开判断 × 人机协作
+              赞诺的 AI 转型记录
             </p>
             <h1 className="editorial-display mt-5 text-[2.45rem] leading-[1.12] tracking-[0] sm:text-[3.25rem] lg:text-[4rem]">
-              <span className="block">传统行业人的</span>
-              <span className="block whitespace-nowrap">AI 胜任力实践</span>
+              <span className="block whitespace-nowrap">我的 AI 转型，</span>
+              <span className="block whitespace-nowrap">从传统行业开始。</span>
             </h1>
             <p className="mt-5 max-w-[36rem] text-base font-medium leading-7 text-white/90 sm:text-xl sm:leading-8">
-              把真实经验，变成可检查、可使用、会修订的判断资产。
+              我先拿自己的工作和项目来试，边做边记录。
             </p>
             <p className="mt-6 max-w-[43rem] text-base leading-8 text-white/75 sm:text-lg">
               我是赞诺。人先提出判断和验收标准，AI 负责质疑、比较和整理，真实使用结果决定下一版。文章、工具、服务和星火者共同体，都从这套实践长出来。
