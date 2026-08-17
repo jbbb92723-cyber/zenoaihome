@@ -155,6 +155,17 @@ export default function AIChatWidget() {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
   }, [messages, loading])
 
+  useEffect(() => {
+    if (!open) return
+
+    function handleEscape(event: KeyboardEvent) {
+      if (event.key === 'Escape') setOpen(false)
+    }
+
+    window.addEventListener('keydown', handleEscape)
+    return () => window.removeEventListener('keydown', handleEscape)
+  }, [open])
+
   if (pathname.startsWith('/admin')) return null
 
   function resetConversation() {
@@ -207,7 +218,7 @@ export default function AIChatWidget() {
   }
 
   return (
-    <div className="hidden sm:block">
+    <div>
       {!open && (
         <button
           type="button"
@@ -249,10 +260,17 @@ export default function AIChatWidget() {
                   {isEn ? 'New chat' : '重新开始'}
                 </button>
               )}
-              <button type="button" onClick={() => setOpen(false)} className="p-1 text-ink-muted transition-colors hover:text-ink" aria-label="Close">
+              <button
+                type="button"
+                onClick={() => setOpen(false)}
+                className="inline-flex min-h-9 items-center gap-1.5 border border-border px-2.5 text-xs font-medium text-ink-muted transition-colors hover:border-stone hover:text-ink"
+                aria-label={isEn ? 'Close Zeno assistant' : '收起 Zeno 助手'}
+                title={isEn ? 'Close Zeno assistant' : '收起 Zeno 助手'}
+              >
                 <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                 </svg>
+                <span>{isEn ? 'Close' : '收起'}</span>
               </button>
             </div>
           </div>
