@@ -100,7 +100,12 @@ const SYSTEM_PROMPT_ZH = `你是 ZenoAIHome 的网站协作助手，名称是 Ze
 
 【回复长度】
 - 默认 3-6 句话以内。
-- 涉及清单类问题最多列 5 条；如果需要更多材料，先给最小可行动版本。`
+- 涉及清单类问题最多列 5 条；如果需要更多材料，先给最小可行动版本。
+
+【继续追问】
+- 回复末尾可以根据当前问题生成最多 3 个真正相关的下一问，帮助用户继续提供信息。
+- 每个下一问单独一行，严格使用“@@followup: 问题”格式；不要生成“我还没定方案”这类通用入口。
+- 如果当前已经足够回答，或继续追问没有价值，就不要输出 @@followup 行。`
 
 const SYSTEM_PROMPT_EN = `You are the Zeno assistant inside ZenoAIHome. Zeno is a person with 17 years of traditional-industry and project experience who now brings field judgment into AI, knowledge systems, content and solo work.
 
@@ -122,6 +127,8 @@ Useful links (use when relevant, one per line prefixed with →):
 When recommending an internal page, keep the link out of the body copy and put it at the end in this exact format:
 → Label | /path
 Use at most 3 links.
+
+At the end, you may generate up to 3 genuinely relevant next questions based on the current situation. Put each one on its own line using exactly "@@followup: question". Do not use generic entry labels. If the answer is already sufficient, omit all @@followup lines.
 
 Keep replies to 3-6 sentences when possible.`
 
@@ -547,11 +554,6 @@ function dedupeActions(actions: ChatAction[] = []): ChatAction[] {
   })
 }
 
-function getSuggestedFollowUps(message: string, locale: 'zh' | 'en'): string[] {
-  const intent = inferIntent(message, locale)
-  return locale === 'en' ? FOLLOW_UPS_EN[intent] : FOLLOW_UPS_ZH[intent]
-}
-
 function fallbackAnswer(message: string, locale: 'zh' | 'en'): ChatReplyPayload {
   const knowledge = locale === 'en' ? KNOWLEDGE_EN : KNOWLEDGE_ZH
   for (const entry of knowledge) {
@@ -588,11 +590,13 @@ function fallbackAnswer(message: string, locale: 'zh' | 'en'): ChatReplyPayload 
       }
 }
 
-function buildStructuredReply(rawReply: string, message: string, locale: 'zh' | 'en'): ChatReplyPayload {
+function buildStructuredReply(rawReply: string, locale: 'zh' | 'en'): ChatReplyPayload {
   const actionLineRegex = /^\s*[→>-]\s*(?:(.+?)\s*[|｜]\s*)?(\/\S+)\s*$/
   const bulletLineRegex = /^\s*(?:[-*•]|\d+[.)])\s+(.+)$/
+  const followUpLineRegex = /^\s*@@followup:\s*(.+?)\s*$/i
   const actions: ChatAction[] = []
   const bullets: string[] = []
+  const followUps: string[] = []
   const replyLines: string[] = []
 
   for (const line of rawReply.split(/\r?\n/)) {
@@ -600,6 +604,12 @@ function buildStructuredReply(rawReply: string, message: string, locale: 'zh' | 
 
     if (!trimmed) {
       replyLines.push('')
+      continue
+    }
+
+    const followUpMatch = trimmed.match(followUpLineRegex)
+    if (followUpMatch) {
+      followUps.push(followUpMatch[1].trim())
       continue
     }
 
@@ -624,7 +634,7 @@ function buildStructuredReply(rawReply: string, message: string, locale: 'zh' | 
     reply: reply || (locale === 'en' ? 'Here is the closest next step.' : '先按这条路径往下走。'),
     bullets: bullets.length > 0 ? bullets.slice(0, 5) : undefined,
     actions: dedupeActions(actions).slice(0, 3),
-    followUps: getSuggestedFollowUps(message, locale),
+    followUps: followUps.length > 0 ? Array.from(new Set(followUps)).slice(0, 3) : undefined,
   }
 }
 
@@ -683,7 +693,7 @@ export async function POST(request: NextRequest) {
     }
 
     const llmReply = await callLLM(message, history, locale)
-    const payload = llmReply ? buildStructuredReply(llmReply, message, locale) : fallbackAnswer(message, locale)
+    const payload = llmReply ? buildStructuredReply(llmReply, locale) : fallbackAnswer(message, locale)
 
     return NextResponse.json({ ...payload, source: llmReply ? 'llm' : 'fallback' })
   } catch {
