@@ -49,93 +49,31 @@ const actionKindLabels: Record<'zh' | 'en', Record<ChatActionKind, string>> = {
 
 const quickEntriesZh = [
   {
-    label: '我还没定方案',
+    label: '我还没想清楚从哪里开始',
     prompt: '我还没定装修方案，请先帮我判断：我应该从生活方式、审美偏好、家庭场景、预算边界还是报价风险开始整理？',
-    links: [
-      { label: '居住需求自检', href: '/living-diagnosis' },
-      { label: '继续做居住需求自检', href: '/living-diagnosis' },
-      { label: '文章判断库', href: '/blog' },
-    ],
   },
   {
-    label: '我在看报价单',
+    label: '我手上有一份报价单',
     prompt: '我正在看装修报价单，请先帮我分流：它能不能承接方案边界，我应该先看哪些风险、用哪个工具、拿哪份检查模板，什么时候需要报价 / 合同快审或综合判断？',
-    links: [
-      { label: '报价初筛工具', href: '/tools/quote-check' },
-      { label: '风险词典', href: '/risk-dictionary' },
-      { label: '报价单初查模板', href: '/checklists/quote-initial-check' },
-    ],
   },
   {
-    label: '我怕后面增项',
-    prompt: '我担心签约后出现增项，请先帮我判断：应该从报价里的哪些词、哪些项目、哪些付款节点开始查。',
-    links: [
-      { label: '风险词典', href: '/risk-dictionary' },
-      { label: '施工项目风险库', href: '/project-risks' },
-      { label: '付款节点检查模板', href: '/checklists/payment-milestone-check' },
-    ],
-  },
-  {
-    label: '我快要签合同了',
-    prompt: '我快要签装修合同了，请帮我判断：报价、合同和付款节点分别要先问清哪些问题。',
-    links: [
-      { label: '合同检查模板', href: '/checklists/contract-pre-signing-check' },
-      { label: '付款节点检查模板', href: '/checklists/payment-milestone-check' },
-      { label: '联系赞诺说明情况', href: '/contact' },
-    ],
-  },
-  {
-    label: '我想人工看一遍',
-    prompt: '我已经有方案、报价或合同材料了，请帮我判断应该选居住需求洞察报告、报价风险初查、报价 / 合同快审，还是居住方案综合判断。',
-    links: [
-      { label: '服务路径', href: '/services' },
-      { label: '居住需求自检', href: '/living-diagnosis' },
-      { label: '报价 / 合同人工审查', href: '/services/quote-review' },
-    ],
-  },
-  {
-    label: '我想先自己检查',
-    prompt: '我想先自己检查报价和合同，请给我最短路径：先看哪个模板，再查哪些风险词。',
-    links: [
-      { label: '检查模板', href: '/checklists' },
-      { label: '风险词典', href: '/risk-dictionary' },
-      { label: '项目风险库', href: '/project-risks' },
-    ],
+    label: '我想把一项工作交给 AI',
+    prompt: '我在传统行业里有一项重复工作，想判断 AI 能不能帮我做。请先问我最关键的问题，再帮我拆出适合 AI、必须由人负责和需要验证的部分。',
   },
 ]
 
 const quickEntriesEn = [
   {
-    label: 'I am checking a quote',
+    label: 'I am not sure where to start',
     prompt: 'I am checking a renovation quote. Help me route to the right risks, tools, checklists and service if needed.',
-    links: [
-      { label: 'Quote Risk Check', href: '/en/tools' },
-      { label: 'Expert Review', href: '/en/services' },
-    ],
   },
   {
-    label: 'I worry about add-on costs',
+    label: 'I have a quote in hand',
     prompt: 'I worry about add-on costs after signing. Help me identify missing scope, unclear wording, change-order risks, and payment milestone issues.',
-    links: [
-      { label: 'Risk Language', href: '/en/tools#risk-language' },
-      { label: 'Checklists', href: '/en/tools#checklists' },
-    ],
   },
   {
-    label: 'I am close to signing',
-    prompt: 'I am close to signing a renovation contract. Help me decide whether I need a standard quote review or a deep pre-signing review.',
-    links: [
-      { label: 'Expert Review', href: '/en/services' },
-      { label: 'About Zeno', href: '/en/about' },
-    ],
-  },
-  {
-    label: 'What does this site do?',
-    prompt: 'Explain ZenoAIHome in English: what it helps homeowners clarify before signing, and what it does not do.',
-    links: [
-      { label: 'Home', href: '/en' },
-      { label: 'About', href: '/en/about' },
-    ],
+    label: 'I want to improve a real workflow with AI',
+    prompt: 'I have a repetitive task in a traditional industry and want to know whether AI can help. Ask me the most important questions first, then separate what AI can do, what I must own, and how to test it.',
   },
 ]
 
@@ -224,7 +162,7 @@ export default function AIChatWidget() {
           type="button"
           onClick={() => setOpen(true)}
           className="motion-press fixed bottom-4 right-4 z-[75] inline-flex h-12 w-12 items-center justify-center border border-white/25 bg-stone p-0 text-left text-white shadow-[0_18px_48px_rgba(17,17,17,0.26)] hover:bg-stone/95 hover:shadow-[0_24px_70px_rgba(17,17,17,0.32)] sm:bottom-7 sm:right-7 sm:h-auto sm:w-auto sm:min-h-[4.5rem] sm:gap-3 sm:px-6 sm:py-3"
-          aria-label={isEn ? 'Ask Zeno' : '问 Zeno'}
+          aria-label={isEn ? 'Open Zeno assistant' : '打开 Zeno 助手'}
         >
           <span className="flex h-9 w-9 shrink-0 items-center justify-center bg-white/12 ring-1 ring-white/20 sm:h-10 sm:w-10">
             <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
@@ -232,8 +170,8 @@ export default function AIChatWidget() {
             </svg>
           </span>
           <span className="hidden sm:block">
-            <span className="block text-base font-semibold leading-none sm:text-lg">{isEn ? 'Ask Zeno' : '问 Zeno'}</span>
-            <span className="mt-1 block text-xs font-medium text-white/75">{isEn ? 'AI renovation routing' : 'AI 装修判断助手'}</span>
+            <span className="block text-base font-semibold leading-none sm:text-lg">{isEn ? 'Zeno assistant' : 'Zeno 助手'}</span>
+            <span className="mt-1 block text-xs font-medium text-white/75">{isEn ? 'From a question to a next step' : '从问题到下一步'}</span>
           </span>
         </button>
       )}
@@ -280,36 +218,37 @@ export default function AIChatWidget() {
               <div>
                 <p className="text-sm leading-relaxed text-ink-muted">
                   {isEn
-                    ? 'Choose the closest situation. I will route you to the right article, tool, checklist or service.'
-                    : '先选最接近你当前处境的一项。我会把你导向对应工具、清单、资料或人工判断服务。'}
+                    ? 'Tell me what you are trying to solve. I will first understand your stage, then help you organize information, find resources, compare options or choose a next step.'
+                    : '直接说你现在遇到什么问题。我会先理解你处在哪个阶段，再帮你整理信息、查找资料、比较选项或找到下一步。'}
                 </p>
 
                 <div className="mt-3 border border-border bg-surface px-3 py-3">
                   <p className="text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-ink-faint">
-                    {isEn ? 'You can also ask like this' : '也可以直接这样问'}
+                    {isEn ? 'Start with a situation' : '可以从一件具体的事开始'}
                   </p>
                   <p className="mt-2 text-sm leading-relaxed text-ink">
                     {isEn
-                      ? '“89 sqm, budget 200k, half-package quote already at 160k. What should I check first?”'
-                      : '“套内 89 平，预算 20 万，半包报价已经 16 万了，我先看哪里？”'}
+                      ? '“I have a real task and I am not sure whether AI should handle it. What should I clarify first?”'
+                      : '“我有一项重复工作，想知道 AI 应该做到哪一步，我先说哪些信息？”'}
                   </p>
                 </div>
 
-                <div className="mt-4 grid gap-3">
+                <div className="mt-4">
+                  <p className="text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-ink-faint">
+                    {isEn ? 'Or choose an example' : '也可以从这里开始'}
+                  </p>
+                  <div className="mt-3 flex flex-wrap gap-2">
                   {quickEntries.map((entry) => (
-                    <div key={entry.label} className="motion-surface border border-border bg-surface p-3">
-                      <button type="button" onClick={() => handleSend(entry.prompt)} className="block w-full text-left text-sm font-semibold text-ink hover:text-stone">
+                    <button
+                      key={entry.label}
+                      type="button"
+                      onClick={() => handleSend(entry.prompt)}
+                      className="motion-surface border border-border bg-surface px-3 py-2 text-left text-sm font-medium text-ink hover:border-stone hover:text-stone"
+                    >
                         {entry.label}
-                      </button>
-                      <div className="mt-2 flex flex-wrap gap-2">
-                        {entry.links.map((link) => (
-                          <Link key={link.href + link.label} href={link.href} className="text-xs text-stone underline decoration-stone-light underline-offset-2 hover:decoration-stone">
-                            {link.label}
-                          </Link>
-                        ))}
-                      </div>
-                    </div>
+                    </button>
                   ))}
+                  </div>
                 </div>
               </div>
             )}
@@ -401,7 +340,7 @@ export default function AIChatWidget() {
               <input
                 value={input}
                 onChange={(event) => setInput(event.target.value)}
-                placeholder={isEn ? 'Tell me your stage, budget or quote...' : '直接说阶段、预算或你手上的报价单'}
+                placeholder={isEn ? 'Tell me what you are trying to solve...' : '直接说你现在想解决什么问题...'}
                 className="min-h-10 flex-1 bg-transparent px-2 text-sm text-ink outline-none placeholder:text-ink-faint"
                 disabled={loading}
               />
@@ -415,8 +354,8 @@ export default function AIChatWidget() {
             </form>
             <p className="mt-2 text-[0.72rem] leading-relaxed text-ink-faint">
               {isEn
-                ? 'This assistant helps you identify the right path first. For case-by-case judgment, use the contact page.'
-                : '这个助手先帮你分清路径，不替你直接拍板。涉及具体个案，再进入联系页。'}
+                ? 'I can help organize, compare and move the problem forward. Important decisions and specific case responsibility stay with a person.'
+                : '我会帮你理解、整理、比较并推进问题。重要判断和具体个案责任，仍由人确认。'}
             </p>
           </div>
         </div>
