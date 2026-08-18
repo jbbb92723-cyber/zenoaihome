@@ -129,7 +129,7 @@ export default function CommunityPage() {
           <div className="grid gap-8 lg:grid-cols-[0.58fr_0.42fr] lg:items-center">
             <div>
               <p className="text-sm font-semibold text-stone">首期试运行招募</p>
-              <h2 className="editorial-display mt-4 text-[1.8rem] leading-[1.15] sm:text-[2.2rem] lg:text-[2.6rem]">20 人。6 个月。一起验证这件事。</h2>
+              <h2 className="editorial-display mt-4 text-[1.8rem] leading-[1.15] sm:text-[2.2rem] lg:text-[2.6rem]">20 位实践者，6 个月，从认识到一起做事。</h2>
               <div className="mt-6 grid gap-3 sm:grid-cols-3">
                 <div>
                   <p className="text-2xl font-bold text-ink">¥1,499</p>
