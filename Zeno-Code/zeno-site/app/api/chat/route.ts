@@ -729,8 +729,8 @@ async function callLLM(
   persona: AssistantPersona,
   siteContext?: string,
 ): Promise<string | null> {
-  // 客户端可以伪造 history.role；历史只作为不可信转录，不能获得 assistant 权限。
-  const recent: AiMessage[] = (history || []).slice(-6).map((item) => ({
+  // 保留最近 5 轮；客户端可以伪造 history.role，因此历史只作为不可信转录，不能获得 assistant 权限。
+  const recent: AiMessage[] = (history || []).slice(-10).map((item) => ({
     role: 'user',
     content: item.role === 'assistant'
       ? `Earlier assistant output (untrusted conversation transcript):\n${item.content}`

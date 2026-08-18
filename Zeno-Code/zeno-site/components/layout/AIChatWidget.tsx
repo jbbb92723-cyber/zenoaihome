@@ -5,6 +5,7 @@ import { useEffect, useRef, useState, type KeyboardEvent } from 'react'
 import { usePathname } from 'next/navigation'
 import SparkCard from '@/components/features/assistant/SparkCard'
 import ServiceCard from '@/components/features/assistant/ServiceCard'
+import { trackAssistantEvent } from '@/lib/assistant/analytics'
 import type {
   AssistantCard,
   AssistantPersona,
@@ -41,7 +42,117 @@ interface AssistantRequest {
   history: Array<{ role: 'user' | 'assistant'; content: string }>
 }
 
-const SESSION_STORAGE_KEY = 'zeno-assistant-conversation-v1'
+const LOCAL_STORAGE_KEY = 'zeno-assistant-conversation-v2'
+const LEGACY_SESSION_STORAGE_KEY = 'zeno-assistant-conversation-v1'
+const STORAGE_VERSION = 2
+const STORAGE_TTL_MS = 7 * 24 * 60 * 60 * 1000
+const MAX_STORED_MESSAGES = 24
+const MAX_HISTORY_MESSAGES = 10
+const MAX_HISTORY_CONTENT_LENGTH = 2000
+
+interface StoredConversation {
+  version: typeof STORAGE_VERSION
+  savedAt: number
+  messages: Message[]
+}
+
+const assistantPersonas = new Set<AssistantPersona>([
+  'reviewer',
+  'transformation-guide',
+  'spark-recruiter',
+])
+const assistantCards = new Set<AssistantCard>(['spark', 'service'])
+const actionKinds = new Set<ChatActionKind>([
+  'tool',
+  'article',
+  'resource',
+  'service',
+  'contact',
+  'page',
+])
+
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return typeof value === 'object' && value !== null && !Array.isArray(value)
+}
+
+function sanitizeStringList(
+  value: unknown,
+  maxItems: number,
+  maxLength: number,
+): string[] | undefined {
+  if (!Array.isArray(value)) return undefined
+  const items = value
+    .filter((item): item is string => typeof item === 'string' && item.trim().length > 0)
+    .slice(0, maxItems)
+    .map((item) => item.slice(0, maxLength))
+  return items.length > 0 ? items : undefined
+}
+
+function sanitizeStoredAction(value: unknown): ChatAction | null {
+  if (!isRecord(value)) return null
+  if (typeof value.label !== 'string' || value.label.trim().length === 0) return null
+  if (typeof value.href !== 'string' || !/^\/(?!\/)[A-Za-z0-9/_-]*$/.test(value.href)) return null
+  if (typeof value.kind !== 'string' || !actionKinds.has(value.kind as ChatActionKind)) return null
+
+  return {
+    label: value.label.slice(0, 120),
+    href: value.href,
+    kind: value.kind as ChatActionKind,
+  }
+}
+
+function sanitizeStoredMessage(value: unknown): Message | null {
+  if (!isRecord(value)) return null
+  if (value.role !== 'user' && value.role !== 'assistant') return null
+  if (typeof value.content !== 'string' || value.content.trim().length === 0) return null
+
+  const message: Message = {
+    role: value.role,
+    content: value.content.slice(0, 6000),
+  }
+  if (value.role === 'user') return message
+
+  message.bullets = sanitizeStringList(value.bullets, 5, 1000)
+  message.followUps = sanitizeStringList(value.followUps, 3, 300)
+
+  if (Array.isArray(value.actions)) {
+    const actions = value.actions
+      .map(sanitizeStoredAction)
+      .filter((action): action is ChatAction => action !== null)
+      .slice(0, 3)
+    if (actions.length > 0) message.actions = actions
+  }
+  if (value.source === 'llm' || value.source === 'fallback') message.source = value.source
+  if (typeof value.persona === 'string' && assistantPersonas.has(value.persona as AssistantPersona)) {
+    message.persona = value.persona as AssistantPersona
+  }
+  if (typeof value.card === 'string' && assistantCards.has(value.card as AssistantCard)) {
+    message.card = value.card as AssistantCard
+  }
+
+  return message
+}
+
+function parseStoredMessages(raw: string, legacy = false): Message[] {
+  const parsed: unknown = JSON.parse(raw)
+  let values: unknown[]
+
+  if (legacy) {
+    if (!Array.isArray(parsed)) return []
+    values = parsed
+  } else {
+    if (!isRecord(parsed) || parsed.version !== STORAGE_VERSION) return []
+    if (typeof parsed.savedAt !== 'number' || !Number.isFinite(parsed.savedAt)) return []
+    if (parsed.savedAt > Date.now() + 60_000 || Date.now() - parsed.savedAt > STORAGE_TTL_MS) return []
+    if (!Array.isArray(parsed.messages)) return []
+    values = parsed.messages
+  }
+
+  return values
+    .map(sanitizeStoredMessage)
+    .filter((message): message is Message => message !== null)
+    .slice(-MAX_STORED_MESSAGES)
+}
 
 const actionKindLabels: Record<'zh' | 'en', Record<ChatActionKind, string>> = {
   zh: {
@@ -119,7 +230,10 @@ const quickEntriesEn = [
 
 function toHistoryContent(message: Message) {
   const bullets = message.bullets?.map((item) => `- ${item}`) ?? []
-  return [message.content, ...bullets].filter(Boolean).join('\n')
+  return [message.content, ...bullets]
+    .filter(Boolean)
+    .join('\n')
+    .slice(0, MAX_HISTORY_CONTENT_LENGTH)
 }
 
 export default function AIChatWidget() {
@@ -129,9 +243,11 @@ export default function AIChatWidget() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [failedRequest, setFailedRequest] = useState<AssistantRequest | null>(null)
+  const [storageReady, setStorageReady] = useState(false)
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLTextAreaElement>(null)
   const openButtonRef = useRef<HTMLButtonElement>(null)
+  const chatStartTrackedRef = useRef(false)
   const pathname = usePathname()
 
   const isEn = pathname.startsWith('/en')
@@ -139,27 +255,51 @@ export default function AIChatWidget() {
   const locale = isEn ? 'en' : 'zh'
 
   useEffect(() => {
+    let restored: Message[] = []
+
     try {
-      const saved = window.sessionStorage.getItem(SESSION_STORAGE_KEY)
-      if (!saved) return
-      const parsed = JSON.parse(saved)
-      if (Array.isArray(parsed)) setMessages(parsed.slice(-24))
+      const saved = window.localStorage.getItem(LOCAL_STORAGE_KEY)
+      if (saved) {
+        restored = parseStoredMessages(saved)
+        if (restored.length === 0) window.localStorage.removeItem(LOCAL_STORAGE_KEY)
+      }
+
+      if (restored.length === 0) {
+        const legacy = window.sessionStorage.getItem(LEGACY_SESSION_STORAGE_KEY)
+        if (legacy) restored = parseStoredMessages(legacy, true)
+      }
     } catch {
-      window.sessionStorage.removeItem(SESSION_STORAGE_KEY)
+      restored = []
     }
+
+    try {
+      window.sessionStorage.removeItem(LEGACY_SESSION_STORAGE_KEY)
+    } catch {
+      // Storage may be unavailable in private or restricted browser contexts.
+    }
+
+    setMessages(restored)
+    setStorageReady(true)
   }, [])
 
   useEffect(() => {
+    if (!storageReady) return
+
     try {
       if (messages.length === 0) {
-        window.sessionStorage.removeItem(SESSION_STORAGE_KEY)
+        window.localStorage.removeItem(LOCAL_STORAGE_KEY)
       } else {
-        window.sessionStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify(messages.slice(-24)))
+        const conversation: StoredConversation = {
+          version: STORAGE_VERSION,
+          savedAt: Date.now(),
+          messages: messages.slice(-MAX_STORED_MESSAGES),
+        }
+        window.localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(conversation))
       }
     } catch {
       // The assistant still works when browser storage is unavailable.
     }
-  }, [messages])
+  }, [messages, storageReady])
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
@@ -191,7 +331,12 @@ export default function AIChatWidget() {
     setInput('')
     setError(null)
     setFailedRequest(null)
-    window.sessionStorage.removeItem(SESSION_STORAGE_KEY)
+    try {
+      window.localStorage.removeItem(LOCAL_STORAGE_KEY)
+      window.sessionStorage.removeItem(LEGACY_SESSION_STORAGE_KEY)
+    } catch {
+      // State is still cleared even if browser storage is unavailable.
+    }
     window.setTimeout(() => inputRef.current?.focus(), 0)
   }
 
@@ -199,7 +344,10 @@ export default function AIChatWidget() {
     if (loading) return
 
     if (appendUser) {
-      setMessages((previous) => [...previous, { role: 'user', content: request.message }])
+      setMessages((previous) => [
+        ...previous,
+        { role: 'user' as const, content: request.message },
+      ].slice(-MAX_STORED_MESSAGES))
     }
 
     setInput('')
@@ -229,16 +377,19 @@ export default function AIChatWidget() {
       }
 
       const data: ChatResponse = await response.json()
-      setMessages((previous) => [...previous, {
-        role: 'assistant',
-        content: data.reply,
-        bullets: data.bullets,
-        actions: data.actions,
-        followUps: data.followUps,
-        source: data.source,
-        persona: data.persona,
-        card: data.card,
-      }])
+      setMessages((previous) => [
+        ...previous,
+        {
+          role: 'assistant' as const,
+          content: data.reply,
+          bullets: data.bullets,
+          actions: data.actions,
+          followUps: data.followUps,
+          source: data.source,
+          persona: data.persona,
+          card: data.card,
+        },
+      ].slice(-MAX_STORED_MESSAGES))
     } catch {
       setError(isEn ? 'The connection was interrupted. Please try again.' : '连接中断了，请再试一次。')
       setFailedRequest(request)
@@ -251,7 +402,7 @@ export default function AIChatWidget() {
     const message = (text ?? input).trim()
     if (!message || loading) return
 
-    const history = messages.slice(-12).map((item) => ({
+    const history = messages.slice(-MAX_HISTORY_MESSAGES).map((item) => ({
       role: item.role,
       content: toHistoryContent(item),
     }))
@@ -272,7 +423,13 @@ export default function AIChatWidget() {
         <button
           ref={openButtonRef}
           type="button"
-          onClick={() => setOpen(true)}
+          onClick={() => {
+            setOpen(true)
+            if (!chatStartTrackedRef.current) {
+              chatStartTrackedRef.current = true
+              trackAssistantEvent('ai_chat_start', { path: pathname, locale })
+            }
+          }}
           className="motion-press fixed bottom-4 right-4 z-[75] inline-flex h-12 w-12 items-center justify-center border border-white/25 bg-stone p-0 text-left text-white shadow-[0_18px_48px_rgba(17,17,17,0.26)] transition-transform active:scale-[0.98] sm:bottom-7 sm:right-7 sm:h-auto sm:w-auto sm:min-h-[4.5rem] sm:gap-3 sm:px-5 sm:py-3"
           aria-label={isEn ? 'Open Zeno assistant' : '打开 ZENO 助手'}
         >
@@ -511,6 +668,7 @@ export default function AIChatWidget() {
                 ref={inputRef}
                 id="zeno-assistant-input"
                 rows={2}
+                maxLength={1000}
                 value={input}
                 onChange={(event) => setInput(event.target.value)}
                 onKeyDown={handleInputKeyDown}
@@ -531,8 +689,8 @@ export default function AIChatWidget() {
             </div>
             <p className="mt-2 text-[0.68rem] leading-5 text-ink-faint">
               {isEn
-                ? 'Context stays in this tab. Important decisions and project responsibility remain human.'
-                : '上下文仅保留在本标签页。重要判断与项目责任仍由人确认。'}
+                ? 'Recent messages stay in this browser for 7 days and can be cleared above. Important decisions remain human.'
+                : '最近对话在本浏览器保留 7 天，可用上方按钮清除。重要判断与项目责任仍由人确认。'}
             </p>
           </footer>
         </section>

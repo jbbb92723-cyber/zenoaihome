@@ -1,13 +1,17 @@
 'use client'
 
-import { useState } from 'react'
+import { Suspense, useState } from 'react'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import Container from '@/components/ui/Container'
 import PasswordInput from '@/components/ui/PasswordInput'
+import { normalizeInternalCallbackUrl } from '@/lib/auth-callback-url'
 
-export default function EnRegisterPage() {
+function EnRegisterForm() {
   const router = useRouter()
+  const searchParams = useSearchParams()
+  const callbackUrl = normalizeInternalCallbackUrl(searchParams.get('callbackUrl'), '/account')
+  const loginHref = `/en/login?callbackUrl=${encodeURIComponent(callbackUrl)}`
   const [email, setEmail]           = useState('')
   const [password, setPassword]     = useState('')
   const [confirm, setConfirm]       = useState('')
@@ -76,7 +80,7 @@ export default function EnRegisterPage() {
     }
 
     setSuccess('Account created! Redirecting to sign in…')
-    setTimeout(() => router.push('/en/login'), 1500)
+    setTimeout(() => router.push(loginHref), 1500)
   }
 
   return (
@@ -178,12 +182,20 @@ export default function EnRegisterPage() {
         <div className="mt-8 text-center">
           <p className="text-sm text-ink-muted">
             Already have an account?{' '}
-            <Link href="/en/login" className="text-stone hover:underline underline-offset-2">
+            <Link href={loginHref} className="text-stone hover:underline underline-offset-2">
               Sign in
             </Link>
           </p>
         </div>
       </div>
     </Container>
+  )
+}
+
+export default function EnRegisterPage() {
+  return (
+    <Suspense>
+      <EnRegisterForm />
+    </Suspense>
   )
 }

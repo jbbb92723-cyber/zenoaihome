@@ -6,6 +6,7 @@ import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
 import Container from '@/components/ui/Container'
 import PasswordInput from '@/components/ui/PasswordInput'
+import { normalizeInternalCallbackUrl } from '@/lib/auth-callback-url'
 
 function mapAuthError(error: string | null): string {
   if (!error) return ''
@@ -22,7 +23,8 @@ function mapAuthError(error: string | null): string {
 
 function LoginForm() {
   const searchParams = useSearchParams()
-  const callbackUrl = searchParams.get('callbackUrl') ?? '/en/account'
+  const callbackUrl = normalizeInternalCallbackUrl(searchParams.get('callbackUrl'), '/account')
+  const registerHref = `/en/register?callbackUrl=${encodeURIComponent(callbackUrl)}`
   const errorParam  = searchParams.get('error')
 
   const [email, setEmail]       = useState('')
@@ -150,7 +152,7 @@ function LoginForm() {
         <div className="mt-6 space-y-1.5 text-center">
           <p className="text-sm text-ink-muted">
             No account?{' '}
-            <Link href="/en/register" className="text-stone hover:underline underline-offset-2">
+            <Link href={registerHref} className="text-stone hover:underline underline-offset-2">
               Register
             </Link>
           </p>

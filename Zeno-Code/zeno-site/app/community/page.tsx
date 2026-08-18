@@ -49,7 +49,15 @@ export default function CommunityPage() {
           <p className="text-sm font-semibold text-white/55">AI 时代 OPC 一人公司的实践共同体</p>
           <h1 className="editorial-display mt-5 max-w-[13ch] text-[2.4rem] leading-[1.1] sm:text-[3.2rem]">星火者</h1>
           <div className="mt-10 grid gap-8 border-t border-white/20 pt-8 lg:grid-cols-[0.62fr_0.38fr]">
-            <p className="max-w-3xl text-xl leading-9 text-white sm:text-2xl sm:leading-10">独立经营，但不孤立。带着真实项目进来，在行动、复盘和协作中建立信任。</p>
+            <div>
+              <p className="max-w-3xl text-xl leading-9 text-white sm:text-2xl sm:leading-10">独立经营，但不孤立。带着真实项目进来，在行动、复盘和协作中建立信任。</p>
+              <Link
+                href="#join"
+                className="motion-press mt-7 inline-flex min-h-11 items-center border border-white/35 px-5 py-3 text-sm font-semibold text-white transition-colors hover:border-white hover:bg-white hover:text-ink"
+              >
+                查看首期招募
+              </Link>
+            </div>
             <p className="text-sm leading-7 text-white/65">面向 AI 时代的一人公司、转型创业者和独立实践者。不是围观群，也不是只靠发起人输出的课堂，而是把真实项目带进长期关系。</p>
           </div>
         </div>

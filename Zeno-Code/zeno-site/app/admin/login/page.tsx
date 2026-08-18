@@ -5,6 +5,7 @@ import { getSession, signIn, signOut } from 'next-auth/react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import Container from '@/components/ui/Container'
 import PasswordInput from '@/components/ui/PasswordInput'
+import { normalizeInternalCallbackUrl } from '@/lib/auth-callback-url'
 
 function mapAuthError(error: string | null): string {
   if (!error) return ''
@@ -25,7 +26,7 @@ function mapAuthError(error: string | null): string {
 function AdminLoginForm() {
   const searchParams = useSearchParams()
   const router = useRouter()
-  const callbackUrl = searchParams.get('callbackUrl') ?? '/admin/dashboard'
+  const callbackUrl = normalizeInternalCallbackUrl(searchParams.get('callbackUrl'), '/admin/dashboard')
   const errorParam = searchParams.get('error')
 
   const [email, setEmail] = useState('')

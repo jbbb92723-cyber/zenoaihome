@@ -6,6 +6,7 @@ import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
 import Container from '@/components/ui/Container'
 import PasswordInput from '@/components/ui/PasswordInput'
+import { normalizeInternalCallbackUrl } from '@/lib/auth-callback-url'
 
 /** 把 Auth.js URL error 参数映射成可读的中文提示 */
 function mapAuthError(error: string | null): string {
@@ -23,7 +24,8 @@ function mapAuthError(error: string | null): string {
 
 function LoginForm() {
   const searchParams = useSearchParams()
-  const callbackUrl = searchParams.get('callbackUrl') ?? '/account'
+  const callbackUrl = normalizeInternalCallbackUrl(searchParams.get('callbackUrl'), '/account')
+  const registerHref = `/register?callbackUrl=${encodeURIComponent(callbackUrl)}`
   const errorParam  = searchParams.get('error')
 
   const [email, setEmail]           = useState('')
@@ -154,7 +156,7 @@ function LoginForm() {
         </form>
 
         <div className="text-center">
-          <Link href="/register" className="text-xs text-ink-faint hover:text-stone transition-colors">
+          <Link href={registerHref} className="text-xs text-ink-faint hover:text-stone transition-colors">
             注册新账号
           </Link>
           <span className="text-xs text-ink-faint mx-2">·</span>

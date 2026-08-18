@@ -77,12 +77,20 @@ export default async function AdminContentPage({
             这里承接飞书内容中台 / Hermes / CLI 推送过来的网站草稿。进入真实发布前，仍需要人工审批。
           </p>
         </div>
-        <Link
-          href="/admin/dashboard"
-          className="text-xs text-[#706860] hover:text-[#A09890] transition-colors"
-        >
-          返回看板
-        </Link>
+        <div className="flex flex-wrap items-center justify-end gap-3">
+          <Link
+            href="/admin/content/new"
+            className="border border-[#C4A882]/40 bg-[#C4A882]/15 px-4 py-2 text-xs font-semibold text-[#C4A882] transition-colors hover:bg-[#C4A882]/20"
+          >
+            新建内容草稿
+          </Link>
+          <Link
+            href="/admin/dashboard"
+            className="text-xs text-[#706860] hover:text-[#A09890] transition-colors"
+          >
+            返回看板
+          </Link>
+        </div>
       </div>
 
       <div className="grid grid-cols-4 gap-3">

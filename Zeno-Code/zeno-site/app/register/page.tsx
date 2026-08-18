@@ -1,13 +1,17 @@
 'use client'
 
-import { useState } from 'react'
+import { Suspense, useState } from 'react'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import Container from '@/components/ui/Container'
 import PasswordInput from '@/components/ui/PasswordInput'
+import { normalizeInternalCallbackUrl } from '@/lib/auth-callback-url'
 
-export default function RegisterPage() {
+function RegisterForm() {
   const router = useRouter()
+  const searchParams = useSearchParams()
+  const callbackUrl = normalizeInternalCallbackUrl(searchParams.get('callbackUrl'), '/account')
+  const loginHref = `/login?callbackUrl=${encodeURIComponent(callbackUrl)}`
   const [email, setEmail]           = useState('')
   const [password, setPassword]     = useState('')
   const [confirm, setConfirm]       = useState('')
@@ -76,7 +80,7 @@ export default function RegisterPage() {
     }
 
     setSuccess('注册成功！正在跳转到登录页面...')
-    setTimeout(() => router.push('/login'), 1500)
+    setTimeout(() => router.push(loginHref), 1500)
   }
 
   return (
@@ -176,12 +180,20 @@ export default function RegisterPage() {
         <div className="mt-8 text-center">
           <p className="text-sm text-ink-muted">
             已有账号？{' '}
-            <Link href="/login" className="text-stone hover:underline underline-offset-2">
+            <Link href={loginHref} className="text-stone hover:underline underline-offset-2">
               登录
             </Link>
           </p>
         </div>
       </div>
     </Container>
+  )
+}
+
+export default function RegisterPage() {
+  return (
+    <Suspense>
+      <RegisterForm />
+    </Suspense>
   )
 }

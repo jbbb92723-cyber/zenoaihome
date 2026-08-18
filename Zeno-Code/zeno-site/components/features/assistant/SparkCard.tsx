@@ -7,6 +7,7 @@ import {
   Handshake,
   UsersThree,
 } from '@phosphor-icons/react'
+import { trackAssistantEvent } from '@/lib/assistant/analytics'
 
 interface SparkCardProps {
   onNavigate?: () => void
@@ -51,7 +52,13 @@ export default function SparkCard({ onNavigate }: SparkCardProps) {
       <div className="mt-4 flex flex-col gap-2 sm:flex-row">
         <Link
           href="/community/apply"
-          onClick={() => onNavigate?.()}
+          onClick={() => {
+            trackAssistantEvent('ai_spark_click', {
+              destination: '/community/apply',
+              action: 'apply',
+            })
+            onNavigate?.()
+          }}
           className="motion-press inline-flex min-h-11 w-full min-w-0 items-center justify-between gap-2 rounded-[3px] bg-ink px-4 py-2.5 text-sm font-semibold text-white hover:bg-stone-deep"
         >
           <span className="break-words">提交成员申请</span>
@@ -59,7 +66,13 @@ export default function SparkCard({ onNavigate }: SparkCardProps) {
         </Link>
         <Link
           href="/community"
-          onClick={() => onNavigate?.()}
+          onClick={() => {
+            trackAssistantEvent('ai_spark_click', {
+              destination: '/community',
+              action: 'learn_more',
+            })
+            onNavigate?.()
+          }}
           className="motion-press inline-flex min-h-11 w-full min-w-0 items-center justify-between gap-2 rounded-[3px] border border-border bg-surface px-4 py-2.5 text-sm font-semibold text-ink hover:border-stone"
         >
           <span className="break-words">先了解共同体</span>

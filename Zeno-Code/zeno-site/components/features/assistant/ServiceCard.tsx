@@ -7,6 +7,7 @@ import {
   FileText,
   WarningCircle,
 } from '@phosphor-icons/react'
+import { trackAssistantEvent } from '@/lib/assistant/analytics'
 
 interface ServiceCardProps {
   onNavigate?: () => void
@@ -53,7 +54,13 @@ export default function ServiceCard({ onNavigate }: ServiceCardProps) {
       <div className="mt-4 flex flex-col gap-2 sm:flex-row">
         <Link
           href="/services/quote-review"
-          onClick={() => onNavigate?.()}
+          onClick={() => {
+            trackAssistantEvent('ai_service_click', {
+              destination: '/services/quote-review',
+              action: 'review_scope',
+            })
+            onNavigate?.()
+          }}
           className="motion-press inline-flex min-h-11 w-full min-w-0 items-center justify-between gap-2 rounded-[3px] bg-ink px-4 py-2.5 text-sm font-semibold text-white hover:bg-stone-deep"
         >
           <span className="break-words">查看人工审查范围</span>
@@ -61,7 +68,13 @@ export default function ServiceCard({ onNavigate }: ServiceCardProps) {
         </Link>
         <Link
           href="/contact"
-          onClick={() => onNavigate?.()}
+          onClick={() => {
+            trackAssistantEvent('ai_service_click', {
+              destination: '/contact',
+              action: 'contact',
+            })
+            onNavigate?.()
+          }}
           className="motion-press inline-flex min-h-11 w-full min-w-0 items-center justify-between gap-2 rounded-[3px] border border-border bg-canvas px-4 py-2.5 text-sm font-semibold text-ink hover:border-stone"
         >
           <span className="break-words">联系 Zeno</span>
