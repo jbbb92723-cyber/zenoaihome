@@ -144,7 +144,7 @@ export default function RenovationPage() {
         <section className="mt-16 sm:mt-20">
           <p className="text-sm font-semibold text-stone">相关文章</p>
           <h2 className="editorial-display mt-4 text-[2.2rem] leading-[1.12] sm:text-[3rem]">
-            从真实案例里建立自己的判断。
+            从相关文章和实践复盘里，继续建立自己的判断。
           </h2>
           <div className="mt-10 grid gap-4 sm:grid-cols-2">
             {articles.map((item) => (

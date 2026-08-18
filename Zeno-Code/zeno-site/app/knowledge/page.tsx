@@ -4,6 +4,7 @@ import Container from '@/components/ui/Container'
 import CTA from '@/components/ui/CTA'
 import StructuredData from '@/components/ui/StructuredData'
 import TagCloud from '@/components/features/content/TagCloud'
+import { getArticleTagCounts } from '@/data/content/articles'
 import {
   Brain,
   Compass,
@@ -141,6 +142,8 @@ const layers = [
 ]
 
 export default function KnowledgePage() {
+  const tagCounts = getArticleTagCounts()
+
   return (
     <>
       <StructuredData
@@ -230,7 +233,7 @@ export default function KnowledgePage() {
           <p className="text-sm text-ink-muted mb-5">
             点一个你关心的标签，直接查看相关文章。
           </p>
-          <TagCloud limit={40} />
+          <TagCloud tagCounts={tagCounts} limit={40} />
         </div>
 
         {/* ── 底部：还没找到？ ── */}

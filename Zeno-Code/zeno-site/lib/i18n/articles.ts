@@ -31,6 +31,10 @@ export interface ArticleTranslation {
   en: LocalizedContent
 }
 
+export type LocalizedArticleSummary = Omit<Article, 'content' | 'relatedImages'> & {
+  localizedSlug: string
+}
+
 // ── 英文翻译注册表 ────────────────────────────────────
 
 const translations: ArticleTranslation[] = [
@@ -374,6 +378,10 @@ export function getLocalizedArticles(locale: Locale): (Article & { localizedSlug
     .map((a) => getLocalizedArticle(a.id, locale))
     .filter((a): a is NonNullable<typeof a> => a !== null)
     .sort((a, b) => b.date.localeCompare(a.date))
+}
+
+export function getLocalizedArticleSummaries(locale: Locale): LocalizedArticleSummary[] {
+  return getLocalizedArticles(locale).map(({ content: _content, relatedImages: _relatedImages, ...article }) => article)
 }
 
 /** 根据本地化 slug 查找文章（英文用英文 slug，中文用中文 slug） */

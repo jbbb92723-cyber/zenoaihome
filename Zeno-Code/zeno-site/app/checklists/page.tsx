@@ -13,6 +13,30 @@ export const metadata: Metadata = {
   alternates: {
     canonical: 'https://zenoaihome.com/checklists',
   },
+  openGraph: {
+    type: 'website',
+    locale: 'zh_CN',
+    url: 'https://zenoaihome.com/checklists',
+    siteName: 'Zeno 赞诺',
+    title: '装修检查清单｜报价、合同与付款节点',
+    description:
+      '提供报价单初查、合同签约前检查、水电改造、老房翻新和付款节点检查模板，帮助业主在装修签字前逐项核对风险边界。',
+    images: [
+      {
+        url: 'https://zenoaihome.com/images/brand/zeno-portrait.jpg',
+        width: 940,
+        height: 940,
+        alt: '赞诺 Zeno',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: '装修检查清单｜报价、合同与付款节点',
+    description:
+      '提供报价单初查、合同签约前检查、水电改造、老房翻新和付款节点检查模板，帮助业主在装修签字前逐项核对风险边界。',
+    images: ['https://zenoaihome.com/images/brand/zeno-portrait.jpg'],
+  },
 }
 
 const faqs = [

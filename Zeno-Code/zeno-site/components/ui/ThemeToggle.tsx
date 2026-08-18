@@ -71,7 +71,7 @@ export default function ThemeToggle() {
   useEffect(() => setMounted(true), [])
 
   if (!mounted) {
-    return <div className="h-7 w-[4.25rem]" aria-hidden />
+    return <div className="h-11 w-[4.25rem]" aria-hidden />
   }
 
   const current = ((ORDER as readonly string[]).includes(theme ?? '')
@@ -88,7 +88,7 @@ export default function ThemeToggle() {
       onClick={() => setTheme(next)}
       title={nextTitle}
       aria-label={nextTitle}
-      className="group inline-flex items-center gap-1.5 h-7 px-2.5 border border-border rounded-full text-[0.6875rem] font-medium text-ink-muted hover:text-ink hover:border-stone/50 transition-all duration-150"
+      className="group inline-flex items-center gap-1.5 h-11 px-2.5 border border-border rounded-full text-[0.6875rem] font-medium text-ink-muted hover:text-ink hover:border-stone/50 transition-all duration-150"
     >
       <Icon theme={current} />
       <span className="leading-none">{label}</span>

@@ -3,7 +3,7 @@ import Link from 'next/link'
 import Container from '@/components/ui/Container'
 
 export const metadata: Metadata = {
-  title: "Why I Don't Want to Be Just a Renovation Blogger — Zeno",
+  title: "Why I Don't Want to Be Just a Renovation Blogger",
   description:
     'What started as renovation writing became something broader — about living, judgment, and long-term thinking.',
 }

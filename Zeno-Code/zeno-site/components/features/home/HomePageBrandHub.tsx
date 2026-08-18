@@ -1,5 +1,3 @@
-'use client'
-
 import Image from 'next/image'
 import Link from 'next/link'
 import type { ReactNode } from 'react'
@@ -14,7 +12,7 @@ import {
   Path,
   PenNib,
   UsersThree,
-} from '@phosphor-icons/react'
+} from '@phosphor-icons/react/dist/ssr'
 
 const practicePaths = [
   {
@@ -108,7 +106,7 @@ export default function HomePageBrandHub() {
               <span className="inline-block h-2 w-2 shrink-0 bg-cinnabar" aria-hidden />
               面向 AGI 时代的个人实践
             </p>
-            <h1 className="editorial-display mt-5 text-[2.45rem] leading-[1.12] tracking-[0] sm:text-[3.25rem] lg:text-[4rem]">
+            <h1 className="editorial-display mt-5 text-[2.15rem] leading-[1.12] tracking-[0] min-[360px]:text-[2.45rem] sm:text-[3.25rem] lg:text-[4rem]">
               <span className="block whitespace-nowrap">我的 AI 转型，</span>
               <span className="block whitespace-nowrap">从传统行业开始。</span>
             </h1>

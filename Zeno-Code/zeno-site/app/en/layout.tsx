@@ -8,9 +8,6 @@ export const metadata: Metadata = {
   description:
     '17 years in renovation and mattresses. Turning experience into judgment, content, and a one-person company with AI.',
   robots: { index: false, follow: true },
-  alternates: {
-    canonical: 'https://zenoaihome.com/en',
-  },
 }
 
 export default function EnLayout({ children }: { children: React.ReactNode }) {

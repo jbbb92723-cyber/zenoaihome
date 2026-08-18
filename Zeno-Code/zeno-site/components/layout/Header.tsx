@@ -245,7 +245,7 @@ export default function Header() {
             <button
               type="button"
               onClick={triggerSearch}
-              className="inline-flex h-9 w-9 items-center justify-center text-ink-muted transition-colors hover:text-ink"
+              className="inline-flex h-11 w-11 items-center justify-center text-ink-muted transition-colors hover:text-ink"
               aria-label={isEn ? 'Open search' : '打开搜索'}
             >
               <SearchIcon />
@@ -253,7 +253,7 @@ export default function Header() {
             <button
               type="button"
               onClick={() => setMenuOpen((value) => !value)}
-              className="flex h-9 w-9 flex-col items-center justify-center gap-[5px]"
+              className="flex h-11 w-11 flex-col items-center justify-center gap-[5px]"
               aria-label={menuOpen ? '关闭菜单' : '打开菜单'}
               aria-expanded={menuOpen}
             >
@@ -339,7 +339,7 @@ function MobileNavGroup({
                 )}
                 <div className="grid gap-0.5">
                   {group.items.map((leaf) => (
-                    <Link key={leaf.key} href={leaf.href} onClick={onNavigate} className="flex items-baseline gap-2 py-1.5 text-sm text-ink-muted hover:text-ink">
+                    <Link key={leaf.key} href={leaf.href} onClick={onNavigate} className="flex min-h-11 items-center gap-2 py-1.5 text-sm text-ink-muted hover:text-ink">
                       <span>{leaf.label}</span>
                       {leaf.desc && <span className="text-[11px] text-ink-faint">{leaf.desc}</span>}
                     </Link>

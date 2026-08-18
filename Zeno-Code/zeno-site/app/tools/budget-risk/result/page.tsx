@@ -11,6 +11,10 @@ export const metadata: Metadata = {
   title: '你的超预算原因自测结果',
   description:
     '根据超预算原因自测结果，先分清你当前更值得先处理的是报价、预算分配、流程还是居住场景需求。',
+  robots: {
+    index: false,
+    follow: true,
+  },
   alternates: {
     canonical: 'https://zenoaihome.com/tools/budget-risk/result',
   },

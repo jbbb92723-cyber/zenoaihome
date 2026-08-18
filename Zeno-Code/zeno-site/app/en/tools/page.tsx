@@ -4,12 +4,11 @@ import Container from '@/components/ui/Container'
 import StructuredData from '@/components/ui/StructuredData'
 
 export const metadata: Metadata = {
-  title: 'Quote Risk Tools | ZenoAIHome',
+  title: 'Quote Risk Tools',
   description:
     'A selective English guide to ZenoAIHome quote risk tools: quote check, risky wording, pre-signing checklists, and project risk library for homeowners in China.',
   alternates: {
     canonical: 'https://zenoaihome.com/en/tools',
-    languages: { 'zh-CN': 'https://zenoaihome.com/tools/quote-check', en: 'https://zenoaihome.com/en/tools' },
   },
 }
 

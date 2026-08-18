@@ -3,12 +3,9 @@
 @tailwind utilities;
 
 /* ─────────────────────────────────────────
-   CSS 变量 & 字体注册
+   CSS 变量
 ───────────────────────────────────────── */
 :root {
-  --font-inter: 'Inter', sans-serif;
-  --font-noto: 'Noto Sans SC', sans-serif;
-
   /* 颜色语义变量 — 亮色 */
   /* Zeno Monastic Editorial: Bone Paper / Carbon Ink / Warm Sand */
   --color-canvas-rgb: 244 241 232;
@@ -466,6 +463,31 @@ body::after {
 .article-prose {
   overflow-wrap: break-word;
   word-break: break-word;
+}
+
+.article-prose :where(pre),
+.article-table-scroll {
+  max-width: 100%;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+.article-table-scroll:focus-visible {
+  outline-offset: 2px;
+}
+
+.article-table-scroll table {
+  min-width: 40rem;
+}
+
+.article-prose :where(code) {
+  overflow-wrap: anywhere;
+}
+
+.article-prose :where(pre code) {
+  overflow-wrap: normal;
+  word-break: normal;
 }
 
 /* ─────────────────────────────────────────

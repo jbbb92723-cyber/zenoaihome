@@ -6,7 +6,7 @@ import ArticleCardEn from './ArticleCardEn'
 import { getRecentLocalizedArticles } from '@/lib/i18n'
 
 export const metadata: Metadata = {
-  title: 'ZenoAIHome | Think Before You Sign',
+  title: { absolute: 'Think Before You Sign · Zeno' },
   description:
     '17 years in renovation and mattresses. I help you figure out what you actually need — before the quote, before the contract, before the regret.',
   openGraph: {
@@ -20,7 +20,6 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: 'https://zenoaihome.com/en',
-    languages: { 'zh-CN': 'https://zenoaihome.com', en: 'https://zenoaihome.com/en' },
   },
 }
 

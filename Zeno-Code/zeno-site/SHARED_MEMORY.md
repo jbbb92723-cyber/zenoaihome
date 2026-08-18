@@ -2,6 +2,20 @@
 
 > 手机 Hermes 不翻代码也能知道的上下文。每条写清：改了哪个文件 + 为什么改。
 
+## 2026-08-18 | Codex | 第二轮 SEO、性能与移动端基础优化
+
+- `app/layout.tsx`、`app/page.tsx`、核心页面与文章 metadata：根布局不再把首页 OG 信息错误继承给子页；首页、资料库、培训、清单、博客/札记详情补齐页面级 canonical、OG/Twitter 和稳定摘要。中文文章标题由根模板统一追加品牌，已含“赞诺/Zeno”的标题不再重复。
+- `app/blog/[slug]/page.tsx`、`app/notes/[slug]/page.tsx`：新增可见面包屑及同源 `BreadcrumbList`；文章社交图使用封面或品牌头像兜底；Markdown 表格在移动端可横向滚动。
+- `app/sitemap.ts` 与 robots layouts：英文预览树继续 `noindex`，因此从 sitemap/hreflang 移除；后台、账户、认证、订单和个性化结果页补 `noindex`；`/tools/publish` 不再进入 sitemap。
+- `app/blog/*`、`app/en/blog/*`、`ArticleEngagement.tsx`：列表客户端只接收文章摘要，英文列表不再打包全文；二维码库改为打开分享面板后动态加载；全局 `SessionProvider` 缩到实际需要的账户和讨论区。
+- `app/layout.tsx`、`tailwind.config.ts`、`next.config.mjs`：移除构建时 Google 字体下载，改用系统中文字体栈；恢复生产压缩并启用 Next AVIF/WebP 图片优化。构建产物 WOFF2 从 202 个约 10 MB 降为 0。
+- `PasswordInput.tsx`、Header 及主题/语言按钮：首页 320px 标题不再溢出，移动触控目标统一到至少 44px，密码显隐恢复键盘访问。
+- 生产构建生成 255/255 页面：首页 First Load JS 从 173 KB 降到 102 KB，共享 JS 从 132 KB 降到 87.4 KB；`/en/blog` 页面代码从 85.2 KB 降到 1.95 KB。TypeScript、生产构建通过；Lint 仅保留后台项目照片一个既有 `<img>` warning。
+
+证据边界：`/cases` 当前明确是方法示例，不是客户案例；唯一项目记录尚无可公开的完整结果与授权，风险词典的“我见过”也尚未逐条挂证据。因此本轮没有新增“真实案例”内链，只把 `/renovation` 的不准确表述改为“相关文章和实践复盘”。
+
+---
+
 ## 2026-08-15 | Codex | 收拢公开判断与付费服务路径
 
 - `lib/navigation.ts`：将「公开实践」与「装修判断」拆为独立主导航入口；装修路径集中指向 `/renovation`、免费工具、资料库和报价审核。

@@ -44,7 +44,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/tools/tile-calculator`, changeFrequency: 'monthly', priority: 0.75 },
     { url: `${baseUrl}/tools/paint-calculator`, changeFrequency: 'monthly', priority: 0.75 },
     { url: `${baseUrl}/tools/inspection-guide`, changeFrequency: 'monthly', priority: 0.8 },
-    { url: `${baseUrl}/tools/publish`, changeFrequency: 'monthly', priority: 0.5 },
   ]
 
   const blogPages: MetadataRoute.Sitemap = articles
@@ -56,27 +55,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     }))
 
-  const enPages: MetadataRoute.Sitemap = [
-    { url: `${baseUrl}/en`, changeFrequency: 'monthly', priority: 0.8 },
-    { url: `${baseUrl}/en/about`, changeFrequency: 'monthly', priority: 0.7 },
-    { url: `${baseUrl}/en/services`, changeFrequency: 'monthly', priority: 0.7 },
-    { url: `${baseUrl}/en/tools`, changeFrequency: 'monthly', priority: 0.7 },
-    { url: `${baseUrl}/en/blog`, changeFrequency: 'monthly', priority: 0.7 },
-    { url: `${baseUrl}/en/articles`, changeFrequency: 'monthly', priority: 0.7 },
-  ]
-
-  const enArticlePaths = [
-    'articles/home-is-not-a-showroom',
-    'articles/long-term-thinking-is-not-patience',
-    'articles/seeing-the-world-from-a-job-site',
-    'articles/why-i-dont-just-teach-renovation',
-    'blog/why-i-started-taking-ai-seriously',
-  ]
-  const enArticlePages: MetadataRoute.Sitemap = enArticlePaths.map((path) => ({
-    url: `${baseUrl}/en/${path}`,
-    changeFrequency: 'yearly' as const,
-    priority: 0.7,
-  }))
-
-  return [...staticPages, ...aiToolPages, ...toolPages, ...blogPages, ...enPages, ...enArticlePages]
+  return [...staticPages, ...aiToolPages, ...toolPages, ...blogPages]
 }

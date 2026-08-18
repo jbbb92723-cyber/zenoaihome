@@ -10,6 +10,9 @@ export const metadata: Metadata = {
   title: '碎片笔记',
   description:
     '记录我在装修、AI、商业、学习和长期主义中的真实思考。不是正式文章，而是正在生长中的方法论、判断和现场笔记——带着现场温度的真实输出。',
+  alternates: {
+    canonical: 'https://zenoaihome.com/notes',
+  },
 }
 
 // 强制动态渲染，内容来自数据库，不应构建时缓存

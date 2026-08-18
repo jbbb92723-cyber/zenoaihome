@@ -5,6 +5,9 @@ import { ArrowRight, Compass, Users, Shield, Cube, Sparkle } from '@phosphor-ico
 export const metadata: Metadata = {
   title: '传统行业经验怎么用',
   description: '赞诺从一个真实问题开始，公开记录传统行业经验如何变成可核验的判断、最小工具和具体交付，并通过使用反馈持续修订。',
+  alternates: {
+    canonical: 'https://zenoaihome.com/opc-knowledge',
+  },
 }
 
 const modules = [

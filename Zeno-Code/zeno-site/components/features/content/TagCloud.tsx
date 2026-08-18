@@ -1,36 +1,24 @@
 'use client'
 
 import Link from 'next/link'
-import { useMemo } from 'react'
-import { getAllArticles } from '@/data/content/articles'
 
 interface TagCloudProps {
+  tagCounts: Array<[string, number]>
   /** Optional: limit to top N tags */
   limit?: number
   /** Optional: CSS class for the container */
   className?: string
 }
 
-export default function TagCloud({ limit, className = '' }: TagCloudProps) {
-  const tagCounts = useMemo(() => {
-    const articles = getAllArticles()
-    const counts: Record<string, number> = {}
-    articles.forEach((a) => {
-      a.tags?.forEach((tag) => {
-        counts[tag] = (counts[tag] || 0) + 1
-      })
-    })
-    return Object.entries(counts)
-      .sort((a, b) => b[1] - a[1])
-      .slice(0, limit)
-  }, [limit])
+export default function TagCloud({ tagCounts, limit, className = '' }: TagCloudProps) {
+  const visibleTags = typeof limit === 'number' ? tagCounts.slice(0, limit) : tagCounts
 
-  if (tagCounts.length === 0) return null
+  if (visibleTags.length === 0) return null
 
   return (
     <div className={className}>
       <div className="flex flex-wrap gap-2">
-        {tagCounts.map(([tag, count]) => (
+        {visibleTags.map(([tag, count]) => (
           <Link
             key={tag}
             href={`/blog?tag=${encodeURIComponent(tag)}`}

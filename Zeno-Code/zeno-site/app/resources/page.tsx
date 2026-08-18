@@ -21,6 +21,30 @@ export const metadata: Metadata = {
   alternates: {
     canonical: 'https://zenoaihome.com/resources',
   },
+  openGraph: {
+    type: 'website',
+    locale: 'zh_CN',
+    url: 'https://zenoaihome.com/resources',
+    siteName: 'Zeno 赞诺',
+    title: '签约前资料库｜报价、合同与施工怎么查',
+    description:
+      'ZenoAIHome 的签约前资料库：把报价合同风险、风险词典、检查模板、施工项目边界和追问清单组织起来，帮助业主在签装修合同前看清边界。',
+    images: [
+      {
+        url: 'https://zenoaihome.com/images/brand/zeno-portrait.jpg',
+        width: 940,
+        height: 940,
+        alt: '赞诺 Zeno',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: '签约前资料库｜报价、合同与施工怎么查',
+    description:
+      'ZenoAIHome 的签约前资料库：把报价合同风险、风险词典、检查模板、施工项目边界和追问清单组织起来，帮助业主在签装修合同前看清边界。',
+    images: ['https://zenoaihome.com/images/brand/zeno-portrait.jpg'],
+  },
 }
 
 const mainResourceSlugs = ['baojia-shenhe-qingdan', 'zhuangxiu-yusuan-moban', 'yanshou-qingdan', 'shizhu-pai-zijian-biao'] as const

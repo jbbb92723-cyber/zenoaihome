@@ -17,14 +17,6 @@ const pausedMattressArticlePaths = [
 ]
 
 const nextConfig = {
-  // === Windows 构建内存优化 ===
-  // 跳过生产压缩节省内存
-  webpack: (config, { isServer }) => {
-    if (!isServer) {
-      config.optimization.minimize = false;
-    }
-    return config;
-  },
   // ⚠️ 重要：已移除 output: 'export'（静态导出）
   // 原因：Auth.js v5 需要服务端运行时才能处理 OAuth 回调和 Session
   //       API Routes（/api/auth, /api/comments, /api/orders, /api/payments）
@@ -32,7 +24,8 @@ const nextConfig = {
   // 部署：继续使用 Vercel，Vercel 原生支持 Next.js 服务端功能。
   // 如需静态页面优化，可以在具体页面添加 export const dynamic = 'force-static'
   images: {
-    unoptimized: true,
+    formats: ['image/avif', 'image/webp'],
+    minimumCacheTTL: 86400,
   },
   eslint: {
     ignoreDuringBuilds: true,

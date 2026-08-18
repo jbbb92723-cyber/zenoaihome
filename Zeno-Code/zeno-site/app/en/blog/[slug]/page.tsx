@@ -5,15 +5,16 @@ import Image from 'next/image'
 import Avatar from '@/components/ui/Avatar'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
+import { SessionProvider } from 'next-auth/react'
 import {
   getDictionary,
   getArticleByLocalizedSlug,
   getRecentLocalizedArticles,
-  getAlternateSlug,
 } from '@/lib/i18n'
 import ArticleCardEn from '@/app/en/ArticleCardEn'
 import ArticleEngagement from '@/components/features/content/ArticleEngagement'
 import ArticleDiscussion from '@/components/features/content/ArticleDiscussion'
+import { markdownComponents } from '@/components/features/content/markdown-components'
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -24,10 +25,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const article = getArticleByLocalizedSlug(slug, 'en')
   if (!article) return {}
 
-  const zhSlug = getAlternateSlug(article.id, 'zh')
+  const articleUrl = `https://zenoaihome.com/en/blog/${article.localizedSlug}`
+  const articleImage = article.coverImage
+    ? article.coverImage.startsWith('http')
+      ? article.coverImage
+      : `https://zenoaihome.com${article.coverImage}`
+    : 'https://zenoaihome.com/images/brand/zeno-portrait.jpg'
 
   return {
-    title: `${article.title} — Zeno`,
+    title: article.title,
     description: article.excerpt,
     keywords: article.tags,
     openGraph: {
@@ -35,15 +41,19 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: article.excerpt,
       type: 'article',
       locale: 'en',
+      url: articleUrl,
       publishedTime: article.date,
       tags: article.tags,
+      images: [{ url: articleImage, alt: article.coverAlt || article.title }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: article.title,
+      description: article.excerpt,
+      images: [articleImage],
     },
     alternates: {
-      canonical: `https://zenoaihome.com/en/blog/${article.localizedSlug}`,
-      languages: {
-        'zh-CN': zhSlug ? `https://zenoaihome.com/blog/${zhSlug}` : undefined,
-        en: `https://zenoaihome.com/en/blog/${article.localizedSlug}`,
-      },
+      canonical: articleUrl,
     },
   }
 }
@@ -109,7 +119,7 @@ export default async function EnArticlePage({ params }: Props) {
       {/* ── Content ───────────────────────────────────── */}
       <article className="max-w-[42rem] mx-auto px-5 sm:px-8 lg:px-10 py-12 sm:py-16">
         <div className="prose-zeno">
-          <ReactMarkdown remarkPlugins={[remarkGfm]}>
+          <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>
             {article.content}
           </ReactMarkdown>
         </div>
@@ -129,7 +139,9 @@ export default async function EnArticlePage({ params }: Props) {
       <div className="max-w-[42rem] mx-auto px-5 sm:px-8 lg:px-10">
         <ArticleEngagement articleSlug={article.slug} articleTitle={article.title} locale="en" />
       </div>
-      <ArticleDiscussion articleSlug={article.slug} articlePathSlug={article.localizedSlug} locale="en" />
+      <SessionProvider>
+        <ArticleDiscussion articleSlug={article.slug} articlePathSlug={article.localizedSlug} locale="en" />
+      </SessionProvider>
 
       {/* ── Related articles ──────────────────────────── */}
       {recentArticles.length > 0 && (

@@ -3,8 +3,10 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
+import { markdownComponents } from '@/components/features/content/markdown-components'
 import Container from '@/components/ui/Container'
 import CopyLinkButton from '@/components/ui/CopyLinkButton'
+import StructuredData from '@/components/ui/StructuredData'
 import { getPublicNoteBySlug } from '@/lib/notes'
 
 interface Props {
@@ -17,18 +19,32 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   // 只为 PUBLIC 笔记生成 metadata，其余返回空对象（不泄露 PRIVATE/DRAFT 标题）
   const note = await getPublicNoteBySlug(slug)
   if (!note) return {}
+  const noteUrl = `https://zenoaihome.com/notes/${note.slug}`
+  const description = note.excerpt?.trim()
+    || `赞诺关于「${note.title}」的思考札记，记录装修、AI、商业与长期实践中的观察和判断。`
+  const image = 'https://zenoaihome.com/images/brand/zeno-portrait.jpg'
+
   return {
-    title: `${note.title} · 思考札记 · Zeno`,
-    description: note.excerpt ?? undefined,
+    title: `${note.title}｜思考札记`,
+    description,
     openGraph: {
       title: note.title,
-      description: note.excerpt ?? undefined,
+      description,
       type: 'article',
       locale: 'zh_CN',
+      url: noteUrl,
       publishedTime: note.createdAt.toISOString(),
+      modifiedTime: note.updatedAt.toISOString(),
+      images: [{ url: image, width: 940, height: 940, alt: '赞诺 Zeno' }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: note.title,
+      description,
+      images: [image],
     },
     alternates: {
-      canonical: `https://zenoaihome.com/notes/${note.slug}`,
+      canonical: noteUrl,
     },
   }
 }
@@ -44,29 +60,47 @@ export default async function NoteDetailPage({ params }: Props) {
     month: 'long',
     day: 'numeric',
   })
+  const noteUrl = `https://zenoaihome.com/notes/${note.slug}`
 
   return (
     <>
+      <StructuredData
+        data={{
+          '@context': 'https://schema.org',
+          '@type': 'BreadcrumbList',
+          itemListElement: [
+            {
+              '@type': 'ListItem',
+              position: 1,
+              name: '首页',
+              item: 'https://zenoaihome.com/',
+            },
+            {
+              '@type': 'ListItem',
+              position: 2,
+              name: '思考札记',
+              item: 'https://zenoaihome.com/notes',
+            },
+            {
+              '@type': 'ListItem',
+              position: 3,
+              name: note.title,
+              item: noteUrl,
+            },
+          ],
+        }}
+      />
       {/* ───── 文章头部 ───── */}
       <div className="pt-12 sm:pt-16 pb-10 sm:pb-12 border-b border-border">
         <Container size="reading">
           {/* 面包屑 */}
-          <div className="flex items-center gap-2 text-xs text-ink-muted mb-6">
-            <Link href="/" className="hover:text-stone transition-colors">首页</Link>
-            <span>·</span>
-            <Link href="/notes" className="hover:text-stone transition-colors">思考札记</Link>
-            {note.category && (
-              <>
-                <span>·</span>
-                <Link
-                  href={`/notes?category=${encodeURIComponent(note.category)}`}
-                  className="hover:text-stone transition-colors"
-                >
-                  {note.category}
-                </Link>
-              </>
-            )}
-          </div>
+          <nav aria-label="面包屑" className="mb-6 flex min-w-0 items-center gap-2 text-xs text-ink-muted">
+            <Link href="/" className="shrink-0 transition-colors hover:text-stone">首页</Link>
+            <span aria-hidden>/</span>
+            <Link href="/notes" className="shrink-0 transition-colors hover:text-stone">思考札记</Link>
+            <span aria-hidden>/</span>
+            <span className="truncate text-stone" aria-current="page">{note.title}</span>
+          </nav>
 
           <h1 className="page-title mb-5">{note.title}</h1>
 
@@ -97,14 +131,14 @@ export default async function NoteDetailPage({ params }: Props) {
           </p>
         )}
 
-        <div className="prose prose-stone prose-sm sm:prose-base max-w-none
+        <div className="article-prose prose prose-stone prose-sm sm:prose-base max-w-none
           prose-headings:font-semibold prose-headings:tracking-tight
           prose-a:text-stone prose-a:underline-offset-2
           prose-blockquote:border-l-stone/40 prose-blockquote:text-ink-muted
           prose-code:text-stone prose-code:bg-surface prose-code:px-1 prose-code:py-0.5 prose-code:rounded
           prose-pre:bg-surface prose-pre:border prose-pre:border-border
         ">
-          <ReactMarkdown remarkPlugins={[remarkGfm]}>
+          <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>
             {note.content}
           </ReactMarkdown>
         </div>

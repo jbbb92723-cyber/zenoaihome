@@ -20,6 +20,8 @@ export interface Article {
   publicationStatus?: 'published' | 'retired'
 }
 
+export type ArticleSummary = Omit<Article, 'content' | 'relatedImages'>
+
 const articleRegistry: Article[] = [
   {
     id: '01',
@@ -4155,6 +4157,20 @@ export function getRecentArticles(count = 3): Article[] {
 
 export function getAllArticles(): Article[] {
   return articles
+}
+
+export function getArticleSummaries(): ArticleSummary[] {
+  return articles.map(({ content: _content, relatedImages: _relatedImages, ...summary }) => summary)
+}
+
+export function getArticleTagCounts(): Array<[string, number]> {
+  const counts = new Map<string, number>()
+
+  articles.forEach((article) => {
+    article.tags.forEach((tag) => counts.set(tag, (counts.get(tag) ?? 0) + 1))
+  })
+
+  return Array.from(counts.entries()).sort((a, b) => b[1] - a[1])
 }
 
 export function getArticlesByTag(tag: string): Article[] {

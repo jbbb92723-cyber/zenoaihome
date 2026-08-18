@@ -6,13 +6,9 @@
 
 | 用途 | Tailwind 类 | 字体栈（优先级从高到低） | 说明 |
 |------|------------|----------------------|------|
-| 中文正文 | `font-sans` | `var(--font-sans)`, `Noto Sans SC`, `PingFang SC`, `Microsoft YaHei`, `system-ui`, sans-serif | `next/font/google` 自托管思源黑体，构建时下载，无需外部 CDN |
-| 中文标题 / 编辑性文字 | `font-serif` / `.editorial-serif` / `.editorial-display` | `var(--font-serif)`, `Noto Serif SC`, `Source Han Serif SC`, `Songti SC`, `STSong`, `SimSun`, Georgia, serif | `next/font/google` 自托管思源宋体（500/600/700），标题使用 500-600 字重 |
+| 中文正文 | `font-sans` | `system-ui`, `PingFang SC`, `Microsoft YaHei`, sans-serif | 使用系统中文黑体，避免字体下载和构建时外部网络依赖 |
+| 中文标题 / 编辑性文字 | `font-serif` / `.editorial-serif` / `.editorial-display` | `Songti SC`, `STSong`, `Noto Serif CJK SC`, `Source Han Serif SC`, `SimSun`, Georgia, serif | 使用系统中文衬线字体，标题保持 500-600 字重 |
 | 等宽 | `font-mono` | `ui-monospace`, `SFMono-Regular`, monospace | 代码、数字标签 |
-
-### next/font 配置
-- **Noto Sans SC**：variable font，400-700 全量可用；`subsets: ['latin']`（CJK 字形由 Google Fonts unicode-range 按需切片，不影响中文渲染）。
-- **Noto Serif SC**：非 variable，显式加载 `weight: ['500', '600', '700']`；`display: 'swap'`。
 
 ## 二、色板
 
@@ -88,13 +84,13 @@ CSS 变量定义于 `styles/globals.css`：
 
 ## 六、外部资源
 
-- **字体**：`next/font/google` 自托管 Noto Sans SC + Noto Serif SC，不依赖外部 CDN 或 `<link>`。
+- **字体**：使用系统中文黑体与衬线字体栈，不下载 Web Font，也不依赖构建时外部网络。
 - **图标**：@phosphor-icons/react（已存在于依赖）。
-- **动画库**：framer-motion（已存在，仅首页 Hero 保留使用；滚动Reveal改用原生 IntersectionObserver + CSS）。
+- **动画**：滚动 Reveal 使用原生 IntersectionObserver + CSS；当前前台不加载 framer-motion。
 
 ## 七、本次改动文件清单
 
-- `app/layout.tsx`：接入 next/font 双字体，`<noscript>` 兜底。
+- `app/layout.tsx`：设置全站 metadata、结构化数据和 `<noscript>` 动效兜底。
 - `styles/globals.css`：新增 `cinnabar` 变量、Reveal 样式、`.page-label`/`.section-heading`、统一动效 ease、删除脉冲动画。
 - `tailwind.config.ts`：注册 `cinnabar`、调整 `fontFamily` / `fontSize` / `borderRadius`。
 - `components/ui/Reveal.tsx`（新）：IntersectionObserver 滚动渐显组件。

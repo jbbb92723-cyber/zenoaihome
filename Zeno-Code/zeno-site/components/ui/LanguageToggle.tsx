@@ -22,7 +22,7 @@ export default function LanguageToggle() {
       href={langHref}
       aria-label={ariaLabel}
       title={ariaLabel}
-      className="group inline-flex items-center gap-1.5 h-7 px-2.5 border border-border rounded-full text-[0.6875rem] font-medium text-ink-muted hover:text-ink hover:border-stone/50 transition-all duration-150"
+      className="group inline-flex items-center gap-1.5 h-11 px-2.5 border border-border rounded-full text-[0.6875rem] font-medium text-ink-muted hover:text-ink hover:border-stone/50 transition-all duration-150"
     >
       <svg
         viewBox="0 0 24 24"

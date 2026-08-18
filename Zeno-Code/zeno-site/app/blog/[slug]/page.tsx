@@ -5,13 +5,14 @@ import Image from 'next/image'
 import Avatar from '@/components/ui/Avatar'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
+import { SessionProvider } from 'next-auth/react'
 import { articles, getArticleBySlug, getRecentArticles } from '@/data/content/articles'
 import { getArticleContent } from '@/lib/content-loader'
-import { getAlternateSlug } from '@/lib/i18n'
 import ArticleCard from '@/components/features/content/ArticleCard'
 import ArticleCTA from '@/components/features/content/ArticleCTA'
 import ArticleEngagement from '@/components/features/content/ArticleEngagement'
 import ArticleDiscussion from '@/components/features/content/ArticleDiscussion'
+import { markdownComponents } from '@/components/features/content/markdown-components'
 import StructuredData from '@/components/ui/StructuredData'
 
 interface Props {
@@ -25,9 +26,17 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const article = getArticleBySlug(params.slug)
   if (!article) return {}
-  const enSlug = getAlternateSlug(article.id, 'en')
+
+  const articleUrl = `https://zenoaihome.com/blog/${article.slug}`
+  const articleImage = article.coverImage
+    ? article.coverImage.startsWith('http')
+      ? article.coverImage
+      : `https://zenoaihome.com${article.coverImage}`
+    : 'https://zenoaihome.com/images/brand/zeno-portrait.jpg'
+  const titleAlreadyIncludesBrand = /(?:赞诺|zeno)/i.test(article.title)
+
   return {
-    title: article.title,
+    title: titleAlreadyIncludesBrand ? { absolute: article.title } : article.title,
     description: article.excerpt,
     keywords: article.tags,
     openGraph: {
@@ -35,15 +44,19 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: article.excerpt,
       type: 'article',
       locale: 'zh_CN',
+      url: articleUrl,
       publishedTime: article.date,
       tags: article.tags,
+      images: [{ url: articleImage, alt: article.coverAlt || article.title }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: article.title,
+      description: article.excerpt,
+      images: [articleImage],
     },
     alternates: {
-      canonical: `https://zenoaihome.com/blog/${article.slug}`,
-      languages: {
-        'zh-CN': `https://zenoaihome.com/blog/${article.slug}`,
-        ...(enSlug ? { en: `https://zenoaihome.com/en/blog/${enSlug}` } : {}),
-      },
+      canonical: articleUrl,
     },
   }
 }
@@ -59,7 +72,7 @@ export default async function ArticlePage({ params }: Props) {
     ? article.coverImage.startsWith('http')
       ? article.coverImage
       : `https://zenoaihome.com${article.coverImage}`
-    : undefined
+    : 'https://zenoaihome.com/images/brand/zeno-portrait.jpg'
 
   const formattedDate = new Date(article.date).toLocaleDateString('zh-CN', {
     year: 'numeric',
@@ -79,46 +92,74 @@ export default async function ArticlePage({ params }: Props) {
   return (
     <>
       <StructuredData
-        data={{
-          '@context': 'https://schema.org',
-          '@type': 'BlogPosting',
-          '@id': `${articleUrl}#article`,
-          headline: article.title,
-          description: article.excerpt,
-          datePublished: article.date,
-          dateModified: article.date,
-          inLanguage: 'zh-CN',
-          isAccessibleForFree: true,
-          url: articleUrl,
-          mainEntityOfPage: {
-            '@type': 'WebPage',
-            '@id': articleUrl,
+        data={[
+          {
+            '@context': 'https://schema.org',
+            '@type': 'BlogPosting',
+            '@id': `${articleUrl}#article`,
+            headline: article.title,
+            description: article.excerpt,
+            datePublished: article.date,
+            dateModified: article.date,
+            inLanguage: 'zh-CN',
+            isAccessibleForFree: true,
+            url: articleUrl,
+            mainEntityOfPage: {
+              '@type': 'WebPage',
+              '@id': articleUrl,
+            },
+            author: {
+              '@id': 'https://zenoaihome.com/#person',
+            },
+            publisher: {
+              '@id': 'https://zenoaihome.com/#person',
+            },
+            isPartOf: {
+              '@id': 'https://zenoaihome.com/#blog',
+            },
+            image: [articleImage],
+            keywords: article.tags.join(', '),
+            about: [
+              article.category,
+              ...(article.subcategory ? [article.subcategory] : []),
+              ...article.tags.slice(0, 3),
+            ],
           },
-          author: {
-            '@id': 'https://zenoaihome.com/#person',
+          {
+            '@context': 'https://schema.org',
+            '@type': 'BreadcrumbList',
+            itemListElement: [
+              {
+                '@type': 'ListItem',
+                position: 1,
+                name: '首页',
+                item: 'https://zenoaihome.com/',
+              },
+              {
+                '@type': 'ListItem',
+                position: 2,
+                name: '文章',
+                item: 'https://zenoaihome.com/blog',
+              },
+              {
+                '@type': 'ListItem',
+                position: 3,
+                name: article.title,
+                item: articleUrl,
+              },
+            ],
           },
-          publisher: {
-            '@id': 'https://zenoaihome.com/#person',
-          },
-          isPartOf: {
-            '@id': 'https://zenoaihome.com/#blog',
-          },
-          image: articleImage ? [articleImage] : undefined,
-          keywords: article.tags.join(', '),
-          about: [
-            article.category,
-            ...(article.subcategory ? [article.subcategory] : []),
-            ...article.tags.slice(0, 3),
-          ],
-        }}
+        ]}
       />
       {/* 文章头部 */}
       <article className="max-w-reading mx-auto px-5 sm:px-8 pt-12 pb-16">
         {/* 面包屑 */}
-        <nav className="flex items-center gap-2 mb-8 text-xs text-ink-muted">
-          <Link href="/blog" className="hover:text-stone transition-colors">文章</Link>
-          <span>/</span>
-          <span className="text-stone">{article.category}</span>
+        <nav aria-label="面包屑" className="mb-8 flex min-w-0 items-center gap-2 text-xs text-ink-muted">
+          <Link href="/" className="shrink-0 transition-colors hover:text-stone">首页</Link>
+          <span aria-hidden>/</span>
+          <Link href="/blog" className="shrink-0 transition-colors hover:text-stone">文章</Link>
+          <span aria-hidden>/</span>
+          <span className="truncate text-stone" aria-current="page">{article.title}</span>
         </nav>
 
         {/* 标题 */}
@@ -175,13 +216,13 @@ export default async function ArticlePage({ params }: Props) {
           [&_hr]:border-border [&_hr]:my-10
           [&_blockquote]:border-l-2 [&_blockquote]:border-stone-light [&_blockquote]:pl-4 [&_blockquote]:text-ink-muted
         ">
-          <ReactMarkdown remarkPlugins={[remarkGfm]}>{content}</ReactMarkdown>
+          <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>{content}</ReactMarkdown>
         </div>
 
         {/* 作者介绍 */}
         <div className="mt-14 pt-8 border-t border-border">
           <div className="flex items-start gap-4">
-            <Avatar src="/images/brand/avatar.webp" alt="Zeno 头像" fallback="Z" size={40} className="mt-0.5" />
+            <Avatar src="/images/brand/zeno-portrait.jpg" alt="赞诺 Zeno" fallback="Z" size={40} className="mt-0.5" />
             <div className="flex-1 min-w-0">
               <p className="text-sm font-semibold text-ink">Zeno · 赞诺</p>
               <p className="text-xs text-ink-muted mt-1.5 leading-relaxed max-w-sm">
@@ -230,7 +271,9 @@ export default async function ArticlePage({ params }: Props) {
         <ArticleCTA category={article.category} parentCategorySlug={article.parentCategory} />
       </div>
 
-      <ArticleDiscussion articleSlug={article.slug} />
+      <SessionProvider>
+        <ArticleDiscussion articleSlug={article.slug} />
+      </SessionProvider>
 
       {/* ───── 下一步行动 ───── */}
       <section className="max-w-reading mx-auto px-5 sm:px-8 py-10">

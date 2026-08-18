@@ -3,7 +3,7 @@ import Link from 'next/link'
 import Container from '@/components/ui/Container'
 
 export const metadata: Metadata = {
-  title: 'Seeing the World from a Job Site — Zeno',
+  title: 'Seeing the World from a Job Site',
   description:
     'Construction sites are a compressed model of how the world actually works — through accountability, communication, and how people behave under pressure.',
 }

@@ -7,7 +7,7 @@ import ArticleCard from '@/components/features/content/ArticleCard'
 import TagCloud from '@/components/features/content/TagCloud'
 import PageHero from '@/components/ui/PageHero'
 import Container from '@/components/ui/Container'
-import { articles } from '@/data/content/articles'
+import type { ArticleSummary } from '@/data/content/articles'
 import {
   primaryCategories,
   getSubcategoriesForParent,
@@ -36,9 +36,17 @@ const startHere = [
   },
 ]
 
-const publicArticles = articles.filter((article) => article.parentCategory !== 'mattress')
-
-export default function BlogClient() {
+export default function BlogClient({
+  articles,
+  tagCounts,
+}: {
+  articles: ArticleSummary[]
+  tagCounts: Array<[string, number]>
+}) {
+  const publicArticles = useMemo(
+    () => articles.filter((article) => article.parentCategory !== 'mattress'),
+    [articles],
+  )
   const searchParams = useSearchParams()
   const categoryParam = searchParams.get('category') ?? ''
   const visibleCategoryParam = categoryParam === 'mattress' ? '' : categoryParam
@@ -53,7 +61,7 @@ export default function BlogClient() {
   const allCategories = useMemo(() => {
     const available = new Set(publicArticles.map((article) => article.parentCategory).filter(Boolean))
     return ['全部', ...primaryCategories.filter((category) => category.slug !== 'about' && available.has(category.slug)).map((category) => category.slug)]
-  }, [])
+  }, [publicArticles])
 
   useEffect(() => {
     setActiveCategory(visibleCategoryParam || '全部')
@@ -99,7 +107,7 @@ export default function BlogClient() {
     }
 
     return result
-  }, [activeCategory, activeSub, activeTag])
+  }, [activeCategory, activeSub, activeTag, publicArticles])
 
   const sorted = useMemo(() => {
     return [...filtered].sort((a, b) => b.date.localeCompare(a.date))
@@ -185,7 +193,7 @@ export default function BlogClient() {
         {/* 标签作为二级探索入口，不抢占首屏。 */}
         <details className="mb-8 border-b border-border pb-5">
           <summary className="cursor-pointer text-xs font-semibold text-ink-muted hover:text-ink">更多标签</summary>
-          <TagCloud limit={20} className="mt-4" />
+          <TagCloud tagCounts={tagCounts} limit={20} className="mt-4" />
         </details>
 
         {activeTag && (

@@ -1,7 +1,7 @@
 import { Suspense } from 'react'
 import type { Metadata } from 'next'
 import StructuredData from '@/components/ui/StructuredData'
-import { articles } from '@/data/content/articles'
+import { articles, getArticleSummaries, getArticleTagCounts } from '@/data/content/articles'
 import BlogClient from './BlogClient'
 
 export const metadata: Metadata = {
@@ -15,6 +15,8 @@ export const metadata: Metadata = {
 
 export default function BlogPage() {
   const priorityArticles = articles.slice(0, 12)
+  const articleSummaries = getArticleSummaries()
+  const tagCounts = getArticleTagCounts()
 
   return (
     <>
@@ -36,7 +38,7 @@ export default function BlogPage() {
         }}
       />
       <Suspense fallback={<div className="py-20 text-center text-ink-muted">加载中…</div>}>
-        <BlogClient />
+        <BlogClient articles={articleSummaries} tagCounts={tagCounts} />
       </Suspense>
     </>
   )

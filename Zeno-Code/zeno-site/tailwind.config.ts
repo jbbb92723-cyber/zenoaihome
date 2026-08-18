@@ -34,8 +34,8 @@ const config: Config = {
         topic5: '#8A6B5B',
       },
       fontFamily: {
-        sans: ['var(--font-sans)', 'var(--font-noto)', 'PingFang SC', 'Microsoft YaHei', 'system-ui', 'sans-serif'],
-        serif: ['var(--font-serif)', 'Noto Serif SC', 'Source Han Serif SC', 'Songti SC', 'STSong', 'SimSun', 'Georgia', 'serif'],
+        sans: ['system-ui', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', '"PingFang SC"', '"Microsoft YaHei"', 'sans-serif'],
+        serif: ['"Songti SC"', 'STSong', '"Noto Serif CJK SC"', '"Source Han Serif SC"', 'SimSun', 'Georgia', 'serif'],
         mono: ['ui-monospace', 'SFMono-Regular', 'monospace'],
       },
       fontSize: {

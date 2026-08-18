@@ -3,12 +3,11 @@ import Link from 'next/link'
 import Container from '@/components/ui/Container'
 
 export const metadata: Metadata = {
-  title: 'About Zeno | Residential Renovation Judgment',
+  title: 'Residential Renovation Judgment',
   description:
     'Zeno is a renovation practitioner in China with 17 years on site, building ZenoAIHome to help homeowners connect lifestyle goals, spatial choices, budget boundaries, quote risks, and contract responsibilities.',
   alternates: {
     canonical: 'https://zenoaihome.com/en/about',
-    languages: { 'zh-CN': 'https://zenoaihome.com/about', en: 'https://zenoaihome.com/en/about' },
   },
 }
 

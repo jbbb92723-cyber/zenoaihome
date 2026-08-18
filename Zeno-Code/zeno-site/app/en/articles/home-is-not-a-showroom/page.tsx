@@ -3,7 +3,7 @@ import Link from 'next/link'
 import Container from '@/components/ui/Container'
 
 export const metadata: Metadata = {
-  title: 'A Home Is Not a Showroom — Zeno',
+  title: 'A Home Is Not a Showroom',
   description:
     'The gap between what looks good in photos and what actually works for living. A perspective from the job site.',
 }

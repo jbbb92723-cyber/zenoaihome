@@ -3,7 +3,7 @@ import Link from 'next/link'
 import Container from '@/components/ui/Container'
 
 export const metadata: Metadata = {
-  title: 'Long-term Thinking Is Not Patience — Zeno',
+  title: 'Long-term Thinking Is Not Patience',
   description:
     'Long-term thinking is not about enduring discomfort. It is a design principle — structuring your decisions so they cost less in the future than they do today.',
 }

@@ -1,15 +1,13 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import type { Article } from '@/data/content/articles'
-import { getDictionary } from '@/lib/i18n'
+import type { LocalizedArticleSummary } from '@/lib/i18n'
 
 interface Props {
-  article: Article & { localizedSlug: string }
+  article: LocalizedArticleSummary
   variant?: 'default' | 'compact'
 }
 
 export default function ArticleCardEn({ article, variant = 'default' }: Props) {
-  const t = getDictionary('en')
   const formattedDate = new Date(article.date).toLocaleDateString('en-US', {
     year: 'numeric',
     month: 'long',
@@ -62,7 +60,7 @@ export default function ArticleCardEn({ article, variant = 'default' }: Props) {
       </h2>
       <p className="text-sm text-ink-muted leading-relaxed line-clamp-2">{article.excerpt}</p>
       <div className="flex items-center gap-1 mt-3">
-        <span className="text-xs text-stone group-hover:underline transition-all">{t.home.readMore}</span>
+        <span className="text-xs text-stone group-hover:underline transition-all">Read more</span>
         <span className="text-xs text-stone opacity-0 group-hover:opacity-100 transition-opacity">→</span>
       </div>
     </Link>

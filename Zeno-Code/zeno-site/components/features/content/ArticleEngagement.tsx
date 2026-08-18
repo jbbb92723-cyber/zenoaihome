@@ -13,7 +13,6 @@ import {
   WechatLogo,
   X,
 } from '@phosphor-icons/react'
-import QRCode from 'qrcode'
 
 interface Props {
   articleSlug: string
@@ -81,15 +80,18 @@ export default function ArticleEngagement({ articleSlug, articleTitle, locale = 
     if (!shareOpen) return
 
     let active = true
-    QRCode.toDataURL(window.location.href, {
-      width: 224,
-      margin: 1,
-      color: { dark: '#2b2926', light: '#ffffff' },
-    }).then((dataUrl) => {
-      if (active) setQrDataUrl(dataUrl)
-    }).catch(() => {
-      if (active) setQrDataUrl('')
-    })
+    void import('qrcode')
+      .then(({ default: QRCode }) => QRCode.toDataURL(window.location.href, {
+        width: 224,
+        margin: 1,
+        color: { dark: '#2b2926', light: '#ffffff' },
+      }))
+      .then((dataUrl) => {
+        if (active) setQrDataUrl(dataUrl)
+      })
+      .catch(() => {
+        if (active) setQrDataUrl('')
+      })
 
     function closeOnEscape(event: KeyboardEvent) {
       if (event.key === 'Escape') setShareOpen(false)

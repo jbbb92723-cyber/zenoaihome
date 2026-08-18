@@ -11,6 +11,9 @@ export const metadata: Metadata = {
   title: '按问题找内容｜生活、装修与实践',
   description:
     '按问题进入 ZenoAIHome 的长期专题：美学与生活、空间与家庭场景、装修决策、报价合同风险和建造者手记。',
+  alternates: {
+    canonical: 'https://zenoaihome.com/topics',
+  },
 }
 
 export default function TopicsPage() {

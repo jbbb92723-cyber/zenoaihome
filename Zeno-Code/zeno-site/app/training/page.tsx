@@ -9,6 +9,30 @@ export const metadata: Metadata = {
   alternates: {
     canonical: 'https://zenoaihome.com/training',
   },
+  openGraph: {
+    type: 'website',
+    locale: 'zh_CN',
+    url: 'https://zenoaihome.com/training',
+    siteName: 'Zeno 赞诺',
+    title: 'AI 培训｜从团队每天的工作开始',
+    description:
+      '赞诺面向企业、商会和创业社群提供AI实战培训。从传统行业真实工作出发，覆盖AI应用入门、工具实操、内容工作流和一人公司实践。',
+    images: [
+      {
+        url: 'https://zenoaihome.com/images/brand/zeno-portrait.jpg',
+        width: 940,
+        height: 940,
+        alt: '赞诺 Zeno',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'AI 培训｜从团队每天的工作开始',
+    description:
+      '赞诺面向企业、商会和创业社群提供AI实战培训。从传统行业真实工作出发，覆盖AI应用入门、工具实操、内容工作流和一人公司实践。',
+    images: ['https://zenoaihome.com/images/brand/zeno-portrait.jpg'],
+  },
 }
 
 const modules = [

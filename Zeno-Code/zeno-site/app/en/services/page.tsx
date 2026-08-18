@@ -4,15 +4,11 @@ import Container from '@/components/ui/Container'
 import StructuredData from '@/components/ui/StructuredData'
 
 export const metadata: Metadata = {
-  title: 'Expert Residential Review Before Signing | ZenoAIHome',
+  title: 'Expert Residential Review Before Signing',
   description:
     'English overview of ZenoAIHome expert review options for homeowners in China: quote risk entry review, quote/contract review, and deeper residential judgment across plan, budget, quote, contract, and delivery risk.',
   alternates: {
     canonical: 'https://zenoaihome.com/en/services',
-    languages: {
-      'zh-CN': 'https://zenoaihome.com/services',
-      en: 'https://zenoaihome.com/en/services',
-    },
   },
 }
 

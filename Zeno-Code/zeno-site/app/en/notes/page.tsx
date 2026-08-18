@@ -10,7 +10,6 @@ export const metadata: Metadata = {
     'Short-form reflections on renovation, AI, business, and long-term thinking. These are seeds — some will grow into full articles, some remain as observations.',
   alternates: {
     canonical: 'https://zenoaihome.com/en/notes',
-    languages: { 'zh-CN': 'https://zenoaihome.com/notes', en: 'https://zenoaihome.com/en/notes' },
   },
 }
 
