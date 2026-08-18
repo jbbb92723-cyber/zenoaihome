@@ -44,7 +44,7 @@ export const primaryCategories: ContentCategory[] = [
   },
   {
     slug: 'opc',
-    name: '星火者共同体',
+    name: '星火者',
     description: '一人公司实践、产品、协作项目与共同体共建',
   },
   {
@@ -127,8 +127,8 @@ export const categoryNameToSlug: Record<string, string> = {
   '居住方式': 'lifestyle',
   '把自己重做一遍': 'ip',
   'AI 落地判断': 'ai',
+  '星火者': 'opc',
   '星火者共同体': 'opc',
-  'OPC·同行有你': 'opc',
   '关于我': 'about',
   // 旧标签名（向后兼容存量文章数据）
   '装修避坑': 'renovation',

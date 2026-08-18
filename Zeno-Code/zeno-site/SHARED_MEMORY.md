@@ -2,6 +2,13 @@
 
 > 手机 Hermes 不翻代码也能知道的上下文。每条写清：改了哪个文件 + 为什么改。
 
+## 2026-08-18 | Codex | “OPC·同行有你”统一更名为“星火者”
+
+- `data/content/articles.ts`、`categories.ts`、`lib/schema-faqs.ts`：14 篇 OPC 相关文章的展示分类、分类枚举、博客一级分类和 FAQ 键统一为“星火者”；“星火者共同体”继续作为组织形态描述，不再作为文章分类名。
+- `article-106-content.ts` 与现行规划文档：移除旧品牌称呼并对齐 `/community` 当前定位。全仓现行代码和文档已无“同行有你”残留；TypeScript、定向 ESLint、diff check 通过，本地 `/blog` 返回 200 且只渲染新名称。
+
+---
+
 ## 2026-08-18 | Codex | Zeno AI 分身三人格分诊闭环
 
 - `lib/assistant/contracts.ts`、`intent-router.ts`、`system-prompt.ts`：公开助手新增装修审核员、转型向导、星火者招募官三种确定性人格；当前消息优先、用户历史与页面弱加权。只有整份/多份/PDF、报价与合同联审、逐项人工审核等复杂材料请求才触发人工服务卡，单个风险词不会被强推服务。
