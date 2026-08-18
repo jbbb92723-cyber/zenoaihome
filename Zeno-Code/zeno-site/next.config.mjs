@@ -58,6 +58,16 @@ const nextConfig = {
         permanent: true,
       },
       {
+        source: '/consulting',
+        destination: '/contact',
+        permanent: true,
+      },
+      {
+        source: '/services/quote-standard',
+        destination: '/services/quote-review',
+        permanent: true,
+      },
+      {
         source: '/knowledge',
         destination: '/opc-knowledge',
         permanent: true,

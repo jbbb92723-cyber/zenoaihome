@@ -348,3 +348,8 @@ npx prisma db push
 2026-08-17 | Codex | 根据用户希望“简洁明了、中文友好”并采用“我先转型探索”的叙事，将首页 Hero 改为“我的 AI 转型，从传统行业开始”，副句改为“我先拿自己的工作和项目来试，边做边记录”；同步浏览器、Open Graph 和 Twitter 标题为“赞诺｜一个传统行业人的 AI 转型记录”。tsc、lint 通过，lint 仅 1 条既有 `<img>` warning；真实 390px viewport 标题完整且无横向溢出，未提交、未推送。
 2026-08-18 | Codex | 在现有 `/admin/content` 内落地“影子 Zeno”文本素材 MVP：新增管理员内容生成接口和 `/admin/content/new` 表单，只接收粘贴文字并用统一 `admin_draft` Provider 整理“现象—风险—判断—对策”；生成及人工校对结果写入同一份 `WebsiteContentDraft(draft/pending, source=shadow_zeno)`，元数据与 JSON-LD 由服务端确定性生成，不上传文件、不转写语音、不自动发布。
 2026-08-18 | Codex | 完成 AI 商业闭环第二步：星火者首屏增加真实招募锚点并修复登录→注册→登录→申请的安全回跳；助手使用版本化 localStorage 保存最多 24 条消息、7 天失效并携带最近 5 轮，私密账号/订单页不挂载；Vercel Analytics 增加 `ai_chat_start`、`ai_service_click`、`ai_spark_click` 三项匿名事件。TypeScript、定向 ESLint、diff-check 与 256 页生产构建通过，本地验证 `/community` 和登录页 200、后台鉴权重定向、未授权内容 API 401、Spark/Service 分诊卡返回正确。
+# 2026-08-18 路由瘦身
+
+- 删除不可达的 `app/knowledge/page.tsx`；`/knowledge` 继续由 `next.config.mjs` 永久跳转到 `/opc-knowledge`。
+- 删除仅包含服务端 `redirect()` 的 `app/consulting/page.tsx` 与 `app/services/quote-standard/page.tsx`，将兼容跳转集中到 `next.config.mjs`，目标分别为 `/contact` 与 `/services/quote-review`。
+- 保留 `/tools/quote-checklist`：它是完整的 26 项静态核对清单，与 `/tools/quote-check` 的交互式规则初筛职责不同。
