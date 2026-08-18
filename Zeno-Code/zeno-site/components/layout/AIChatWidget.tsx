@@ -3,6 +3,15 @@
 import Link from 'next/link'
 import { useEffect, useRef, useState, type KeyboardEvent } from 'react'
 import { usePathname } from 'next/navigation'
+import SparkCard from '@/components/features/assistant/SparkCard'
+import ServiceCard from '@/components/features/assistant/ServiceCard'
+import type {
+  AssistantCard,
+  AssistantPersona,
+  ChatAction,
+  ChatActionKind,
+  ChatResponse,
+} from '@/lib/assistant/contracts'
 import {
   ArrowCounterClockwise,
   ArrowRight,
@@ -16,14 +25,6 @@ import {
   X,
 } from '@phosphor-icons/react'
 
-type ChatActionKind = 'tool' | 'article' | 'resource' | 'service' | 'contact' | 'page'
-
-interface ChatAction {
-  label: string
-  href: string
-  kind: ChatActionKind
-}
-
 interface Message {
   role: 'user' | 'assistant'
   content: string
@@ -31,19 +32,12 @@ interface Message {
   actions?: ChatAction[]
   followUps?: string[]
   source?: 'llm' | 'fallback'
-}
-
-interface ChatResponse {
-  reply: string
-  bullets?: string[]
-  actions?: ChatAction[]
-  followUps?: string[]
-  source: 'llm' | 'fallback'
+  persona?: AssistantPersona
+  card?: AssistantCard
 }
 
 interface AssistantRequest {
   message: string
-  followUpContext?: string
   history: Array<{ role: 'user' | 'assistant'; content: string }>
 }
 
@@ -65,6 +59,19 @@ const actionKindLabels: Record<'zh' | 'en', Record<ChatActionKind, string>> = {
     service: 'Service',
     contact: 'Contact',
     page: 'Page',
+  },
+}
+
+const personaLabels: Record<'zh' | 'en', Record<AssistantPersona, string>> = {
+  zh: {
+    reviewer: '装修审核员',
+    'transformation-guide': '转型向导',
+    'spark-recruiter': '星火者招募官',
+  },
+  en: {
+    reviewer: 'Renovation reviewer',
+    'transformation-guide': 'Transformation guide',
+    'spark-recruiter': 'Spark community guide',
   },
 }
 
@@ -124,6 +131,7 @@ export default function AIChatWidget() {
   const [failedRequest, setFailedRequest] = useState<AssistantRequest | null>(null)
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLTextAreaElement>(null)
+  const openButtonRef = useRef<HTMLButtonElement>(null)
   const pathname = usePathname()
 
   const isEn = pathname.startsWith('/en')
@@ -163,7 +171,10 @@ export default function AIChatWidget() {
     const focusTimer = window.setTimeout(() => inputRef.current?.focus(), 120)
 
     function handleEscape(event: globalThis.KeyboardEvent) {
-      if (event.key === 'Escape') setOpen(false)
+      if (event.key === 'Escape') {
+        setOpen(false)
+        window.setTimeout(() => openButtonRef.current?.focus(), 0)
+      }
     }
 
     window.addEventListener('keydown', handleEscape)
@@ -204,7 +215,6 @@ export default function AIChatWidget() {
           message: request.message,
           locale,
           history: request.history,
-          followUpContext: request.followUpContext,
           pagePath: pathname,
         }),
       })
@@ -226,6 +236,8 @@ export default function AIChatWidget() {
         actions: data.actions,
         followUps: data.followUps,
         source: data.source,
+        persona: data.persona,
+        card: data.card,
       }])
     } catch {
       setError(isEn ? 'The connection was interrupted. Please try again.' : '连接中断了，请再试一次。')
@@ -235,7 +247,7 @@ export default function AIChatWidget() {
     }
   }
 
-  function handleSend(text?: string, followUpContext?: string) {
+  function handleSend(text?: string) {
     const message = (text ?? input).trim()
     if (!message || loading) return
 
@@ -244,11 +256,11 @@ export default function AIChatWidget() {
       content: toHistoryContent(item),
     }))
 
-    void requestAssistant({ message, followUpContext, history }, true)
+    void requestAssistant({ message, history }, true)
   }
 
   function handleInputKeyDown(event: KeyboardEvent<HTMLTextAreaElement>) {
-    if (event.key === 'Enter' && !event.shiftKey) {
+    if (event.key === 'Enter' && !event.shiftKey && !event.nativeEvent.isComposing) {
       event.preventDefault()
       handleSend()
     }
@@ -258,6 +270,7 @@ export default function AIChatWidget() {
     <div>
       {!open && (
         <button
+          ref={openButtonRef}
           type="button"
           onClick={() => setOpen(true)}
           className="motion-press fixed bottom-4 right-4 z-[75] inline-flex h-12 w-12 items-center justify-center border border-white/25 bg-stone p-0 text-left text-white shadow-[0_18px_48px_rgba(17,17,17,0.26)] transition-transform active:scale-[0.98] sm:bottom-7 sm:right-7 sm:h-auto sm:w-auto sm:min-h-[4.5rem] sm:gap-3 sm:px-5 sm:py-3"
@@ -276,6 +289,8 @@ export default function AIChatWidget() {
       {open && (
         <section
           className="fixed inset-0 z-[80] flex h-[100dvh] w-full flex-col bg-canvas text-ink shadow-[0_28px_90px_rgba(17,17,17,0.26)] animate-surface-in sm:inset-auto sm:bottom-6 sm:right-6 sm:h-[min(720px,calc(100dvh-3rem))] sm:w-[min(500px,calc(100vw-3rem))] sm:border sm:border-border"
+          role="dialog"
+          aria-modal="true"
           aria-label={isEn ? 'ZENO assistant conversation' : 'ZENO 助手对话'}
         >
           <header className="flex min-h-[4.25rem] shrink-0 items-center justify-between border-b border-border bg-surface-warm px-4">
@@ -294,7 +309,7 @@ export default function AIChatWidget() {
                 <button
                   type="button"
                   onClick={resetConversation}
-                  className="inline-flex h-9 w-9 items-center justify-center text-ink-muted transition-colors hover:bg-surface hover:text-ink active:scale-[0.98]"
+                  className="inline-flex h-11 w-11 items-center justify-center text-ink-muted transition-colors hover:bg-surface hover:text-ink active:scale-[0.98]"
                   aria-label={isEn ? 'Start a new conversation' : '重新开始'}
                   title={isEn ? 'Start a new conversation' : '重新开始'}
                 >
@@ -303,8 +318,11 @@ export default function AIChatWidget() {
               )}
               <button
                 type="button"
-                onClick={() => setOpen(false)}
-                className="inline-flex h-9 w-9 items-center justify-center text-ink-muted transition-colors hover:bg-surface hover:text-ink active:scale-[0.98]"
+                onClick={() => {
+                  setOpen(false)
+                  window.setTimeout(() => openButtonRef.current?.focus(), 0)
+                }}
+                className="inline-flex h-11 w-11 items-center justify-center text-ink-muted transition-colors hover:bg-surface hover:text-ink active:scale-[0.98]"
                 aria-label={isEn ? 'Close ZENO assistant' : '收起 ZENO 助手'}
                 title={isEn ? 'Close ZENO assistant' : '收起 ZENO 助手'}
               >
@@ -313,7 +331,7 @@ export default function AIChatWidget() {
             </div>
           </header>
 
-          <div className="flex-1 space-y-5 overflow-y-auto px-4 py-5 sm:px-5">
+          <div className="flex-1 space-y-5 overflow-y-auto px-4 py-5 sm:px-5" role="log" aria-live="polite" aria-relevant="additions">
             {messages.length === 0 && (
               <div>
                 <div className="border-l-2 border-stone pl-4">
@@ -360,75 +378,90 @@ export default function AIChatWidget() {
 
             {messages.map((message, index) => (
               <div key={`${message.role}-${index}`} className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                <div className={`max-w-[92%] px-3.5 py-3 text-sm leading-7 sm:max-w-[88%] ${
-                  message.role === 'user'
-                    ? 'bg-stone text-white'
-                    : 'border border-border bg-surface text-ink shadow-[0_12px_30px_rgba(17,17,17,0.05)]'
-                }`}>
-                  {message.role === 'assistant' && (
-                    <div className="mb-2 flex items-center gap-1.5 text-[0.68rem] font-semibold uppercase tracking-[0.12em] text-stone">
-                      <Brain size={14} weight="duotone" aria-hidden />
-                      <span>{message.source === 'fallback' ? (isEn ? 'Basic routing' : '基础分流') : (isEn ? 'ZENO judgment' : 'ZENO 判断')}</span>
-                    </div>
-                  )}
+                <div className={message.role === 'user' ? 'max-w-[92%] sm:max-w-[88%]' : 'w-full max-w-[92%] sm:max-w-[88%]'}>
+                  <div className={`px-3.5 py-3 text-sm leading-7 ${
+                    message.role === 'user'
+                      ? 'bg-stone text-white'
+                      : 'border border-border bg-surface text-ink shadow-[0_12px_30px_rgba(17,17,17,0.05)]'
+                  }`}>
+                    {message.role === 'assistant' && (
+                      <div className="mb-2 flex items-center gap-1.5 text-[0.68rem] font-semibold uppercase tracking-[0.12em] text-stone">
+                        <Brain size={14} weight="duotone" aria-hidden />
+                        <span>
+                          {message.persona
+                            ? personaLabels[locale][message.persona]
+                            : (message.source === 'fallback'
+                                ? (isEn ? 'Basic routing' : '基础分流')
+                                : (isEn ? 'ZENO judgment' : 'ZENO 判断'))}
+                        </span>
+                      </div>
+                    )}
 
-                  <div className="whitespace-pre-wrap">{message.content}</div>
+                    <div className="whitespace-pre-wrap">{message.content}</div>
 
-                  {message.role === 'assistant' && message.bullets && message.bullets.length > 0 && (
-                    <ul className="mt-3 space-y-2 border-t border-border/70 pt-3 text-[0.9rem] text-ink-muted">
-                      {message.bullets.map((bullet) => (
-                        <li key={bullet} className="grid grid-cols-[0.7rem_1fr] gap-2">
-                          <span className="mt-[0.7rem] h-1 w-1 bg-stone" aria-hidden />
-                          <span>{bullet}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
+                    {message.role === 'assistant' && message.bullets && message.bullets.length > 0 && (
+                      <ul className="mt-3 space-y-2 border-t border-border/70 pt-3 text-[0.9rem] text-ink-muted">
+                        {message.bullets.map((bullet) => (
+                          <li key={bullet} className="grid grid-cols-[0.7rem_1fr] gap-2">
+                            <span className="mt-[0.7rem] h-1 w-1 bg-stone" aria-hidden />
+                            <span>{bullet}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
 
-                  {message.role === 'assistant' && message.actions && message.actions.length > 0 && (
-                    <div className="mt-4 border-t border-border/70 pt-3">
-                      <p className="mb-1 text-[0.68rem] font-semibold uppercase tracking-[0.12em] text-ink-faint">
-                        {isEn ? 'Useful next step' : '可用的下一步'}
-                      </p>
-                      <div className="divide-y divide-border/70">
-                        {message.actions.map((action) => (
-                          <Link
-                            key={`${action.href}-${action.label}`}
-                            href={action.href}
-                            onClick={() => setOpen(false)}
-                            className="group flex min-h-11 items-center justify-between gap-3 py-2.5 text-ink transition-colors hover:text-stone"
-                          >
-                            <span>
-                              <span className="block text-sm font-semibold">{action.label}</span>
-                              <span className="mt-0.5 block text-[0.68rem] uppercase tracking-[0.1em] text-ink-faint">
-                                {actionKindLabels[locale][action.kind]}
+                    {message.role === 'assistant' && message.actions && message.actions.length > 0 && (
+                      <div className="mt-4 border-t border-border/70 pt-3">
+                        <p className="mb-1 text-[0.68rem] font-semibold uppercase tracking-[0.12em] text-ink-faint">
+                          {isEn ? 'Useful next step' : '可用的下一步'}
+                        </p>
+                        <div className="divide-y divide-border/70">
+                          {message.actions.map((action) => (
+                            <Link
+                              key={`${action.href}-${action.label}`}
+                              href={action.href}
+                              onClick={() => setOpen(false)}
+                              className="group flex min-h-11 items-center justify-between gap-3 py-2.5 text-ink transition-colors hover:text-stone"
+                            >
+                              <span>
+                                <span className="block text-sm font-semibold">{action.label}</span>
+                                <span className="mt-0.5 block text-[0.68rem] uppercase tracking-[0.1em] text-ink-faint">
+                                  {actionKindLabels[locale][action.kind]}
+                                </span>
                               </span>
-                            </span>
-                            <ArrowRight size={16} className="shrink-0 transition-transform group-hover:translate-x-0.5" aria-hidden />
-                          </Link>
-                        ))}
+                              <ArrowRight size={16} className="shrink-0 transition-transform group-hover:translate-x-0.5" aria-hidden />
+                            </Link>
+                          ))}
+                        </div>
                       </div>
-                    </div>
-                  )}
+                    )}
 
-                  {message.role === 'assistant' && message.followUps && message.followUps.length > 0 && (
-                    <div className="mt-4 border-t border-border/70 pt-3">
-                      <p className="mb-2 text-[0.68rem] font-semibold uppercase tracking-[0.12em] text-ink-faint">
-                        {isEn ? 'Continue this judgment' : '沿着这个判断继续'}
-                      </p>
-                      <div className="grid gap-2">
-                        {message.followUps.map((followUp) => (
-                          <button
-                            key={followUp}
-                            type="button"
-                            onClick={() => handleSend(followUp, toHistoryContent(message))}
-                            disabled={loading}
-                            className="min-h-10 border-l-2 border-border pl-3 text-left text-xs leading-5 text-ink-muted transition-colors hover:border-stone hover:text-ink disabled:cursor-not-allowed disabled:opacity-50"
-                          >
-                            {followUp}
-                          </button>
-                        ))}
+                    {message.role === 'assistant' && message.followUps && message.followUps.length > 0 && (
+                      <div className="mt-4 border-t border-border/70 pt-3">
+                        <p className="mb-2 text-[0.68rem] font-semibold uppercase tracking-[0.12em] text-ink-faint">
+                          {isEn ? 'Continue this judgment' : '沿着这个判断继续'}
+                        </p>
+                        <div className="grid gap-2">
+                          {message.followUps.map((followUp) => (
+                            <button
+                              key={followUp}
+                              type="button"
+                              onClick={() => handleSend(followUp)}
+                              disabled={loading}
+                              className="min-h-11 border-l-2 border-border pl-3 text-left text-xs leading-5 text-ink-muted transition-colors hover:border-stone hover:text-ink disabled:cursor-not-allowed disabled:opacity-50"
+                            >
+                              {followUp}
+                            </button>
+                          ))}
+                        </div>
                       </div>
+                    )}
+                  </div>
+
+                  {message.role === 'assistant' && message.card && (
+                    <div className="mt-2 w-full">
+                      {message.card === 'spark' && <SparkCard onNavigate={() => setOpen(false)} />}
+                      {message.card === 'service' && <ServiceCard onNavigate={() => setOpen(false)} />}
                     </div>
                   )}
                 </div>
@@ -451,7 +484,7 @@ export default function AIChatWidget() {
             <div ref={messagesEndRef} />
           </div>
 
-          <footer className="shrink-0 border-t border-border bg-canvas px-4 py-3 sm:px-5">
+          <footer className="shrink-0 border-t border-border bg-canvas px-4 pb-[max(0.75rem,env(safe-area-inset-bottom))] pt-3 sm:px-5 sm:pb-3">
             {error && (
               <div className="mb-3 flex items-start justify-between gap-3 border-l-2 border-cinnabar bg-surface-warm px-3 py-2.5 text-xs leading-5 text-ink-muted" role="alert">
                 <span className="flex items-start gap-2">
@@ -462,7 +495,7 @@ export default function AIChatWidget() {
                   <button
                     type="button"
                     onClick={() => void requestAssistant(failedRequest, false)}
-                    className="shrink-0 font-semibold text-ink hover:text-stone"
+                    className="min-h-11 shrink-0 px-2 font-semibold text-ink hover:text-stone"
                   >
                     {isEn ? 'Retry' : '重试'}
                   </button>
@@ -489,7 +522,7 @@ export default function AIChatWidget() {
                 type="button"
                 onClick={() => handleSend()}
                 disabled={!input.trim() || loading}
-                className="inline-flex h-10 w-10 items-center justify-center bg-stone text-white transition-transform hover:bg-stone-deep active:scale-[0.98] disabled:cursor-not-allowed disabled:bg-stone/35"
+                className="inline-flex h-11 w-11 items-center justify-center bg-stone text-white transition-transform hover:bg-stone-deep active:scale-[0.98] disabled:cursor-not-allowed disabled:bg-stone/35"
                 aria-label={isEn ? 'Send message' : '发送'}
                 title={isEn ? 'Send message' : '发送'}
               >

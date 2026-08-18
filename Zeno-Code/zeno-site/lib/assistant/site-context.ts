@@ -1,8 +1,12 @@
 import { articles } from '@/data/content/articles'
+import {
+  quoteRiskRules,
+  renovationProjectRisks,
+} from '@/data/risk-control/quote-risk'
 
 type Locale = 'zh' | 'en'
 
-type HistoryMessage = {
+export type HistoryMessage = {
   role: 'user' | 'assistant'
   content: string
 }
@@ -23,6 +27,19 @@ type SiteResource = {
   signals: RegExp[]
   articleKeywords: string[]
   fallback?: boolean
+}
+
+export type AssistantRiskMatch = {
+  href: string
+  title: string
+  summary: string
+  questions: string[]
+  contractSuggestion: string
+}
+
+type ScoredRiskContextEntry = AssistantRiskMatch & {
+  currentScore: number
+  historyScore: number
 }
 
 const SITE_RESOURCES: SiteResource[] = [
@@ -142,6 +159,133 @@ function articleScore(article: (typeof articles)[number], query: string, keyword
   return score
 }
 
+const ENGLISH_RISK_ALIASES: Array<[RegExp, string[]]> = [
+  [/\b(change order|add[ -]?on|extra charge)\b/i, ['增项', '另计']],
+  [/\b(actual settlement|actual cost)\b/i, ['按实结算', '按实际发生']],
+  [/\b(estimate|provisional)\b/i, ['暂估', '估算']],
+  [/\b(brand|model|specification)\b/i, ['品牌', '型号', '规格']],
+  [/\b(scope|included|excluded)\b/i, ['施工范围', '包含范围', '不含']],
+  [/\bdemolition\b/i, ['拆除', '拆改']],
+  [/\b(waste|debris|rubbish)\b/i, ['垃圾清运']],
+  [/\b(plumbing|electrical|wiring|utilities)\b/i, ['水电', '强弱电']],
+  [/\b(waterproof|waterproofing|leak)\b/i, ['防水', '漏水']],
+  [/\b(leveling|levelling)\b/i, ['找平']],
+  [/\b(wall|plaster)\b/i, ['墙面基层']],
+  [/\b(latex paint|wall paint)\b/i, ['乳胶漆']],
+  [/\b(tile laying|tiling)\b/i, ['瓷砖铺贴']],
+  [/\bgrout\b/i, ['美缝']],
+  [/\bceiling\b/i, ['吊顶']],
+  [/\bcabinet(s|ry)?\b/i, ['橱柜']],
+  [/\b(door|window)s?\b/i, ['门窗']],
+  [/\b(switch|socket|outlet)s?\b/i, ['开关插座']],
+  [/\b(lighting|light fixture)s?\b/i, ['灯具安装']],
+  [/\bflooring\b/i, ['地板']],
+]
+
+const ENGLISH_RENOVATION_CONTEXT = /\b(renovation|remodel(?:ing|ling)?|construction|contractor|quote|contract|home improvement|demolition|debris|plumbing|waterproof(?:ing)?|tiling|grout|ceiling|cabinetry|flooring)\b/i
+
+function normalizeRiskQuery(value: string) {
+  const query = value.toLowerCase().replace(/\s+/g, ' ').trim()
+  const aliases = ENGLISH_RENOVATION_CONTEXT.test(query)
+    ? ENGLISH_RISK_ALIASES
+        .filter(([signal]) => signal.test(query))
+        .flatMap(([, terms]) => terms)
+    : []
+
+  return [query, ...aliases].join(' ')
+}
+
+function hasRiskTerm(query: string, value: string) {
+  const term = value.toLowerCase().trim()
+  return term.length >= 2 && query.includes(term)
+}
+
+function scoreRiskFields(query: string, fields: Array<{ values: string[]; weight: number }>) {
+  return fields.reduce((total, field) => (
+    total + field.values.reduce(
+      (fieldTotal, value) => fieldTotal + (hasRiskTerm(query, value) ? field.weight : 0),
+      0,
+    )
+  ), 0)
+}
+
+export function findRelevantAssistantRisks({
+  message,
+  history = [],
+}: {
+  message: string
+  history?: HistoryMessage[]
+}): AssistantRiskMatch[] {
+  const currentQuery = normalizeRiskQuery(message)
+  const historyQuery = normalizeRiskQuery(
+    history
+      .filter((item) => item.role === 'user')
+      .slice(-2)
+      .map((item) => item.content)
+      .join(' '),
+  )
+
+  const quoteRisks: ScoredRiskContextEntry[] = quoteRiskRules.map((risk) => {
+    const currentScore = scoreRiskFields(currentQuery, [
+      { values: [risk.name], weight: 12 },
+      { values: risk.triggerTerms, weight: 8 },
+      { values: risk.commonItems, weight: 5 },
+    ])
+    const historyScore = scoreRiskFields(historyQuery, [
+      { values: [risk.name], weight: 2 },
+      { values: risk.triggerTerms, weight: 1 },
+      { values: risk.commonItems, weight: 0.5 },
+    ])
+
+    return {
+      href: `/risk-dictionary/${risk.slug}`,
+      title: risk.name,
+      summary: risk.oneLine,
+      questions: risk.preSigningQuestions.slice(0, 2),
+      contractSuggestion: risk.contractSuggestion,
+      currentScore,
+      historyScore,
+    }
+  })
+
+  const projectRisks: ScoredRiskContextEntry[] = renovationProjectRisks.map((risk) => {
+    const currentScore = scoreRiskFields(currentQuery, [
+      { values: [risk.name], weight: 12 },
+      { values: risk.vagueWords, weight: 8 },
+      { values: risk.usuallyIncludes, weight: 5 },
+      { values: risk.commonMissingItems, weight: 4 },
+      { values: risk.addOnRisks, weight: 3 },
+    ])
+    const historyScore = scoreRiskFields(historyQuery, [
+      { values: [risk.name], weight: 2 },
+      { values: risk.vagueWords, weight: 1 },
+      { values: risk.usuallyIncludes, weight: 0.5 },
+      { values: risk.commonMissingItems, weight: 0.5 },
+    ])
+
+    return {
+      href: `/project-risks/${risk.slug}`,
+      title: risk.name,
+      summary: risk.oneLine,
+      questions: risk.preSigningQuestions.slice(0, 2),
+      contractSuggestion: risk.contractSuggestion,
+      currentScore,
+      historyScore,
+    }
+  })
+
+  return [...quoteRisks, ...projectRisks]
+    // History can refine an active topic, but it cannot introduce a risk by itself.
+    .filter((risk) => risk.currentScore >= 5)
+    .sort((a, b) => (
+      (b.currentScore + b.historyScore) - (a.currentScore + a.historyScore)
+      || b.currentScore - a.currentScore
+      || a.href.localeCompare(b.href)
+    ))
+    .slice(0, 3)
+    .map(({ currentScore: _currentScore, historyScore: _historyScore, ...risk }) => risk)
+}
+
 export function buildAssistantSiteContext({
   message,
   history = [],
@@ -149,7 +293,10 @@ export function buildAssistantSiteContext({
   pagePath,
 }: SiteContextInput) {
   const query = [
-    ...history.slice(-4).map((item) => item.content),
+    ...history
+      .filter((item) => item.role === 'user')
+      .slice(-4)
+      .map((item) => item.content),
     message,
   ].join(' ').toLowerCase()
 
@@ -173,6 +320,8 @@ export function buildAssistantSiteContext({
     .slice(0, 3)
     .map((item) => item.article)
 
+  const selectedRisks = findRelevantAssistantRisks({ message, history })
+
   const resourceLines = selectedResources.map((resource) => {
     const title = locale === 'en' ? resource.titleEn : resource.title
     const summary = locale === 'en' ? resource.summaryEn : resource.summary
@@ -183,6 +332,13 @@ export function buildAssistantSiteContext({
     `- ${article.title} | /blog/${article.slug} | ${article.excerpt}`
   ))
 
+  const riskLines = selectedRisks.map((risk) => {
+    const questions = risk.questions.join(locale === 'en' ? '; ' : '；')
+    return locale === 'en'
+      ? `- ${risk.title} | ${risk.href} | ${risk.summary} | Questions before signing: ${questions} | Contract note: ${risk.contractSuggestion}`
+      : `- ${risk.title} | ${risk.href} | ${risk.summary} | 签约前可问：${questions} | 合同建议：${risk.contractSuggestion}`
+  })
+
   const currentPage = pagePath || (locale === 'en' ? '/en' : '/')
   const heading = locale === 'en'
     ? `Current page: ${currentPage}\nVerified site routes that may help:`
@@ -190,6 +346,9 @@ export function buildAssistantSiteContext({
   const articleHeading = locale === 'en'
     ? '\nRelated published article metadata (title and excerpt only):'
     : '\n可能相关的已发布文章元数据（只有标题和摘要）：'
+  const riskHeading = locale === 'en'
+    ? '\nRelevant published renovation risk entries (structured fields only):'
+    : '\n可能相关的装修风险条目（仅使用结构化事实字段）：'
   const boundary = locale === 'en'
     ? '\nUse these only when relevant. Do not claim to have read a full article or private file from metadata alone.'
     : '\n只在确实相关时引用。仅凭元数据不得声称已经读过文章全文，也不得声称看过用户未提交的私人材料。'
@@ -197,6 +356,7 @@ export function buildAssistantSiteContext({
   return [
     heading,
     ...resourceLines,
+    ...(riskLines.length > 0 ? [riskHeading, ...riskLines] : []),
     ...(articleLines.length > 0 ? [articleHeading, ...articleLines] : []),
     boundary,
   ].join('\n')

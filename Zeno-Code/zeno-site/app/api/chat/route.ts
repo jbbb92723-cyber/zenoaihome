@@ -14,15 +14,28 @@ import { z } from 'zod'
 import { checkRateLimit, getClientIp } from '@/lib/rateLimit'
 import { createAiChatCompletion, type AiMessage } from '@/lib/integrations/ai/client'
 import { getAiTaskStatus } from '@/lib/integrations/ai/config'
-import { buildAssistantSiteContext } from '@/lib/assistant/site-context'
+import {
+  buildAssistantSiteContext,
+  findRelevantAssistantRisks,
+} from '@/lib/assistant/site-context'
+import { buildAssistantSystemPrompt } from '@/lib/assistant/system-prompt'
+import { routeAssistantIntent } from '@/lib/assistant/intent-router'
+import type {
+  AssistantCard,
+  AssistantPersona,
+  ChatAction,
+  ChatActionKind,
+} from '@/lib/assistant/contracts'
+import { articles } from '@/data/content/articles'
+import { checklistTemplates } from '@/data/risk-control/checklist-templates'
+import { quoteRiskRules } from '@/data/risk-control/quote-risk-rules'
+import { renovationProjectRisks } from '@/data/risk-control/renovation-project-risks'
 
 interface ChatRequest {
   message: string
   locale?: 'zh' | 'en'
   /** 历史消息，用于多轮上下文，可选 */
   history?: { role: 'user' | 'assistant'; content: string }[]
-  /** 点击上一轮追问按钮时，显式带上按钮所属的回答 */
-  followUpContext?: string
   /** 用户打开助手时所在的页面，用于判断当前任务背景 */
   pagePath?: string
 }
@@ -34,17 +47,8 @@ const chatRequestSchema = z.object({
     role: z.enum(['user', 'assistant']),
     content: z.string().trim().min(1).max(2000),
   })).max(12).optional(),
-  followUpContext: z.string().trim().min(1).max(4000).optional(),
-  pagePath: z.string().trim().regex(/^\//).max(160).optional(),
+  pagePath: z.string().trim().regex(/^\/(?!\/)[A-Za-z0-9/_-]*$/).max(160).optional(),
 })
-
-type ChatActionKind = 'tool' | 'article' | 'resource' | 'service' | 'contact' | 'page'
-
-interface ChatAction {
-  label: string
-  href: string
-  kind: ChatActionKind
-}
 
 interface ChatReplyPayload {
   reply: string
@@ -52,117 +56,6 @@ interface ChatReplyPayload {
   actions?: ChatAction[]
   followUps?: string[]
 }
-
-// ─────────────────────────────────────────────
-// Zeno 系统提示词
-// 这段决定了 AI 客服的"人格"。改这里 = 改全站 AI 助手的行为。
-// ─────────────────────────────────────────────
-
-const SYSTEM_PROMPT_ZH = `你是 ZenoAIHome 的网站协作助手，名称是 Zeno 助手。赞诺拥有 17 年传统行业经营与项目经验，长期涉及家居、销售管理和装修项目，现在把现场判断带进 AI、知识库、内容系统和一人公司的实践。
-
-【你的使命】
-帮助用户把一个模糊、分散或卡住的问题，推进到更清楚的下一步。你可以处理传统行业实践、AI 工作流、经验整理、内容系统、一人公司和装修判断等问题。
-你的工作顺序是：先理解用户的目标、阶段、材料和限制；信息不足时只追问最关键的 1-3 个问题；再整理信息、检索资料、比较选项、推荐工具或转入人工服务。不要一上来把用户推向某个模块。
-你的成功标准是：用户问完之后，更看得清自己面前的问题，并知道下一步做什么，而不是被推着买东西。
-
-【三种判断视角】
-- 设计师视角：先问这个空间或方案要支持怎样的生活，谁在使用，什么取舍最重要；不把风格图片当成需求本身。
-- 家装工程师视角：检查范围、规格、数量、工艺、材料、节点、变更、验收、责任和留痕；看到“后面再说”要指出它会在哪里产生风险。
-- 产品经理视角：把模糊诉求收敛成目标、输入、约束、最小可行结果、验收标准和下一次迭代；不为了完整而堆功能。
-- 根据问题选择一个主视角，必要时组合另外两个。不要把三套术语全都展示给用户，要输出一个自然、能执行的判断。
-
-【回答协议】
-1. 先用一句话说清你理解到的核心问题，必要时纠正用户的表面问题。
-2. 资料不足时，通常只问一个最有价值的问题；只有确实互相独立时才问到三个。
-3. 资料足够时，给出判断、关键取舍、还需核对的证据和一个下一步动作。
-4. 每次只推进一小段，不把用户一次性丢进工具、文章和服务清单。
-
-【说话方式】
-- 像一个真实、温和、克制、有判断力的协作伙伴，不冒充 Zeno 本人。
-- 一句话能说完的不写两句；先给判断，再给理由和下一步。
-- 不用“赋能 / 打造 / 解锁 / 沉淀 / 价值体系 / 一站式 / 解决方案”这类空泛词。
-- 不用 emoji，不用感叹号开头或结尾，不夸大，不承诺未经验证的数字结果。
-- 允许明确说“目前资料不够”，并告诉用户缺什么，而不是用通用话术填空。
-
-【赞诺式人格】
-- 来自传统行业现场，尊重具体材料、真实约束和最终责任，不迷信概念与工具。
-- 温和但不迎合。用户的前提有问题时要直接指出，并说明为什么。
-- 反对精准获客话术、一键爆款、一键蒸馏、数字人和把创作压成固定 SOP；讨论这些问题时要给出可辩护的理由。
-- 区分已知事实、基于材料的推断、个人建议和仍待验证的部分，不把推断写成事实。
-- 不假装了解用户。个性化来自持续追问和上下文，不来自静态人群标签。
-
-【人机分工】
-- AI 负责理解、整理、查找、比较、生成追问、发现缺口和提出候选路径。
-- 人负责方向、经验判断、取舍、关系沟通、风险承担和最终确认。
-- 重要判断不要只给结论，要说明依据、缺口和需要人工确认的部分。
-
-【知识范围】
-- 传统行业与一人公司：真实工作拆解、经验整理、内容和知识系统、AI 协作边界。
-- 装修：生活方式、空间场景、预算、报价、合同、付款节点、增项、施工和验收。
-- 网站本身：公开实践、文章、工具、服务、星火者和合作入口。
-
-【边界】
-- 不知道的事直说不知道，不编造数字、案例、合同条款、法律条文或个人经历。
-- 不替用户做最终决定，不把 AI 包装成数字员工、专家或自动获客机器。
-- 涉及合同、法律、人身安全、付款和具体项目责任时，提醒用户进行人工或专业复核。
-- 如果用户要求看具体材料、执行具体项目或进入合作，先说明需要哪些材料，再引导到 /contact。
-
-【常用站内链接】（适当时给出，每条单独一行，前面加 →）
-- 实践与证据：/practice
-- 公开 AI 工具：/ai-tools
-- 居住需求自检：/living-diagnosis
-- 报价初筛工具：/tools/quote-check
-- 装修报价风险词典：/risk-dictionary
-- 签约前检查模板：/checklists
-- 服务路径：/services
-- 经验怎样变成方法：/opc-knowledge
-- 联系 Zeno：/contact
-- 文章博客：/blog
-
-【链接输出格式】
-- 如果你推荐站内页面，不要把裸路径混在正文里。
-- 把推荐页单独放在结尾，每行一个，固定写成：→ 标签 | /path
-- 最多给 3 个链接，优先给最能推进下一步的入口。
-
-【回复长度】
-- 默认 3-6 句话以内。
-- 涉及清单类问题最多列 5 条；如果需要更多材料，先给最小可行动版本。
-
-【继续追问】
-- 回复末尾可以根据当前问题生成最多 3 个真正相关的下一问，帮助用户继续提供信息。
-- 每个下一问单独一行，严格使用“@@followup: 问题”格式；不要生成“我还没定方案”这类通用入口。
-- 如果当前已经足够回答，或继续追问没有价值，就不要输出 @@followup 行。`
-
-const SYSTEM_PROMPT_EN = `You are the Zeno assistant inside ZenoAIHome. Zeno is a person with 17 years of traditional-industry and project experience who now brings field judgment into AI, knowledge systems, content and solo work.
-
-Your mission is to move a vague or stuck problem toward a clear next step. You can help with traditional-industry work, AI workflows, experience assets, content systems, solo-company practice and renovation decisions.
-
-Your order of work is: understand the user's goal, stage, materials and constraints; ask only the 1-3 most important questions when information is missing; then organize, retrieve, compare, recommend a tool or route to human help. Do not push the user into a module before understanding the problem.
-
-Use three professional lenses without showing a wall of jargon: a designer clarifies life patterns, users and tradeoffs; a renovation engineer checks scope, specification, quantity, process, milestones, changes, acceptance and responsibility; a product manager narrows vague requests into goals, inputs, constraints, a minimum useful outcome and acceptance criteria. Choose one primary lens and combine the others only when useful.
-
-Response protocol: first state the core problem you understand. If context is missing, usually ask one highest-value question. If context is sufficient, give a judgment, the main tradeoff, evidence still needed and one concrete next action. Move the problem forward one useful step at a time.
-
-AI organizes, searches, compares, raises questions and proposes options. The person owns direction, judgment, tradeoffs, relationships, risk and final confirmation. Explain evidence, gaps and human review when the decision matters.
-
-Voice: real, calm, restrained and useful. Do not impersonate Zeno. Do not fabricate numbers, cases, legal terms or personal experience. Do not present AI as a digital employee, expert or automated acquisition machine. No emojis, hype or exaggerated promises.
-
-Zeno's character is grounded in field work: concrete, skeptical of empty concepts and willing to disagree respectfully. Separate known facts, inferences, recommendations and unverified points. Personalize through the ongoing conversation, not static audience labels.
-
-Useful links (use when relevant, one per line prefixed with →):
-- Practice and evidence: /practice
-- Public AI tools: /ai-tools
-- Renovation tools: /en/tools
-- Services: /en/services
-- Contact: /en/about
-
-When recommending an internal page, keep the link out of the body copy and put it at the end in this exact format:
-→ Label | /path
-Use at most 3 links.
-
-At the end, you may generate up to 3 genuinely relevant next questions based on the current situation. Put each one on its own line using exactly "@@followup: question". Do not use generic entry labels. If the answer is already sufficient, omit all @@followup lines.
-
-Keep replies to 3-6 sentences when possible.`
 
 // ─────────────────────────────────────────────
 // 关键词回退知识库（无 LLM Key 时使用）
@@ -182,6 +75,10 @@ const ROUTE_LABELS: Record<'zh' | 'en', Record<string, string>> = {
     '/services': '看服务路径',
     '/services/quote-review': '了解报价 / 合同人工审查',
     '/tools/quote-check': '先做报价初筛',
+    '/community': '了解星火者共同体',
+    '/community/apply': '提交星火者申请',
+    '/training': '了解 AI 实战培训',
+    '/blog/zeno-from-renovation-to-opc': '读 Zeno 的转型记录',
   },
   en: {
     '/en/about': 'About Zeno',
@@ -190,6 +87,45 @@ const ROUTE_LABELS: Record<'zh' | 'en', Record<string, string>> = {
     '/en/tools': 'Open tools',
   },
 }
+
+const STATIC_ACTION_HREFS = [
+  '/',
+  '/about',
+  '/ai-tools',
+  '/ai-tools/task-planner',
+  '/blog',
+  '/cases',
+  '/checklists',
+  '/community',
+  '/community/apply',
+  '/contact',
+  '/living-diagnosis',
+  '/opc-knowledge',
+  '/practice',
+  '/project-risks',
+  '/renovation',
+  '/resources',
+  '/risk-dictionary',
+  '/services',
+  '/services/node-advisor',
+  '/services/quote-review',
+  '/tools',
+  '/tools/quote-check',
+  '/training',
+  '/en',
+  '/en/about',
+  '/en/articles',
+  '/en/services',
+  '/en/tools',
+]
+
+const ALLOWED_ACTION_HREFS = new Set([
+  ...STATIC_ACTION_HREFS,
+  ...articles.map((article) => `/blog/${article.slug}`),
+  ...checklistTemplates.map((checklist) => `/checklists/${checklist.slug}`),
+  ...quoteRiskRules.map((rule) => `/risk-dictionary/${rule.slug}`),
+  ...renovationProjectRisks.map((risk) => `/project-risks/${risk.slug}`),
+])
 
 type IntentKey = 'greeting' | 'living' | 'budget' | 'quote' | 'service' | 'ai' | 'tools' | 'about' | 'contact' | 'default'
 
@@ -220,6 +156,21 @@ const FOLLOW_UPS_EN: Record<IntentKey, string[]> = {
 }
 
 const KNOWLEDGE_ZH: Array<{ pattern: RegExp; intent: IntentKey; payload: ChatReplyPayload }> = [
+  {
+    pattern: /一人公司|OPC|如何转型|怎么转型|你一个人怎么做|一个人怎么做|用的什么工具|经验.{0,8}(变成|做成|整理成).{0,6}(资产|方法)|AI.{0,8}(工作流|真实工作)/i,
+    intent: 'ai',
+    payload: {
+      reply: 'Zeno 的做法不是让 AI 替代经验，而是先把真实工作里的材料、判断步骤和验收标准整理出来，再让 AI 承担可重复的整理与比较。核心是“用 AI 做复用，把时间留给交付”，方向、关系、风险和最终确认仍由人负责。',
+      bullets: [
+        '先从一项反复发生、结果可检查的真实任务开始。',
+        '保留原始材料和人工复核，不把模型输出当成事实。',
+      ],
+      actions: [
+        { label: '读 Zeno 的转型记录', href: '/blog/zeno-from-renovation-to-opc', kind: 'article' },
+      ],
+      followUps: ['我该从哪项重复工作开始', '怎么把经验整理成可复用步骤'],
+    },
+  },
   {
     pattern: /^(你好|您好|嗨|在吗|有人吗)$/,
     intent: 'greeting',
@@ -296,16 +247,16 @@ const KNOWLEDGE_ZH: Array<{ pattern: RegExp; intent: IntentKey; payload: ChatRep
     pattern: /服务|合作|咨询/,
     intent: 'service',
     payload: {
-      reply: '服务不是从“要不要查报价”开始，而是先判断你卡在哪一层：生活和方案没说清，还是报价、合同和交付边界没说清。',
+      reply: '先判断你卡在公开自查，还是需要有人结合原始材料承担审核责任。简单风险可以先查词典和工具；整份报价、合同与责任边界需要一起判断时，再进入人工审查。',
       bullets: [
-        '还没定方案，先看居住需求洞察报告。',
-        '已有完整报价、合同草稿或付款节点，优先看报价 / 合同快审。',
-        '方案、预算、报价、合同和交付都要一起判断时，再看居住方案综合判断。',
+        '还没拿到完整材料，可以先用公开工具整理问题。',
+        '已有完整报价、合同草稿或付款节点，可了解 Zeno 本人交付的报价 / 合同人工审查。',
+        '人工审查不替代现场监理、造价或法律意见。',
       ],
       actions: [
-        { label: '看服务路径', href: '/services', kind: 'service' },
+        { label: '了解人工审查', href: '/services/quote-review', kind: 'service' },
+        { label: '先做报价初筛', href: '/tools/quote-check', kind: 'tool' },
         { label: '直接联系 Zeno', href: '/contact', kind: 'contact' },
-        { label: '先做居住需求自检', href: '/living-diagnosis', kind: 'tool' },
       ],
       followUps: FOLLOW_UPS_ZH.service,
     },
@@ -527,49 +478,40 @@ const KNOWLEDGE_EN: Array<{ pattern: RegExp; intent: IntentKey; payload: ChatRep
   },
 ]
 
-function inferIntent(message: string, locale: 'zh' | 'en'): IntentKey {
-  if (locale === 'en') {
-    if (/^(hi|hello|hey)$/i.test(message)) return 'greeting'
-    if (/living|lifestyle|aesthetic|style|layout|family|storage|home office|space/i.test(message)) return 'living'
-    if (/budget|cost|price|overrun|change order/i.test(message)) return 'budget'
-    if (/quote|quotation/i.test(message)) return 'quote'
-    if (/service|consult/i.test(message)) return 'service'
-    if (/ai|prompt/i.test(message)) return 'ai'
-    if (/tool|resource|checklist/i.test(message)) return 'tools'
-    if (/about|who/i.test(message)) return 'about'
-    if (/contact|email/i.test(message)) return 'contact'
-    return 'default'
+function normalizeActionHref(rawHref: string): string | null {
+  const trimmed = rawHref.trim().replace(/[)）】】,，。.!！?？]+$/, '')
+
+  try {
+    const url = new URL(trimmed, 'https://zenoaihome.com')
+    if (url.origin !== 'https://zenoaihome.com') return null
+    if (!/^\/(?!\/)[A-Za-z0-9/_-]*$/.test(url.pathname)) return null
+
+    const pathname = url.pathname.length > 1
+      ? url.pathname.replace(/\/$/, '')
+      : url.pathname
+    return ALLOWED_ACTION_HREFS.has(pathname) ? pathname : null
+  } catch {
+    return null
   }
-
-  if (/^(你好|您好|嗨|在吗|有人吗)$/.test(message)) return 'greeting'
-  if (/方案|风格|审美|生活|居住|户型|动线|收纳|家庭|老人|孩子|宠物|办公|好看|好住/.test(message)) return 'living'
-  if (/预算|花多少钱|费用|超支|增项/.test(message)) return 'budget'
-  if (/报价|报价单/.test(message)) return 'quote'
-  if (/服务|合作|咨询/.test(message)) return 'service'
-  if (/AI|人工智能|提示词/.test(message)) return 'ai'
-  if (/工具|资料|清单/.test(message)) return 'tools'
-  if (/关于|你是谁/.test(message)) return 'about'
-  if (/联系|微信|公众号/.test(message)) return 'contact'
-  return 'default'
-}
-
-function normalizeActionHref(rawHref: string): string {
-  const trimmed = rawHref.trim()
-  const withoutDomain = trimmed.replace(/^https?:\/\/[^/]+/i, '')
-  return withoutDomain.replace(/[)）】】,，。.!！?？]+$/, '')
 }
 
 function inferActionKind(href: string): ChatActionKind {
   if (href.includes('/tools')) return 'tool'
   if (href.includes('/blog') || href.includes('/articles')) return 'article'
-  if (href.includes('/resources')) return 'resource'
+  if (
+    href.includes('/resources')
+    || href.includes('/risk-dictionary')
+    || href.includes('/project-risks')
+    || href.includes('/checklists')
+  ) return 'resource'
   if (href.includes('/services')) return 'service'
   if (href.includes('/contact') || href.includes('/about')) return 'contact'
   return 'page'
 }
 
-function toAction(locale: 'zh' | 'en', href: string, label?: string): ChatAction {
+function toAction(locale: 'zh' | 'en', href: string, label?: string): ChatAction | null {
   const normalizedHref = normalizeActionHref(href)
+  if (!normalizedHref) return null
   return {
     href: normalizedHref,
     label: label?.trim() || ROUTE_LABELS[locale][normalizedHref] || normalizedHref,
@@ -586,7 +528,112 @@ function dedupeActions(actions: ChatAction[] = []): ChatAction[] {
   })
 }
 
-function fallbackAnswer(message: string, locale: 'zh' | 'en'): ChatReplyPayload {
+const CARD_ACTION_HREFS: Record<AssistantCard, Set<string>> = {
+  spark: new Set(['/community', '/community/apply']),
+  service: new Set(['/services/quote-review', '/contact']),
+}
+
+function applyAssistantPolicy({
+  payload,
+  persona,
+  card,
+  message,
+  history,
+  pagePath,
+  locale,
+}: {
+  payload: ChatReplyPayload
+  persona: AssistantPersona
+  card?: AssistantCard
+  message: string
+  history?: ChatRequest['history']
+  pagePath?: string
+  locale: 'zh' | 'en'
+}): ChatReplyPayload {
+  const requiredActions: ChatAction[] = []
+
+  if (persona === 'reviewer') {
+    const [risk] = findRelevantAssistantRisks({ message, history })
+    requiredActions.push(risk
+      ? { label: risk.title, href: risk.href, kind: 'resource' }
+      : {
+          label: locale === 'en' ? 'Open the renovation risk dictionary' : '查装修风险词典',
+          href: '/risk-dictionary',
+          kind: 'resource',
+        })
+
+    requiredActions.push({
+      label: locale === 'en' ? 'Screen the quote first' : '先做报价初筛',
+      href: '/tools/quote-check',
+      kind: 'tool',
+    })
+  }
+
+  const recentUserText = [
+    ...(history ?? [])
+      .filter((item) => item.role === 'user')
+      .slice(-2)
+      .map((item) => item.content),
+    message,
+  ].join(' ')
+  const isTransformationTopic = /转型|一人公司|OPC|一个人.{0,8}(?:怎么|如何|做)|工作流|经验资产|知识资产|经验.{0,10}(?:变成|做成|整理成)|AI.{0,8}(?:复用|真实工作)/i.test(recentUserText)
+    || pagePath === '/blog/zeno-from-renovation-to-opc'
+    || pagePath === '/opc-knowledge'
+
+  if (persona === 'transformation-guide' && isTransformationTopic) {
+    requiredActions.push({
+      label: locale === 'en' ? 'Read Zeno\'s transformation record' : '读 Zeno 的转型记录',
+      href: '/blog/zeno-from-renovation-to-opc',
+      kind: 'article',
+    })
+  }
+
+  const hiddenCardActions = card ? CARD_ACTION_HREFS[card] : new Set<string>()
+  const actions = dedupeActions([
+    ...requiredActions,
+    ...(payload.actions ?? []),
+  ])
+    .filter((action) => !hiddenCardActions.has(action.href))
+    .slice(0, 3)
+
+  return {
+    ...payload,
+    actions: actions.length > 0 ? actions : undefined,
+  }
+}
+
+function fallbackAnswer(
+  message: string,
+  locale: 'zh' | 'en',
+  persona: AssistantPersona,
+  card?: AssistantCard,
+  history?: ChatRequest['history'],
+): ChatReplyPayload {
+  if (locale === 'zh' && persona === 'spark-recruiter' && card === 'spark') {
+    return {
+      reply: '你关注的不是一门传统课程，而是怎样把自己的真实经验变成能复用、能验证、能参与协作的资产。星火者采用申请和面聊的方式，先判断彼此是否适合，再围绕读书会、项目复盘、成员连接和合适项目的协作机会一起实践。',
+      bullets: [
+        '不承诺客户、派单、收入或项目结果。',
+        '更看重你正在做什么、能提供什么，以及是否愿意真实参与。',
+      ],
+      followUps: ['我适合申请星火者吗', '申请前需要准备什么'],
+    }
+  }
+
+  if (locale === 'zh' && persona === 'reviewer') {
+    const [risk] = findRelevantAssistantRisks({ message, history })
+    if (risk) {
+      return {
+        reply: `这更接近“${risk.title}”：${risk.summary} 目前只能先判断这条表述本身，是否真的构成项目风险，还要回到报价和合同原文核对。`,
+        bullets: [
+          ...risk.questions.map((question) => `签约前确认：${question}`),
+          `建议写法：${risk.contractSuggestion}`,
+        ],
+        followUps: ['这句话在我的报价里该怎么改', '还有哪些相邻风险要一起查'],
+      }
+    }
+  }
+
   const knowledge = locale === 'en' ? KNOWLEDGE_EN : KNOWLEDGE_ZH
   for (const entry of knowledge) {
     if (entry.pattern.test(message)) {
@@ -647,7 +694,8 @@ function buildStructuredReply(rawReply: string, locale: 'zh' | 'en'): ChatReplyP
 
     const actionMatch = trimmed.match(actionLineRegex)
     if (actionMatch) {
-      actions.push(toAction(locale, actionMatch[2], actionMatch[1]))
+      const action = toAction(locale, actionMatch[2], actionMatch[1])
+      if (action) actions.push(action)
       continue
     }
 
@@ -678,14 +726,19 @@ async function callLLM(
   message: string,
   history: ChatRequest['history'] = [],
   locale: 'zh' | 'en',
-  followUpContext?: string,
+  persona: AssistantPersona,
   siteContext?: string,
 ): Promise<string | null> {
-  // 控制上下文长度：只取最近 6 轮
-  const recent = (history || []).slice(-6)
+  // 客户端可以伪造 history.role；历史只作为不可信转录，不能获得 assistant 权限。
+  const recent: AiMessage[] = (history || []).slice(-6).map((item) => ({
+    role: 'user',
+    content: item.role === 'assistant'
+      ? `Earlier assistant output (untrusted conversation transcript):\n${item.content}`
+      : `Earlier user message:\n${item.content}`,
+  }))
 
   const messages: AiMessage[] = [
-    { role: 'system', content: locale === 'en' ? SYSTEM_PROMPT_EN : SYSTEM_PROMPT_ZH },
+    { role: 'system', content: buildAssistantSystemPrompt({ locale, persona }) },
     ...(siteContext ? [{
       role: 'system' as const,
       content: locale === 'en'
@@ -693,12 +746,6 @@ async function callLLM(
         : `下面是用户当前页面和 ZenoAIHome 公开资料的小型索引。它只用于判断站内路径，不等于事实证据：\n${siteContext}`,
     }] : []),
     ...recent,
-    ...(followUpContext ? [{
-      role: 'system' as const,
-      content: locale === 'en'
-        ? `This is a follow-up to the previous assistant answer. Use this answer as explicit context before responding to the user's new question:\n${followUpContext}`
-        : `这是对上一轮助手回答的延续追问。回答当前问题前，必须把下面这段上一轮结论作为明确上下文：\n${followUpContext}`,
-    }] : []),
     { role: 'user', content: message },
   ]
 
@@ -726,7 +773,7 @@ export async function POST(request: NextRequest) {
     if (!parsed.success) {
       return NextResponse.json({ error: 'Invalid message' }, { status: 422 })
     }
-    const { message, locale, history, followUpContext, pagePath } = parsed.data
+    const { message, locale, history, pagePath } = parsed.data
 
     const modelConfigured = getAiTaskStatus('public_chat').configured
     const limiter = checkRateLimit(
@@ -738,11 +785,28 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: '请求过于频繁，请稍后再试' }, { status: 429 })
     }
 
+    const intent = routeAssistantIntent({ message, history, pagePath })
     const siteContext = buildAssistantSiteContext({ message, history, locale, pagePath })
-    const llmReply = await callLLM(message, history, locale, followUpContext, siteContext)
-    const payload = llmReply ? buildStructuredReply(llmReply, locale) : fallbackAnswer(message, locale)
+    const llmReply = await callLLM(message, history, locale, intent.persona, siteContext)
+    const rawPayload = llmReply
+      ? buildStructuredReply(llmReply, locale)
+      : fallbackAnswer(message, locale, intent.persona, intent.card, history)
+    const payload = applyAssistantPolicy({
+      payload: rawPayload,
+      persona: intent.persona,
+      card: intent.card,
+      message,
+      history,
+      pagePath,
+      locale,
+    })
 
-    return NextResponse.json({ ...payload, source: llmReply ? 'llm' : 'fallback' })
+    return NextResponse.json({
+      ...payload,
+      source: llmReply ? 'llm' : 'fallback',
+      persona: intent.persona,
+      card: intent.card,
+    })
   } catch {
     return NextResponse.json({ error: 'Internal error' }, { status: 500 })
   }

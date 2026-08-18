@@ -2,6 +2,15 @@
 
 > 手机 Hermes 不翻代码也能知道的上下文。每条写清：改了哪个文件 + 为什么改。
 
+## 2026-08-18 | Codex | Zeno AI 分身三人格分诊闭环
+
+- `lib/assistant/contracts.ts`、`intent-router.ts`、`system-prompt.ts`：公开助手新增装修审核员、转型向导、星火者招募官三种确定性人格；当前消息优先、用户历史与页面弱加权。只有整份/多份/PDF、报价与合同联审、逐项人工审核等复杂材料请求才触发人工服务卡，单个风险词不会被强推服务。
+- `lib/assistant/site-context.ts`、`app/api/chat/route.ts`：装修问题可召回具体 `/risk-dictionary/[slug]` 或 `/project-risks/[slug]` 的结构化事实字段，不注入未经核验的 `zenoSaw`；转型固定引用 `/blog/zeno-from-renovation-to-opc`。模型链接经过真实路由白名单，外站、伪路由和不存在的 slug 会被过滤；卡片类型和必需链接由服务端决定。移除客户端 `followUpContext` 被提升为 system 消息的注入入口，历史统一作为不可信转录，知识检索只读取用户历史，并收紧 `pagePath`。
+- `SparkCard.tsx`、`ServiceCard.tsx`、`AIChatWidget.tsx`：回答气泡下方可渲染固定业务卡。星火者使用 `/community`、`/community/apply`，只承诺读书会/项目复盘、成员连接和合适项目的协作参与机会；不承诺模板库、Prompt 库、获客、派单或结果。人工审查使用 `/services/quote-review`、`/contact`，明确由 Zeno 本人按确认范围交付，并保留现场监理、造价和法律边界。
+- 验证：三人格/卡片路由用例、无模型 fallback 的四类 API 响应、具体风险词召回、关键路由运行时 200 均通过；`npx tsc --noEmit`、全量 lint 和生产构建通过，255/255 页面生成。Lint 仍只有后台项目照片页一个既有 `<img>` warning。
+
+---
+
 ## 2026-08-18 | Codex | 第二轮 SEO、性能与移动端基础优化
 
 - `app/layout.tsx`、`app/page.tsx`、核心页面与文章 metadata：根布局不再把首页 OG 信息错误继承给子页；首页、资料库、培训、清单、博客/札记详情补齐页面级 canonical、OG/Twitter 和稳定摘要。中文文章标题由根模板统一追加品牌，已含“赞诺/Zeno”的标题不再重复。
