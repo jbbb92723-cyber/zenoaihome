@@ -59,7 +59,7 @@ export default function AboutPage() {
               我在南宁创业。截至 2026 年，我有 17 年传统行业经营与项目经验，现在以 OPC 一人公司为起点，把 AI 用进内容生产、知识管理、智能体、网站和实际工作。
             </p>
             <div className="mt-6 flex flex-wrap gap-2 text-xs font-semibold text-ink-muted">
-              {['17 年传统行业经营与项目经验', 'OPC 一人公司实践者', '传统行业经验资产化', '星火者共同体发起人'].map((item) => (
+              {['17 年传统行业经营与项目经验', 'OPC 一人公司实践者', '传统行业 AI 转型实践', '星火者共同体发起人'].map((item) => (
                 <span key={item} className="border border-border bg-surface px-3 py-1.5">{item}</span>
               ))}
             </div>

@@ -37,7 +37,7 @@ const modules = [
 const currentEvidence = [
   { state: '可检查', title: '网站与内容系统', body: '当前网站、内容资产库和协作规则可以直接检查，证明这套整理方式已经用于赞诺自己的工作。' },
   { state: '待归档', title: '装修判断使用反馈', body: '已有工具和公开内容，真实使用反馈仍需按材料、判断、结果和授权范围系统归档。' },
-  { state: '待验证', title: '经验资产化外部案例', body: '尚未形成可公开的首个外部使用案例，因此不把内部方法卡数量当作市场证明。' },
+  { state: '待验证', title: '方法的外部使用案例', body: '尚未形成可公开的首个外部使用案例，因此不把内部方法卡数量当作市场证明。' },
 ]
 
 const practicePath = [
@@ -71,7 +71,7 @@ export default function OPCKnowledgePage() {
           <div className="mt-6 flex flex-wrap items-center gap-3 text-sm text-white/55">
             <span>作者：赞诺（Zeno）</span>
             <span aria-hidden>·</span>
-            <span>传统行业经验资产化实践者</span>
+            <span>传统行业 AI 转型实践者</span>
             <span aria-hidden>·</span>
             <span>星火者共同体发起人</span>
           </div>

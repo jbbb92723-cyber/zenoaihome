@@ -31,7 +31,7 @@ export default function NotFound() {
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Link
               href="/en"
-              className="px-5 py-2.5 bg-ink text-paper text-sm font-medium hover:bg-ink/80 transition-colors"
+              className="px-5 py-2.5 bg-ink text-canvas text-sm font-medium hover:bg-ink/80 transition-colors"
             >
               Back Home
             </Link>
@@ -68,7 +68,7 @@ export default function NotFound() {
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
           <Link
             href="/"
-            className="px-5 py-2.5 bg-ink text-paper text-sm font-medium hover:bg-ink/80 transition-colors"
+            className="px-5 py-2.5 bg-ink text-canvas text-sm font-medium hover:bg-ink/80 transition-colors"
           >
             返回首页
           </Link>

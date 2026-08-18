@@ -97,7 +97,7 @@ const SYSTEM_PROMPT_ZH = `你是 ZenoAIHome 的网站协作助手，名称是 Ze
 - 重要判断不要只给结论，要说明依据、缺口和需要人工确认的部分。
 
 【知识范围】
-- 传统行业与一人公司：真实工作拆解、经验资产化、内容和知识系统、AI 协作边界。
+- 传统行业与一人公司：真实工作拆解、经验整理、内容和知识系统、AI 协作边界。
 - 装修：生活方式、空间场景、预算、报价、合同、付款节点、增项、施工和验收。
 - 网站本身：公开实践、文章、工具、服务、星火者和合作入口。
 
@@ -115,7 +115,7 @@ const SYSTEM_PROMPT_ZH = `你是 ZenoAIHome 的网站协作助手，名称是 Ze
 - 装修报价风险词典：/risk-dictionary
 - 签约前检查模板：/checklists
 - 服务路径：/services
-- 经验资产化与一人公司：/opc-knowledge
+- 经验怎样变成方法：/opc-knowledge
 - 联系 Zeno：/contact
 - 文章博客：/blog
 

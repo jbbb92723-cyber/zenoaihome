@@ -7,7 +7,7 @@ import BlogClient from './BlogClient'
 export const metadata: Metadata = {
   title: '我的实践｜文章、实验与真实记录',
   description:
-    '赞诺的公开实践档案：正在进行的实验、可复盘文章和方法样本。聚焦传统行业 × AI、经验资产化、一人公司与装修判断，并明确当前证据边界。',
+    '赞诺的公开实践档案：正在进行的实验、可复盘文章和方法样本。聚焦传统行业 × AI、经验整理、一人公司与装修判断，并明确当前证据边界。',
   alternates: {
     canonical: 'https://zenoaihome.com/blog',
   },

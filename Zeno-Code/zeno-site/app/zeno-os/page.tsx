@@ -113,7 +113,7 @@ export default function ZenoOSPage() {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_15%,rgba(222,210,190,0.34),transparent_38%)]" aria-hidden />
         <Container size="content" className="relative py-14 sm:py-18">
           <div className="flex items-center gap-3 mb-5">
-            <span className="bg-ink text-paper text-xs font-bold px-3 py-1">装修报价怎么看</span>
+            <span className="bg-ink text-canvas text-xs font-bold px-3 py-1">装修报价怎么看</span>
           </div>
           <h1 className="editorial-display max-w-4xl text-[2.4rem] leading-[1.1] text-ink sm:text-[3.2rem]">
             总价之外，还有 13 项要确认。

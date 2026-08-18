@@ -61,7 +61,7 @@ export const primaryNav: PrimaryNavItem[] = [
         zh: { label: '从一个真实任务开始', desc: '先看过程和证据，再决定是否需要工具或项目合作。' },
         en: { label: 'Start with real work', desc: 'See the process and evidence before choosing a tool or project.' },
         items: [
-          { key: 'experience-home', zh: { label: '经验资产化实践', href: '/opc-knowledge', desc: '问题、判断、最小交付与反馈回流' }, en: { label: 'Experience practice', href: '/en/blog' } },
+          { key: 'experience-home', zh: { label: '经验怎样变成方法', href: '/opc-knowledge', desc: '从真实问题到判断、交付和反馈' }, en: { label: 'Experience practice', href: '/en/blog' } },
           { key: 'cases', zh: { label: '方法示例与实践档案', href: '/cases', desc: '区分演示样张与真实使用结果' }, en: { label: 'Practice records', href: '/en/blog' } },
           { key: 'task-planner', zh: { label: '工作流任务拆解器', href: '/ai-tools/task-planner', desc: '查看预设任务结构和验收步骤' }, en: { label: 'Workflow task breakdown', href: '/en/tools' } },
           { key: 'ai-tools', zh: { label: '全部公开工具', href: '/ai-tools', desc: '查看实际能力、适用场景与边界' }, en: { label: 'Public tools', href: '/en/tools' } },

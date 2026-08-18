@@ -100,7 +100,7 @@ export default function ArticleCTA({ category, parentCategorySlug }: Props) {
       <div className="flex flex-wrap items-center gap-x-5 gap-y-3">
         <Link
           href={cfg.primary.href}
-          className="inline-flex items-center text-sm font-medium bg-stone text-paper px-4 py-2 hover:bg-stone/85 transition-colors"
+          className="inline-flex items-center text-sm font-medium bg-stone text-canvas px-4 py-2 hover:bg-stone/85 transition-colors"
         >
           {cfg.primary.label} <span className="ml-1.5">→</span>
         </Link>

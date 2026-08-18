@@ -73,11 +73,11 @@ const SITE_RESOURCES: SiteResource[] = [
   },
   {
     href: '/opc-knowledge',
-    title: '经验资产化与一人公司',
+    title: '经验怎样变成方法',
     titleEn: 'Experience assets and solo work',
-    summary: '把传统行业经验整理成可检索、可复用、可验证的工作资产。',
+    summary: '把传统行业经验整理成可检索、可复用、可验证的方法。',
     summaryEn: 'Turns field experience into searchable, reusable and testable working assets.',
-    signals: [/经验|资产化|一人公司|OPC|个人品牌|内容系统|知识系统|转型|传统行业/i],
+    signals: [/经验|一人公司|OPC|个人品牌|内容系统|知识系统|转型|传统行业/i],
     articleKeywords: ['经验', '一人公司', 'OPC', '个人品牌', '传统行业'],
   },
   {

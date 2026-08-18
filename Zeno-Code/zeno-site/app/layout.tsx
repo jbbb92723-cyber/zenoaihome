@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   },
   description:
     '赞诺的个人博客与公开实践档案。记录 17 年传统行业经营与项目经验如何进入 AI、知识库、工作流、智能体、内容系统和一人公司，并公开实验、结果与方法修订。',
-  keywords: ['Zeno', '赞诺', '经验资产化', '传统行业AI', '装修判断', '企业知识库', 'AI工作流', '一人公司', 'OPC', '星火者共同体'],
+  keywords: ['Zeno', '赞诺', '传统行业AI转型', '传统行业经验', '装修判断', '企业知识库', 'AI工作流', '一人公司', 'OPC', '星火者共同体'],
   authors: [{ name: 'Zeno', url: 'https://zenoaihome.com' }],
   openGraph: {
     type: 'website',
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     siteName: 'Zeno 赞诺',
     title: '赞诺｜一个传统行业人的 AI 转型记录',
     description:
-      '赞诺记录人与 AI 如何把传统行业经验变成可检查、可使用、可修订的判断、内容、工具和服务。',
+      '赞诺记录 AI 怎样进入传统行业、一人公司和装修实践，以及人的判断、方法与责任怎样保留下来。',
     images: [
       {
         url: 'https://zenoaihome.com/images/brand/zeno-portrait.jpg',

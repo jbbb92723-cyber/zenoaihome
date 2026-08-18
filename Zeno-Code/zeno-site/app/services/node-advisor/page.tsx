@@ -213,7 +213,7 @@ export default function NodeAdvisorPage() {
                 className={`border p-6 ${tier.badge ? 'border-stone bg-surface-warm relative' : 'border-border bg-surface'}`}
               >
                 {tier.badge && (
-                  <span className="absolute -top-2.5 right-4 bg-stone text-paper text-xs font-semibold px-3 py-0.5">
+                  <span className="absolute -top-2.5 right-4 bg-stone text-canvas text-xs font-semibold px-3 py-0.5">
                     {tier.badge}
                   </span>
                 )}

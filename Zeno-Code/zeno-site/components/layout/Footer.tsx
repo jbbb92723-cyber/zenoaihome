@@ -35,7 +35,7 @@ export default function Footer() {
             <p className="mt-4 max-w-[300px] text-sm leading-7 text-ink-muted">
               {isEn
                 ? 'Writing / AI practice / tools / projects / community'
-                : '公开实践 · 经验资产化 · 装修判断 · 项目合作 · 星火者'}
+                : '公开实践 · 一人公司 · 装修判断 · 项目合作 · 星火者'}
             </p>
           </div>
 

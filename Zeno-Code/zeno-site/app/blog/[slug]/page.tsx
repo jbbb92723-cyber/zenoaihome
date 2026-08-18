@@ -103,8 +103,8 @@ export default async function ArticlePage({ params }: Props) {
             name: '赞诺',
             alternateName: 'Zeno',
             url: 'https://zenoaihome.com',
-            jobTitle: '传统行业经验资产化实践者',
-            knowsAbout: ['传统行业经验资产化', 'OPC 一人公司实践', '装修判断'],
+            jobTitle: '传统行业 AI 转型实践者',
+            knowsAbout: ['传统行业 AI 转型', 'OPC 一人公司实践', '装修判断'],
             affiliation: {
               '@type': 'Organization',
               name: 'ZenoAIHome',

@@ -14,9 +14,14 @@ import {
   getPrimaryCategory,
   getSubcategory,
 } from '@/data/content/categories'
-import { currentPractice } from '@/data/practice/experiments'
 
 const startHere = [
+  {
+    label: '网站与方向',
+    title: 'AI 越强，传统行业的经验越需要被重新整理',
+    body: '我为什么从装修行业出发，把 AI、一人公司、网站和星火者放进同一条实践路径。',
+    href: '/blog/ai-yue-qiang-chuantong-hangye-jingyan-yue-xuyao-zhengli',
+  },
   {
     label: '真实起点',
     title: '四版报价单和几百条聊天记录，让我开始认真用 AI',
@@ -28,12 +33,6 @@ const startHere = [
     title: '从装修现场出发，我开始搭一人公司的工作系统',
     body: '为什么不急着做课程，而是先把真实经验放进内容、工具和最小交付里。',
     href: '/blog/zeno-from-renovation-to-opc',
-  },
-  {
-    label: '垂直验证场',
-    title: '报价单真正怎么看：先查范围，再谈总价',
-    body: '从一份具体报价开始，看装修经验如何被拆成别人可以使用的判断顺序。',
-    href: '/blog/baojia-dan-zhenzheng-zenme-kan',
   },
 ]
 
@@ -112,25 +111,10 @@ export default function BlogClient() {
         label="我的实践"
         title="我做过什么，正在研究什么。"
         subtitle="这里记录做过的事、仍在验证的判断，以及工具和方法被使用后发生的修改。"
-        note={`当前重点：${currentPractice.title}`}
+        note="传统行业 × AI · 一人公司 · 装修判断"
       />
 
       <Container size="content" className="py-12 sm:py-16">
-        <section className="mb-12 grid gap-6 border-y border-border py-7 sm:grid-cols-[0.72fr_0.28fr] sm:items-center">
-          <div>
-            <div className="flex flex-wrap items-center gap-2">
-              <p className="system-label">当前实验</p>
-              <span className="border border-cinnabar/30 bg-cinnabar/5 px-2 py-1 text-[0.7rem] font-semibold text-cinnabar">{currentPractice.status}</span>
-              <span className="border border-border px-2 py-1 text-[0.7rem] font-semibold text-ink-muted">{currentPractice.evidenceStatus}</span>
-            </div>
-            <h2 className="mt-4 text-xl font-semibold leading-8 text-ink">{currentPractice.title}</h2>
-            <p className="mt-3 text-sm leading-7 text-ink-muted">{currentPractice.nextAction}</p>
-          </div>
-          <Link href="/#current-practice" className="inline-flex min-h-11 items-center justify-center border border-border px-4 py-3 text-sm font-semibold text-ink hover:border-stone">
-            查看公开进度
-          </Link>
-        </section>
-
         <section className="mb-12">
           <p className="system-label">从这里开始</p>
           <div className="mt-5 grid border-y border-border md:grid-cols-3">

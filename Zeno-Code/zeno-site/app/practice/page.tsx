@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import Container from '@/components/ui/Container'
 import StructuredData from '@/components/ui/StructuredData'
-import { currentPractice, humanAiProtocol } from '@/data/practice/experiments'
+import { humanAiProtocol } from '@/data/practice/experiments'
 
 export const metadata: Metadata = {
   title: '正在验证｜实践、反馈与修订',
@@ -43,57 +43,21 @@ export default function PracticePage() {
       <main className="bg-canvas text-ink">
         <section className="border-b border-white/10 bg-ink px-5 py-16 text-white sm:px-8 sm:py-20 lg:px-12 lg:py-24">
           <Container>
-            <p className="text-sm font-semibold text-white/60">正在验证</p>
+            <p className="text-sm font-semibold text-white/60">实践与证据</p>
             <h1 className="editorial-display mt-5 max-w-[18ch] text-[2.4rem] leading-[1.1] sm:text-[3.2rem]">
-              我正在验证什么，结果说明了什么。
+              一项判断，怎样才算经过验证？
             </h1>
             <p className="mt-6 max-w-3xl text-base leading-8 text-white/70 sm:text-lg">
-              这里记录正在验证的问题、使用的依据、实际交付和方法修订。公开的不只是已经成立的结论，也包括还没有证据支持的部分。
+              这里说明我怎样记录问题和依据，怎样区分内部资料、实际使用与真实反馈，也说明什么还不能算作结果。
             </p>
           </Container>
         </section>
 
         <Container className="py-section">
-          <section className="grid gap-10 lg:grid-cols-[0.42fr_0.58fr] lg:items-start">
-            <div>
-              <p className="page-label">当前实验</p>
-              <h2 className="editorial-display mt-4 text-[1.8rem] leading-[1.15] sm:text-[2.4rem]">
-                {currentPractice.title}
-              </h2>
-              <p className="mt-5 text-base leading-8 text-ink-muted">{currentPractice.question}</p>
-              <p className="mt-5 border-l-2 border-stone pl-4 text-sm leading-7 text-ink-muted">目标：{currentPractice.goal}</p>
-            </div>
-
-            <div className="border border-border bg-surface p-6 sm:p-8">
-              <div className="flex flex-wrap items-center justify-between gap-3 border-b border-border pb-5">
-                <div className="flex flex-wrap gap-2 text-xs font-semibold">
-                  <span className="border border-cinnabar/30 bg-cinnabar/5 px-2.5 py-1 text-cinnabar">{currentPractice.status}</span>
-                  <span className="border border-border px-2.5 py-1 text-ink-muted">证据：{currentPractice.evidenceStatus}</span>
-                </div>
-                <span className="text-xs text-ink-faint">更新于 {currentPractice.updatedAt}</span>
-              </div>
-              <div className="mt-6 grid gap-px border border-border bg-border sm:grid-cols-2">
-                {currentPractice.metrics.map((metric) => (
-                  <div key={metric.label} className="min-h-24 bg-canvas p-4">
-                    <p className="text-xs font-semibold text-ink-faint">{metric.label}</p>
-                    <p className="mt-3 text-2xl font-semibold tabular-nums text-ink">
-                      {metric.current}<span className="mx-1 text-sm font-normal text-ink-faint">/</span>{metric.target}
-                      <span className="ml-1 text-sm font-normal text-ink-muted">{metric.unit}</span>
-                    </p>
-                  </div>
-                ))}
-              </div>
-              <div className="mt-6 border-l-2 border-cinnabar pl-4">
-                <p className="text-xs font-semibold text-ink-faint">下一步</p>
-                <p className="mt-2 text-sm leading-7 text-ink-muted">{currentPractice.nextAction}</p>
-              </div>
-            </div>
-          </section>
-
-          <section className="mt-20 border-y border-border py-12 sm:mt-24 sm:py-16">
+          <section className="border-y border-border py-12 sm:py-16">
             <div className="max-w-3xl">
               <p className="page-label">证据层级</p>
-              <h2 className="editorial-display mt-4 text-[1.8rem] leading-[1.15] sm:text-[2.4rem]">内部有资料，不等于外部已经成立。</h2>
+              <h2 className="editorial-display mt-4 text-[1.8rem] leading-[1.15] sm:text-[2.4rem]">有资料，不等于方法已经成立。</h2>
               <p className="mt-5 text-base leading-8 text-ink-muted">一条方法只有经过使用、交付、反馈和重复，才会逐渐获得更高的可信度。点赞、阅读量和自我判断不替代用户结果。</p>
             </div>
             <div className="mt-10 border-t border-border">
@@ -107,9 +71,9 @@ export default function PracticePage() {
             </div>
           </section>
 
-          <section className="grid gap-10 lg:grid-cols-[0.38fr_0.62fr]">
+          <section className="mt-20 grid gap-10 sm:mt-24 lg:grid-cols-[0.38fr_0.62fr]">
             <div>
-              <p className="page-label">人机协作协议</p>
+              <p className="page-label">我怎么和 AI 一起工作</p>
               <h2 className="editorial-display mt-4 text-[1.8rem] leading-[1.15] sm:text-[2.4rem]">AI 可以加快整理，不能替现实承担责任。</h2>
               <p className="mt-5 text-sm leading-7 text-ink-muted">每一次公开实践都尽量保留原始判断、AI 的质疑、人工的取舍和结果的回写。</p>
             </div>
@@ -127,8 +91,8 @@ export default function PracticePage() {
           <section className="mt-20 border border-border bg-surface-warm p-6 sm:mt-24 sm:p-8">
             <div className="grid gap-10 lg:grid-cols-[0.42fr_0.58fr]">
               <div>
-                <p className="page-label">未来评估</p>
-                <h2 className="editorial-display mt-4 text-[1.8rem] leading-[1.15] sm:text-[2.4rem]">让每一次使用都能改变下一版。</h2>
+                <p className="page-label">怎样继续修改</p>
+                <h2 className="editorial-display mt-4 text-[1.8rem] leading-[1.15] sm:text-[2.4rem]">使用结果，决定下一版怎么改。</h2>
               </div>
               <div>
                 <ul className="space-y-4">
@@ -138,7 +102,7 @@ export default function PracticePage() {
                 </ul>
                 <div className="mt-8 flex flex-wrap gap-4">
                   <Link href="/cases" className="inline-flex items-center gap-2 text-sm font-semibold text-ink hover:text-stone">看方法示例 <span aria-hidden>→</span></Link>
-                  <Link href="/community" className="inline-flex items-center gap-2 text-sm font-semibold text-stone hover:text-ink">进入星火者实践俱乐部 <span aria-hidden>→</span></Link>
+                  <Link href="/community" className="inline-flex items-center gap-2 text-sm font-semibold text-stone hover:text-ink">了解星火者 <span aria-hidden>→</span></Link>
                   <Link href="/contact" className="inline-flex items-center gap-2 text-sm font-semibold text-ink hover:text-stone">提出一个真实问题 <span aria-hidden>→</span></Link>
                 </div>
               </div>
