@@ -63,6 +63,18 @@ export default function AboutPage() {
                 <span key={item} className="border border-border bg-surface px-3 py-1.5">{item}</span>
               ))}
             </div>
+            <p className="mt-4 max-w-3xl text-sm leading-7 text-ink-muted">
+              现任{' '}
+              <a
+                href="https://www.opcquan.com/local#city-%E5%8D%97%E5%AE%81"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-semibold text-ink underline decoration-border underline-offset-4 hover:decoration-stone"
+              >
+                OPC 圈南宁城市主理人
+              </a>
+              ，持续连接本地一人公司实践者、项目与协作资源。
+            </p>
             <p className="mt-4 max-w-3xl text-base leading-8 text-ink-muted sm:text-lg">
               我不把传统行业经历当作要摆脱的过去。它让我知道客户、团队、合同、现金流和交付分别意味着什么，也是我判断 AI 能否真正进入工作的底盘。现在我把这些经验用真实问题、可核对证据和最小交付继续验证。
             </p>

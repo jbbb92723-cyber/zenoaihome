@@ -69,7 +69,15 @@ export default function RootLayout({
                 },
                 jobTitle: '传统行业 AI 转型实践者',
                 description:
-                  '拥有 17 年传统行业经营与项目经验的 OPC 一人公司实践者，公开记录 AI 怎样进入装修、内容、工具、服务和真实协作。',
+                  '拥有 17 年传统行业经营与项目经验的 OPC 一人公司实践者，同时担任 OPC 圈南宁城市主理人，公开记录 AI 怎样进入装修、内容、工具、服务和真实协作。',
+                affiliation: {
+                  '@type': 'Organization',
+                  name: 'OPC 圈',
+                  url: 'https://www.opcquan.com/',
+                },
+                sameAs: [
+                  'https://www.opcquan.com/local#city-%E5%8D%97%E5%AE%81',
+                ],
                 knowsAbout: [
                   '传统行业 AI 转型',
                   '装修判断',

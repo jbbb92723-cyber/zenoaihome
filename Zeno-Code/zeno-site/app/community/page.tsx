@@ -147,6 +147,18 @@ export default function CommunityPage() {
               <p className="mt-5 max-w-xl text-sm leading-7 text-ink-muted">
                 每周隔周一次火种读书会。日常群里有回应。有合适的项目一起做，没有就继续做自己的事。不做课，不卖资料，不保证发财。
               </p>
+              <p className="mt-4 max-w-xl border-l-2 border-stone/40 pl-4 text-xs leading-6 text-ink-muted">
+                发起人 Zeno 同时担任{' '}
+                <a
+                  href="https://www.opcquan.com/local#city-%E5%8D%97%E5%AE%81"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-semibold text-ink underline decoration-border underline-offset-4 hover:decoration-stone"
+                >
+                  OPC 圈南宁城市主理人
+                </a>
+                ，持续连接南宁及全国的一人公司实践者与协作资源。
+              </p>
             </div>
             <div className="lg:text-right">
               <p className="text-sm font-semibold text-ink mb-3">申请方式</p>

@@ -353,3 +353,4 @@ npx prisma db push
 - 删除不可达的 `app/knowledge/page.tsx`；`/knowledge` 继续由 `next.config.mjs` 永久跳转到 `/opc-knowledge`。
 - 删除仅包含服务端 `redirect()` 的 `app/consulting/page.tsx` 与 `app/services/quote-standard/page.tsx`，将兼容跳转集中到 `next.config.mjs`，目标分别为 `/contact` 与 `/services/quote-review`。
 - 保留 `/tools/quote-checklist`：它是完整的 26 项静态核对清单，与 `/tools/quote-check` 的交互式规则初筛职责不同。
+2026-08-19 | Codex | 在 `/about` 与 `/community` 轻量展示“OPC 圈南宁城市主理人”身份并链接 OPC 圈官方同城资料；同步在全站 Person JSON-LD 增加 OPC 圈 affiliation 与公开资料链接，不使用中国信通院或 AIIA 作直接商业背书。
