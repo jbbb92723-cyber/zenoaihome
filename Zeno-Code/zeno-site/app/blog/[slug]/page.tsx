@@ -13,7 +13,6 @@ import ArticleCTA from '@/components/features/content/ArticleCTA'
 import ArticleEngagement from '@/components/features/content/ArticleEngagement'
 import ArticleDiscussion from '@/components/features/content/ArticleDiscussion'
 import StructuredData from '@/components/ui/StructuredData'
-import { getCategoryFaqs } from '@/lib/schema-faqs'
 
 interface Props {
   params: { slug: string }
@@ -77,9 +76,6 @@ export default async function ArticlePage({ params }: Props) {
 
   const suggested = related.length > 0 ? related : moreArticles
 
-  // 按文章分类匹配 FAQ，用于 FAQPage schema（GEO 问答位）
-  const faqs = getCategoryFaqs(article.category)
-
   return (
     <>
       <StructuredData
@@ -99,27 +95,13 @@ export default async function ArticlePage({ params }: Props) {
             '@id': articleUrl,
           },
           author: {
-            '@type': 'Person',
-            name: '赞诺',
-            alternateName: 'Zeno',
-            url: 'https://zenoaihome.com',
-            jobTitle: '传统行业 AI 转型实践者',
-            knowsAbout: ['传统行业 AI 转型', 'OPC 一人公司实践', '装修判断'],
-            affiliation: {
-              '@type': 'Organization',
-              name: 'ZenoAIHome',
-              url: 'https://zenoaihome.com',
-            },
+            '@id': 'https://zenoaihome.com/#person',
           },
           publisher: {
-            '@type': 'Organization',
-            name: 'ZenoAIHome',
-            url: 'https://zenoaihome.com',
-            founder: {
-              '@type': 'Person',
-              name: '赞诺',
-              sameAs: 'https://zenoaihome.com',
-            },
+            '@id': 'https://zenoaihome.com/#person',
+          },
+          isPartOf: {
+            '@id': 'https://zenoaihome.com/#blog',
           },
           image: articleImage ? [articleImage] : undefined,
           keywords: article.tags.join(', '),
@@ -130,23 +112,6 @@ export default async function ArticlePage({ params }: Props) {
           ],
         }}
       />
-      {faqs.length > 0 && (
-        <StructuredData
-          data={{
-            '@context': 'https://schema.org',
-            '@type': 'FAQPage',
-            mainEntity: faqs.map((faq) => ({
-              '@type': 'Question',
-              name: faq.question,
-              acceptedAnswer: {
-                '@type': 'Answer',
-                text: faq.answer,
-              },
-            })),
-          }}
-        />
-      )}
-
       {/* 文章头部 */}
       <article className="max-w-reading mx-auto px-5 sm:px-8 pt-12 pb-16">
         {/* 面包屑 */}

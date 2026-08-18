@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!template) return {}
 
   return {
-    title: `${template.title} | 签约前检查模板 | ZenoAIHome`,
+    title: `${template.title} | 签约前检查模板`,
     description: `${template.subtitle} 可直接照着检查、复制追问，适合装修签约前核对报价、合同和付款节点。`,
     alternates: {
       canonical: `https://zenoaihome.com/checklists/${template.slug}`,

@@ -8,6 +8,7 @@ import Footer from '@/components/layout/Footer'
 import SearchDialog from '@/components/layout/SearchDialog'
 import ConditionalAIWidget from '@/components/layout/ConditionalAIWidget'
 import HashScrollHandler from '@/components/layout/HashScrollHandler'
+import StructuredData from '@/components/ui/StructuredData'
 import '@/styles/globals.css'
 
 // ── 字体：正文思源黑体 + 标题思源宋体（next/font 自托管，构建时下载）──
@@ -25,6 +26,7 @@ const notoSerif = Noto_Serif_SC({
 })
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://zenoaihome.com'),
   title: {
     default: '赞诺｜一个传统行业人的 AI 转型记录',
     template: '%s｜赞诺',
@@ -76,6 +78,73 @@ export default function RootLayout({
 }) {
   return (
     <html lang="zh-CN" suppressHydrationWarning>
+      <head>
+        <StructuredData
+          data={{
+            '@context': 'https://schema.org',
+            '@graph': [
+              {
+                '@type': 'Person',
+                '@id': 'https://zenoaihome.com/#person',
+                name: '赞诺',
+                alternateName: ['Zeno', 'Zeno 赞诺'],
+                url: 'https://zenoaihome.com/about',
+                image: {
+                  '@type': 'ImageObject',
+                  '@id': 'https://zenoaihome.com/#portrait',
+                  url: 'https://zenoaihome.com/images/brand/zeno-portrait.jpg',
+                  contentUrl: 'https://zenoaihome.com/images/brand/zeno-portrait.jpg',
+                  caption: '赞诺 Zeno',
+                },
+                jobTitle: '传统行业 AI 转型实践者',
+                description:
+                  '拥有 17 年传统行业经营与项目经验的 OPC 一人公司实践者，公开记录 AI 怎样进入装修、内容、工具、服务和真实协作。',
+                knowsAbout: [
+                  '传统行业 AI 转型',
+                  '装修判断',
+                  'OPC 一人公司',
+                  '企业 AI 知识库',
+                  'AI 工作流',
+                  '任务型智能体',
+                ],
+                knowsLanguage: ['zh-CN', 'en'],
+                homeLocation: {
+                  '@type': 'Place',
+                  name: '广西南宁',
+                },
+              },
+              {
+                '@type': 'WebSite',
+                '@id': 'https://zenoaihome.com/#website',
+                url: 'https://zenoaihome.com/',
+                name: 'Zeno 赞诺',
+                alternateName: 'ZenoAIHome',
+                description:
+                  '赞诺的个人博客与公开实践档案，记录传统行业 AI 转型、OPC 一人公司、装修判断和真实协作。',
+                inLanguage: ['zh-CN', 'en'],
+                publisher: {
+                  '@id': 'https://zenoaihome.com/#person',
+                },
+              },
+              {
+                '@type': 'Blog',
+                '@id': 'https://zenoaihome.com/#blog',
+                name: 'Zeno 赞诺',
+                url: 'https://zenoaihome.com/',
+                description:
+                  '赞诺的个人博客与公开实践，记录传统行业 AI 转型、OPC 一人公司、装修判断和真实协作。',
+                inLanguage: 'zh-CN',
+                author: {
+                  '@id': 'https://zenoaihome.com/#person',
+                },
+                isPartOf: {
+                  '@id': 'https://zenoaihome.com/#website',
+                },
+              },
+            ],
+          }}
+        />
+      </head>
       <body className={`${notoSans.variable} ${notoSerif.variable} bg-canvas text-ink font-sans antialiased`}>
         <noscript>
           <style>{`.reveal { opacity: 1 !important; transform: none !important; transition: none !important; }`}</style>

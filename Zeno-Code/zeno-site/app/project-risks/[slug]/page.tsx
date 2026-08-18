@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!project) return {}
 
   return {
-    title: `${project.name}报价风险 | 施工项目风险库 | ZenoAIHome`,
+    title: `${project.name}报价风险 | 施工项目风险库`,
     description: `${project.oneLine} 签约前看清报价范围、漏项、模糊词和增项口子。`,
     alternates: {
       canonical: `https://zenoaihome.com/project-risks/${project.slug}`,

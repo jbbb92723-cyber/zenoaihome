@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!rule) return {}
 
   return {
-    title: `${rule.name} | 装修报价风险词典 | ZenoAIHome`,
+    title: `${rule.name} | 装修报价风险词典`,
     description: `${rule.oneLine} 签约前先问清，避免后期增项和扯皮。`,
     alternates: {
       canonical: `https://zenoaihome.com/risk-dictionary/${rule.slug}`,
