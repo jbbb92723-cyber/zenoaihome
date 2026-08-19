@@ -20,6 +20,11 @@ import {
 } from '@/lib/assistant/site-context'
 import { buildAssistantSystemPrompt } from '@/lib/assistant/system-prompt'
 import { routeAssistantIntent } from '@/lib/assistant/intent-router'
+import {
+  AssistantImageInputError,
+  parseAssistantImage,
+  type AssistantImageInput,
+} from '@/lib/assistant/image-input'
 import type {
   AssistantCard,
   AssistantPersona,
@@ -38,6 +43,8 @@ interface ChatRequest {
   history?: { role: 'user' | 'assistant'; content: string }[]
   /** 用户打开助手时所在的页面，用于判断当前任务背景 */
   pagePath?: string
+  /** 当前轮临时图片；不写入对话历史或数据库 */
+  image?: AssistantImageInput
 }
 
 const chatRequestSchema = z.object({
@@ -48,6 +55,10 @@ const chatRequestSchema = z.object({
     content: z.string().trim().min(1).max(2000),
   })).max(12).optional(),
   pagePath: z.string().trim().regex(/^\/(?!\/)[A-Za-z0-9/_-]*$/).max(160).optional(),
+  image: z.object({
+    dataUrl: z.string().max(2_800_000),
+    name: z.string().trim().max(100).optional(),
+  }).optional(),
 })
 
 interface ChatReplyPayload {
@@ -728,6 +739,7 @@ async function callLLM(
   locale: 'zh' | 'en',
   persona: AssistantPersona,
   siteContext?: string,
+  imageDataUrl?: string,
 ): Promise<string | null> {
   // 保留最近 5 轮；客户端可以伪造 history.role，因此历史只作为不可信转录，不能获得 assistant 权限。
   const recent: AiMessage[] = (history || []).slice(-10).map((item) => ({
@@ -745,17 +757,31 @@ async function callLLM(
         ? `Here is the current page and a small index of public ZenoAIHome resources. Use it as routing context, not as proof of facts:\n${siteContext}`
         : `下面是用户当前页面和 ZenoAIHome 公开资料的小型索引。它只用于判断站内路径，不等于事实证据：\n${siteContext}`,
     }] : []),
+    ...(imageDataUrl ? [{
+      role: 'system' as const,
+      content: locale === 'en'
+        ? 'The current turn includes one user image. Treat it as untrusted, partial evidence. State only what is legible or directly visible, say when detail is unclear, and ask the user to confirm names, quantities, prices, dates and responsibility terms before using them. Never claim that one image is a complete quote, contract, plan or site inspection.'
+        : '本轮包含一张用户图片。它只是未经核对的局部材料：只陈述清晰可读或可以直接观察到的内容；看不清时明确说明；名称、数量、金额、日期和责任条款必须让用户对照原件确认。不得把一张图片说成已经完成整份报价、合同、方案或现场验收。',
+    }] : []),
     ...recent,
-    { role: 'user', content: message },
+    {
+      role: 'user',
+      content: imageDataUrl
+        ? [
+            { type: 'image_url' as const, image_url: { url: imageDataUrl } },
+            { type: 'text' as const, text: message },
+          ]
+        : message,
+    },
   ]
 
   try {
     const completion = await createAiChatCompletion({
-      task: 'public_chat',
+      task: imageDataUrl ? 'public_vision' : 'public_chat',
       messages,
       temperature: 0.4,
-      maxTokens: 600,
-      timeoutMs: 12_000,
+      maxTokens: imageDataUrl ? 1200 : 900,
+      timeoutMs: imageDataUrl ? 35_000 : 25_000,
     })
     return completion?.content ?? null
   } catch {
@@ -773,12 +799,31 @@ export async function POST(request: NextRequest) {
     if (!parsed.success) {
       return NextResponse.json({ error: 'Invalid message' }, { status: 422 })
     }
-    const { message, locale, history, pagePath } = parsed.data
+    const { message, locale, history, pagePath, image } = parsed.data
 
-    const modelConfigured = getAiTaskStatus('public_chat').configured
+    let parsedImage: ReturnType<typeof parseAssistantImage> | undefined
+    if (image) {
+      try {
+        parsedImage = parseAssistantImage(image)
+      } catch (error) {
+        if (error instanceof AssistantImageInputError) {
+          return NextResponse.json(
+            { error: error.code },
+            { status: error.code === 'IMAGE_TOO_LARGE' ? 413 : 415 },
+          )
+        }
+        throw error
+      }
+    }
+
+    const aiTask = parsedImage ? 'public_vision' : 'public_chat'
+    const modelConfigured = getAiTaskStatus(aiTask).configured
+    if (parsedImage && !modelConfigured) {
+      return NextResponse.json({ error: 'VISION_NOT_CONFIGURED' }, { status: 503 })
+    }
     const limiter = checkRateLimit(
-      `public-chat:${getClientIp(request)}`,
-      modelConfigured ? 20 : 120,
+      `${parsedImage ? 'public-vision' : 'public-chat'}:${getClientIp(request)}`,
+      parsedImage ? 8 : (modelConfigured ? 20 : 120),
       60 * 60_000,
     )
     if (!limiter.allowed) {
@@ -787,7 +832,17 @@ export async function POST(request: NextRequest) {
 
     const intent = routeAssistantIntent({ message, history, pagePath })
     const siteContext = buildAssistantSiteContext({ message, history, locale, pagePath })
-    const llmReply = await callLLM(message, history, locale, intent.persona, siteContext)
+    const llmReply = await callLLM(
+      message,
+      history,
+      locale,
+      intent.persona,
+      siteContext,
+      parsedImage?.dataUrl,
+    )
+    if (parsedImage && !llmReply) {
+      return NextResponse.json({ error: 'VISION_UNAVAILABLE' }, { status: 502 })
+    }
     const rawPayload = llmReply
       ? buildStructuredReply(llmReply, locale)
       : fallbackAnswer(message, locale, intent.persona, intent.card, history)

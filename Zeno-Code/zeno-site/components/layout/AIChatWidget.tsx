@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { useEffect, useRef, useState, type KeyboardEvent } from 'react'
 import { usePathname } from 'next/navigation'
 import SparkCard from '@/components/features/assistant/SparkCard'
@@ -20,6 +21,7 @@ import {
   ChatCircleDots,
   FileText,
   HouseLine,
+  ImageSquare,
   PaperPlaneTilt,
   WarningCircle,
   Wrench,
@@ -35,11 +37,20 @@ interface Message {
   source?: 'llm' | 'fallback'
   persona?: AssistantPersona
   card?: AssistantCard
+  attachmentName?: string
+  hadImage?: boolean
 }
 
 interface AssistantRequest {
   message: string
   history: Array<{ role: 'user' | 'assistant'; content: string }>
+  image?: { dataUrl: string; name: string }
+}
+
+interface PendingImage {
+  dataUrl: string
+  name: string
+  size: number
 }
 
 const LOCAL_STORAGE_KEY = 'zeno-assistant-conversation-v2'
@@ -49,6 +60,8 @@ const STORAGE_TTL_MS = 7 * 24 * 60 * 60 * 1000
 const MAX_STORED_MESSAGES = 24
 const MAX_HISTORY_MESSAGES = 10
 const MAX_HISTORY_CONTENT_LENGTH = 2000
+const MAX_IMAGE_BYTES = 2 * 1024 * 1024
+const SUPPORTED_IMAGE_TYPES = new Set(['image/jpeg', 'image/png', 'image/webp'])
 
 interface StoredConversation {
   version: typeof STORAGE_VERSION
@@ -110,7 +123,10 @@ function sanitizeStoredMessage(value: unknown): Message | null {
     role: value.role,
     content: value.content.slice(0, 6000),
   }
-  if (value.role === 'user') return message
+  if (value.role === 'user') {
+    if (value.hadImage === true) message.hadImage = true
+    return message
+  }
 
   message.bullets = sanitizeStringList(value.bullets, 5, 1000)
   message.followUps = sanitizeStringList(value.followUps, 3, 300)
@@ -230,7 +246,10 @@ const quickEntriesEn = [
 
 function toHistoryContent(message: Message) {
   const bullets = message.bullets?.map((item) => `- ${item}`) ?? []
-  return [message.content, ...bullets]
+  const imageContext = message.role === 'user' && message.hadImage
+    ? '[该轮曾附临时图片，图片现已不可用；不得假装再次看见。]'
+    : ''
+  return [imageContext, message.content, ...bullets]
     .filter(Boolean)
     .join('\n')
     .slice(0, MAX_HISTORY_CONTENT_LENGTH)
@@ -243,9 +262,11 @@ export default function AIChatWidget() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [failedRequest, setFailedRequest] = useState<AssistantRequest | null>(null)
+  const [pendingImage, setPendingImage] = useState<PendingImage | null>(null)
   const [storageReady, setStorageReady] = useState(false)
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLTextAreaElement>(null)
+  const imageInputRef = useRef<HTMLInputElement>(null)
   const openButtonRef = useRef<HTMLButtonElement>(null)
   const chatStartTrackedRef = useRef(false)
   const pathname = usePathname()
@@ -292,7 +313,11 @@ export default function AIChatWidget() {
         const conversation: StoredConversation = {
           version: STORAGE_VERSION,
           savedAt: Date.now(),
-          messages: messages.slice(-MAX_STORED_MESSAGES),
+          messages: messages.slice(-MAX_STORED_MESSAGES).map((message) => {
+            const storedMessage = { ...message }
+            delete storedMessage.attachmentName
+            return storedMessage
+          }),
         }
         window.localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(conversation))
       }
@@ -331,6 +356,7 @@ export default function AIChatWidget() {
     setInput('')
     setError(null)
     setFailedRequest(null)
+    setPendingImage(null)
     try {
       window.localStorage.removeItem(LOCAL_STORAGE_KEY)
       window.sessionStorage.removeItem(LEGACY_SESSION_STORAGE_KEY)
@@ -346,11 +372,17 @@ export default function AIChatWidget() {
     if (appendUser) {
       setMessages((previous) => [
         ...previous,
-        { role: 'user' as const, content: request.message },
+        {
+          role: 'user' as const,
+          content: request.message,
+          attachmentName: request.image?.name,
+          hadImage: Boolean(request.image),
+        },
       ].slice(-MAX_STORED_MESSAGES))
     }
 
     setInput('')
+    setPendingImage(null)
     setLoading(true)
     setError(null)
     setFailedRequest(null)
@@ -364,13 +396,23 @@ export default function AIChatWidget() {
           locale,
           history: request.history,
           pagePath: pathname,
+          image: request.image,
         }),
       })
 
       if (!response.ok) {
+        const responseBody = await response.json().catch(() => null)
         const message = response.status === 429
           ? (isEn ? 'Too many requests. Please wait a moment.' : '请求有点密集，请稍等片刻再试。')
-          : (isEn ? 'The assistant could not complete this response.' : '这次没有完成回答，请重试。')
+          : responseBody?.error === 'VISION_NOT_CONFIGURED'
+            ? (isEn ? 'Image analysis is not configured yet.' : '图片理解尚未配置，请先接入智谱视觉模型。')
+            : responseBody?.error === 'IMAGE_TOO_LARGE'
+              ? (isEn ? 'The image must be 2 MB or smaller.' : '图片不能超过 2MB。')
+              : response.status === 415
+                ? (isEn ? 'Use a JPEG, PNG or WebP image.' : '请使用 JPEG、PNG 或 WebP 图片。')
+                : responseBody?.error === 'VISION_UNAVAILABLE'
+                  ? (isEn ? 'Image analysis is temporarily unavailable.' : '图片理解暂时不可用，请稍后重试。')
+                  : (isEn ? 'The assistant could not complete this response.' : '这次没有完成回答，请重试。')
         setError(message)
         setFailedRequest(request)
         return
@@ -399,7 +441,12 @@ export default function AIChatWidget() {
   }
 
   function handleSend(text?: string) {
-    const message = (text ?? input).trim()
+    const typedMessage = (text ?? input).trim()
+    const message = typedMessage || (pendingImage
+      ? (isEn
+          ? 'Describe only what is clearly visible in this image, then ask me for the single most important missing fact.'
+          : '请只整理这张图片中清晰可见的内容，再问我一个最需要补充的关键信息。')
+      : '')
     if (!message || loading) return
 
     const history = messages.slice(-MAX_HISTORY_MESSAGES).map((item) => ({
@@ -407,7 +454,42 @@ export default function AIChatWidget() {
       content: toHistoryContent(item),
     }))
 
-    void requestAssistant({ message, history }, true)
+    void requestAssistant({
+      message,
+      history,
+      image: pendingImage
+        ? { dataUrl: pendingImage.dataUrl, name: pendingImage.name }
+        : undefined,
+    }, true)
+  }
+
+  function handleImageSelection(file: File | undefined) {
+    if (!file) return
+    setError(null)
+    setFailedRequest(null)
+
+    if (!SUPPORTED_IMAGE_TYPES.has(file.type)) {
+      setError(isEn ? 'Use a JPEG, PNG or WebP image.' : '请使用 JPEG、PNG 或 WebP 图片。')
+      return
+    }
+    if (file.size > MAX_IMAGE_BYTES) {
+      setError(isEn ? 'The image must be 2 MB or smaller.' : '图片不能超过 2MB。')
+      return
+    }
+
+    const reader = new FileReader()
+    reader.onload = () => {
+      if (typeof reader.result !== 'string') {
+        setError(isEn ? 'The image could not be read.' : '无法读取这张图片，请换一张重试。')
+        return
+      }
+      setPendingImage({ dataUrl: reader.result, name: file.name.slice(0, 100), size: file.size })
+      window.setTimeout(() => inputRef.current?.focus(), 0)
+    }
+    reader.onerror = () => {
+      setError(isEn ? 'The image could not be read.' : '无法读取这张图片，请换一张重试。')
+    }
+    reader.readAsDataURL(file)
   }
 
   function handleInputKeyDown(event: KeyboardEvent<HTMLTextAreaElement>) {
@@ -554,6 +636,14 @@ export default function AIChatWidget() {
                       </div>
                     )}
 
+                    {message.role === 'user' && message.hadImage && (
+                      <div className="mb-2 flex items-center gap-2 border-b border-white/20 pb-2 text-xs text-white/80">
+                        <ImageSquare size={15} aria-hidden />
+                        <span className="truncate">
+                          {message.attachmentName ?? (isEn ? 'Temporary image (not saved)' : '临时图片（未保存）')}
+                        </span>
+                      </div>
+                    )}
                     <div className="whitespace-pre-wrap">{message.content}</div>
 
                     {message.role === 'assistant' && message.bullets && message.bullets.length > 0 && (
@@ -663,7 +753,53 @@ export default function AIChatWidget() {
             <label htmlFor="zeno-assistant-input" className="block text-[0.68rem] font-semibold uppercase tracking-[0.12em] text-ink-faint">
               {isEn ? 'Continue with context' : '继续描述'}
             </label>
-            <div className="mt-2 grid grid-cols-[1fr_2.75rem] items-end gap-2 border border-border bg-surface px-3 py-2 focus-within:border-stone">
+            {pendingImage && (
+              <div className="mt-2 flex items-center gap-3 border border-border bg-surface p-2">
+                <Image
+                  src={pendingImage.dataUrl}
+                  alt={isEn ? 'Selected image preview' : '已选图片预览'}
+                  width={48}
+                  height={48}
+                  unoptimized
+                  className="h-12 w-12 shrink-0 object-cover"
+                />
+                <div className="min-w-0 flex-1">
+                  <p className="truncate text-xs font-semibold text-ink">{pendingImage.name}</p>
+                  <p className="mt-1 text-[0.68rem] text-ink-faint">{Math.ceil(pendingImage.size / 1024)} KB</p>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setPendingImage(null)}
+                  className="inline-flex h-11 w-11 shrink-0 items-center justify-center text-ink-muted hover:bg-surface-warm hover:text-ink"
+                  aria-label={isEn ? 'Remove image' : '移除图片'}
+                  title={isEn ? 'Remove image' : '移除图片'}
+                >
+                  <X size={17} aria-hidden />
+                </button>
+              </div>
+            )}
+            <div className="mt-2 grid grid-cols-[2.75rem_1fr_2.75rem] items-end gap-2 border border-border bg-surface px-2 py-2 focus-within:border-stone">
+              <input
+                ref={imageInputRef}
+                type="file"
+                accept="image/jpeg,image/png,image/webp"
+                className="sr-only"
+                onChange={(event) => {
+                  handleImageSelection(event.target.files?.[0])
+                  event.target.value = ''
+                }}
+                disabled={loading}
+              />
+              <button
+                type="button"
+                onClick={() => imageInputRef.current?.click()}
+                disabled={loading}
+                className="inline-flex h-11 w-11 items-center justify-center text-ink-muted transition-colors hover:bg-surface-warm hover:text-ink disabled:cursor-not-allowed disabled:opacity-40"
+                aria-label={isEn ? 'Attach an image' : '添加图片'}
+                title={isEn ? 'Attach an image' : '添加图片'}
+              >
+                <ImageSquare size={19} weight="duotone" aria-hidden />
+              </button>
               <textarea
                 ref={inputRef}
                 id="zeno-assistant-input"
@@ -679,7 +815,7 @@ export default function AIChatWidget() {
               <button
                 type="button"
                 onClick={() => handleSend()}
-                disabled={!input.trim() || loading}
+                disabled={(!input.trim() && !pendingImage) || loading}
                 className="inline-flex h-11 w-11 items-center justify-center bg-stone text-white transition-transform hover:bg-stone-deep active:scale-[0.98] disabled:cursor-not-allowed disabled:bg-stone/35"
                 aria-label={isEn ? 'Send message' : '发送'}
                 title={isEn ? 'Send message' : '发送'}
@@ -689,8 +825,8 @@ export default function AIChatWidget() {
             </div>
             <p className="mt-2 text-[0.68rem] leading-5 text-ink-faint">
               {isEn
-                ? 'Recent messages stay in this browser for 7 days and can be cleared above. Important decisions remain human.'
-                : '最近对话在本浏览器保留 7 天，可用上方按钮清除。重要判断与项目责任仍由人确认。'}
+                ? 'Recent text stays in this browser for 7 days. An attached image is sent only for this turn; remove sensitive information first. Important decisions remain human.'
+                : '最近文字对话在本浏览器保留 7 天。图片仅随本轮发送给 AI 服务商，请先去除敏感信息；重要判断与项目责任仍由人确认。'}
             </p>
           </footer>
         </section>

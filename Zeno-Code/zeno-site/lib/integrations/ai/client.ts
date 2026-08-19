@@ -2,8 +2,12 @@ import { resolveAiTaskConfig, type AiTask } from './config'
 
 export type AiMessage = {
   role: 'system' | 'user' | 'assistant'
-  content: string
+  content: string | AiMessageContent[]
 }
+
+export type AiMessageContent =
+  | { type: 'text'; text: string }
+  | { type: 'image_url'; image_url: { url: string } }
 
 export type AiCompletionResult = {
   content: string
@@ -56,6 +60,10 @@ export async function createAiChatCompletion(input: {
         messages: input.messages,
         temperature: Math.min(2, Math.max(0, input.temperature)),
         max_tokens: Math.min(4000, Math.max(1, input.maxTokens)),
+        ...(config.provider === 'zhipu' ? {
+          thinking: { type: 'enabled' },
+          ...(config.model === 'glm-5.3' ? { reasoning_effort: 'low' } : {}),
+        } : {}),
       }),
       signal: AbortSignal.timeout(Math.min(60_000, Math.max(1_000, input.timeoutMs))),
     })

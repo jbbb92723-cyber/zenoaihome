@@ -79,6 +79,28 @@ npm run lint     # 代码检查
 
 首页入口是 `app/page.tsx`，主要页面内容在 `components/features/home/HomePageBrandHub.tsx`。结构化数据和页面 metadata 在入口文件维护，首页区块与文案在主组件维护。
 
+### 配置 Zeno 助手（DeepSeek / GLM）
+
+所有模型密钥只放服务端环境变量，不要写进前端代码或提交到 Git。文字助手和图片理解按任务独立配置：`GLM-5.3` 负责文字推理，`GLM-5V-Turbo` 负责单张图片理解；`GLM-5.3` 本身不是多模态模型。
+
+同时启用 GLM 文字与图片能力时，在本地 `.env.local` 或 Vercel → Settings → Environment Variables 配置：
+
+```env
+AI_PUBLIC_CHAT_PROVIDER=zhipu
+AI_PUBLIC_CHAT_MODEL=glm-5.3
+AI_PUBLIC_VISION_PROVIDER=zhipu
+AI_PUBLIC_VISION_MODEL=glm-5v-turbo
+
+AI_ZHIPU_API_KEY=你的智谱API密钥
+AI_ZHIPU_BASE_URL=https://open.bigmodel.cn/api/paas/v4
+AI_ZHIPU_CHAT_MODEL=glm-5.3
+AI_ZHIPU_VISION_MODEL=glm-5v-turbo
+```
+
+若保留 DeepSeek 负责文字、只让 GLM 负责图片，则保持 `AI_PUBLIC_CHAT_PROVIDER=deepseek`，其余视觉配置不变。修改 Vercel 环境变量后需要重新部署，环境变量才会进入新的服务实例。
+
+当前公开助手支持 JPEG、PNG、WebP 单图，最大 2MB。图片只用于当前轮请求，不写入网站数据库或 7 天本地对话记录。整份 PDF、合同表格 OCR、多图交叉核对仍需后续接入文档解析流程，不能把单图回答当作完整审核。
+
 ---
 
 ## 6. 如何新增文章
