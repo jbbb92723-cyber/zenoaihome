@@ -4,6 +4,7 @@ import { prisma } from '@/lib/prisma'
 import Link from 'next/link'
 import Avatar from '@/components/ui/Avatar'
 import Container from '@/components/ui/Container'
+import { isRenovationArchiveEnabled } from '@/lib/domains/renovation-archive/feature'
 
 export const metadata: Metadata = {
   title: '我的账号',
@@ -19,6 +20,7 @@ const SERVICE_STATUS_LABEL: Record<string, string> = {
 }
 
 export default async function AccountPage() {
+  const renovationArchiveEnabled = isRenovationArchiveEnabled()
   const session = await auth()
 
   if (!session?.user) {
@@ -114,6 +116,25 @@ export default async function AccountPage() {
             </div>
           </div>
         </section>
+
+        {renovationArchiveEnabled && (
+          <Link
+            href="/account/renovation"
+            className="group block border border-stone/35 bg-surface-warm p-6 transition-colors hover:border-stone hover:bg-stone-pale/45"
+          >
+            <div className="flex items-start justify-between gap-5">
+              <div className="min-w-0">
+                <p className="text-[0.65rem] font-semibold uppercase tracking-widest text-stone">我的装修档案</p>
+                <h2 className="mt-2 text-lg font-semibold text-ink">把每一版报价放在一起核对</h2>
+                <p className="mt-2 text-xs leading-6 text-ink-muted">
+                  首版支持 CSV 或 XLSX，检查自动提取字段，查看预算分类和两个版本之间的变化。
+                </p>
+              </div>
+              <span className="shrink-0 text-lg text-stone transition-transform group-hover:translate-x-0.5" aria-hidden>→</span>
+            </div>
+            <span className="mt-5 inline-flex min-h-11 items-center text-sm font-semibold text-stone">打开装修档案</span>
+          </Link>
+        )}
 
         {/* ── 2. 权益与服务 ─────────────────────────────────── */}
         <section className="border border-border bg-surface p-6">
@@ -216,6 +237,9 @@ export default async function AccountPage() {
           <p className="text-[0.65rem] text-ink-faint font-semibold uppercase tracking-widest mb-4">当前主入口</p>
           <div className="grid grid-cols-2 gap-3">
             {[
+              ...(renovationArchiveEnabled
+                ? [{ href: '/account/renovation', label: '我的装修档案' }]
+                : []),
               { href: '/tools/quote-check', label: '报价初筛工具' },
               { href: '/risk-dictionary', label: '风险词典' },
               { href: '/checklists', label: '检查模板' },

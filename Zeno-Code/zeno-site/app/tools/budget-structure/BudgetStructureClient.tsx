@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link'
 import { useMemo, useState } from 'react'
 import ToolSeoAssetSection from '@/components/features/tools/ToolSeoAssetSection'
 import { BridgePanel, NumberInput, ResultPanel, ToolPageShell } from '@/components/features/tools/ToolPageShell'
@@ -82,7 +83,11 @@ function getUnitStatus(unit: number, range: readonly [number, number]) {
   }
 }
 
-export default function BudgetStructureClient() {
+export default function BudgetStructureClient({
+  renovationArchiveEnabled,
+}: {
+  renovationArchiveEnabled: boolean
+}) {
   const [total, setTotal] = useState('220000')
   const [area, setArea] = useState('108')
   const [mode, setMode] = useState<keyof typeof plans>('comfortable')
@@ -151,7 +156,19 @@ export default function BudgetStructureClient() {
             </div>
           </div>
 
-          <ResultPanel title={`${plans[mode].label}预算分配`} actions={<button type="button" onClick={copyResult} className="inline-flex h-10 items-center bg-stone px-4 text-sm font-semibold text-white hover:bg-stone/90">{copied ? '已复制' : '复制预算分配'}</button>}>
+          <ResultPanel
+            title={`${plans[mode].label}预算分配`}
+            actions={(
+              <>
+                <button type="button" onClick={copyResult} className="inline-flex min-h-11 items-center bg-stone px-4 text-sm font-semibold text-white hover:bg-stone/90">{copied ? '已复制' : '复制预算分配'}</button>
+                {renovationArchiveEnabled && (
+                  <Link href="/account/renovation" className="inline-flex min-h-11 items-center border border-border bg-surface px-4 text-sm font-semibold text-ink hover:border-stone">
+                    保存为装修档案
+                  </Link>
+                )}
+              </>
+            )}
+          >
             <div className="space-y-3">
               <p>
                 当前单方：<span className="font-semibold text-ink">{result.unit.toLocaleString()} 元/㎡</span>。

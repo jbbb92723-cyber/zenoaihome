@@ -25,8 +25,12 @@ function matchesPathPrefix(path: string, prefix: string) {
   return path === prefix || path.startsWith(`${prefix}/`)
 }
 
-export default function ConditionalAIWidget() {
+export default function ConditionalAIWidget({
+  renovationArchiveEnabled,
+}: {
+  renovationArchiveEnabled: boolean
+}) {
   const path = usePathname() ?? ''
   if (BLOCK_PREFIXES.some((prefix) => matchesPathPrefix(path, prefix))) return null
-  return <AIChatWidget />
+  return <AIChatWidget renovationArchiveEnabled={renovationArchiveEnabled} />
 }

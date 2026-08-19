@@ -23,22 +23,25 @@ model User {
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
 
-  accounts          Account[]
-  sessions          Session[]
-  membership        Membership?
-  resourceClaims    ResourceClaim[]
-  serviceRequests   ServiceRequest[]
-  orders            Order[]
-  couponClaims      CouponClaim[]
-  couponUsages      CouponUsage[]
-  redeemCodeUsages  RedeemCodeUsage[]
-  checkins          Checkin[]
-  livingDiagnoses   LivingDiagnosis[]
-  articleComments   Comment[]         @relation("ArticleComments")
-  moderatedComments Comment[]         @relation("CommentModerators")
-  articleReactions  ArticleReaction[]
-  opportunities     Opportunity[]     @relation("OpportunityCustomer")
-  adminLogs         AdminLog[]        @relation("AdminLogActor")
+  accounts                  Account[]
+  sessions                  Session[]
+  membership                Membership?
+  resourceClaims            ResourceClaim[]
+  serviceRequests           ServiceRequest[]
+  orders                    Order[]
+  couponClaims              CouponClaim[]
+  couponUsages              CouponUsage[]
+  redeemCodeUsages          RedeemCodeUsage[]
+  checkins                  Checkin[]
+  livingDiagnoses           LivingDiagnosis[]
+  articleComments           Comment[]           @relation("ArticleComments")
+  moderatedComments         Comment[]           @relation("CommentModerators")
+  articleReactions          ArticleReaction[]
+  opportunities             Opportunity[]       @relation("OpportunityCustomer")
+  adminLogs                 AdminLog[]          @relation("AdminLogActor")
+  renovationArchives        RenovationArchive[]
+  quoteItemRevisions        QuoteItemRevision[] @relation("QuoteItemRevisionActor")
+  zenoReviewedQuoteVersions QuoteVersion[]      @relation("QuoteVersionZenoReviewer")
 
   @@map("users")
 }
@@ -533,6 +536,128 @@ model AdminLog {
   @@index([actorId])
   @@index([createdAt])
   @@map("admin_logs")
+}
+
+// ─── 客户装修档案：与管理员 Project 交付模型严格分离 ──────────
+model RenovationArchive {
+  id                  String    @id @default(cuid())
+  userId              String
+  title               String
+  city                String?
+  address             String?
+  area                Float?
+  homeType            String?
+  notes               String?
+  status              String    @default("active") // active | archived | deleting
+  deletionRequestedAt DateTime?
+  createdAt           DateTime  @default(now())
+  updatedAt           DateTime  @updatedAt
+
+  user          User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  assets        ArchiveAsset[]
+  quoteVersions QuoteVersion[]
+
+  @@index([userId, updatedAt])
+  @@index([status])
+  @@map("renovation_archives")
+}
+
+model ArchiveAsset {
+  id                     String    @id @default(cuid())
+  archiveId              String
+  storageBucket          String
+  storagePath            String    @unique
+  originalName           String
+  mimeType               String
+  sizeBytes              Int
+  sha256                 String?
+  kind                   String    @default("quote") // quote | contract | drawing | photo | other
+  status                 String    @default("pending") // pending | ready | rejected | deleted | cleaning
+  storageEtag            String?
+  materialConsentAt      DateTime?
+  materialConsentVersion String?
+  createdAt              DateTime  @default(now())
+  updatedAt              DateTime  @updatedAt
+
+  archive      RenovationArchive @relation(fields: [archiveId], references: [id], onDelete: Cascade)
+  quoteVersion QuoteVersion?
+
+  @@index([archiveId, createdAt])
+  @@map("archive_assets")
+}
+
+model QuoteVersion {
+  id                  String    @id @default(cuid())
+  archiveId           String
+  assetId             String    @unique
+  versionNumber       Int
+  label               String?
+  status              String    @default("draft") // draft | confirmed
+  currency            String    @default("CNY")
+  totalAmountCents    Int       @default(0)
+  customerConfirmedAt DateTime?
+  zenoReviewedAt      DateTime?
+  zenoReviewedById    String?
+  createdAt           DateTime  @default(now())
+  updatedAt           DateTime  @updatedAt
+
+  archive        RenovationArchive @relation(fields: [archiveId], references: [id], onDelete: Cascade)
+  asset          ArchiveAsset      @relation(fields: [assetId], references: [id], onDelete: Cascade)
+  zenoReviewedBy User?             @relation("QuoteVersionZenoReviewer", fields: [zenoReviewedById], references: [id], onDelete: SetNull)
+  items          QuoteItem[]
+
+  @@unique([archiveId, versionNumber])
+  @@index([archiveId, createdAt])
+  @@index([status])
+  @@map("quote_versions")
+}
+
+model QuoteItem {
+  id               String   @id @default(cuid())
+  quoteVersionId   String
+  position         Int
+  sourceRow        Int
+  stableKey        String?
+  section          String?
+  itemCode         String?
+  itemName         String
+  description      String?
+  quantity         Float?
+  unit             String?
+  unitPriceCents   Int?
+  amountCents      Int?
+  materialSpec     String?
+  scope            String?
+  rawData          Json
+  confidence       Float
+  isCustomerEdited Boolean  @default(false)
+  customerNote     String?
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  quoteVersion QuoteVersion        @relation(fields: [quoteVersionId], references: [id], onDelete: Cascade)
+  revisions    QuoteItemRevision[]
+
+  @@unique([quoteVersionId, position])
+  @@index([quoteVersionId, stableKey])
+  @@index([quoteVersionId, sourceRow])
+  @@map("quote_items")
+}
+
+model QuoteItemRevision {
+  id          String   @id @default(cuid())
+  quoteItemId String
+  actorUserId String
+  beforeData  Json
+  afterData   Json
+  createdAt   DateTime @default(now())
+
+  quoteItem QuoteItem @relation(fields: [quoteItemId], references: [id], onDelete: Cascade)
+  actor     User      @relation("QuoteItemRevisionActor", fields: [actorUserId], references: [id], onDelete: Cascade)
+
+  @@index([quoteItemId, createdAt])
+  @@index([actorUserId, createdAt])
+  @@map("quote_item_revisions")
 }
 
 // ─── 项目交付：工地管理 ───────────────────────────────────────

@@ -3,7 +3,7 @@ export type AssistantPersona =
   | 'transformation-guide'
   | 'spark-recruiter'
 
-export type AssistantCard = 'spark' | 'service'
+export type AssistantCard = 'spark' | 'service' | 'archive'
 
 export type ChatActionKind =
   | 'tool'

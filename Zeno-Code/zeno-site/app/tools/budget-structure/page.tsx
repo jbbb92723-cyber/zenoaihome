@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import StructuredData from '@/components/ui/StructuredData'
 import { buildToolStructuredData, toolSeoAssets } from '@/data/tools/toolSeoAssets'
+import { isRenovationArchiveEnabled } from '@/lib/domains/renovation-archive/feature'
 import BudgetStructureClient from './BudgetStructureClient'
 
 export const metadata: Metadata = {
@@ -15,7 +16,7 @@ export default function BudgetStructurePage() {
   return (
     <>
       <StructuredData data={buildToolStructuredData(toolSeoAssets.budgetStructure)} />
-      <BudgetStructureClient />
+      <BudgetStructureClient renovationArchiveEnabled={isRenovationArchiveEnabled()} />
     </>
   )
 }

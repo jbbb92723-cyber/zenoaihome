@@ -4,6 +4,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { useEffect, useRef, useState, type KeyboardEvent } from 'react'
 import { usePathname } from 'next/navigation'
+import ArchiveCard from '@/components/features/assistant/ArchiveCard'
 import SparkCard from '@/components/features/assistant/SparkCard'
 import ServiceCard from '@/components/features/assistant/ServiceCard'
 import { trackAssistantEvent } from '@/lib/assistant/analytics'
@@ -74,7 +75,7 @@ const assistantPersonas = new Set<AssistantPersona>([
   'transformation-guide',
   'spark-recruiter',
 ])
-const assistantCards = new Set<AssistantCard>(['spark', 'service'])
+const assistantCards = new Set<AssistantCard>(['spark', 'service', 'archive'])
 const actionKinds = new Set<ChatActionKind>([
   'tool',
   'article',
@@ -170,6 +171,23 @@ function parseStoredMessages(raw: string, legacy = false): Message[] {
     .slice(-MAX_STORED_MESSAGES)
 }
 
+function removeDisabledArchiveReplies(messages: Message[]): Message[] {
+  return messages.filter((message) => {
+    if (message.role !== 'assistant') return true
+    const hasArchiveAction = message.actions?.some(
+      (action) => action.href === '/account/renovation',
+    )
+    const archiveText = [
+      message.content,
+      ...(message.bullets ?? []),
+      ...(message.followUps ?? []),
+    ].join(' ')
+    return message.card !== 'archive'
+      && !hasArchiveAction
+      && !/\/account\/renovation|我的装修档案|renovation archive/i.test(archiveText)
+  })
+}
+
 const actionKindLabels: Record<'zh' | 'en', Record<ChatActionKind, string>> = {
   zh: {
     tool: '工具',
@@ -255,7 +273,11 @@ function toHistoryContent(message: Message) {
     .slice(0, MAX_HISTORY_CONTENT_LENGTH)
 }
 
-export default function AIChatWidget() {
+export default function AIChatWidget({
+  renovationArchiveEnabled,
+}: {
+  renovationArchiveEnabled: boolean
+}) {
   const [open, setOpen] = useState(false)
   const [messages, setMessages] = useState<Message[]>([])
   const [input, setInput] = useState('')
@@ -289,6 +311,9 @@ export default function AIChatWidget() {
         const legacy = window.sessionStorage.getItem(LEGACY_SESSION_STORAGE_KEY)
         if (legacy) restored = parseStoredMessages(legacy, true)
       }
+      if (!renovationArchiveEnabled) {
+        restored = removeDisabledArchiveReplies(restored)
+      }
     } catch {
       restored = []
     }
@@ -301,7 +326,7 @@ export default function AIChatWidget() {
 
     setMessages(restored)
     setStorageReady(true)
-  }, [])
+  }, [renovationArchiveEnabled])
 
   useEffect(() => {
     if (!storageReady) return
@@ -657,13 +682,17 @@ export default function AIChatWidget() {
                       </ul>
                     )}
 
-                    {message.role === 'assistant' && message.actions && message.actions.length > 0 && (
+                    {message.role === 'assistant' && message.actions && message.actions.some(
+                      (action) => renovationArchiveEnabled || action.href !== '/account/renovation',
+                    ) && (
                       <div className="mt-4 border-t border-border/70 pt-3">
                         <p className="mb-1 text-[0.68rem] font-semibold uppercase tracking-[0.12em] text-ink-faint">
                           {isEn ? 'Useful next step' : '可用的下一步'}
                         </p>
                         <div className="divide-y divide-border/70">
-                          {message.actions.map((action) => (
+                          {message.actions
+                            .filter((action) => renovationArchiveEnabled || action.href !== '/account/renovation')
+                            .map((action) => (
                             <Link
                               key={`${action.href}-${action.label}`}
                               href={action.href}
@@ -678,7 +707,7 @@ export default function AIChatWidget() {
                               </span>
                               <ArrowRight size={16} className="shrink-0 transition-transform group-hover:translate-x-0.5" aria-hidden />
                             </Link>
-                          ))}
+                            ))}
                         </div>
                       </div>
                     )}
@@ -706,7 +735,12 @@ export default function AIChatWidget() {
                   </div>
 
                   {message.role === 'assistant' && message.card && (
+                    message.card !== 'archive' || renovationArchiveEnabled
+                  ) && (
                     <div className="mt-2 w-full">
+                      {message.card === 'archive' && renovationArchiveEnabled && (
+                        <ArchiveCard onNavigate={() => setOpen(false)} />
+                      )}
                       {message.card === 'spark' && <SparkCard onNavigate={() => setOpen(false)} />}
                       {message.card === 'service' && <ServiceCard onNavigate={() => setOpen(false)} />}
                     </div>

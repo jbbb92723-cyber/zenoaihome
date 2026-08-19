@@ -34,6 +34,12 @@ const STANDALONE_JOIN_PATTERN = /^(?:我)?(?:想|要|希望|准备|打算|可以
 const LEARN_THIS_METHOD_PATTERN =
   /(?:想|希望|准备|打算).{0,6}(?:学|学习|掌握).{0,8}(?:这套|这一套|你的这套|赞诺这套).{0,8}(?:方法|模式|体系|做法)/i
 
+const ARCHIVE_PATTERN =
+  /(?:我的)?装修档案|装修资料库|报价档案|报价版本|版本对比|(?:上传|保存|存下|存档|归档|整理).{0,10}(?:装修资料|装修材料|报价(?:单)?|预算)|(?:装修资料|装修材料|报价(?:单)?|预算).{0,10}(?:上传|保存|存下|存档|归档)|(?:对比|比较).{0,8}(?:报价(?:单)?|报价版本)|(?:报价(?:单)?|报价版本).{0,8}(?:对比|比较)/i
+
+const EXPLICIT_REVIEW_PATTERN =
+  /审核|审查|复核|人工|预约|帮我.{0,6}(?:看|审)|替我.{0,6}(?:看|审)|检查.{0,6}(?:风险|漏项|合同|报价)|判断.{0,8}(?:能不能|是否|可以|风险)|(?:能不能|是否|可以).{0,6}签|有没有.{0,6}(?:问题|风险|漏项)/i
+
 const COMPLETE_DOCUMENT_PATTERN = /整份|完整(?:的)?|全套|全部材料|整套材料/i
 const MULTIPLE_DOCUMENT_PATTERN = /多份|多版|多个版本|几份|几版|两份|三份/i
 const FILE_PATTERN = /PDF|文件|附件|文档|材料原文|\d+\s*页/i
@@ -107,6 +113,7 @@ function personaFromPage(pagePath?: string): AssistantPersona | undefined {
     || pagePath.startsWith('/risk-dictionary')
     || pagePath.startsWith('/project-risks')
     || pagePath.startsWith('/checklists')
+    || pagePath.startsWith('/tools/budget-')
     || pagePath.startsWith('/tools/quote-check')
     || pagePath.startsWith('/services/quote-')
   ) {
@@ -122,6 +129,7 @@ export function routeAssistantIntent({
   pagePath,
 }: RouteAssistantIntentInput): AssistantIntent {
   const currentMessage = message.trim()
+  const requestsArchive = ARCHIVE_PATTERN.test(currentMessage)
   const recentUserHistory = history
     .filter((item) => item.role === 'user')
     .slice(-4)
@@ -132,8 +140,15 @@ export function routeAssistantIntent({
     return { persona: 'spark-recruiter', card: 'spark' }
   }
 
-  if (needsComplexQuoteReview(currentMessage)) {
+  if (
+    needsComplexQuoteReview(currentMessage)
+    && (!requestsArchive || EXPLICIT_REVIEW_PATTERN.test(currentMessage))
+  ) {
     return { persona: 'reviewer', card: 'service' }
+  }
+
+  if (requestsArchive) {
+    return { persona: 'reviewer', card: 'archive' }
   }
 
   const currentPersona = personaFromText(currentMessage)

@@ -2,6 +2,7 @@ import { track } from '@vercel/analytics'
 
 export type AssistantAnalyticsEvent =
   | 'ai_chat_start'
+  | 'ai_archive_click'
   | 'ai_service_click'
   | 'ai_spark_click'
 

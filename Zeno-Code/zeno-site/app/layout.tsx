@@ -7,6 +7,7 @@ import SearchDialog from '@/components/layout/SearchDialog'
 import ConditionalAIWidget from '@/components/layout/ConditionalAIWidget'
 import HashScrollHandler from '@/components/layout/HashScrollHandler'
 import StructuredData from '@/components/ui/StructuredData'
+import { isRenovationArchiveEnabled } from '@/lib/domains/renovation-archive/feature'
 import '@/styles/globals.css'
 
 export const metadata: Metadata = {
@@ -134,7 +135,7 @@ export default function RootLayout({
           <main className="min-h-[calc(100dvh-56px)]">{children}</main>
           <Footer />
           <SearchDialog />
-          <ConditionalAIWidget />
+          <ConditionalAIWidget renovationArchiveEnabled={isRenovationArchiveEnabled()} />
         </ThemeProvider>
         <Analytics />
       </body>

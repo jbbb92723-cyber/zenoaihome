@@ -25,6 +25,7 @@ import {
   parseAssistantImage,
   type AssistantImageInput,
 } from '@/lib/assistant/image-input'
+import { isRenovationArchiveEnabled } from '@/lib/domains/renovation-archive/feature'
 import type {
   AssistantCard,
   AssistantPersona,
@@ -75,6 +76,7 @@ interface ChatReplyPayload {
 const ROUTE_LABELS: Record<'zh' | 'en', Record<string, string>> = {
   zh: {
     '/about': '了解 Zeno',
+    '/account/renovation': '打开我的装修档案',
     '/blog': '先看相关文章',
     '/contact': '直接联系 Zeno',
     '/checklists': '看签约前检查模板',
@@ -102,6 +104,7 @@ const ROUTE_LABELS: Record<'zh' | 'en', Record<string, string>> = {
 const STATIC_ACTION_HREFS = [
   '/',
   '/about',
+  '/account/renovation',
   '/ai-tools',
   '/ai-tools/task-planner',
   '/blog',
@@ -540,8 +543,54 @@ function dedupeActions(actions: ChatAction[] = []): ChatAction[] {
 }
 
 const CARD_ACTION_HREFS: Record<AssistantCard, Set<string>> = {
+  archive: new Set(['/account/renovation']),
   spark: new Set(['/community', '/community/apply']),
   service: new Set(['/services/quote-review', '/contact']),
+}
+
+function stripDisabledRenovationArchiveReferences(
+  payload: ChatReplyPayload,
+  locale: 'zh' | 'en',
+): ChatReplyPayload {
+  const scrubText = (value: string) => {
+    const replacement = locale === 'en' ? 'the quote screening tool' : '报价初筛工具'
+    const scrubbed = value
+      .replace(
+        /<a\b[^>]*href=["'](?:https?:\/\/(?:www\.)?zenoaihome\.com)?\/?account\/renovation(?:[?#][^"']*)?["'][^>]*>([\s\S]*?)<\/a>/gi,
+        replacement,
+      )
+      .replace(
+        /\[([^\]]+)\]\((?:https?:\/\/(?:www\.)?zenoaihome\.com)?\/?account\/renovation(?:[?#][^)]*)?\)/gi,
+        replacement,
+      )
+      .replace(
+        /(?:https?:\/\/(?:www\.)?zenoaihome\.com)?\/?account\/renovation(?:[?#][^\s)\]，。！？]*)?/gi,
+        replacement,
+      )
+      .replace(/[ \t]{2,}/g, ' ')
+      .replace(/\n[ \t]+/g, '\n')
+      .trim()
+    return locale === 'zh'
+      ? scrubbed.replace(/\s*报价初筛工具\s*/g, '报价初筛工具')
+      : scrubbed
+  }
+
+  const reply = scrubText(payload.reply)
+  return {
+    ...payload,
+    reply: reply || (locale === 'en'
+      ? 'The renovation archive is not currently available. Start with the quote screening tool instead.'
+      : '装修档案当前未开放，可以先使用报价初筛工具。'),
+    bullets: payload.bullets
+      ?.map(scrubText)
+      .filter((value): value is string => Boolean(value)),
+    followUps: payload.followUps
+      ?.map(scrubText)
+      .filter((value): value is string => Boolean(value)),
+    actions: payload.actions
+      ?.filter((action) => action.href !== '/account/renovation')
+      .map((action) => ({ ...action, label: scrubText(action.label) })),
+  }
 }
 
 function applyAssistantPolicy({
@@ -552,6 +601,7 @@ function applyAssistantPolicy({
   history,
   pagePath,
   locale,
+  renovationArchiveEnabled,
 }: {
   payload: ChatReplyPayload
   persona: AssistantPersona
@@ -560,10 +610,11 @@ function applyAssistantPolicy({
   history?: ChatRequest['history']
   pagePath?: string
   locale: 'zh' | 'en'
+  renovationArchiveEnabled: boolean
 }): ChatReplyPayload {
   const requiredActions: ChatAction[] = []
 
-  if (persona === 'reviewer') {
+  if (persona === 'reviewer' && card !== 'archive') {
     const [risk] = findRelevantAssistantRisks({ message, history })
     requiredActions.push(risk
       ? { label: risk.title, href: risk.href, kind: 'resource' }
@@ -604,13 +655,17 @@ function applyAssistantPolicy({
     ...requiredActions,
     ...(payload.actions ?? []),
   ])
+    .filter((action) => renovationArchiveEnabled || action.href !== '/account/renovation')
     .filter((action) => !hiddenCardActions.has(action.href))
     .slice(0, 3)
 
-  return {
+  const result = {
     ...payload,
     actions: actions.length > 0 ? actions : undefined,
   }
+  return renovationArchiveEnabled
+    ? result
+    : stripDisabledRenovationArchiveReferences(result, locale)
 }
 
 function fallbackAnswer(
@@ -620,6 +675,26 @@ function fallbackAnswer(
   card?: AssistantCard,
   history?: ChatRequest['history'],
 ): ChatReplyPayload {
+  if (card === 'archive') {
+    return locale === 'en'
+      ? {
+          reply: 'Your renovation archive keeps quote versions and budget records together so you can inspect what changed over time. Automated organization and version comparison help manage the material; they are not a review by Zeno and do not decide whether a quote is safe to sign.',
+          bullets: [
+            'Upload and retain the original quote material.',
+            'Build a structured budget and compare versions.',
+          ],
+          followUps: ['When should I use Zeno\'s manual review instead?'],
+        }
+      : {
+          reply: '你需要的是把报价和预算版本留在同一个装修档案里，后续能看清每次变化。档案会辅助整理预算结构和版本差异，但自动整理不等于 Zeno 人工审核，也不会替你判断能否签约。',
+          bullets: [
+            '上传并保留原始报价资料。',
+            '形成结构化预算，继续比较后续版本。',
+          ],
+          followUps: ['什么情况应该改走 Zeno 人工审核'],
+        }
+  }
+
   if (locale === 'zh' && persona === 'spark-recruiter' && card === 'spark') {
     return {
       reply: '你关注的不是一门传统课程，而是怎样把自己的真实经验变成能复用、能验证、能参与协作的资产。星火者采用申请和面聊的方式，先判断彼此是否适合，再围绕读书会、项目复盘、成员连接和合适项目的协作机会一起实践。',
@@ -738,6 +813,7 @@ async function callLLM(
   history: ChatRequest['history'] = [],
   locale: 'zh' | 'en',
   persona: AssistantPersona,
+  renovationArchiveEnabled: boolean,
   siteContext?: string,
   imageDataUrl?: string,
 ): Promise<string | null> {
@@ -750,7 +826,10 @@ async function callLLM(
   }))
 
   const messages: AiMessage[] = [
-    { role: 'system', content: buildAssistantSystemPrompt({ locale, persona }) },
+    {
+      role: 'system',
+      content: buildAssistantSystemPrompt({ locale, persona, renovationArchiveEnabled }),
+    },
     ...(siteContext ? [{
       role: 'system' as const,
       content: locale === 'en'
@@ -830,13 +909,18 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: '请求过于频繁，请稍后再试' }, { status: 429 })
     }
 
-    const intent = routeAssistantIntent({ message, history, pagePath })
+    const renovationArchiveEnabled = isRenovationArchiveEnabled()
+    const routedIntent = routeAssistantIntent({ message, history, pagePath })
+    const intent = !renovationArchiveEnabled && routedIntent.card === 'archive'
+      ? { persona: routedIntent.persona }
+      : routedIntent
     const siteContext = buildAssistantSiteContext({ message, history, locale, pagePath })
     const llmReply = await callLLM(
       message,
       history,
       locale,
       intent.persona,
+      renovationArchiveEnabled,
       siteContext,
       parsedImage?.dataUrl,
     )
@@ -854,6 +938,7 @@ export async function POST(request: NextRequest) {
       history,
       pagePath,
       locale,
+      renovationArchiveEnabled,
     })
 
     return NextResponse.json({
