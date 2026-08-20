@@ -20,7 +20,7 @@ type CTAConfig = {
 // 装修全案判断 → 免费初筛 → 旗舰审查
 const RENO_CTA: CTAConfig = {
   title: '已经拿到报价？先做一轮规则初筛。',
-  description: '按问题勾选已经写清的边界，先整理待确认项。工具不会自动读懂报价，也不替代结合原文的人工审查。',
+  description: '按问题勾选已经写清的边界，先整理待确认项。工具不会自动读懂报价，也不替代结合原文的装修专项判断。',
   primary: { label: '免费初筛 →', href: '/tools/quote-check' },
   secondary: { label: '看装修方法 →', href: '/renovation' },
 }

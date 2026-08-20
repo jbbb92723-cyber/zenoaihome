@@ -22,19 +22,19 @@ const deliverables = [
 export default function ServiceCard({ onNavigate }: ServiceCardProps) {
   return (
     <article
-      aria-label="报价与合同人工审查"
+      aria-label="装修专项判断"
       className="w-full min-w-0 rounded-[4px] border border-border bg-surface p-4 text-ink sm:p-5"
     >
       <div className="flex min-w-0 items-start gap-3">
         <FileText size={22} weight="duotone" className="mt-0.5 shrink-0 text-stone" aria-hidden />
         <div className="min-w-0">
-          <p className="text-[0.68rem] font-semibold uppercase tracking-[0.12em] text-stone">人工审查</p>
+          <p className="text-[0.68rem] font-semibold uppercase tracking-[0.12em] text-stone">¥2,500 装修专项判断</p>
           <h3 className="mt-1 break-words text-base font-semibold leading-6 text-ink">由 Zeno 本人按确认范围完成</h3>
         </div>
       </div>
 
       <p className="mt-3 text-sm leading-6 text-ink-muted">
-        结合双方确认的材料和范围，人工审查装修报价与合同。
+        结合双方确认的材料和范围，判断报价、合同、预算材料或一个施工节点。
       </p>
 
       <ul className="mt-4 grid gap-2.5">
@@ -63,7 +63,7 @@ export default function ServiceCard({ onNavigate }: ServiceCardProps) {
           }}
           className="motion-press inline-flex min-h-11 w-full min-w-0 items-center justify-between gap-2 rounded-[3px] bg-ink px-4 py-2.5 text-sm font-semibold text-white hover:bg-stone-deep"
         >
-          <span className="break-words">查看人工审查范围</span>
+          <span className="break-words">查看专项判断范围</span>
           <ArrowRight size={16} className="shrink-0" aria-hidden />
         </Link>
         <Link

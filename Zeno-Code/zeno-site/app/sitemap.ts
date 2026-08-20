@@ -28,6 +28,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/zeno-os`, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${baseUrl}/services/quote-review`, changeFrequency: 'monthly', priority: 0.7 },
     { url: `${baseUrl}/services/node-advisor`, changeFrequency: 'monthly', priority: 0.7 },
+    { url: `${baseUrl}/services/diagnosis`, changeFrequency: 'monthly', priority: 0.75 },
+    { url: `${baseUrl}/services/renovation-advisor`, changeFrequency: 'monthly', priority: 0.75 },
     { url: `${baseUrl}/notes`, changeFrequency: 'weekly', priority: 0.6 },
   ]
 

@@ -227,7 +227,7 @@ export default async function ProjectRiskDetailPage({ params }: Props) {
           </p>
           <div className="mt-5 flex flex-wrap gap-3">
             <CTA href="/tools/quote-check" label="做免费报价初筛" variant="primary" />
-            <CTA href="/services/node-advisor" label="查看节点顾问服务" variant="secondary" />
+            <CTA href="/services/node-advisor" label="查看装修专项判断（施工节点）" variant="secondary" />
           </div>
         </section>
       </Container>

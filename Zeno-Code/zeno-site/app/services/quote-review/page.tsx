@@ -3,11 +3,14 @@ import Link from 'next/link'
 import Container from '@/components/ui/Container'
 import CTA from '@/components/ui/CTA'
 import StructuredData from '@/components/ui/StructuredData'
+import { SERVICE_PRICING } from '@/data/services/pricing'
+
+const service = SERVICE_PRICING.renovationSpecialist
 
 export const metadata: Metadata = {
-  title: '装修报价与合同人工审查｜¥2,500 一次审核',
+  title: `装修报价与合同专项判断｜${service.displayPrice} / 次`,
   description:
-    '基于长期传统行业经营与装修项目实践，逐项审核报价与合同材料，写清待确认项、追问和修改方向。材料与范围确认后，目标 24 小时内交付。',
+    'ZENO 装修专项判断的签约前场景：逐项核对报价与合同材料，写清待确认项、追问和修改方向。材料与范围确认后，目标 24 小时内交付。',
   alternates: {
     canonical: 'https://zenoaihome.com/services/quote-review',
   },
@@ -55,7 +58,7 @@ const notForItems = [
 /* ── FAQ ── */
 const faqs = [
   {
-    q: '¥2,500是一次还是一年？',
+    q: `${service.displayPrice} 是一次还是一年？`,
     a: '一次。开始前会确认这一轮包含的报价、合同和附件；更换施工方或新增整套材料时，需要重新确认范围和价格。',
   },
   {
@@ -84,11 +87,11 @@ export default function QuoteReviewPage() {
           {
             '@context': 'https://schema.org',
             '@type': 'Service',
-            name: '装修报价 / 合同人工审查',
+            name: 'ZENO 装修专项判断（报价与合同）',
             description:
-              '基于长期传统行业经营与装修项目实践，逐项审核报价与合同材料，按 13 个边界整理待确认项、追问和修改方向。',
+              '装修专项判断的签约前场景：逐项核对报价与合同材料，按 13 个边界整理待确认项、追问和修改方向。',
             provider: { '@type': 'Person', name: 'Zeno' },
-            offers: { '@type': 'Offer', priceCurrency: 'CNY', price: '2500' },
+            offers: { '@type': 'Offer', priceCurrency: 'CNY', price: String(service.amount) },
             url: 'https://zenoaihome.com/services/quote-review',
           },
         ]}
@@ -99,7 +102,7 @@ export default function QuoteReviewPage() {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_10%,rgba(222,210,190,0.42),transparent_38%)]" aria-hidden />
         <Container size="content" className="relative py-14 sm:py-18">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-stone">
-            装修报价与合同人工审查
+            ZENO 装修专项判断 · 报价与合同
           </p>
           <h1 className="editorial-display mt-5 max-w-4xl text-[2.2rem] leading-[1.12] text-ink sm:text-[3.2rem]">
             签合同之前，先让一份报价被认真看一遍。
@@ -110,7 +113,7 @@ export default function QuoteReviewPage() {
 
           {/* 价格 */}
           <div className="mt-6 flex items-baseline gap-3">
-            <span className="text-5xl font-bold text-ink">¥2,500</span>
+            <span className="text-5xl font-bold text-ink">{service.displayPrice}</span>
             <span className="text-base text-ink-muted">/ 一次审核，目标 24 小时内交付</span>
           </div>
 
@@ -142,7 +145,7 @@ export default function QuoteReviewPage() {
 
         {/* ── 你得到什么 ── */}
         <section className="mb-16">
-          <h2 className="text-2xl font-semibold text-ink mb-3">¥2,500，你得到什么</h2>
+          <h2 className="text-2xl font-semibold text-ink mb-3">{service.displayPrice}，你得到什么</h2>
           <p className="text-sm text-ink-muted mb-8 max-w-2xl">
             不是笼统地说“这份报价有问题”，而是指出具体页码、具体条目、缺少什么信息，以及应该向谁确认。
           </p>
@@ -233,7 +236,7 @@ export default function QuoteReviewPage() {
 
         {/* ── 定价边界 ── */}
         <section className="mb-16 border border-border bg-surface p-6 sm:p-8">
-          <h2 className="text-xl font-semibold text-ink mb-4">为什么是 ¥2,500</h2>
+          <h2 className="text-xl font-semibold text-ink mb-4">为什么是 {service.displayPrice}</h2>
           <div className="grid gap-4 sm:grid-cols-3">
             {[
               {
@@ -311,7 +314,7 @@ export default function QuoteReviewPage() {
             先用免费的「装修报价风险初筛」按问题核对哪些边界已经写清。
           </p>
           <p className="text-sm text-ink-muted mb-5 max-w-xl">
-            初筛由勾选项和浏览器本地关键词规则生成，不会自动理解上传文件。先把缺失边界交给施工方补充；仍需结合原文逐项判断时，再确认人工审查范围。
+            初筛由勾选项和浏览器本地关键词规则生成，不会自动理解上传文件。先把缺失边界交给施工方补充；仍需结合原文逐项判断时，再确认装修专项判断范围。
           </p>
           <div className="flex flex-wrap gap-4">
             <CTA href="/tools/quote-check" label="先做免费初筛 →" variant="primary" />
@@ -319,14 +322,14 @@ export default function QuoteReviewPage() {
           </div>
         </section>
 
-        {/* ── 签完合同了？盯施工 ── */}
+        {/* ── 签完合同了？按施工节点处理 ── */}
         <section className="mt-12 border-t border-border pt-10">
           <h2 className="text-lg font-semibold text-ink mb-3">签完合同，要开工了？</h2>
           <p className="text-sm text-ink-muted mb-5 max-w-xl">
-            如果你已经签了合同准备开工，施工节点顾问可以在约定节点提供拍摄清单、整理可见疑点和现场追问。¥2,000 起，具体节点、材料条件和退款边界在开始前确认；远程判断不替代现场监理或工程验收。
+            施工阶段仍然属于同一项 ¥2,500 装修专项判断。围绕一个约定节点提供拍摄要求、可见疑点和现场追问；远程判断不替代现场监理或工程验收。
           </p>
           <div className="flex flex-wrap gap-4">
-            <CTA href="/services/node-advisor" label="¥2,000起 节点顾问 →" variant="primary" />
+            <CTA href="/services/node-advisor" label="看施工节点场景 →" variant="primary" />
             <CTA href="/renovation" label="看完整判断路径 →" variant="secondary" />
           </div>
         </section>

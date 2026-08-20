@@ -111,11 +111,11 @@ export default function QuoteChecklistPage() {
         <section className="border border-border bg-surface p-6 sm:p-8 text-center">
           <h2 className="text-xl font-semibold text-ink mb-3">下一步看你的材料状态</h2>
           <p className="mb-5 text-sm leading-relaxed text-ink-muted max-w-lg mx-auto">
-            还没开始核对，就从本页第一项往下走；已经拿到电子报价，可以用免费初筛整理待确认项；材料复杂且临近签约，再了解人工审查范围。
+            还没开始核对，就从本页第一项往下走；已经拿到电子报价，可以用免费初筛整理待确认项；材料复杂且临近签约，再了解装修专项判断范围。
           </p>
           <div className="flex flex-col justify-center gap-3 sm:flex-row">
             <CTA href="/tools/quote-check" label="打开免费报价初筛" variant="primary" />
-            <CTA href="/services/quote-review" label="了解人工审查" variant="secondary" />
+            <CTA href="/services/quote-review" label="了解装修专项判断" variant="secondary" />
           </div>
         </section>
       </Container>

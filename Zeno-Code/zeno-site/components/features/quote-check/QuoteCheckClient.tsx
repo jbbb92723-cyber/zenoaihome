@@ -14,6 +14,7 @@ import {
   quoteRiskRules,
 } from '@/data/risk-control/quote-risk'
 import type { QuoteRiskRule } from '@/data/risk-control/quote-risk-rules'
+import { SERVICE_PRICING } from '@/data/services/pricing'
 
 type QuoteStage = 'firstQuote' | 'comparing' | 'readyToSign' | 'alreadyStarted'
 
@@ -702,7 +703,7 @@ export default function QuoteCheckClient() {
 
                   <div className="grid gap-3">
                     {[
-                      { label: '查看报价 / 合同人工审查', href: '/services/quote-review' },
+                      { label: '查看装修专项判断', href: SERVICE_PRICING.renovationSpecialist.href },
                       { label: '联系赞诺说明情况', href: '/contact' },
                       { label: '查看风险词典', href: '/risk-dictionary' },
                     ].map((item) => (
@@ -768,9 +769,9 @@ export default function QuoteCheckClient() {
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {[
               ['免费', '报价初筛', '先知道边界哪里没写清'],
-              ['¥2,500', '报价 / 合同审核', '已有完整材料时，得到逐项报告和修改建议'],
-              ['¥2,000起', '施工节点顾问', '已经开工时，按关键节点获得具体判断'],
-              ['公开', '装修视野', '先看方法，再决定是否需要人工判断'],
+              [SERVICE_PRICING.diagnosis.displayPrice, '单问题判断', '先解决一个具体问题，确认是否需要继续'],
+              [SERVICE_PRICING.renovationSpecialist.displayPrice, '装修专项判断', '完整报价合同或一个施工节点'],
+              [SERVICE_PRICING.renovationAdvisor.displayPrice, '装修决策顾问', '多个节点需要持续理解项目上下文'],
             ].map(([price, title, desc]) => (
               <div key={title} className="border border-border bg-canvas p-4">
                 <p className="text-xs font-semibold uppercase tracking-widest text-stone">{price}</p>
@@ -780,17 +781,17 @@ export default function QuoteCheckClient() {
             ))}
           </div>
 
-          {/* 工具→微信 CTA */}
+          {/* 工具→诊断 CTA */}
           <div className="mt-6 border-2 border-stone bg-stone/5 p-6 text-center">
             <p className="text-base font-semibold text-ink mb-2">
               扫完还是拿不准？
             </p>
             <p className="text-sm text-ink-muted mb-4 max-w-lg mx-auto">
-              把初筛结果截图发我微信，我帮你看下一步该做什么。
-              不用钱，花 2 分钟。拿不准的事情有个人帮你看一眼，比自己做决定稳。
+              带着初筛结果和一个具体问题进入单问题判断诊断。先确认问题、材料和范围，再开始付费沟通。
             </p>
-            <p className="text-lg font-bold text-stone mb-1">zanxiansheng2025</p>
-            <p className="text-xs text-ink-muted">备注「初筛结果」</p>
+            <Link href={SERVICE_PRICING.diagnosis.href} className="inline-flex min-h-11 items-center justify-center border border-ink px-5 py-3 text-sm font-semibold text-ink transition-colors hover:bg-ink hover:text-white">
+              {SERVICE_PRICING.diagnosis.displayPrice} 单问题判断诊断 -&gt;
+            </Link>
           </div>
         </div>
       </section>
@@ -822,7 +823,7 @@ export default function QuoteCheckClient() {
           </div>
           <div className="mt-6">
             <Link href="/services/quote-review" className="text-sm font-semibold text-stone hover:underline underline-offset-2">
-              查看报价审核服务 →
+              查看装修专项判断 →
             </Link>
           </div>
         </div>

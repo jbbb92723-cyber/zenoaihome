@@ -47,7 +47,7 @@ export const toolSeoAssets = {
       { label: '签约前检查模板', href: '/checklists/quote-initial-check', desc: '把工具里的追问整理成签约前可对照的检查表。' },
       { label: '装修报价风险词典', href: '/risk-dictionary', desc: '查按实结算、暂估、品牌型号缺失等高频风险词。' },
       { label: '施工项目风险库', href: '/project-risks', desc: '按水电、防水、拆除、找平等项目看报价里该写清什么。' },
-      { label: '报价 / 合同人工审查', href: '/services/quote-review', desc: '已有完整报价、合同草稿或付款节点时，再进入人工审查。' },
+      { label: '装修专项判断', href: '/services/quote-review', desc: '已有完整报价、合同草稿或付款节点时，再进入 ¥2,500 专项判断。' },
       { label: '合同签约前检查模板', href: '/checklists/contract-pre-signing-check', desc: '报价结构相对清楚后，继续核对合同和付款节点。' },
       { label: '报价单怎么看', href: '/blog/zhuangxiu-baojiadan-zenme-kan', desc: '文章归档保留为补充阅读，不作为主路径。' },
     ],
@@ -75,7 +75,7 @@ export const toolSeoAssets = {
     links: [
       { label: '查超预算原因', href: '/tools/budget-risk', desc: '分配看完后，继续判断失控来自报价、流程还是需求。' },
       { label: '装修预算模板', href: '/resources#zhuangxiu-yusuan-moban', desc: '把预算分配记录下来，持续追踪版本。' },
-      { label: '报价 / 合同人工审查', href: '/services/quote-review', desc: '预算越算越乱时，先回到完整报价和合同边界，看漏项和增项口子有没有写清。' },
+      { label: '装修专项判断', href: '/services/quote-review', desc: '预算越算越乱时，先回到完整报价和合同边界，看漏项和增项口子有没有写清。' },
       { label: '预算为什么总超', href: '/blog/zhuangxiu-yusuan-weishenme-zongchao', desc: '继续理解超预算背后的顺序问题。' },
     ],
   },
@@ -179,7 +179,7 @@ export const toolSeoAssets = {
     links: [
       { label: '报价初筛工具', href: '/tools/quote-check', desc: '验收前先看报价和合同有没有写清验收标准。' },
       { label: '验收清单资料', href: '/resources#yanshou-qingdan', desc: '把节点检查内容整理成可下载资料。' },
-      { label: '找 Zeno 做签约前判断', href: '/services/quote-review', desc: '报价、合同和付款节点仍不确定，可以查看人工审核的交付与价格。' },
+      { label: '找 Zeno 做装修专项判断', href: '/services/quote-review', desc: '报价、合同和付款节点仍不确定，可以查看 ¥2,500 专项判断的交付与边界。' },
       { label: '从工地看世界', href: '/blog/03-cong-gongdi-kan-shijie', desc: '理解为什么节点、责任和留痕决定装修结果。' },
     ],
   },

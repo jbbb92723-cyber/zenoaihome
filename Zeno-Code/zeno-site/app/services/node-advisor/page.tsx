@@ -2,11 +2,14 @@ import type { Metadata } from 'next'
 import Container from '@/components/ui/Container'
 import CTA from '@/components/ui/CTA'
 import StructuredData from '@/components/ui/StructuredData'
+import { SERVICE_PRICING } from '@/data/services/pricing'
+
+const service = SERVICE_PRICING.renovationSpecialist
 
 export const metadata: Metadata = {
-  title: '装修施工节点顾问｜¥2,000 起，按节点整理现场疑点',
+  title: `装修施工节点专项判断｜${service.displayPrice} / 节点`,
   description:
-    '进入施工后，在约定的关键节点提交照片和材料，获得拍摄清单、疑点整理与现场追问建议。远程判断不替代现场监理或工程验收。',
+    'ZENO 装修专项判断的施工场景：围绕一个约定的关键节点提交照片和材料，获得拍摄清单、疑点整理与现场追问建议。',
   alternates: {
     canonical: 'https://zenoaihome.com/services/node-advisor',
   },
@@ -22,35 +25,10 @@ const nodes = [
   { name: '竣工验收', risk: '整理整体观感、使用功能、遗留问题和尾款前待确认项；最终验收由合同责任方现场完成。' },
 ]
 
-const tiers = [
-  {
-    name: '核心节点版',
-    price: '¥2,000',
-    nodes: '3 个节点',
-    includes: ['水电验收', '防水验收', '竣工验收'],
-    bestFor: '第一次装修，最担心隐蔽工程和最终交付的人',
-  },
-  {
-    name: '标准节点版',
-    price: '¥4,500',
-    nodes: '7 个节点',
-    includes: ['水电', '防水', '木工', '贴砖', '油漆', '安装', '竣工'],
-    bestFor: '想每个关键节点都有人帮你看一眼的人',
-    badge: '推荐',
-  },
-  {
-    name: '扩展节点版',
-    price: '¥8,000',
-    nodes: '10+ 节点',
-    includes: ['标准7节点 + 拆除、砌墙、定制安装等额外节点'],
-    bestFor: '大户型或复杂改造，需要在标准范围外增加约定节点',
-  },
-]
-
 const guaranteeItems = [
-  '第一个节点完成后，可以决定是否继续后续节点',
-  '不继续时，未完成节点按服务确认单约定退款',
-  '已经完成的节点、材料范围和退款算法会在开始前写清楚',
+  '开始前确认本次节点、材料范围、交付物和时间',
+  '只处理一个约定决策节点，不用为整套项目预付费用',
+  '需要继续多个节点时，再评估 ¥12,800 起的全程顾问',
 ]
 
 const notForItems = [
@@ -73,16 +51,16 @@ const faqs = [
     a: '这取决于你的合同约定和现场沟通。开始前建议先确认关键节点的拍照、验收和整改记录方式；不建议隐瞒顾问身份或用模糊关系施压。',
   },
   {
-    q: '和 ¥2,500 报价审核有什么区别？',
-    a: '报价审核发生在签约前，重点是报价与合同里的范围、计量和责任；节点顾问发生在施工中，重点是拍摄清单、可见疑点和现场追问。两项服务都不能保证项目没有问题。',
+    q: '和报价、合同审查有什么区别？',
+    a: '它们都是 ¥2,500 装修专项判断。报价与合同发生在签约前，重点是范围、计量和责任；施工节点发生在开工后，重点是拍摄清单、可见疑点和现场追问。',
   },
   {
     q: '如果照片看不出问题，实际有问题呢？',
     a: '我会明确告诉你哪些位置当前看不到，并补充拍摄或现场核对要求。远程顾问只能基于收到的材料提出疑点，最终检查仍需要你、施工方和必要的现场专业人员完成。',
   },
   {
-    q: '节点之间可以加吗？比如先买3节点，中间觉得不够再加？',
-    a: '可以。你随时可以补差价升级到更多节点。不用担心一开始选错了——先试3个核心节点，够用就够用，不够再加。',
+    q: '后面还有其他节点，可以继续加吗？',
+    a: '可以。每个新增节点按 ¥2,500 重新确认范围；如果需要持续参与多个节点，更适合评估全程装修决策顾问。',
   },
 ]
 
@@ -94,17 +72,11 @@ export default function NodeAdvisorPage() {
           {
             '@context': 'https://schema.org',
             '@type': 'Service',
-            name: '施工节点顾问',
+            name: 'ZENO 装修专项判断（施工节点）',
             description:
               '在约定的施工关键节点提交照片和材料，获得拍摄清单、可见疑点整理与现场追问建议。远程判断不替代现场监理或工程验收。',
             provider: { '@type': 'Person', name: 'Zeno' },
-            offers: {
-              '@type': 'AggregateOffer',
-              priceCurrency: 'CNY',
-              lowPrice: '2000',
-              highPrice: '8000',
-              offerCount: '3',
-            },
+            offers: { '@type': 'Offer', priceCurrency: 'CNY', price: String(service.amount) },
             url: 'https://zenoaihome.com/services/node-advisor',
           },
         ]}
@@ -115,7 +87,7 @@ export default function NodeAdvisorPage() {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(222,210,190,0.36),transparent_40%)]" aria-hidden />
         <Container size="content" className="relative py-14 sm:py-18">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-stone">
-            装修施工节点顾问
+            ZENO 装修专项判断 · 施工节点
           </p>
           <h1 className="editorial-display mt-5 max-w-4xl text-[2.2rem] leading-[1.12] text-ink sm:text-[3.2rem]">
             签了合同只是开始。关键节点到来前，先知道该拍什么、问什么。
@@ -125,23 +97,23 @@ export default function NodeAdvisorPage() {
           </p>
 
           <div className="mt-6 flex items-baseline gap-3">
-            <span className="text-5xl font-bold text-ink">¥2,000</span>
-            <span className="text-base text-ink-muted">起 · 按节点收费</span>
+            <span className="text-5xl font-bold text-ink">{service.displayPrice}</span>
+            <span className="text-base text-ink-muted">/ 一个约定节点</span>
           </div>
 
           <div className="mt-3 border-l-2 border-stone pl-4">
             <p className="text-sm font-semibold text-stone">
-              第一个节点完成后再决定是否继续；未完成节点按服务确认单约定退款。
+              只为当前节点付费；需要持续参与多个节点时，再评估全程顾问。
             </p>
             <p className="mt-1 text-xs text-ink-faint">
-              退款范围和已经完成的节点如何计算，会在开始前的服务确认单中写清楚。
+              节点、材料范围、交付物和时间，会在开始前的服务确认单中写清楚。
             </p>
           </div>
 
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
             <CTA href="/contact" label="加微信聊聊你的项目 →" variant="primary" />
             <p className="text-sm text-ink-muted">
-              微信 zanxiansheng2025 · 备注「节点顾问」· 告诉我你的面积和施工阶段
+              微信 zanxiansheng2025 · 备注「装修专项判断」· 告诉我你的面积和施工阶段
             </p>
           </div>
         </Container>
@@ -183,11 +155,11 @@ export default function NodeAdvisorPage() {
           </div>
         </section>
 
-        {/* ── 7个节点 ── */}
+        {/* ── 常见节点 ── */}
         <section className="mb-16 border border-stone bg-surface-warm p-6 sm:p-8">
           <h2 className="text-xl font-semibold text-ink mb-2">7 个常见关键节点</h2>
           <p className="text-sm text-ink-muted mb-6">
-            标准版本覆盖从水电到竣工的 7 个常见关键节点。具体项目是否需要增减节点，会在开始前按施工范围确认。
+            每次专项判断只处理一个双方确认的节点。以下是常见场景，不代表一次服务同时包含全部节点。
           </p>
           <div className="grid gap-3 sm:grid-cols-2">
             {nodes.map((node) => (
@@ -199,55 +171,14 @@ export default function NodeAdvisorPage() {
           </div>
         </section>
 
-        {/* ── 三个档位 ── */}
-        <section className="mb-16">
-          <h2 className="text-xl font-semibold text-ink mb-3">三个档位，按你需要的深度选</h2>
-          <p className="text-sm text-ink-muted mb-6 max-w-2xl">
-            不确定需要几个节点？从核心版开始——3个节点做完，觉得有用再升级。
-          </p>
-
-          <div className="grid gap-5 sm:grid-cols-3">
-            {tiers.map((tier) => (
-              <div
-                key={tier.name}
-                className={`border p-6 ${tier.badge ? 'border-stone bg-surface-warm relative' : 'border-border bg-surface'}`}
-              >
-                {tier.badge && (
-                  <span className="absolute -top-2.5 right-4 bg-stone text-canvas text-xs font-semibold px-3 py-0.5">
-                    {tier.badge}
-                  </span>
-                )}
-                <p className="text-xs font-semibold uppercase tracking-widest text-stone mb-2">{tier.name}</p>
-                <p className="text-3xl font-bold text-ink">{tier.price}</p>
-                <p className="text-sm text-ink-muted mt-1 mb-4">{tier.nodes}</p>
-                <ul className="space-y-1.5 mb-4">
-                  {tier.includes.map((item) => (
-                    <li key={item} className="text-xs text-ink-muted flex gap-2">
-                      <span className="text-stone shrink-0">·</span>
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-                <p className="text-xs text-ink-faint leading-relaxed border-t border-border pt-3">
-                  {tier.bestFor}
-                </p>
-              </div>
-            ))}
-          </div>
-
-          <p className="mt-4 text-xs text-ink-faint max-w-2xl">
-            中途可以升级。先买3个核心节点，觉得有用再补差价加节点。不用一开始就决定。
-          </p>
-        </section>
-
-        {/* ── 风险逆转 ── */}
+        {/* ── 单节点边界 ── */}
         <section className="mb-16">
           <h2 className="text-xl font-semibold text-ink mb-6">
-            先完成一个节点，再决定是否继续。
+            一个节点，一次确认，一份交付。
           </h2>
           <div className="border-2 border-stone bg-surface p-6 sm:p-8">
             <p className="text-sm text-ink-muted mb-5">
-              你不需要一开始就信任我。试一个节点——你亲身体验了"有人帮你看一眼"的差别，再决定要不要继续。
+              节点服务不预售多次权益。先把当前节点的材料、判断范围和交付结果写清楚，需要继续时再做下一次选择。
             </p>
             <ul className="space-y-3">
               {guaranteeItems.map((item, i) => (
@@ -259,7 +190,7 @@ export default function NodeAdvisorPage() {
             </ul>
           </div>
           <p className="mt-4 text-xs text-ink-faint max-w-2xl">
-            是否继续，应以第一次真实节点的交付是否解决了你的问题为准。
+            多个节点连续发生、需要持续理解项目上下文时，单次购买通常不如全程顾问合适。
           </p>
         </section>
 
@@ -296,10 +227,10 @@ export default function NodeAdvisorPage() {
           </h2>
           <p className="text-2xl font-bold text-stone tracking-wide mb-2">zanxiansheng2025</p>
           <p className="text-sm text-ink-muted mb-5 max-w-md mx-auto">
-            加微信，备注「节点顾问」。说明面积、城市、施工阶段和下一个节点；我会先确认材料条件、服务范围和对应档位。
+            加微信，备注「专项判断」。说明面积、城市、施工阶段和下一个节点；我会先确认材料条件、服务范围和交付时间。
           </p>
           <p className="text-xs text-ink-faint">
-            第一个付费节点完成后如不继续，未完成节点如何退款，以开始前双方确认的服务说明为准。
+            远程材料判断不替代现场监理、检测、工程验收或施工方责任。
           </p>
         </section>
 
@@ -307,15 +238,23 @@ export default function NodeAdvisorPage() {
         <section className="mt-12 border-t border-border pt-10">
           <h2 className="text-lg font-semibold text-ink mb-3">还没签合同？</h2>
           <p className="text-sm text-ink leading-relaxed mb-2">
-            如果你还在签约前阶段，先做报价审核——确保合同没有隐藏加价项，再进入施工。
+            如果你还在签约前阶段，同一项装修专项判断会改为核对报价、合同、付款和责任边界。
           </p>
           <p className="text-sm text-ink-muted mb-5 max-w-xl">
-            ¥2,500 报价 / 合同人工审查，会按 13 个边界逐项整理需要追问和修改的内容；它不保证零增项，也不替代法律审查。
+            价格仍为 {service.displayPrice} / 次，会按 13 个边界整理需要追问和修改的内容；它不保证零增项，也不替代法律审查。
           </p>
           <div className="flex flex-wrap gap-4">
-            <CTA href="/services/quote-review" label="¥2,500 报价审核 →" variant="primary" />
+            <CTA href="/services/quote-review" label="看报价与合同场景 →" variant="primary" />
             <CTA href="/tools/quote-check" label="先做免费初筛 →" variant="secondary" />
           </div>
+        </section>
+
+        <section className="mt-12 border-t border-border pt-10">
+          <h2 className="text-lg font-semibold text-ink mb-3">需要持续参与多个节点？</h2>
+          <p className="text-sm text-ink-muted mb-5 max-w-xl">
+            ZENO 装修决策顾问从 {SERVICE_PRICING.renovationAdvisor.displayPrice}，基准范围最多 6 个约定节点、最长 120 天。最终费用根据项目类型、复杂度、周期和现场需求书面确认。
+          </p>
+          <CTA href="/services/renovation-advisor" label="看全程装修决策顾问 →" variant="secondary" />
         </section>
 
       </Container>

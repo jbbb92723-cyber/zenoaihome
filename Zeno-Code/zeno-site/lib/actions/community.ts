@@ -17,7 +17,7 @@ import {
 const RESPONSE_COPY: Record<CommunityApplicationStatus, string> = {
   submitted: '申请已经收到，正在等待初筛。',
   reviewing: '申请已进入面聊阶段，请留意微信联系。',
-  completed: '申请已通过，首期成员订单已经生成。完成付款并经确认后，将自动开通成员资格。',
+  completed: '申请已通过，90 天验证席订单已经生成。完成付款并经确认后，将自动开通成员资格。',
   rejected: '本期暂未通过。共同体采用小规模双向选择，之后项目阶段变化时可以重新申请。',
 }
 

@@ -5,7 +5,7 @@ import StructuredData from '@/components/ui/StructuredData'
 
 export const metadata: Metadata = {
   title: '星火者共同体｜AI 时代 OPC 一人公司的实践与协作',
-  description: '赞诺发起、逐步由成员共同运转的申请制实践俱乐部。面向一人公司、转型创业者和独立实践者，围绕真实项目、反馈、连接与协作建立长期关系。',
+  description: '赞诺发起的申请制 90 天实践共同体。面向正在推进具体事情的一人公司、转型创业者和独立实践者，通过真实问题、案例复盘和有限连接验证协作。',
   alternates: { canonical: 'https://zenoaihome.com/community' },
 }
 
@@ -18,17 +18,17 @@ const principles = [
 ]
 
 const entrySteps = [
-  { code: '01', title: '申请', body: '说明你是谁、在做什么、能提供什么、目前需要什么。' },
-  { code: '02', title: '面聊', body: '与发起人或核心成员进行一次约 15 分钟交流，确认彼此预期。' },
+  { code: '01', title: '申请', body: '说明你正在做什么、90 天目标、能提供什么和希望连接谁。' },
+  { code: '02', title: '面聊', body: '与发起人进行一次约 15 分钟交流，确认目标、投入和边界。' },
   { code: '03', title: '点火', body: '进入后 24 小时内完成自我介绍，让其他成员知道如何与你连接。' },
-  { code: '04', title: '参与', body: '首周完成一次分享、回应、读书会或项目交流，从旁观者变成参与者。' },
+  { code: '04', title: '参与', body: '首周完成实践档案，之后带着真实问题参与工作会、回应和复盘。' },
 ]
 
 const mechanisms = [
-  { title: '火种技能读书会', status: '首个固定机制', body: '不是泛读一本书，而是围绕一项能力共同学习。每期形成主题、实践任务、成员分享和可复用资料。' },
-  { title: '火种分享', status: '成员轮值', body: '分享真实项目进展、踩坑复盘和可执行方法。人人都可以是分享者，也必须尊重失败经验。' },
-  { title: '引火连接', status: '成员互助', body: '发现两个人可能彼此需要时，主动完成一次有上下文的介绍，而不是丢一个联系方式。' },
-  { title: '共燃项目', status: '逐步验证', body: '项目启动前写清目标、角色、周期、交付和分配方式。先用小项目建立信用，再谈长期协作。' },
+  { title: '真实问题工作会', status: '每月一次', body: '成员带来正在推进的具体问题。先补事实和约束，再形成一个能在会后执行的下一步。' },
+  { title: '案例共读与复盘', status: '每月一次', body: '围绕成员案例或一份共同材料讨论，留下问题清单、判断过程和可复用的实践记录。' },
+  { title: '有上下文的连接', status: '每人一次请求', body: '90 天内可提出一次连接请求。只有匹配度与双方意愿成立时才介绍，不交换通讯录，不保证形成合作。' },
+  { title: '共燃项目机会', status: '机会权益', body: '有合适项目才启动，另行写清目标、角色、周期、责任和结算。共同体不保证项目数量、收入或结果。' },
 ]
 
 export default function CommunityPage() {
@@ -50,7 +50,7 @@ export default function CommunityPage() {
           <h1 className="editorial-display mt-5 max-w-[13ch] text-[2.4rem] leading-[1.1] sm:text-[3.2rem]">星火者</h1>
           <div className="mt-10 grid gap-8 border-t border-white/20 pt-8 lg:grid-cols-[0.62fr_0.38fr]">
             <div>
-              <p className="max-w-3xl text-xl leading-9 text-white sm:text-2xl sm:leading-10">独立经营，但不孤立。带着真实项目进来，在行动、复盘和协作中建立信任。</p>
+              <p className="max-w-3xl text-xl leading-9 text-white sm:text-2xl sm:leading-10">独立经营，但不孤立。带着正在做的事进来，用 90 天验证一次真实推进。</p>
               <Link
                 href="#join"
                 className="motion-press mt-7 inline-flex min-h-11 items-center border border-white/35 px-5 py-3 text-sm font-semibold text-white transition-colors hover:border-white hover:bg-white hover:text-ink"
@@ -58,7 +58,7 @@ export default function CommunityPage() {
                 查看首期招募
               </Link>
             </div>
-            <p className="text-sm leading-7 text-white/65">面向 AI 时代的一人公司、转型创业者和独立实践者。不是围观群，也不是只靠发起人输出的课堂，而是把真实项目带进长期关系。</p>
+            <p className="text-sm leading-7 text-white/65">面向 AI 时代的一人公司、转型创业者和独立实践者。不是围观群，也不是只靠发起人输出的课堂，而是围绕真实问题形成反馈、连接和复盘。</p>
           </div>
         </div>
       </section>
@@ -71,15 +71,15 @@ export default function CommunityPage() {
           </div>
           <div className="space-y-5 text-base leading-8 text-ink-muted">
             <p>AI 降低了生产门槛，却没有自动解决方向、信用、客户、协作和持续行动。很多一人公司不是能力不够，而是长期缺少反馈、连接和共同完成真实项目的环境。</p>
-            <p>星火者共同体想做的不是制造热闹，而是让成员逐渐说清三件事：我能做什么、我需要什么、别人为什么愿意和我合作。</p>
-            <p className="font-semibold text-ink">在 ZenoAIHome 中，公开内容负责把判断开放出来，项目服务负责对具体交付承担责任，星火者负责让有真实项目的人在长期关系里互相验证。</p>
+            <p>星火者共同体想做的不是制造热闹，而是让成员逐渐说清三件事：我正在做什么、我能提供什么、下一步需要谁或什么帮助。</p>
+            <p className="font-semibold text-ink">在 ZenoAIHome 中，公开内容负责把判断开放出来，项目服务对具体交付承担责任，星火者则用 90 天验证一群实践者能否形成有效反馈、连接和协作。</p>
           </div>
         </section>
 
         <section className="mt-20 border-y border-border py-12 sm:mt-24 sm:py-16">
           <div className="max-w-3xl">
             <p className="text-sm font-semibold text-stone">实践俱乐部机制</p>
-            <h2 className="editorial-display mt-4 text-[1.8rem] leading-[1.15] sm:text-[2.2rem] lg:text-[2.6rem]">从学习开始，走向连接和项目。</h2>
+            <h2 className="editorial-display mt-4 text-[1.8rem] leading-[1.15] sm:text-[2.2rem] lg:text-[2.6rem]">先把真实问题推进，再判断能否一起做事。</h2>
           </div>
           <div className="mt-10 grid sm:grid-cols-2">
             {mechanisms.map((item, index) => (
@@ -112,7 +112,7 @@ export default function CommunityPage() {
           <div className="max-w-3xl">
             <p className="text-sm font-semibold text-stone">如何进入</p>
             <h2 className="editorial-display mt-4 text-[1.8rem] leading-[1.15] sm:text-[2.2rem] lg:text-[2.6rem]">有门槛，但不看漂亮简历。</h2>
-            <p className="mt-5 text-sm leading-7 text-ink-muted">更看重真实行动、合作边界和是否愿意贡献。当前处于发起阶段，采用小规模沟通与邀请。</p>
+            <p className="mt-5 text-sm leading-7 text-ink-muted">更看重真实行动、合作边界和可投入时间。首期 8-10 人，至少 6 人确认后启动。</p>
           </div>
           <div className="mt-10 grid border-y border-border sm:grid-cols-2 lg:grid-cols-4">
             {entrySteps.map((item, index) => (
@@ -128,16 +128,16 @@ export default function CommunityPage() {
         <section id="join" className="mt-16 scroll-mt-24 border-2 border-stone bg-surface-warm p-7 sm:mt-20 sm:p-10">
           <div className="grid gap-8 lg:grid-cols-[0.58fr_0.42fr] lg:items-center">
             <div>
-              <p className="text-sm font-semibold text-stone">首期试运行招募</p>
-              <h2 className="editorial-display mt-4 text-[1.8rem] leading-[1.15] sm:text-[2.2rem] lg:text-[2.6rem]">20 位实践者，6 个月，从认识到一起做事。</h2>
+              <p className="text-sm font-semibold text-stone">首期验证招募</p>
+              <h2 className="editorial-display mt-4 text-[1.8rem] leading-[1.15] sm:text-[2.2rem] lg:text-[2.6rem]">8-10 位实践者，用 90 天验证一次真实推进。</h2>
               <div className="mt-6 grid gap-3 sm:grid-cols-3">
                 <div>
                   <p className="text-2xl font-bold text-ink">¥1,499</p>
-                  <p className="text-xs text-ink-muted mt-1">6 个月 · 首期锁价</p>
+                  <p className="text-xs text-ink-muted mt-1">90 天 · 单一验证价</p>
                 </div>
                 <div>
-                  <p className="text-2xl font-bold text-ink">20 人</p>
-                  <p className="text-xs text-ink-muted mt-1">满即关闭</p>
+                  <p className="text-2xl font-bold text-ink">8-10 人</p>
+                  <p className="text-xs text-ink-muted mt-1">至少 6 人开营</p>
                 </div>
                 <div>
                   <p className="text-2xl font-bold text-ink">72h</p>
@@ -145,8 +145,9 @@ export default function CommunityPage() {
                 </div>
               </div>
               <p className="mt-5 max-w-xl text-sm leading-7 text-ink-muted">
-                每周隔周一次火种读书会。日常群里有回应。有合适的项目一起做，没有就继续做自己的事。不做课，不卖资料，不保证发财。
+                每月一次真实问题工作会、一次案例共读与复盘。每位成员建立实践档案，并可提出一次有上下文的连接请求。不做课，不卖资料，不承诺即时答疑。
               </p>
+              <p className="mt-3 max-w-xl text-xs leading-6 text-ink-muted">共燃项目属于机会权益，不保证项目、客户、收入或合作结果；企业服务由广西赞诺数智科技有限公司另行报价、签约和结算。</p>
               <p className="mt-4 max-w-xl border-l-2 border-stone/40 pl-4 text-xs leading-6 text-ink-muted">
                 发起人 Zeno 同时担任{' '}
                 <a

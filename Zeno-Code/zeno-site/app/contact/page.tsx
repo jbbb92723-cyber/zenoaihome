@@ -5,20 +5,26 @@ import Container from '@/components/ui/Container'
 
 export const metadata: Metadata = {
   title: { absolute: '联系赞诺｜项目合作、星火者与装修判断' },
-  description: '联系赞诺。适用于AI培训、工作流、企业知识库、智能体、网站开发、星火者共同体和装修判断相关沟通。',
+  description: '联系赞诺。适用于单问题判断诊断、装修专项判断与全程顾问、AI项目、培训和星火者共同体相关沟通。',
   alternates: { canonical: 'https://zenoaihome.com/contact' },
 }
 
 const directions = [
   {
+    title: '单问题判断诊断',
+    body: '请只提交一个正在影响决定的问题，并说明背景、已有材料和必须做决定的时间。首批验证价 ¥299。',
+    note: '微信备注：单问题判断',
+    href: '/services/diagnosis',
+  },
+  {
     title: 'AI 培训',
-    body: '请说明行业、人数、形式、团队使用过的工具，以及最希望解决的三个工作场景。',
+    body: '一个明确场景的专项实操从 ¥2,500 起；企业内训和多人项目会根据人数、形式、资料与周期评估。请说明行业、人数和最希望解决的三个场景。',
     note: '微信备注：培训',
     href: '/training',
   },
   {
     title: 'AI 项目',
-    body: '请说明现在怎么做、卡在哪里、已有资料和希望交付的结果。知识库、智能体和网站需求都适用。',
+    body: '一个明确任务的专项协作从 ¥2,500 起；知识库、智能体和网站等跨任务项目从 ¥12,800 起评估。请说明现在怎么做、卡在哪里、已有资料和希望交付的结果。',
     note: '微信备注：AI项目',
     href: '/services',
   },
@@ -30,9 +36,9 @@ const directions = [
   },
   {
     title: '装修判断',
-    body: '请提供城市、面积、装修阶段，以及已有的户型、报价或合同材料。也可以先使用站内免费工具。',
-    note: '微信备注：装修',
-    href: '/tools',
+    body: '请提供城市、面积、项目类型、当前阶段和已有材料。一个节点 ¥2,500；多个节点的全程顾问 ¥12,800 起。',
+    note: '微信备注：装修专项 / 全程顾问',
+    href: '/renovation',
   },
 ]
 
@@ -56,7 +62,7 @@ export default function ContactPage() {
       <Container className="py-16 sm:py-20 lg:py-24">
         <section className="grid gap-12 lg:grid-cols-[0.3fr_0.7fr]">
           <div>
-            <p className="text-sm font-semibold text-stone">四种来意</p>
+            <p className="text-sm font-semibold text-stone">五种来意</p>
             <h2 className="editorial-display mt-4 text-[1.8rem] leading-[1.15] sm:text-[2.2rem] lg:text-[2.6rem]">找到对应入口，再发消息。</h2>
           </div>
           <div className="border-t border-border">

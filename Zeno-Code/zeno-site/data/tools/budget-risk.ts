@@ -109,7 +109,7 @@ export const riskSummaries: Record<RiskKey, RiskSummary> = {
     firstStep: '先把报价里的模糊项、漏项和追问清单列出来，再决定谈不谈价格。',
     resource: { label: '先看报价单初查模板', href: '/checklists/quote-initial-check' },
     article: { label: '先看装修预算为什么总超', href: '/blog/zhuangxiu-yusuan-weishenme-zongchao' },
-    service: { label: '直接看报价审核服务', href: '/services/quote-review' },
+    service: { label: '直接看装修专项判断', href: '/services/quote-review' },
   },
   R2: {
     key: 'R2',
@@ -121,7 +121,7 @@ export const riskSummaries: Record<RiskKey, RiskSummary> = {
     firstStep: '先把总预算拆成几份钱，再看哪些不能动、哪些可以晚点买、哪些只是想要。',
     resource: { label: '先拿装修预算模板', href: '/resources#zhuangxiu-yusuan-moban' },
     article: { label: '先看预算为什么总超', href: '/blog/zhuangxiu-yusuan-weishenme-zongchao' },
-    service: { label: '直接看报价 / 合同人工审查', href: '/services/quote-review' },
+    service: { label: '直接看装修专项判断', href: '/services/quote-review' },
   },
   R3: {
     key: 'R3',

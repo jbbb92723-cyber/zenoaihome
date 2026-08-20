@@ -3,6 +3,7 @@ import {
   quoteRiskRules,
   renovationProjectRisks,
 } from '@/data/risk-control/quote-risk'
+import { SERVICE_PRICING } from '@/data/services/pricing'
 
 type Locale = 'zh' | 'en'
 
@@ -96,6 +97,51 @@ const SITE_RESOURCES: SiteResource[] = [
     summaryEn: 'Turns field experience into searchable, reusable and testable working assets.',
     signals: [/经验|一人公司|OPC|个人品牌|内容系统|知识系统|转型|传统行业/i],
     articleKeywords: ['经验', '一人公司', 'OPC', '个人品牌', '传统行业'],
+  },
+  {
+    href: SERVICE_PRICING.diagnosis.href,
+    title: `${SERVICE_PRICING.diagnosis.shortName} · ${SERVICE_PRICING.diagnosis.displayPrice}`,
+    titleEn: 'Single-question diagnosis',
+    summary: '一个具体问题、必要资料、一次沟通和一页判断记录；先确认是否适合再开始。',
+    summaryEn: 'One question, source materials, one conversation and a concise judgment record.',
+    signals: [/一个问题|拿不准|怎么选|咨询|问一下|帮我判断|单问题|诊断/i],
+    articleKeywords: ['判断', '咨询', '选择'],
+  },
+  {
+    href: SERVICE_PRICING.renovationSpecialist.href,
+    title: `${SERVICE_PRICING.renovationSpecialist.shortName} · ${SERVICE_PRICING.renovationSpecialist.displayPrice}`,
+    titleEn: 'Renovation specialist review',
+    summary: '围绕完整报价合同、预算材料或一个施工节点完成资料预审、沟通和书面判断。',
+    summaryEn: 'Reviews a full quote, contract, budget package or one construction decision point.',
+    signals: [/整份报价|报价合同|合同审查|付款节点|施工节点|材料选择|专项判断|完整材料/i],
+    articleKeywords: ['报价', '合同', '施工', '材料'],
+  },
+  {
+    href: SERVICE_PRICING.renovationAdvisor.href,
+    title: `${SERVICE_PRICING.renovationAdvisor.shortName} · ${SERVICE_PRICING.renovationAdvisor.displayPrice}`,
+    titleEn: 'Renovation decision advisor',
+    summary: '多个关键节点持续协作；基准范围最多 6 个节点、最长 120 天，按项目复杂度报价。',
+    summaryEn: 'Ongoing collaboration across multiple renovation decisions, scoped and quoted by project.',
+    signals: [/全程|整个装修|持续跟进|多个节点|项目顾问|商业空间|旧房改造|装修决策顾问/i],
+    articleKeywords: ['装修', '项目', '决策', '交付'],
+  },
+  {
+    href: SERVICE_PRICING.focusedCollaboration.href,
+    title: `${SERVICE_PRICING.focusedCollaboration.shortName} · ${SERVICE_PRICING.focusedCollaboration.displayPrice}`,
+    titleEn: 'Focused AI collaboration',
+    summary: '围绕一个明确 AI 任务、工作坊、工作流工作包或阶段性交付，先做小范围验证。',
+    summaryEn: 'A focused AI task, workshop, workflow package or delivery phase for a scoped validation.',
+    signals: [/AI培训|培训|工作坊|工作流|自动化|一个任务|专项协作|小范围实操/i],
+    articleKeywords: ['AI', '培训', '工作流', '协作'],
+  },
+  {
+    href: SERVICE_PRICING.projectAdvisor.href,
+    title: `${SERVICE_PRICING.projectAdvisor.shortName} · ${SERVICE_PRICING.projectAdvisor.displayPrice}`,
+    titleEn: 'AI project advisor',
+    summary: '面向知识库、任务型助手、网站和多任务协作项目，按团队、资料、系统范围和周期评估。',
+    summaryEn: 'Scoped project advising for knowledge bases, task assistants, websites and multi-task collaboration.',
+    signals: [/企业知识库|知识库项目|智能体项目|网站开发|网站项目|系统上线|多人协作|项目顾问/i],
+    articleKeywords: ['知识库', '智能体', '网站', '项目'],
   },
   {
     href: '/services',

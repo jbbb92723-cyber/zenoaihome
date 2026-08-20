@@ -124,7 +124,7 @@ export default function ZenoOSPage() {
           </p>
           <div className="mt-8 flex flex-wrap gap-4">
             <CTA href="/tools/quote-check" label="先用免费工具试试 →" variant="primary" />
-            <CTA href="/services/quote-review" label="¥2,500 完整审核 →" variant="secondary" />
+            <CTA href="/services/quote-review" label="¥2,500 装修专项判断 →" variant="secondary" />
           </div>
         </Container>
       </section>
@@ -207,7 +207,7 @@ export default function ZenoOSPage() {
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <CTA href="/tools/quote-check" label="免费初筛 →" variant="primary" />
-            <CTA href="/services/quote-review" label="¥2,500 完整审核 →" variant="secondary" />
+            <CTA href="/services/quote-review" label="¥2,500 装修专项判断 →" variant="secondary" />
           </div>
         </section>
 

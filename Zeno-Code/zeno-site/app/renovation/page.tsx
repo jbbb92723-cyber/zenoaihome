@@ -3,6 +3,7 @@ import Link from 'next/link'
 import Container from '@/components/ui/Container'
 import CTA from '@/components/ui/CTA'
 import StructuredData from '@/components/ui/StructuredData'
+import { RENOVATION_SERVICE_LEVELS } from '@/data/services/pricing'
 
 export const metadata: Metadata = {
   title: '装修判断｜报价、合同和施工怎么检查',
@@ -75,7 +76,7 @@ export default function RenovationPage() {
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
             <CTA href="/tools" label="先用免费工具 →" variant="primary" />
-            <CTA href="/services/quote-review" label="看报价审核服务 →" variant="secondary" />
+            <CTA href="/services/diagnosis" label="看人工判断服务 →" variant="secondary" />
           </div>
           <p className="mt-4 text-sm text-white/50">先自己判断；需要具体材料审核时，服务页会写清价格、交付和边界。</p>
         </Container>
@@ -97,6 +98,28 @@ export default function RenovationPage() {
                 <span className="mt-4 inline-flex items-center gap-1 text-xs font-semibold text-stone group-hover:text-ink transition-colors">
                   了解更多 →
                 </span>
+              </Link>
+            ))}
+          </div>
+        </section>
+
+        {/* ── 付费判断路径 ── */}
+        <section className="mt-16 sm:mt-20">
+          <p className="text-sm font-semibold text-stone">付费判断路径</p>
+          <h2 className="editorial-display mt-4 text-[2.2rem] leading-[1.12] sm:text-[3rem]">
+            按问题深度选择，不在相近价格里猜。
+          </h2>
+          <p className="mt-5 max-w-2xl text-sm leading-7 text-ink-muted">
+            一个问题先诊断，一个完整节点做专项判断，需要持续参与多个节点时再评估全程顾问。服务开始前都会确认材料、范围、交付和责任边界。
+          </p>
+          <div className="mt-10 border-t border-border">
+            {RENOVATION_SERVICE_LEVELS.map((level) => (
+              <Link key={level.code} href={level.href} className="group grid gap-3 border-b border-border py-7 sm:grid-cols-[3rem_12rem_10rem_1fr_auto] sm:items-center">
+                <span className="text-xs font-semibold text-stone">{level.code}</span>
+                <h3 className="text-base font-semibold text-ink">{level.name}</h3>
+                <p className="text-xl font-bold text-ink">{level.price}</p>
+                <p className="text-sm leading-7 text-ink-muted">{level.note}</p>
+                <span className="text-sm font-semibold text-stone transition-colors group-hover:text-ink">了解 →</span>
               </Link>
             ))}
           </div>
@@ -155,18 +178,18 @@ export default function RenovationPage() {
           </div>
         </section>
 
-        {/* ── 需要深度对接？ ── */}
+        {/* ── 需要人工判断？ ── */}
         <section className="mt-16 border-2 border-stone bg-surface-warm p-6 sm:p-8 text-center sm:mt-20">
           <h2 className="text-xl font-semibold text-ink mb-3">
             看完还是拿不准？
           </h2>
           <p className="text-2xl font-bold text-stone tracking-wide mb-2">zanxiansheng2025</p>
           <p className="text-sm text-ink-muted mb-5 max-w-lg mx-auto">
-            已有报价或合同，先看人工审查的价格、交付和边界；情况不适合标准服务，再通过联系页沟通。
+            先从一个具体问题判断服务深度。已有完整报价、合同或施工节点时，可直接进入装修专项判断；多个节点需要持续协作时，再评估全程顾问。
           </p>
           <div className="flex flex-wrap justify-center gap-3">
-            <CTA href="/services/quote-review" label="看 ¥2,500 报价审核 →" variant="primary" />
-            <CTA href="/contact" label="情况复杂，先联系我 →" variant="secondary" />
+            <CTA href="/services/diagnosis" label="¥299 单问题判断 →" variant="primary" />
+            <CTA href="/services/renovation-advisor" label="¥12,800起 全程顾问 →" variant="secondary" />
           </div>
         </section>
 

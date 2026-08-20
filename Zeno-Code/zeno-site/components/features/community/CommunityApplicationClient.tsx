@@ -43,7 +43,7 @@ const STATUS_COPY: Record<string, { label: string; title: string; body: string }
   completed: {
     label: '已通过',
     title: '欢迎成为本期星火者',
-    body: '你的首期成员订单已经生成。完成付款并经后台确认后，系统会自动开通 6 个月成员资格。',
+    body: '你的验证席订单已经生成。完成付款并经后台确认后，系统会自动开通 90 天成员资格。',
   },
   rejected: {
     label: '本期未通过',
@@ -82,14 +82,16 @@ export default function CommunityApplicationClient({
     setError('')
 
     const currentWork = String(formData.get('currentWork') ?? '').trim()
+    const goal = String(formData.get('goal') ?? '').trim()
     const canOffer = String(formData.get('canOffer') ?? '').trim()
-    const needs = String(formData.get('needs') ?? '').trim()
-    const reason = String(formData.get('reason') ?? '').trim()
+    const desiredConnection = String(formData.get('desiredConnection') ?? '').trim()
+    const timeCommitment = String(formData.get('timeCommitment') ?? '').trim()
     const message = [
       `正在做：${currentWork}`,
+      `90 天目标：${goal}`,
       `能提供：${canOffer}`,
-      `正在寻找：${needs}`,
-      `加入原因：${reason}`,
+      `希望连接：${desiredConnection}`,
+      `每月可投入：${timeCommitment}`,
     ].join('\n')
 
     try {
@@ -183,16 +185,20 @@ export default function CommunityApplicationClient({
               <textarea name="currentWork" required maxLength={220} rows={3} className="mt-2 w-full resize-y border border-border bg-surface px-4 py-3 text-sm font-normal leading-6 text-ink outline-none focus:border-stone" />
             </label>
             <label className="block text-sm font-semibold text-ink">
+              90 天后，你希望完成什么可验证的结果
+              <textarea name="goal" required maxLength={220} rows={3} className="mt-2 w-full resize-y border border-border bg-surface px-4 py-3 text-sm font-normal leading-6 text-ink outline-none focus:border-stone" />
+            </label>
+            <label className="block text-sm font-semibold text-ink">
               你能为其他成员提供什么
               <textarea name="canOffer" required maxLength={220} rows={3} className="mt-2 w-full resize-y border border-border bg-surface px-4 py-3 text-sm font-normal leading-6 text-ink outline-none focus:border-stone" />
             </label>
             <label className="block text-sm font-semibold text-ink">
-              你现在最需要什么
-              <textarea name="needs" required maxLength={220} rows={3} className="mt-2 w-full resize-y border border-border bg-surface px-4 py-3 text-sm font-normal leading-6 text-ink outline-none focus:border-stone" />
+              你希望连接什么样的人，解决什么问题
+              <textarea name="desiredConnection" required maxLength={220} rows={3} className="mt-2 w-full resize-y border border-border bg-surface px-4 py-3 text-sm font-normal leading-6 text-ink outline-none focus:border-stone" />
             </label>
             <label className="block text-sm font-semibold text-ink">
-              为什么想加入星火者
-              <textarea name="reason" required maxLength={300} rows={4} className="mt-2 w-full resize-y border border-border bg-surface px-4 py-3 text-sm font-normal leading-6 text-ink outline-none focus:border-stone" />
+              你每月能投入多少时间参与活动、回应或复盘
+              <textarea name="timeCommitment" required maxLength={160} rows={2} className="mt-2 w-full resize-y border border-border bg-surface px-4 py-3 text-sm font-normal leading-6 text-ink outline-none focus:border-stone" />
             </label>
 
             {error && <p className="border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">{error}</p>}

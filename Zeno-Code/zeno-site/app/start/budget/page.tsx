@@ -82,8 +82,7 @@ export default function BudgetStagePage() {
           { label: '签约前检查模板', href: '/checklists' },
         ]}
         services={[
-          { label: '报价审核服务', href: '/services/quote-review' },
-          { label: '报价 / 合同人工审查', href: '/services/quote-review' },
+          { label: '装修专项判断', href: '/services/quote-review' },
         ]}
         prev={{ label: '先看人：装修公司 / 工长 / 师傅', href: '/start/people' }}
         next={{ label: '再看合同：签约前必须改什么', href: '/start/contract' }}

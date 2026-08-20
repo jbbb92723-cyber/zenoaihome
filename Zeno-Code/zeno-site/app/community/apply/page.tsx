@@ -11,7 +11,7 @@ import {
 
 export const metadata: Metadata = {
   title: '申请加入星火者共同体',
-  description: '提交星火者共同体首期成员申请，查看面聊、订单和成员资格进度。',
+  description: '申请星火者 90 天实践共同体验证席，查看面聊、订单和成员资格进度。',
   robots: { index: false, follow: false },
 }
 
@@ -61,9 +61,9 @@ export default async function CommunityApplyPage() {
     <main className="bg-canvas text-ink">
       <section className="border-b border-white/10 bg-ink px-5 py-14 text-white sm:px-8 sm:py-16 lg:px-12">
         <div className="mx-auto max-w-[920px]">
-          <p className="text-sm font-semibold text-white/55">星火者共同体 · 首期</p>
+          <p className="text-sm font-semibold text-white/55">星火者 · 90 天实践共同体</p>
           <h1 className="editorial-display mt-4 text-[2.35rem] leading-tight sm:text-[3rem]">成员申请与进度</h1>
-          <p className="mt-5 max-w-2xl text-sm leading-7 text-white/65">20 人，6 个月。申请、面聊、付款和入营状态都在这里留痕。</p>
+          <p className="mt-5 max-w-2xl text-sm leading-7 text-white/65">首期 8-10 人。申请、面聊、付款和成员状态都在这里留痕。</p>
         </div>
       </section>
 

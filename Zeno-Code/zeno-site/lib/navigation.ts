@@ -81,8 +81,9 @@ export const primaryNav: PrimaryNavItem[] = [
         items: [
           { key: 'renovation-home', zh: { label: '装修视野', href: '/renovation', desc: '传统行业与装修实践整理出的判断路径' }, en: { label: 'Renovation practice', href: '/en/tools' } },
           { key: 'renovation-tools', zh: { label: '免费判断工具', href: '/tools', desc: '居住需求自检、报价初筛和检查工具' }, en: { label: 'Free tools', href: '/en/tools' } },
-          { key: 'renovation-resources', zh: { label: '签约前资料库', href: '/resources', desc: '风险词典、规则库和检查模板' }, en: { label: 'Resources', href: '/en/tools' } },
-          { key: 'renovation-review', zh: { label: '报价 / 合同人工审查', href: '/services/quote-review', desc: '已有具体材料时，看清交付和价格' }, en: { label: 'Quote review', href: '/en/services' } },
+          { key: 'renovation-diagnosis', zh: { label: '单问题判断诊断', href: '/services/diagnosis', desc: '一个具体问题，¥299 首批验证价' }, en: { label: 'Single-question diagnosis', href: '/en/services' } },
+          { key: 'renovation-review', zh: { label: '装修专项判断', href: '/services/quote-review', desc: '一个完整决策节点，¥2,500 / 次' }, en: { label: 'Specialist review', href: '/en/services' } },
+          { key: 'renovation-advisor', zh: { label: '装修决策顾问', href: '/services/renovation-advisor', desc: '多个节点持续协作，¥12,800 起' }, en: { label: 'Renovation advisor', href: '/en/services' } },
         ],
       },
     ],

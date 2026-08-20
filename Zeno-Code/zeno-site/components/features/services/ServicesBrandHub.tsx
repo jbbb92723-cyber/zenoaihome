@@ -10,6 +10,7 @@ import {
   GraduationCap,
   Wrench,
 } from '@phosphor-icons/react'
+import { AI_SERVICE_LEVELS, SERVICE_PRICING } from '@/data/services/pricing'
 
 const services = [
   {
@@ -21,6 +22,8 @@ const services = [
     input: '团队背景、人数、现有工具基础、希望解决的工作场景。',
     outputs: ['定制课程提纲', '现场或线上实操', '操作资料与模板', '课后复盘建议'],
     boundary: '不讲脱离业务的工具大全，不承诺一场培训解决所有转型问题。',
+    price: SERVICE_PRICING.focusedCollaboration.displayPrice,
+    priceNote: '小范围实操；企业内训按人数、形式与周期评估。',
     href: '/training',
     cta: '查看培训方案',
   },
@@ -33,6 +36,8 @@ const services = [
     input: '一项真实任务、现有操作步骤、常用资料和期望结果样本。',
     outputs: ['工作场景拆解', '工具选择建议', '最小可运行协作流程', '操作说明与交接'],
     boundary: '先做一条能跑通的协作流程，不把创作和判断压成固定 SOP，也不一开始就搭庞大自动化系统。',
+    price: SERVICE_PRICING.focusedCollaboration.displayPrice,
+    priceNote: '一个明确任务工作包；多个任务进入项目顾问评估。',
     href: '/contact',
     cta: '说明你的场景',
   },
@@ -45,6 +50,8 @@ const services = [
     input: '现有文档、表格、常见问答、业务规则和可使用权限。',
     outputs: ['资料盘点与清理', '知识分类结构', '检索问答入口', '更新规范与使用手册'],
     boundary: '知识库质量取决于原始资料和维护机制，不承诺用 AI 自动补齐缺失事实。',
+    price: SERVICE_PRICING.projectAdvisor.displayPrice,
+    priceNote: '按资料规模、权限、检索入口和维护要求评估。',
     href: '/contact',
     cta: '提交资料情况',
   },
@@ -57,6 +64,8 @@ const services = [
     input: '任务说明、真实输入样本、合格输出样本、不可触碰的业务边界。',
     outputs: ['任务边界定义', '提示与工作流程', '样本测试记录', '部署入口与使用手册'],
     boundary: '不把智能体包装成“数字员工”或“专家”，不把高风险决策完全交给 AI，关键结果必须保留人工复核。',
+    price: SERVICE_PRICING.projectAdvisor.displayPrice,
+    priceNote: '按任务边界、样本测试、部署入口和维护要求评估。',
     href: '/contact',
     cta: '描述智能体任务',
   },
@@ -69,6 +78,8 @@ const services = [
     input: '业务定位、目标用户、现有内容、功能范围、参考网站和上线时间。',
     outputs: ['定位与信息架构', '响应式页面开发', '基础 SEO 与部署', '交接文档'],
     boundary: '不接受需求无限扩张；支付、会员和复杂后台需单独评估。',
+    price: SERVICE_PRICING.projectAdvisor.displayPrice,
+    priceNote: '按信息架构、页面范围、功能和上线要求评估。',
     href: '/contact',
     cta: '说明网站需求',
   },
@@ -95,7 +106,7 @@ export default function ServicesBrandHub() {
             <p className="mt-4 max-w-2xl text-sm leading-7 text-white/55">不做 AI 数字人获客、批量代写或无证据的结果承诺。</p>
           </div>
           <div className="lg:text-right">
-            <p className="text-sm leading-7 text-white/60">当前采用项目制合作。未标准化的服务不挂统一价格，确认范围与验收方式后报价。</p>
+            <p className="text-sm leading-7 text-white/60">价格先帮助你找到合适的入口；涉及人数、资料、系统、现场或上线要求时，确认范围与验收方式后再出正式报价。</p>
             <div className="mt-6 flex flex-col gap-3 sm:flex-row lg:justify-end">
               <Link href="/training" className="motion-press inline-flex min-h-11 items-center justify-center gap-2 rounded-[3px] bg-white px-5 py-3 text-sm font-semibold text-ink hover:bg-surface-warm">
                 看培训方案 <ArrowRight size={17} aria-hidden />
@@ -104,6 +115,30 @@ export default function ServicesBrandHub() {
                 发起项目沟通 <ArrowRight size={17} aria-hidden />
               </Link>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="border-b border-border px-5 py-12 sm:px-8 lg:px-12">
+        <div className="mx-auto grid max-w-[1320px] gap-8 lg:grid-cols-[0.62fr_0.38fr] lg:items-center">
+          <div>
+            <p className="text-sm font-semibold text-stone">先按任务深度选择</p>
+            <h2 className="editorial-display mt-4 text-[1.8rem] leading-[1.15] sm:text-[2.2rem]">不把不同工作硬塞进同一种套餐。</h2>
+            <p className="mt-4 max-w-2xl text-sm leading-7 text-ink-muted">
+              一个具体问题先做判断；一项明确任务再做专项协作；涉及多个任务、多人协作或系统上线时，进入项目顾问评估。服务开始前会写清材料、交付物、验收和责任边界。
+            </p>
+          </div>
+          <div className="border-t border-border lg:border-t-0">
+            {AI_SERVICE_LEVELS.map((level) => (
+              <Link key={level.code} href={level.href} className="group grid gap-2 border-b border-border py-4 sm:grid-cols-[2rem_1fr_auto] sm:items-center">
+                <span className="text-xs font-semibold text-stone">{level.code}</span>
+                <span>
+                  <span className="block text-sm font-semibold text-ink">{level.name}</span>
+                  <span className="mt-1 block text-xs leading-5 text-ink-muted">{level.note}</span>
+                </span>
+                <span className="text-sm font-bold text-ink group-hover:text-stone">{level.price} <ArrowRight size={15} className="inline" aria-hidden /></span>
+              </Link>
+            ))}
           </div>
         </div>
       </section>
@@ -158,6 +193,10 @@ export default function ServicesBrandHub() {
                         ))}
                       </ul>
                       <p className="mt-5 border-l-2 border-stone-light pl-4 text-xs leading-6 text-ink-muted"><span className="font-semibold text-ink">边界：</span>{service.boundary}</p>
+                      <div className="mt-5 border-t border-border pt-4">
+                        <p className="text-base font-bold text-ink">{service.price}</p>
+                        <p className="mt-1 text-xs leading-5 text-ink-muted">{service.priceNote}</p>
+                      </div>
                       <Link href={service.href} className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-ink hover:text-stone">
                         {service.cta} <ArrowRight size={16} aria-hidden />
                       </Link>

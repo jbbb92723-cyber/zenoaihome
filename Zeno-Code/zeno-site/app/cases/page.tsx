@@ -63,7 +63,7 @@ const judgmentSamples: JudgmentSample[] = [
     ],
     articleSlugs: ['baojia-dan-zenme-kan', 'article-03-04', 'article-03-02'],
     tool: { label: '做免费报价初筛', href: '/tools/quote-check' },
-    service: { label: '看报价 / 合同人工审查', href: '/services/quote-review' },
+    service: { label: '看装修专项判断', href: '/services/quote-review' },
   },
   {
     code: 'Sample 03',

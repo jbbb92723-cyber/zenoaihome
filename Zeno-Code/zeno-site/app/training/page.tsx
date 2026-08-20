@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import Container from '@/components/ui/Container'
+import { AI_SERVICE_LEVELS } from '@/data/services/pricing'
 
 export const metadata: Metadata = {
   title: 'AI 培训｜从团队每天的工作开始',
@@ -84,13 +85,35 @@ export default function TrainingPage() {
             <p className="mt-7 max-w-3xl text-base leading-8 text-ink-muted sm:text-lg">赞诺用传统行业经营者的视角讲 AI。目标不是让学员记住更多工具，而是带着一个真实任务完成第一次可继续使用的实践。</p>
           </div>
           <div>
-            <p className="border-l-2 border-stone pl-5 text-sm leading-7 text-ink-muted">适合企业内训、商会分享、创业社群和小班实操。具体内容、形式和费用根据人数与需求确认。</p>
+            <p className="border-l-2 border-stone pl-5 text-sm leading-7 text-ink-muted">小范围定向实操从 ¥2,500 起；企业内训、商会分享和多人现场项目，会根据人数、形式、材料与周期评估。</p>
             <Link href="/contact" className="motion-press mt-6 inline-flex min-h-11 items-center rounded-[7px] bg-ink px-5 py-3 text-sm font-semibold text-white hover:bg-stone-deep">沟通培训需求</Link>
           </div>
         </Container>
       </section>
 
       <Container className="py-16 sm:py-20 lg:py-24">
+        <section className="border-y border-border py-10 sm:py-12">
+          <div className="grid gap-8 lg:grid-cols-[0.38fr_0.62fr] lg:items-start">
+            <div>
+              <p className="text-sm font-semibold text-stone">培训如何定价</p>
+              <h2 className="editorial-display mt-4 text-[1.8rem] leading-[1.15] sm:text-[2.2rem]">先从一个场景开始，再决定是否做项目。</h2>
+              <p className="mt-4 text-sm leading-7 text-ink-muted">培训不按课时堆内容，而按真实任务、参与人数、材料准备和后续交付确定范围。价格是判断入口，不是脱离范围的承诺。</p>
+            </div>
+            <div className="border-t border-border">
+              {AI_SERVICE_LEVELS.map((level) => (
+                <Link key={level.code} href={level.href} className="group grid gap-2 border-b border-border py-5 sm:grid-cols-[2rem_1fr_auto] sm:items-center">
+                  <span className="text-xs font-semibold text-stone">{level.code}</span>
+                  <span>
+                    <span className="block text-sm font-semibold text-ink">{level.name}</span>
+                    <span className="mt-1 block text-xs leading-5 text-ink-muted">{level.note}</span>
+                  </span>
+                  <span className="text-sm font-bold text-ink group-hover:text-stone">{level.price} →</span>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+
         <section className="grid gap-12 lg:grid-cols-[0.3fr_0.7fr]">
           <div>
             <p className="text-sm font-semibold text-stone">课程模块</p>
@@ -145,7 +168,7 @@ export default function TrainingPage() {
         <section className="mt-16 grid gap-8 border-y border-border py-10 sm:mt-20 lg:grid-cols-[0.62fr_0.38fr] lg:items-center">
           <div>
             <h2 className="editorial-display text-[1.8rem] leading-[1.15] sm:text-[2.2rem] lg:text-[2.6rem]">把团队情况和目标说清楚。</h2>
-            <p className="mt-4 max-w-2xl text-sm leading-7 text-ink-muted">请提供行业、人数、目前使用过的 AI 工具、最希望解决的三个场景。确认匹配后，再给出课程组合和正式报价。</p>
+            <p className="mt-4 max-w-2xl text-sm leading-7 text-ink-muted">请提供行业、人数、目前使用过的 AI 工具、最希望解决的三个场景。一个明确场景可以先从 ¥2,500 起的专项协作开始；需要跨多个场景持续推进时，再按 ¥12,800 起的项目顾问评估。企业内训的最终费用还会结合人数、形式、资料准备和周期确认。</p>
           </div>
           <div className="lg:text-right">
             <Link href="/contact" className="motion-press inline-flex min-h-11 items-center rounded-[7px] bg-ink px-5 py-3 text-sm font-semibold text-white hover:bg-stone-deep">查看联系方式</Link>

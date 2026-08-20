@@ -36,6 +36,7 @@ import { articles } from '@/data/content/articles'
 import { checklistTemplates } from '@/data/risk-control/checklist-templates'
 import { quoteRiskRules } from '@/data/risk-control/quote-risk-rules'
 import { renovationProjectRisks } from '@/data/risk-control/renovation-project-risks'
+import { SERVICE_PRICING } from '@/data/services/pricing'
 
 interface ChatRequest {
   message: string
@@ -86,7 +87,10 @@ const ROUTE_LABELS: Record<'zh' | 'en', Record<string, string>> = {
     '/risk-dictionary': '查装修报价风险词典',
     '/living-diagnosis': '先做居住需求自检',
     '/services': '看服务路径',
-    '/services/quote-review': '了解报价 / 合同人工审查',
+    '/services/diagnosis': `了解${SERVICE_PRICING.diagnosis.displayPrice}单问题判断诊断`,
+    '/services/quote-review': `了解${SERVICE_PRICING.renovationSpecialist.displayPrice}装修专项判断`,
+    '/services/node-advisor': '了解施工节点专项判断',
+    '/services/renovation-advisor': `了解${SERVICE_PRICING.renovationAdvisor.displayPrice}装修决策顾问`,
     '/tools/quote-check': '先做报价初筛',
     '/community': '了解星火者共同体',
     '/community/apply': '提交星火者申请',
@@ -121,8 +125,10 @@ const STATIC_ACTION_HREFS = [
   '/resources',
   '/risk-dictionary',
   '/services',
+  '/services/diagnosis',
   '/services/node-advisor',
   '/services/quote-review',
+  '/services/renovation-advisor',
   '/tools',
   '/tools/quote-check',
   '/training',
@@ -148,8 +154,8 @@ const FOLLOW_UPS_ZH: Record<IntentKey, string[]> = {
   living: ['我想要好看又好住', '我不知道预算该先投哪里', '我已经有方案但不确定适不适合'],
   budget: ['我已经拿到报价单了', '我预算 20 万够不够', '我最怕后期增项'],
   quote: ['你先教我怎么看漏项', '这种按实际发生怎么算风险', '我该选哪项服务'],
-  service: ['居住报告和综合判断怎么选', '什么时候需要报价 / 合同快审', '我先用工具还是先咨询'],
-  ai: ['AI 能帮我整理居住需求吗', 'AI 能帮我整理报价吗', 'AI 不能替我判断什么'],
+  service: ['一个问题该选哪项服务', '专项协作适合什么任务', '项目顾问适合什么情况'],
+  ai: ['我想先解决一个具体 AI 问题', '我想做一项工作流或培训实操', '我想做知识库、智能体或网站项目'],
   tools: ['我现在最该先用哪个入口', '还没定方案先用什么', '已有报价先看哪里'],
   about: ['Zeno 主要帮什么人', '你和装修公司有什么区别', '我想先看你的文章'],
   contact: ['我该怎么描述我的情况', '联系前要准备什么', '我先看工具还是直接联系'],
@@ -161,8 +167,8 @@ const FOLLOW_UPS_EN: Record<IntentKey, string[]> = {
   living: ['I have not fixed the plan yet', 'I want a home that looks good and works', 'I already have a plan but I am unsure'],
   budget: ['I already have a quote', 'Is my budget enough', 'I fear change orders'],
   quote: ['How do I spot missing items', 'What does actual usage settlement mean', 'Should I ask for manual review'],
-  service: ['Which service fits my case', 'What happens in budget consulting', 'Should I start with tools first'],
-  ai: ['Which workflow should AI improve first', 'What can the prompt tool do', 'I want to improve client communication'],
+  service: ['Which entry fits my case', 'What is a focused collaboration', 'What belongs in project advising'],
+  ai: ['Which workflow should AI improve first', 'Should I start with a focused task', 'Do I need a knowledge base or agent project'],
   tools: ['Which tool should I start with', 'Which resource should I read first', 'Where do I check budget risk'],
   about: ['Who is Zeno for', 'How is this different from a contractor', 'Show me the writing first'],
   contact: ['What details should I send first', 'What should I prepare before contacting', 'Should I use tools first'],
@@ -261,22 +267,23 @@ const KNOWLEDGE_ZH: Array<{ pattern: RegExp; intent: IntentKey; payload: ChatRep
     pattern: /服务|合作|咨询/,
     intent: 'service',
     payload: {
-      reply: '先判断你卡在公开自查，还是需要有人结合原始材料承担审核责任。简单风险可以先查词典和工具；整份报价、合同与责任边界需要一起判断时，再进入人工审查。',
+      reply: '先按问题深度选择，不必为不同工作硬套同一种套餐。一个具体问题先做单问题判断诊断；一个明确 AI 任务或工作包进入专项协作；多个任务、多人协作或系统上线，再评估项目顾问。装修项目仍按自己的节点路径判断。',
       bullets: [
-        '还没拿到完整材料，可以先用公开工具整理问题。',
-        '已有完整报价、合同草稿或付款节点，可了解 Zeno 本人交付的报价 / 合同人工审查。',
-        '人工审查不替代现场监理、造价或法律意见。',
+        `${SERVICE_PRICING.diagnosis.displayPrice}：一个问题、一次沟通和一页判断记录。`,
+        `${SERVICE_PRICING.focusedCollaboration.displayPrice}：一个明确 AI 任务、工作坊、工作流工作包或阶段性交付。`,
+        `${SERVICE_PRICING.projectAdvisor.displayPrice}：跨多个任务持续协作，按团队、资料和系统范围报价。`,
+        `${SERVICE_PRICING.renovationSpecialist.displayPrice} 装修专项判断和 ${SERVICE_PRICING.renovationAdvisor.displayPrice} 装修决策顾问，继续按装修节点路径判断。`,
       ],
       actions: [
-        { label: '了解人工审查', href: '/services/quote-review', kind: 'service' },
-        { label: '先做报价初筛', href: '/tools/quote-check', kind: 'tool' },
-        { label: '直接联系 Zeno', href: '/contact', kind: 'contact' },
+        { label: '看单问题判断诊断', href: '/services/diagnosis', kind: 'service' },
+        { label: '看 AI 项目合作', href: '/services', kind: 'service' },
+        { label: '提交项目情况', href: '/contact', kind: 'contact' },
       ],
       followUps: FOLLOW_UPS_ZH.service,
     },
   },
   {
-    pattern: /AI|人工智能|提示词/,
+    pattern: /AI|人工智能|提示词|培训|内训|工作坊|工作流|知识库|智能体|网站|自动化|项目顾问|项目合作/,
     intent: 'ai',
     payload: {
       reply: 'AI 在这里不是一个单独的模块，而是帮助你把真实工作往前推进的一层协作能力。先说清楚任务、材料和验收标准，再判断哪些交给 AI、哪些必须由人负责。',
@@ -284,6 +291,7 @@ const KNOWLEDGE_ZH: Array<{ pattern: RegExp; intent: IntentKey; payload: ChatRep
         '适合先交给 AI 的通常是整理、对比、查漏、生成追问和形成候选方案。',
         '你需要提供真实任务、已有材料、合格结果和不能越过的边界。',
         '涉及方案取舍、合同、付款和最终责任，仍要回到人工复核和书面确认。',
+        `${SERVICE_PRICING.diagnosis.displayPrice}适合先判断一个问题；${SERVICE_PRICING.focusedCollaboration.displayPrice}适合一个明确任务或工作包；${SERVICE_PRICING.projectAdvisor.displayPrice}适合跨多个任务的项目。`,
       ],
       actions: [
         { label: '看实践与证据', href: '/practice', kind: 'page' },
@@ -405,11 +413,11 @@ const KNOWLEDGE_EN: Array<{ pattern: RegExp; intent: IntentKey; payload: ChatRep
     pattern: /service|consult/i,
     intent: 'service',
     payload: {
-      reply: 'There are three main support paths here: quote review, budget consulting, and AI workflow consulting. You do not always need a paid service first.',
+      reply: 'Choose by depth rather than by a fixed package. One question starts with a single-question diagnosis; one focused AI task or work package starts at CNY 2,500; multi-task, multi-person or system projects start at CNY 12,800 and are scoped before a formal quote.',
       bullets: [
         'If you already have a quote, review is the clearest entry.',
         'If the issue is budget structure, start with budget consulting or the self-check.',
-        'If you are an operator, AI workflow consulting is the right track.',
+        'If you are an operator, start with one focused AI task; knowledge bases, agents and websites usually need project-level scoping.',
       ],
       actions: [
         { label: 'View services', href: '/en/services', kind: 'service' },
@@ -423,11 +431,11 @@ const KNOWLEDGE_EN: Array<{ pattern: RegExp; intent: IntentKey; payload: ChatRep
     pattern: /ai|prompt/i,
     intent: 'ai',
     payload: {
-      reply: 'AI here is meant to remove repetitive work, not fake expertise. The best first use cases are usually content, quote analysis, and client communication.',
+      reply: 'AI here is meant to remove repetitive work, not fake expertise. Start with one real task, then decide whether it needs a focused collaboration or a larger project.',
       bullets: [
         'Start with the most repetitive workflow first.',
         'Use AI to structure information before using it to make decisions.',
-        'One working use case is more valuable than many unfinished experiments.',
+        'One working use case is more valuable than many unfinished experiments. One question starts at CNY 299, a focused task at CNY 2,500, and a multi-task project at CNY 12,800.',
       ],
       actions: [
         { label: 'Open tools', href: '/en/tools', kind: 'tool' },
