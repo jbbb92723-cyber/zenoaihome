@@ -17,6 +17,7 @@ const recommendedZh: SearchResult[] = [
   { title: '报价初筛工具', href: '/tools/quote-check', type: 'tool', excerpt: '已有报价时，看它有没有承接方案边界。' },
   { title: '装修报价风险词典', href: '/risk-dictionary', type: 'resource', excerpt: '查报价里容易引发增项和扯皮的词。' },
   { title: '签约前检查模板', href: '/checklists', type: 'checklist', excerpt: '报价、合同、付款节点可以逐项对照。' },
+  { title: '装修工程签约与留痕清单', href: '/checklists/project-record-keeping', type: 'checklist', excerpt: '工程变更、材料代购、付款和验收怎样形成确认记录。' },
   { title: '居住决策支持服务', href: '/services', type: 'service', excerpt: '居住需求报告、报价/合同快审和综合判断。' },
 ]
 

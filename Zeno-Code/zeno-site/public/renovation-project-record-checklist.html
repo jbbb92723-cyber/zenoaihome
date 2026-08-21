@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="面向装修从业者与消费者的合同、工程变更、材料代购和过程留痕清单。">
+<meta name="robots" content="noindex,follow">
+<link rel="canonical" href="https://zenoaihome.com/checklists/project-record-keeping">
+<title>装修工程签约与留痕清单</title>
+<style>
+  :root {
+    --ink: #1a1a1a;
+    --ink-soft: #444441;
+    --ink-mute: #6b6a66;
+    --line: #d8d5cc;
+    --accent: #2c3e50;
+    --accent-soft: #eef2f6;
+    --ok-bg: #f0f7f0;
+    --ok-line: #b8d4b8;
+    --paper: #ffffff;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Songti SC", "STSong", "SimSun", "Noto Serif CJK SC", serif;
+    color: var(--ink);
+    background: #f2f1ec;
+    line-height: 1.8;
+    font-size: 15px;
+    padding: 32px 16px;
+  }
+  .sheet {
+    max-width: 820px;
+    margin: 0 auto;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    padding: 56px 60px;
+  }
+  .eyebrow {
+    text-align: center;
+    font-size: 12.5px;
+    letter-spacing: 4px;
+    color: var(--ink-mute);
+    border: 1px solid var(--line);
+    padding: 6px 0;
+    margin-bottom: 32px;
+    font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+  }
+  h1 {
+    font-size: 26px;
+    text-align: center;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+    font-weight: 700;
+  }
+  .subtitle {
+    text-align: center;
+    font-size: 14.5px;
+    color: var(--ink-soft);
+    margin-bottom: 26px;
+  }
+  .three {
+    background: var(--accent-soft);
+    border: 1px solid var(--line);
+    padding: 16px 20px;
+    margin: 18px 0 6px;
+    text-align: center;
+    font-size: 14.5px;
+    line-height: 2;
+  }
+  .three b { color: var(--accent); }
+  h2 {
+    font-size: 17px;
+    color: var(--accent);
+    border-left: 4px solid var(--accent);
+    padding-left: 12px;
+    margin: 36px 0 14px;
+    letter-spacing: 1px;
+    font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+    font-weight: 600;
+  }
+  p { margin-bottom: 10px; text-align: justify; }
+  .cards { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin: 14px 0; }
+  .card {
+    border: 1px solid var(--line);
+    border-top: 3px solid var(--accent);
+    padding: 12px 14px;
+    font-size: 13.5px;
+    background: #fbfaf7;
+  }
+  .card .no { font-size: 12px; color: var(--ink-mute); font-family: "PingFang SC", sans-serif; }
+  .card b { color: var(--accent); }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0 18px;
+    font-size: 13.5px;
+  }
+  th, td {
+    border: 1px solid var(--line);
+    padding: 8px 10px;
+    vertical-align: top;
+    text-align: left;
+  }
+  th {
+    background: var(--accent-soft);
+    font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    white-space: nowrap;
+  }
+  .tpl {
+    background: #fbfaf7;
+    border: 1px dashed #b9b3a4;
+    padding: 16px 20px;
+    margin: 12px 0 20px;
+    font-size: 14px;
+    line-height: 2;
+  }
+  .tpl .tpl-title {
+    font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--accent);
+    margin-bottom: 6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .copy-tag {
+    font-size: 11px;
+    color: #fff;
+    background: var(--accent);
+    border-radius: 3px;
+    padding: 1px 8px;
+    font-weight: 400;
+  }
+  .script {
+    background: var(--ok-bg);
+    border: 1px solid var(--ok-line);
+    border-left: 4px solid #6a9a6a;
+    padding: 12px 18px;
+    margin: 10px 0 16px;
+    font-size: 14px;
+    line-height: 2;
+  }
+  .script .s-title {
+    font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: #4a7a4a;
+    margin-bottom: 4px;
+  }
+  .script .msg {
+    background: #fff;
+    border: 1px solid var(--ok-line);
+    border-radius: 6px;
+    padding: 8px 12px;
+    margin-top: 6px;
+  }
+  ul, ol { margin: 0 0 10px 24px; }
+  li { margin-bottom: 8px; text-align: justify; }
+  .notice {
+    margin-top: 36px;
+    padding: 14px 16px;
+    border: 1px solid var(--line);
+    color: var(--ink-soft);
+    background: #fbfaf7;
+    font-size: 12.5px;
+  }
+  .footer {
+    margin-top: 22px;
+    padding-top: 14px;
+    border-top: 1px solid var(--line);
+    text-align: center;
+    font-size: 12.5px;
+    color: var(--ink-mute);
+    font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+  }
+  @media (max-width: 720px) {
+    body { padding: 12px 8px; }
+    .sheet { padding: 32px 20px; }
+    .cards { grid-template-columns: 1fr; }
+    h1 { font-size: 23px; }
+    table { display: block; overflow-x: auto; }
+  }
+  @media print {
+    body { background: #fff; padding: 0; }
+    .sheet { border: none; padding: 20px 8px; max-width: none; }
+  }
+</style>
+</head>
+<body>
+<main class="sheet">
+  <div class="eyebrow">公开学习资料 · 适合同行与消费者</div>
+
+  <h1>装修工程签约与留痕清单</h1>
+  <p class="subtitle">合同 · 变更 · 代购三步留痕法（根据本人真实项目经验整理，案例细节已做匿名与概括处理）</p>
+
+  <div class="three">
+    <b>一句话核心：</b>工程顺利结算不能只靠“把活干完”，还要把<b>单价确认、变更签证、代购确认</b>三类证据留完整。<br>
+    重要事项有记录，双方的权利和责任才更容易说清。
+  </div>
+
+  <h2>一、三个常见疏漏与对应动作</h2>
+  <div class="cards">
+    <div class="card">
+      <div class="no">常见疏漏 1</div>
+      <b>合同只写“按预算单价结算”，但单价没有确认</b><br>
+      对应动作：签约时把<b>预算单价表逐项核对并签字或盖章</b>，作为合同附件保存。
+    </div>
+    <div class="card">
+      <div class="no">常见疏漏 2</div>
+      <b>边设计、边施工、边调整，变更没有留痕</b><br>
+      对应动作：<b>变更、增项、返工发生前，用书面信息确认</b>；条件允许时补签工程签证单。
+    </div>
+    <div class="card">
+      <div class="no">常见疏漏 3</div>
+      <b>代购主材已经垫款，品牌与价格却未确认</b><br>
+      对应动作：每笔代购<b>先确认品牌、型号、数量和价格，再下单</b>，保留订单与沟通记录。
+    </div>
+  </div>
+
+  <h2>二、签约前必查清单（8 项）</h2>
+  <table>
+    <tr><th style="width:36px;">序</th><th>必查项</th><th>为什么</th></tr>
+    <tr><td>1</td><td>明确计价方式：单价包干或总价包干</td><td>减少结算口径争议</td></tr>
+    <tr><td>2</td><td><b>预算单价表确认</b>（材料、人工、管理费等项目逐项列明）</td><td>避免出现已约定结算、却无法核对单价的情况</td></tr>
+    <tr><td>3</td><td>付款节点对应验收节点（例：进场 30% → 隐蔽验收后 40% → 竣工 30%）</td><td>让进度、验收和付款互相对应</td></tr>
+    <tr><td>4</td><td>约定变更程序：谁有权提出和确认变更，以及确认方式</td><td>减少口头指令造成的责任争议</td></tr>
+    <tr><td>5</td><td>材料品牌、型号、数量、价格：写明由谁指定、谁确认</td><td>明确代购范围与结算依据</td></tr>
+    <tr><td>6</td><td>逾期付款、逾期施工及相应责任</td><td>为双方按时履约提供明确依据</td></tr>
+    <tr><td>7</td><td>工期顺延条件（甲方原因、不可抗力、变更等）</td><td>发生延误时便于判断责任</td></tr>
+    <tr><td>8</td><td>约定竣工验收程序、异议期限，以及投入使用后的处理方式</td><td>避免双方对验收状态理解不一</td></tr>
+  </table>
+
+  <h2>三、签证单模板（每次变更单独填写）</h2>
+
+  <div class="tpl">
+    <div class="tpl-title">模板 A · 工程变更签证单 <span class="copy-tag">模板</span></div>
+    <div>工程名称：______________________ 合同编号：__________</div>
+    <div>变更日期：____年__月__日　签证单编号：____</div>
+    <div>变更原因：□甲方要求　□设计调整　□现场条件　□其他______</div>
+    <div>变更内容：__________________________________________</div>
+    <div>变更工程量：________________________________________</div>
+    <div>单价：________ 元　金额：________ 元</div>
+    <div>工期影响：顺延 ____ 天 / 无影响</div>
+    <div>甲方（签字）：__________　乙方（签字）：__________</div>
+    <div style="color:var(--ink-mute);font-size:12.5px;">提示：变更内容、数量、单价、金额、工期影响和双方确认应尽量填写完整。</div>
+  </div>
+
+  <div class="tpl">
+    <div class="tpl-title">模板 B · 增项确认单 <span class="copy-tag">模板</span></div>
+    <div>增项项目：__________________________________________</div>
+    <div>规格/数量：________________________________________</div>
+    <div>单价：________ 元　小计：________ 元</div>
+    <div>甲方确认（签字）：__________　日期：____年__月__日</div>
+    <div style="color:var(--ink-mute);font-size:12.5px;">提示：项目、数量和单价应当一起填写、一起确认，避免事后对确认范围产生争议。</div>
+  </div>
+
+  <div class="tpl">
+    <div class="tpl-title">模板 C · 返工/窝工确认单 <span class="copy-tag">模板</span></div>
+    <div>事项：□返工　□窝工　□停工等待　□赶工加班</div>
+    <div>原因：____________________________________________</div>
+    <div>涉及人工：____ 人 × ____ 天　费用：________ 元</div>
+    <div>工期影响：________________________________________</div>
+    <div>甲方确认（签字）：__________　日期：____年__月__日</div>
+  </div>
+
+  <h2>四、沟通确认话术（按实际情况修改）</h2>
+
+  <div class="script">
+    <div class="s-title">话术 1 · 代购前确认</div>
+    <div class="msg">
+      您好，瓷砖拟选用 XX 品牌 XX 型号，规格 600×600，单价 XX 元/片，预计需要 XX 片，合计约 XX 元。请确认品牌、型号、数量和价格；收到您的明确回复后，我再安排下单。
+    </div>
+  </div>
+
+  <div class="script">
+    <div class="s-title">话术 2 · 代购后留档</div>
+    <div class="msg">
+      您好，已按此前确认的内容购买 XX 瓷砖，本次付款 XX 元，付款凭证和订单信息附后，物流单号为 XX。到货后请共同核对数量、型号和外观。
+    </div>
+  </div>
+
+  <div class="script">
+    <div class="s-title">话术 3 · 变更确认</div>
+    <div class="msg">
+      您好，今天沟通的变更为：将 XX 位置由 XX 调整为 XX。预计增加费用 XX 元，工期调整约 X 天。我会把具体内容写入签证单，请确认后再安排施工。
+    </div>
+  </div>
+
+  <div class="script">
+    <div class="s-title">话术 4 · 节点付款提醒</div>
+    <div class="msg">
+      您好，隐蔽工程已于 X 月 X 日完成验收。按合同约定，本节点应付 XX 元，请于 X 月 X 日前安排。款项到账后，我们按计划继续下一阶段施工。
+    </div>
+  </div>
+
+  <h2>五、日常留痕习惯</h2>
+  <ul>
+    <li><b>重要事项尽量用文字确认。</b>电话或现场沟通后，可以把结论、金额、工期和待确认项发给对方复核。</li>
+    <li><b>每周发一次进度汇总：</b>本周完成事项、下周计划、需要对方确认的事项，分别列清楚。</li>
+    <li><b>关键节点拍照或录像：</b>进场、隐蔽工程、材料到场和验收节点都要留存，并标注时间与位置。</li>
+    <li><b>付款、收款、代购尽量走可追溯的支付方式，</b>并在备注中写清对应项目和用途。</li>
+    <li><b>保留原始资料并定期备份：</b>合同、单据、聊天记录、照片和视频不要只存放在一台设备中。</li>
+  </ul>
+
+  <h2>六、出现履约争议时，可先做这 4 件事</h2>
+  <ol>
+    <li><b>书面说明现状和诉求：</b>列明已完成事项、合同依据、待付款项或待整改事项，并给出合理回复期限。</li>
+    <li><b>继续保留沟通记录：</b>每次协商后用文字确认双方说法、分歧和下一步。</li>
+    <li><b>固定现场和原始资料：</b>及时拍照、录像并保留原文件；如发现人身、财产安全风险或涉嫌违法行为，联系有关部门处理。</li>
+    <li><b>及时咨询专业人士：</b>涉及较大金额、停工、解除合同或诉讼时，尽早请律师、造价或工程专业人员结合具体材料判断。</li>
+  </ol>
+
+  <div class="notice">
+    <b>使用说明：</b>本清单用于一般性的经验分享和项目管理参考，不针对任何具体个人或企业，也不能替代合同审查、工程造价鉴定或法律意见。不同地区、项目类型和合同文本可能适用不同规则，重要事项请结合实际情况请专业人士复核。
+  </div>
+
+  <div class="footer">
+    每接一个项目、每发生一次变更、每代购一笔材料，都对照检查并把确认记录保存好。
+  </div>
+</main>
+</body>
+</html>

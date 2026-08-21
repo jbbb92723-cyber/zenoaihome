@@ -63,6 +63,15 @@ const SITE_RESOURCES: SiteResource[] = [
     articleKeywords: ['报价', '预算', '合同', '增项', '付款'],
   },
   {
+    href: '/checklists/project-record-keeping',
+    title: '装修工程签约与留痕清单',
+    titleEn: 'Renovation contract and record-keeping checklist',
+    summary: '把合同附件、变更签证、材料代购、节点付款和过程记录连成可回溯的确认链。',
+    summaryEn: 'Connects contract attachments, change orders, procurement, payments and project records.',
+    signals: [/工程签证|签证单|变更确认|增项确认|材料代购|代购垫付|返工|窝工|留痕|聊天记录|付款凭证|进度汇总/i],
+    articleKeywords: ['合同', '变更', '增项', '代购', '付款', '证据'],
+  },
+  {
     href: '/risk-dictionary',
     title: '报价风险词典',
     titleEn: 'Quote-risk dictionary',

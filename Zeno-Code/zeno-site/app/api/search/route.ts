@@ -25,7 +25,7 @@ const staticPages: SearchResult[] = [
   { title: '居住需求自检', href: '/living-diagnosis', type: 'tool', excerpt: '用预设问题整理生活方式、审美取舍、家庭场景和空间优先级。' },
   { title: '报价初筛工具', href: '/tools/quote-check', type: 'tool', excerpt: '已有报价时，看它有没有承接方案边界。' },
   { title: '装修报价风险词典', href: '/risk-dictionary', type: 'resource', excerpt: '解释报价里容易引发增项和扯皮的风险词。' },
-  { title: '签约前检查模板', href: '/checklists', type: 'checklist', excerpt: '报价、合同、付款节点可以逐项对照。' },
+  { title: '装修检查模板', href: '/checklists', type: 'checklist', excerpt: '报价、合同、付款节点、工程变更和过程留痕可以逐项对照。' },
   { title: '施工项目风险库', href: '/project-risks', type: 'resource', excerpt: '按水电、防水、拆除等项目看报价里该写清什么。' },
   { title: '服务合作', href: '/services', type: 'service', excerpt: 'AI 培训、工作流、知识库、智能体和网站开发。' },
   { title: '关于 Zeno', href: '/about', type: 'page' },
@@ -107,7 +107,18 @@ export async function GET(request: NextRequest) {
 
   // Search checklist templates
   for (const template of checklistTemplates) {
-    const searchText = `${template.title} ${template.subtitle} ${template.suitableFor.join(' ')}`.toLowerCase()
+    const searchText = [
+      template.title,
+      template.subtitle,
+      ...template.suitableFor,
+      ...template.beforeYouStart,
+      ...template.sections.flatMap((section) => [
+        section.title,
+        ...section.items.flatMap((item) => [item.check, item.why]),
+      ]),
+      ...(template.formTemplates?.flatMap((form) => [form.title, ...form.fields]) ?? []),
+      ...(template.communicationScripts?.flatMap((script) => [script.title, script.body]) ?? []),
+    ].join(' ').toLowerCase()
     if (searchText.includes(q)) {
       results.push({
         title: template.title,

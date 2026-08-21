@@ -15,9 +15,9 @@ import {
 } from '@/data/risk-control/quote-risk'
 
 export const metadata: Metadata = {
-  title: '签约前资料库｜报价、合同与施工怎么查',
+  title: '装修资料库｜报价、合同、施工与留痕怎么查',
   description:
-    'ZenoAIHome 的签约前资料库：把报价合同风险、风险词典、检查模板、施工项目边界和追问清单组织起来，帮助业主在签装修合同前看清边界。',
+    'ZenoAIHome 的装修资料库：把报价合同风险、检查模板、施工项目边界、工程变更和过程留痕组织起来，帮助消费者与从业者看清并记录项目责任。',
   alternates: {
     canonical: 'https://zenoaihome.com/resources',
   },
@@ -26,9 +26,9 @@ export const metadata: Metadata = {
     locale: 'zh_CN',
     url: 'https://zenoaihome.com/resources',
     siteName: 'Zeno 赞诺',
-    title: '签约前资料库｜报价、合同与施工怎么查',
+    title: '装修资料库｜报价、合同、施工与留痕怎么查',
     description:
-      'ZenoAIHome 的签约前资料库：把报价合同风险、风险词典、检查模板、施工项目边界和追问清单组织起来，帮助业主在签装修合同前看清边界。',
+      'ZenoAIHome 的装修资料库：把报价合同风险、检查模板、施工项目边界、工程变更和过程留痕组织起来，帮助消费者与从业者看清并记录项目责任。',
     images: [
       {
         url: 'https://zenoaihome.com/images/brand/zeno-portrait.jpg',
@@ -40,9 +40,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: '签约前资料库｜报价、合同与施工怎么查',
+    title: '装修资料库｜报价、合同、施工与留痕怎么查',
     description:
-      'ZenoAIHome 的签约前资料库：把报价合同风险、风险词典、检查模板、施工项目边界和追问清单组织起来，帮助业主在签装修合同前看清边界。',
+      'ZenoAIHome 的装修资料库：把报价合同风险、检查模板、施工项目边界、工程变更和过程留痕组织起来，帮助消费者与从业者看清并记录项目责任。',
     images: ['https://zenoaihome.com/images/brand/zeno-portrait.jpg'],
   },
 }
@@ -105,7 +105,7 @@ export default function ResourcesPage() {
           {
             '@context': 'https://schema.org',
             '@type': 'CollectionPage',
-            name: '签约前资料库',
+            name: '装修资料库',
             url: 'https://zenoaihome.com/resources',
             description: '围绕签约前生活目标、报价合同、付款节点和施工项目边界沉淀的词典、规则、模板和清单。',
             inLanguage: 'zh-CN',
@@ -121,15 +121,21 @@ export default function ResourcesPage() {
                 description: resource.description,
                 url: `https://zenoaihome.com/resources#${resource.slug}`,
               })),
+              ...quoteCheckTemplates.map((template) => ({
+                '@type': 'DigitalDocument',
+                name: template.title,
+                description: template.subtitle,
+                url: `https://zenoaihome.com/checklists/${template.slug}`,
+              })),
             ],
           },
         ]}
       />
 
       <PageHero
-        label="签约前资料库"
-        title="签约前，把报价、合同和责任逐项查清。"
-        subtitle="这里不是装修百科。风险词典、规则库、检查模板和项目风险库，都围绕生活目标、报价、合同、付款节点和交付责任有没有说清。"
+        label="装修资料库"
+        title="报价要查清，施工中的决定也要留得住。"
+        subtitle="这里不是装修百科。风险词典、检查模板和项目风险库围绕报价、合同、付款、工程变更、材料代购和交付责任组织。"
         size="content"
       />
 
@@ -209,6 +215,12 @@ export default function ResourcesPage() {
                 <h3 className="text-base font-semibold text-ink">{template.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-ink-muted">{template.use}</p>
                 <p className="mt-3 text-xs leading-relaxed text-ink-faint">输出：{template.output}</p>
+                <Link
+                  href={`/checklists/${template.slug}`}
+                  className="mt-4 inline-flex text-sm font-semibold text-stone underline-offset-4 hover:underline"
+                >
+                  查看模板
+                </Link>
               </article>
             ))}
           </div>

@@ -7,9 +7,9 @@ import StructuredData from '@/components/ui/StructuredData'
 import { checklistTemplates } from '@/data/risk-control/checklist-templates'
 
 export const metadata: Metadata = {
-  title: '装修检查清单｜报价、合同与付款节点',
+  title: '装修检查清单｜报价、合同、工程变更与留痕',
   description:
-    '提供报价单初查、合同签约前检查、水电改造、老房翻新和付款节点检查模板，帮助业主在装修签字前逐项核对风险边界。',
+    '提供报价单初查、合同签约、付款节点、工程变更、材料代购与过程留痕模板，帮助消费者和装修从业者逐项确认项目边界。',
   alternates: {
     canonical: 'https://zenoaihome.com/checklists',
   },
@@ -18,9 +18,9 @@ export const metadata: Metadata = {
     locale: 'zh_CN',
     url: 'https://zenoaihome.com/checklists',
     siteName: 'Zeno 赞诺',
-    title: '装修检查清单｜报价、合同与付款节点',
+    title: '装修检查清单｜报价、合同、工程变更与留痕',
     description:
-      '提供报价单初查、合同签约前检查、水电改造、老房翻新和付款节点检查模板，帮助业主在装修签字前逐项核对风险边界。',
+      '提供报价单初查、合同签约、付款节点、工程变更、材料代购与过程留痕模板，帮助消费者和装修从业者逐项确认项目边界。',
     images: [
       {
         url: 'https://zenoaihome.com/images/brand/zeno-portrait.jpg',
@@ -32,9 +32,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: '装修检查清单｜报价、合同与付款节点',
+    title: '装修检查清单｜报价、合同、工程变更与留痕',
     description:
-      '提供报价单初查、合同签约前检查、水电改造、老房翻新和付款节点检查模板，帮助业主在装修签字前逐项核对风险边界。',
+      '提供报价单初查、合同签约、付款节点、工程变更、材料代购与过程留痕模板，帮助消费者和装修从业者逐项确认项目边界。',
     images: ['https://zenoaihome.com/images/brand/zeno-portrait.jpg'],
   },
 }
@@ -62,9 +62,9 @@ export default function ChecklistsPage() {
           {
             '@context': 'https://schema.org',
             '@type': 'CollectionPage',
-            name: '签约前检查模板',
+            name: '装修检查模板',
             url: 'https://zenoaihome.com/checklists',
-            description: '围绕装修签约前报价、合同、水电、老房翻新和付款节点整理的检查模板。',
+            description: '围绕装修报价、合同、水电、老房翻新、付款节点、工程变更和过程留痕整理的检查模板。',
             inLanguage: 'zh-CN',
             hasPart: checklistTemplates.map((template) => ({
               '@type': 'HowTo',
@@ -97,8 +97,8 @@ export default function ChecklistsPage() {
 
       <PageHero
         label="装修检查清单"
-        title="签约前装修检查清单"
-        subtitle="销售说过的话，不等于合同里有保障。围绕口头承诺、付款节点、延期责任、材料替换、质保范围和增项确认流程，签约前逐项对照。"
+        title="从签约到施工，把关键事项逐项留清。"
+        subtitle="报价与合同先说清边界；施工中的变更、代购、付款和验收继续保留确认记录。消费者和装修从业者可以按所在阶段选择模板。"
         size="content"
       />
 
@@ -114,8 +114,8 @@ export default function ChecklistsPage() {
           <p className="text-xs font-semibold uppercase tracking-widest text-stone">这个栏目解决什么</p>
           <h2 className="mt-3 text-2xl font-semibold tracking-tight text-ink">把“对方说过”变成“合同里写清”。</h2>
           <p className="mt-3 max-w-3xl text-sm leading-relaxed text-ink-muted">
-            如果你刚拿到报价，先看报价单初查；已经临近签约，就看合同和付款节点；
-            如果是水电多、老房翻新，就优先看对应模板。每张模板都可以照着问，也可以复制成自己的追问清单。
+            如果你刚拿到报价，先看报价单初查；临近签约就看合同和付款节点；
+            已经开工并发生变更、代购或返工，就使用工程签约与留痕清单。每张模板都可以照着检查，也可以复制成自己的确认记录。
           </p>
           <div className="mt-6 grid gap-3 md:grid-cols-3">
             {[
@@ -133,7 +133,7 @@ export default function ChecklistsPage() {
 
         <section>
           <div className="mb-6 border-l-2 border-stone/40 pl-4">
-            <p className="text-xs font-semibold uppercase tracking-widest text-stone">5 个检查模板</p>
+            <p className="text-xs font-semibold uppercase tracking-widest text-stone">{checklistTemplates.length} 个检查模板</p>
             <p className="mt-2 text-sm leading-relaxed text-ink-muted">不做资料堆，只保留签约前最常用的检查入口。</p>
           </div>
 

@@ -21,10 +21,13 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const template = getChecklistTemplateBySlug(params.slug)
   if (!template) return {}
+  const isProjectRecordKeeping = template.slug === 'project-record-keeping'
 
   return {
-    title: `${template.title} | 签约前检查模板`,
-    description: `${template.subtitle} 可直接照着检查、复制追问，适合装修签约前核对报价、合同和付款节点。`,
+    title: `${template.title} | ${isProjectRecordKeeping ? '装修项目记录模板' : '签约前检查模板'}`,
+    description: isProjectRecordKeeping
+      ? `${template.subtitle} 提供变更签证、材料代购、过程记录和沟通话术，适合消费者与装修从业者共同使用。`
+      : `${template.subtitle} 可直接照着检查、复制追问，适合装修签约前核对报价、合同和付款节点。`,
     alternates: {
       canonical: `https://zenoaihome.com/checklists/${template.slug}`,
     },
@@ -47,6 +50,27 @@ function buildCopyText(template: ChecklistTemplate) {
       ...section.items.flatMap((item) => [`- 要检查：${item.check}`, `  为什么：${item.why}`]),
       '',
     ]),
+    ...(template.formTemplates?.length
+      ? [
+          '## 表单模板应包含的字段',
+          ...template.formTemplates.flatMap((form) => [
+            `### ${form.title}`,
+            ...form.fields.map((field) => `- ${field}`),
+          ]),
+          '',
+        ]
+      : []),
+    ...(template.communicationScripts?.length
+      ? [
+          '## 沟通确认话术',
+          ...template.communicationScripts.flatMap((script) => [
+            `### ${script.title}`,
+            script.body,
+            '',
+          ]),
+        ]
+      : []),
+    ...(template.usageBoundary ? [`使用边界：${template.usageBoundary}`, ''] : []),
     `下一步：${template.nextStep}`,
   ].join('\n')
 }
@@ -78,6 +102,11 @@ export default async function ChecklistDetailPage({ params }: Props) {
   if (!template) notFound()
 
   const copyText = buildCopyText(template)
+  const isProjectRecordKeeping = template.slug === 'project-record-keeping'
+  const sectionLabel = isProjectRecordKeeping ? '装修项目记录模板' : '签约前检查模板'
+  const pageDescription = isProjectRecordKeeping
+    ? `${template.subtitle} 提供变更签证、材料代购、过程记录和沟通话术，适合消费者与装修从业者共同使用。`
+    : `${template.subtitle} 可直接照着检查、复制追问，适合装修签约前核对报价、合同和付款节点。`
 
   return (
     <>
@@ -86,11 +115,11 @@ export default async function ChecklistDetailPage({ params }: Props) {
           {
             '@context': 'https://schema.org',
             '@type': 'Article',
-            headline: `${template.title} | 签约前检查模板`,
-            description: `${template.subtitle} 可直接照着检查、复制追问，适合装修签约前核对报价、合同和付款节点。`,
+            headline: `${template.title} | ${sectionLabel}`,
+            description: pageDescription,
             url: `https://zenoaihome.com/checklists/${template.slug}`,
             inLanguage: 'zh-CN',
-            articleSection: '签约前检查模板',
+            articleSection: sectionLabel,
             about: {
               '@type': 'Thing',
               name: template.title,
@@ -150,9 +179,19 @@ export default async function ChecklistDetailPage({ params }: Props) {
         </nav>
 
         <header className="border-b border-border pb-10">
-          <p className="page-label mb-4">签约前检查模板</p>
+          <p className="page-label mb-4">{sectionLabel}</p>
           <h1 className="page-title">{template.title}</h1>
           <p className="mt-5 max-w-2xl text-base leading-[1.7] text-ink-muted sm:text-lg">{template.subtitle}</p>
+          {template.sourceNote ? (
+            <p className="mt-5 max-w-2xl border-l-2 border-stone-light pl-4 text-sm leading-relaxed text-ink-muted">
+              {template.sourceNote}
+            </p>
+          ) : null}
+          {template.printableHref ? (
+            <div className="mt-6">
+              <CTA href={template.printableHref} label="打开完整打印版" variant="secondary" external />
+            </div>
+          ) : null}
         </header>
       </Container>
 
@@ -197,6 +236,50 @@ export default async function ChecklistDetailPage({ params }: Props) {
             </section>
           ))}
         </div>
+
+        {template.formTemplates?.length ? (
+          <section className="mt-8 border border-border bg-surface p-5 sm:p-6">
+            <p className="text-xs font-semibold uppercase tracking-widest text-stone">表单模板</p>
+            <h2 className="mt-3 text-lg font-semibold tracking-tight text-ink">签证单先把这些字段填完整</h2>
+            <div className="mt-5 grid gap-4 md:grid-cols-3">
+              {template.formTemplates.map((form) => (
+                <article key={form.title} className="border border-border bg-canvas p-4">
+                  <h3 className="text-sm font-semibold text-ink">{form.title}</h3>
+                  <ul className="mt-3 space-y-2">
+                    {form.fields.map((field) => (
+                      <li key={field} className="text-sm leading-relaxed text-ink-muted">- {field}</li>
+                    ))}
+                  </ul>
+                </article>
+              ))}
+            </div>
+            {template.printableHref ? (
+              <p className="mt-4 text-xs leading-relaxed text-ink-faint">完整空白表单已放在打印版中，可直接打开后打印。</p>
+            ) : null}
+          </section>
+        ) : null}
+
+        {template.communicationScripts?.length ? (
+          <section className="mt-8 border border-border bg-surface p-5 sm:p-6">
+            <p className="text-xs font-semibold uppercase tracking-widest text-stone">沟通确认话术</p>
+            <h2 className="mt-3 text-lg font-semibold tracking-tight text-ink">按真实项目内容替换 XX 后再发送</h2>
+            <div className="mt-5 grid gap-4 md:grid-cols-2">
+              {template.communicationScripts.map((script) => (
+                <article key={script.title} className="border border-border bg-canvas p-4">
+                  <h3 className="text-sm font-semibold text-ink">{script.title}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-ink-muted">{script.body}</p>
+                </article>
+              ))}
+            </div>
+          </section>
+        ) : null}
+
+        {template.usageBoundary ? (
+          <section className="mt-8 border border-stone/30 bg-stone/5 p-5 sm:p-6">
+            <h2 className="text-sm font-semibold text-ink">公开使用边界</h2>
+            <p className="mt-3 text-sm leading-relaxed text-ink-muted">{template.usageBoundary}</p>
+          </section>
+        ) : null}
 
         <section className="mt-8 border border-border bg-surface-warm p-5 sm:p-6">
           <h2 className="text-base font-semibold text-ink">可复制文本</h2>

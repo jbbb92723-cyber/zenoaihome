@@ -1,5 +1,6 @@
 import { type MetadataRoute } from 'next'
 import { articles } from '@/data/content/articles'
+import { checklistTemplates } from '@/data/risk-control/checklist-templates'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://zenoaihome.com'
@@ -48,6 +49,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/tools/inspection-guide`, changeFrequency: 'monthly', priority: 0.8 },
   ]
 
+  const checklistPages: MetadataRoute.Sitemap = checklistTemplates.map((template) => ({
+    url: `${baseUrl}/checklists/${template.slug}`,
+    changeFrequency: 'monthly',
+    priority: 0.75,
+  }))
+
   const blogPages: MetadataRoute.Sitemap = articles
     .filter((article) => article.parentCategory !== 'mattress')
     .map((article) => ({
@@ -57,5 +64,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     }))
 
-  return [...staticPages, ...aiToolPages, ...toolPages, ...blogPages]
+  return [...staticPages, ...aiToolPages, ...toolPages, ...checklistPages, ...blogPages]
 }

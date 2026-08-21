@@ -83,6 +83,7 @@ const ROUTE_LABELS: Record<'zh' | 'en', Record<string, string>> = {
     '/checklists': '看签约前检查模板',
     '/checklists/contract-pre-signing-check': '看合同检查模板',
     '/checklists/payment-milestone-check': '看付款节点检查模板',
+    '/checklists/project-record-keeping': '看工程签约与留痕清单',
     '/project-risks': '看施工项目风险库',
     '/risk-dictionary': '查装修报价风险词典',
     '/living-diagnosis': '先做居住需求自检',
@@ -146,6 +147,9 @@ const ALLOWED_ACTION_HREFS = new Set([
   ...quoteRiskRules.map((rule) => `/risk-dictionary/${rule.slug}`),
   ...renovationProjectRisks.map((risk) => `/project-risks/${risk.slug}`),
 ])
+
+const RECORD_KEEPING_TOPIC_ZH =
+  /工程签证|签证单|变更确认|增项确认|材料代购|代购垫付|返工|窝工|留痕|聊天记录|付款凭证|进度汇总/i
 
 type IntentKey = 'greeting' | 'living' | 'budget' | 'quote' | 'service' | 'ai' | 'tools' | 'about' | 'contact' | 'default'
 
@@ -621,24 +625,6 @@ function applyAssistantPolicy({
   renovationArchiveEnabled: boolean
 }): ChatReplyPayload {
   const requiredActions: ChatAction[] = []
-
-  if (persona === 'reviewer' && card !== 'archive') {
-    const [risk] = findRelevantAssistantRisks({ message, history })
-    requiredActions.push(risk
-      ? { label: risk.title, href: risk.href, kind: 'resource' }
-      : {
-          label: locale === 'en' ? 'Open the renovation risk dictionary' : '查装修风险词典',
-          href: '/risk-dictionary',
-          kind: 'resource',
-        })
-
-    requiredActions.push({
-      label: locale === 'en' ? 'Screen the quote first' : '先做报价初筛',
-      href: '/tools/quote-check',
-      kind: 'tool',
-    })
-  }
-
   const recentUserText = [
     ...(history ?? [])
       .filter((item) => item.role === 'user')
@@ -646,6 +632,36 @@ function applyAssistantPolicy({
       .map((item) => item.content),
     message,
   ].join(' ')
+  const isRecordKeepingTopic = locale === 'zh' && RECORD_KEEPING_TOPIC_ZH.test(recentUserText)
+
+  if (persona === 'reviewer' && card !== 'archive') {
+    const [risk] = findRelevantAssistantRisks({ message, history })
+    if (isRecordKeepingTopic) {
+      requiredActions.push({
+        label: '看工程签约与留痕清单',
+        href: '/checklists/project-record-keeping',
+        kind: 'resource',
+      })
+      if (risk) {
+        requiredActions.push({ label: risk.title, href: risk.href, kind: 'resource' })
+      }
+    } else {
+      requiredActions.push(risk
+        ? { label: risk.title, href: risk.href, kind: 'resource' }
+        : {
+            label: locale === 'en' ? 'Open the renovation risk dictionary' : '查装修风险词典',
+            href: '/risk-dictionary',
+            kind: 'resource',
+          })
+
+      requiredActions.push({
+        label: locale === 'en' ? 'Screen the quote first' : '先做报价初筛',
+        href: '/tools/quote-check',
+        kind: 'tool',
+      })
+    }
+  }
+
   const isTransformationTopic = /转型|一人公司|OPC|一个人.{0,8}(?:怎么|如何|做)|工作流|经验资产|知识资产|经验.{0,10}(?:变成|做成|整理成)|AI.{0,8}(?:复用|真实工作)/i.test(recentUserText)
     || pagePath === '/blog/zeno-from-renovation-to-opc'
     || pagePath === '/opc-knowledge'
@@ -715,6 +731,21 @@ function fallbackAnswer(
   }
 
   if (locale === 'zh' && persona === 'reviewer') {
+    if (RECORD_KEEPING_TOPIC_ZH.test(message)) {
+      return {
+        reply: '这类问题的核心不是单独多拍几张照片，而是让合同附件、变更、代购、付款和验收能够沿着时间互相对应。先确认谁有权作出决定，再把事项、数量、价格、工期影响和双方确认留在同一条记录链里。',
+        bullets: [
+          '工程变更尽量先确认内容、费用和工期影响，再安排施工。',
+          '材料代购要把下单前确认、付款订单和到货验收对应起来。',
+          '电话或现场沟通后，用文字汇总结论，并保留原始资料和独立备份。',
+        ],
+        actions: [
+          { label: '看工程签约与留痕清单', href: '/checklists/project-record-keeping', kind: 'resource' },
+        ],
+        followUps: ['我现在需要补哪一种签证单', '材料已经买了还能怎么补记录'],
+      }
+    }
+
     const [risk] = findRelevantAssistantRisks({ message, history })
     if (risk) {
       return {
