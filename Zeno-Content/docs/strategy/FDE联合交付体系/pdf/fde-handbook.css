@@ -1,0 +1,531 @@
+@font-face {
+  font-family: "Noto Sans SC Local";
+  src: url("file:///C:/Windows/Fonts/NotoSansSC-VF.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Noto Sans SC Local";
+  src: url("file:///C:/Windows/Fonts/NotoSansSC-VF.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Noto Sans SC Local";
+  src: url("file:///C:/Windows/Fonts/NotoSansSC-VF.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+:root {
+  --ink: #17191b;
+  --muted: #62686c;
+  --line: #d8d9d7;
+  --paper: #ffffff;
+  --soft: #f4f4f1;
+  --red: #a6322a;
+  --teal: #167067;
+  --gold: #b28b45;
+}
+
+@page {
+  size: A4;
+  margin: 18mm 17mm 20mm 17mm;
+
+  @top-left {
+    content: "ZENO 赞诺 · FDE 联合交付体系";
+    color: #666b6e;
+    font-family: "Noto Sans SC Local", sans-serif;
+    font-size: 7.5pt;
+    font-weight: 500;
+    border-bottom: 0.25pt solid #d8d9d7;
+    padding-bottom: 2.2mm;
+  }
+
+  @top-right {
+    content: "V0.1 · 内部试运行";
+    color: #a6322a;
+    font-family: "Noto Sans SC Local", sans-serif;
+    font-size: 7.5pt;
+    font-weight: 600;
+    border-bottom: 0.25pt solid #d8d9d7;
+    padding-bottom: 2.2mm;
+  }
+
+  @bottom-left {
+    content: "广西赞诺数智科技有限公司";
+    color: #7c8082;
+    font-family: "Noto Sans SC Local", sans-serif;
+    font-size: 7pt;
+  }
+
+  @bottom-right {
+    content: counter(page) " / " counter(pages);
+    color: #4e5356;
+    font-family: "Noto Sans SC Local", sans-serif;
+    font-size: 7pt;
+    font-weight: 600;
+  }
+}
+
+@page cover {
+  margin: 0;
+
+  @top-left { content: none; border: 0; }
+  @top-right { content: none; border: 0; }
+  @bottom-left { content: none; }
+  @bottom-right { content: none; }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  color: var(--ink);
+  background: var(--paper);
+  font-family: "Noto Sans SC Local", "Microsoft YaHei", sans-serif;
+  font-size: 10pt;
+  line-height: 1.72;
+}
+
+body {
+  margin: 0;
+}
+
+.cover {
+  page: cover;
+  page-break-after: always;
+  position: relative;
+  width: 210mm;
+  height: 297mm;
+  padding: 19mm 18mm 17mm;
+  overflow: hidden;
+  color: #f7f7f3;
+  background: #181b1c;
+}
+
+.cover::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 46mm;
+  height: 100%;
+  border-left: 0.35pt solid rgba(255, 255, 255, 0.16);
+  background: #202425;
+}
+
+.cover::after {
+  content: "";
+  position: absolute;
+  right: 20mm;
+  top: 23mm;
+  width: 11mm;
+  height: 11mm;
+  border-top: 2.4mm solid var(--red);
+  border-right: 2.4mm solid var(--red);
+}
+
+.cover-top,
+.cover-bottom {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.brand {
+  font-size: 11pt;
+  font-weight: 700;
+}
+
+.document-status {
+  padding-right: 37mm;
+  color: #cfb26e;
+  font-size: 8pt;
+  font-weight: 600;
+}
+
+.cover-rule {
+  position: relative;
+  z-index: 1;
+  width: 115mm;
+  height: 0.6mm;
+  margin-top: 9mm;
+  background: var(--red);
+}
+
+.cover-main {
+  position: relative;
+  z-index: 1;
+  width: 145mm;
+  margin-top: 50mm;
+}
+
+.cover-kicker {
+  margin: 0 0 8mm;
+  color: #91c3ba;
+  font-size: 8.5pt;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+.cover-title {
+  margin: 0;
+  color: #ffffff;
+  font-size: 31pt;
+  line-height: 1.25;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+.cover-subtitle {
+  width: 127mm;
+  margin: 8mm 0 0;
+  color: #c9cecd;
+  font-size: 13pt;
+  line-height: 1.7;
+}
+
+.cover-statement {
+  display: flex;
+  flex-direction: column;
+  width: 123mm;
+  margin-top: 24mm;
+  padding-top: 7mm;
+  border-top: 0.3pt solid rgba(255, 255, 255, 0.25);
+}
+
+.cover-statement strong {
+  color: #ffffff;
+  font-size: 13pt;
+  font-weight: 700;
+}
+
+.cover-statement span {
+  margin-top: 2.5mm;
+  color: #aeb5b3;
+  font-size: 9pt;
+}
+
+.cover-bottom {
+  position: absolute;
+  right: 55mm;
+  bottom: 19mm;
+  left: 18mm;
+  align-items: flex-end;
+}
+
+.cover-bottom div {
+  display: flex;
+  flex-direction: column;
+  gap: 1mm;
+}
+
+.cover-bottom span {
+  color: #838b89;
+  font-size: 7pt;
+}
+
+.cover-bottom strong {
+  color: #eef0ed;
+  font-size: 8.5pt;
+  font-weight: 600;
+}
+
+.cover-date {
+  text-align: right;
+}
+
+.review-page {
+  page-break-after: always;
+}
+
+.section-kicker {
+  margin: 0 0 3mm;
+  color: var(--red);
+  font-size: 8pt;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+.review-page > h1,
+#TOC > h1 {
+  margin: 0 0 5mm;
+  color: var(--ink);
+  font-size: 25pt;
+  line-height: 1.25;
+}
+
+.review-verdict {
+  margin: 0 0 10mm;
+  padding: 4mm 0 4mm 5mm;
+  border-left: 1.5mm solid var(--teal);
+  color: #26312f;
+  background: #eff5f2;
+  font-size: 12pt;
+  font-weight: 600;
+}
+
+.review-band {
+  display: grid;
+  grid-template-columns: 13mm 1fr;
+  gap: 4mm;
+  padding: 4mm 0;
+  border-top: 0.35pt solid var(--line);
+}
+
+.review-band > span {
+  color: var(--red);
+  font-size: 9pt;
+  font-weight: 700;
+}
+
+.review-band h2 {
+  margin: 0 0 1mm;
+  font-size: 12pt;
+  page-break-after: avoid;
+}
+
+.review-band p {
+  margin: 0;
+  color: #4f5659;
+  font-size: 9.2pt;
+}
+
+.use-note {
+  margin-top: 9mm;
+  padding: 5mm 6mm;
+  border-top: 0.8pt solid var(--gold);
+  border-bottom: 0.8pt solid var(--gold);
+  background: #faf8f2;
+}
+
+.use-note strong {
+  color: #725c2f;
+  font-size: 10pt;
+}
+
+.use-note p {
+  margin: 1.5mm 0 0;
+  color: #5f5a4f;
+  font-size: 8.8pt;
+}
+
+#TOC {
+  page-break-after: always;
+}
+
+#TOC ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+#TOC > ul > li {
+  margin: 4mm 0 0;
+  padding-top: 3mm;
+  border-top: 0.4pt solid var(--line);
+}
+
+#TOC li li {
+  margin: 1.25mm 0 0 7mm;
+}
+
+#TOC a {
+  display: block;
+  color: #4d5356;
+  text-decoration: none;
+}
+
+#TOC > ul > li > a {
+  color: var(--ink);
+  font-size: 11.5pt;
+  font-weight: 700;
+}
+
+#TOC a::after {
+  content: leader(".") target-counter(attr(href), page);
+  color: #8a8d8e;
+  font-size: 8pt;
+  font-weight: 500;
+}
+
+main > .chapter-marker {
+  page-break-before: always;
+  margin: 0 0 5mm;
+  color: var(--red);
+  font-size: 8pt;
+  font-weight: 700;
+}
+
+main > .chapter-marker + h1 {
+  page-break-before: avoid;
+}
+
+main > h1 {
+  margin: 0 0 9mm;
+  padding: 0 0 5mm;
+  border-bottom: 1.1pt solid var(--ink);
+  color: var(--ink);
+  font-size: 23pt;
+  line-height: 1.3;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+h2 {
+  margin: 9mm 0 3mm;
+  color: var(--ink);
+  font-size: 15pt;
+  line-height: 1.4;
+  font-weight: 700;
+  page-break-after: avoid;
+}
+
+h3 {
+  margin: 5.5mm 0 2mm;
+  color: #2d3234;
+  font-size: 11.5pt;
+  line-height: 1.45;
+  font-weight: 700;
+  page-break-after: avoid;
+}
+
+h4 {
+  margin: 4mm 0 1.5mm;
+  font-size: 10pt;
+  page-break-after: avoid;
+}
+
+p {
+  margin: 0 0 3.2mm;
+  orphans: 3;
+  widows: 3;
+}
+
+ul,
+ol {
+  margin: 1.5mm 0 4mm;
+  padding-left: 6.5mm;
+}
+
+li {
+  margin: 0 0 0.9mm;
+}
+
+li::marker {
+  color: var(--red);
+  font-weight: 700;
+}
+
+strong {
+  font-weight: 700;
+}
+
+a {
+  color: #12675f;
+  text-decoration: none;
+}
+
+blockquote {
+  margin: 5mm 0;
+  padding: 4mm 5mm;
+  border-left: 1.2mm solid var(--red);
+  color: #353b3d;
+  background: var(--soft);
+  page-break-inside: avoid;
+}
+
+blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+table {
+  width: 100%;
+  margin: 4mm 0 6mm;
+  border-collapse: collapse;
+  table-layout: fixed;
+  font-size: 8.15pt;
+  line-height: 1.48;
+}
+
+thead {
+  display: table-header-group;
+}
+
+thead th {
+  padding: 2.5mm 2.2mm;
+  border-top: 0.8pt solid var(--ink);
+  border-bottom: 0.8pt solid var(--ink);
+  color: #ffffff;
+  background: #25292a;
+  font-weight: 700;
+  text-align: left;
+  vertical-align: bottom;
+}
+
+tbody td {
+  padding: 2.4mm 2.2mm;
+  border-bottom: 0.35pt solid var(--line);
+  vertical-align: top;
+  overflow-wrap: anywhere;
+}
+
+tbody tr:nth-child(even) td {
+  background: #f7f7f4;
+}
+
+tr {
+  page-break-inside: avoid;
+}
+
+hr {
+  margin: 4mm 0;
+  border: 0;
+  border-top: 0.4pt solid var(--line);
+}
+
+code {
+  padding: 0.3mm 1mm;
+  border-radius: 1mm;
+  color: #7f2b25;
+  background: #f4eeee;
+  font-family: "Ubuntu Mono", "Consolas", monospace;
+  font-size: 8.7pt;
+}
+
+input[type="checkbox"] {
+  display: inline-block;
+  width: 3.2mm;
+  height: 3.2mm;
+  margin: 0 1.3mm 0 0;
+  vertical-align: -0.5mm;
+}
+
+ul.task-list {
+  padding-left: 0;
+  list-style: none;
+}
+
+ul.task-list li {
+  margin-bottom: 1.2mm;
+}
+
+ul.task-list label {
+  display: inline;
+}
+
+.chapter-marker + h1 + h2 {
+  margin-top: 0;
+}
+
+@media print {
+  a {
+    color: inherit;
+  }
+}

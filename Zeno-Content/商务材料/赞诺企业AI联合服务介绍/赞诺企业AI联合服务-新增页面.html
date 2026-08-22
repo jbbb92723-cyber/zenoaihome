@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>赞诺企业 AI 联合服务</title>
+  <style>
+    :root {
+      --navy: #102033;
+      --navy-2: #1b3049;
+      --ink: #17212b;
+      --muted: #5d6873;
+      --line: #d9dde0;
+      --paper: #f7f8f6;
+      --white: #ffffff;
+      --orange: #e66f43;
+      --orange-soft: #f8e8e1;
+      --teal: #2f6e67;
+      --teal-soft: #e6f0ed;
+      --gold: #b78a3f;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: #dfe2e3;
+      color: var(--ink);
+      font-family: "Microsoft YaHei", "DengXian", Arial, sans-serif;
+      letter-spacing: 0;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    @page { size: 13.333in 7.5in; margin: 0; }
+
+    .slide {
+      position: relative;
+      width: 13.333in;
+      height: 7.5in;
+      overflow: hidden;
+      page-break-after: always;
+      break-after: page;
+      background: var(--paper);
+      padding: 0.52in 0.62in 0.45in;
+    }
+
+    .slide:last-child { page-break-after: auto; break-after: auto; }
+    .dark { color: var(--white); background: var(--navy); }
+    .warm { background: #f3f0ea; }
+
+    .topline {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 28px;
+      margin-bottom: 22px;
+      color: var(--orange);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .topline .section { display: flex; align-items: center; gap: 10px; }
+    .topline .section::before { content: ""; width: 26px; height: 3px; background: currentColor; }
+    .topline .mark { color: var(--muted); font-size: 11px; font-weight: 600; }
+    .dark .topline .mark { color: rgba(255,255,255,.58); }
+
+    h1, h2, h3, p { margin: 0; }
+    h1 { font-size: 52px; line-height: 1.14; font-weight: 780; }
+    h2 { max-width: 1070px; font-size: 34px; line-height: 1.24; font-weight: 760; }
+    h3 { font-size: 19px; line-height: 1.4; font-weight: 730; }
+
+    .lead {
+      max-width: 930px;
+      margin-top: 14px;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.75;
+    }
+
+    .dark .lead { color: rgba(255,255,255,.72); }
+
+    .footer {
+      position: absolute;
+      left: 0.62in;
+      right: 0.62in;
+      bottom: 0.20in;
+      display: flex;
+      justify-content: space-between;
+      color: #7a858e;
+      font-size: 10px;
+      line-height: 1;
+    }
+
+    .dark .footer { color: rgba(255,255,255,.45); }
+
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 5px;
+      background: var(--white);
+      padding: 20px;
+    }
+
+    .card.soft-orange { border-color: #edc9b9; background: var(--orange-soft); }
+    .card.soft-teal { border-color: #bed6d1; background: var(--teal-soft); }
+
+    .eyebrow { color: var(--orange); font-size: 12px; font-weight: 760; }
+    .body { margin-top: 9px; color: var(--muted); font-size: 13px; line-height: 1.68; }
+    .dark .body { color: rgba(255,255,255,.68); }
+
+    .bullet-list { display: grid; gap: 8px; margin: 12px 0 0; padding: 0; list-style: none; }
+    .bullet-list li { position: relative; padding-left: 16px; color: var(--muted); font-size: 12px; line-height: 1.58; }
+    .bullet-list li::before { content: ""; position: absolute; left: 0; top: 7px; width: 6px; height: 6px; background: var(--orange); }
+    .dark .bullet-list li { color: rgba(255,255,255,.7); }
+
+    .statement { border-left: 4px solid var(--orange); padding: 9px 0 9px 17px; font-size: 19px; line-height: 1.55; font-weight: 720; }
+    .note { color: #7b858d; font-size: 10px; line-height: 1.55; }
+
+    .cover { padding: 0.60in 0.70in 0.50in; }
+    .cover::after {
+      content: "";
+      position: absolute;
+      right: -0.35in;
+      top: -0.45in;
+      width: 4.5in;
+      height: 4.5in;
+      border: 1px solid rgba(255,255,255,.13);
+      border-radius: 50%;
+      box-shadow: 0 0 0 .58in rgba(230,111,67,.075), 0 0 0 1.16in rgba(255,255,255,.025);
+    }
+
+    .brand {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      font-size: 16px;
+      font-weight: 760;
+    }
+
+    .brand::before {
+      content: "Z";
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 35px;
+      height: 35px;
+      border: 2px solid var(--orange);
+      color: var(--orange);
+      font-size: 17px;
+      font-weight: 800;
+    }
+
+    .cover-main { position: relative; z-index: 2; width: 9.5in; margin-top: 1.15in; }
+    .cover-kicker { color: var(--orange); font-size: 14px; font-weight: 750; }
+    .cover h1 { margin-top: 15px; }
+    .cover-sub { width: 8.5in; margin-top: 24px; color: rgba(255,255,255,.72); font-size: 19px; line-height: 1.7; }
+    .cover-meta { position: absolute; left: .70in; bottom: .54in; display: flex; gap: 16px; color: rgba(255,255,255,.5); font-size: 11px; }
+    .cover-meta span + span::before { content: ""; display: inline-block; width: 18px; height: 1px; margin-right: 16px; vertical-align: middle; background: rgba(255,255,255,.3); }
+
+    .about-layout { display: grid; grid-template-columns: .34fr .66fr; gap: 34px; margin-top: 25px; }
+    .portrait { position: relative; height: 410px; overflow: hidden; background: var(--navy); }
+    .portrait img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 45%; filter: saturate(.82) contrast(1.02); }
+    .portrait::after { content: ""; position: absolute; inset: 0; border: 1px solid rgba(16,32,51,.15); }
+
+    .identity { display: grid; gap: 13px; }
+    .identity-title { display: flex; justify-content: space-between; align-items: baseline; gap: 20px; padding-bottom: 17px; border-bottom: 1px solid var(--line); }
+    .identity-title h3 { font-size: 28px; }
+    .identity-title span { color: var(--orange); font-size: 13px; font-weight: 760; }
+
+    .identity-row { display: grid; grid-template-columns: 115px 1fr; gap: 17px; padding-bottom: 12px; border-bottom: 1px solid var(--line); }
+    .identity-row strong { font-size: 12px; color: var(--teal); }
+    .identity-row p { color: var(--muted); font-size: 12px; line-height: 1.62; }
+
+    .role-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 15px; margin-top: 27px; }
+    .role-card { min-height: 250px; border-top: 4px solid var(--navy); background: var(--white); padding: 20px; }
+    .role-card:nth-child(2) { border-top-color: var(--orange); }
+    .role-card:nth-child(3) { border-top-color: var(--teal); }
+    .role-card:nth-child(4) { border-top-color: var(--gold); }
+    .role-code { color: var(--orange); font-size: 12px; font-weight: 800; }
+    .role-card h3 { margin-top: 12px; }
+
+    .collab-layout { display: grid; grid-template-columns: .85fr 1.15fr; gap: 24px; margin-top: 28px; }
+    .owner { min-height: 325px; padding: 27px; background: var(--navy); color: var(--white); }
+    .owner h3 { margin-top: 23px; font-size: 28px; line-height: 1.35; color: var(--orange); }
+    .layers { display: grid; gap: 13px; }
+    .layer { display: grid; grid-template-columns: 86px 1fr; gap: 17px; align-items: center; min-height: 96px; border: 1px solid var(--line); background: var(--white); padding: 16px; }
+    .layer-code { color: var(--orange); font-size: 12px; font-weight: 800; }
+    .layer p { margin-top: 5px; color: var(--muted); font-size: 11px; line-height: 1.58; }
+
+    .services { display: grid; grid-template-columns: repeat(5,1fr); gap: 11px; margin-top: 24px; }
+    .service { min-height: 188px; border: 1px solid var(--line); background: var(--white); padding: 17px 15px; }
+    .service strong { color: var(--orange); font-size: 11px; }
+    .service h3 { margin-top: 10px; font-size: 17px; }
+    .service p { margin-top: 9px; color: var(--muted); font-size: 11px; line-height: 1.58; }
+
+    .process { display: grid; grid-template-columns: repeat(4,1fr); margin-top: 18px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .process-step { min-height: 82px; padding: 15px; border-right: 1px solid var(--line); }
+    .process-step:last-child { border-right: 0; }
+    .process-step strong { color: var(--teal); font-size: 11px; }
+    .process-step p { margin-top: 6px; color: var(--ink); font-size: 12px; font-weight: 700; }
+
+    .contact-layout { display: grid; grid-template-columns: 1.08fr .92fr; gap: 44px; align-items: end; margin-top: .74in; }
+    .cta { font-size: 49px; line-height: 1.16; font-weight: 800; }
+    .cta span { color: var(--orange); }
+    .contact-panel { border-top: 3px solid var(--orange); background: rgba(255,255,255,.07); padding: 23px; }
+    .contact-panel h3 { font-size: 21px; }
+    .contact-panel p { margin-top: 10px; color: rgba(255,255,255,.68); font-size: 13px; line-height: 1.68; }
+    .contact-item { display: grid; grid-template-columns: 74px 1fr; gap: 12px; padding: 10px 0; border-top: 1px solid rgba(255,255,255,.15); }
+    .contact-item strong { color: rgba(255,255,255,.48); font-size: 11px; }
+    .contact-item span { color: var(--white); font-size: 13px; font-weight: 700; word-break: break-all; }
+
+    @media print { html, body { background: transparent; } .slide { margin: 0; } }
+  </style>
+</head>
+<body>
+  <section class="slide dark cover">
+    <div class="brand">ZENO 赞诺</div>
+    <div class="cover-main">
+      <div class="cover-kicker">企业 AI 应用服务 · 联合交付能力</div>
+      <h1>把 AI 用进<br />企业的真实工作。</h1>
+      <p class="cover-sub">由赞诺统一理解业务、确认边界和组织项目；联合咨询与工程团队完成培训、验证、开发与交付。</p>
+    </div>
+    <div class="cover-meta"><span>广西赞诺数智科技有限公司</span><span>2026</span></div>
+  </section>
+
+  <section class="slide">
+    <div class="topline"><span class="section">关于赞诺</span><span class="mark">BUSINESS CONTEXT FIRST</span></div>
+    <h2>我先在传统行业里做了 17 年，再开始把 AI 放进经营、项目和交付。</h2>
+    <div class="about-layout">
+      <div class="portrait"><img src="assets/zeno-portrait.jpg" alt="赞诺" /></div>
+      <div class="identity">
+        <div class="identity-title"><h3>赞诺 Zeno</h3><span>企业项目商务与业务负责人</span></div>
+        <div class="identity-row"><strong>现实经验</strong><p>截至 2026 年，拥有 17 年传统行业经营与项目经验，长期涉及家居、销售管理、装修项目、客户沟通与现场交付。</p></div>
+        <div class="identity-row"><strong>正在实践</strong><p>持续把 AI 用进网站、内容系统、企业知识库、工作流、智能体和具体项目，并公开记录判断、证据与修订过程。</p></div>
+        <div class="identity-row"><strong>在地身份</strong><p>广西南宁创业，OPC 圈南宁城市主理人，连接本地一人公司、专业服务者和项目协作资源。</p></div>
+        <div class="identity-row"><strong>企业主体</strong><p>广西赞诺数智科技有限公司。企业服务根据项目范围单独确认签约、开票、交付和责任边界。</p></div>
+        <div class="identity-row"><strong>长期机制</strong><p>发起星火者共同体，逐步建立创业者能力档案、真实问题工作会、项目规则和结项复盘。</p></div>
+        <p class="body" style="font-weight:700;color:var(--ink);">我的价值不是替技术团队包装话术，而是先听懂企业为什么要做、什么不能做，以及结果怎样才算成立。</p>
+      </div>
+    </div>
+    <div class="footer"><span>ZENO 赞诺 · 企业 AI 应用服务</span><span>02</span></div>
+  </section>
+
+  <section class="slide warm">
+    <div class="topline"><span class="section">我在项目里负责什么</span><span class="mark">ONE ACCOUNTABLE FRONT DOOR</span></div>
+    <h2>不是把客户转给技术团队，而是把业务问题带到可交付、可验收。</h2>
+    <p class="lead">企业往往不缺工具信息，缺的是有人把经营目标、现场约束、技术方案和项目责任放在同一张桌上。</p>
+    <div class="role-grid">
+      <article class="role-card"><div class="role-code">01</div><h3>听懂业务</h3><p class="body">先问清现在怎么做、谁在做、为什么卡住，区分真实问题和预设方案。</p><ul class="bullet-list"><li>关键人访谈</li><li>现有流程与材料</li><li>业务目标和约束</li></ul></article>
+      <article class="role-card"><div class="role-code">02</div><h3>判断是否适合 AI</h3><p class="body">不因为客户提出“做智能体”就直接开发，先检查数据、规则、风险和价值。</p><ul class="bullet-list"><li>前提核验</li><li>使用边界</li><li>人工责任</li></ul></article>
+      <article class="role-card"><div class="role-code">03</div><h3>组织联合交付</h3><p class="body">根据任务匹配咨询、产品、工程和运营能力，统一范围、节奏和沟通。</p><ul class="bullet-list"><li>项目负责人</li><li>里程碑管理</li><li>变更与风险记录</li></ul></article>
+      <article class="role-card"><div class="role-code">04</div><h3>对结果负责</h3><p class="body">项目开始前写清交付物和验收方式，上线后完成培训、交接与复盘。</p><ul class="bullet-list"><li>真实样本测试</li><li>验收与交接</li><li>结果回写</li></ul></article>
+    </div>
+    <div class="statement" style="margin-top:23px;">企业只需要面对一个清楚的责任入口，不需要自己拼顾问、产品和开发。</div>
+    <div class="footer"><span>ZENO 赞诺 · 企业 AI 应用服务</span><span>03</span></div>
+  </section>
+
+  <section class="slide">
+    <div class="topline"><span class="section">联合服务结构</span><span class="mark">CLEAR OWNERSHIP · FLEXIBLE DELIVERY</span></div>
+    <h2>赞诺负责商务和业务上下文，联合团队提供已经形成的咨询、培训与工程能力。</h2>
+    <div class="collab-layout">
+      <div class="owner">
+        <div class="eyebrow">统一对接</div>
+        <h3>广西赞诺数智科技有限公司</h3>
+        <ul class="bullet-list" style="margin-top:22px;"><li>承接企业需求与商务沟通</li><li>确认问题、范围、预算与验收</li><li>组织项目成员并管理交付过程</li><li>具体签约、开票和责任以正式合同为准</li></ul>
+      </div>
+      <div class="layers">
+        <div class="layer"><div class="layer-code">核心交付</div><div><h3>联合咨询与工程团队</h3><p>企业咨询、AI 培训、FDE 场景验证、产品设计、全栈开发、部署和运维。后续页面保留其既往能力与案例。</p></div></div>
+        <div class="layer"><div class="layer-code">专项协作</div><div><h3>按项目匹配专业参与者</h3><p>当任务需要特定行业、内容、运营或区域经验时，另行确认角色、工作量、保密、知识产权和结算。</p></div></div>
+        <div class="layer"><div class="layer-code">长期网络</div><div><h3>星火者共同体</h3><p>作为创业者实践与协作网络逐步建设，不是外包群或派单平台；成员不会因会员身份自动进入企业项目。</p></div></div>
+      </div>
+    </div>
+    <p class="note" style="margin-top:15px;">后续培训、案例、产品与数据为联合服务团队提供的既往项目材料，不自动等同于赞诺个人业绩；正式对外使用与签约前应复核客户授权、统计口径和可披露范围。</p>
+    <div class="footer"><span>ZENO 赞诺 · 企业 AI 应用服务</span><span>04</span></div>
+  </section>
+
+  <section class="slide warm">
+    <div class="topline"><span class="section">企业可以从哪里开始</span><span class="mark">FROM ONE TASK TO PRODUCTION</span></div>
+    <h2>先从一个真实任务开始，再决定是培训、验证，还是建设系统。</h2>
+    <div class="services">
+      <article class="service"><strong>01</strong><h3>AI 培训与内训</h3><p>企业负责人、业务团队和商会社群，从自己的场景出发完成实操。</p></article>
+      <article class="service"><strong>02</strong><h3>AI 工作流</h3><p>把一项重复任务拆清楚，建立最小可运行流程与操作交接。</p></article>
+      <article class="service"><strong>03</strong><h3>企业知识库</h3><p>整理文档、规则和问答，建立检索、更新和权限机制。</p></article>
+      <article class="service"><strong>04</strong><h3>任务型智能体</h3><p>围绕明确输入、输出和验收标准，减少重复整理与判断。</p></article>
+      <article class="service"><strong>05</strong><h3>网站与业务系统</h3><p>从信息架构、产品原型到全栈开发、部署和持续运行。</p></article>
+    </div>
+    <div class="process">
+      <div class="process-step"><strong>第一步</strong><p>说明真实问题</p></div>
+      <div class="process-step"><strong>第二步</strong><p>查看材料与现场</p></div>
+      <div class="process-step"><strong>第三步</strong><p>验证场景与价值</p></div>
+      <div class="process-step"><strong>第四步</strong><p>确认范围后交付</p></div>
+    </div>
+    <div class="statement" style="margin-top:21px;">下面是联合服务团队原有的业务、课程、FDE 方法、核心成员与既往项目材料。</div>
+    <p class="note" style="margin-top:11px;">项目报价根据人数、资料、系统边界、周期与验收要求确定；不以本介绍中的案例结果承诺新项目效果。</p>
+    <div class="footer"><span>ZENO 赞诺 · 企业 AI 应用服务</span><span>05</span></div>
+  </section>
+
+  <section class="slide dark">
+    <div class="topline"><span class="section">发起合作</span><span class="mark">START WITH ONE REAL PROBLEM</span></div>
+    <div class="contact-layout">
+      <div>
+        <div class="eyebrow">企业项目沟通</div>
+        <div class="cta" style="margin-top:17px;">把现在卡住的地方，<br /><span>具体讲给我听。</span></div>
+        <p class="cover-sub" style="width:6.7in;margin-top:22px;font-size:17px;">请说明行业、现有流程、已经有哪些材料、最希望改变的结果和期望时间。能做，先确认范围；不适合用 AI，也会直接说明。</p>
+      </div>
+      <div class="contact-panel">
+        <h3>联系赞诺</h3>
+        <p>AI 培训｜场景验证｜工作流｜知识库｜智能体｜网站与业务系统</p>
+        <div style="margin-top:17px;">
+          <div class="contact-item"><strong>微信</strong><span>zanxiansheng2025</span></div>
+          <div class="contact-item"><strong>邮箱</strong><span>zenoaihome@qq.com</span></div>
+          <div class="contact-item"><strong>网站</strong><span>zenoaihome.com</span></div>
+          <div class="contact-item"><strong>主体</strong><span>广西赞诺数智科技有限公司</span></div>
+          <div class="contact-item"><strong>城市</strong><span>广西南宁</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="cover-meta"><span>ZENO 赞诺</span><span>企业 AI 应用服务</span></div>
+  </section>
+</body>
+</html>

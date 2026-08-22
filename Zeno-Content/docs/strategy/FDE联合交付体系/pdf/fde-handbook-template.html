@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="$author$" />
+  <meta name="dcterms.date" content="$date$" />
+  <title>$title$</title>
+$for(css)$
+  <link rel="stylesheet" href="$css$" />
+$endfor$
+</head>
+<body>
+  <header class="cover">
+    <div class="cover-top">
+      <span class="brand">ZENO 赞诺</span>
+      <span class="document-status">内部试运行 · V0.1</span>
+    </div>
+    <div class="cover-rule"></div>
+    <div class="cover-main">
+      <p class="cover-kicker">ENTERPRISE AI DELIVERY SYSTEM</p>
+      <h1 class="cover-title">$title$</h1>
+      <p class="cover-subtitle">$subtitle$</p>
+      <div class="cover-statement">
+        <strong>从组队到交付，先把责任写清楚。</strong>
+        <span>团队章程 · 能力准入 · 验证产品 · 联合协议</span>
+      </div>
+    </div>
+    <div class="cover-bottom">
+      <div>
+        <span>编制主体</span>
+        <strong>$author$</strong>
+      </div>
+      <div class="cover-date">
+        <span>版本日期</span>
+        <strong>$date$</strong>
+      </div>
+    </div>
+  </header>
+
+  <section class="review-page">
+    <p class="section-kicker">COMMERCIAL REVIEW</p>
+    <h1>商业复核结论</h1>
+    <p class="review-verdict">可以进入 V0.1 试运行，但不能把试运行假设提前包装成成熟业绩。</p>
+
+    <div class="review-band">
+      <span>01</span>
+      <div>
+        <h2>交易结构成立</h2>
+        <p>广西赞诺数智科技有限公司统一承接客户、合同、收款和项目责任；FDE 小队负责验证与交付；成熟团队提供技术底座和质量复核。</p>
+      </div>
+    </div>
+    <div class="review-band">
+      <span>02</span>
+      <div>
+        <h2>产品梯度成立</h2>
+        <p>场景工作坊解决“先做哪一件事”，验证冲刺解决“是否值得建设”，生产项目解决“如何进入真实运行”，三层不重叠。</p>
+      </div>
+    </div>
+    <div class="review-band">
+      <span>03</span>
+      <div>
+        <h2>人才机制成立</h2>
+        <p>星火者只承载人才发现、实践训练和协作信用；进入付费项目仍须独立评分、工作单和项目协议，会员身份不产生派单和收益保证。</p>
+      </div>
+    </div>
+    <div class="review-band">
+      <span>04</span>
+      <div>
+        <h2>风险边界清楚</h2>
+        <p>内部价格需要前三个付费样本校正；联合协议是商务与法务讨论稿；客户数据、知识产权、责任限制和禁止绕单条款须在正式签署前由律师复核。</p>
+      </div>
+    </div>
+
+    <aside class="use-note">
+      <strong>本手册的正确用途</strong>
+      <p>用于内部组队、候选人准入、项目报价评审、成熟团队谈判和律师审阅。未经单独确认，不作为官网公开价格、客户合同或星火者会员权益说明。</p>
+    </aside>
+  </section>
+
+$if(toc)$
+  <nav id="TOC" role="doc-toc">
+    <p class="section-kicker">CONTENTS</p>
+    <h1>目录</h1>
+    $table-of-contents$
+  </nav>
+$endif$
+
+  <main>
+    $body$
+  </main>
+</body>
+</html>

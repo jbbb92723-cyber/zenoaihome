@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="$author$" />
+  <meta name="dcterms.date" content="$date$" />
+  <title>$title$</title>
+$for(css)$
+  <link rel="stylesheet" href="$css$" />
+$endfor$
+</head>
+<body>
+  <header class="cover">
+    <div class="cover-top">
+      <span class="brand">ZENO 赞诺</span>
+      <span class="document-status">内部试运行 · V0.1</span>
+    </div>
+    <div class="cover-rule"></div>
+    <div class="cover-main">
+      <p class="cover-kicker">FDE EXECUTION PLAYBOOK</p>
+      <h1 class="cover-title">$title$</h1>
+      <p class="cover-subtitle">$subtitle$</p>
+      <div class="cover-statement">
+        <strong>接到真实问题，走到可验收交付。</strong>
+        <span>线索启动 · SOW · 成本测算 · 30 天启动</span>
+      </div>
+    </div>
+    <div class="cover-bottom">
+      <div>
+        <span>编制主体</span>
+        <strong>$author$</strong>
+      </div>
+      <div class="cover-date">
+        <span>版本日期</span>
+        <strong>$date$</strong>
+      </div>
+    </div>
+  </header>
+
+  <section class="review-page">
+    <p class="section-kicker">EXECUTION REVIEW</p>
+    <h1>启动前的四个判断</h1>
+    <p class="review-verdict">先证明能交付，再扩大团队；先把成本算清，再谈规模。</p>
+
+    <div class="review-band">
+      <span>01</span>
+      <div>
+        <h2>先判断问题</h2>
+        <p>企业说“想用 AI”还不是项目。必须先找到一个具体任务、一个责任人、一组合法样本和一种可验收结果。</p>
+      </div>
+    </div>
+    <div class="review-band">
+      <span>02</span>
+      <div>
+        <h2>再锁定范围</h2>
+        <p>SOW 先写目标、非目标、数据、测试、交付和排除项。没有范围确认，不锁定排期，不承诺生产结果。</p>
+      </div>
+    </div>
+    <div class="review-band">
+      <span>03</span>
+      <div>
+        <h2>报价先算成本</h2>
+        <p>人日、成熟团队工作包、模型/API、差旅、售后和风险预留全部进入测算。低价成交但靠成员无偿补范围，不是商业模式。</p>
+      </div>
+    </div>
+    <div class="review-band">
+      <span>04</span>
+      <div>
+        <h2>30 天只跑一个闭环</h2>
+        <p>首支小队先完成一个脱敏样板和一次真实场景判断。没有交付证据，不因为成员变多、群变热闹或线索增加就扩张。</p>
+      </div>
+    </div>
+
+    <aside class="use-note">
+      <strong>使用边界</strong>
+      <p>本启动包用于内部执行和项目评审。价格是试运行测算，SOW 不是正式合同，所有客户数据、知识产权、责任和税务安排仍以正式文件和专业复核为准。</p>
+    </aside>
+  </section>
+
+$if(toc)$
+  <nav id="TOC" role="doc-toc">
+    <p class="section-kicker">CONTENTS</p>
+    <h1>目录</h1>
+    $table-of-contents$
+  </nav>
+$endif$
+
+  <main>
+    $body$
+  </main>
+</body>
+</html>

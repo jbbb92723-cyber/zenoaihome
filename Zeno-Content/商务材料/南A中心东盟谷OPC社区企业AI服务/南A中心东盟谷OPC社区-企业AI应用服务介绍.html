@@ -1,0 +1,1168 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>南A中心东盟谷OPC社区｜企业AI应用服务介绍</title>
+  <style>
+    :root {
+      --navy: #102033;
+      --navy-2: #192f49;
+      --ink: #17212b;
+      --muted: #5d6873;
+      --line: #d9dde0;
+      --paper: #f7f8f6;
+      --white: #ffffff;
+      --orange: #e66f43;
+      --orange-soft: #f8e8e1;
+      --teal: #2f6e67;
+      --teal-soft: #e6f0ed;
+      --gold: #b78a3f;
+      --gold-soft: #f5eedf;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: #dfe2e3;
+      color: var(--ink);
+      font-family: "Microsoft YaHei", "DengXian", Arial, sans-serif;
+      letter-spacing: 0;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    @page {
+      size: 13.333in 7.5in;
+      margin: 0;
+    }
+
+    .slide {
+      position: relative;
+      width: 13.333in;
+      height: 7.5in;
+      overflow: hidden;
+      page-break-after: always;
+      break-after: page;
+      background: var(--paper);
+      padding: 0.52in 0.62in 0.45in;
+    }
+
+    .slide:last-child {
+      page-break-after: auto;
+      break-after: auto;
+    }
+
+    .dark {
+      color: var(--white);
+      background: var(--navy);
+    }
+
+    .warm { background: #f3f0ea; }
+
+    .topline {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      min-height: 28px;
+      margin-bottom: 22px;
+      color: var(--orange);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .topline .section {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .topline .section::before {
+      content: "";
+      width: 26px;
+      height: 3px;
+      background: currentColor;
+    }
+
+    .topline .mark {
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .dark .topline .mark { color: rgba(255,255,255,.58); }
+
+    h1, h2, h3, p { margin: 0; }
+
+    h1 {
+      font-size: 52px;
+      line-height: 1.14;
+      font-weight: 750;
+    }
+
+    h2 {
+      max-width: 1040px;
+      font-size: 34px;
+      line-height: 1.24;
+      font-weight: 750;
+    }
+
+    h3 {
+      font-size: 20px;
+      line-height: 1.35;
+      font-weight: 700;
+    }
+
+    .lead {
+      max-width: 910px;
+      margin-top: 14px;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.75;
+    }
+
+    .dark .lead { color: rgba(255,255,255,.72); }
+
+    .footer {
+      position: absolute;
+      left: 0.62in;
+      right: 0.62in;
+      bottom: 0.20in;
+      display: flex;
+      justify-content: space-between;
+      color: #7a858e;
+      font-size: 10px;
+      line-height: 1;
+    }
+
+    .dark .footer { color: rgba(255,255,255,.45); }
+
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; }
+
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 5px;
+      background: var(--white);
+      padding: 20px;
+    }
+
+    .card.dark-card {
+      border-color: rgba(255,255,255,.14);
+      background: rgba(255,255,255,.055);
+    }
+
+    .card.soft-orange { border-color: #edc9b9; background: var(--orange-soft); }
+    .card.soft-teal { border-color: #bed6d1; background: var(--teal-soft); }
+    .card.soft-gold { border-color: #decda9; background: var(--gold-soft); }
+
+    .number {
+      color: var(--orange);
+      font-size: 38px;
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    .eyebrow {
+      color: var(--orange);
+      font-size: 12px;
+      font-weight: 750;
+    }
+
+    .body {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .dark .body { color: rgba(255,255,255,.68); }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 27px;
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      padding: 4px 10px;
+      background: var(--white);
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .tag.orange { border-color: #edc9b9; background: var(--orange-soft); color: #9d4527; }
+    .tag.teal { border-color: #bed6d1; background: var(--teal-soft); color: #245a55; }
+
+    .metric {
+      color: var(--orange);
+      font-size: 34px;
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    .metric-label {
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .dark .metric-label { color: rgba(255,255,255,.65); }
+
+    .rule {
+      height: 1px;
+      margin: 20px 0;
+      background: var(--line);
+    }
+
+    .dark .rule { background: rgba(255,255,255,.16); }
+
+    .bullet-list {
+      display: grid;
+      gap: 9px;
+      margin: 13px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .bullet-list li {
+      position: relative;
+      padding-left: 17px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.62;
+    }
+
+    .bullet-list li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 8px;
+      width: 6px;
+      height: 6px;
+      background: var(--orange);
+    }
+
+    .dark .bullet-list li { color: rgba(255,255,255,.72); }
+
+    .note {
+      color: #7b858d;
+      font-size: 10px;
+      line-height: 1.5;
+    }
+
+    .statement {
+      border-left: 4px solid var(--orange);
+      padding: 10px 0 10px 18px;
+      font-size: 20px;
+      line-height: 1.55;
+      font-weight: 700;
+    }
+
+    .cover {
+      padding: 0.60in 0.70in 0.50in;
+    }
+
+    .cover::after {
+      content: "";
+      position: absolute;
+      right: -0.55in;
+      top: -0.65in;
+      width: 4.4in;
+      height: 4.4in;
+      border: 1px solid rgba(255,255,255,.13);
+      border-radius: 50%;
+      box-shadow:
+        0 0 0 .55in rgba(230,111,67,.08),
+        0 0 0 1.1in rgba(255,255,255,.025);
+    }
+
+    .cover-brand {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 15px;
+      font-weight: 700;
+    }
+
+    .cover-brand::before {
+      content: "";
+      width: 34px;
+      height: 34px;
+      border: 2px solid var(--orange);
+      background:
+        linear-gradient(90deg, transparent 46%, var(--orange) 46%, var(--orange) 54%, transparent 54%),
+        linear-gradient(transparent 46%, var(--orange) 46%, var(--orange) 54%, transparent 54%);
+      transform: rotate(45deg);
+    }
+
+    .cover-content {
+      position: relative;
+      z-index: 2;
+      width: 9.3in;
+      margin-top: 1.23in;
+    }
+
+    .cover-kicker {
+      color: var(--orange);
+      font-size: 14px;
+      font-weight: 750;
+    }
+
+    .cover h1 { margin-top: 15px; }
+
+    .cover-sub {
+      width: 8.3in;
+      margin-top: 26px;
+      color: rgba(255,255,255,.72);
+      font-size: 19px;
+      line-height: 1.7;
+    }
+
+    .cover-meta {
+      position: absolute;
+      left: 0.70in;
+      bottom: 0.55in;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      color: rgba(255,255,255,.52);
+      font-size: 11px;
+    }
+
+    .cover-meta span + span::before {
+      content: "";
+      display: inline-block;
+      width: 18px;
+      height: 1px;
+      margin-right: 16px;
+      vertical-align: middle;
+      background: rgba(255,255,255,.3);
+    }
+
+    .role-band {
+      margin-top: 28px;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .role-row {
+      display: grid;
+      grid-template-columns: 74px 230px 1fr;
+      align-items: center;
+      min-height: 84px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .role-row:last-child { border-bottom: 0; }
+
+    .role-code {
+      color: var(--orange);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .role-row h3 { padding-right: 24px; }
+
+    .role-row p {
+      border-left: 1px solid var(--line);
+      padding: 14px 0 14px 26px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.62;
+    }
+
+    .path-compare {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+      margin-top: 30px;
+    }
+
+    .path-box {
+      min-height: 285px;
+      border: 1px solid var(--line);
+      border-radius: 5px;
+      padding: 24px;
+      background: var(--white);
+      color: var(--ink);
+    }
+
+    .dark .path-box .body { color: var(--muted); }
+
+    .path-box.recommended {
+      border: 2px solid var(--orange);
+      background: var(--orange-soft);
+    }
+
+    .path-flow {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      margin-top: 24px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .path-flow b {
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      padding: 9px 11px;
+      background: var(--paper);
+      color: var(--ink);
+    }
+
+    .path-box.recommended .path-flow b {
+      border-color: #e7bca9;
+      background: var(--white);
+    }
+
+    .timeline {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      margin-top: 26px;
+      border: 1px solid var(--line);
+      background: var(--white);
+    }
+
+    .step {
+      position: relative;
+      min-height: 347px;
+      padding: 20px;
+      border-right: 1px solid var(--line);
+    }
+
+    .step:last-child { border-right: 0; }
+    .step.highlight { background: var(--orange-soft); }
+
+    .step-index {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: var(--navy);
+      color: var(--white);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .step.highlight .step-index { background: var(--orange); }
+
+    .step h3 { margin-top: 16px; }
+
+    .duration {
+      position: absolute;
+      left: 20px;
+      bottom: 19px;
+      color: var(--teal);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .offer-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-top: 26px;
+    }
+
+    .offer {
+      position: relative;
+      min-height: 310px;
+      border-top: 4px solid var(--navy);
+      background: var(--white);
+      padding: 22px 19px;
+    }
+
+    .offer:nth-child(2) { border-top-color: var(--orange); }
+    .offer:nth-child(3) { border-top-color: var(--teal); }
+    .offer:nth-child(4) { border-top-color: var(--gold); }
+
+    .offer .stage {
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .offer h3 { margin-top: 11px; }
+
+    .offer .output {
+      margin-top: 17px;
+      padding-top: 14px;
+      border-top: 1px solid var(--line);
+      color: var(--ink);
+      font-size: 12px;
+      line-height: 1.65;
+      font-weight: 700;
+    }
+
+    .case-layout {
+      display: grid;
+      grid-template-columns: 1.12fr .88fr;
+      gap: 24px;
+      margin-top: 23px;
+    }
+
+    .case-story {
+      display: grid;
+      gap: 14px;
+    }
+
+    .case-block {
+      border-left: 3px solid var(--line);
+      padding: 5px 0 5px 16px;
+    }
+
+    .case-block:nth-child(2) { border-left-color: var(--orange); }
+
+    .case-block h3 {
+      color: var(--orange);
+      font-size: 13px;
+    }
+
+    .case-block p {
+      margin-top: 7px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.64;
+    }
+
+    .evidence-panel {
+      border: 1px solid var(--line);
+      background: var(--white);
+      padding: 22px;
+    }
+
+    .evidence-panel .grid-3 {
+      gap: 0;
+      margin-top: 24px;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .evidence-panel .grid-3 > div {
+      min-height: 118px;
+      padding: 17px 10px;
+      border-right: 1px solid var(--line);
+    }
+
+    .evidence-panel .grid-3 > div:last-child { border-right: 0; }
+
+    .capability-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      margin-top: 25px;
+    }
+
+    .capability {
+      display: grid;
+      grid-template-columns: 52px 1fr;
+      min-height: 142px;
+      border: 1px solid var(--line);
+      background: var(--white);
+      padding: 19px;
+    }
+
+    .capability-index {
+      color: var(--orange);
+      font-size: 23px;
+      font-weight: 800;
+    }
+
+    .capability p {
+      margin-top: 7px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.65;
+    }
+
+    .governance {
+      display: grid;
+      grid-template-columns: .82fr 1.18fr;
+      gap: 24px;
+      margin-top: 26px;
+    }
+
+    .project-owner {
+      min-height: 337px;
+      background: var(--navy);
+      padding: 26px;
+      color: var(--white);
+    }
+
+    .project-owner .big {
+      margin-top: 30px;
+      color: var(--orange);
+      font-size: 29px;
+      font-weight: 800;
+      line-height: 1.35;
+    }
+
+    .controls {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .control {
+      border: 1px solid var(--line);
+      background: var(--white);
+      padding: 17px;
+    }
+
+    .control h3 { font-size: 16px; }
+
+    .control p {
+      margin-top: 7px;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.62;
+    }
+
+    .community-loop {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      margin-top: 32px;
+      border-top: 1px solid rgba(255,255,255,.2);
+      border-bottom: 1px solid rgba(255,255,255,.2);
+    }
+
+    .loop-item {
+      position: relative;
+      min-height: 206px;
+      padding: 25px 22px;
+      border-right: 1px solid rgba(255,255,255,.2);
+    }
+
+    .loop-item:last-child { border-right: 0; }
+
+    .loop-item::after {
+      content: ">";
+      position: absolute;
+      top: 86px;
+      right: -8px;
+      z-index: 3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 16px;
+      height: 30px;
+      background: var(--navy);
+      color: var(--orange);
+      font-size: 18px;
+      font-weight: 800;
+    }
+
+    .loop-item:last-child::after { display: none; }
+
+    .loop-item .step-index { background: var(--orange); }
+
+    .loop-item h3 { margin-top: 17px; }
+
+    .loop-item p {
+      margin-top: 9px;
+      color: rgba(255,255,255,.65);
+      font-size: 12px;
+      line-height: 1.65;
+    }
+
+    .cta-wrap {
+      display: grid;
+      grid-template-columns: 1.12fr .88fr;
+      gap: 42px;
+      align-items: end;
+      margin-top: 0.92in;
+    }
+
+    .cta-title {
+      font-size: 50px;
+      line-height: 1.16;
+      font-weight: 800;
+    }
+
+    .cta-title span { color: var(--orange); }
+
+    .contact-panel {
+      border-top: 3px solid var(--orange);
+      background: rgba(255,255,255,.07);
+      padding: 24px;
+    }
+
+    .contact-panel p {
+      color: rgba(255,255,255,.68);
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .contact-panel .contact-title {
+      margin-bottom: 12px;
+      color: var(--white);
+      font-size: 20px;
+      font-weight: 750;
+    }
+
+    @media print {
+      html, body { background: transparent; }
+      .slide { margin: 0; }
+    }
+  </style>
+</head>
+<body>
+  <section class="slide dark cover">
+    <div class="cover-brand">南A中心东盟谷 OPC 社区</div>
+    <div class="cover-content">
+      <div class="cover-kicker">企业服务 · 场景验证 · 项目交付</div>
+      <h1>企业 AI 场景共创<br />与落地服务</h1>
+      <p class="cover-sub">从一个真实业务问题开始，先验证价值，再决定是否建设。</p>
+    </div>
+    <div class="cover-meta">
+      <span>对外商务介绍</span>
+      <span>2026</span>
+    </div>
+  </section>
+
+  <section class="slide">
+    <div class="topline">
+      <span class="section">社区企业服务</span>
+      <span class="mark">OPC COMMUNITY</span>
+    </div>
+    <h2>社区不只连接创业者，也把分散的专业能力组织起来，服务真实企业。</h2>
+    <p class="lead">企业需要的不是更多 AI 工具，而是一条从业务问题、价值验证到稳定交付的清晰路径。东盟谷 OPC 社区以在地连接为入口，引入专业服务团队，并逐步建立创业者协作网络。</p>
+    <div class="grid-3" style="margin-top: 30px;">
+      <article class="card">
+        <div class="number">01</div>
+        <h3 style="margin-top: 18px;">企业需求进入社区</h3>
+        <p class="body">通过企业拜访、场景交流和主题活动，找到真正影响效率、成本和增长的问题。</p>
+      </article>
+      <article class="card soft-orange">
+        <div class="number">02</div>
+        <h3 style="margin-top: 18px;">专业团队完成交付</h3>
+        <p class="body">从现场访谈、原型验证到系统开发，由明确的项目负责人组织实施。</p>
+      </article>
+      <article class="card soft-teal">
+        <div class="number">03</div>
+        <h3 style="margin-top: 18px;">创业者能力形成协作</h3>
+        <p class="body">通过星火者共同体沉淀能力档案、项目规则和复盘记录，让合适的人参与合适的任务。</p>
+      </article>
+    </div>
+    <div class="statement" style="margin-top: 25px;">把企业需求和 OPC 创业者能力连接起来，最终靠可验收的项目结果建立信用。</div>
+    <div class="footer"><span>南A中心东盟谷 OPC 社区 · 企业 AI 应用服务</span><span>02</span></div>
+  </section>
+
+  <section class="slide warm">
+    <div class="topline">
+      <span class="section">协作结构</span>
+      <span class="mark">WHO DOES WHAT</span>
+    </div>
+    <h2>一个对外入口，三层协作能力。</h2>
+    <p class="lead">社区面对企业，专业团队承担交付，星火者共同体逐步承载创业者连接。每一层都要有明确责任，而不是临时拼接。</p>
+    <div class="role-band">
+      <div class="role-row">
+        <div class="role-code">前台</div>
+        <h3>东盟谷 OPC 社区</h3>
+        <p>负责企业连接、需求征集、场景交流、活动组织和商务协调，是企业进入服务体系的统一入口。</p>
+      </div>
+      <div class="role-row">
+        <div class="role-code">交付</div>
+        <h3>企业 AI 应用服务团队</h3>
+        <p>负责业务访谈、FDE 验证、原型建设、系统开发、项目管理、上线交付和后续支持。</p>
+      </div>
+      <div class="role-row">
+        <div class="role-code">网络</div>
+        <h3>星火者共同体</h3>
+        <p>逐步连接具备行业经验、产品、技术和运营能力的 OPC 实践者，为专项访谈、试用反馈和项目协作补充能力。</p>
+      </div>
+    </div>
+    <p class="note" style="margin-top: 15px;">项目启动前，签约、收款、交付、保密、知识产权和验收责任均需书面确认。</p>
+    <div class="footer"><span>南A中心东盟谷 OPC 社区 · 企业 AI 应用服务</span><span>03</span></div>
+  </section>
+
+  <section class="slide">
+    <div class="topline">
+      <span class="section">场景判断</span>
+      <span class="mark">START WITH THE WORK</span>
+    </div>
+    <h2>我们解决的不是“要不要用 AI”，而是“哪一个业务环节值得先做”。</h2>
+    <p class="lead">AI 项目最常见的浪费，是需求还没弄清楚就开始采购或开发。适合先验证的场景，通常具有高频、重复、规则较清楚、结果可衡量等特征。</p>
+    <div class="grid-2" style="margin-top: 27px;">
+      <div class="card soft-teal" style="padding: 23px;">
+        <div class="eyebrow" style="color: var(--teal);">优先验证</div>
+        <h3 style="margin-top: 9px;">具备明确业务价值的场景</h3>
+        <ul class="bullet-list">
+          <li>大量重复录入、校验、整理或查询</li>
+          <li>知识分散，依赖少数人的经验判断</li>
+          <li>销售、客服或培训过程难以标准化</li>
+          <li>文档数量大，人工审查耗时且容易遗漏</li>
+          <li>有真实台账，可以比较改造前后的差异</li>
+        </ul>
+      </div>
+      <div class="card" style="padding: 23px;">
+        <div class="eyebrow">暂缓建设</div>
+        <h3 style="margin-top: 9px;">前提尚未成立的场景</h3>
+        <ul class="bullet-list">
+          <li>业务目标只有“别人都在做，我们也要做”</li>
+          <li>流程本身持续变化，没有稳定责任人</li>
+          <li>数据不可获得，或没有合法使用权限</li>
+          <li>期待 AI 一次性替代复杂组织判断</li>
+          <li>无法定义什么结果算成功、谁负责验收</li>
+        </ul>
+      </div>
+    </div>
+    <div class="statement" style="margin-top: 24px;">先查前提，再做原型；先看结果，再投完整预算。</div>
+    <div class="footer"><span>南A中心东盟谷 OPC 社区 · 企业 AI 应用服务</span><span>04</span></div>
+  </section>
+
+  <section class="slide dark">
+    <div class="topline">
+      <span class="section">FDE 验证方法</span>
+      <span class="mark">VALIDATE BEFORE BUILD</span>
+    </div>
+    <h2>不从开发开始，从验证开始。</h2>
+    <p class="lead">FDE（Forward Deployed Engineer）不是在后方等待需求文档，而是让懂业务、能做原型的人进入现场，先确认问题、数据和价值。</p>
+    <div class="path-compare">
+      <div class="path-box">
+        <div class="eyebrow" style="color:#78838c;">常见路径</div>
+        <h3 style="margin-top: 10px;">直接进入开发</h3>
+        <div class="path-flow">
+          <b>提出方案</b><span>→</span><b>写需求</b><span>→</span><b>开发</b><span>→</span><b>上线后才验证</b>
+        </div>
+        <p class="body">整个过程可能没有人追问：原始方案的前提是否成立，用户是否真的需要，投入能否回收。</p>
+      </div>
+      <div class="path-box recommended">
+        <div class="eyebrow">推荐路径</div>
+        <h3 style="margin-top: 10px;">先验证，再开发</h3>
+        <div class="path-flow">
+          <b>进现场</b><span>→</span><b>找场景</b><span>→</span><b>出原型</b><span>→</span><b>算价值</b>
+        </div>
+        <p class="body">业务方先看到真实流程和可运行原型，再共同决定是否开发、做多大范围以及怎样验收。</p>
+      </div>
+    </div>
+    <div class="statement" style="margin-top: 25px; border-color: var(--orange);">验证阶段最有价值的结论，有时不是“做不做”，而是“应该换一种做法”。</div>
+    <div class="footer"><span>南A中心东盟谷 OPC 社区 · 企业 AI 应用服务</span><span>05</span></div>
+  </section>
+
+  <section class="slide">
+    <div class="topline">
+      <span class="section">服务流程</span>
+      <span class="mark">TWO PHASES · FOUR STEPS</span>
+    </div>
+    <h2>两个阶段，四个步骤。</h2>
+    <p class="lead">每一步都有明确产出。典型周期会根据业务复杂度、数据条件和系统边界调整。</p>
+    <div class="timeline">
+      <article class="step">
+        <span class="step-index">01</span>
+        <h3>进入现场</h3>
+        <p class="body">访谈业务负责人，跟岗观察，查看真实台账、表格和沟通记录。</p>
+        <ul class="bullet-list">
+          <li>场景机会盘点</li>
+          <li>问题与前提清单</li>
+        </ul>
+        <div class="duration">典型周期：半天至 3 天</div>
+      </article>
+      <article class="step">
+        <span class="step-index">02</span>
+        <h3>做出原型</h3>
+        <p class="body">只实现判断所需的关键机制，让业务方尽早看到和试用。</p>
+        <ul class="bullet-list">
+          <li>可运行原型</li>
+          <li>演示动线与测试记录</li>
+        </ul>
+        <div class="duration">典型周期：2 小时至 1 周</div>
+      </article>
+      <article class="step highlight">
+        <span class="step-index">03</span>
+        <h3>收敛需求</h3>
+        <p class="body">确认功能范围、数据来源、人工责任和投入产出，决定下一步。</p>
+        <ul class="bullet-list">
+          <li>需求范围确认</li>
+          <li>价值测算与分期建议</li>
+        </ul>
+        <div class="duration">典型周期：3 至 5 天</div>
+      </article>
+      <article class="step">
+        <span class="step-index">04</span>
+        <h3>开发上线</h3>
+        <p class="body">进入正式开发、集成、部署、测试、培训、验收和运行支持。</p>
+        <ul class="bullet-list">
+          <li>生产系统</li>
+          <li>验收与运维文件</li>
+        </ul>
+        <div class="duration">周期：按项目范围确认</div>
+      </article>
+    </div>
+    <div class="footer"><span>南A中心东盟谷 OPC 社区 · 企业 AI 应用服务</span><span>06</span></div>
+  </section>
+
+  <section class="slide warm">
+    <div class="topline">
+      <span class="section">合作入口</span>
+      <span class="mark">WHAT YOU CAN START WITH</span>
+    </div>
+    <h2>企业不需要一次性做大，可以从最小、最清楚的一步开始。</h2>
+    <div class="offer-grid">
+      <article class="offer">
+        <div class="stage">01 · 初步交流</div>
+        <h3>企业 AI 场景会</h3>
+        <p class="body">围绕业务问题、数据条件和预期结果进行初步判断，识别是否值得进一步诊断。</p>
+        <p class="output">形成：问题摘要、待补资料与下一步建议</p>
+      </article>
+      <article class="offer">
+        <div class="stage">02 · 价值确认</div>
+        <h3>场景诊断与验证</h3>
+        <p class="body">进入现场理解流程，建立可运行原型，验证真实使用条件和价值空间。</p>
+        <p class="output">交付：场景清单、原型、测试记录、范围与价值测算</p>
+      </article>
+      <article class="offer">
+        <div class="stage">03 · 小范围运行</div>
+        <h3>原型试点</h3>
+        <p class="body">在有限部门、人员或业务量中试运行，观察效果、异常和组织适配情况。</p>
+        <p class="output">交付：试点系统、运行记录、改进清单与建设建议</p>
+      </article>
+      <article class="offer">
+        <div class="stage">04 · 正式建设</div>
+        <h3>生产系统交付</h3>
+        <p class="body">完成系统开发、数据与业务集成、权限、安全、部署、培训和验收。</p>
+        <p class="output">交付：生产系统、使用培训、验收资料与支持约定</p>
+      </article>
+    </div>
+    <p class="note" style="margin-top: 17px;">企业内训可以作为独立服务，也可以嵌入试点和正式建设阶段，帮助业务团队理解边界并承担必要的人工作业。</p>
+    <div class="footer"><span>南A中心东盟谷 OPC 社区 · 企业 AI 应用服务</span><span>07</span></div>
+  </section>
+
+  <section class="slide">
+    <div class="topline">
+      <span class="section">专业服务团队既往项目 · 01</span>
+      <span class="mark">人力资源服务</span>
+    </div>
+    <h2>把非标表格、业务规则和政策问答放进同一套客服协作流程。</h2>
+    <div style="margin-top: 14px; display:flex; gap:8px;"><span class="tag">匿名案例</span><span class="tag orange">试点运行</span></div>
+    <div class="case-layout">
+      <div class="case-story">
+        <div class="case-block">
+          <h3>业务问题</h3>
+          <p>客户每天收到不同格式的表格，规则复杂且依赖人工经验；政策与法务问题持续变化，客服反复回答相似问题。</p>
+        </div>
+        <div class="case-block">
+          <h3>验证动作</h3>
+          <p>分析一个月沟通记录并完成现场调研，验证非标表格标准化、规则校验和政策知识问答三个场景。</p>
+        </div>
+        <div class="case-block">
+          <h3>结果边界</h3>
+          <p>原型使用客户自有问答资料，关键引擎真实运行；业务团队继续负责异常处理、规则维护与最终判断。</p>
+        </div>
+      </div>
+      <aside class="evidence-panel">
+        <div class="eyebrow">试点阶段观察</div>
+        <h3 style="margin-top: 9px;">先把重复工作交给系统，再保留人工判断。</h3>
+        <div class="grid-3">
+          <div><div class="metric">3</div><div class="metric-label">个优先验证场景</div></div>
+          <div><div class="metric">139</div><div class="metric-label">条客户自有知识记录</div></div>
+          <div><div class="metric">≈70%</div><div class="metric-label">重复客服工作进入自动化流程</div></div>
+        </div>
+        <p class="note" style="margin-top: 16px;">数据来自原项目试点材料，不代表对其他企业的统一效果承诺。</p>
+      </aside>
+    </div>
+    <div class="footer"><span>南A中心东盟谷 OPC 社区 · 企业 AI 应用服务</span><span>08</span></div>
+  </section>
+
+  <section class="slide">
+    <div class="topline">
+      <span class="section">专业服务团队既往项目 · 02</span>
+      <span class="mark">销售训练</span>
+    </div>
+    <h2>让销售陪练从稀缺的教练时间，变成可以反复进行的日常训练。</h2>
+    <div style="margin-top: 14px; display:flex; gap:8px;"><span class="tag">匿名案例</span><span class="tag orange">原型验证后进入开发</span></div>
+    <div class="case-layout">
+      <div class="case-story">
+        <div class="case-block">
+          <h3>业务问题</h3>
+          <p>经验教练需要一对一扮演客户，训练成本高、排期困难，评分标准也难以统一。</p>
+        </div>
+        <div class="case-block">
+          <h3>验证动作</h3>
+          <p>建立学员端、教练端和管理端原型，接通语音识别与 AI 对话，通过多轮双盲实验比较训练体验。</p>
+        </div>
+        <div class="case-block">
+          <h3>结果边界</h3>
+          <p>系统负责高频练习、分项评分和重点标记；教练保留训练设计、争议复核和关键学员辅导。</p>
+        </div>
+      </div>
+      <aside class="evidence-panel">
+        <div class="eyebrow">验证阶段产出</div>
+        <h3 style="margin-top: 9px;">用真实训练数据判断 AI 是否真的好用。</h3>
+        <div class="grid-3">
+          <div><div class="metric">1周</div><div class="metric-label">完成可交互原型</div></div>
+          <div><div class="metric">22</div><div class="metric-label">个学员、教练与管理页面</div></div>
+          <div><div class="metric">8倍</div><div class="metric-label">项目测算的有效练习量提升</div></div>
+        </div>
+        <p class="note" style="margin-top: 16px;">数据来自原项目验证材料，实际效果取决于课程设计、使用频率和教练复核机制。</p>
+      </aside>
+    </div>
+    <div class="footer"><span>南A中心东盟谷 OPC 社区 · 企业 AI 应用服务</span><span>09</span></div>
+  </section>
+
+  <section class="slide">
+    <div class="topline">
+      <span class="section">专业服务团队既往项目 · 03</span>
+      <span class="mark">工程造价与招投标</span>
+    </div>
+    <h2>面对不同软件导出的 Excel，先让系统完成查错、比对和报告整理。</h2>
+    <div style="margin-top: 14px; display:flex; gap:8px;"><span class="tag">匿名案例</span><span class="tag teal">已交付使用</span></div>
+    <div class="case-layout">
+      <div class="case-story">
+        <div class="case-block">
+          <h3>业务问题</h3>
+          <p>不同计价软件导出的表格结构、列位和层级规则不一致，人工审核耗时，且容易出现错行错列。</p>
+        </div>
+        <div class="case-block">
+          <h3>验证动作</h3>
+          <p>从真实文件出发，验证上传、自动查错、差异比对和 Word 评审报告生成，并逐步覆盖不同计价体系。</p>
+        </div>
+        <div class="case-block">
+          <h3>结果边界</h3>
+          <p>系统减少重复核对和文件制作，人仍负责专业判断、异常确认和最终审核签发。</p>
+        </div>
+      </div>
+      <aside class="evidence-panel">
+        <div class="eyebrow">交付阶段记录</div>
+        <h3 style="margin-top: 9px;">快速原型只是开始，真实文件验证才决定能否上线。</h3>
+        <div class="grid-3">
+          <div><div class="metric">2小时</div><div class="metric-label">需求会后形成首版可点原型</div></div>
+          <div><div class="metric">3→1.5</div><div class="metric-label">单项目人天测算</div></div>
+          <div><div class="metric">3类</div><div class="metric-label">已覆盖计价体系</div></div>
+        </div>
+        <p class="note" style="margin-top: 16px;">数据来自原项目交付材料；不同文件质量和审核规则会影响处理效率。</p>
+      </aside>
+    </div>
+    <div class="footer"><span>南A中心东盟谷 OPC 社区 · 企业 AI 应用服务</span><span>10</span></div>
+  </section>
+
+  <section class="slide warm">
+    <div class="topline">
+      <span class="section">既往能力覆盖</span>
+      <span class="mark">SCENARIO DIRECTIONS</span>
+    </div>
+    <h2>能力不按工具罗列，而按企业要改善的工作来组织。</h2>
+    <p class="lead">以下方向来自专业服务团队既往项目经验。进入具体企业后，仍需重新确认流程、数据、责任和价值。</p>
+    <div class="capability-grid">
+      <article class="capability">
+        <div class="capability-index">01</div>
+        <div><h3>客户服务与知识协作</h3><p>非标资料整理、规则校验、知识库问答、客服辅助和异常升级。</p></div>
+      </article>
+      <article class="capability">
+        <div class="capability-index">02</div>
+        <div><h3>销售训练与业务增长</h3><p>销售陪练、过程评估、客户调研、个性化沟通和转化过程复盘。</p></div>
+      </article>
+      <article class="capability">
+        <div class="capability-index">03</div>
+        <div><h3>文档审查与专业辅助</h3><p>表格比对、合同与报价检查、专业规则核验、报告生成和人工复核。</p></div>
+      </article>
+      <article class="capability">
+        <div class="capability-index">04</div>
+        <div><h3>流程自动化与经营信息</h3><p>AI 与 RPA 协作、跨系统数据整理、经营看板、对话式查询和任务提醒。</p></div>
+      </article>
+    </div>
+    <div class="statement" style="margin-top: 24px;">同一种技术，在不同企业里可能对应完全不同的价值。场景必须回到现场判断。</div>
+    <div class="footer"><span>南A中心东盟谷 OPC 社区 · 企业 AI 应用服务</span><span>11</span></div>
+  </section>
+
+  <section class="slide">
+    <div class="topline">
+      <span class="section">项目保障</span>
+      <span class="mark">DELIVERY GOVERNANCE</span>
+    </div>
+    <h2>协作可以开放，项目责任必须集中。</h2>
+    <p class="lead">企业项目不会因为参与者来自不同专业背景，就变成无人负责的临时协作。每个项目都要有统一项目负责人和书面边界。</p>
+    <div class="governance">
+      <div class="project-owner">
+        <div class="eyebrow">统一责任入口</div>
+        <div class="big">固定项目负责人<br />统一组织交付</div>
+        <ul class="bullet-list" style="margin-top: 22px;">
+          <li>对接业务负责人和决策人</li>
+          <li>管理范围、进度、风险与变更</li>
+          <li>汇总成果并组织测试与验收</li>
+        </ul>
+      </div>
+      <div class="controls">
+        <div class="control"><h3>原型与生产分开</h3><p>明确哪些是真实运行、哪些仅用于演示，避免把概念原型误当成正式系统。</p></div>
+        <div class="control"><h3>数据最小必要</h3><p>只使用项目所需资料，敏感信息脱敏；未经批准不上传第三方 AI 服务。</p></div>
+        <div class="control"><h3>协作人员有边界</h3><p>参与成员按项目签署工作范围、保密、报酬和知识产权约定。</p></div>
+        <div class="control"><h3>结果可以验收</h3><p>在开发前确认指标、测试数据、责任人和通过条件，变更需要书面确认。</p></div>
+        <div class="control"><h3>保留人工责任</h3><p>高风险、专业判断和最终决策保留人工复核，不把模型输出当成自动结论。</p></div>
+        <div class="control"><h3>上线后有安排</h3><p>明确培训、运维、故障响应、账号移交、数据导出和退出机制。</p></div>
+      </div>
+    </div>
+    <div class="footer"><span>南A中心东盟谷 OPC 社区 · 企业 AI 应用服务</span><span>12</span></div>
+  </section>
+
+  <section class="slide dark">
+    <div class="topline">
+      <span class="section">星火者共同体</span>
+      <span class="mark">PRACTITIONER NETWORK</span>
+    </div>
+    <h2>让创业者团队从临时认识，走向有记录、有规则、有复盘的真实协作。</h2>
+    <p class="lead">星火者将作为创业者实践与协作的长期承载机制。它不是外包群、派单平台或客户池，而是逐步建立可靠协作关系的验证场。</p>
+    <div class="community-loop">
+      <div class="loop-item">
+        <span class="step-index">01</span>
+        <h3>建立能力档案</h3>
+        <p>说清做过什么、能提供什么、不能承担什么，以及当前可投入时间。</p>
+      </div>
+      <div class="loop-item">
+        <span class="step-index">02</span>
+        <h3>围绕问题匹配</h3>
+        <p>根据企业场景寻找行业经验和专项能力，不公开通讯录，不批量拉人。</p>
+      </div>
+      <div class="loop-item">
+        <span class="step-index">03</span>
+        <h3>书面确认项目</h3>
+        <p>确认目标、角色、交付、周期、保密、知识产权、报酬和退出方式。</p>
+      </div>
+      <div class="loop-item">
+        <span class="step-index">04</span>
+        <h3>完成交付复盘</h3>
+        <p>记录结果、偏差和责任履行，经授权后沉淀为下一次判断可用的经验。</p>
+      </div>
+    </div>
+    <div class="statement" style="margin-top: 25px;">社区连接机会，专业团队管理项目，参与者对自己负责的交付承担责任。</div>
+    <div class="footer"><span>南A中心东盟谷 OPC 社区 · 企业 AI 应用服务</span><span>13</span></div>
+  </section>
+
+  <section class="slide dark">
+    <div class="topline">
+      <span class="section">开始合作</span>
+      <span class="mark">START WITH ONE REAL SCENARIO</span>
+    </div>
+    <div class="cta-wrap">
+      <div>
+        <div class="eyebrow">企业 AI 场景交流</div>
+        <div class="cta-title" style="margin-top: 17px;">先讲清一个<br /><span>真实业务问题。</span></div>
+        <p class="cover-sub" style="width: 6.9in; margin-top: 23px; font-size: 17px;">我们从问题、流程、数据和结果开始判断，再决定是做一次诊断、一个原型试点，还是进入正式建设。</p>
+      </div>
+      <div class="contact-panel">
+        <div class="contact-title">联系社区运营团队</div>
+        <p>企业场景交流｜项目试点｜企业内训｜联合活动</p>
+        <div class="rule"></div>
+        <p>请通过南A中心东盟谷 OPC 社区商务对接人预约，并准备一项当前最希望改善的真实工作。</p>
+      </div>
+    </div>
+    <div class="cover-meta">
+      <span>南A中心东盟谷 OPC 社区</span>
+      <span>企业 AI 场景共创与落地服务</span>
+    </div>
+  </section>
+</body>
+</html>
