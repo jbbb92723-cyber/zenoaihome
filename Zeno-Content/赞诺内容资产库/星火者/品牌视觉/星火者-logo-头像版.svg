@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">星火者头像版标志</title>
+  <desc id="desc">适用于微信头像、活动群头像和社交媒体账号的深色方形标志。</desc>
+  <rect width="512" height="512" fill="#111111"/>
+  <g transform="translate(96 96) scale(2)">
+    <path fill="#F4F1E8" d="M18 132V102L61 59L78 76L43 111V132H18Z"/>
+    <path fill="#F4F1E8" d="M142 132V102L99 59L82 76L117 111V132H142Z"/>
+    <path fill="#C9504A" d="M80 18L102 43L92 59L80 70L68 59L58 43L80 18Z"/>
+  </g>
+</svg>

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">成事之契</title>
+  <desc id="desc">两条独立路径从不同方向进入，在中心形成一枚朱砂色成事印记。</desc>
+  <g fill="none" stroke="#111111" stroke-width="56" stroke-linecap="square" stroke-linejoin="miter">
+    <path d="M88 144H224V224H256"/>
+    <path d="M424 368H288V288H256"/>
+  </g>
+  <path fill="#9E2B25" d="M224 224H288V288H224Z"/>
+</svg>

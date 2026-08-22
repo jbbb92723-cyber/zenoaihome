@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" role="img" aria-labelledby="title desc">
+  <title id="title">星火者创业实践共同体品牌视觉提案</title>
+  <desc id="desc">展示同行成火主标、反白版、构形、色彩、头像、成员证和使用原则。</desc>
+  <defs>
+    <pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M24 0H0V24" fill="none" stroke="#D9D3C4" stroke-width="1" opacity=".65"/>
+    </pattern>
+  </defs>
+  <rect width="1600" height="1000" fill="#0B0B0B"/>
+
+  <g font-family="Noto Sans SC, Microsoft YaHei, sans-serif">
+    <!-- Primary identity -->
+    <rect x="40" y="40" width="760" height="460" fill="#F4F1E8"/>
+    <text x="76" y="85" font-size="13" font-weight="600" fill="#777066">01 / PRIMARY IDENTITY</text>
+    <g transform="translate(78 116) scale(1.6)">
+      <path fill="#111111" d="M18 132V102L61 59L78 76L43 111V132H18Z"/>
+      <path fill="#111111" d="M142 132V102L99 59L82 76L117 111V132H142Z"/>
+      <path fill="#9E2B25" d="M80 18L102 43L92 59L80 70L68 59L58 43L80 18Z"/>
+    </g>
+    <text x="370" y="265" font-size="78" font-weight="700" fill="#111111">星火者</text>
+    <text x="375" y="315" font-size="24" font-weight="500" fill="#4C4841">创业实践共同体</text>
+    <path d="M375 345H712" stroke="#D9D3C4" stroke-width="2"/>
+    <text x="375" y="382" font-size="16" font-weight="500" fill="#777066">ZENO赞诺发起</text>
+    <text x="76" y="458" font-size="18" font-weight="600" fill="#111111">独立，但不孤立。</text>
+
+    <!-- Reverse -->
+    <rect x="820" y="40" width="740" height="220" fill="#171717" stroke="#343434"/>
+    <text x="850" y="80" font-size="13" font-weight="600" fill="#77736C">02 / REVERSE</text>
+    <g transform="translate(850 91) scale(.86)">
+      <path fill="#F4F1E8" d="M18 132V102L61 59L78 76L43 111V132H18Z"/>
+      <path fill="#F4F1E8" d="M142 132V102L99 59L82 76L117 111V132H142Z"/>
+      <path fill="#C9504A" d="M80 18L102 43L92 59L80 70L68 59L58 43L80 18Z"/>
+    </g>
+    <text x="1020" y="163" font-size="50" font-weight="700" fill="#F4F1E8">星火者</text>
+    <text x="1023" y="200" font-size="18" font-weight="500" fill="#BDB7AC">创业实践共同体</text>
+
+    <!-- Construction -->
+    <rect x="820" y="280" width="360" height="220" fill="#F8F5EC"/>
+    <rect x="820" y="280" width="360" height="220" fill="url(#grid)"/>
+    <text x="846" y="318" font-size="13" font-weight="600" fill="#777066">03 / CONSTRUCTION</text>
+    <g transform="translate(922 325) scale(.9)">
+      <path fill="#111111" d="M18 132V102L61 59L78 76L43 111V132H18Z"/>
+      <path fill="#111111" d="M142 132V102L99 59L82 76L117 111V132H142Z"/>
+      <path fill="#9E2B25" d="M80 18L102 43L92 59L80 70L68 59L58 43L80 18Z"/>
+      <path d="M80 10V142M8 80H152" stroke="#9E2B25" stroke-width="1" stroke-dasharray="3 4" opacity=".55"/>
+    </g>
+    <text x="846" y="474" font-size="12" fill="#777066">两条路径 / 一枚火种 / 一个向前的负形</text>
+
+    <!-- Palette -->
+    <rect x="1200" y="280" width="360" height="220" fill="#F4F1E8"/>
+    <text x="1226" y="318" font-size="13" font-weight="600" fill="#777066">04 / PALETTE</text>
+    <rect x="1226" y="344" width="84" height="104" fill="#111111"/>
+    <rect x="1310" y="344" width="84" height="104" fill="#9E2B25"/>
+    <rect x="1394" y="344" width="84" height="104" fill="#D9D3C4"/>
+    <rect x="1478" y="344" width="56" height="104" fill="#F4F1E8" stroke="#D9D3C4"/>
+    <text x="1226" y="472" font-size="11" fill="#4C4841">墨黑</text>
+    <text x="1310" y="472" font-size="11" fill="#4C4841">朱砂</text>
+    <text x="1394" y="472" font-size="11" fill="#4C4841">纸灰</text>
+    <text x="1478" y="472" font-size="11" fill="#4C4841">暖白</text>
+
+    <!-- Avatar -->
+    <rect x="40" y="520" width="360" height="440" fill="#171717" stroke="#343434"/>
+    <text x="68" y="560" font-size="13" font-weight="600" fill="#77736C">05 / SOCIAL AVATAR</text>
+    <rect x="90" y="610" width="260" height="260" fill="#111111" stroke="#393939"/>
+    <g transform="translate(140 660) scale(1.25)">
+      <path fill="#F4F1E8" d="M18 132V102L61 59L78 76L43 111V132H18Z"/>
+      <path fill="#F4F1E8" d="M142 132V102L99 59L82 76L117 111V132H142Z"/>
+      <path fill="#C9504A" d="M80 18L102 43L92 59L80 70L68 59L58 43L80 18Z"/>
+    </g>
+    <text x="90" y="915" font-size="14" fill="#BDB7AC">微信头像 / 活动群 / 社交账号</text>
+
+    <!-- Member credential application -->
+    <rect x="420" y="520" width="700" height="440" fill="#D9D3C4"/>
+    <text x="450" y="560" font-size="13" font-weight="600" fill="#777066">06 / MEMBER CREDENTIAL</text>
+    <rect x="480" y="610" width="580" height="290" fill="#F4F1E8"/>
+    <g transform="translate(512 640) scale(.55)">
+      <path fill="#111111" d="M18 132V102L61 59L78 76L43 111V132H18Z"/>
+      <path fill="#111111" d="M142 132V102L99 59L82 76L117 111V132H142Z"/>
+      <path fill="#9E2B25" d="M80 18L102 43L92 59L80 70L68 59L58 43L80 18Z"/>
+    </g>
+    <text x="620" y="688" font-size="32" font-weight="700" fill="#111111">星火者</text>
+    <text x="622" y="716" font-size="13" font-weight="500" fill="#777066">创业实践共同体</text>
+    <path d="M518 760H1020" stroke="#D9D3C4" stroke-width="2"/>
+    <text x="518" y="810" font-size="14" font-weight="600" fill="#9E2B25">MEMBER 01 / 90 DAYS</text>
+    <text x="518" y="850" font-size="24" font-weight="600" fill="#111111">正在推进真实项目的人</text>
+    <text x="450" y="935" font-size="13" fill="#777066">身份来自参与和行动，不来自等级、奖章或热闹。</text>
+
+    <!-- Usage principles -->
+    <rect x="1140" y="520" width="420" height="440" fill="#F4F1E8"/>
+    <text x="1170" y="560" font-size="13" font-weight="600" fill="#777066">07 / USE PRINCIPLES</text>
+    <text x="1170" y="625" font-size="30" font-weight="700" fill="#111111">同行成火</text>
+    <text x="1170" y="666" font-size="15" fill="#4C4841">不是围观，不是派单，不是身份消费。</text>
+    <path d="M1170 700H1530" stroke="#D9D3C4" stroke-width="2"/>
+    <text x="1170" y="748" font-size="15" font-weight="600" fill="#111111">独立行动者</text>
+    <text x="1170" y="775" font-size="13" fill="#777066">图形两侧始终保持独立。</text>
+    <text x="1170" y="824" font-size="15" font-weight="600" fill="#111111">真实协作</text>
+    <text x="1170" y="851" font-size="13" fill="#777066">火种只在相遇处出现。</text>
+    <text x="1170" y="900" font-size="15" font-weight="600" fill="#111111">克制表达</text>
+    <text x="1170" y="927" font-size="13" fill="#777066">不用渐变、发光、徽章和普通火焰。</text>
+  </g>
+</svg>

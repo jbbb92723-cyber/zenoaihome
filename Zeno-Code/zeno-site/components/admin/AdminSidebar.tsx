@@ -10,7 +10,7 @@ const NAV = [
   ]},
   { group: '用户运营', items: [
     { href: '/admin/users',   label: '用户管理' },
-    { href: '/admin/community', label: '星火者社群' },
+    { href: '/admin/community', label: '星火者共同体' },
     { href: '/admin/members', label: '会员管理' },
     { href: '/admin/orders',  label: '订单管理' },
   ]},

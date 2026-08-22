@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 160" role="img" aria-labelledby="title desc">
+  <title id="title">星火者紧凑横版标志</title>
+  <desc id="desc">用于网站导航、活动物料和较窄版面的星火者横版标志。</desc>
+  <g transform="translate(8 8) scale(.85)">
+    <path fill="#111111" d="M18 132V102L61 59L78 76L43 111V132H18Z"/>
+    <path fill="#111111" d="M142 132V102L99 59L82 76L117 111V132H142Z"/>
+    <path fill="#9E2B25" d="M80 18L102 43L92 59L80 70L68 59L58 43L80 18Z"/>
+  </g>
+  <g fill="#111111" font-family="Noto Sans SC, Microsoft YaHei, sans-serif">
+    <text x="170" y="78" font-size="50" font-weight="700">星火者</text>
+    <text x="173" y="113" font-size="18" font-weight="500" fill="#4C4841">创业实践共同体</text>
+  </g>
+</svg>

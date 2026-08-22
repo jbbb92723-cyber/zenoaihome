@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>星火者 Logo V2 概念探索</title>
+  <style>
+    :root { color-scheme: light; --bg:#111; --panel:#f4f1e8; --ink:#111; --muted:#6f6a61; --line:#d9d3c4; --red:#9e2b25; }
+    * { box-sizing:border-box; }
+    body { margin:0; background:var(--bg); color:var(--ink); font-family:"Noto Sans SC","Microsoft YaHei",sans-serif; }
+    main { width:min(1440px,100%); margin:0 auto; padding:48px 32px 64px; }
+    header { display:grid; grid-template-columns:1fr auto; gap:24px; align-items:end; margin-bottom:32px; color:#f4f1e8; }
+    h1 { margin:0; font-size:32px; line-height:1.2; }
+    header p { margin:8px 0 0; color:#aaa49a; font-size:14px; }
+    .legend { color:#aaa49a; font-size:12px; text-align:right; }
+    .grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; }
+    article { background:var(--panel); min-width:0; }
+    .visual { display:grid; place-items:center; aspect-ratio:1/1; padding:64px; border-bottom:1px solid var(--line); }
+    .visual img { width:100%; height:100%; display:block; }
+    .copy { padding:24px; }
+    .number { color:var(--red); font-size:12px; font-weight:700; }
+    h2 { margin:8px 0 10px; font-size:24px; line-height:1.25; }
+    .idea { min-height:78px; margin:0; color:#4c4841; font-size:14px; line-height:1.8; }
+    .sizes { display:flex; align-items:end; gap:24px; margin-top:24px; padding-top:20px; border-top:1px solid var(--line); }
+    .size { display:grid; gap:8px; justify-items:center; color:var(--muted); font-size:11px; }
+    .size img { display:block; }
+    footer { margin-top:16px; padding:24px; background:#191919; color:#aaa49a; font-size:13px; line-height:1.8; }
+    footer strong { color:#f4f1e8; }
+    @media (max-width:900px) { main{padding:28px 16px 40px}.grid{grid-template-columns:1fr}.visual{padding:72px}.idea{min-height:0}header{grid-template-columns:1fr}.legend{text-align:left} }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <div>
+        <h1>星火者 Logo V2 概念探索</h1>
+        <p>正式名称：星火者创业实践共同体｜母题：独立，但不孤立</p>
+      </div>
+      <div class="legend">墨黑 #111111｜朱砂 #9E2B25｜暖白 #F4F1E8</div>
+    </header>
+
+    <section class="grid">
+      <article>
+        <div class="visual"><img src="01-合榫生火.svg" alt="合榫生火 Logo 概念"></div>
+        <div class="copy">
+          <div class="number">01 / RECOMMENDED</div>
+          <h2>合榫生火</h2>
+          <p class="idea">两条路径各自完整，只有角色、边界和时机匹配时才在中心咬合。火种不是装饰，而是协作成立后产生的结果。</p>
+          <div class="sizes">
+            <div class="size"><img src="01-合榫生火.svg" width="64" height="64" alt="64像素"><span>64px</span></div>
+            <div class="size"><img src="01-合榫生火.svg" width="32" height="32" alt="32像素"><span>32px</span></div>
+            <div class="size"><img src="01-合榫生火.svg" width="16" height="16" alt="16像素"><span>16px</span></div>
+          </div>
+        </div>
+      </article>
+
+      <article>
+        <div class="visual"><img src="02-并行生火.svg" alt="并行生火 Logo 概念"></div>
+        <div class="copy">
+          <div class="number">02 / RELATIONSHIP</div>
+          <h2>并行生火</h2>
+          <p class="idea">两位实践者沿各自方向继续前进，朱砂连接只代表一次有边界的真实协作。它最准确地表达“独立，但不孤立”。</p>
+          <div class="sizes">
+            <div class="size"><img src="02-并行生火.svg" width="64" height="64" alt="64像素"><span>64px</span></div>
+            <div class="size"><img src="02-并行生火.svg" width="32" height="32" alt="32像素"><span>32px</span></div>
+            <div class="size"><img src="02-并行生火.svg" width="16" height="16" alt="16像素"><span>16px</span></div>
+          </div>
+        </div>
+      </article>
+
+      <article>
+        <div class="visual"><img src="03-者字火印.svg" alt="者字火印 Logo 概念"></div>
+        <div class="copy">
+          <div class="number">03 / CULTURAL</div>
+          <h2>者字火印</h2>
+          <p class="idea">把“者”做成现代字印，强调星火者首先是一种实践者身份。中文辨识最强，但共同协作的含义需要品牌叙事补足。</p>
+          <div class="sizes">
+            <div class="size"><img src="03-者字火印.svg" width="64" height="64" alt="64像素"><span>64px</span></div>
+            <div class="size"><img src="03-者字火印.svg" width="32" height="32" alt="32像素"><span>32px</span></div>
+            <div class="size"><img src="03-者字火印.svg" width="16" height="16" alt="16像素"><span>16px</span></div>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <footer><strong>本轮只选构形机制，不选细节。</strong>判断标准依次为：是否摆脱房屋或培训机构联想、是否能表达独立主体之间的真实协作、是否能在 16–32px 保持识别、是否能发展成长期视觉系统。</footer>
+  </main>
+</body>
+</html>

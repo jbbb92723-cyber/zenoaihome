@@ -78,7 +78,7 @@ export default function CommunityPage() {
 
         <section className="mt-20 border-y border-border py-12 sm:mt-24 sm:py-16">
           <div className="max-w-3xl">
-            <p className="text-sm font-semibold text-stone">实践俱乐部机制</p>
+            <p className="text-sm font-semibold text-stone">共同体运行机制</p>
             <h2 className="editorial-display mt-4 text-[1.8rem] leading-[1.15] sm:text-[2.2rem] lg:text-[2.6rem]">先把真实问题推进，再判断能否一起做事。</h2>
           </div>
           <div className="mt-10 grid sm:grid-cols-2">

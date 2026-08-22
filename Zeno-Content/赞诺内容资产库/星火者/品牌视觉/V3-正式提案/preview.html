@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>星火者 Logo 正式概念提案</title>
+  <style>
+    :root { --black:#111; --paper:#f4f1e8; --white:#fbfaf6; --red:#9e2b25; --line:#d9d3c4; --muted:#68635b; }
+    * { box-sizing:border-box; }
+    body { margin:0; background:#0d0d0d; color:var(--black); font-family:"Noto Sans SC","Microsoft YaHei",sans-serif; }
+    main { width:min(1540px,100%); margin:0 auto; padding:44px 36px 56px; }
+    header { display:flex; justify-content:space-between; align-items:end; gap:32px; margin-bottom:28px; color:var(--paper); }
+    h1 { margin:0; font-size:34px; line-height:1.2; }
+    header p { margin:10px 0 0; color:#aaa49a; font-size:14px; }
+    .meta { color:#aaa49a; font-size:12px; text-align:right; }
+    .grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px; }
+    article { display:grid; grid-template-columns:minmax(260px,.88fr) minmax(300px,1.12fr); min-height:520px; background:var(--paper); }
+    .symbol { display:grid; place-items:center; padding:56px; background:var(--white); border-right:1px solid var(--line); }
+    .symbol>img { width:min(100%,300px); height:auto; display:block; }
+    .detail { display:flex; flex-direction:column; min-width:0; padding:32px; }
+    .code { color:var(--red); font-size:11px; font-weight:700; }
+    h2 { margin:8px 0 8px; font-size:27px; line-height:1.2; }
+    .thesis { margin:0; color:#3e3a35; font-size:14px; line-height:1.75; }
+    .lockup { display:flex; align-items:center; gap:18px; margin:28px 0 24px; padding:20px 0; border-block:1px solid var(--line); }
+    .lockup img { width:72px; height:72px; flex:0 0 auto; }
+    .brand strong { display:block; font-size:28px; line-height:1.2; }
+    .brand span { display:block; margin-top:6px; color:var(--muted); font-size:12px; }
+    dl { display:grid; grid-template-columns:48px 1fr; gap:8px 12px; margin:0; font-size:12px; line-height:1.65; }
+    dt { color:var(--muted); }
+    dd { margin:0; }
+    .sizes { display:flex; align-items:end; gap:22px; margin-top:auto; padding-top:22px; }
+    .size { display:grid; gap:7px; justify-items:center; color:var(--muted); font-size:10px; }
+    .size img { display:block; }
+    footer { margin-top:18px; padding:22px 24px; border-left:3px solid var(--red); background:#191919; color:#aaa49a; font-size:13px; line-height:1.8; }
+    footer strong { color:var(--paper); }
+    @media (max-width:1080px) { .grid{grid-template-columns:1fr} }
+    @media (max-width:680px) { main{padding:26px 14px 38px}header{display:block}.meta{text-align:left;margin-top:10px}article{grid-template-columns:1fr}.symbol{border-right:0;border-bottom:1px solid var(--line);padding:56px}.detail{padding:26px} }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <div>
+        <h1>星火者 Logo 正式概念提案</h1>
+        <p>先选品牌思想，再进入比例、字标和应用系统精修。</p>
+      </div>
+      <div class="meta">星火者创业实践共同体<br>独立，但不孤立。</div>
+    </header>
+
+    <section class="grid">
+      <article>
+        <div class="symbol"><img src="01-成事之契.svg" alt="成事之契图形"></div>
+        <div class="detail">
+          <div class="code">01 / RELATION</div>
+          <h2>成事之契</h2>
+          <p class="thesis">两个主体从不同方向进入，在需求、能力和边界匹配时形成一次有效关系。中央朱砂不是火焰，而是事情真正被推进后留下的“成事印”。</p>
+          <div class="lockup"><img src="01-成事之契.svg" alt=""><div class="brand"><strong>星火者</strong><span>创业实践共同体</span></div></div>
+          <dl><dt>优势</dt><dd>结构清楚、边界感强，适合共同体与 FDE 项目协作。</dd><dt>风险</dt><dd>需要后续微调，避免被看成物流路径或流程软件。</dd></dl>
+          <div class="sizes"><div class="size"><img src="01-成事之契.svg" width="64" height="64" alt=""><span>64px</span></div><div class="size"><img src="01-成事之契.svg" width="32" height="32" alt=""><span>32px</span></div><div class="size"><img src="01-成事之契.svg" width="16" height="16" alt=""><span>16px</span></div></div>
+        </div>
+      </article>
+
+      <article>
+        <div class="symbol"><img src="02-行动留痕.svg" alt="行动留痕图形"></div>
+        <div class="detail">
+          <div class="code">02 / PRACTICE</div>
+          <h2>行动留痕</h2>
+          <p class="thesis">星火者不以群消息和身份感证明价值。黑色路径代表持续推进，朱砂刻度记录一次真实行动，让“做过什么”成为共同体的判断依据。</p>
+          <div class="lockup"><img src="02-行动留痕.svg" alt=""><div class="brand"><strong>星火者</strong><span>创业实践共同体</span></div></div>
+          <dl><dt>优势</dt><dd>最符合 90 天实践、案例复盘与可验证推进。</dd><dt>风险</dt><dd>容易产生增长曲线联想，成员连接的含义较弱。</dd></dl>
+          <div class="sizes"><div class="size"><img src="02-行动留痕.svg" width="64" height="64" alt=""><span>64px</span></div><div class="size"><img src="02-行动留痕.svg" width="32" height="32" alt=""><span>32px</span></div><div class="size"><img src="02-行动留痕.svg" width="16" height="16" alt=""><span>16px</span></div></div>
+        </div>
+      </article>
+
+      <article>
+        <div class="symbol"><img src="03-并行生火.svg" alt="并行生火图形"></div>
+        <div class="detail">
+          <div class="code">03 / INDEPENDENCE</div>
+          <h2>并行生火</h2>
+          <p class="thesis">每个人有自己的方向和事业，不因加入共同体而被组织吞没。两条路径持续向前，只在合适的项目节点形成一次有边界的连接。</p>
+          <div class="lockup"><img src="03-并行生火.svg" alt=""><div class="brand"><strong>星火者</strong><span>创业实践共同体</span></div></div>
+          <dl><dt>优势</dt><dd>最准确表达“独立，但不孤立”，动态延展性强。</dd><dt>风险</dt><dd>容易被读成字母 H，需要字标与叙事建立专属性。</dd></dl>
+          <div class="sizes"><div class="size"><img src="03-并行生火.svg" width="64" height="64" alt=""><span>64px</span></div><div class="size"><img src="03-并行生火.svg" width="32" height="32" alt=""><span>32px</span></div><div class="size"><img src="03-并行生火.svg" width="16" height="16" alt=""><span>16px</span></div></div>
+        </div>
+      </article>
+
+      <article>
+        <div class="symbol"><img src="04-者的印记.svg" alt="者的印记图形"></div>
+        <div class="detail">
+          <div class="code">04 / IDENTITY</div>
+          <h2>者的印记</h2>
+          <p class="thesis">星火者首先是一种实践者身份。以现代几何方式重构汉字“者”，朱砂斜笔既像行动留下的划痕，也像仍在生长的火种。</p>
+          <div class="lockup"><img src="04-者的印记.svg" alt=""><div class="brand"><strong>星火者</strong><span>创业实践共同体</span></div></div>
+          <dl><dt>优势</dt><dd>中文识别和成员身份感最强，不依赖英文解释。</dd><dt>风险</dt><dd>共同协作的含义较弱，极小尺寸的信息量最大。</dd></dl>
+          <div class="sizes"><div class="size"><img src="04-者的印记.svg" width="64" height="64" alt=""><span>64px</span></div><div class="size"><img src="04-者的印记.svg" width="32" height="32" alt=""><span>32px</span></div><div class="size"><img src="04-者的印记.svg" width="16" height="16" alt=""><span>16px</span></div></div>
+        </div>
+      </article>
+    </section>
+
+    <footer><strong>选择时只回答一个问题：</strong>你希望别人第一次看到星火者，先感受到“能一起成事”“会真正行动”“保持独立”还是“这是一种实践者身份”？</footer>
+  </main>
+</body>
+</html>

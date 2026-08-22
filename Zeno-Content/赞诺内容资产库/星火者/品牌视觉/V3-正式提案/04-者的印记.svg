@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">者的印记</title>
+  <desc id="desc">从汉字者提炼的现代几何字印，以朱砂斜笔表示行动中的火种。</desc>
+  <g fill="#111111">
+    <path d="M152 88H360V124H152Z"/>
+    <path d="M120 160H392V196H120Z"/>
+    <path d="M88 232H424V268H88Z"/>
+    <path d="M152 304H360V336H152Z"/>
+    <path d="M152 304H192V432H152Z"/>
+    <path d="M320 304H360V432H320Z"/>
+    <path d="M152 360H360V384H152Z"/>
+    <path d="M152 400H360V432H152Z"/>
+  </g>
+  <path fill="#9E2B25" d="M326 58L358 90L174 294L142 262L326 58Z"/>
+</svg>

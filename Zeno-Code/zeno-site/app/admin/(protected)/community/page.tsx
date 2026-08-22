@@ -8,7 +8,7 @@ import {
   type CommunityApplicationStatus,
 } from '@/lib/domains/community/constants'
 
-export const metadata: Metadata = { title: '星火者社群 · Admin' }
+export const metadata: Metadata = { title: '星火者共同体 · Admin' }
 export const dynamic = 'force-dynamic'
 
 const STATUS_LABEL: Record<string, string> = {
@@ -72,7 +72,7 @@ export default async function AdminCommunityPage() {
       <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
         <div>
           <p className="mb-1 text-[0.65rem] font-semibold uppercase tracking-widest text-[#706860]">Community Operations</p>
-          <h1 className="text-xl font-semibold text-[#E8E2DA]">星火者社群</h1>
+          <h1 className="text-xl font-semibold text-[#E8E2DA]">星火者共同体</h1>
           <p className="mt-2 text-xs text-[#706860]">申请 → 面聊 → 通过 → 付款 → 入营</p>
         </div>
         <Link href="/community" className="border border-[#3A3530] px-4 py-2 text-xs text-[#A09890] hover:text-[#E8E2DA]">查看招募页</Link>

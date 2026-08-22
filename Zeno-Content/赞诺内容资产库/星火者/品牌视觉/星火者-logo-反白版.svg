@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 180" role="img" aria-labelledby="title desc">
+  <title id="title">星火者反白版标志</title>
+  <desc id="desc">用于深色背景的星火者标准横版标志。</desc>
+  <rect width="760" height="180" fill="#111111"/>
+  <g transform="translate(10 10) scale(.95)">
+    <path fill="#F4F1E8" d="M18 132V102L61 59L78 76L43 111V132H18Z"/>
+    <path fill="#F4F1E8" d="M142 132V102L99 59L82 76L117 111V132H142Z"/>
+    <path fill="#C9504A" d="M80 18L102 43L92 59L80 70L68 59L58 43L80 18Z"/>
+  </g>
+  <g font-family="Noto Sans SC, Microsoft YaHei, sans-serif">
+    <text x="190" y="84" font-size="54" font-weight="700" fill="#F4F1E8">星火者</text>
+    <text x="194" y="122" font-size="19" font-weight="500" fill="#D9D3C4">创业实践共同体</text>
+    <path d="M194 139H534V141H194Z" fill="#3C3A36"/>
+    <text x="194" y="162" font-size="13" font-weight="500" fill="#AFA99E">ZENO赞诺发起</text>
+  </g>
+</svg>

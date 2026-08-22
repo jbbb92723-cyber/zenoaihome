@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">行动留痕</title>
+  <desc id="desc">一条持续推进的阶梯路径，其中一段朱砂色刻度记录真实发生的行动。</desc>
+  <g fill="none" stroke-width="56" stroke-linecap="square" stroke-linejoin="miter">
+    <path stroke="#111111" d="M72 352H200V288H296"/>
+    <path stroke="#111111" d="M296 224H440"/>
+    <path stroke="#9E2B25" d="M296 288V224"/>
+  </g>
+</svg>

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">合榫生火</title>
+  <desc id="desc">两条带转折的独立路径在中心精准咬合，生成一枚朱砂色火种。</desc>
+  <g fill="none" stroke="#111111" stroke-width="64" stroke-linecap="square" stroke-linejoin="miter">
+    <path d="M88 144H216V256H256"/>
+    <path d="M424 368H296V256H256"/>
+  </g>
+  <path fill="#9E2B25" d="M256 214L298 256L256 298L214 256L256 214Z"/>
+</svg>
